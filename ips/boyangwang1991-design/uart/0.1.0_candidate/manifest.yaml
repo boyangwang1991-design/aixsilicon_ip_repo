@@ -1,10 +1,10 @@
 schema_version: '1.0'
 ip_name: uart
 version: 0.1.0_candidate
-release_class: formal
+release_class: candidate
 eda_profile: commercial-systemverilog
 source:
-  commit: debd088bb34fffd01c7603fa52336deaf464311b
+  commit: 7c123adc85f76a31866010094c0f147c70507e25
   branch: main
   dirty: true
 quality:

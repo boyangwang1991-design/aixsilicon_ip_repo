@@ -3,7 +3,7 @@ name: uart
 version: 0.1.0_candidate
 vendor: boyangwang1991-design
 library: ip
-description: ''
+description: '> ⚠️ **CANDIDATE RELEASE — NOT QUALIFIED.** 本包为候选交付物，未经正式质量认证，不得表述为已发布产物。'
 license: Apache-2.0
 path: ips/boyangwang1991-design/uart/0.1.0_candidate
 quality: {}
@@ -11,4 +11,4 @@ dependencies: []
 fusesoc:
   core: boyangwang1991-design:ip:uart:0.1.0_candidate
   cores: ips/boyangwang1991-design/uart/0.1.0_candidate/fusesoc
-manifest_sha256: 9620896ef3f6c5cb607399fc167ce1168c727a77d10825c1d478662dc4bbd282
+manifest_sha256: 0a1c7bad8306188f479ecbe6675bc4f9f427842f254586d615d7fecdcdd64b93
