@@ -1,0 +1,602 @@
+ 
+****************************************
+Report : hierarchy
+Design : uart
+Version: V-2023.12-SP3
+Date   : Tue Aug 11 07:03:04 2026
+****************************************
+
+Information: This design contains unmapped logic. (RPT-7)
+
+uart
+    GTECH_AND2                                                         gtech
+    prim_alert_sender_1_00000001_1
+        GTECH_AND2                                                     gtech
+        GTECH_BUF                                                      gtech
+        GTECH_NOT                                                      gtech
+        GTECH_OR2                                                      gtech
+        prim_diff_decode_1_00000001_0
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+            GTECH_XOR2                                                 gtech
+            prim_flop_2sync_1_0_0
+                prim_flop_1_0_0
+                    GTECH_NOT                                          gtech
+                prim_flop_1_0_1
+                    GTECH_NOT                                          gtech
+            prim_flop_2sync_1_1_0
+                prim_flop_1_1_0
+                    GTECH_NOT                                          gtech
+                prim_flop_1_1_1
+                    GTECH_NOT                                          gtech
+        prim_diff_decode_1_00000001_1
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+            GTECH_XOR2                                                 gtech
+            prim_flop_2sync_1_0_1
+                prim_flop_1_0_2
+                    GTECH_NOT                                          gtech
+                prim_flop_1_0_3
+                    GTECH_NOT                                          gtech
+            prim_flop_2sync_1_1_1
+                prim_flop_1_1_2
+                    GTECH_NOT                                          gtech
+                prim_flop_1_1_3
+                    GTECH_NOT                                          gtech
+        prim_sec_anchor_buf_Width1
+            prim_buf_Width1
+                GTECH_NOT                                              gtech
+        prim_sec_anchor_buf_Width2_0
+            prim_buf_Width2_0
+                GTECH_NOT                                              gtech
+        prim_sec_anchor_buf_Width2_1
+            prim_buf_Width2_1
+                GTECH_NOT                                              gtech
+        prim_sec_anchor_flop_2_2
+            prim_flop_2_2
+                GTECH_NOT                                              gtech
+    uart_core
+        *ADD_UNS_OP_5_1_5
+            DW01_inc_width5
+                GTECH_ADD_AB                                           gtech
+                GTECH_NOT                                              gtech
+                GTECH_XOR2                                             gtech
+        *ADD_UNS_OP_16_16_17
+            DW01_add_width17
+                GTECH_ADD_ABC                                          gtech
+        *ADD_UNS_OP_24_1_24
+            DW01_inc_width24
+                GTECH_ADD_AB                                           gtech
+                GTECH_NOT                                              gtech
+                GTECH_XOR2                                             gtech
+        *ASH_UNS_UNS_OP_6_3_6
+            DW01_ash_A_width6_SH_width3
+                GTECH_AND2                                             gtech
+                GTECH_MUX2                                             gtech
+                GTECH_NAND2                                            gtech
+                GTECH_NOT                                              gtech
+        *ASH_UNS_UNS_OP_7_3_7
+            DW01_ash_A_width7_SH_width3
+                GTECH_AND2                                             gtech
+                GTECH_MUX2                                             gtech
+                GTECH_NAND2                                            gtech
+                GTECH_NOT                                              gtech
+        *EQ_UNS_OP_24_24_1
+            DW01_cmp6_width24
+                GTECH_AND_NOT                                          gtech
+                GTECH_NAND2                                            gtech
+                GTECH_NOR2                                             gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR_NOT                                           gtech
+                GTECH_XNOR2                                            gtech
+                GTECH_XOR2                                             gtech
+        *GEQ_UNS_OP_7_7_1
+            DW01_cmp2_width7
+                GTECH_NAND2                                            gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR_NOT                                           gtech
+                GTECH_XNOR2                                            gtech
+                GTECH_XOR2                                             gtech
+        *GT_UNS_OP_3_3_1
+            DW01_cmp2_width3
+                GTECH_NAND2                                            gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR_NOT                                           gtech
+                GTECH_XNOR2                                            gtech
+                GTECH_XOR2                                             gtech
+        *LT_UNS_OP_6_6_1
+            DW01_cmp2_width6
+                GTECH_NAND2                                            gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR_NOT                                           gtech
+                GTECH_XNOR2                                            gtech
+                GTECH_XOR2                                             gtech
+        *NE_UNS_OP_7_7_1
+            DW01_cmp6_width7
+                GTECH_AND_NOT                                          gtech
+                GTECH_NAND2                                            gtech
+                GTECH_NOR2                                             gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR_NOT                                           gtech
+                GTECH_XNOR2                                            gtech
+                GTECH_XOR2                                             gtech
+        GTECH_AND2                                                     gtech
+        GTECH_BUF                                                      gtech
+        GTECH_NOT                                                      gtech
+        GTECH_OR2                                                      gtech
+        GTECH_XOR2                                                     gtech
+        prim_fifo_sync_8_0_32
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_fifo_sync_cnt_00000020_0_0
+                *ADD_UNS_OP_6_1_6
+                    DW01_inc_width6
+                        GTECH_ADD_AB                                   gtech
+                        GTECH_NOT                                      gtech
+                        GTECH_XOR2                                     gtech
+                *ADD_UNS_OP_6_5_6
+                    DW01_add_width6
+                        GTECH_ADD_ABC                                  gtech
+                *EQ_UNS_OP_6_6_1
+                    DW01_cmp6_width6
+                        GTECH_AND_NOT                                  gtech
+                        GTECH_NAND2                                    gtech
+                        GTECH_NOR2                                     gtech
+                        GTECH_NOT                                      gtech
+                        GTECH_OR_NOT                                   gtech
+                        GTECH_XNOR2                                    gtech
+                        GTECH_XOR2                                     gtech
+                *SUB_UNS_OP_5_5_6
+                    DW01_sub_width6
+                        GTECH_ADD_ABC                                  gtech
+                        GTECH_NOT                                      gtech
+                *SUB_UNS_OP_6_5_6
+                    DW01_sub_width6
+                        GTECH_ADD_ABC                                  gtech
+                        GTECH_NOT                                      gtech
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+                GTECH_XOR2                                             gtech
+        prim_fifo_sync_8_0_64
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_fifo_sync_cnt_00000040_0_0
+                *ADD_UNS_OP_7_1_7
+                    DW01_inc_width7
+                        GTECH_ADD_AB                                   gtech
+                        GTECH_NOT                                      gtech
+                        GTECH_XOR2                                     gtech
+                *ADD_UNS_OP_7_6_7
+                    DW01_add_width7
+                        GTECH_ADD_ABC                                  gtech
+                *EQ_UNS_OP_7_7_1
+                    DW01_cmp6_width7
+                        GTECH_AND_NOT                                  gtech
+                        GTECH_NAND2                                    gtech
+                        GTECH_NOR2                                     gtech
+                        GTECH_NOT                                      gtech
+                        GTECH_OR_NOT                                   gtech
+                        GTECH_XNOR2                                    gtech
+                        GTECH_XOR2                                     gtech
+                *SUB_UNS_OP_6_6_7
+                    DW01_sub_width7
+                        GTECH_ADD_ABC                                  gtech
+                        GTECH_NOT                                      gtech
+                *SUB_UNS_OP_7_6_7
+                    DW01_sub_width7
+                        GTECH_ADD_ABC                                  gtech
+                        GTECH_NOT                                      gtech
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+                GTECH_XOR2                                             gtech
+        prim_flop_2sync_1_1_2
+            prim_flop_1_1_4
+                GTECH_NOT                                              gtech
+            prim_flop_1_1_5
+                GTECH_NOT                                              gtech
+        prim_intr_hw_Width1_0
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_1
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_2
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_3
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_4
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_5
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_IntrTStatus_0
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_IntrTStatus_1
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        prim_intr_hw_Width1_IntrTStatus_2
+            GTECH_AND2                                                 gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+        uart_rx
+            *ADD_UNS_OP_4_1_5
+                DW01_inc_width5
+                    GTECH_ADD_AB                                       gtech
+                    GTECH_NOT                                          gtech
+                    GTECH_XOR2                                         gtech
+            *EQ_UNS_OP_4_4_1
+                DW01_cmp6_width4
+                    GTECH_AND_NOT                                      gtech
+                    GTECH_NAND2                                        gtech
+                    GTECH_NOR2                                         gtech
+                    GTECH_NOT                                          gtech
+                    GTECH_OR_NOT                                       gtech
+                    GTECH_XNOR2                                        gtech
+                    GTECH_XOR2                                         gtech
+            *SUB_UNS_OP_4_1_4
+                DW01_dec_width4
+                    GTECH_OR2                                          gtech
+                    GTECH_XNOR2                                        gtech
+                    GTECH_ZERO                                         gtech
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+            GTECH_XOR2                                                 gtech
+        uart_tx
+            *ADD_UNS_OP_4_1_5
+                ...
+            *SUB_UNS_OP_4_1_4
+                ...
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+    uart_reg_top_0_0_0000
+        GTECH_AND2                                                     gtech
+        GTECH_BUF                                                      gtech
+        GTECH_NOT                                                      gtech
+        GTECH_OR2                                                      gtech
+        prim_flop_Width1_ResetValue0_0
+            GTECH_NOT                                                  gtech
+        prim_flop_Width1_ResetValue0_1
+            GTECH_NOT                                                  gtech
+        prim_reg_we_check_OneHotWidth13
+            prim_buf_s0000000d
+                GTECH_NOT                                              gtech
+            prim_onehot_check_4_0000000d_0_1_0
+                GTECH_AND2                                             gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_1
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_1
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_2
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_2
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_3
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_3
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_4
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_4
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_5
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_5
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_6
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_6
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_7
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_7
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_8
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_8
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_9
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_9
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_10
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_10
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_11
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_11
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_12
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_12
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_13
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_13
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_14
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_14
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_15
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_15
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_16
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_16
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_17
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_17
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_0_0_0_18
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_0_0_18
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_1_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_1_0_1
+        prim_subreg_1_1_1_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_1_0_0
+        prim_subreg_1_1_1_0_1
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_1_0_2
+        prim_subreg_1_2_0_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_2_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_2_0_0_1
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_2_0_1
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_0
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_1
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_1
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_2
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_2
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_3
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_3
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_4
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_4
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_1_3_0_0_5
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_1_3_0_5
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_2_0_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_2_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_3_0_0_0_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_3_0_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_3_0_0_0_1
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_3_0_0_1
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_8_2_00_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_8_2_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_16_0_0000_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_16_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_24_0_000000_0
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            prim_subreg_arb_24_0_0
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+        prim_subreg_ext_DW1_0
+        prim_subreg_ext_DW1_1
+        prim_subreg_ext_DW1_2
+        prim_subreg_ext_DW1_3
+        prim_subreg_ext_DW1_4
+        prim_subreg_ext_DW1_5
+        prim_subreg_ext_DW1_6
+        prim_subreg_ext_DW1_7
+        prim_subreg_ext_DW1_8
+        prim_subreg_ext_DW1_9
+        prim_subreg_ext_DW1_10
+        prim_subreg_ext_DW1_11
+        prim_subreg_ext_DW1_12
+        prim_subreg_ext_DW1_13
+        prim_subreg_ext_DW1_14
+        prim_subreg_ext_DW1_15
+        prim_subreg_ext_DW8_0
+        prim_subreg_ext_DW8_1
+        prim_subreg_ext_DW8_2
+        prim_subreg_ext_DW16
+        tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32
+            GTECH_AND2                                                 gtech
+            GTECH_BUF                                                  gtech
+            GTECH_NOT                                                  gtech
+            GTECH_OR2                                                  gtech
+            tlul_err
+                *ASH_UNS_UNS_OP_4_2_4
+                    DW01_ash_A_width4_SH_width2
+                        GTECH_AND2                                     gtech
+                        GTECH_MUX2                                     gtech
+                        GTECH_NAND2                                    gtech
+                        GTECH_NOT                                      gtech
+                GTECH_AND2                                             gtech
+                GTECH_BUF                                              gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+            tlul_rsp_intg_gen_0_0_1
+        tlul_cmd_intg_chk
+            GTECH_AND2                                                 gtech
+            GTECH_OR2                                                  gtech
+            prim_secded_inv_64_57_dec
+                GTECH_AND2                                             gtech
+                GTECH_NOT                                              gtech
+                GTECH_OR2                                              gtech
+                GTECH_XOR2                                             gtech
+            tlul_data_integ_dec
+                GTECH_OR2                                              gtech
+                prim_secded_inv_39_32_dec
+                    GTECH_AND2                                         gtech
+                    GTECH_NOT                                          gtech
+                    GTECH_OR2                                          gtech
+                    GTECH_XOR2                                         gtech
+        tlul_rsp_intg_gen_EnableRspIntgGen1_EnableDataIntgGen1
+            prim_secded_inv_64_57_enc
+                GTECH_NOT                                              gtech
+                GTECH_XOR2                                             gtech
+            tlul_data_integ_enc
+                prim_secded_inv_39_32_enc
+                    GTECH_NOT                                          gtech
+                    GTECH_XOR2                                         gtech
+1

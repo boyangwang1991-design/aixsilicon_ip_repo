@@ -1,0 +1,31 @@
+schema_version: '1.0'
+ip_name: UART
+clock_domains:
+- id: HLD.DOM.UART.CLK_SYS
+  name: CLK_SYS
+  description: 系统时钟域，所有逻辑与寄存器同步于此域
+  source: SoC 时钟树
+  affected_modules:
+  - HLD.MOD.L1.UART
+  req_ref:
+  - LRS.CONS.UART.01.001
+  frequency: '100'
+reset_domains:
+- id: HLD.DOM.UART.RST_SYS_N
+  name: RST_SYS_N
+  description: 系统异步复位（低有效），异步复位同步释放
+  source: SoC 复位控制
+  affected_modules:
+  - HLD.MOD.L1.UART
+  req_ref:
+  - LRS.CONS.UART.01.001
+  active_level: low
+power_domains:
+- id: HLD.DOM.UART.PD_ALWAYS_ON
+  name: PD_ALWAYS_ON
+  description: 常开电源域
+  source: ''
+  affected_modules:
+  - HLD.MOD.L1.UART
+  req_ref:
+  - LRS.INTF.UART.01.001

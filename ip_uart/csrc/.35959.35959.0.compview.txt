@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1786436750.706449773, "rt":9.20, "ut":2.92, "st":0.26}}
+{"vcselab":{"timestamp_begin":1786436759.979336103, "rt":7.24, "ut":0.16, "st":0.11}}
+{"link":{"timestamp_begin":1786436767.278860602, "rt":0.20, "ut":0.13, "st":0.08}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1786436750.381999793}
+{"VCS_COMP_START_TIME": 1786436750.381999793}
+{"VCS_COMP_END_TIME": 1786436767.549317900}
+{"VCS_USER_OPTIONS": "-full64 -sverilog -ntb_opts uvm-1.2 -f rtl/filelist.f +incdir+../ips/lowrisc/prim/0.1.0/rtl +incdir+../ips/lowrisc/tlul/0.1.0/rtl +incdir+../ips/lowrisc/top/0.1.0/rtl -top uart_apb_top -o simv_uart_apb +error+100"}
+{"vcs1": {"peak_mem": 655740}}
+{"vcselab": {"peak_mem": 454924}}

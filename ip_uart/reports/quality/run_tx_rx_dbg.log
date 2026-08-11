@@ -1,0 +1,114 @@
+Command: /home/eda/workspace/aixsilicon_ip_repo/ip_uart/./simv +UVM_TESTNAME=tc_uart_tx_rx +UVM_VERBOSITY=UVM_MEDIUM -l reports/quality/run_tx_rx_dbg.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Aug 11 06:47 2026
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test tc_uart_tx_rx...
+UVM_INFO verification/env/utils/tlul_utils/src/tlul_interface_agent.sv(88) @ 0: uvm_test_top.env.tlul_agent [tlul_interface_agent] Configuration retrieved: active=1, mode=0, enable_cov=1
+UVM_INFO verification/env/utils/uart_utils/src/uart_interface_agent.sv(88) @ 0: uvm_test_top.env.uart_agent [uart_interface_agent] Configuration retrieved: active=1, mode=0, enable_cov=1
+UVM_INFO verification/tc/tc_uart_tx_rx.sv(54) @ 0: uvm_test_top [tc_uart_tx_rx] === tc_uart_tx_rx: start ===
+UVM_INFO verification/env/uart_virtual_sequence.sv(223) @ 0: uvm_test_top.env.v_sqr@@vseq [uart_tx_rx_vseq] === uart_tx_rx_vseq: multi-byte loopback ===
+UVM_INFO verification/env/uart_virtual_sequence.sv(82) @ 525000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL WRITE addr=0x10 data=0x100043
+UVM_INFO verification/env/uart_virtual_sequence.sv(82) @ 565000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL WRITE addr=0x1c data=0x1
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 605000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 2625000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 4645000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 6665000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 8685000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 10705000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 12725000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 14745000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 16765000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 18785000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 20805000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 22825000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 24845000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 26865000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 28885000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 30905000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 32925000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 34945000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 36965000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 38985000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 41005000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 43025000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 45045000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 47065000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 49085000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 51105000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 53125000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 55145000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 57165000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 59185000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 61205000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 63225000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 65245000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 67265000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 69285000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 71305000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 73325000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 75345000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 77365000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 79385000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 81405000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 83425000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 85445000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 87465000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 89485000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 91505000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 93525000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 95545000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 97565000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_INFO verification/env/uart_virtual_sequence.sv(99) @ 99585000: uvm_test_top.env.v_sqr@@vseq [VSEQ] TLUL READ  addr=0x14 data=0x30
+UVM_FATAL /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_phase.svh(1512) @ 100000000: reporter [PH_TIMEOUT] Explicit timeout of 100000000 hit, indicating a probable testbench issue
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_report_server.svh(904) @ 100000000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   58
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    1
+** Report counts by id
+[PH_TIMEOUT]     1
+[RNTST]     1
+[UVM/RELNOTES]     1
+[VSEQ]    52
+[tc_uart_tx_rx]     1
+[tlul_interface_agent]     1
+[uart_interface_agent]     1
+[uart_tx_rx_vseq]     1
+
+$finish called from file "/home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh", line 135.
+$finish at simulation time            100000000
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 462: tlul_assert.gen_device_cov.b2bReq_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 463: tlul_assert.gen_device_cov.b2bReqWithSameAddr_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 464: tlul_assert.gen_device_cov.aValidNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 465: tlul_assert.gen_device_cov.b2bSameSource_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 466: tlul_assert.gen_device_cov.a_addressChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 467: tlul_assert.gen_device_cov.a_dataChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 468: tlul_assert.gen_device_cov.a_opcodeChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 469: tlul_assert.gen_device_cov.a_sizeChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 470: tlul_assert.gen_device_cov.a_sourceChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 471: tlul_assert.gen_device_cov.a_maskChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 100000000 ps
+CPU Time:      0.220 seconds;       Data structure size:   0.6Mb
+Tue Aug 11 06:47:26 2026

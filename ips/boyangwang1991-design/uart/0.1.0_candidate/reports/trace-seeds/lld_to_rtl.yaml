@@ -1,0 +1,17 @@
+schema_version: "1.0"
+ip_name: uart
+links:
+  - source_id: LLD.MOD.UART.TOP
+    target_id: RTL.FILE.rtl/uart.sv
+  - source_id: LLD.MOD.UART.REG_TOP
+    target_id: RTL.FILE.rtl/uart_reg_top.sv
+  - source_id: LLD.MOD.UART.CORE
+    target_id: RTL.FILE.rtl/uart_core.sv
+  - source_id: LLD.MOD.UART.TX
+    target_id: RTL.FILE.rtl/uart_tx.sv
+  - source_id: LLD.MOD.UART.RX
+    target_id: RTL.FILE.rtl/uart_rx.sv
+  - source_id: LLD.MOD.UART.APB2TLUL
+    target_id: RTL.FILE.rtl/apb2tlul.sv
+  - source_id: LLD.MOD.UART.APB2TLUL
+    target_id: RTL.FILE.rtl/uart_apb_top.sv

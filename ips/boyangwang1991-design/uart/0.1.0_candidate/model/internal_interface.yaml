@@ -1,0 +1,93 @@
+schema_version: '1.0'
+ip_name: UART
+internal_interfaces:
+- id: INT.IF.UART.TOP.TLUL_IF
+  name: tlul_if
+  type: stream
+  source_module: bus_interconnect
+  target_module: HLD.MOD.L1.UART.TOP
+  description: TL-UL 从接口（tl_i/tl_o）
+- id: INT.IF.UART.TOP.IRQ_IF_OUT
+  name: irq_if
+  type: stream
+  source_module: HLD.MOD.L1.UART.TOP
+  target_module: interrupt_controller
+  description: 9 个中断输出
+- id: INT.IF.UART.TOP.ALERT_IF_OUT
+  name: alert_if
+  type: stream
+  source_module: HLD.MOD.L1.UART.TOP
+  target_module: alert_handler
+  description: fatal_fault alert（prim_alert 接口）
+- id: INT.IF.UART.TOP.LSIO_IF_OUT
+  name: lsio_if
+  type: stream
+  source_module: HLD.MOD.L1.UART.TOP
+  target_module: dma
+  description: lsio_trigger DMA 触发
+- id: INT.IF.UART.REG_TOP.TLUL_SLV
+  name: tlul_slv
+  type: stream
+  source_module: bus_interconnect
+  target_module: HLD.MOD.L1.UART.REG_TOP
+  description: TL-UL 从接口
+- id: INT.IF.UART.REG_TOP.REG2HW_OUT
+  name: reg2hw
+  type: stream
+  source_module: HLD.MOD.L1.UART.REG_TOP
+  target_module: HLD.MOD.L1.UART.CORE
+  description: 寄存器到硬件接口（reg2hw）
+- id: INT.IF.UART.REG_TOP.HW2REG
+  name: hw2reg
+  type: stream
+  source_module: HLD.MOD.L1.UART.CORE
+  target_module: HLD.MOD.L1.UART.REG_TOP
+  description: 硬件到寄存器接口（hw2reg）
+- id: INT.IF.UART.CORE.REG2HW
+  name: reg2hw
+  type: stream
+  source_module: HLD.MOD.L1.UART.REG_TOP
+  target_module: HLD.MOD.L1.UART.CORE
+  description: 寄存器到硬件接口（reg2hw）
+- id: INT.IF.UART.CORE.HW2REG_OUT
+  name: hw2reg
+  type: stream
+  source_module: HLD.MOD.L1.UART.CORE
+  target_module: HLD.MOD.L1.UART.REG_TOP
+  description: 硬件到寄存器接口（hw2reg）
+- id: INT.IF.UART.CORE.TX_IF_OUT
+  name: tx_if
+  type: stream
+  source_module: HLD.MOD.L1.UART.CORE
+  target_module: HLD.MOD.L1.UART.TX
+  description: 到 uart_tx 的发送控制
+- id: INT.IF.UART.CORE.RX_IF
+  name: rx_if
+  type: stream
+  source_module: HLD.MOD.L1.UART.RX
+  target_module: HLD.MOD.L1.UART.CORE
+  description: 来自 uart_rx 的接收控制
+- id: INT.IF.UART.TX.TX_CTRL
+  name: tx_ctrl
+  type: stream
+  source_module: HLD.MOD.L1.UART.CORE
+  target_module: HLD.MOD.L1.UART.TX
+  description: 来自 uart_core 的发送控制与数据
+- id: INT.IF.UART.RX.RX_CTRL_OUT
+  name: rx_ctrl
+  type: stream
+  source_module: HLD.MOD.L1.UART.RX
+  target_module: HLD.MOD.L1.UART.CORE
+  description: 到 uart_core 的接收数据与控制
+- id: INT.IF.UART.APB2TLUL.APB_SLV
+  name: apb_slv
+  type: stream
+  source_module: apb_master
+  target_module: HLD.MOD.L1.UART.APB2TLUL
+  description: APB4 从接口（psel/penable/pwrite/paddr/pwdata/prdata/pready/pslverr）
+- id: INT.IF.UART.APB2TLUL.TLUL_MST_OUT
+  name: tlul_mst
+  type: stream
+  source_module: HLD.MOD.L1.UART.APB2TLUL
+  target_module: HLD.MOD.L1.UART.REG_TOP
+  description: TL-UL 主机接口（驱动 uart_reg_top）

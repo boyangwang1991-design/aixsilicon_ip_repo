@@ -1,0 +1,22 @@
+SCHEMA@@PName@@Dir@@Msb@@Lsb@@Desc@@DU@@DU_BBOX
+VALUE@@clk_i@@INPUT@@0@@0@@Number of cycles a differential ...@@uart@@No
+VALUE@@rst_ni@@INPUT@@0@@0@@-@@uart@@No
+VALUE@@tl_i@@INPUT@@0@@0@@Bus Interface@@uart@@No
+VALUE@@tl_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@alert_rx_i@@INPUT@@0@@0@@Alerts@@uart@@No
+VALUE@@alert_tx_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@racl_policies_i@@INPUT@@0@@0@@RACL interface@@uart@@No
+VALUE@@racl_error_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@lsio_trigger_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@cio_rx_i@@INPUT@@0@@0@@Generic IO@@uart@@No
+VALUE@@cio_tx_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@cio_tx_en_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_tx_watermark_o@@OUTPUT@@0@@0@@Interrupts@@uart@@No
+VALUE@@intr_tx_empty_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_watermark_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_tx_done_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_overflow_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_frame_err_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_break_err_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_timeout_o@@OUTPUT@@0@@0@@-@@uart@@No
+VALUE@@intr_rx_parity_err_o@@OUTPUT@@0@@0@@-@@uart@@No

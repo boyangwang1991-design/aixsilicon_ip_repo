@@ -1,0 +1,35 @@
+schema_version: '1.0'
+ip_name: uart
+trace_type: lld_to_rtl
+links:
+- source_id: LLD.MOD.UART.APB2TLUL
+  target_id: RTL.FILE.rtl/apb2tlul.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.APB2TLUL
+  target_id: RTL.FILE.rtl/uart_apb_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.CORE
+  target_id: RTL.FILE.rtl/uart_core.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.REG_TOP
+  target_id: RTL.FILE.rtl/uart_reg_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.RX
+  target_id: RTL.FILE.rtl/uart_rx.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.TOP
+  target_id: RTL.FILE.rtl/uart.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.UART.TX
+  target_id: RTL.FILE.rtl/uart_tx.sv
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

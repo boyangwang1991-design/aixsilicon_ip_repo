@@ -1,0 +1,205 @@
+schema_version: '1.0'
+ip_name: UART
+complexity_level: simple
+modules:
+- id: HLD.MOD.L1.UART.TOP
+  name: uart_top
+  level: 1
+  parent_id: null
+  responsibility: 顶层集成：实例化寄存器堆、核心逻辑、alert 发送器，连接 TL-UL 总线、中断、串行 IO、alert 与 RACL 接口
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.INTF.UART.01.001
+  - LRS.INTF.UART.01.002
+  - LRS.INTF.UART.01.004
+  - LRS.INTF.UART.01.005
+  - LRS.INTF.UART.01.006
+  - LRS.INTF.UART.01.007
+  - LRS.INTF.UART.01.008
+  - LRS.CONS.UART.01.001
+  - LRS.CONS.UART.01.005
+  - LRS.CONS.UART.01.006
+  interfaces:
+  - name: tlul_if
+    type: input
+    width: N
+    description: TL-UL 从接口（tl_i/tl_o）
+    source: bus_interconnect
+    target: null
+  - name: serial_if
+    type: bidirectional
+    width: '1'
+    description: 串行收发（cio_rx_i/cio_tx_o/cio_tx_en_o）
+    source: null
+    target: null
+  - name: irq_if
+    type: output
+    width: '9'
+    description: 9 个中断输出
+    source: null
+    target: interrupt_controller
+  - name: alert_if
+    type: output
+    width: '1'
+    description: fatal_fault alert（prim_alert 接口）
+    source: null
+    target: alert_handler
+  - name: lsio_if
+    type: output
+    width: '1'
+    description: lsio_trigger DMA 触发
+    source: null
+    target: dma
+- id: HLD.MOD.L1.UART.REG_TOP
+  name: uart_reg_top
+  level: 1
+  parent_id: HLD.MOD.L1.UART.TOP
+  responsibility: 寄存器堆：TL-UL 从接口译码、14 个寄存器、中断逻辑、BUS.INTEGRITY 检测、reg2hw/hw2reg 接口
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.REG.UART.01.001
+  - LRS.REG.UART.01.002
+  - LRS.REG.UART.01.003
+  - LRS.REG.UART.01.004
+  - LRS.REG.UART.01.005
+  - LRS.REG.UART.01.006
+  - LRS.REG.UART.01.007
+  - LRS.FUNC.UART.01.013
+  - LRS.SAFE.UART.01.001
+  - LRS.SAFE.UART.01.002
+  interfaces:
+  - name: tlul_slv
+    type: input
+    width: N
+    description: TL-UL 从接口
+    source: bus_interconnect
+    target: null
+  - name: reg2hw
+    type: output
+    width: N
+    description: 寄存器到硬件接口（reg2hw）
+    source: null
+    target: HLD.MOD.L1.UART.CORE
+  - name: hw2reg
+    type: input
+    width: N
+    description: 硬件到寄存器接口（hw2reg）
+    source: HLD.MOD.L1.UART.CORE
+    target: null
+- id: HLD.MOD.L1.UART.CORE
+  name: uart_core
+  level: 1
+  parent_id: HLD.MOD.L1.UART.TOP
+  responsibility: 核心逻辑：TX/RX FIFO 控制、波特率分频（NCO）、中断事件产生、回环/噪声滤波/中断检测/超时/覆盖控制
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.UART.01.001
+  - LRS.FUNC.UART.01.002
+  - LRS.FUNC.UART.01.003
+  - LRS.FUNC.UART.01.004
+  - LRS.FUNC.UART.01.005
+  - LRS.FUNC.UART.01.006
+  - LRS.FUNC.UART.01.007
+  - LRS.FUNC.UART.01.008
+  - LRS.FUNC.UART.01.009
+  - LRS.FUNC.UART.01.010
+  - LRS.FUNC.UART.01.011
+  - LRS.FUNC.UART.01.012
+  - LRS.FUNC.UART.01.014
+  - LRS.FUNC.UART.01.015
+  - LRS.PERF.UART.01.001
+  - LRS.PERF.UART.01.002
+  - LRS.PERF.UART.01.003
+  - LRS.PERF.UART.01.004
+  - LRS.CONS.UART.01.003
+  - LRS.CONS.UART.01.004
+  interfaces:
+  - name: reg2hw
+    type: input
+    width: N
+    description: 寄存器到硬件接口（reg2hw）
+    source: HLD.MOD.L1.UART.REG_TOP
+    target: null
+  - name: hw2reg
+    type: output
+    width: N
+    description: 硬件到寄存器接口（hw2reg）
+    source: null
+    target: HLD.MOD.L1.UART.REG_TOP
+  - name: tx_if
+    type: output
+    width: '1'
+    description: 到 uart_tx 的发送控制
+    source: null
+    target: HLD.MOD.L1.UART.TX
+  - name: rx_if
+    type: input
+    width: '1'
+    description: 来自 uart_rx 的接收控制
+    source: HLD.MOD.L1.UART.RX
+    target: null
+- id: HLD.MOD.L1.UART.TX
+  name: uart_tx
+  level: 1
+  parent_id: HLD.MOD.L1.UART.TOP
+  responsibility: 发送模块：按波特率从核心接收数据，逐位移位输出到 TX 引脚
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.UART.01.003
+  interfaces:
+  - name: tx_ctrl
+    type: input
+    width: N
+    description: 来自 uart_core 的发送控制与数据
+    source: HLD.MOD.L1.UART.CORE
+    target: null
+- id: HLD.MOD.L1.UART.RX
+  name: uart_rx
+  level: 1
+  parent_id: HLD.MOD.L1.UART.TOP
+  responsibility: 接收模块：16x 过采样、中点采样、帧/奇偶错误检测，输出接收数据
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.UART.01.004
+  - LRS.FUNC.UART.01.005
+  interfaces:
+  - name: rx_ctrl
+    type: output
+    width: N
+    description: 到 uart_core 的接收数据与控制
+    source: null
+    target: HLD.MOD.L1.UART.CORE
+- id: HLD.MOD.L1.UART.APB2TLUL
+  name: apb2tlul
+  level: 1
+  parent_id: HLD.MOD.L1.UART.TOP
+  responsibility: APB4 从 → TL-UL 主机协议转换 wrapper（新增，不改核心），提供 APB 接入能力
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.INTF.UART.01.003
+  - LRS.CONS.UART.01.002
+  interfaces:
+  - name: apb_slv
+    type: input
+    width: N
+    description: APB4 从接口（psel/penable/pwrite/paddr/pwdata/prdata/pready/pslverr）
+    source: apb_master
+    target: null
+  - name: tlul_mst
+    type: output
+    width: N
+    description: TL-UL 主机接口（驱动 uart_reg_top）
+    source: null
+    target: HLD.MOD.L1.UART.REG_TOP

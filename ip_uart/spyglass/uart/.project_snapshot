@@ -1,0 +1,177 @@
+##Data Import Section
+
+read_file -type verilog ../ips/lowrisc/top/0.1.0/rtl/top_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:5
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:6
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:7
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_util_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:8
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:9
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:10
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:11
+read_file -type verilog ../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:12
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_count_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:13
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_receiver.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:14
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:15
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_buf.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:16
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_cdc_rand_delay.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:17
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_count.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:18
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:19
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:20
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:21
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:22
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_flop_2sync.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:23
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:24
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_check.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:25
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:26
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_reg_we_check.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:27
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_buf.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:28
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_flop.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:29
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:30
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:31
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:32
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:33
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:34
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:35
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:36
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:37
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:38
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:39
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:40
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:41
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:42
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:43
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:44
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:45
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:46
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:47
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:48
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:49
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:50
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:51
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:52
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:53
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:54
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:55
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:56
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:57
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:58
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:59
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:60
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:61
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:62
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:63
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:64
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:65
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:66
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:67
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_ext.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:68
+read_file -type verilog ../ips/lowrisc/prim/0.1.0/rtl/prim_xnor2.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:69
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:70
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:71
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_cmd_intg_chk.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:72
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_dec.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:73
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_enc.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:74
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:75
+read_file -type verilog ../ips/lowrisc/tlul/0.1.0/rtl/tlul_rsp_intg_gen.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:76
+read_file -type verilog rtl/uart_reg_pkg.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:77
+read_file -type verilog rtl/uart_reg_top.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:78
+read_file -type verilog rtl/uart_rx.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:79
+read_file -type verilog rtl/uart_tx.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:80
+read_file -type verilog rtl/uart_core.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:81
+read_file -type verilog rtl/uart.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:82
+read_file -type verilog rtl/apb2tlul.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:83
+read_file -type verilog rtl/uart_apb_top.sv
+#BackRefFile:spyglass/uart.prj #LineNumber:84
+
+##Common Options Section
+
+set_option enableSV yes
+set_option enableSV09 yes
+set_option incdir { ../ips/lowrisc/prim/0.1.0/rtl ../ips/lowrisc/tlul/0.1.0/rtl ../ips/lowrisc/top/0.1.0/rtl }
+set_option top uart
+set_option language_mode mixed
+set_option projectwdir spyglass
+
+
+##Goal Setup Section
+
+current_methodology $SPYGLASS_HOME/GuideWare/latest/block/rtl_handoff
+

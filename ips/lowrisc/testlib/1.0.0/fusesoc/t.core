@@ -1,0 +1,9 @@
+CAPI=2:
+name: "lowrisc:testlib:t:1.0.0"
+filesets:
+  fs:
+    files: [dummy.sv]
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets: [fs]

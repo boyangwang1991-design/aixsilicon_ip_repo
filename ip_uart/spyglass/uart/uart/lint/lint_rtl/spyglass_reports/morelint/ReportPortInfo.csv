@@ -1,0 +1,22 @@
+Module Name,Module Type,Port Name,Direction,Width,Index,Comment Source,Comment 
+uart,Top_Level,clk_i,INPUT,1,-,module port,Number of cycles a differential ...
+uart,Top_Level,rst_ni,INPUT,1,-,-,-
+uart,Top_Level,tl_i,INPUT,109,(1 + 3 + 3 + 2 + 8 + 32 + 4 + 32 + 23 + 1),module port,Bus Interface
+uart,Top_Level,tl_o,OUTPUT,66,(1 + 3 + 3 + 2 + 8 + 1 + 32 + 14 + 1 + 1),-,-
+uart,Top_Level,alert_rx_i,INPUT,4,(1 + 1 + 1 + 1)[0:0],module port,Alerts
+uart,Top_Level,alert_tx_o,OUTPUT,2,(1 + 1)[0:0],-,-
+uart,Top_Level,racl_policies_i,INPUT,4,(2 + 2),module port,RACL interface
+uart,Top_Level,racl_error_o,OUTPUT,37,(1 + 1 + 1 + 1 + 1 + 32),-,-
+uart,Top_Level,lsio_trigger_o,OUTPUT,1,-,-,-
+uart,Top_Level,cio_rx_i,INPUT,1,-,module port,Generic IO
+uart,Top_Level,cio_tx_o,OUTPUT,1,-,-,-
+uart,Top_Level,cio_tx_en_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_tx_watermark_o,OUTPUT,1,-,module port,Interrupts
+uart,Top_Level,intr_tx_empty_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_watermark_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_tx_done_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_overflow_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_frame_err_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_break_err_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_timeout_o,OUTPUT,1,-,-,-
+uart,Top_Level,intr_rx_parity_err_o,OUTPUT,1,-,-,-

@@ -1,0 +1,177 @@
+schema_version: '1.0'
+ip_name: UART
+external_interfaces:
+- id: HLD.IF.EXT.UART.TLUL
+  name: tlul_slave
+  type: custom
+  direction: slave
+  description: TileLink-UL 从接口，寄存器访问（BlockAw=6，32 位数据）
+  ports:
+  - name: tl_i
+    direction: input
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: tl_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.002
+- id: HLD.IF.EXT.UART.APB
+  name: apb_slave
+  type: APB
+  direction: slave
+  description: APB4 从接口，经 apb2tlul wrapper 转换为 TL-UL 访问核心寄存器堆
+  ports:
+  - name: psel
+    direction: input
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: penable
+    direction: input
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: pwrite
+    direction: input
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: paddr
+    direction: input
+    width: '8'
+    clock_domain: CLK_SYS
+  - name: pwdata
+    direction: input
+    width: '32'
+    clock_domain: CLK_SYS
+  - name: prdata
+    direction: output
+    width: '32'
+    clock_domain: CLK_SYS
+  - name: pready
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: pslverr
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.003
+- id: HLD.IF.EXT.UART.SERIAL
+  name: serial_io
+  type: Custom
+  direction: bidirectional
+  description: 串行收发接口（rx 输入 / tx 输出 / tx_en 输出）
+  ports:
+  - name: cio_rx_i
+    direction: input
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: cio_tx_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: cio_tx_en_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.004
+- id: HLD.IF.EXT.UART.IRQ
+  name: interrupt_out
+  type: interrupt
+  direction: output
+  description: 9 个中断输出（tx_watermark/tx_empty/rx_watermark/tx_done/rx_overflow/rx_frame_err/rx_break_err/rx_timeout/rx_parity_err）
+  ports:
+  - name: intr_tx_watermark_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_tx_empty_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_watermark_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_tx_done_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_overflow_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_frame_err_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_break_err_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_timeout_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  - name: intr_rx_parity_err_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.005
+- id: HLD.IF.EXT.UART.ALERT
+  name: alert_if
+  type: custom
+  direction: bidirectional
+  description: prim_alert 接口，fatal_fault alert（NumAlerts=1）
+  ports:
+  - name: alert_rx_i
+    direction: input
+    width: '1'
+    clock_domain: async
+  - name: alert_tx_o
+    direction: output
+    width: '1'
+    clock_domain: async
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.006
+  - LRS.SAFE.UART.01.001
+  - LRS.SAFE.UART.01.002
+- id: HLD.IF.EXT.UART.CLK_RST
+  name: clk_rst
+  type: clock_reset
+  direction: input
+  description: 系统时钟与异步复位输入
+  ports:
+  - name: clk_i
+    direction: input
+    width: '1'
+    clock_domain: ''
+  - name: rst_ni
+    direction: input
+    width: '1'
+    clock_domain: ''
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.001
+  - LRS.CONS.UART.01.001
+- id: HLD.IF.EXT.UART.LSIO
+  name: lsio_trigger
+  type: custom
+  direction: output
+  description: lsio_trigger DMA 触发信号（自清除状态触发）
+  ports:
+  - name: lsio_trigger_o
+    direction: output
+    width: '1'
+    clock_domain: CLK_SYS
+  timing: {}
+  req_ref:
+  - LRS.INTF.UART.01.007

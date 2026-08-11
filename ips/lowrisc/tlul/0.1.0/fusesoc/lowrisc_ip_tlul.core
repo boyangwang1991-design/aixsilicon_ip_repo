@@ -1,0 +1,40 @@
+CAPI=2:
+name: "lowrisc:ip:tlul:0.1.0"
+description: "OpenTitan TL-UL bus infrastructure (Apache-2.0)"
+filesets:
+  files_rtl:
+    files:
+      - ../rtl/sram2tlul.sv
+      - ../rtl/tlul_adapter_dmi.sv
+      - ../rtl/tlul_adapter_host.sv
+      - ../rtl/tlul_adapter_racl.sv
+      - ../rtl/tlul_adapter_reg_racl.sv
+      - ../rtl/tlul_adapter_reg.sv
+      - ../rtl/tlul_adapter_shim.sv
+      - ../rtl/tlul_adapter_sram_racl.sv
+      - ../rtl/tlul_adapter_sram.sv
+      - ../rtl/tlul_adapter_vh.sv
+      - ../rtl/tlul_assert_multiple.sv
+      - ../rtl/tlul_assert.sv
+      - ../rtl/tlul_cmd_intg_chk.sv
+      - ../rtl/tlul_cmd_intg_gen.sv
+      - ../rtl/tlul_data_integ_dec.sv
+      - ../rtl/tlul_data_integ_enc.sv
+      - ../rtl/tlul_err_resp.sv
+      - ../rtl/tlul_err.sv
+      - ../rtl/tlul_fifo_async.sv
+      - ../rtl/tlul_fifo_sync.sv
+      - ../rtl/tlul_jtag_dtm.sv
+      - ../rtl/tlul_lc_gate.sv
+      - ../rtl/tlul_pkg.sv
+      - ../rtl/tlul_request_loopback.sv
+      - ../rtl/tlul_rsp_intg_chk.sv
+      - ../rtl/tlul_rsp_intg_gen.sv
+      - ../rtl/tlul_socket_1n.sv
+      - ../rtl/tlul_socket_m1.sv
+      - ../rtl/tlul_sram_byte.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

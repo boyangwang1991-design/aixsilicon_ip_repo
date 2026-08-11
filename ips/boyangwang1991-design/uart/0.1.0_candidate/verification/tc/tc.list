@@ -1,0 +1,15 @@
+// =============================================================================
+// tc.list
+// Description : UART testcase file list (tc_* files each include tc_base.sv)
+// =============================================================================
+
+tc_define.sv
+tc_base.sv
+tc_uart_smoke.sv
+tc_uart_tx_rx.sv
+tc_uart_error.sv
+tc_uart_fifo.sv
+tc_uart_csr.sv
+tc_uart_perf.sv
+tc_uart_alert.sv
+tc_undef.sv

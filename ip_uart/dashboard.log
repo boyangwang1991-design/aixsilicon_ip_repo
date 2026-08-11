@@ -1,0 +1,11 @@
+SpyGlass Predictive Analyzer(R) - SpyGlass_vX-2025.06
+All Rights Reserved. Use, disclosure or duplication 
+without prior written permission of Synopsys Inc. is prohibited.
+Technical support: email spyglass_support@synopsys.com 
+
+Creating 'dashboard' reports using project 'spyglass/uart.prj'
+##cwd         : /home/eda/workspace/aixsilicon_ip_repo/ip_uart
+##system      : Linux localhost.localdomain 4.18.0-553.137.1.el8_10.x86_64 #1 SMP Wed Jun 24 11:40:24 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+##Date & Time : Tue Aug 11 04:54:28 2026
+Error: Failed to checkout license feature 'dashboard'
+Report creation failed.

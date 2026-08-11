@@ -1,0 +1,417 @@
+
+VLOGAN	= vlogan
+VLOGAN_OPT	= -full64 -sverilog -ntb_opts uvm-1.2 +incdir+/home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm/vcs/wrap +incdir+/home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2 +incdir+../ips/lowrisc/prim/0.1.0/rtl +incdir+../ips/lowrisc/tlul/0.1.0/rtl +incdir+../ips/lowrisc/top/0.1.0/rtl -sverilog +define+UVM_DIRECTC_OPTS -full64
+
+all :		_VCSgd_561y2c_1.db \
+	_VCSgd_CeaRm_1.db \
+	_VCSgd_GpHAkb_1.db \
+	_VCSgd_yi7eSc_1.db \
+	_VCSgd_UE6cUc_1.db \
+	_VCSgd_xpEi1d_1.db \
+	_VCSgd_1tgNJ_1.db \
+	_VCSgd_7Afbge_1.db \
+	_VCSgd_3fh7Fe_1.db \
+	_VCSgd_dN6zCe_1.db \
+	_VCSgd_X4JwRb_1.db \
+	_VCSgd_pw5Etc_1.db \
+	_VCSgd_Bp7HLd_1.db \
+	_VCSgd_I8Kcje_1.db \
+	_VCSgd_31jo5_1.db \
+	_VCSgd_Zrjih_1.db \
+	_VCSgd_Bw1zA_1.db \
+	_VCSgd_ElFRzb_1.db \
+	_VCSgd_ZuGRwb_1.db \
+	_VCSgd_g3fNmc_1.db \
+	_VCSgd_x3ccDb_1.db \
+	_VCSgd_wuBHTd_1.db \
+	_VCSgd_AAa7nd_1.db \
+	_VCSgd_4dEKGd_1.db \
+	_VCSgd_gC3wJ_1.db \
+	_VCSgd_s0P2kc_1.db \
+	_VCSgd_GXwyoe_1.db \
+	_VCSgd_28vFqe_1.db \
+	_VCSgd_OM25t_1.db \
+	_VCSgd_tkf7Cc_1.db \
+	_VCSgd_TgVgvc_1.db \
+	_VCSgd_ty9t7_1.db \
+	_VCSgd_BZbeVd_1.db \
+	_VCSgd_t3k83d_1.db \
+	_VCSgd_Nk0zY_1.db \
+	_VCSgd_heojo_1.db \
+	_VCSgd_vUOoEe_1.db \
+	_VCSgd_T3i2d_1.db \
+	_VCSgd_r2f6Je_1.db \
+	_VCSgd_6io5fe_1.db \
+	_VCSgd_MjIgS_1.db \
+	_VCSgd_OJ0tpe_1.db \
+	_VCSgd_MtXRI_1.db \
+	_VCSgd_0OhUue_1.db \
+	_VCSgd_SDfUy_1.db \
+	_VCSgd_yH9H9c_1.db \
+	_VCSgd_gJnqOb_1.db \
+	_VCSgd_Tro6Ud_1.db \
+	_VCSgd_nuAz7_1.db \
+	_VCSgd_3KU4uc_1.db \
+	_VCSgd_1AchDc_1.db \
+	_VCSgd_RTv83c_1.db \
+	_VCSgd_VyBd4b_1.db \
+	_VCSgd_ZKdOtb_1.db \
+	_VCSgd_hVKxEd_1.db \
+	_VCSgd_8itrie_1.db \
+	_VCSgd_KtWjC_1.db \
+	_VCSgd_TeOYhb_1.db \
+	_VCSgd_xkoJKd_1.db \
+	_VCSgd_JJE4f_1.db \
+	_VCSgd_ZeGDMe_1.db \
+	_VCSgd_Xfgyq_1.db \
+	_VCSgd_vuvHGe_1.db \
+	_VCSgd_oRFk7_1.db \
+	_VCSgd_GcvQOc_1.db \
+	_VCSgd_R6H9re_1.db \
+	_VCSgd_0w1DN_1.db \
+	_VCSgd_eO3R8c_1.db \
+	_VCSgd_2acKCc_1.db \
+	_VCSgd_QHDVbc_1.db \
+	_VCSgd_FTCPcc_1.db \
+	_VCSgd_nxFyVc_1.db \
+	_VCSgd_5z4y2c_1.db \
+	_VCSgd_mZ7PFb_1.db \
+	_VCSgd_vaolke_1.db \
+	_VCSgd_yzVHBd_1.db \
+	_VCSgd_Ocy5Nb_1.db \
+	_VCSgd_meAjSd_1.db \
+	_VCSgd_1t0Sc_1.db \
+	_VCSgd_7blSUc_1.db \
+	_VCSgd_mQ2NA_1.db \
+	_VCSgd_9rKUrc_1.db \
+
+
+
+_VCSgd_561y2c_1.db :	../ips/lowrisc/top/0.1.0/rtl/top_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/top/0.1.0/rtl/top_pkg.sv
+
+
+_VCSgd_CeaRm_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv
+
+
+_VCSgd_GpHAkb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv
+
+
+_VCSgd_yi7eSc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_util_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_util_pkg.sv
+
+
+_VCSgd_UE6cUc_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv
+
+
+_VCSgd_xpEi1d_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_pkg.sv
+
+
+_VCSgd_1tgNJ_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv
+
+
+_VCSgd_7Afbge_1.db :	../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv
+
+
+_VCSgd_3fh7Fe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_count_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_count_pkg.sv
+
+
+_VCSgd_dN6zCe_1.db :	rtl/uart_reg_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_reg_pkg.sv
+
+
+_VCSgd_X4JwRb_1.db :	rtl/generated/uart_csr_pkg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/generated/uart_csr_pkg.sv
+
+
+_VCSgd_pw5Etc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_alert_receiver.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_receiver.sv
+
+
+_VCSgd_Bp7HLd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv
+
+
+_VCSgd_I8Kcje_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_buf.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_buf.sv
+
+
+_VCSgd_31jo5_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_cdc_rand_delay.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_cdc_rand_delay.sv
+
+
+_VCSgd_Zrjih_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_count.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_count.sv
+
+
+_VCSgd_Bw1zA_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv
+
+
+_VCSgd_ElFRzb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv
+
+
+_VCSgd_ZuGRwb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv
+
+
+_VCSgd_g3fNmc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv
+
+
+_VCSgd_x3ccDb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_flop_2sync.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_flop_2sync.sv
+
+
+_VCSgd_wuBHTd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv
+
+
+_VCSgd_AAa7nd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_check.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_check.sv
+
+
+_VCSgd_4dEKGd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_enc.sv
+
+
+_VCSgd_gC3wJ_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_reg_we_check.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_reg_we_check.sv
+
+
+_VCSgd_s0P2kc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_buf.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_buf.sv
+
+
+_VCSgd_GXwyoe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_flop.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_flop.sv
+
+
+_VCSgd_28vFqe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_dec.sv
+
+
+_VCSgd_OM25t_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_enc.sv
+
+
+_VCSgd_tkf7Cc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_dec.sv
+
+
+_VCSgd_TgVgvc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_enc.sv
+
+
+_VCSgd_ty9t7_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_dec.sv
+
+
+_VCSgd_BZbeVd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_enc.sv
+
+
+_VCSgd_t3k83d_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_dec.sv
+
+
+_VCSgd_Nk0zY_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_enc.sv
+
+
+_VCSgd_heojo_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_dec.sv
+
+
+_VCSgd_vUOoEe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_enc.sv
+
+
+_VCSgd_T3i2d_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_dec.sv
+
+
+_VCSgd_r2f6Je_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_enc.sv
+
+
+_VCSgd_6io5fe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_dec.sv
+
+
+_VCSgd_MjIgS_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_enc.sv
+
+
+_VCSgd_OJ0tpe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_dec.sv
+
+
+_VCSgd_MtXRI_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_enc.sv
+
+
+_VCSgd_0OhUue_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_dec.sv
+
+
+_VCSgd_SDfUy_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_enc.sv
+
+
+_VCSgd_yH9H9c_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_dec.sv
+
+
+_VCSgd_gJnqOb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_enc.sv
+
+
+_VCSgd_Tro6Ud_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_dec.sv
+
+
+_VCSgd_nuAz7_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_enc.sv
+
+
+_VCSgd_3KU4uc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_dec.sv
+
+
+_VCSgd_1AchDc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_enc.sv
+
+
+_VCSgd_RTv83c_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_dec.sv
+
+
+_VCSgd_VyBd4b_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_enc.sv
+
+
+_VCSgd_ZKdOtb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_dec.sv
+
+
+_VCSgd_hVKxEd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_enc.sv
+
+
+_VCSgd_8itrie_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_dec.sv
+
+
+_VCSgd_KtWjC_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_enc.sv
+
+
+_VCSgd_TeOYhb_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_dec.sv
+
+
+_VCSgd_xkoJKd_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_enc.sv
+
+
+_VCSgd_JJE4f_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_dec.sv
+
+
+_VCSgd_ZeGDMe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_enc.sv
+
+
+_VCSgd_Xfgyq_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_dec.sv
+
+
+_VCSgd_vuvHGe_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_enc.sv
+
+
+_VCSgd_oRFk7_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv
+
+
+_VCSgd_GcvQOc_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv
+
+
+_VCSgd_R6H9re_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_ext.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_ext.sv
+
+
+_VCSgd_0w1DN_1.db :	../ips/lowrisc/prim/0.1.0/rtl/prim_xnor2.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/prim/0.1.0/rtl/prim_xnor2.sv
+
+
+_VCSgd_eO3R8c_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv
+
+
+_VCSgd_2acKCc_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv
+
+
+_VCSgd_QHDVbc_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_cmd_intg_chk.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_cmd_intg_chk.sv
+
+
+_VCSgd_FTCPcc_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_dec.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_dec.sv
+
+
+_VCSgd_nxFyVc_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_enc.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_enc.sv
+
+
+_VCSgd_5z4y2c_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv
+
+
+_VCSgd_mZ7PFb_1.db :	../ips/lowrisc/tlul/0.1.0/rtl/tlul_rsp_intg_gen.sv 
+		${VLOGAN}  ${VLOGAN_OPT} ../ips/lowrisc/tlul/0.1.0/rtl/tlul_rsp_intg_gen.sv
+
+
+_VCSgd_vaolke_1.db :	rtl/uart_reg_top.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_reg_top.sv
+
+
+_VCSgd_yzVHBd_1.db :	rtl/uart_rx.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_rx.sv
+
+
+_VCSgd_Ocy5Nb_1.db :	rtl/uart_tx.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_tx.sv
+
+
+_VCSgd_meAjSd_1.db :	rtl/uart_core.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_core.sv
+
+
+_VCSgd_1t0Sc_1.db :	rtl/uart.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart.sv
+
+
+_VCSgd_7blSUc_1.db :	rtl/generated/uart_csr.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/generated/uart_csr.sv
+
+
+_VCSgd_mQ2NA_1.db :	rtl/apb2tlul.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/apb2tlul.sv
+
+
+_VCSgd_9rKUrc_1.db :	rtl/uart_apb_top.sv 
+		${VLOGAN}  ${VLOGAN_OPT} rtl/uart_apb_top.sv
+
+

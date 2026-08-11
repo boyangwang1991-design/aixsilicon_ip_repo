@@ -1,0 +1,17 @@
+// =============================================================================
+// uart_env.list
+// Description : UART environment file list (compile order)
+//               Agent packages and env declarations must be compiled BEFORE
+//               uart_env_package.sv which imports their types.
+// =============================================================================
+
+// Protocol agent packages (compiled first for type visibility)
+-f ./utils/uart_utils/uart_interface_agent.list
+-f ./utils/tlul_utils/tlul_interface_agent.list
+-f ./utils/apb_utils/apb_interface_agent.list
+
+// Environment declarations (modes/parameters package)
+uart_env_dec.sv
+
+// Environment package (wraps all env components)
+uart_env_package.sv

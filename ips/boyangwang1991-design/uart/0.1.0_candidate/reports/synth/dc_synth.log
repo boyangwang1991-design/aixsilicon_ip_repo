@@ -1,0 +1,1238 @@
+Current time:       Tue Aug 11 07:03:02 2026
+Hostname:           localhost.localdomain
+CPU Model:          Intel(R) Xeon(R) Gold 6444Y
+CPU Details:        Cores = 16 : Sockets = 8 : Cache Size = 46080 KB : Freq = 3.60 GHz
+OS:                 Linux 4.18.0-553.137.1.el8_10.x86_64
+RAM:                 15 GB (Free   3 GB)
+Swap:                 3 GB (Free   3 GB)
+Work Filesystem:    /home mounted to /dev/mapper/rl-home
+Tmp Filesystem:     / mounted to /dev/mapper/rl-root
+Work Disk:          424 GB (Free 248 GB)
+Tmp Disk:            69 GB (Free  59 GB)
+
+CPU Load: 5%, Ram Free: 3 GB, Swap Free: 3 GB, Work Disk Free: 248 GB, Tmp Disk Free: 59 GB
+# =============================================================================
+# uart_synth.tcl - Design Compiler synthesis script
+# Top: uart (OpenTitan TL-UL UART core)
+# Purpose: G3 synth gate - verify synthesizability + check_design
+# =============================================================================
+set DESIGN_NAME uart
+uart
+set TOP_MODULE uart
+uart
+set search_path [list .]
+.
+# No PDK library -> structure-only check (synthesizability + check_design)
+set target_library [list]
+set link_library [list]
+set symbol_library {}
+# Include dirs so `include "prim_assert.sv"` resolves (prim/tlul/top libs)
+set prim_dir [file normalize ../ips/lowrisc/prim/0.1.0/rtl]
+/home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/prim/0.1.0/rtl
+set tlul_dir [file normalize ../ips/lowrisc/tlul/0.1.0/rtl]
+/home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/tlul/0.1.0/rtl
+set top_dir  [file normalize ../ips/lowrisc/top/0.1.0/rtl]
+/home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/top/0.1.0/rtl
+set rtl_dir  [file normalize rtl]
+/home/eda/workspace/aixsilicon_ip_repo/ip_uart/rtl
+set hdlin_verilog_include_dir [list $rtl_dir $prim_dir $tlul_dir $top_dir]
+/home/eda/workspace/aixsilicon_ip_repo/ip_uart/rtl /home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/prim/0.1.0/rtl /home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/tlul/0.1.0/rtl /home/eda/workspace/aixsilicon_ip_repo/ips/lowrisc/top/0.1.0/rtl
+# Define SYNTHESIS so prim_assert uses dummy macros (synthesizable subset)
+define_design_lib WORK -path ./work_lib
+1
+# Read common library files + core RTL in dependency order (from rtl/filelist.f)
+# libs first (filelist_libs.f lists them in dependency order)
+set lib_files [list]
+set fh [open "rtl/filelist_libs.f" r]
+file21
+while {[gets $fh line] >= 0} {
+  set line [string trim $line]
+  if {$line eq ""} { continue }
+  if {[string match "//*" $line]} { continue }
+  lappend lib_files $line
+}
+close $fh
+# Core RTL (from rtl/filelist.f, non-comment, non -f lines)
+set core_files [list]
+set fh [open "rtl/filelist.f" r]
+file21
+while {[gets $fh line] >= 0} {
+  set line [string trim $line]
+  if {$line eq ""} { continue }
+  if {[string match "//*" $line]} { continue }
+  if {[string match "-f*" $line]} { continue }
+  lappend core_files $line
+}
+close $fh
+puts "Analyzing library files..."
+Analyzing library files...
+foreach f $lib_files {
+  if {[file exists $f]} {
+    puts "  analyze $f"
+    analyze -format sverilog $f
+  }
+}
+  analyze ../ips/lowrisc/top/0.1.0/rtl/top_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/top/0.1.0/rtl/top_pkg.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_pkg.sv:175: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_mubi_pkg.sv:21: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_util_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_util_pkg.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv
+Warning:  ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv:14: Parameter keyword used in local parameter declaration. (VER-329)
+Warning:  ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv:95: Concatenations cannot have unsized numbers; assuming 32 bits. (ELAB-332)
+Warning:  ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv:138: Concatenations cannot have unsized numbers; assuming 32 bits. (ELAB-332)
+Warning:  ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv:138: Concatenations cannot have unsized numbers; assuming 32 bits. (ELAB-332)
+Warning:  ../ips/lowrisc/tlul/0.1.0/rtl/tlul_pkg.sv:138: Concatenations cannot have unsized numbers; assuming 32 bits. (ELAB-332)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_pkg.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_pkg.sv:19: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv
+Warning:  ../ips/lowrisc/top/0.1.0/rtl/top_racl_pkg.sv:14: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_count_pkg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_count_pkg.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_receiver.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_receiver.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_buf.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_buf.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_cdc_rand_delay.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_cdc_rand_delay.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_count.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_count.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Opening include file prim_fifo_assert.svh
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_flop_2sync.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_flop_2sync.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_check.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_check.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_onehot_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_reg_we_check.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_reg_we_check.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_buf.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_buf.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_flop.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_sec_anchor_flop.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_22_16_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_28_22_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_39_32_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_64_57_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_72_64_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_22_16_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_39_32_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_72_64_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_hamming_76_68_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_22_16_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_28_22_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_39_32_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_64_57_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_72_64_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_22_16_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_39_32_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_72_64_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_dec.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_secded_inv_hamming_76_68_enc.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv:79: In the call to '$error', the '%m' format specifier is not supported. (ELAB-902)
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv:107: In the call to '$error', the '%m' format specifier is not supported. (ELAB-902)
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv:132: In the call to '$error', the '%m' format specifier is not supported. (ELAB-902)
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_arb.sv:159: In the call to '$error', the '%m' format specifier is not supported. (ELAB-902)
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_ext.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_subreg_ext.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/prim/0.1.0/rtl/prim_xnor2.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/prim/0.1.0/rtl/prim_xnor2.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_cmd_intg_chk.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_cmd_intg_chk.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_dec.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_dec.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_enc.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_data_integ_enc.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze ../ips/lowrisc/tlul/0.1.0/rtl/tlul_rsp_intg_gen.sv
+Running PRESTO HDLC
+Compiling source file ../ips/lowrisc/tlul/0.1.0/rtl/tlul_rsp_intg_gen.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+puts "Analyzing core RTL files..."
+Analyzing core RTL files...
+foreach f $core_files {
+  if {[file exists $f]} {
+    puts "  analyze $f"
+    analyze -format sverilog $f
+  }
+}
+  analyze rtl/uart_reg_pkg.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_reg_pkg.sv
+Warning:  ./rtl/uart_reg_pkg.sv:10: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+  analyze rtl/uart_reg_top.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_reg_top.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze rtl/uart_rx.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_rx.sv
+Presto compilation completed successfully.
+  analyze rtl/uart_tx.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_tx.sv
+Presto compilation completed successfully.
+  analyze rtl/uart_core.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_core.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze rtl/uart.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze rtl/generated/uart_csr_pkg.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/generated/uart_csr_pkg.sv
+Presto compilation completed successfully.
+  analyze rtl/generated/uart_csr.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/generated/uart_csr.sv
+Presto compilation completed successfully.
+  analyze rtl/apb2tlul.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/apb2tlul.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+  analyze rtl/uart_apb_top.sv
+Running PRESTO HDLC
+Compiling source file ./rtl/uart_apb_top.sv
+Opening include file prim_assert.sv
+Opening include file prim_assert_dummy_macros.svh
+Opening include file prim_assert_sec_cm.svh
+Opening include file prim_flop_macros.sv
+Presto compilation completed successfully.
+puts "Elaborating $TOP_MODULE"
+Elaborating uart
+elaborate $TOP_MODULE
+Loading db file '/home/eda/app/synopsys/syn/V-2023.12-SP3/libraries/syn/gtech.db'
+Loading db file '/home/eda/app/synopsys/syn/V-2023.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully. (uart)
+Elaborated 1 design.
+Current design is now 'uart'.
+Information: Building the design 'uart_reg_top' instantiated from design 'uart' with
+        the parameters "EnableRacl=1'h0,RaclErrorRsp=1'h0,RaclPolicySelVec=@28206b3a31383220743a34323a22617272617928312530253132256172726179283025302530256c6f676963292925403979696437262220693a20683a31333a3030303020292000@". (HDL-193)
+
+Statistics for case statements in always block at line 1782 in file
+        './rtl/uart_reg_top.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           1784           |    user/user     |
+===============================================
+
+Inferred memory devices in process
+        in routine uart_reg_top_0_0_0000 line 77 in file
+                './rtl/uart_reg_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      err_q_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (uart_reg_top_0_0_0000)
+Information: Building the design 'uart_core'. (HDL-193)
+Warning:  ./rtl/uart_core.sv:319: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./rtl/uart_core.sv:318: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./rtl/uart_core.sv:341: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./rtl/uart_core.sv:347: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./rtl/uart_core.sv:345: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./rtl/uart_core.sv:138: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 116 in file
+        './rtl/uart_core.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           117            |    user/user     |
+===============================================
+
+Statistics for case statements in always block at line 125 in file
+        './rtl/uart_core.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           128            |    user/user     |
+===============================================
+
+Inferred memory devices in process
+        in routine uart_core line 108 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  allzero_cnt_q_reg  | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 125 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   break_st_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 169 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    nco_sum_q_reg    | Flip-flop |  17   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 218 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    tx_out_q_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 249 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   rx_sync_q2_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|   rx_sync_q1_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 305 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    rx_val_q_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 330 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| tx_uart_idle_q_reg  | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 355 in file
+                './rtl/uart_core.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| lsio_trigger_o_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_core line 389 in file
+                './rtl/uart_core.sv'.
+====================================================================================
+|      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+====================================================================================
+| rx_fifo_depth_prev_q_reg | Flip-flop |   7   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  rx_timeout_count_q_reg  | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+====================================================================================
+Presto compilation completed successfully. (uart_core)
+Information: Building the design 'prim_alert_sender' instantiated from design 'uart' with
+        the parameters "AsyncOn=1'h1,SkewCycles=32'h00000001,IsFatal=1'h1". (HDL-193)
+
+Statistics for case statements in always block at line 195 in file
+        '../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           203            |    user/user     |
+===============================================
+
+Inferred memory devices in process
+        in routine prim_alert_sender_1_00000001_1 line 279 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_alert_sender.sv'.
+================================================================================
+|    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+| alert_test_set_q_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    ping_set_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     state_q_reg      | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   alert_set_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+================================================================================
+Presto compilation completed successfully. (prim_alert_sender_1_00000001_1)
+Information: Building the design 'tlul_cmd_intg_chk'. (HDL-193)
+Presto compilation completed successfully. (tlul_cmd_intg_chk)
+Information: Building the design 'prim_reg_we_check' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "OneHotWidth=13". (HDL-193)
+Presto compilation completed successfully. (prim_reg_we_check_OneHotWidth13)
+Information: Building the design 'tlul_rsp_intg_gen' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "EnableRspIntgGen=1,EnableDataIntgGen=1". (HDL-193)
+Presto compilation completed successfully. (tlul_rsp_intg_gen_EnableRspIntgGen1_EnableDataIntgGen1)
+Information: Building the design 'tlul_adapter_reg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "RegAw=6,RegDw=32,EnableDataIntgGen=0". (HDL-193)
+
+Inferred memory devices in process
+        in routine tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32 line 169 in file
+                '../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  outstanding_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32 line 175 in file
+                '../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     rspop_q_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     reqid_q_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     reqsz_q_reg     | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32 line 216 in file
+                '../ips/lowrisc/tlul/0.1.0/rtl/tlul_adapter_reg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     error_q_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     rdata_q_reg     | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1,SwAccess=3'h1,RESVAL=1'h1,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_1_1_1_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_1_1_1_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1,SwAccess=3'h1,RESVAL=1'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_1_1_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_1_1_0_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1,SwAccess=3'h3,RESVAL=1'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_1_3_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_1_3_0_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1,SwAccess=3'h0,RESVAL=1'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_1_0_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_1_0_0_0)
+Information: Building the design 'prim_subreg_ext' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_ext_DW1)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=2,SwAccess=3'h0,RESVAL=2'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_2_0_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_2_0_0_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=16,SwAccess=3'h0,RESVAL=16'h0000,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_16_0_0000_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_16_0_0000_0)
+Information: Building the design 'prim_subreg_ext' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=8". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_ext_DW8)
+Information: Building the design 'prim_flop' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "Width=1,ResetValue=0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_flop_Width1_ResetValue0 line 17 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       q_o_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_flop_Width1_ResetValue0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=8,SwAccess=3'h2,RESVAL=8'h00,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_8_2_00_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_8_2_00_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=1,SwAccess=3'h2,RESVAL=1'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_1_2_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_1_2_0_0)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=3,SwAccess=3'h0,RESVAL=3'h0,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_3_0_0_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_3_0_0_0)
+Information: Building the design 'prim_subreg_ext' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=16". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_ext_DW16)
+Information: Building the design 'prim_subreg' instantiated from design 'uart_reg_top_0_0_0000' with
+        the parameters "DW=24,SwAccess=3'h0,RESVAL=24'h000000,Mubi=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_subreg_24_0_000000_0 line 55 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_subreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_subreg_24_0_000000_0)
+Information: Building the design 'prim_fifo_sync' instantiated from design 'uart_core' with
+        the parameters "Width=8,Pass=1'h0,Depth=32". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_8_0_32 line 149 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv'.
+=========================================================================================
+|         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=========================================================================================
+| gen_normal_fifo.under_rst_reg | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+=========================================================================================
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_8_0_32 line 189 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv'.
+=======================================================================================
+|        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=======================================================================================
+| gen_normal_fifo.storage_reg | Flip-flop |  256  |  Y  | N  | N  | N  | N  | N  | N  |
+=======================================================================================
+Statistics for MUX_OPs
+===============================================================
+|     block name/line       | Inputs | Outputs | # sel inputs |
+===============================================================
+| prim_fifo_sync_8_0_32/187 |   32   |    8    |      5       |
+===============================================================
+Presto compilation completed successfully. (prim_fifo_sync_8_0_32)
+Information: Building the design 'uart_tx'. (HDL-193)
+
+Inferred memory devices in process
+        in routine uart_tx line 34 in file
+                './rtl/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   tick_baud_q_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   baud_div_q_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_tx line 45 in file
+                './rtl/uart_tx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      tx_q_reg       | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|    bit_cnt_q_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     sreg_q_reg      | Flip-flop |  11   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (uart_tx)
+Information: Building the design 'prim_flop_2sync' instantiated from design 'uart_core' with
+        the parameters "Width=1,ResetValue=1'h1". (HDL-193)
+Presto compilation completed successfully. (prim_flop_2sync_1_1)
+Information: Building the design 'uart_rx'. (HDL-193)
+
+Inferred memory devices in process
+        in routine uart_rx line 37 in file
+                './rtl/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     idle_q_reg      | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     sreg_q_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    bit_cnt_q_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   baud_div_q_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   tick_baud_q_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine uart_rx line 92 in file
+                './rtl/uart_rx.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   rx_valid_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (uart_rx)
+Information: Building the design 'prim_fifo_sync' instantiated from design 'uart_core' with
+        the parameters "Width=8,Pass=1'h0,Depth=64". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_8_0_64 line 149 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv'.
+=========================================================================================
+|         Register Name         |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=========================================================================================
+| gen_normal_fifo.under_rst_reg | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+=========================================================================================
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_8_0_64 line 189 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync.sv'.
+=======================================================================================
+|        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=======================================================================================
+| gen_normal_fifo.storage_reg | Flip-flop |  512  |  Y  | N  | N  | N  | N  | N  | N  |
+=======================================================================================
+Statistics for MUX_OPs
+===============================================================
+|     block name/line       | Inputs | Outputs | # sel inputs |
+===============================================================
+| prim_fifo_sync_8_0_64/187 |   64   |    8    |      6       |
+===============================================================
+Presto compilation completed successfully. (prim_fifo_sync_8_0_64)
+Information: Building the design 'prim_intr_hw' instantiated from design 'uart_core' with
+        the parameters "Width=1,IntrT="Status"". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_intr_hw_Width1_IntrTStatus line 76 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv'.
+====================================================================================
+|      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+====================================================================================
+| g_intr_status.test_q_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+====================================================================================
+
+Inferred memory devices in process
+        in routine prim_intr_hw_Width1_IntrTStatus line 96 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     intr_o_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_intr_hw_Width1_IntrTStatus)
+Information: Building the design 'prim_intr_hw' instantiated from design 'uart_core' with
+        the parameters "Width=1". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_intr_hw_Width1 line 96 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_intr_hw.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     intr_o_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_intr_hw_Width1)
+Information: Building the design 'prim_sec_anchor_buf' instantiated from design 'prim_alert_sender_1_00000001_1' with
+        the parameters "Width=2". (HDL-193)
+Presto compilation completed successfully. (prim_sec_anchor_buf_Width2)
+Information: Building the design 'prim_diff_decode' instantiated from design 'prim_alert_sender_1_00000001_1' with
+        the parameters "AsyncOn=1'h1,SkewCycles=32'h00000001". (HDL-193)
+Warning:  ../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv:142: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Statistics for case statements in always block at line 117 in file
+        '../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           126            |    user/user     |
+===============================================
+
+Inferred memory devices in process
+        in routine prim_diff_decode_1_00000001 line 189 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_diff_decode.sv'.
+====================================================================================
+|      Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+====================================================================================
+|       level_q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| gen_async.skew_cnt_q_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  gen_async.state_q_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  gen_async.diff_pq_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  gen_async.diff_nq_reg   | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+====================================================================================
+Presto compilation completed successfully. (prim_diff_decode_1_00000001)
+Information: Building the design 'prim_sec_anchor_buf' instantiated from design 'prim_alert_sender_1_00000001_1' with
+        the parameters "Width=1". (HDL-193)
+Presto compilation completed successfully. (prim_sec_anchor_buf_Width1)
+Information: Building the design 'prim_sec_anchor_flop' instantiated from design 'prim_alert_sender_1_00000001_1' with
+        the parameters "Width=2,ResetValue=2'h2". (HDL-193)
+Presto compilation completed successfully. (prim_sec_anchor_flop_2_2)
+Information: Building the design 'prim_secded_inv_64_57_dec'. (HDL-193)
+Presto compilation completed successfully. (prim_secded_inv_64_57_dec)
+Information: Building the design 'tlul_data_integ_dec'. (HDL-193)
+Presto compilation completed successfully. (tlul_data_integ_dec)
+Information: Building the design 'prim_buf' instantiated from design 'prim_reg_we_check_OneHotWidth13' with
+        the parameters "Width=32'h0000000d". (HDL-193)
+Presto compilation completed successfully. (prim_buf_s0000000d)
+Information: Building the design 'prim_onehot_check' instantiated from design 'prim_reg_we_check_OneHotWidth13' with
+        the parameters "OneHotWidth=32'h0000000d,AddrWidth=4,EnableCheck=1,AddrCheck=0,StrictCheck=0". (HDL-193)
+Presto compilation completed successfully. (prim_onehot_check_4_0000000d_0_1_0)
+Information: Building the design 'prim_secded_inv_64_57_enc'. (HDL-193)
+Presto compilation completed successfully. (prim_secded_inv_64_57_enc)
+Information: Building the design 'tlul_data_integ_enc'. (HDL-193)
+Presto compilation completed successfully. (tlul_data_integ_enc)
+Information: Building the design 'tlul_rsp_intg_gen' instantiated from design 'tlul_adapter_reg_EnableDataIntgGen0_RegAw6_RegDw32' with
+        the parameters "EnableRspIntgGen=1'h0,EnableDataIntgGen=1'h0,UserInIsZero=1'h1". (HDL-193)
+Presto compilation completed successfully. (tlul_rsp_intg_gen_0_0_1)
+Information: Building the design 'tlul_err'. (HDL-193)
+
+Statistics for case statements in always block at line 56 in file
+        '../ips/lowrisc/tlul/0.1.0/rtl/tlul_err.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            62            |    user/user     |
+===============================================
+Presto compilation completed successfully. (tlul_err)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_1_1_1_0' with
+        the parameters "DW=1,SwAccess=3'h1,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_1_1_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_1_3_0_0' with
+        the parameters "DW=1,SwAccess=3'h3,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_1_3_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_1_0_0_0' with
+        the parameters "DW=1,SwAccess=3'h0,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_1_0_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_2_0_0_0' with
+        the parameters "DW=2,SwAccess=3'h0,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_2_0_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_16_0_0000_0' with
+        the parameters "DW=16,SwAccess=3'h0,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_16_0_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_8_2_00_0' with
+        the parameters "DW=8,SwAccess=3'h2,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_8_2_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_1_2_0_0' with
+        the parameters "DW=1,SwAccess=3'h2,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_1_2_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_3_0_0_0' with
+        the parameters "DW=3,SwAccess=3'h0,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_3_0_0)
+Information: Building the design 'prim_subreg_arb' instantiated from design 'prim_subreg_24_0_000000_0' with
+        the parameters "DW=24,SwAccess=3'h0,Mubi=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_subreg_arb_24_0_0)
+Information: Building the design 'prim_fifo_sync_cnt' instantiated from design 'prim_fifo_sync_8_0_32' with
+        the parameters "Depth=32'h00000020,Secure=1'h0,NeverClears=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_cnt_00000020_0_0 line 118 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| wptr_wrap_cnt_q_reg | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_cnt_00000020_0_0 line 130 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| rptr_wrap_cnt_q_reg | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_fifo_sync_cnt_00000020_0_0)
+Information: Building the design 'prim_flop' instantiated from design 'prim_flop_2sync_1_1' with
+        the parameters "Width=1,ResetValue=1'h1". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_flop_1_1 line 17 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       q_o_reg       | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_flop_1_1)
+Information: Building the design 'prim_fifo_sync_cnt' instantiated from design 'prim_fifo_sync_8_0_64' with
+        the parameters "Depth=32'h00000040,Secure=1'h0,NeverClears=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_cnt_00000040_0_0 line 118 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| wptr_wrap_cnt_q_reg | Flip-flop |   7   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine prim_fifo_sync_cnt_00000040_0_0 line 130 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_fifo_sync_cnt.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| rptr_wrap_cnt_q_reg | Flip-flop |   7   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_fifo_sync_cnt_00000040_0_0)
+Information: Building the design 'prim_buf' instantiated from design 'prim_sec_anchor_buf_Width2' with
+        the parameters "Width=2". (HDL-193)
+Presto compilation completed successfully. (prim_buf_Width2)
+Information: Building the design 'prim_flop_2sync' instantiated from design 'prim_diff_decode_1_00000001' with
+        the parameters "Width=1,ResetValue=1'h0". (HDL-193)
+Presto compilation completed successfully. (prim_flop_2sync_1_0)
+Information: Building the design 'prim_buf' instantiated from design 'prim_sec_anchor_buf_Width1' with
+        the parameters "Width=1". (HDL-193)
+Presto compilation completed successfully. (prim_buf_Width1)
+Information: Building the design 'prim_flop' instantiated from design 'prim_sec_anchor_flop_2_2' with
+        the parameters "Width=2,ResetValue=2'h2". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_flop_2_2 line 17 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       q_o_reg       | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|       q_o_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_flop_2_2)
+Information: Building the design 'prim_secded_inv_39_32_dec'. (HDL-193)
+Presto compilation completed successfully. (prim_secded_inv_39_32_dec)
+Information: Building the design 'prim_secded_inv_39_32_enc'. (HDL-193)
+Presto compilation completed successfully. (prim_secded_inv_39_32_enc)
+Information: Building the design 'prim_flop' instantiated from design 'prim_flop_2sync_1_0' with
+        the parameters "Width=1,ResetValue=1'h0". (HDL-193)
+
+Inferred memory devices in process
+        in routine prim_flop_1_0 line 17 in file
+                '../ips/lowrisc/prim/0.1.0/rtl/prim_flop.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       q_o_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (prim_flop_1_0)
+1
+link
+
+  Linking design 'uart'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+
+1
+uniquify
+Information: Uniquified 2 instances of design 'prim_subreg_1_1_1_0'. (OPT-1056)
+Information: Uniquified 6 instances of design 'prim_subreg_1_3_0_0'. (OPT-1056)
+Information: Uniquified 19 instances of design 'prim_subreg_1_0_0_0'. (OPT-1056)
+Information: Uniquified 16 instances of design 'prim_subreg_ext_DW1'. (OPT-1056)
+Information: Uniquified 3 instances of design 'prim_subreg_ext_DW8'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_flop_Width1_ResetValue0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_subreg_1_2_0_0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_subreg_3_0_0_0'. (OPT-1056)
+Information: Uniquified 3 instances of design 'prim_flop_2sync_1_1'. (OPT-1056)
+Information: Uniquified 3 instances of design 'prim_intr_hw_Width1_IntrTStatus'. (OPT-1056)
+Information: Uniquified 6 instances of design 'prim_intr_hw_Width1'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_sec_anchor_buf_Width2'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_diff_decode_1_00000001'. (OPT-1056)
+Information: Uniquified 3 instances of design 'prim_subreg_arb_1_1_0'. (OPT-1056)
+Information: Uniquified 6 instances of design 'prim_subreg_arb_1_3_0'. (OPT-1056)
+Information: Uniquified 19 instances of design 'prim_subreg_arb_1_0_0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_subreg_arb_1_2_0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_subreg_arb_3_0_0'. (OPT-1056)
+Information: Uniquified 6 instances of design 'prim_flop_1_1'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_buf_Width2'. (OPT-1056)
+Information: Uniquified 2 instances of design 'prim_flop_2sync_1_0'. (OPT-1056)
+Information: Uniquified 4 instances of design 'prim_flop_1_0'. (OPT-1056)
+1
+# Design checks
+check_design > reports/synth/check_design.log
+# Area / hierarchy reports
+report_area > reports/synth/area.log
+report_hierarchy > reports/synth/hierarchy.log
+puts "Synth check completed for $DESIGN_NAME"
+Synth check completed for uart
+dc_shell> 
+Memory usage for this session 605 Mbytes.
+Memory usage for this session including child processes 605 Mbytes.
+CPU usage for this session 7 seconds ( 0.00 hours ).
+Elapsed time for this session 15 seconds ( 0.00 hours ).
+
+Thank you...

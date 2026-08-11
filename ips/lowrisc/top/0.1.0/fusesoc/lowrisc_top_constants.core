@@ -1,0 +1,13 @@
+CAPI=2:
+name: "lowrisc:top:constants:0.1.0"
+description: "OpenTitan top-level constants packages (top_pkg / top_racl_pkg, Apache-2.0)"
+filesets:
+  files_rtl:
+    files:
+      - ../rtl/top_pkg.sv
+      - ../rtl/top_racl_pkg.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+      - files_rtl

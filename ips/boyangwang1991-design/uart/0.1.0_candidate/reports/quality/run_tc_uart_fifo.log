@@ -1,0 +1,62 @@
+Command: /home/eda/workspace/aixsilicon_ip_repo/ip_uart/./simv +UVM_TESTNAME=tc_uart_fifo +UVM_VERBOSITY=UVM_LOW -l reports/quality/run_tc_uart_fifo.log
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Aug 11 06:52 2026
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test tc_uart_fifo...
+UVM_INFO verification/tc/tc_uart_fifo.sv(54) @ 0: uvm_test_top [tc_uart_fifo] === tc_uart_fifo: start ===
+UVM_INFO verification/env/uart_virtual_sequence.sv(315) @ 0: uvm_test_top.env.v_sqr@@vseq [uart_fifo_vseq] === uart_fifo_vseq: FIFO status ===
+UVM_INFO verification/env/uart_virtual_sequence.sv(328) @ 635000: uvm_test_top.env.v_sqr@@vseq [uart_fifo_vseq] === uart_fifo_vseq done ===
+UVM_INFO verification/tc/tc_uart_fifo.sv(59) @ 635000: uvm_test_top [tc_uart_fifo] === tc_uart_fifo: end ===
+UVM_INFO verification/env/uart_checker.sv(272) @ 635000: uvm_test_top.env.scb [uart_checker] Checker summary: 0 UART matches, 0 UART errors, 
+UVM_INFO verification/env/uart_checker.sv(276) @ 635000: uvm_test_top.env.scb [uart_checker] Checker summary: 0 TL-UL accesses (0 violations), 0 APB accesses (0 violations)
+UVM_INFO verification/env/uart_rm.sv(216) @ 635000: uvm_test_top.env.rm [uart_rm] Reference model summary: 0 predicted TX transactions
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_report_server.svh(904) @ 635000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    9
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[UVM/RELNOTES]     1
+[tc_uart_fifo]     2
+[uart_checker]     2
+[uart_fifo_vseq]     2
+[uart_rm]     1
+
+$finish called from file "/home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh", line 527.
+$finish at simulation time               635000
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 462: tlul_assert.gen_device_cov.b2bReq_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 463: tlul_assert.gen_device_cov.b2bReqWithSameAddr_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 464: tlul_assert.gen_device_cov.aValidNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 465: tlul_assert.gen_device_cov.b2bSameSource_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 466: tlul_assert.gen_device_cov.a_addressChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 467: tlul_assert.gen_device_cov.a_dataChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 468: tlul_assert.gen_device_cov.a_opcodeChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 469: tlul_assert.gen_device_cov.a_sizeChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 470: tlul_assert.gen_device_cov.a_sourceChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+"../ips/lowrisc/tlul/0.1.0/rtl/tlul_assert.sv", 471: tlul_assert.gen_device_cov.a_maskChangedNotAccepted_C, 0 attempts, 0 total match, 0 first match
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 635000 ps
+CPU Time:      0.200 seconds;       Data structure size:   0.6Mb
+Tue Aug 11 06:52:51 2026
