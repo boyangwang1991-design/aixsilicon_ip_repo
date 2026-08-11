@@ -1,0 +1,58 @@
+# Unified repo CI: scan every FuseSoC core under ips/ and run lint.
+name: IP Unified CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  lint-all-cores:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install FuseSoC
+        run: pip install fusesoc
+
+      - name: Lint every core in ips/
+        run: |
+          fusesoc library add aixsilicon_ip_repo .
+          failed=0
+          for core in $(find ips -name '*.core'); do
+            echo "Linting $core"
+            name=$(grep '^name:' "$core" | head -1 | sed 's/name:[ ]*//')
+            fusesoc run --target lint "${name}:latest" || failed=1
+          done
+          exit $failed
+
+  validate-index:
+    runs-on: ubuntu-latest
+    needs: lint-all-cores
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Validate registry.yaml
+        run: |
+          python -c "
+import yaml
+d = yaml.safe_load(open('registry.yaml'))
+assert d.get('schema_version') == '2.0', 'schema_version must be 2.0'
+assert isinstance(d.get('ips'), list), 'ips must be a list'
+"
