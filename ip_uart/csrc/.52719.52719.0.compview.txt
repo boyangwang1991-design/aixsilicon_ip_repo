@@ -1,7 +1,0 @@
-Command exited with non-zero status 255
-{"vcs1":{"timestamp_begin":1786441774.009457055, "rt":5.54, "ut":0.31, "st":0.26}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1786441773.662164121}
-{"VCS_COMP_START_TIME": 1786441773.662164121}
-{"VCS_COMP_END_TIME": 1786441779.617622398}
-{"VCS_USER_OPTIONS": "-full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 +define+UVM_NO_DEPRECATED +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -f verification/check_uvm.f -l reports/quality/vcs_env_compile.log"}
-{"vcs1": {"peak_mem": 790928}}

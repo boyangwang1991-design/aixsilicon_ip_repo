@@ -1,7 +1,0 @@
-Command exited with non-zero status 255
-{"vcs1":{"timestamp_begin":1786441251.738186718, "rt":7.53, "ut":0.30, "st":0.26}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1786441251.266381705}
-{"VCS_COMP_START_TIME": 1786441251.266381705}
-{"VCS_COMP_END_TIME": 1786441259.318938272}
-{"VCS_USER_OPTIONS": "-full64 -q -lint=portal -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 +define+UVM_NO_DEPRECATED +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR +incdir+./verification/env +incdir+./verification/env/utils/apb_utils/src +incdir+./verification/env/utils/tlul_utils/src +incdir+./verification/env/utils/uart_utils/src ./verification/env/uart_env_dec.sv ./verification/env/uart_dut_cfg.sv ./verification/env/uart_rm_cfg.sv ./verification/env/uart_rm.sv ./verification/env/uart_checker_cfg.sv ./verification/env/uart_checker.sv ./verification/env/uart_fcov.sv ./verification/env/uart_virtual_sequencer.sv ./verification/env/uart_virtual_sequence.sv ./verification/env/uart_env_cfg.sv ./verification/env/uart_env.sv"}
-{"vcs1": {"peak_mem": 790884}}

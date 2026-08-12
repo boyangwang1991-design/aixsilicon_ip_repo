@@ -1,9 +1,0 @@
-{"vcs1":{"timestamp_begin":1786442485.353644165, "rt":11.49, "ut":6.04, "st":0.45}}
-{"vcselab":{"timestamp_begin":1786442496.913059181, "rt":5.26, "ut":0.17, "st":0.11}}
-{"link":{"timestamp_begin":1786442502.231834919, "rt":0.27, "ut":0.17, "st":0.11}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1786442485.010551449}
-{"VCS_COMP_START_TIME": 1786442485.010551449}
-{"VCS_COMP_END_TIME": 1786442502.569171005}
-{"VCS_USER_OPTIONS": "-full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 +define+UVM_NO_DEPRECATED +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -f verification/check_uvm.f -l reports/quality/vcs_env_compile.log"}
-{"vcs1": {"peak_mem": 723340}}
-{"vcselab": {"peak_mem": 389444}}

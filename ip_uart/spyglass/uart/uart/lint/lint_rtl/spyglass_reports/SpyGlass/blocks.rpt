@@ -1,3 +1,0 @@
-uart_reg_top@@@@uart.u_reg
-uart_core@@@@uart.uart_core
-prim_alert_sender@@@@uart.\gen_alert_tx[0].u_prim_alert_sender 

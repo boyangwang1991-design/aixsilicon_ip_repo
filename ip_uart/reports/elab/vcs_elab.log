@@ -1,4 +1,0 @@
-VCS W-2024.09 elaboration (uart): PASS
-vlogan: all files parsed OK
-top uart: elaborated, simv_uart generated
-top uart_apb_top: elaborated, simv_uart_apb generated
