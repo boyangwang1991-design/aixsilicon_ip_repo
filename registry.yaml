@@ -1,5 +1,5 @@
 schema_version: '2.0'
-updated: '2026-08-11T14:30:57Z'
+updated: '2026-08-12T00:57:33Z'
 unified_repo: https://github.com/boyangwang1991-design/aixsilicon_ip_repo.git
 ips:
 - name: uart
@@ -11,7 +11,7 @@ ips:
   versions:
   - version: 0.1.0_candidate
     tag: uart-v0.1.0_candidate
-    released: '2026-08-11T14:30:57Z'
+    released: '2026-08-12T00:57:32Z'
     path: ips/boyangwang1991-design/uart/0.1.0_candidate
     gates:
       G0: pass
@@ -24,3 +24,18 @@ ips:
     fusesoc:
       core: boyangwang1991-design:ip:uart:0.1.0_candidate
     manifest_sha256: 0a1c7bad8306188f479ecbe6675bc4f9f427842f254586d615d7fecdcdd64b93
+  - version: 0.1.0
+    tag: uart-v0.1.0
+    released: '2026-08-12T00:57:32Z'
+    path: ips/boyangwang1991-design/uart/0.1.0
+    gates:
+      G0: pass
+      G1: pass
+      G2: pass
+      G3: pass
+      G4: pass
+      G5: pass
+    description: ''
+    fusesoc:
+      core: boyangwang1991-design:ip:uart:0.1.0
+    manifest_sha256: 3eb6cf65c7b194c739230814da717ed31fb2c2386af75b80a42587da5fc6b861

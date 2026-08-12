@@ -1,0 +1,14 @@
+schema_version: '2.0'
+name: uart
+version: 0.1.0
+vendor: boyangwang1991-design
+library: ip
+description: ''
+license: Apache-2.0
+path: ips/boyangwang1991-design/uart/0.1.0
+quality: {}
+dependencies: []
+fusesoc:
+  core: boyangwang1991-design:ip:uart:0.1.0
+  cores: ips/boyangwang1991-design/uart/0.1.0/fusesoc
+manifest_sha256: 3eb6cf65c7b194c739230814da717ed31fb2c2386af75b80a42587da5fc6b861

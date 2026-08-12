@@ -1,0 +1,40 @@
+# EDA scratch (VCS / SpyGlass / Design Compiler)
+AN.DB/
+csrc/
+simv
+simv_uart
+simv_uart_apb
+simv.vdb/
+simv_uart.vdb/
+simv_uart_apb.vdb/
+work_lib/
+vc_hdrs.h
+verdiLog/
+spyglass/uart/
+*.daidir/
+*.pvl
+*.pvk
+*.syn
+*.mr
+*.o
+*.so
+*.log
+default.svf
+command.log
+ucli.key
+filenames.log
+tr_db.log
+spyglass.out
+
+# local logs
+dashboard.log
+datasheet.log
+goals_summary.log
+
+# release outputs (built by 18-release-packager, not part of source)
+release/
+
+# python
+.venv/
+__pycache__/
+*.pyc
