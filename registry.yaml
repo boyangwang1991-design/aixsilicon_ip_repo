@@ -1,5 +1,5 @@
 schema_version: '2.0'
-updated: '2026-08-12T00:57:33Z'
+updated: '2026-08-12T01:09:55Z'
 unified_repo: https://github.com/boyangwang1991-design/aixsilicon_ip_repo.git
 ips:
 - name: uart
@@ -9,24 +9,9 @@ ips:
   license: MIT
   path: ips/boyangwang1991-design/uart
   versions:
-  - version: 0.1.0_candidate
-    tag: uart-v0.1.0_candidate
-    released: '2026-08-12T00:57:32Z'
-    path: ips/boyangwang1991-design/uart/0.1.0_candidate
-    gates:
-      G0: pass
-      G1: pass
-      G2: pass
-      G3: pass
-      G4: pass
-      G5: pass
-    description: '> ⚠️ **CANDIDATE RELEASE — NOT QUALIFIED.** 本包为候选交付物，未经正式质量认证，不得表述为已发布产物。'
-    fusesoc:
-      core: boyangwang1991-design:ip:uart:0.1.0_candidate
-    manifest_sha256: 0a1c7bad8306188f479ecbe6675bc4f9f427842f254586d615d7fecdcdd64b93
   - version: 0.1.0
     tag: uart-v0.1.0
-    released: '2026-08-12T00:57:32Z'
+    released: '2026-08-12T01:09:55Z'
     path: ips/boyangwang1991-design/uart/0.1.0
     gates:
       G0: pass
