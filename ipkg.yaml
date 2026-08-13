@@ -14,9 +14,11 @@ github:
   unified_repo: aixsilicon_ip_repo
 
 # FuseSoC 配置（VLNV 命名空间）
+# ADR-0003：全组织统一使用 `aixsilicon` vendor 前缀；组织名仅作 remote URL 归属。
+# 存量 boyangwang1991-design:ip 核心走 deprecated 别名窗口，新发布统一 aixsilicon:ip:*。
 fusesoc:
   # VLNV 前缀
-  vendor: boyangwang1991-design
+  vendor: aixsilicon
   library: ip
   # Core 文件输出目录（相对于 IP 版本目录）
   cores_dir: fusesoc
