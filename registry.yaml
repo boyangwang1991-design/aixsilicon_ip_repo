@@ -24,3 +24,24 @@ ips:
     fusesoc:
       core: boyangwang1991-design:ip:uart:0.1.0
     manifest_sha256: 3eb6cf65c7b194c739230814da717ed31fb2c2386af75b80a42587da5fc6b861
+- name: hac_aes
+  vendor: aixsilicon
+  library: ip
+  description: 'HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT）'
+  license: Apache-2.0
+  path: ips/aixsilicon/hac_aes
+  versions:
+  - version: 0.1.0
+    tag: hac_aes-v0.1.0
+    released: '2026-08-13T11:59:00Z'
+    path: ips/aixsilicon/hac_aes/0.1.0
+    gates:
+      G0: pass
+      G1: unknown
+      G2: unknown
+      G3: unknown
+      G4: unknown
+      G5: unknown
+    description: 'HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT）'
+    fusesoc:
+      core: aixsilicon:ip:hac_aes:0.1.0

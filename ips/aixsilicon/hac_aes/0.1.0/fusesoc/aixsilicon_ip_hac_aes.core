@@ -1,0 +1,29 @@
+CAPI=2:
+
+name: "aixsilicon:ip:hac_aes:0.1.0"
+description: "HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT）"
+
+filesets:
+  rtl:
+    depend:
+      - aix:interface:hac_ctrl:0.1.0
+      - aix:interface:hac_event:0.1.0
+    files:
+      - ../rtl/hac_aes_core.sv
+      - ../rtl/hac_aes_wrapper.sv
+    file_type: systemVerilogSource
+
+  model:
+    files:
+      - ../model/hac_if.yaml: {copyto: model/hac_if.yaml}
+    file_type: user
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    filesets: [rtl]
+
+  model:
+    filesets: [model]

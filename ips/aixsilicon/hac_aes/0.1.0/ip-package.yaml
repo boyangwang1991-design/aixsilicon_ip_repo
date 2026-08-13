@@ -1,0 +1,18 @@
+schema_version: '2.0'
+name: hac_aes
+version: 0.1.0
+vendor: aixsilicon
+library: ip
+description: |
+  HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0，CTRL + EVENT）。
+  算法核心 + 算法专用 Wrapper + HAC-IF 配置 YAML；系统侧经 HAC Shell/AXI4-Lite Adapter 接入。
+license: Apache-2.0
+path: ips/aixsilicon/hac_aes/0.1.0
+quality: {}
+dependencies:
+  - aix:interface:hac_ctrl:0.1.0
+  - aix:interface:hac_event:0.1.0
+  - aixsilicon:cbb:hac_ap_ctrl_adapter:0.1.0
+fusesoc:
+  core: aixsilicon:ip:hac_aes:0.1.0
+  cores: ips/aixsilicon/hac_aes/0.1.0/fusesoc

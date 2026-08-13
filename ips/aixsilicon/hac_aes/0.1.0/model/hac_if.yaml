@@ -1,0 +1,49 @@
+# HAC-IF 配置 SSOT — hac_aes（Golden Example A）
+# 依据 hwif_repo accelerator/hac_if/schema/hac_if.schema.json
+hac_if:
+  version: 1.0
+  profile: HAC-P0
+  core:
+    name: hac_aes
+    vendor: aixsilicon
+    clock_domains: [core_clk, shell_clk]
+
+  control:
+    job_id_width: 8
+    opcode_width: 8
+    max_inflight_jobs: 1
+    cancel: false
+    ap_compatibility: ap_ctrl_hs
+
+  memory:
+    ports: 0
+    address_width: 64
+    data_width: 128
+    tag_width: 6
+    out_of_order: false
+    max_read_outstanding: 1
+    max_write_outstanding: 1
+    max_request_bytes: 256
+    unaligned_access: false
+
+  stream:
+    inputs: 0
+    outputs: 0
+
+  event:
+    severity: true
+    irq_outputs: 1
+
+  management:
+    soft_reset: true
+    drain: false
+    clock_gating: true
+    retention: false
+
+  capabilities:
+    multi_job: false
+    max_inflight_jobs: 1
+    mem_out_of_order: false
+    unaligned_access: false
+    stream_packet: false
+    soft_reset: true
