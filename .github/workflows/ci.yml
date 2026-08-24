@@ -2,12 +2,9 @@
 name: IP Unified CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  release:
-    types: [published]
+  # CI disabled (2026-08): local-first workflow; restore push/pull_request/
+  # release triggers to re-enable.
+  workflow_dispatch:
 
 jobs:
   lint-all-cores:
