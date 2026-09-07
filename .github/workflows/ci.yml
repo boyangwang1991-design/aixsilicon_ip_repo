@@ -45,11 +45,10 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
-      - name: Validate registry.yaml
+      - name: Validate registry.yaml (SSOT consistency)
         run: |
-          python -c "
-import yaml
-d = yaml.safe_load(open('registry.yaml'))
-assert d.get('schema_version') == '2.0', 'schema_version must be 2.0'
-assert isinstance(d.get('ips'), list), 'ips must be a list'
-"
+          python3 scripts/build_ip_registry.py --check
+
+      - name: Check README status overview is in sync
+        run: |
+          python3 scripts/update_registry_readme.py --check

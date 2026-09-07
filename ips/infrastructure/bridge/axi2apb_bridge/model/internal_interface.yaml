@@ -1,0 +1,39 @@
+schema_version: '1.0'
+ip_name: x2p
+internal_interfaces:
+- id: INT.IF.X2P.QB.RD_QUEUE_IF_OUT
+  name: rd_queue_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.QB
+  target_module: SCH
+  description: 读请求队列输出（含地址/元数据）
+- id: INT.IF.X2P.QB.WR_QUEUE_IF_OUT
+  name: wr_queue_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.QB
+  target_module: SCH
+  description: 写请求队列输出（含地址/数据/元数据）
+- id: INT.IF.X2P.SCH.SCHED_IF_OUT
+  name: sched_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.SCH
+  target_module: TE
+  description: 调度出的请求（读写选择）
+- id: INT.IF.X2P.TE.APB_REQ_OUT_IF_OUT
+  name: apb_req_out_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.TE
+  target_module: CDC
+  description: APB-sized request 输出（cmd 接口）
+- id: INT.IF.X2P.CDC.REQ_CDC_IF_OUT
+  name: req_cdc_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.CDC
+  target_module: APB
+  description: APB request 跨域（ASYNC）
+- id: INT.IF.X2P.CDC.RSP_CDC_IF_OUT
+  name: rsp_cdc_if
+  type: stream
+  source_module: HLD.MOD.L1.X2P.CDC
+  target_module: RSP
+  description: APB response 跨域回 AXI（ASYNC）

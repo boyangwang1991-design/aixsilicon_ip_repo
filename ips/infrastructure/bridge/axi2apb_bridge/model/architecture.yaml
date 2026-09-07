@@ -1,0 +1,171 @@
+schema_version: '1.0'
+ip_name: x2p
+complexity_level: simple
+modules:
+- id: HLD.MOD.L1.X2P.FE
+  name: AXI Frontend
+  level: 1
+  parent_id: null
+  responsibility: AW/W/AR 通道 VALID/READY 捕获、AXI 协议状态、B/R 响应握手与 ID 捕获
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.INTF.X2P.01.001
+  - LRS.INTF.X2P.01.002
+  - LRS.FUNC.X2P.01.001
+  - LRS.FUNC.X2P.01.002
+  interfaces:
+  - name: axi_slave_if
+    type: input
+    width: N
+    description: AXI Slave 接口（AW/W/B/AR/R 五通道）
+    source: external
+    target: null
+- id: HLD.MOD.L1.X2P.QB
+  name: Request Buffers
+  level: 1
+  parent_id: null
+  responsibility: 读请求队列、写请求队列、AW/W 配对、Backpressure（READY 控制）、无溢出/下溢
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.04.001
+  - LRS.FUNC.X2P.04.002
+  - LRS.PERF.X2P.01.002
+  interfaces:
+  - name: rd_queue_if
+    type: output
+    width: N
+    description: 读请求队列输出（含地址/元数据）
+    source: null
+    target: SCH
+  - name: wr_queue_if
+    type: output
+    width: N
+    description: 写请求队列输出（含地址/数据/元数据）
+    source: null
+    target: SCH
+- id: HLD.MOD.L1.X2P.SCH
+  name: Scheduler
+  level: 1
+  parent_id: null
+  responsibility: R/W 仲裁（ROUND_ROBIN/READ_PRIORITY/WRITE_PRIORITY）、粒度（BEAT/TRANSACTION）、Beat 原子性维护
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.05.001
+  - LRS.FUNC.X2P.05.002
+  interfaces:
+  - name: sched_if
+    type: output
+    width: N
+    description: 调度出的请求（读写选择）
+    source: null
+    target: TE
+- id: HLD.MOD.L1.X2P.TE
+  name: Transfer Engine
+  level: 1
+  parent_id: null
+  responsibility: Burst 跟踪、INCR/FIXED/WRAP 地址生成、4KB 边界、Narrow Lane 计算、数据宽度转换、APB 子传输生成
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.02.001
+  - LRS.FUNC.X2P.02.002
+  - LRS.FUNC.X2P.02.003
+  - LRS.FUNC.X2P.02.004
+  - LRS.FUNC.X2P.03.001
+  - LRS.FUNC.X2P.03.002
+  - LRS.FUNC.X2P.03.003
+  - LRS.FUNC.X2P.03.005
+  - LRS.FUNC.X2P.03.006
+  - LRS.FUNC.X2P.06.005
+  - LRS.PERF.X2P.02.001
+  - LRS.PERF.X2P.03.001
+  - LRS.CONS.X2P.01.001
+  - LRS.CONS.X2P.02.001
+  - LRS.CONS.X2P.03.001
+  interfaces:
+  - name: apb_req_out_if
+    type: output
+    width: N
+    description: APB-sized request 输出（cmd 接口）
+    source: null
+    target: CDC
+- id: HLD.MOD.L1.X2P.CDC
+  name: CDC Layer
+  level: 1
+  parent_id: null
+  responsibility: 请求/响应异步 FIFO CDC（Transaction Level）、FIFO 深度配置、reset 安全
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.10.001
+  - LRS.FUNC.X2P.10.002
+  - LRS.FUNC.X2P.10.003
+  - LRS.INTF.X2P.03.001
+  - LRS.INTF.X2P.03.002
+  interfaces:
+  - name: req_cdc_if
+    type: output
+    width: N
+    description: APB request 跨域（ASYNC）
+    source: null
+    target: APB
+  - name: rsp_cdc_if
+    type: output
+    width: N
+    description: APB response 跨域回 AXI（ASYNC）
+    source: null
+    target: RSP
+- id: HLD.MOD.L1.X2P.APB
+  name: APB Engine
+  level: 1
+  parent_id: null
+  responsibility: APB FSM（SETUP/ACCESS/WAIT/COMPLETE）、Wait-State 保持、Timeout 计数与恢复、back-to-back 传输
+  clock_domain: clk_apb
+  reset_domain: rst_apb_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.07.001
+  - LRS.FUNC.X2P.08.001
+  - LRS.FUNC.X2P.08.002
+  - LRS.PERF.X2P.01.001
+  - LRS.INTF.X2P.02.001
+  - LRS.INTF.X2P.02.002
+  - LRS.INTF.X2P.03.002
+  interfaces:
+  - name: apb_master_if
+    type: output
+    width: N
+    description: APB Master 接口（PADDR/PSEL/PENABLE/PWRITE/PWDATA/PRDATA/PREADY/PSLVERR/PSTRB/PPROT）
+    source: null
+    target: external
+- id: HLD.MOD.L1.X2P.RSP
+  name: Response Engine
+  level: 1
+  parent_id: null
+  responsibility: 读数据组装、写/读错误聚合、BID/RID 还原、R/B 响应 backpressure 稳定性、Ordering 保证
+  clock_domain: clk_axi
+  reset_domain: rst_axi_n
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.X2P.03.004
+  - LRS.FUNC.X2P.06.001
+  - LRS.FUNC.X2P.06.002
+  - LRS.FUNC.X2P.06.003
+  - LRS.FUNC.X2P.06.004
+  - LRS.FUNC.X2P.09.001
+  - LRS.FUNC.X2P.09.002
+  interfaces:
+  - name: axi_rsp_if
+    type: output
+    width: N
+    description: AXI R/B 响应输出
+    source: null
+    target: external

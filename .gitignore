@@ -1,4 +1,59 @@
+# ---------- 仓库内部/工作区忽略 ----------
 reference/
 .roo/
 tlul-apb-adapter/
 ip_uart/
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# ---------- 编译与仿真产物 ----------
+*.o
+*.obj
+*.elf
+*.out
+*.log
+*.vcd
+*.fsdb
+*.fst
+*.lxt
+*.wlf
+*.syn
+*.svf
+*.ddd
+sim_workspace/
+run/
+transcript
+*.wdb
+
+# ---------- 综合/后端产物 ----------
+results/
+synth_*/
+work/
+*.sdc_orig
+*.def
+*.gds
+*.lef
+*.lib.bak
+
+# ---------- 编辑器/系统 ----------
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# ---------- 大型数据产物 ----------
+*.gz
+*.zip
+*.tar

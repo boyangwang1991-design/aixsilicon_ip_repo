@@ -1,0 +1,516 @@
+schema_version: '1.0'
+ip_name: x2p
+verification_level: smoke
+status: draft
+features:
+- id: FL.INTF.X2P.01
+  name: AXI Slave Interface
+  priority: must
+  category: INTF
+  req_ref:
+  - LRS.INTF.X2P.01.001
+  - LRS.INTF.X2P.01.002
+  testcases:
+  - id: TC.INTF.X2P.01.01
+    name: AXI Slave Interface Basic
+    description: AXI Slave Interface Basic
+    type: directed
+    priority: P0
+    tier: smoke
+    preconditions: reset released
+    stimulus: 单笔 AXI 读写事务（INCR len=1）
+    expected_result: AXI 读写完成，BID/RID 正确
+    timeout_policy: 1000 cycles
+    feature_ref:
+    - FL.INTF.X2P.01
+  coverage: []
+  assertions:
+  - id: AS.INTF.X2P.01.01
+    name: AXI channel alignment
+    description: AWVALID 与 WVALID 独立，BVALID 与 RREADY 不冲突
+    property: assert property (AWVALID 与 WVALID 独立，BVALID 与 RREADY 不冲突)
+    feature_ref:
+    - FL.INTF.X2P.01
+- id: FL.INTF.X2P.02
+  name: APB Master Interface
+  priority: must
+  category: INTF
+  req_ref:
+  - LRS.INTF.X2P.02.001
+  - LRS.INTF.X2P.02.002
+  testcases:
+  - id: TC.INTF.X2P.02.01
+    name: APB4 Master Interface
+    description: APB4 Master Interface
+    type: directed
+    priority: P0
+    tier: regression
+    preconditions: APB_PROFILE=APB4
+    stimulus: AXI 写读事务验证 PSTRB/PPROT
+    expected_result: PSTRB/PPROT 正确，PSEL 单一
+    timeout_policy: 1000 cycles
+    feature_ref:
+    - FL.INTF.X2P.02
+  coverage:
+  - id: COV.INTF.X2P.02.01
+    name: APB profile coverpoint
+    description: APB3/APB4 两种 profile 均被覆盖
+    type: functional
+    feature_ref:
+    - FL.INTF.X2P.02
+  assertions:
+  - id: AS.INTF.X2P.02.01
+    name: APB SINGLE PSEL
+    description: PSEL 始终单比特 1（不出现多选择）
+    property: assert property (PSEL 始终单比特 1（不出现多选择）)
+    feature_ref:
+    - FL.INTF.X2P.02
+- id: FL.INTF.X2P.03
+  name: Clock and Reset
+  priority: must
+  category: INTF
+  req_ref:
+  - LRS.INTF.X2P.03.001
+  - LRS.INTF.X2P.03.002
+  testcases:
+  - id: TC.INTF.X2P.03.01
+    name: Sync/Async Clock and Reset
+    description: Sync/Async Clock and Reset
+    type: reset
+    priority: P0
+    tier: regression
+    preconditions: CLOCK_MODE=SYNC/ASYNC 参数化
+    stimulus: 复位 assert/release，读写
+    expected_result: 复位后无伪请求；ASYNC 单独复位正常
+    timeout_policy: 2000 cycles
+    feature_ref:
+    - FL.INTF.X2P.03
+  coverage: []
+  assertions:
+  - id: AS.INTF.X2P.03.01
+    name: Reset no phantom
+    description: 复位后无 BVALID/RVALID/PSEL/PENABLE（无伪请求）
+    property: assert property (复位后无 BVALID/RVALID/PSEL/PENABLE（无伪请求）)
+    feature_ref:
+    - FL.INTF.X2P.03
+- id: FL.FUNC.X2P.01
+  name: AW/W Association
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.01.001
+  - LRS.FUNC.X2P.01.002
+  testcases:
+  - id: TC.FUNC.X2P.01.01
+    name: AW/W Association Timing
+    description: AW/W Association Timing
+    type: algorithm
+    priority: P0
+    tier: regression
+    preconditions: AXI4, Depth=4
+    stimulus: AW before W / W before AW / same cycle / 任意间隔
+    expected_result: 数据与地址正确配对，WLAST 正确
+    timeout_policy: 2000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.01
+  coverage: []
+  assertions:
+  - id: AS.FUNC.X2P.01.01
+    name: AW/W pairing data integrity
+    description: 配对事务数据不被丢失/重复（WLAST 对齐）
+    property: assert property (配对事务数据不被丢失/重复（WLAST 对齐）)
+    feature_ref:
+    - FL.FUNC.X2P.01
+- id: FL.FUNC.X2P.02
+  name: Burst Conversion
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.02.001
+  - LRS.FUNC.X2P.02.002
+  - LRS.FUNC.X2P.02.003
+  - LRS.FUNC.X2P.02.004
+  testcases:
+  - id: TC.FUNC.X2P.02.01
+    name: INCR and FIXED Burst
+    description: INCR and FIXED Burst
+    type: directed
+    priority: P0
+    tier: regression
+    preconditions: AXI4, full burst
+    stimulus: INCR len=1..16、FIXED len=1..16
+    expected_result: 地址递增/不变正确，全部 beat 返回
+    timeout_policy: 4000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.02
+  - id: TC.FUNC.X2P.02.02
+    name: WRAP Burst
+    description: WRAP Burst
+    type: algorithm
+    priority: P0
+    tier: regression
+    preconditions: AXI4, WRAP len=4/8/16
+    stimulus: WRAP 回绕地址验证
+    expected_result: 回绕点正确，无越界
+    timeout_policy: 4000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.02
+  - id: TC.FUNC.X2P.02.03
+    name: 4KB Boundary
+    description: 4KB Boundary
+    type: boundary
+    priority: P0
+    tier: extended
+    preconditions: AXI4
+    stimulus: 地址跨越 4KB 边界（边界前后）
+    expected_result: burst 不跨 4KB，邻近地址正确
+    timeout_policy: 4000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.02
+  coverage:
+  - id: COV.FUNC.X2P.02.01
+    name: Burst type/len coverpoint
+    description: INCR/FIXED/WRAP × len 组合覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.02
+  assertions:
+  - id: AS.FUNC.X2P.02.01
+    name: Burst address monotonic/wrap
+    description: INCR 地址正确递增、FIXED 不变、WRAP 回绕点正确
+    property: assert property (INCR 地址正确递增、FIXED 不变、WRAP 回绕点正确)
+    feature_ref:
+    - FL.FUNC.X2P.02
+- id: FL.FUNC.X2P.03
+  name: Narrow / Width Conversion
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.03.001
+  - LRS.FUNC.X2P.03.002
+  - LRS.FUNC.X2P.03.003
+  - LRS.FUNC.X2P.03.004
+  - LRS.FUNC.X2P.03.005
+  - LRS.FUNC.X2P.03.006
+  testcases:
+  - id: TC.FUNC.X2P.03.01
+    name: Narrow and Width Conversion
+    description: Narrow and Width Conversion
+    type: algorithm
+    priority: P0
+    tier: regression
+    preconditions: AXI64/APB32, AXI128/APB32, AXI32/APB64 参数化
+    stimulus: 各宽度组合读写 + narrow（AxSIZE<data width）+ APB3 partial write
+    expected_result: 拆解/组装/STRB 正确；APB3 partial write 返回 SLVERR
+    timeout_policy: 4000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.03
+  - id: TC.FUNC.X2P.03.02
+    name: Read Data Assembly and Error Aggregation
+    description: Read Data Assembly and Error Aggregation
+    type: algorithm
+    priority: P0
+    tier: regression
+    preconditions: AXI64->APB32
+    stimulus: 拆分读 + 注入子传输出错
+    expected_result: RDATA 拼接正确；子传输出错 RRESP=SLVERR
+    timeout_policy: 3000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.03
+  coverage:
+  - id: COV.FUNC.X2P.03.01
+    name: Width combo coverpoint
+    description: AXI32/64/128 × APB32/64 覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.03
+  assertions:
+  - id: AS.FUNC.X2P.03.01
+    name: Width conversion correctness
+    description: PSTRB 与有效 lane 一致；R 仅在完整 beat 后 valid
+    property: assert property (PSTRB 与有效 lane 一致；R 仅在完整 beat 后 valid)
+    feature_ref:
+    - FL.FUNC.X2P.03
+- id: FL.FUNC.X2P.04
+  name: Request Buffering / Outstanding
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.04.001
+  - LRS.FUNC.X2P.04.002
+  testcases:
+  - id: TC.FUNC.X2P.04.01
+    name: Buffer Depth and Outstanding
+    description: Buffer Depth and Outstanding
+    type: boundary
+    priority: P0
+    tier: regression
+    preconditions: Depth=1/2/4/8 参数化
+    stimulus: 填满队列、RREADY/BREADY 背压、多 outstanding 读写
+    expected_result: 无溢出/下溢，READY 反压正确，多 outstanding 完成
+    timeout_policy: 5000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.04
+  coverage:
+  - id: COV.FUNC.X2P.04.01
+    name: Buffer depth coverpoint
+    description: depth 1/2/4/8 与满标志覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.04
+  assertions:
+  - id: AS.FUNC.X2P.04.01
+    name: No overflow underflow
+    description: 队列在深度内操作，READY 满时反压
+    property: assert property (队列在深度内操作，READY 满时反压)
+    feature_ref:
+    - FL.FUNC.X2P.04
+- id: FL.FUNC.X2P.05
+  name: Read/Write Arbitration
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.05.001
+  - LRS.FUNC.X2P.05.002
+  testcases:
+  - id: TC.FUNC.X2P.05.01
+    name: Arbitration Policy and Granularity
+    description: Arbitration Policy and Granularity
+    type: algorithm
+    priority: P0
+    tier: regression
+    preconditions: ARB_POLICY=RR/READ_PRI/WRITE_PRI, GRANULARITY=BEAT/TRANSACTION
+      参数化
+    stimulus: 双发读写，验证轮转/优先级/粒度
+    expected_result: 无饥饿（RR），Beat 内 sub-transfer 原子
+    timeout_policy: 5000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.05
+  coverage:
+  - id: COV.FUNC.X2P.05.01
+    name: Arb policy/granularity coverpoint
+    description: 3 策略 × 2 粒度覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.05
+  assertions:
+  - id: AS.FUNC.X2P.05.01
+    name: Beat atomicity
+    description: 同一 AXI Beat 的子传输不被打断（原子性）
+    property: assert property (同一 AXI Beat 的子传输不被打断（原子性）)
+    feature_ref:
+    - FL.FUNC.X2P.05
+- id: FL.FUNC.X2P.06
+  name: Response and Error
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.06.001
+  - LRS.FUNC.X2P.06.002
+  - LRS.FUNC.X2P.06.003
+  - LRS.FUNC.X2P.06.004
+  - LRS.FUNC.X2P.06.005
+  testcases:
+  - id: TC.FUNC.X2P.06.01
+    name: Response OKAY/SLVERR and ID
+    description: Response OKAY/SLVERR and ID
+    type: error_injection
+    priority: P0
+    tier: regression
+    preconditions: APB 可注 PSLVERR
+    stimulus: 正常 PSLVERR=0、异常 PSLVERR=1、多 ID 事务
+    expected_result: OKAY/SLVERR 正确、BID/RID 匹配、write 错误聚合
+    timeout_policy: 4000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.06
+  coverage:
+  - id: COV.FUNC.X2P.06.01
+    name: Error response coverpoint
+    description: OKAY/SLVERR 与 ID 保真覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.06
+  assertions:
+  - id: AS.FUNC.X2P.06.01
+    name: Error aggregation
+    description: 任一子传输出错，最终 BRESP/RRESP=SLVERR
+    property: assert property (任一子传输出错，最终 BRESP/RRESP=SLVERR)
+    feature_ref:
+    - FL.FUNC.X2P.06
+- id: FL.FUNC.X2P.07
+  name: APB Timeout
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.07.001
+  testcases:
+  - id: TC.FUNC.X2P.07.01
+    name: APB Timeout
+    description: APB Timeout
+    type: error_injection
+    priority: P0
+    tier: regression
+    preconditions: TIMEOUT_ENABLE=1, TIMEOUT_CYCLES=32
+    stimulus: PREADY 持续 0 达 timeout
+    expected_result: 返回 SLVERR，FSM 恢复，无死锁
+    timeout_policy: 2000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.07
+  coverage:
+  - id: COV.FUNC.X2P.07.01
+    name: Timeout coverpoint
+    description: timeout 使能/关闭、计数命中覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.07
+  assertions:
+  - id: AS.FUNC.X2P.07.01
+    name: Timeout recovery
+    description: Timeout 后 APB FSM 返回 IDLE，可再处理请求
+    property: assert property (Timeout 后 APB FSM 返回 IDLE，可再处理请求)
+    feature_ref:
+    - FL.FUNC.X2P.07
+- id: FL.FUNC.X2P.08
+  name: APB Transaction / Wait-State
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.08.001
+  - LRS.FUNC.X2P.08.002
+  testcases:
+  - id: TC.FUNC.X2P.08.01
+    name: APB Transaction and Wait-State
+    description: APB Transaction and Wait-State
+    type: directed
+    priority: P0
+    tier: regression
+    preconditions: APB4
+    stimulus: PREADY=0 穿插、back-to-back
+    expected_result: SETUP/ACCESS 正确，Wait-State 信号稳定
+    timeout_policy: 3000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.08
+  coverage:
+  - id: COV.FUNC.X2P.08.01
+    name: APB FSM coverpoint
+    description: SETUP/ACCESS/Wait/Timeout 状态覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.08
+  assertions:
+  - id: AS.FUNC.X2P.08.01
+    name: APB phase timing
+    description: ACCESS 期间 PREADY=0 时控制/数据稳定
+    property: assert property (ACCESS 期间 PREADY=0 时控制/数据稳定)
+    feature_ref:
+    - FL.FUNC.X2P.08
+- id: FL.FUNC.X2P.09
+  name: Register Stage / Ordering
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.09.001
+  - LRS.FUNC.X2P.09.002
+  testcases:
+  - id: TC.FUNC.X2P.09.01
+    name: Register Stage and Ordering
+    description: Register Stage and Ordering
+    type: boundary
+    priority: P1
+    tier: extended
+    preconditions: AXI_INPUT_REG/OUTPUT_REG/APB_OUTPUT_REG 开关
+    stimulus: 各 regslice 开关下读写 + 同 ID 多事务
+    expected_result: 语义不变，同 ID 按序返回
+    timeout_policy: 3000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.09
+  coverage: []
+  assertions:
+  - id: AS.FUNC.X2P.09.01
+    name: Ordering preserved
+    description: 同 ID 事务 R/B 顺序保持
+    property: assert property (同 ID 事务 R/B 顺序保持)
+    feature_ref:
+    - FL.FUNC.X2P.09
+- id: FL.FUNC.X2P.10
+  name: CDC / Async Clock
+  priority: must
+  category: FUNC
+  req_ref:
+  - LRS.FUNC.X2P.10.001
+  - LRS.FUNC.X2P.10.002
+  - LRS.FUNC.X2P.10.003
+  testcases:
+  - id: TC.FUNC.X2P.10.01
+    name: Async Clock CDC
+    description: Async Clock CDC
+    type: stress
+    priority: P0
+    tier: regression
+    preconditions: CLOCK_MODE=ASYNC, 两时钟不同频率比
+    stimulus: 随机跨域读写 + 单域复位
+    expected_result: 无事务丢失，无伪请求/响应
+    timeout_policy: 5000 cycles
+    feature_ref:
+    - FL.FUNC.X2P.10
+  coverage:
+  - id: COV.FUNC.X2P.10.01
+    name: CDC mode coverpoint
+    description: SYNC/ASYNC 两模式覆盖
+    type: functional
+    feature_ref:
+    - FL.FUNC.X2P.10
+  assertions:
+  - id: AS.FUNC.X2P.10.01
+    name: CDC no loss
+    description: ASYNC 模式跨域无事务丢失、无重复
+    property: assert property (ASYNC 模式跨域无事务丢失、无重复)
+    feature_ref:
+    - FL.FUNC.X2P.10
+- id: FL.PERF.X2P.01
+  name: Performance
+  priority: should
+  category: PERF
+  req_ref:
+  - LRS.PERF.X2P.01.001
+  - LRS.PERF.X2P.01.002
+  - LRS.PERF.X2P.02.001
+  - LRS.PERF.X2P.03.001
+  testcases:
+  - id: TC.PERF.X2P.01.01
+    name: Throughput and No-Bubble
+    description: Throughput and No-Bubble
+    type: performance
+    priority: P1
+    tier: extended
+    preconditions: PREADY=1 恒定
+    stimulus: 满负载连续读写
+    expected_result: APB 无额外 idle，解耦正常
+    timeout_policy: 5000 cycles
+    feature_ref:
+    - FL.PERF.X2P.01
+  coverage: []
+  assertions: []
+- id: FL.CONS.X2P.01
+  name: Constraints
+  priority: must
+  category: CONS
+  req_ref:
+  - LRS.CONS.X2P.01.001
+  - LRS.CONS.X2P.02.001
+  - LRS.CONS.X2P.03.001
+  testcases:
+  - id: TC.CONS.X2P.01.01
+    name: Parameter Legality and Unsupported
+    description: Parameter Legality and Unsupported
+    type: negative
+    priority: P1
+    tier: extended
+    preconditions: 非法参数组合（AXI4-Lite+WRAP 等）
+    stimulus: 非法事务/参数
+    expected_result: 返回明确错误，不静默改变语义
+    timeout_policy: 2000 cycles
+    feature_ref:
+    - FL.CONS.X2P.01
+  coverage: []
+  assertions: []

@@ -1,0 +1,35 @@
+schema_version: '1.0'
+ip_name: x2p
+trace_type: lld_to_rtl
+links:
+- source_id: LLD.MOD.X2P.APB
+  target_id: RTL.FILE.rtl/x2p_apb_engine.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.CDC
+  target_id: RTL.FILE.rtl/x2p_cdc.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.FE
+  target_id: RTL.FILE.rtl/x2p_axi_frontend.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.QB
+  target_id: RTL.FILE.rtl/x2p_req_mgr.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.RSP
+  target_id: RTL.FILE.rtl/x2p_rsp_mgr.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.SCH
+  target_id: RTL.FILE.rtl/x2p_scheduler.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.X2P.TE
+  target_id: RTL.FILE.rtl/x2p_transfer_engine.sv
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

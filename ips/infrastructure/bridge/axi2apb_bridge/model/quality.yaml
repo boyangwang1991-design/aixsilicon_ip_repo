@@ -1,0 +1,23 @@
+schema_version: "1.0"
+ip_name: x2p
+evaluation_date: "2026-09-03T14:36:00Z"
+gates:
+  G0: pass
+  G1: pass
+  G2: pass
+  G3: pass
+  G4: fail
+  G5: not_pass
+evidence:
+  lint: "build/aixsilicon_ip_x2p_1.0.0/lint-vcs/vcs.log"
+  elab: "build/aixsilicon_ip_x2p_1.0.0/elab-vcs/vcs.log"
+  synth: "reports/synth/qor.rpt"
+  smoke: "reports/smoke/smoke_summary.md"
+  trace: "trace/req_to_test.yaml"
+bugs:
+  - id: BUG-001
+    severity: High
+    title: "AXI read path: RVALID never asserted (R timeout)"
+    status: open
+    detail: "读请求经 AR 队列入队后未产生 APL 读访问，RVALID 10ms 超时。写路径已验证通过。"
+conclusion: "G0-G3 达成；G4 因 BUG-001 未闭环，发行状态 blocking"

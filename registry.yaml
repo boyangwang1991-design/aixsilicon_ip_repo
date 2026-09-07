@@ -1,47 +1,4158 @@
-schema_version: '2.0'
-updated: '2026-08-12T01:09:55Z'
-unified_repo: https://github.com/boyangwang1991-design/aixsilicon_ip_repo.git
+schema_version: "2.0"
+updated: "2026-09-07T02:41:36Z"
+# 本文件是 AIXSILICON IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 治理）。
+# 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path
+# 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。
+# status=implemented/released 表示物理目录存在且已交付；planned 条目仅为规划候选。
+vendor: aixsilicon
+library: ip
+
 ips:
-- name: uart
-  vendor: boyangwang1991-design
-  library: ip
-  description: ''
-  license: MIT
-  path: ips/boyangwang1991-design/uart
-  versions:
-  - version: 0.1.0
-    tag: uart-v0.1.0
-    released: '2026-08-12T01:09:55Z'
+  - id: CHP-001
+    name: pad_controller
+    domain: chip
+    subdomain: pad
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Pad 控制器'
+    path: ips/chip/pad/pad_controller
+  - id: CHP-002
+    name: pinmux
+    domain: chip
+    subdomain: pinmux
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Pinmux 复用矩阵'
+    path: ips/chip/pinmux/pinmux
+  - id: CHP-003
+    name: strap_controller
+    domain: chip
+    subdomain: strap
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Strap 控制器'
+    path: ips/chip/strap/strap_controller
+  - id: CHP-004
+    name: test_mode_controller
+    domain: chip
+    subdomain: test
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '测试模式控制器'
+    path: ips/chip/test/test_mode_controller
+  - id: DBG-001
+    name: debug_register_block
+    domain: debug_trace
+    subdomain: debug
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '调试寄存器块'
+    path: ips/debug_trace/debug/debug_register_block
+  - id: DBG-002
+    name: jtag_tap
+    domain: debug_trace
+    subdomain: jtag
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'JTAG TAP 控制器'
+    path: ips/debug_trace/jtag/jtag_tap
+  - id: DBG-003
+    name: performance_monitor
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '性能监控器'
+    path: ips/debug_trace/monitor/performance_monitor
+  - id: DBG-004
+    name: riscv_debug_module
+    domain: debug_trace
+    subdomain: debug
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RISC-V Debug Module'
+    path: ips/debug_trace/debug/riscv_debug_module
+  - id: DBG-005
+    name: trace_buffer
+    domain: debug_trace
+    subdomain: trace
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Trace 缓冲'
+    path: ips/debug_trace/trace/trace_buffer
+  - id: INF-001
+    name: ahb2apb_bridge
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [ahb, apb4]
+    description: 'AHB→APB 桥（H2P）'
+    path: ips/infrastructure/bridge/ahb2apb_bridge
+  - id: INF-002
+    name: ahb2axi_bridge
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [ahb, axi4]
+    description: 'AHB→AXI 桥（H2X）'
+    path: ips/infrastructure/bridge/ahb2axi_bridge
+  - id: INF-003
+    name: ahb_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [ahb]
+    description: 'AHB CDC 桥'
+    path: ips/infrastructure/cdc/ahb_cdc_bridge
+  - id: INF-004
+    name: apb_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB CDC 桥'
+    path: ips/infrastructure/cdc/apb_cdc_bridge
+  - id: INF-005
+    name: apb_demux
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB Demux'
+    path: ips/infrastructure/apb/apb_demux
+  - id: INF-006
+    name: apb_error_slave
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 错误默认 Slave'
+    path: ips/infrastructure/apb/apb_error_slave
+  - id: INF-007
+    name: apb_interconnect
+    domain: infrastructure
+    subdomain: apb
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 互联（P2P）'
+    path: ips/infrastructure/apb/apb_interconnect
+  - id: INF-008
+    name: apb_mux
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB Mux'
+    path: ips/infrastructure/apb/apb_mux
+  - id: INF-009
+    name: apb_timeout
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 超时监控'
+    path: ips/infrastructure/apb/apb_timeout
+  - id: INF-010
+    name: axi2ahb_bridge
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4, ahb]
+    description: 'AXI→AHB 桥（X2H）'
+    path: ips/infrastructure/bridge/axi2ahb_bridge
+  - id: INF-011
+    name: axi2apb_bridge
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: implemented
+    maturity: experimental
+    version: "1.0.0"
+    interfaces: [axi4, apb4]
+    description: 'AXI→APB 桥（X2P，AXI4/AXI4-Lite → APB3/APB4；G0-G3 通过，G4 BUG-001 blocking）'
+    path: ips/infrastructure/bridge/axi2apb_bridge
+    core: aixsilicon:ip:axi2apb_bridge:1.0.0
+  - id: INF-012
+    name: axi4_axi4lite_converter
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4, axi4lite]
+    description: 'AXI4→AXI4-Lite 协议转换'
+    path: ips/infrastructure/bridge/axi4_axi4lite_converter
+  - id: INF-013
+    name: axi_address_remapper
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 地址重映射'
+    path: ips/infrastructure/axi/axi_address_remapper
+  - id: INF-014
+    name: axi_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI CDC 桥（异步时钟）'
+    path: ips/infrastructure/cdc/axi_cdc_bridge
+  - id: INF-015
+    name: axi_crossbar
+    domain: infrastructure
+    subdomain: axi
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: '高并发 AXI Crossbar'
+    path: ips/infrastructure/axi/axi_crossbar
+  - id: INF-016
+    name: axi_demux
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: '1→N AXI Demux'
+    path: ips/infrastructure/axi/axi_demux
+  - id: INF-017
+    name: axi_error_slave
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 默认错误响应 Slave'
+    path: ips/infrastructure/axi/axi_error_slave
+  - id: INF-018
+    name: axi_id_remapper
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI ID 重映射'
+    path: ips/infrastructure/axi/axi_id_remapper
+  - id: INF-019
+    name: axi_interconnect
+    domain: infrastructure
+    subdomain: axi
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: '多 Master/Slave AXI 互联（拓扑生成）'
+    path: ips/infrastructure/axi/axi_interconnect
+  - id: INF-020
+    name: axi_mux
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'N→1 AXI Mux'
+    path: ips/infrastructure/axi/axi_mux
+  - id: INF-021
+    name: axi_pipeline
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 流水线（timing）'
+    path: ips/infrastructure/axi/axi_pipeline
+  - id: INF-022
+    name: axi_register_slice
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 寄存器切片（timing/PPA）'
+    path: ips/infrastructure/axi/axi_register_slice
+  - id: INF-023
+    name: axi_timeout_monitor
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 总线超时监控'
+    path: ips/infrastructure/axi/axi_timeout_monitor
+  - id: INF-024
+    name: axi_width_converter
+    domain: infrastructure
+    subdomain: bridge
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 数据宽度转换'
+    path: ips/infrastructure/bridge/axi_width_converter
+  - id: INF-025
+    name: interrupt_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '中断 CDC 桥'
+    path: ips/infrastructure/cdc/interrupt_cdc_bridge
+  - id: INF-026
+    name: register_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '寄存器 CDC 桥'
+    path: ips/infrastructure/cdc/register_cdc_bridge
+  - id: MEM-001
+    name: lowrisc_prim
+    domain: memory
+    subdomain: prim
+    type: ip
+    priority: P0
+    status: planned
+    maturity: production
+    version: "0.1.0"
+    description: 'OpenTitan primitives（secded ECC / ram / rom / cdc / sha2 / trivium 等）'
+    path: ips/lowrisc/prim/0.1.0
+    vendor: lowrisc
+    core: lowrisc:ip:prim:0.1.0
+  - id: MEM-002
+    name: lowrisc_testlib
+    domain: memory
+    subdomain: testlib
+    type: ip
+    priority: P0
+    status: planned
+    maturity: production
+    version: "1.0.0"
+    description: 'OpenTitan 测试库（dummy 仿真单元）'
+    path: ips/lowrisc/testlib/1.0.0
+    vendor: lowrisc
+    core: lowrisc:ip:testlib:1.0.0
+  - id: MEM-003
+    name: lowrisc_tlul
+    domain: memory
+    subdomain: tlul
+    type: ip
+    priority: P0
+    status: planned
+    maturity: production
+    version: "0.1.0"
+    description: 'OpenTitan TileLink-UL 总线组件（socket / adapter / fifo / jtag_dtm 等）'
+    path: ips/lowrisc/tlul/0.1.0
+    vendor: lowrisc
+    core: lowrisc:ip:tlul:0.1.0
+  - id: MEM-004
+    name: memory_interleaver
+    domain: memory
+    subdomain: sram
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存交织器'
+    path: ips/memory/sram/memory_interleaver
+  - id: MEM-005
+    name: memory_scrubber
+    domain: memory
+    subdomain: sram
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存巡检（scrubber）'
+    path: ips/memory/sram/memory_scrubber
+  - id: MEM-006
+    name: multiport_sram_controller
+    domain: memory
+    subdomain: sram
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '多端口 SRAM 控制器'
+    path: ips/memory/sram/multiport_sram_controller
+  - id: MEM-007
+    name: register_file_wrapper
+    domain: memory
+    subdomain: sram
+    type: wrapper
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '寄存器文件工艺抽象 Wrapper'
+    path: ips/memory/sram/register_file_wrapper
+  - id: MEM-008
+    name: rom_controller
+    domain: memory
+    subdomain: rom
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'ROM 控制器'
+    path: ips/memory/rom/rom_controller
+  - id: MEM-009
+    name: rom_wrapper
+    domain: memory
+    subdomain: rom
+    type: wrapper
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'ROM 工艺抽象 Wrapper'
+    path: ips/memory/rom/rom_wrapper
+  - id: MEM-010
+    name: sram_controller
+    domain: memory
+    subdomain: sram
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SRAM 控制器'
+    path: ips/memory/sram/sram_controller
+  - id: MEM-011
+    name: sram_ecc_controller
+    domain: memory
+    subdomain: sram
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SRAM ECC 控制器'
+    path: ips/memory/sram/sram_ecc_controller
+  - id: MEM-012
+    name: sram_wrapper
+    domain: memory
+    subdomain: sram
+    type: wrapper
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SRAM 工艺抽象 Wrapper'
+    path: ips/memory/sram/sram_wrapper
+  - id: MEM-013
+    name: tcm_controller
+    domain: memory
+    subdomain: tcm
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'TCM 控制器'
+    path: ips/memory/tcm/tcm_controller
+  - id: PER-001
+    name: gpio
+    domain: peripheral
+    subdomain: io
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '通用 GPIO'
+    path: ips/peripheral/io/gpio
+  - id: PER-002
+    name: i2c_master
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'I2C 主机'
+    path: ips/peripheral/serial/i2c_master
+  - id: PER-003
+    name: i2c_slave
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'I2C 从机'
+    path: ips/peripheral/serial/i2c_slave
+  - id: PER-004
+    name: pwm
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'PWM 控制器'
+    path: ips/peripheral/timer/pwm
+  - id: PER-005
+    name: spi_master
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'SPI 主机'
+    path: ips/peripheral/serial/spi_master
+  - id: PER-006
+    name: spi_slave
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'SPI 从机'
+    path: ips/peripheral/serial/spi_slave
+  - id: PER-007
+    name: timer
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '通用定时器'
+    path: ips/peripheral/timer/timer
+  - id: PER-008
+    name: uart
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P0
+    status: planned
+    maturity: beta
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '通用 UART（APB 接口，含 CSR/RX/TX，G0-G5 曾通过；工作区目录未落盘，待恢复）'
     path: ips/boyangwang1991-design/uart/0.1.0
-    gates:
-      G0: pass
-      G1: pass
-      G2: pass
-      G3: pass
-      G4: pass
-      G5: pass
-    description: ''
-    fusesoc:
-      core: boyangwang1991-design:ip:uart:0.1.0
-    manifest_sha256: 3eb6cf65c7b194c739230814da717ed31fb2c2386af75b80a42587da5fc6b861
-- name: hac_aes
-  vendor: aixsilicon
-  library: ip
-  description: 'HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT）'
-  license: Apache-2.0
-  path: ips/aixsilicon/hac_aes
-  versions:
-  - version: 0.1.0
-    tag: hac_aes-v0.1.0
-    released: '2026-08-13T11:59:00Z'
-    path: ips/aixsilicon/hac_aes/0.1.0
-    gates:
-      G0: pass
-      G1: unknown
-      G2: unknown
-      G3: unknown
-      G4: unknown
-      G5: unknown
+    vendor: boyangwang1991-design
+    core: boyangwang1991-design:ip:uart:0.1.0
+  - id: PER-009
+    name: watchdog
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '看门狗'
+    path: ips/peripheral/timer/watchdog
+  - id: SAF-001
+    name: ecc_memory_controller
+    domain: safety
+    subdomain: ecc
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'ECC 内存控制器'
+    path: ips/safety/ecc/ecc_memory_controller
+  - id: SAF-002
+    name: error_aggregator
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '错误聚合器'
+    path: ips/safety/fault/error_aggregator
+  - id: SAF-003
+    name: error_injection_controller
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '错误注入控制器'
+    path: ips/safety/fault/error_injection_controller
+  - id: SAF-004
+    name: fault_manager
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '故障管理器'
+    path: ips/safety/fault/fault_manager
+  - id: SAF-005
+    name: register_parity_controller
+    domain: safety
+    subdomain: parity
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '寄存器奇偶校验控制器'
+    path: ips/safety/parity/register_parity_controller
+  - id: SAF-006
+    name: safety_watchdog
+    domain: safety
+    subdomain: watchdog
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全看门狗'
+    path: ips/safety/watchdog/safety_watchdog
+  - id: SEC-001
+    name: aes
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'AES 加解密引擎'
+    path: ips/security/crypto/aes
+  - id: SEC-002
+    name: hmac
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'HMAC 引擎'
+    path: ips/security/crypto/hmac
+  - id: SEC-003
+    name: key_manager
+    domain: security
+    subdomain: key
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '密钥管理器'
+    path: ips/security/key/key_manager
+  - id: SEC-004
+    name: otp_efuse_controller
+    domain: security
+    subdomain: efuse
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'OTP/eFuse 控制器'
+    path: ips/security/efuse/otp_efuse_controller
+  - id: SEC-005
+    name: secure_boot_controller
+    domain: security
+    subdomain: secure_boot
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全启动控制器'
+    path: ips/security/secure_boot/secure_boot_controller
+  - id: SEC-006
+    name: sha2
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SHA-2 哈希引擎'
+    path: ips/security/crypto/sha2
+  - id: SEC-007
+    name: trng
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '真随机数发生器（TRNG）'
+    path: ips/security/crypto/trng
+  - id: SYS-001
+    name: axi_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI DMA'
+    path: ips/system/dma/axi_dma
+  - id: SYS-002
+    name: boot_controller
+    domain: system
+    subdomain: boot
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '启动控制器'
+    path: ips/system/boot/boot_controller
+  - id: SYS-003
+    name: chip_id_revision
+    domain: system
+    subdomain: clock_reset
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Chip ID / Revision ID'
+    path: ips/system/clock_reset/chip_id_revision
+  - id: SYS-004
+    name: clint
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4lite]
+    description: 'RISC-V CLINT（核本地定时器中断）'
+    path: ips/system/interrupt/clint
+  - id: SYS-005
+    name: clock_controller
+    domain: system
+    subdomain: clock_reset
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '时钟控制器'
+    path: ips/system/clock_reset/clock_controller
+  - id: SYS-006
+    name: clock_monitor
+    domain: system
+    subdomain: clock_reset
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '时钟监控器'
+    path: ips/system/clock_reset/clock_monitor
+  - id: SYS-007
+    name: crg
+    domain: system
+    subdomain: clock_reset
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '时钟+复位生成器（CRG）'
+    path: ips/system/clock_reset/crg
+  - id: SYS-008
+    name: hac_aes
+    domain: system
+    subdomain: testlib
+    type: ip
+    priority: P0
+    status: planned
+    maturity: experimental
+    version: "0.1.0"
     description: 'HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT）'
-    fusesoc:
-      core: aixsilicon:ip:hac_aes:0.1.0
+    path: ips/aixsilicon/hac_aes/0.1.0
+    core: aixsilicon:ip:hac_aes:0.1.0
+  - id: SYS-009
+    name: interrupt_aggregator
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '中断聚合器'
+    path: ips/system/interrupt/interrupt_aggregator
+  - id: SYS-010
+    name: interrupt_gateway
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '中断网关'
+    path: ips/system/interrupt/interrupt_gateway
+  - id: SYS-011
+    name: interrupt_router
+    domain: system
+    subdomain: interrupt
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '中断路由器'
+    path: ips/system/interrupt/interrupt_router
+  - id: SYS-012
+    name: lowrisc_top
+    domain: system
+    subdomain: top
+    type: ip
+    priority: P0
+    status: planned
+    maturity: production
+    version: "0.1.0"
+    description: 'OpenTitan top 常量/包'
+    path: ips/lowrisc/top/0.1.0
+    vendor: lowrisc
+    core: lowrisc:ip:top:0.1.0
+  - id: SYS-013
+    name: mem2mem_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存到内存 DMA'
+    path: ips/system/dma/mem2mem_dma
+  - id: SYS-014
+    name: multi_channel_dma
+    domain: system
+    subdomain: dma
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '多通道 DMA'
+    path: ips/system/dma/multi_channel_dma
+  - id: SYS-015
+    name: plic
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4lite]
+    description: 'RISC-V PLIC（平台级中断控制器）'
+    path: ips/system/interrupt/plic
+  - id: SYS-016
+    name: reset_controller
+    domain: system
+    subdomain: clock_reset
+    type: generator
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '复位控制器'
+    path: ips/system/clock_reset/reset_controller
+  - id: SYS-017
+    name: reset_monitor
+    domain: system
+    subdomain: clock_reset
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '复位监控器'
+    path: ips/system/clock_reset/reset_monitor
+  - id: SYS-018
+    name: reset_reason_controller
+    domain: system
+    subdomain: clock_reset
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '复位原因控制器'
+    path: ips/system/clock_reset/reset_reason_controller
+  - id: SYS-019
+    name: simple_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '简单 DMA'
+    path: ips/system/dma/simple_dma
+  - id: SYS-020
+    name: system_controller
+    domain: system
+    subdomain: clock_reset
+    type: ip
+    priority: P0
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '系统控制器'
+    path: ips/system/clock_reset/system_controller
+  - id: CHP-005
+    name: device_info_controller
+    domain: chip
+    subdomain: strap
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '器件信息控制器'
+    path: ips/chip/strap/device_info_controller
+  - id: CHP-006
+    name: gpio_matrix
+    domain: chip
+    subdomain: pinmux
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'GPIO 矩阵'
+    path: ips/chip/pinmux/gpio_matrix
+  - id: CHP-007
+    name: package_config_controller
+    domain: chip
+    subdomain: strap
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '封装配置控制器'
+    path: ips/chip/strap/package_config_controller
+  - id: CHP-008
+    name: pad_ring_adapter
+    domain: chip
+    subdomain: pad
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Pad Ring 适配器'
+    path: ips/chip/pad/pad_ring_adapter
+  - id: DBG-006
+    name: apb_transaction_monitor
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 事务监控器'
+    path: ips/debug_trace/monitor/apb_transaction_monitor
+  - id: DBG-007
+    name: axi_transaction_monitor
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 事务监控器'
+    path: ips/debug_trace/monitor/axi_transaction_monitor
+  - id: DBG-008
+    name: bus_monitor
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '总线监控器'
+    path: ips/debug_trace/monitor/bus_monitor
+  - id: DBG-009
+    name: error_logger
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '错误记录器'
+    path: ips/debug_trace/monitor/error_logger
+  - id: DBG-010
+    name: event_counter
+    domain: debug_trace
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '事件计数器'
+    path: ips/debug_trace/monitor/event_counter
+  - id: DBG-011
+    name: timestamp_unit
+    domain: debug_trace
+    subdomain: trace
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '时间戳单元'
+    path: ips/debug_trace/trace/timestamp_unit
+  - id: DBG-012
+    name: trace_funnel
+    domain: debug_trace
+    subdomain: trace
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Trace 漏斗（多路汇聚）'
+    path: ips/debug_trace/trace/trace_funnel
+  - id: DBG-013
+    name: trace_replicator
+    domain: debug_trace
+    subdomain: trace
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Trace 复制器'
+    path: ips/debug_trace/trace/trace_replicator
+  - id: DFT-001
+    name: bist_clock_controller
+    domain: dft
+    subdomain: mbist
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'BIST 时钟控制器'
+    path: ips/dft/mbist/bist_clock_controller
+  - id: DFT-002
+    name: boundary_scan_controller
+    domain: dft
+    subdomain: scan
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '边界扫描控制器'
+    path: ips/dft/scan/boundary_scan_controller
+  - id: DFT-003
+    name: lbist_controller
+    domain: dft
+    subdomain: lbist
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'LBIST 控制器'
+    path: ips/dft/lbist/lbist_controller
+  - id: DFT-004
+    name: mbist_controller
+    domain: dft
+    subdomain: mbist
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MBIST 控制器'
+    path: ips/dft/mbist/mbist_controller
+  - id: DFT-005
+    name: scan_controller
+    domain: dft
+    subdomain: scan
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '扫描链控制器'
+    path: ips/dft/scan/scan_controller
+  - id: INF-027
+    name: ahb_interconnect
+    domain: infrastructure
+    subdomain: ahb
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [ahb]
+    description: 'AHB 互联'
+    path: ips/infrastructure/ahb/ahb_interconnect
+  - id: INF-028
+    name: ahb_mux_demux
+    domain: infrastructure
+    subdomain: ahb
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [ahb]
+    description: 'AHB Mux/Demux'
+    path: ips/infrastructure/ahb/ahb_mux_demux
+  - id: INF-029
+    name: apb_firewall
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 防火墙'
+    path: ips/infrastructure/apb/apb_firewall
+  - id: INF-030
+    name: apb_isolation_bridge
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB 隔离桥'
+    path: ips/infrastructure/apb/apb_isolation_bridge
+  - id: INF-031
+    name: axi_arbiter
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 仲裁器'
+    path: ips/infrastructure/axi/axi_arbiter
+  - id: INF-032
+    name: axi_bandwidth_limiter
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 带宽限制器'
+    path: ips/infrastructure/axi/axi_bandwidth_limiter
+  - id: INF-033
+    name: axi_exclusive_monitor
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 独占访问监控'
+    path: ips/infrastructure/axi/axi_exclusive_monitor
+  - id: INF-034
+    name: axi_isolation_bridge
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 隔离桥'
+    path: ips/infrastructure/axi/axi_isolation_bridge
+  - id: INF-035
+    name: axi_ordering_controller
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 顺序控制器'
+    path: ips/infrastructure/axi/axi_ordering_controller
+  - id: INF-036
+    name: axi_outstanding_limiter
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI Outstanding 限制器'
+    path: ips/infrastructure/axi/axi_outstanding_limiter
+  - id: INF-037
+    name: axi_protocol_firewall
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 协议防火墙'
+    path: ips/infrastructure/axi/axi_protocol_firewall
+  - id: INF-038
+    name: axi_qos_controller
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI QoS 控制器'
+    path: ips/infrastructure/axi/axi_qos_controller
+  - id: INF-039
+    name: axi_traffic_shaper
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI 流量整形器'
+    path: ips/infrastructure/axi/axi_traffic_shaper
+  - id: INF-040
+    name: axis_cdc
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: 'AXI-Stream CDC'
+    path: ips/infrastructure/cdc/axis_cdc
+  - id: INF-041
+    name: axis_demux
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: 'AXI-Stream Demux'
+    path: ips/infrastructure/axi/axis_demux
+  - id: INF-042
+    name: axis_mux
+    domain: infrastructure
+    subdomain: axi
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: 'AXI-Stream Mux'
+    path: ips/infrastructure/axi/axis_mux
+  - id: INF-043
+    name: event_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '事件 CDC 桥'
+    path: ips/infrastructure/cdc/event_cdc_bridge
+  - id: INF-044
+    name: reset_domain_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '复位域桥（RDC）'
+    path: ips/infrastructure/cdc/reset_domain_bridge
+  - id: INF-045
+    name: stream_cdc_bridge
+    domain: infrastructure
+    subdomain: cdc
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: '流 CDC 桥'
+    path: ips/infrastructure/cdc/stream_cdc_bridge
+  - id: INF-046
+    name: stream_interconnect
+    domain: infrastructure
+    subdomain: axi
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: 'AXI-Stream 互联'
+    path: ips/infrastructure/axi/stream_interconnect
+  - id: MEM-014
+    name: memory_bist_wrapper
+    domain: memory
+    subdomain: bist
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存 BIST Wrapper'
+    path: ips/memory/bist/memory_bist_wrapper
+  - id: MEM-015
+    name: memory_firewall
+    domain: memory
+    subdomain: security
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存防火墙'
+    path: ips/memory/security/memory_firewall
+  - id: MEM-016
+    name: memory_qos_controller
+    domain: memory
+    subdomain: qos
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存 QoS 控制器'
+    path: ips/memory/qos/memory_qos_controller
+  - id: MEM-017
+    name: memory_repair_controller
+    domain: memory
+    subdomain: bist
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存修复控制器'
+    path: ips/memory/bist/memory_repair_controller
+  - id: MEM-018
+    name: multi_bank_sram_controller
+    domain: memory
+    subdomain: sram
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '多 Bank SRAM 控制器'
+    path: ips/memory/sram/multi_bank_sram_controller
+  - id: MEM-019
+    name: scratchpad_controller
+    domain: memory
+    subdomain: sram
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Scratchpad 控制器'
+    path: ips/memory/sram/scratchpad_controller
+  - id: PER-010
+    name: can
+    domain: peripheral
+    subdomain: automotive
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'CAN 控制器'
+    path: ips/peripheral/automotive/can
+  - id: PER-011
+    name: can_fd
+    domain: peripheral
+    subdomain: automotive
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'CAN-FD 控制器'
+    path: ips/peripheral/automotive/can_fd
+  - id: PER-012
+    name: doorbell_controller
+    domain: peripheral
+    subdomain: intercore
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '门铃（Doorbell）控制器'
+    path: ips/peripheral/intercore/doorbell_controller
+  - id: PER-013
+    name: emmc_controller
+    domain: peripheral
+    subdomain: storage
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'eMMC 控制器'
+    path: ips/peripheral/storage/emmc_controller
+  - id: PER-014
+    name: hardware_semaphore
+    domain: peripheral
+    subdomain: intercore
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '硬件信号量'
+    path: ips/peripheral/intercore/hardware_semaphore
+  - id: PER-015
+    name: i3c_controller
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'I3C 控制器'
+    path: ips/peripheral/serial/i3c_controller
+  - id: PER-016
+    name: input_capture
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '输入捕获'
+    path: ips/peripheral/timer/input_capture
+  - id: PER-017
+    name: lin
+    domain: peripheral
+    subdomain: automotive
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'LIN 控制器'
+    path: ips/peripheral/automotive/lin
+  - id: PER-018
+    name: mailbox
+    domain: peripheral
+    subdomain: intercore
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '核间邮箱'
+    path: ips/peripheral/intercore/mailbox
+  - id: PER-019
+    name: ospi
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'OSPI 控制器'
+    path: ips/peripheral/serial/ospi
+  - id: PER-020
+    name: output_compare
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '输出比较'
+    path: ips/peripheral/timer/output_compare
+  - id: PER-021
+    name: qspi
+    domain: peripheral
+    subdomain: serial
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'QSPI 控制器'
+    path: ips/peripheral/serial/qspi
+  - id: PER-022
+    name: quadrature_encoder
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '正交编码器接口'
+    path: ips/peripheral/timer/quadrature_encoder
+  - id: PER-023
+    name: rtc
+    domain: peripheral
+    subdomain: timer
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: '实时时钟（RTC）'
+    path: ips/peripheral/timer/rtc
+  - id: PER-024
+    name: sd_host
+    domain: peripheral
+    subdomain: storage
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'SD Host 控制器'
+    path: ips/peripheral/storage/sd_host
+  - id: PER-025
+    name: sdio
+    domain: peripheral
+    subdomain: storage
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'SDIO 控制器'
+    path: ips/peripheral/storage/sdio
+  - id: SAF-007
+    name: bus_crc_monitor
+    domain: safety
+    subdomain: crc
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '总线 CRC 监控'
+    path: ips/safety/crc/bus_crc_monitor
+  - id: SAF-008
+    name: bus_parity_monitor
+    domain: safety
+    subdomain: parity
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '总线奇偶校验监控'
+    path: ips/safety/parity/bus_parity_monitor
+  - id: SAF-009
+    name: clock_safety_monitor
+    domain: safety
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '时钟安全监控'
+    path: ips/safety/monitor/clock_safety_monitor
+  - id: SAF-010
+    name: diagnostic_controller
+    domain: safety
+    subdomain: diagnostic
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '诊断控制器'
+    path: ips/safety/diagnostic/diagnostic_controller
+  - id: SAF-011
+    name: fault_response_controller
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '故障响应控制器'
+    path: ips/safety/fault/fault_response_controller
+  - id: SAF-012
+    name: lockstep_comparator
+    domain: safety
+    subdomain: lockstep
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '锁步比较器'
+    path: ips/safety/lockstep/lockstep_comparator
+  - id: SAF-013
+    name: lockstep_controller
+    domain: safety
+    subdomain: lockstep
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '锁步控制器'
+    path: ips/safety/lockstep/lockstep_controller
+  - id: SAF-014
+    name: reset_safety_monitor
+    domain: safety
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '复位安全监控'
+    path: ips/safety/monitor/reset_safety_monitor
+  - id: SAF-015
+    name: safe_state_controller
+    domain: safety
+    subdomain: state
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全状态控制器'
+    path: ips/safety/state/safe_state_controller
+  - id: SAF-016
+    name: safety_manager
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全管理器'
+    path: ips/safety/fault/safety_manager
+  - id: SAF-017
+    name: timeout_monitor
+    domain: safety
+    subdomain: monitor
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '超时监控器'
+    path: ips/safety/monitor/timeout_monitor
+  - id: SEC-008
+    name: anti_rollback_controller
+    domain: security
+    subdomain: secure_boot
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '防回滚控制器'
+    path: ips/security/secure_boot/anti_rollback_controller
+  - id: SEC-009
+    name: bus_firewall
+    domain: security
+    subdomain: firewall
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '总线防火墙'
+    path: ips/security/firewall/bus_firewall
+  - id: SEC-010
+    name: crypto_dma
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '密码 DMA'
+    path: ips/security/crypto/crypto_dma
+  - id: SEC-011
+    name: csrng_drbg
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CSRNG/DRBG 确定性随机源'
+    path: ips/security/crypto/csrng_drbg
+  - id: SEC-012
+    name: dma_firewall
+    domain: security
+    subdomain: firewall
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DMA 防火墙'
+    path: ips/security/firewall/dma_firewall
+  - id: SEC-013
+    name: ecc_crypto
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '椭圆曲线密码（ECC）引擎'
+    path: ips/security/crypto/ecc_crypto
+  - id: SEC-014
+    name: key_vault
+    domain: security
+    subdomain: key
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '密钥保险库'
+    path: ips/security/key/key_vault
+  - id: SEC-015
+    name: memory_protection_controller
+    domain: security
+    subdomain: firewall
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存保护控制器'
+    path: ips/security/firewall/memory_protection_controller
+  - id: SEC-016
+    name: register_firewall
+    domain: security
+    subdomain: firewall
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '寄存器防火墙'
+    path: ips/security/firewall/register_firewall
+  - id: SEC-017
+    name: rsa
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RSA 公钥引擎'
+    path: ips/security/crypto/rsa
+  - id: SEC-018
+    name: secure_debug_controller
+    domain: security
+    subdomain: secure_debug
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全调试控制器'
+    path: ips/security/secure_debug/secure_debug_controller
+  - id: SEC-019
+    name: secure_mailbox
+    domain: security
+    subdomain: secure_io
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全邮箱'
+    path: ips/security/secure_io/secure_mailbox
+  - id: SEC-020
+    name: sha3
+    domain: security
+    subdomain: crypto
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SHA-3 哈希引擎'
+    path: ips/security/crypto/sha3
+  - id: SYS-021
+    name: aia
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RISC-V Advanced Interrupt Architecture（AIA）'
+    path: ips/system/interrupt/aia
+  - id: SYS-022
+    name: data_mover
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '数据搬运器'
+    path: ips/system/dma/data_mover
+  - id: SYS-023
+    name: descriptor_engine
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '描述符引擎'
+    path: ips/system/dma/descriptor_engine
+  - id: SYS-024
+    name: event_router
+    domain: system
+    subdomain: interrupt
+    type: generator
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '事件路由器'
+    path: ips/system/interrupt/event_router
+  - id: SYS-025
+    name: isolation_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '隔离控制器'
+    path: ips/system/power/isolation_controller
+  - id: SYS-026
+    name: peripheral_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '外设 DMA'
+    path: ips/system/dma/peripheral_dma
+  - id: SYS-027
+    name: power_domain_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电源域控制器'
+    path: ips/system/power/power_domain_controller
+  - id: SYS-028
+    name: power_manager
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电源管理器'
+    path: ips/system/power/power_manager
+  - id: SYS-029
+    name: power_sequencer
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电源时序控制器'
+    path: ips/system/power/power_sequencer
+  - id: SYS-030
+    name: retention_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '保持控制器'
+    path: ips/system/power/retention_controller
+  - id: SYS-031
+    name: scatter_gather_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Scatter-Gather DMA'
+    path: ips/system/dma/scatter_gather_dma
+  - id: SYS-032
+    name: sleep_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '睡眠控制器'
+    path: ips/system/power/sleep_controller
+  - id: SYS-033
+    name: stream_dma
+    domain: system
+    subdomain: dma
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '流式 DMA'
+    path: ips/system/dma/stream_dma
+  - id: SYS-034
+    name: wakeup_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '唤醒控制器'
+    path: ips/system/power/wakeup_controller
+  - id: SYS-035
+    name: wakeup_event_controller
+    domain: system
+    subdomain: interrupt
+    type: ip
+    priority: P1
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '唤醒事件控制器'
+    path: ips/system/interrupt/wakeup_event_controller
+  - id: ANA-001
+    name: adc_wrapper
+    domain: analog
+    subdomain: adc
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'ADC Wrapper'
+    path: ips/analog/adc/adc_wrapper
+  - id: ANA-002
+    name: dac_wrapper
+    domain: analog
+    subdomain: dac
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DAC Wrapper'
+    path: ips/analog/dac/dac_wrapper
+  - id: ANA-003
+    name: dll_wrapper
+    domain: analog
+    subdomain: dll
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DLL Wrapper'
+    path: ips/analog/dll/dll_wrapper
+  - id: ANA-004
+    name: oscillator_wrapper
+    domain: analog
+    subdomain: osc
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '振荡器 Wrapper'
+    path: ips/analog/osc/oscillator_wrapper
+  - id: ANA-005
+    name: pll_wrapper
+    domain: analog
+    subdomain: pll
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PLL Wrapper'
+    path: ips/analog/pll/pll_wrapper
+  - id: ANA-006
+    name: temp_sensor_wrapper
+    domain: analog
+    subdomain: sensor
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '温度传感器 Wrapper'
+    path: ips/analog/sensor/temp_sensor_wrapper
+  - id: ANA-007
+    name: voltage_monitor_wrapper
+    domain: analog
+    subdomain: sensor
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电压监控器 Wrapper'
+    path: ips/analog/sensor/voltage_monitor_wrapper
+  - id: AUT-001
+    name: automotive_ethernet
+    domain: automotive
+    subdomain: ethernet
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '车载以太网控制器'
+    path: ips/automotive/ethernet/automotive_ethernet
+  - id: AUT-002
+    name: e2e_protection_engine
+    domain: automotive
+    subdomain: safety
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'E2E 保护引擎（端到端）'
+    path: ips/automotive/safety/e2e_protection_engine
+  - id: AUT-003
+    name: flexray_controller
+    domain: automotive
+    subdomain: flexray
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'FlexRay 控制器'
+    path: ips/automotive/flexray/flexray_controller
+  - id: AUT-004
+    name: psi5_controller
+    domain: automotive
+    subdomain: sensor
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PSI5 控制器'
+    path: ips/automotive/sensor/psi5_controller
+  - id: AUT-005
+    name: sensor_interface_controller
+    domain: automotive
+    subdomain: sensor
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '传感器接口控制器'
+    path: ips/automotive/sensor/sensor_interface_controller
+  - id: AUT-006
+    name: sent_controller
+    domain: automotive
+    subdomain: sensor
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SENT 控制器'
+    path: ips/automotive/sensor/sent_controller
+  - id: AUT-007
+    name: tsn_controller
+    domain: automotive
+    subdomain: ethernet
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'TSN 控制器'
+    path: ips/automotive/ethernet/tsn_controller
+  - id: CAC-001
+    name: cache_maintenance_controller
+    domain: cache
+    subdomain: maintenance
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Cache 维护控制器'
+    path: ips/cache/maintenance/cache_maintenance_controller
+  - id: CAC-002
+    name: cache_prefetcher
+    domain: cache
+    subdomain: prefetch
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Cache 预取器'
+    path: ips/cache/prefetch/cache_prefetcher
+  - id: CAC-003
+    name: directory_controller
+    domain: cache
+    subdomain: coherency
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '目录控制器'
+    path: ips/cache/coherency/directory_controller
+  - id: CAC-004
+    name: l1_cache_controller
+    domain: cache
+    subdomain: l1
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'L1 Cache 控制器'
+    path: ips/cache/l1/l1_cache_controller
+  - id: CAC-005
+    name: l2_cache_controller
+    domain: cache
+    subdomain: l2
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'L2 Cache 控制器'
+    path: ips/cache/l2/l2_cache_controller
+  - id: CAC-006
+    name: shared_llc_controller
+    domain: cache
+    subdomain: llc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '共享 LLC 控制器'
+    path: ips/cache/llc/shared_llc_controller
+  - id: CAC-007
+    name: snoop_filter
+    domain: cache
+    subdomain: coherency
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Snoop Filter'
+    path: ips/cache/coherency/snoop_filter
+  - id: COH-001
+    name: ace_bridge
+    domain: coherency
+    subdomain: ace
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'ACE 桥'
+    path: ips/coherency/ace/ace_bridge
+  - id: COH-002
+    name: ace_lite_bridge
+    domain: coherency
+    subdomain: ace
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'ACE-Lite 桥'
+    path: ips/coherency/ace/ace_lite_bridge
+  - id: COH-003
+    name: coherency_manager
+    domain: coherency
+    subdomain: ace
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '一致性管理器'
+    path: ips/coherency/ace/coherency_manager
+  - id: CPU-001
+    name: core_local_controller
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Core Local 控制器'
+    path: ips/compute/riscv/core_local_controller
+  - id: CPU-002
+    name: cpu_debug_transport
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CPU Debug Transport'
+    path: ips/compute/riscv/cpu_debug_transport
+  - id: CPU-003
+    name: cpu_pmu
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CPU PMU（性能监控单元）'
+    path: ips/compute/riscv/cpu_pmu
+  - id: CPU-004
+    name: cpu_trace
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CPU Trace'
+    path: ips/compute/riscv/cpu_trace
+  - id: CPU-005
+    name: hart_control_block
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Hart 控制块'
+    path: ips/compute/riscv/hart_control_block
+  - id: CPU-006
+    name: riscv_cluster
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RISC-V Cluster'
+    path: ips/compute/riscv/riscv_cluster
+  - id: CPU-007
+    name: riscv_core
+    domain: compute
+    subdomain: riscv
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RISC-V Core'
+    path: ips/compute/riscv/riscv_core
+  - id: CRY-001
+    name: sm2
+    domain: crypto
+    subdomain: sm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SM2 国密算法引擎'
+    path: ips/crypto/sm/sm2
+  - id: CRY-002
+    name: sm3
+    domain: crypto
+    subdomain: sm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SM3 国密哈希引擎'
+    path: ips/crypto/sm/sm3
+  - id: CRY-003
+    name: sm4
+    domain: crypto
+    subdomain: sm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SM4 国密加解密引擎'
+    path: ips/crypto/sm/sm4
+  - id: DFT-006
+    name: analog_test_controller
+    domain: dft
+    subdomain: analog
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '模拟测试控制器'
+    path: ips/dft/analog/analog_test_controller
+  - id: DFT-007
+    name: fuse_repair_controller
+    domain: dft
+    subdomain: mbist
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Fuse 修复控制器'
+    path: ips/dft/mbist/fuse_repair_controller
+  - id: DFT-008
+    name: memory_redundancy_analyzer
+    domain: dft
+    subdomain: mbist
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存冗余分析器'
+    path: ips/dft/mbist/memory_redundancy_analyzer
+  - id: HSI-001
+    name: 10g_mac
+    domain: high_speed_io
+    subdomain: ethernet
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '10G 以太网 MAC'
+    path: ips/high_speed_io/ethernet/10g_mac
+  - id: HSI-002
+    name: ethernet_mac
+    domain: high_speed_io
+    subdomain: ethernet
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '以太网 MAC'
+    path: ips/high_speed_io/ethernet/ethernet_mac
+  - id: HSI-003
+    name: gbe_mac
+    domain: high_speed_io
+    subdomain: ethernet
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '1G 以太网 MAC'
+    path: ips/high_speed_io/ethernet/gbe_mac
+  - id: HSI-004
+    name: mipi_csi_controller
+    domain: high_speed_io
+    subdomain: mipi
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MIPI CSI 控制器'
+    path: ips/high_speed_io/mipi/mipi_csi_controller
+  - id: HSI-005
+    name: mipi_dsi_controller
+    domain: high_speed_io
+    subdomain: mipi
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MIPI DSI 控制器'
+    path: ips/high_speed_io/mipi/mipi_dsi_controller
+  - id: HSI-006
+    name: pcie_controller
+    domain: high_speed_io
+    subdomain: pcie
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PCIe 控制器'
+    path: ips/high_speed_io/pcie/pcie_controller
+  - id: HSI-007
+    name: sata_controller
+    domain: high_speed_io
+    subdomain: storage
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SATA 控制器'
+    path: ips/high_speed_io/storage/sata_controller
+  - id: HSI-008
+    name: serdes_controller
+    domain: high_speed_io
+    subdomain: serdes
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SerDes 控制器'
+    path: ips/high_speed_io/serdes/serdes_controller
+  - id: HSI-009
+    name: ufs_controller
+    domain: high_speed_io
+    subdomain: storage
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'UFS 控制器'
+    path: ips/high_speed_io/storage/ufs_controller
+  - id: HSI-010
+    name: usb2_controller
+    domain: high_speed_io
+    subdomain: usb
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'USB 2.0 控制器'
+    path: ips/high_speed_io/usb/usb2_controller
+  - id: HSI-011
+    name: usb3_controller
+    domain: high_speed_io
+    subdomain: usb
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'USB 3.x 控制器'
+    path: ips/high_speed_io/usb/usb3_controller
+  - id: INF-047
+    name: apb_noc_bridge
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [apb4]
+    description: 'APB↔NoC 桥'
+    path: ips/infrastructure/noc/apb_noc_bridge
+  - id: INF-048
+    name: axi_noc_bridge
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axi4]
+    description: 'AXI↔NoC 桥'
+    path: ips/infrastructure/noc/axi_noc_bridge
+  - id: INF-049
+    name: noc_crossbar
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC Crossbar'
+    path: ips/infrastructure/noc/noc_crossbar
+  - id: INF-050
+    name: noc_firewall
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC 防火墙'
+    path: ips/infrastructure/noc/noc_firewall
+  - id: INF-051
+    name: noc_network_interface
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC 网络接口（NI）'
+    path: ips/infrastructure/noc/noc_network_interface
+  - id: INF-052
+    name: noc_performance_monitor
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC 性能监控器'
+    path: ips/infrastructure/noc/noc_performance_monitor
+  - id: INF-053
+    name: noc_qos_manager
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC QoS 管理器'
+    path: ips/infrastructure/noc/noc_qos_manager
+  - id: INF-054
+    name: noc_router
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC 路由器（包交换）'
+    path: ips/infrastructure/noc/noc_router
+  - id: INF-055
+    name: noc_traffic_shaper
+    domain: infrastructure
+    subdomain: noc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'NoC 流量整形器'
+    path: ips/infrastructure/noc/noc_traffic_shaper
+  - id: MEM-020
+    name: address_hash_interleave
+    domain: memory
+    subdomain: interleave
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '地址哈希/交织单元'
+    path: ips/memory/interleave/address_hash_interleave
+  - id: MEM-021
+    name: ddr4_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR4 控制器'
+    path: ips/memory/ddr/ddr4_controller
+  - id: MEM-022
+    name: ddr5_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR5 控制器'
+    path: ips/memory/ddr/ddr5_controller
+  - id: MEM-023
+    name: ddr_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR 控制器'
+    path: ips/memory/ddr/ddr_controller
+  - id: MEM-024
+    name: ddr_ecc_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR ECC 控制器'
+    path: ips/memory/ddr/ddr_ecc_controller
+  - id: MEM-025
+    name: ddr_phy_wrapper
+    domain: memory
+    subdomain: ddr
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR PHY Wrapper'
+    path: ips/memory/ddr/ddr_phy_wrapper
+  - id: MEM-026
+    name: ddr_scheduler
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DDR 调度器'
+    path: ips/memory/ddr/ddr_scheduler
+  - id: MEM-027
+    name: lpddr4_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'LPDDR4 控制器'
+    path: ips/memory/ddr/lpddr4_controller
+  - id: MEM-028
+    name: lpddr5_controller
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'LPDDR5 控制器'
+    path: ips/memory/ddr/lpddr5_controller
+  - id: MEM-029
+    name: rowhammer_mitigation
+    domain: memory
+    subdomain: ddr
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Rowhammer 缓解控制器'
+    path: ips/memory/ddr/rowhammer_mitigation
+  - id: MMU-001
+    name: iommu
+    domain: mmu
+    subdomain: iommu
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'IOMMU'
+    path: ips/mmu/iommu/iommu
+  - id: MMU-002
+    name: mmu
+    domain: mmu
+    subdomain: mmu
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存管理单元（MMU）'
+    path: ips/mmu/mmu/mmu
+  - id: MMU-003
+    name: mpu
+    domain: mmu
+    subdomain: mpu
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存保护单元（MPU）'
+    path: ips/mmu/mpu/mpu
+  - id: MMU-004
+    name: pmp_manager
+    domain: mmu
+    subdomain: pmp
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RISC-V PMP 管理器'
+    path: ips/mmu/pmp/pmp_manager
+  - id: MUL-001
+    name: audio_dma
+    domain: multimedia
+    subdomain: audio
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '音频 DMA'
+    path: ips/multimedia/audio/audio_dma
+  - id: MUL-002
+    name: camera_interface
+    domain: multimedia
+    subdomain: video
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '相机接口'
+    path: ips/multimedia/video/camera_interface
+  - id: MUL-003
+    name: display_controller
+    domain: multimedia
+    subdomain: video
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '显示控制器'
+    path: ips/multimedia/video/display_controller
+  - id: MUL-004
+    name: i2s_controller
+    domain: multimedia
+    subdomain: audio
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'I2S 控制器'
+    path: ips/multimedia/audio/i2s_controller
+  - id: MUL-005
+    name: image_resizer
+    domain: multimedia
+    subdomain: image
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '图像缩放器'
+    path: ips/multimedia/image/image_resizer
+  - id: MUL-006
+    name: isp
+    domain: multimedia
+    subdomain: image
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '图像信号处理器（ISP）'
+    path: ips/multimedia/image/isp
+  - id: MUL-007
+    name: jpeg_codec
+    domain: multimedia
+    subdomain: codec
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'JPEG 编解码器'
+    path: ips/multimedia/codec/jpeg_codec
+  - id: MUL-008
+    name: pdm_controller
+    domain: multimedia
+    subdomain: audio
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PDM 控制器'
+    path: ips/multimedia/audio/pdm_controller
+  - id: MUL-009
+    name: tdm_controller
+    domain: multimedia
+    subdomain: audio
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'TDM 控制器'
+    path: ips/multimedia/audio/tdm_controller
+  - id: PHY-001
+    name: ethernet_phy_wrapper
+    domain: phy
+    subdomain: ethernet
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '以太网 PHY Wrapper'
+    path: ips/phy/ethernet/ethernet_phy_wrapper
+  - id: PHY-002
+    name: mipi_phy_wrapper
+    domain: phy
+    subdomain: mipi
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MIPI PHY Wrapper'
+    path: ips/phy/mipi/mipi_phy_wrapper
+  - id: PHY-003
+    name: pcie_phy_wrapper
+    domain: phy
+    subdomain: pcie
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PCIe PHY Wrapper'
+    path: ips/phy/pcie/pcie_phy_wrapper
+  - id: PHY-004
+    name: usb_phy_wrapper
+    domain: phy
+    subdomain: usb
+    type: wrapper
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'USB PHY Wrapper'
+    path: ips/phy/usb/usb_phy_wrapper
+  - id: SAF-018
+    name: diversity_comparator
+    domain: safety
+    subdomain: lockstep
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '多样性比较器'
+    path: ips/safety/lockstep/diversity_comparator
+  - id: SAF-019
+    name: e2e_crc_engine
+    domain: safety
+    subdomain: crc
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '端到端 CRC 引擎'
+    path: ips/safety/crc/e2e_crc_engine
+  - id: SAF-020
+    name: fccu
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Fault Collection & Control Unit（FCCU）'
+    path: ips/safety/fault/fccu
+  - id: SAF-021
+    name: lbist_safety_manager
+    domain: safety
+    subdomain: lbist
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'LBIST 安全管理器'
+    path: ips/safety/lbist/lbist_safety_manager
+  - id: SAF-022
+    name: mbist_safety_manager
+    domain: safety
+    subdomain: mbist
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MBIST 安全管理器'
+    path: ips/safety/mbist/mbist_safety_manager
+  - id: SAF-023
+    name: ram_repair_safety_controller
+    domain: safety
+    subdomain: repair
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'RAM 修复安全控制器'
+    path: ips/safety/repair/ram_repair_safety_controller
+  - id: SAF-024
+    name: safety_event_router
+    domain: safety
+    subdomain: fault
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全事件路由器'
+    path: ips/safety/fault/safety_event_router
+  - id: SEC-021
+    name: key_ladder
+    domain: security
+    subdomain: key
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '密钥阶梯派生'
+    path: ips/security/key/key_ladder
+  - id: SEC-022
+    name: life_cycle_controller
+    domain: security
+    subdomain: secure_boot
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '生命周期控制器'
+    path: ips/security/secure_boot/life_cycle_controller
+  - id: SEC-023
+    name: monotonic_counter
+    domain: security
+    subdomain: counter
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '单调计数器'
+    path: ips/security/counter/monotonic_counter
+  - id: SEC-024
+    name: puf_controller
+    domain: security
+    subdomain: puf
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'PUF 控制器'
+    path: ips/security/puf/puf_controller
+  - id: SEC-025
+    name: secure_counter
+    domain: security
+    subdomain: counter
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全计数器'
+    path: ips/security/counter/secure_counter
+  - id: SEC-026
+    name: tamper_detector
+    domain: security
+    subdomain: tamper
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '篡改检测器'
+    path: ips/security/tamper/tamper_detector
+  - id: VIR-001
+    name: guest_timer
+    domain: virtualization
+    subdomain: vm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Guest 定时器'
+    path: ips/virtualization/vm/guest_timer
+  - id: VIR-002
+    name: virtual_interrupt_router
+    domain: virtualization
+    subdomain: vm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '虚拟中断路由器'
+    path: ips/virtualization/vm/virtual_interrupt_router
+  - id: VIR-003
+    name: vm_interrupt_controller
+    domain: virtualization
+    subdomain: vm
+    type: ip
+    priority: P2
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'VM 中断控制器'
+    path: ips/virtualization/vm/vm_interrupt_controller
+  - id: AI-001
+    name: accelerator_descriptor_engine
+    domain: accelerator
+    subdomain: scheduler
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '加速器描述符引擎'
+    path: ips/accelerator/scheduler/accelerator_descriptor_engine
+  - id: AI-002
+    name: accelerator_interrupt_aggregator
+    domain: accelerator
+    subdomain: interrupt
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '加速器中断聚合器'
+    path: ips/accelerator/interrupt/accelerator_interrupt_aggregator
+  - id: AI-003
+    name: accelerator_scheduler
+    domain: accelerator
+    subdomain: scheduler
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '加速器调度器'
+    path: ips/accelerator/scheduler/accelerator_scheduler
+  - id: AI-004
+    name: activation_engine
+    domain: accelerator
+    subdomain: activation
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '激活函数引擎'
+    path: ips/accelerator/activation/activation_engine
+  - id: AI-005
+    name: ai_scratchpad_controller
+    domain: accelerator
+    subdomain: memory
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'AI Scratchpad 控制器'
+    path: ips/accelerator/memory/ai_scratchpad_controller
+  - id: AI-006
+    name: attention_accelerator
+    domain: accelerator
+    subdomain: attention
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '注意力加速器'
+    path: ips/accelerator/attention/attention_accelerator
+  - id: AI-007
+    name: convolution_accelerator
+    domain: accelerator
+    subdomain: conv
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '卷积加速器'
+    path: ips/accelerator/conv/convolution_accelerator
+  - id: AI-008
+    name: cordic
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CORDIC 单元'
+    path: ips/accelerator/dsp/cordic
+  - id: AI-009
+    name: crc_accelerator
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CRC 加速器'
+    path: ips/accelerator/dsp/crc_accelerator
+  - id: AI-010
+    name: dct_accelerator
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DCT 加速器'
+    path: ips/accelerator/dsp/dct_accelerator
+  - id: AI-011
+    name: dequantization_engine
+    domain: accelerator
+    subdomain: quant
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '反量化引擎'
+    path: ips/accelerator/quant/dequantization_engine
+  - id: AI-012
+    name: fft_accelerator
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'FFT 加速器'
+    path: ips/accelerator/dsp/fft_accelerator
+  - id: AI-013
+    name: fir_accelerator
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'FIR 加速器'
+    path: ips/accelerator/dsp/fir_accelerator
+  - id: AI-014
+    name: iir_accelerator
+    domain: accelerator
+    subdomain: dsp
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'IIR 加速器'
+    path: ips/accelerator/dsp/iir_accelerator
+  - id: AI-015
+    name: matrix_multiply_accelerator
+    domain: accelerator
+    subdomain: matmul
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '矩阵乘加速器'
+    path: ips/accelerator/matmul/matrix_multiply_accelerator
+  - id: AI-016
+    name: quantization_engine
+    domain: accelerator
+    subdomain: quant
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '量化引擎'
+    path: ips/accelerator/quant/quantization_engine
+  - id: AI-017
+    name: sparse_accelerator
+    domain: accelerator
+    subdomain: sparse
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '稀疏加速器'
+    path: ips/accelerator/sparse/sparse_accelerator
+  - id: AI-018
+    name: stream_fabric
+    domain: accelerator
+    subdomain: fabric
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    interfaces: [axis]
+    description: '流式互联 Fabric'
+    path: ips/accelerator/fabric/stream_fabric
+  - id: AI-019
+    name: systolic_array
+    domain: accelerator
+    subdomain: systolic
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '脉动阵列'
+    path: ips/accelerator/systolic/systolic_array
+  - id: AI-020
+    name: tensor_core
+    domain: accelerator
+    subdomain: matmul
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '张量核'
+    path: ips/accelerator/matmul/tensor_core
+  - id: AI-021
+    name: tensor_dma
+    domain: accelerator
+    subdomain: dma
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '张量 DMA'
+    path: ips/accelerator/dma/tensor_dma
+  - id: AI-022
+    name: vector_accelerator
+    domain: accelerator
+    subdomain: vector
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '向量加速器'
+    path: ips/accelerator/vector/vector_accelerator
+  - id: AI-023
+    name: weight_dma
+    domain: accelerator
+    subdomain: dma
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '权重 DMA'
+    path: ips/accelerator/dma/weight_dma
+  - id: CHL-001
+    name: chiplet_discovery_controller
+    domain: chiplet
+    subdomain: interdie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Chiplet 发现控制器'
+    path: ips/chiplet/interdie/chiplet_discovery_controller
+  - id: CHL-002
+    name: chiplet_mailbox
+    domain: chiplet
+    subdomain: interdie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Chiplet 邮箱'
+    path: ips/chiplet/interdie/chiplet_mailbox
+  - id: CHL-003
+    name: die_id_controller
+    domain: chiplet
+    subdomain: interdie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Die ID 控制器'
+    path: ips/chiplet/interdie/die_id_controller
+  - id: CHL-004
+    name: die_to_die_adapter
+    domain: chiplet
+    subdomain: die2die
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Die-to-Die 适配器'
+    path: ips/chiplet/die2die/die_to_die_adapter
+  - id: CHL-005
+    name: die_to_die_crc
+    domain: chiplet
+    subdomain: die2die
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Die-to-Die CRC'
+    path: ips/chiplet/die2die/die_to_die_crc
+  - id: CHL-006
+    name: interdie_cdc_adapter
+    domain: chiplet
+    subdomain: interdie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Die 间 CDC 适配器'
+    path: ips/chiplet/interdie/interdie_cdc_adapter
+  - id: CHL-007
+    name: interdie_interrupt_bridge
+    domain: chiplet
+    subdomain: interdie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Die 间中断桥'
+    path: ips/chiplet/interdie/interdie_interrupt_bridge
+  - id: CHL-008
+    name: link_training_controller
+    domain: chiplet
+    subdomain: die2die
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '链路训练控制器'
+    path: ips/chiplet/die2die/link_training_controller
+  - id: CHL-009
+    name: retry_controller
+    domain: chiplet
+    subdomain: die2die
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '重试控制器'
+    path: ips/chiplet/die2die/retry_controller
+  - id: CHL-010
+    name: ucie_controller
+    domain: chiplet
+    subdomain: ucie
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'UCIe 控制器'
+    path: ips/chiplet/ucie/ucie_controller
+  - id: COH-004
+    name: chi_home_node
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CHI Home Node'
+    path: ips/coherency/chi/chi_home_node
+  - id: COH-005
+    name: chi_interface
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CHI 接口'
+    path: ips/coherency/chi/chi_interface
+  - id: COH-006
+    name: chi_request_node
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CHI Request Node'
+    path: ips/coherency/chi/chi_request_node
+  - id: COH-007
+    name: chi_router
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CHI 路由器'
+    path: ips/coherency/chi/chi_router
+  - id: COH-008
+    name: chi_slave_node
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CHI Slave Node'
+    path: ips/coherency/chi/chi_slave_node
+  - id: COH-009
+    name: coherent_noc
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '一致性 NoC'
+    path: ips/coherency/chi/coherent_noc
+  - id: COH-010
+    name: distributed_snoop_filter
+    domain: coherency
+    subdomain: chi
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '分布式 Snoop Filter'
+    path: ips/coherency/chi/distributed_snoop_filter
+  - id: MEM-030
+    name: cxl_memory_controller
+    domain: memory
+    subdomain: cxl
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CXL 内存控制器'
+    path: ips/memory/cxl/cxl_memory_controller
+  - id: MEM-031
+    name: hbm_controller
+    domain: memory
+    subdomain: hbm
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'HBM 控制器'
+    path: ips/memory/hbm/hbm_controller
+  - id: MEM-032
+    name: hbm_phy_wrapper
+    domain: memory
+    subdomain: hbm
+    type: wrapper
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'HBM PHY Wrapper'
+    path: ips/memory/hbm/hbm_phy_wrapper
+  - id: MEM-033
+    name: memory_compression_engine
+    domain: memory
+    subdomain: compression
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存压缩引擎'
+    path: ips/memory/compression/memory_compression_engine
+  - id: MEM-034
+    name: memory_encryption_engine
+    domain: memory
+    subdomain: security
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存加密引擎'
+    path: ips/memory/security/memory_encryption_engine
+  - id: MEM-035
+    name: persistent_memory_controller
+    domain: memory
+    subdomain: cxl
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '持久内存控制器'
+    path: ips/memory/cxl/persistent_memory_controller
+  - id: MUL-010
+    name: av1_codec
+    domain: multimedia
+    subdomain: codec
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'AV1 编解码器'
+    path: ips/multimedia/codec/av1_codec
+  - id: MUL-011
+    name: gpu_interface
+    domain: multimedia
+    subdomain: gpu
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'GPU 接口'
+    path: ips/multimedia/gpu/gpu_interface
+  - id: MUL-012
+    name: h264_codec
+    domain: multimedia
+    subdomain: codec
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'H.264 编解码器'
+    path: ips/multimedia/codec/h264_codec
+  - id: MUL-013
+    name: h265_codec
+    domain: multimedia
+    subdomain: codec
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'H.265 编解码器'
+    path: ips/multimedia/codec/h265_codec
+  - id: MUL-014
+    name: video_scaler
+    domain: multimedia
+    subdomain: video
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '视频缩放器'
+    path: ips/multimedia/video/video_scaler
+  - id: NET-001
+    name: ipsec_engine
+    domain: network
+    subdomain: security
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'IPsec 引擎'
+    path: ips/network/security/ipsec_engine
+  - id: NET-002
+    name: macsec_engine
+    domain: network
+    subdomain: security
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MACsec 引擎'
+    path: ips/network/security/macsec_engine
+  - id: NET-003
+    name: packet_classifier
+    domain: network
+    subdomain: packet
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '报文分类器'
+    path: ips/network/packet/packet_classifier
+  - id: NET-004
+    name: packet_parser
+    domain: network
+    subdomain: packet
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '报文解析器'
+    path: ips/network/packet/packet_parser
+  - id: NET-005
+    name: qos_scheduler
+    domain: network
+    subdomain: qos
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'QoS 调度器'
+    path: ips/network/qos/qos_scheduler
+  - id: NET-006
+    name: traffic_manager
+    domain: network
+    subdomain: qos
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '流量管理器'
+    path: ips/network/qos/traffic_manager
+  - id: REL-001
+    name: aging_monitor
+    domain: reliability
+    subdomain: monitor
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '老化监控器'
+    path: ips/reliability/monitor/aging_monitor
+  - id: REL-002
+    name: ecc_telemetry_controller
+    domain: reliability
+    subdomain: ecc
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'ECC 遥测控制器'
+    path: ips/reliability/ecc/ecc_telemetry_controller
+  - id: REL-003
+    name: reliability_monitor
+    domain: reliability
+    subdomain: monitor
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '可靠性监控器'
+    path: ips/reliability/monitor/reliability_monitor
+  - id: REL-004
+    name: soft_error_counter
+    domain: reliability
+    subdomain: monitor
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '软错误计数器'
+    path: ips/reliability/monitor/soft_error_counter
+  - id: REL-005
+    name: sram_patrol_controller
+    domain: reliability
+    subdomain: sram
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'SRAM Patrol 控制器'
+    path: ips/reliability/sram/sram_patrol_controller
+  - id: SUB-001
+    name: ai_accelerator_subsystem
+    domain: subsystem
+    subdomain: ai
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'AI 加速器子系统'
+    path: ips/subsystem/ai/ai_accelerator_subsystem
+  - id: SUB-002
+    name: aon_subsystem
+    domain: subsystem
+    subdomain: aon
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'Always-On 子系统'
+    path: ips/subsystem/aon/aon_subsystem
+  - id: SUB-003
+    name: cpu_subsystem
+    domain: subsystem
+    subdomain: cpu
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'CPU 子系统（Core+Cache+CLIC 组合）'
+    path: ips/subsystem/cpu/cpu_subsystem
+  - id: SUB-004
+    name: debug_subsystem
+    domain: subsystem
+    subdomain: debug
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '调试子系统'
+    path: ips/subsystem/debug/debug_subsystem
+  - id: SUB-005
+    name: io_subsystem
+    domain: subsystem
+    subdomain: io
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'IO 子系统'
+    path: ips/subsystem/io/io_subsystem
+  - id: SUB-006
+    name: mcu_subsystem
+    domain: subsystem
+    subdomain: mcu
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'MCU 子系统'
+    path: ips/subsystem/mcu/mcu_subsystem
+  - id: SUB-007
+    name: memory_subsystem
+    domain: subsystem
+    subdomain: memory
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '内存子系统'
+    path: ips/subsystem/memory/memory_subsystem
+  - id: SUB-008
+    name: safety_island
+    domain: subsystem
+    subdomain: safety
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全岛（Safety Island）'
+    path: ips/subsystem/safety/safety_island
+  - id: SUB-009
+    name: security_subsystem
+    domain: subsystem
+    subdomain: security
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '安全子系统'
+    path: ips/subsystem/security/security_subsystem
+  - id: SUB-010
+    name: sensor_subsystem
+    domain: subsystem
+    subdomain: sensor
+    type: subsystem
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '传感器子系统'
+    path: ips/subsystem/sensor/sensor_subsystem
+  - id: SYS-036
+    name: adaptive_clocking_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '自适应时钟控制器'
+    path: ips/system/power/adaptive_clocking_controller
+  - id: SYS-037
+    name: avs_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'AVS 控制器（自适应电压调节）'
+    path: ips/system/power/avs_controller
+  - id: SYS-038
+    name: droop_mitigation_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电压跌落缓解控制器'
+    path: ips/system/power/droop_mitigation_controller
+  - id: SYS-039
+    name: droop_monitor
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '电压跌落监控器'
+    path: ips/system/power/droop_monitor
+  - id: SYS-040
+    name: dvfs_controller
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: 'DVFS 控制器'
+    path: ips/system/power/dvfs_controller
+  - id: SYS-041
+    name: thermal_manager
+    domain: system
+    subdomain: power
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '热管理单元'
+    path: ips/system/power/thermal_manager
+  - id: TST-001
+    name: infield_test_controller
+    domain: test
+    subdomain: infield
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '在线测试控制器'
+    path: ips/test/infield/infield_test_controller
+  - id: TST-002
+    name: production_test_controller
+    domain: test
+    subdomain: production
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '量产测试控制器'
+    path: ips/test/production/production_test_controller
+  - id: TST-003
+    name: silicon_health_monitor
+    domain: test
+    subdomain: monitor
+    type: ip
+    priority: P3
+    status: planned
+    maturity: alpha
+    version: "0.1.0"
+    description: '硅片健康监控器'
+    path: ips/test/monitor/silicon_health_monitor

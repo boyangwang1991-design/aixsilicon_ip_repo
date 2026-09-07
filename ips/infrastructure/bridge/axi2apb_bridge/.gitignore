@@ -1,0 +1,36 @@
+# =============================================================================
+# ip_x2p 工作区 .gitignore — 运行中间件统一落点 build/（git 忽略，不交付）
+# 依据：ip-development-suite artifact-contract §3.1 / 全局规则 15
+# 设计源（rtl/ model/ docs/ fusesoc/ regs/ sw/ constraints/ reports/ trace/）
+# 与 verification 源码/文档保持可提交，绝不在此忽略。
+# =============================================================================
+
+# 运行中间件唯一根（simv/csrc/daidir/run/fsdb/日志/EDA 工作根均在此，git 忽略）
+build/
+
+# ---- 兜底：若 EDA/仿真工具越界写入源码目录则一并忽略（发现即视为违规）----
+csrc/
+*.daidir/
+simv*
+*.vcd
+*.vpd
+*.fsdb
+*.shm
+*.log
+*.svf
+command.log
+fusesoc.conf
+edalize_work_root/
+novas_dump.log
+tr_db.log
+vc_hdrs.h
+ucli.key
+.Xil/
+verdiLog/
+
+# ---- Python / uv ----
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/

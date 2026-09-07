@@ -1,0 +1,35 @@
+schema_version: '1.0'
+ip_name: x2p
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.L1.X2P.APB
+  target_id: LLD.MOD.X2P.APB
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.CDC
+  target_id: LLD.MOD.X2P.CDC
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.FE
+  target_id: LLD.MOD.X2P.FE
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.QB
+  target_id: LLD.MOD.X2P.QB
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.RSP
+  target_id: LLD.MOD.X2P.RSP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.SCH
+  target_id: LLD.MOD.X2P.SCH
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.X2P.TE
+  target_id: LLD.MOD.X2P.TE
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

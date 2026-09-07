@@ -1,0 +1,40 @@
+  Allocating blocks in 'DW02_mult_A_width8_B_width9'
+  Allocating blocks in 'DW_div_uns_a_width32_b_width17'
+  Allocating blocks in 'DW02_mult_A_width32_B_width17'
+  Allocating blocks in 'DW02_mult_A_width6_B_width1'
+  Allocating blocks in 'DW01_absval_width6'
+  Allocating blocks in 'DW01_absval_width1'
+ 
+****************************************
+Report : area
+Design : x2p_top
+Version: V-2023.12-SP3
+Date   : Thu Sep  3 09:51:19 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'x2p_top' contains 6 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    gtech (File: /home/eda/app/synopsys/syn/V-2023.12-SP3/libraries/syn/gtech.db)
+
+Number of ports:                         3606
+Number of nets:                         10325
+Number of cells:                         4998
+Number of combinational cells:           3480
+Number of sequential cells:              1398
+Number of macros/black boxes:               0
+Number of buf/inv:                        362
+Number of references:                      17
+
+Combinational area:                  0.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                     0.000000
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+1
