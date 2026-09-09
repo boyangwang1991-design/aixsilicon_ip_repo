@@ -1,5 +1,5 @@
 schema_version: "2.0"
-updated: "2026-09-07T02:41:36Z"
+updated: "2026-09-09T04:00:57Z"
 # 本文件是 AIXSILICON IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 治理）。
 # 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path
 # 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。
@@ -228,19 +228,6 @@ ips:
     description: 'AXI→AHB 桥（X2H）'
     path: ips/infrastructure/bridge/axi2ahb_bridge
   - id: INF-011
-    name: axi2apb_bridge
-    domain: infrastructure
-    subdomain: bridge
-    type: ip
-    priority: P0
-    status: implemented
-    maturity: experimental
-    version: "1.0.0"
-    interfaces: [axi4, apb4]
-    description: 'AXI→APB 桥（X2P，AXI4/AXI4-Lite → APB3/APB4；G0-G3 通过，G4 BUG-001 blocking）'
-    path: ips/infrastructure/bridge/axi2apb_bridge
-    core: aixsilicon:ip:axi2apb_bridge:1.0.0
-  - id: INF-012
     name: axi4_axi4lite_converter
     domain: infrastructure
     subdomain: bridge
@@ -252,7 +239,7 @@ ips:
     interfaces: [axi4, axi4lite]
     description: 'AXI4→AXI4-Lite 协议转换'
     path: ips/infrastructure/bridge/axi4_axi4lite_converter
-  - id: INF-013
+  - id: INF-012
     name: axi_address_remapper
     domain: infrastructure
     subdomain: axi
@@ -264,7 +251,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 地址重映射'
     path: ips/infrastructure/axi/axi_address_remapper
-  - id: INF-014
+  - id: INF-013
     name: axi_cdc_bridge
     domain: infrastructure
     subdomain: cdc
@@ -276,7 +263,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI CDC 桥（异步时钟）'
     path: ips/infrastructure/cdc/axi_cdc_bridge
-  - id: INF-015
+  - id: INF-014
     name: axi_crossbar
     domain: infrastructure
     subdomain: axi
@@ -288,7 +275,7 @@ ips:
     interfaces: [axi4]
     description: '高并发 AXI Crossbar'
     path: ips/infrastructure/axi/axi_crossbar
-  - id: INF-016
+  - id: INF-015
     name: axi_demux
     domain: infrastructure
     subdomain: axi
@@ -300,7 +287,7 @@ ips:
     interfaces: [axi4]
     description: '1→N AXI Demux'
     path: ips/infrastructure/axi/axi_demux
-  - id: INF-017
+  - id: INF-016
     name: axi_error_slave
     domain: infrastructure
     subdomain: axi
@@ -312,7 +299,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 默认错误响应 Slave'
     path: ips/infrastructure/axi/axi_error_slave
-  - id: INF-018
+  - id: INF-017
     name: axi_id_remapper
     domain: infrastructure
     subdomain: axi
@@ -324,7 +311,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI ID 重映射'
     path: ips/infrastructure/axi/axi_id_remapper
-  - id: INF-019
+  - id: INF-018
     name: axi_interconnect
     domain: infrastructure
     subdomain: axi
@@ -336,7 +323,7 @@ ips:
     interfaces: [axi4]
     description: '多 Master/Slave AXI 互联（拓扑生成）'
     path: ips/infrastructure/axi/axi_interconnect
-  - id: INF-020
+  - id: INF-019
     name: axi_mux
     domain: infrastructure
     subdomain: axi
@@ -348,7 +335,7 @@ ips:
     interfaces: [axi4]
     description: 'N→1 AXI Mux'
     path: ips/infrastructure/axi/axi_mux
-  - id: INF-021
+  - id: INF-020
     name: axi_pipeline
     domain: infrastructure
     subdomain: axi
@@ -360,7 +347,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 流水线（timing）'
     path: ips/infrastructure/axi/axi_pipeline
-  - id: INF-022
+  - id: INF-021
     name: axi_register_slice
     domain: infrastructure
     subdomain: axi
@@ -372,7 +359,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 寄存器切片（timing/PPA）'
     path: ips/infrastructure/axi/axi_register_slice
-  - id: INF-023
+  - id: INF-022
     name: axi_timeout_monitor
     domain: infrastructure
     subdomain: axi
@@ -384,7 +371,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 总线超时监控'
     path: ips/infrastructure/axi/axi_timeout_monitor
-  - id: INF-024
+  - id: INF-023
     name: axi_width_converter
     domain: infrastructure
     subdomain: bridge
@@ -396,7 +383,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 数据宽度转换'
     path: ips/infrastructure/bridge/axi_width_converter
-  - id: INF-025
+  - id: INF-024
     name: interrupt_cdc_bridge
     domain: infrastructure
     subdomain: cdc
@@ -407,7 +394,7 @@ ips:
     version: "0.1.0"
     description: '中断 CDC 桥'
     path: ips/infrastructure/cdc/interrupt_cdc_bridge
-  - id: INF-026
+  - id: INF-025
     name: register_cdc_bridge
     domain: infrastructure
     subdomain: cdc
@@ -1235,7 +1222,7 @@ ips:
     version: "0.1.0"
     description: '扫描链控制器'
     path: ips/dft/scan/scan_controller
-  - id: INF-027
+  - id: INF-026
     name: ahb_interconnect
     domain: infrastructure
     subdomain: ahb
@@ -1247,7 +1234,7 @@ ips:
     interfaces: [ahb]
     description: 'AHB 互联'
     path: ips/infrastructure/ahb/ahb_interconnect
-  - id: INF-028
+  - id: INF-027
     name: ahb_mux_demux
     domain: infrastructure
     subdomain: ahb
@@ -1259,7 +1246,7 @@ ips:
     interfaces: [ahb]
     description: 'AHB Mux/Demux'
     path: ips/infrastructure/ahb/ahb_mux_demux
-  - id: INF-029
+  - id: INF-028
     name: apb_firewall
     domain: infrastructure
     subdomain: apb
@@ -1271,7 +1258,7 @@ ips:
     interfaces: [apb4]
     description: 'APB 防火墙'
     path: ips/infrastructure/apb/apb_firewall
-  - id: INF-030
+  - id: INF-029
     name: apb_isolation_bridge
     domain: infrastructure
     subdomain: apb
@@ -1283,7 +1270,7 @@ ips:
     interfaces: [apb4]
     description: 'APB 隔离桥'
     path: ips/infrastructure/apb/apb_isolation_bridge
-  - id: INF-031
+  - id: INF-030
     name: axi_arbiter
     domain: infrastructure
     subdomain: axi
@@ -1295,7 +1282,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 仲裁器'
     path: ips/infrastructure/axi/axi_arbiter
-  - id: INF-032
+  - id: INF-031
     name: axi_bandwidth_limiter
     domain: infrastructure
     subdomain: axi
@@ -1307,7 +1294,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 带宽限制器'
     path: ips/infrastructure/axi/axi_bandwidth_limiter
-  - id: INF-033
+  - id: INF-032
     name: axi_exclusive_monitor
     domain: infrastructure
     subdomain: axi
@@ -1319,7 +1306,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 独占访问监控'
     path: ips/infrastructure/axi/axi_exclusive_monitor
-  - id: INF-034
+  - id: INF-033
     name: axi_isolation_bridge
     domain: infrastructure
     subdomain: axi
@@ -1331,7 +1318,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 隔离桥'
     path: ips/infrastructure/axi/axi_isolation_bridge
-  - id: INF-035
+  - id: INF-034
     name: axi_ordering_controller
     domain: infrastructure
     subdomain: axi
@@ -1343,7 +1330,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 顺序控制器'
     path: ips/infrastructure/axi/axi_ordering_controller
-  - id: INF-036
+  - id: INF-035
     name: axi_outstanding_limiter
     domain: infrastructure
     subdomain: axi
@@ -1355,7 +1342,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI Outstanding 限制器'
     path: ips/infrastructure/axi/axi_outstanding_limiter
-  - id: INF-037
+  - id: INF-036
     name: axi_protocol_firewall
     domain: infrastructure
     subdomain: axi
@@ -1367,7 +1354,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 协议防火墙'
     path: ips/infrastructure/axi/axi_protocol_firewall
-  - id: INF-038
+  - id: INF-037
     name: axi_qos_controller
     domain: infrastructure
     subdomain: axi
@@ -1379,7 +1366,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI QoS 控制器'
     path: ips/infrastructure/axi/axi_qos_controller
-  - id: INF-039
+  - id: INF-038
     name: axi_traffic_shaper
     domain: infrastructure
     subdomain: axi
@@ -1391,7 +1378,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI 流量整形器'
     path: ips/infrastructure/axi/axi_traffic_shaper
-  - id: INF-040
+  - id: INF-039
     name: axis_cdc
     domain: infrastructure
     subdomain: cdc
@@ -1403,7 +1390,7 @@ ips:
     interfaces: [axis]
     description: 'AXI-Stream CDC'
     path: ips/infrastructure/cdc/axis_cdc
-  - id: INF-041
+  - id: INF-040
     name: axis_demux
     domain: infrastructure
     subdomain: axi
@@ -1415,7 +1402,7 @@ ips:
     interfaces: [axis]
     description: 'AXI-Stream Demux'
     path: ips/infrastructure/axi/axis_demux
-  - id: INF-042
+  - id: INF-041
     name: axis_mux
     domain: infrastructure
     subdomain: axi
@@ -1427,7 +1414,7 @@ ips:
     interfaces: [axis]
     description: 'AXI-Stream Mux'
     path: ips/infrastructure/axi/axis_mux
-  - id: INF-043
+  - id: INF-042
     name: event_cdc_bridge
     domain: infrastructure
     subdomain: cdc
@@ -1438,7 +1425,7 @@ ips:
     version: "0.1.0"
     description: '事件 CDC 桥'
     path: ips/infrastructure/cdc/event_cdc_bridge
-  - id: INF-044
+  - id: INF-043
     name: reset_domain_bridge
     domain: infrastructure
     subdomain: cdc
@@ -1449,7 +1436,7 @@ ips:
     version: "0.1.0"
     description: '复位域桥（RDC）'
     path: ips/infrastructure/cdc/reset_domain_bridge
-  - id: INF-045
+  - id: INF-044
     name: stream_cdc_bridge
     domain: infrastructure
     subdomain: cdc
@@ -1461,7 +1448,7 @@ ips:
     interfaces: [axis]
     description: '流 CDC 桥'
     path: ips/infrastructure/cdc/stream_cdc_bridge
-  - id: INF-046
+  - id: INF-045
     name: stream_interconnect
     domain: infrastructure
     subdomain: axi
@@ -2690,7 +2677,7 @@ ips:
     version: "0.1.0"
     description: 'USB 3.x 控制器'
     path: ips/high_speed_io/usb/usb3_controller
-  - id: INF-047
+  - id: INF-046
     name: apb_noc_bridge
     domain: infrastructure
     subdomain: noc
@@ -2702,7 +2689,7 @@ ips:
     interfaces: [apb4]
     description: 'APB↔NoC 桥'
     path: ips/infrastructure/noc/apb_noc_bridge
-  - id: INF-048
+  - id: INF-047
     name: axi_noc_bridge
     domain: infrastructure
     subdomain: noc
@@ -2714,7 +2701,7 @@ ips:
     interfaces: [axi4]
     description: 'AXI↔NoC 桥'
     path: ips/infrastructure/noc/axi_noc_bridge
-  - id: INF-049
+  - id: INF-048
     name: noc_crossbar
     domain: infrastructure
     subdomain: noc
@@ -2725,7 +2712,7 @@ ips:
     version: "0.1.0"
     description: 'NoC Crossbar'
     path: ips/infrastructure/noc/noc_crossbar
-  - id: INF-050
+  - id: INF-049
     name: noc_firewall
     domain: infrastructure
     subdomain: noc
@@ -2736,7 +2723,7 @@ ips:
     version: "0.1.0"
     description: 'NoC 防火墙'
     path: ips/infrastructure/noc/noc_firewall
-  - id: INF-051
+  - id: INF-050
     name: noc_network_interface
     domain: infrastructure
     subdomain: noc
@@ -2747,7 +2734,7 @@ ips:
     version: "0.1.0"
     description: 'NoC 网络接口（NI）'
     path: ips/infrastructure/noc/noc_network_interface
-  - id: INF-052
+  - id: INF-051
     name: noc_performance_monitor
     domain: infrastructure
     subdomain: noc
@@ -2758,7 +2745,7 @@ ips:
     version: "0.1.0"
     description: 'NoC 性能监控器'
     path: ips/infrastructure/noc/noc_performance_monitor
-  - id: INF-053
+  - id: INF-052
     name: noc_qos_manager
     domain: infrastructure
     subdomain: noc
@@ -2769,7 +2756,7 @@ ips:
     version: "0.1.0"
     description: 'NoC QoS 管理器'
     path: ips/infrastructure/noc/noc_qos_manager
-  - id: INF-054
+  - id: INF-053
     name: noc_router
     domain: infrastructure
     subdomain: noc
@@ -2780,7 +2767,7 @@ ips:
     version: "0.1.0"
     description: 'NoC 路由器（包交换）'
     path: ips/infrastructure/noc/noc_router
-  - id: INF-055
+  - id: INF-054
     name: noc_traffic_shaper
     domain: infrastructure
     subdomain: noc

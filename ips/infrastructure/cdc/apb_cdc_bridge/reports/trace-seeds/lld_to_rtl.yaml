@@ -1,0 +1,15 @@
+schema_version: "1.0"
+ip_name: apb_cdc_bridge
+links:
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.TOP
+    target_id: RTL.FILE.rtl/apb_cdc_bridge_top.sv
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.SOURCE
+    target_id: RTL.FILE.rtl/apb_cdc_source.sv
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.DEST
+    target_id: RTL.FILE.rtl/apb_cdc_dest.sv
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.SYNC
+    target_id: RTL.FILE.rtl/apb_cdc_sync_chain.sv
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.HS_CDC
+    target_id: RTL.FILE.rtl/apb_cdc_handshake.sv
+  - source_id: LLD.MOD.APB_CDC_BRIDGE.FIFO_CDC
+    target_id: RTL.FILE.rtl/apb_cdc_async_fifo.sv

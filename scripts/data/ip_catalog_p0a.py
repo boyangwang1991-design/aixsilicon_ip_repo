@@ -33,8 +33,6 @@ IP_LIST = [
      "interfaces": ["apb4"], "description": "APB 错误默认 Slave"},
     {"name": "apb_timeout", "type": "ip", "domain": "infrastructure", "subdomain": "apb",
      "interfaces": ["apb4"], "description": "APB 超时监控"},
-    {"name": "axi2apb_bridge", "type": "ip", "domain": "infrastructure", "subdomain": "bridge",
-     "interfaces": ["axi4", "apb4"], "description": "AXI→APB 桥（X2P，AXI4/AXI4-Lite → APB3/APB4）"},
     {"name": "axi2ahb_bridge", "type": "ip", "domain": "infrastructure", "subdomain": "bridge",
      "interfaces": ["axi4", "ahb"], "description": "AXI→AHB 桥（X2H）"},
     {"name": "ahb2axi_bridge", "type": "ip", "domain": "infrastructure", "subdomain": "bridge",

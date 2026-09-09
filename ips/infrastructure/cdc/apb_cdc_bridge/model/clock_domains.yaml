@@ -1,0 +1,43 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+clock_domains:
+- id: HLD.DOM.APB_CDC_BRIDGE.SRC_CLK
+  name: SRC_CLK
+  description: 上游 APB 时钟域（s_pclk）
+  source: external
+  affected_modules:
+  - HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.03.001
+  frequency: '"外部提供（无固定频率）"'
+- id: HLD.DOM.APB_CDC_BRIDGE.DST_CLK
+  name: DST_CLK
+  description: 下游 APB 时钟域（m_pclk）
+  source: external
+  affected_modules:
+  - HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  - HLD.MOD.L1.APB_CDC_BRIDGE.SYNC
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.03.001
+  frequency: '"外部提供（无固定频率）"'
+reset_domains:
+- id: HLD.DOM.APB_CDC_BRIDGE.SRC_RST
+  name: SRC_RST
+  description: 上游异步复位（s_presetn，active low，async assert / sync deassert）
+  source: external
+  affected_modules:
+  - HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.03.002
+  active_level: active_low
+- id: HLD.DOM.APB_CDC_BRIDGE.DST_RST
+  name: DST_RST
+  description: 下游异步复位（m_presetn，active low，async assert / sync deassert）
+  source: external
+  affected_modules:
+  - HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  - HLD.MOD.L1.APB_CDC_BRIDGE.SYNC
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.03.002
+  active_level: active_low
+power_domains: []

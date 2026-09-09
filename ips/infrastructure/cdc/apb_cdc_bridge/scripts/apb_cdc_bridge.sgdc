@@ -1,0 +1,25 @@
+# =============================================================================
+# apb_cdc_bridge.sgdc — SpyGlass CDC 约束（GAP-001 闭环 / LRS.CONS.02.001）
+# 声明双异步时钟域与异步复位，使 CDC 引擎正确识别域边界；
+# 域间路径交由同步器（2FF）与握手/FIFO 结构保证，由 cdc_verify 复核。
+# =============================================================================
+
+# ---- 时钟域：s_pclk（源域） / m_pclk（目的域），完全异步 ----
+create_clock -name s_pclk -period 2.5 {s_pclk}
+create_clock -name m_pclk -period 2.5 {m_pclk}
+
+# ---- 异步复位（active-low）----
+set_async_reset {s_presetn} -active low
+set_async_reset {m_presetn} -active low
+
+# ---- 时钟域声明（true CDC：两域独立，不要求同步时序收敛）----
+# SpyGlass cdc_verify 将基于此识别跨域路径并检查同步器存在性
+# （域间路径已在 RTL 内由 apb_cdc_sync_chain / handshake / async_fifo 完成同步）
+
+# ---- 同步器标记（供 cdc_verify 识别 2FF 同步链）----
+# apb_cdc_sync_chain 模块为参数化 2FF 同步器，SpyGlass 默认识别
+# SYNC_STAGES 级同步链；无需额外 abstract 标记。
+
+# ---- 时钟域声明（消除 Domain_Missing01：两时钟各自独立 domain = 异步域）----
+domain -name domain_s -clock {s_pclk}
+domain -name domain_m -clock {m_pclk}

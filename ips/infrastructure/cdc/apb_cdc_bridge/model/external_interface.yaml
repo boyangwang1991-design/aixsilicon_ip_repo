@@ -1,0 +1,119 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+external_interfaces:
+- id: HLD.IF.EXT.APB_CDC_BRIDGE.S_APB
+  name: s_apb
+  type: APB
+  direction: slave
+  description: 上游 APB3/APB4 Slave 接口（源时钟域）
+  ports:
+  - name: s_pclk
+    direction: input
+    width: '1'
+    clock_domain: SRC_CLK
+  - name: s_presetn
+    direction: input
+    width: '1'
+    clock_domain: SRC_RST
+  - name: s_psel
+    direction: input
+    width: '1'
+    clock_domain: SRC_CLK
+  - name: s_penable
+    direction: input
+    width: '1'
+    clock_domain: SRC_CLK
+  - name: s_paddr
+    direction: input
+    width: '"ADDR_WIDTH"'
+    clock_domain: SRC_CLK
+  - name: s_pwrite
+    direction: input
+    width: '1'
+    clock_domain: SRC_CLK
+  - name: s_pwdata
+    direction: input
+    width: '"DATA_WIDTH"'
+    clock_domain: SRC_CLK
+  - name: s_pstrb
+    direction: input
+    width: '"DATA_WIDTH/8"'
+    clock_domain: SRC_CLK
+  - name: s_pprot
+    direction: input
+    width: '3'
+    clock_domain: SRC_CLK
+  - name: s_prdata
+    direction: output
+    width: '"DATA_WIDTH"'
+    clock_domain: SRC_CLK
+  - name: s_pready
+    direction: output
+    width: '1'
+    clock_domain: SRC_CLK
+  - name: s_pslverr
+    direction: output
+    width: '1'
+    clock_domain: SRC_CLK
+  timing: {}
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.01.001
+  - LRS.INTF.APB_CDC_BRIDGE.01.002
+- id: HLD.IF.EXT.APB_CDC_BRIDGE.M_APB
+  name: m_apb
+  type: APB
+  direction: master
+  description: 下游 APB3/APB4 Master 接口（目的时钟域）
+  ports:
+  - name: m_pclk
+    direction: input
+    width: '1'
+    clock_domain: DST_CLK
+  - name: m_presetn
+    direction: input
+    width: '1'
+    clock_domain: DST_RST
+  - name: m_psel
+    direction: output
+    width: '1'
+    clock_domain: DST_CLK
+  - name: m_penable
+    direction: output
+    width: '1'
+    clock_domain: DST_CLK
+  - name: m_paddr
+    direction: output
+    width: '"ADDR_WIDTH"'
+    clock_domain: DST_CLK
+  - name: m_pwrite
+    direction: output
+    width: '1'
+    clock_domain: DST_CLK
+  - name: m_pwdata
+    direction: output
+    width: '"DATA_WIDTH"'
+    clock_domain: DST_CLK
+  - name: m_pstrb
+    direction: output
+    width: '"DATA_WIDTH/8"'
+    clock_domain: DST_CLK
+  - name: m_pprot
+    direction: output
+    width: '3'
+    clock_domain: DST_CLK
+  - name: m_prdata
+    direction: input
+    width: '"DATA_WIDTH"'
+    clock_domain: DST_CLK
+  - name: m_pready
+    direction: input
+    width: '1'
+    clock_domain: DST_CLK
+  - name: m_pslverr
+    direction: input
+    width: '1'
+    clock_domain: DST_CLK
+  timing: {}
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.02.001
+  - LRS.INTF.APB_CDC_BRIDGE.02.002

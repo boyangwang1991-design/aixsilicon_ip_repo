@@ -1,0 +1,31 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  target_id: LLD.MOD.APB_CDC_BRIDGE.DEST
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  target_id: LLD.MOD.APB_CDC_BRIDGE.FIFO_CDC
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  target_id: LLD.MOD.APB_CDC_BRIDGE.HS_CDC
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  target_id: LLD.MOD.APB_CDC_BRIDGE.SOURCE
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.SYNC
+  target_id: LLD.MOD.APB_CDC_BRIDGE.SYNC
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  target_id: LLD.MOD.APB_CDC_BRIDGE.TOP
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

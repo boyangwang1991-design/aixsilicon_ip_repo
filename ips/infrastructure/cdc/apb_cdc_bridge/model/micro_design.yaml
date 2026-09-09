@@ -1,0 +1,393 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+modules:
+- id: LLD.MOD.APB_CDC_BRIDGE.DEST
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  fsm:
+  - id: LLD.FSM.APB_CDC_BRIDGE.DEST_GENERATE
+    name: dest_generate_fsm
+    encoding_style: one_hot
+    reset_state: IDLE
+    states:
+    - name: IDLE
+    - name: SETUP
+    - name: ACCESS
+    - name: COMPLETE
+    transitions:
+    - from: IDLE
+      to: SETUP
+      condition: req_toggle 变化（同步后）
+    - from: SETUP
+      to: ACCESS
+      condition: 下一 m_pclk 周期
+    - from: ACCESS
+      to: COMPLETE
+      condition: m_pready=1
+    - from: COMPLETE
+      to: IDLE
+      condition: rsp_toggle 翻转（发起响应）
+    illegal_state_handling: return_to_reset
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: regenerate
+      operation: IDLE→SETUP→ACCESS→COMPLETE 重新生成 APB 事务
+    backpressure:
+      type: wait_state
+      mechanism: m_pready=0 保持输出稳定
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz'
+      throughput: 1 事务/往返
+      max_latency: SETUP 1 + ACCESS wait + COMPLETE 1
+      critical_path: request detect → APB FSM → m_psel/m_penable
+    area:
+      budget: 响应寄存器 1 组
+      optimization: 无多余 FSM 状态
+    power:
+      budget: idle 输出稳定
+      techniques: SETUP/ACCESS 输出仅在事务期翻转
+    tradeoffs:
+    - option: 独立 SETUP/ACCESS 状态 vs 合并
+      choice: 独立 SETUP/ACCESS（符合 APB 协议）
+      rationale: 满足 LRS.FUNC.02.001 下游 SETUP 先于 ACCESS
+  cdc:
+  - signal: rsp_toggle
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: two_flop
+  - signal: rsp_payload
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: bundled_data_handshake
+  reset:
+  - signal: m_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []
+- id: LLD.MOD.APB_CDC_BRIDGE.FIFO_CDC
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  fsm:
+  - id: LLD.FSM.APB_CDC_BRIDGE.FIFO_PUSH
+    name: fifo_push_fsm
+    encoding_style: auto
+    reset_state: IDLE
+    states:
+    - name: IDLE
+    - name: PUSH
+    transitions:
+    - from: IDLE
+      to: PUSH
+      condition: req_toggle 有效且 FIFO 非满
+    - from: PUSH
+      to: IDLE
+      condition: 写入完成
+    illegal_state_handling: return_to_reset
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: req_fifo
+      operation: request payload FIFO（REQ_DEPTH）
+    - stage: '2'
+      name: rsp_fifo
+      operation: response payload FIFO（RSP_DEPTH）
+    backpressure:
+      type: fifo_full
+      mechanism: 满则暂缓写入，保持单事务
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz'
+      throughput: 1 事务/往返（无人工 outstanding）
+      max_latency: 类似握手 + FIFO 深度
+      critical_path: 指针 → 灰度同步 → 比较
+    area:
+      budget: FIFO 存储（depth*payload_width）
+      optimization: REQ_DEPTH/RSP_DEPTH 1/2
+    power:
+      budget: 略高（FIFO 指针翻转）
+      techniques: idle 指针不变化
+    tradeoffs:
+    - option: FIFO vs 握手
+      choice: ASYNC_FIFO 仅按需（BUFFERED profile）
+      rationale: 满足 LRS.FUNC.04.001；不引入人工 outstanding（LRS.FUNC.04.001#4）
+  cdc:
+  - signal: wptr
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: gray_pointer
+  - signal: rptr
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: gray_pointer
+  - signal: req_payload
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: async_fifo
+  - signal: rsp_payload
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: async_fifo
+  reset:
+  - signal: s_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  - signal: m_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []
+- id: LLD.MOD.APB_CDC_BRIDGE.HS_CDC
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  fsm:
+  - id: LLD.FSM.APB_CDC_BRIDGE.HS_REQ
+    name: hs_req_handshake
+    encoding_style: auto
+    reset_state: IDLE
+    states:
+    - name: IDLE
+    - name: REQ_ISSUED
+    - name: WAIT_ACK
+    transitions:
+    - from: IDLE
+      to: REQ_ISSUED
+      condition: req_toggle 翻转
+    - from: REQ_ISSUED
+      to: WAIT_ACK
+      condition: req 到达目的域（toggle 同步）
+    - from: WAIT_ACK
+      to: IDLE
+      condition: req_ack_toggle 同步回源
+    illegal_state_handling: return_to_reset
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: req_latch
+      operation: request 寄存器（源域）
+    - stage: '2'
+      name: rsp_latch
+      operation: response 寄存器（目的域）
+    backpressure:
+      type: wait_state
+      mechanism: ack 前 payload 保持稳定
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz'
+      throughput: 1 事务/握手往返
+      max_latency: 约 2*SYNC_STAGES + 2 周期
+      critical_path: toggle → 2FF → FSM
+    area:
+      budget: 最小（1 req reg + 1 rsp reg + 4 toggle sync）
+      optimization: 最少同步器、最少 FIFO 指针逻辑
+    power:
+      budget: 最低
+      techniques: idle 无翻转；payload 按需更新
+    tradeoffs:
+    - option: 握手 vs FIFO
+      choice: HANDSHAKE 默认（LOW_AREA/BALANCED/HIGH_RELIABILITY）
+      rationale: 满足 LRS.FUNC.03.001 与 PPA 优先，面积显著低于 full async FIFO
+  cdc:
+  - signal: req_toggle
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: two_flop
+  - signal: req_ack_toggle
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: two_flop
+  - signal: rsp_toggle
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: two_flop
+  - signal: rsp_ack_toggle
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: two_flop
+  - signal: req_payload
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: bundled_data_handshake
+  - signal: rsp_payload
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: bundled_data_handshake
+  reset:
+  - signal: s_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  - signal: m_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []
+- id: LLD.MOD.APB_CDC_BRIDGE.SOURCE
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  fsm:
+  - id: LLD.FSM.APB_CDC_BRIDGE.SOURCE_CAPTURE
+    name: source_capture_fsm
+    encoding_style: one_hot
+    reset_state: IDLE
+    states:
+    - name: IDLE
+    - name: CAPTURE
+    - name: WAIT_REQ_ACK
+    - name: RETURN
+    transitions:
+    - from: IDLE
+      to: CAPTURE
+      condition: s_psel && s_penable
+    - from: CAPTURE
+      to: WAIT_REQ_ACK
+      condition: 捕获完成，req_toggle 翻转
+    - from: WAIT_REQ_ACK
+      to: RETURN
+      condition: rsp_toggle 变化（同步后）
+    - from: RETURN
+      to: IDLE
+      condition: s_pready=1 一个周期
+    illegal_state_handling: return_to_reset
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: capture
+      operation: 锁存 {PADDR,PWRITE,PWDATA,PSTRB,PPROT}
+    backpressure:
+      type: wait_state
+      mechanism: s_pready=0 until cross-bridge complete
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz'
+      throughput: 1 事务/往返
+      max_latency: 捕获 1 周期 + 等待跨域
+      critical_path: s_psel/s_penable → req_toggle → s_pready
+    area:
+      budget: payload 寄存器 1 组
+      optimization: 仅接受新事务时更新
+    power:
+      budget: idle 无翻转
+      techniques: payload 使能写；输出稳定
+    tradeoffs:
+    - option: 单请求寄存器 vs FIFO
+      choice: HANDSHAKE 单寄存器；FIFO 由 dest 侧提供
+      rationale: 最小面积，满足 LRS.LP.01.001
+  cdc:
+  - signal: req_toggle
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: two_flop
+  - signal: rsp_toggle
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: two_flop
+  - signal: req_payload
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: bundled_data_handshake
+  - signal: rsp_payload
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: bundled_data_handshake
+  reset:
+  - signal: s_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []
+- id: LLD.MOD.APB_CDC_BRIDGE.SYNC
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.SYNC
+  fsm: []
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: sync
+      operation: SYNC_STAGES 级 2FF 同步 toggle
+    backpressure:
+      type: none
+      mechanism: ''
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz'
+      throughput: n/a
+      max_latency: SYNC_STAGES 周期
+      critical_path: toggle → 2FF chain
+    area:
+      budget: SYNC_STAGES 个 FF/链
+      optimization: 仅同步 control，不逐 bit 同步 payload
+    power:
+      budget: idle 无翻转
+      techniques: toggle 不变化时 FF 无翻转
+    tradeoffs:
+    - option: SYNC_STAGES=2 vs 3
+      choice: 默认 2；高可靠 3
+      rationale: 满足 LRS.FUNC.03.002 MTBF/面积/延迟权衡
+  cdc:
+  - signal: req_toggle
+    source_domain: SRC_CLK
+    target_domain: DST_CLK
+    strategy: two_flop
+  - signal: rsp_toggle
+    source_domain: DST_CLK
+    target_domain: SRC_CLK
+    strategy: two_flop
+  reset:
+  - signal: m_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  - signal: s_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []
+- id: LLD.MOD.APB_CDC_BRIDGE.TOP
+  hld_ref: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  fsm: []
+  datapath:
+    pipeline_stages:
+    - stage: '1'
+      name: capture
+      operation: 上游 APB 事务锁存到 request 寄存器
+    - stage: '2'
+      name: cdc
+      operation: request/response 跨域（CDC_IMPL 选择实现）
+    - stage: '3'
+      name: regenerate
+      operation: 下游 APB 事务重新生成
+    backpressure:
+      type: wait_state
+      mechanism: s_pready=0 直到跨桥完成
+  params: []
+  ppa:
+    performance:
+      target_frequency: '>=800MHz (源/目的)'
+      throughput: 1 事务/跨桥往返
+      max_latency: 约 2*SYNC_STAGES + 2 周期 + 下游 ACCESS
+      critical_path: s_psel/s_penable → request capture → s_pready
+    area:
+      budget: HANDSHAKE 最小；FIFO 按深度线性增加
+      optimization: 仅例化所选 CDC_IMPL；未选实现无数据通路
+    power:
+      budget: idle 无翻转
+      techniques: payload 寄存器按需更新；输出稳定
+    tradeoffs:
+    - option: HANDSHAKE vs ASYNC_FIFO
+      choice: CDC_IMPL 参数二选一，不同时例化
+      rationale: 满足 LRS.FUNC.04.002 隔离需求，避免冗余面积
+  cdc: []
+  reset:
+  - signal: s_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  - signal: m_presetn
+    polarity: active_low
+    reset_value: '0'
+    reset_type: async
+  interrupt: []

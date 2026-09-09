@@ -1,0 +1,45 @@
+schema_version: '2.0'
+name: apb_cdc_bridge
+version: 1.0.0
+vendor: aixsilicon
+library: ip
+description: |
+  APB CDC Bridge（APB3/APB4 → APB3/APB4，双时钟域、单事务、协议保持型跨时钟桥）。
+  HANDSHAKE（默认）/ ASYNC_FIFO 双实现，SYNC_STAGES 可配置，支持完全异步/快慢时钟
+  组合、独立复位、CDC signoff 友好的 bundled-data handshake。
+license: Apache-2.0
+path: ips/infrastructure/cdc/apb_cdc_bridge
+domain: infrastructure
+subdomain: cdc
+type: ip
+priority: P0
+status: implemented
+maturity: experimental
+interfaces:
+  - apb4
+register_model: none
+quality:
+  G0: pass
+  G1: pass
+  G2: pass
+  G3: pass
+  G4: pass
+  G5: not_pass
+known_gaps:
+  - id: GAP-001
+    severity: Medium
+    title: "CDC 静态 signoff（SpyGlass CDC goal）未运行"
+    status: open
+  - id: GAP-002
+    severity: Medium
+    title: "综合（DC）/ formal（VC Formal）原始证据未补充"
+    status: open
+  - id: GAP-003
+    severity: Low
+    title: "全 test_matrix 扩展回归（wait/error/fifo/clk/rst/apb4）待运行"
+    status: open
+known_bugs: []
+dependencies: []
+fusesoc:
+  core: aixsilicon:ip:apb_cdc_bridge:1.0.0
+  cores: ips/infrastructure/cdc/apb_cdc_bridge

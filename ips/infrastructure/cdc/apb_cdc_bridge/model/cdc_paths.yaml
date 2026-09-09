@@ -1,0 +1,21 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+cdc_paths:
+- id: HLD.CDC.APB_CDC_BRIDGE.REQ_TOGGLE
+  name: req_toggle_cdc
+  source_clock: SRC_CLK
+  target_clock: DST_CLK
+  signal_type: single-bit control
+  sync_method: toggle + 2FF synchronizer
+  req_ref:
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+  - LRS.CONS.APB_CDC_BRIDGE.02.001
+- id: HLD.CDC.APB_CDC_BRIDGE.RSP_TOGGLE
+  name: rsp_toggle_cdc
+  source_clock: DST_CLK
+  target_clock: SRC_CLK
+  signal_type: single-bit control
+  sync_method: toggle + 2FF synchronizer
+  req_ref:
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+  - LRS.CONS.APB_CDC_BRIDGE.02.001

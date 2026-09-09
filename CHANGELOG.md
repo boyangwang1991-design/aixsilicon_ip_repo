@@ -4,6 +4,17 @@ All notable changes to the unified IP repository are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.0] - 2026-09-09
+
+### Removed
+
+- **移除 `axi2apb_bridge`（X2P AXI→APB 桥）**：物理目录
+  `ips/infrastructure/bridge/axi2apb_bridge` 已删除，并从 registry（
+  `scripts/data/ip_catalog_p0a.py` + `IMPLEMENTED_OVERRIDES`）移除登记；
+  `registry.yaml` 重新生成（368 条）、README 状态总览已同步刷新。
+  原 `status=implemented`（G0-G3 通过，G4 BUG-001 blocking）历史保留于
+  本文件 0.2.0 记录。
+
 ## [0.2.0] - 2026-09-07
 
 ### Added

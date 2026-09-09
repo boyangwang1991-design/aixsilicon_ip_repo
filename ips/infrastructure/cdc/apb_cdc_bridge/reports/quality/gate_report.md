@@ -1,0 +1,215 @@
+# Quality Gate Report - apb_cdc_bridge
+
+| Gate | Status | Required checks |
+|---|---|---|
+| G0 | pass | g0.required_lrs_docs, g0.requirements_model |
+| G1 | pass | g1.architecture_trace |
+| G2 | pass | g2.microdesign_trace |
+| G3 | pass | g3.rtl_and_core, g3.rtl_check_report, g3.csr_consistency |
+| G4 | pass | g4.verification_assets, g4.smoke_report |
+| G5 | fail | g5.release_inputs |
+
+<!-- QUALITY_META
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+generated_by: 15-regression-quality-review/evaluate_quality.py
+gates:
+- id: G0
+  status: pass
+  required_checks:
+  - g0.required_lrs_docs
+  - g0.requirements_model
+  checks:
+  - id: g0.required_lrs_docs
+    status: pass
+    detail: Required LRS documents exist
+    evidence:
+    - path: docs/lrs/01_interface.md
+      status: present
+      sha256: c6fc05c3f2cfd6bfef7e7690893ec5ec0d467a4a0819d399c0f47eb011c8d613
+    - path: docs/lrs/02_functional.md
+      status: present
+      sha256: 015ae261629eacf96e240df7f66903d2d08e3a314ecc427d4ced578df374f670
+    - path: docs/lrs/08_constraint.md
+      status: present
+      sha256: 8648c7a53dfb244182b68a568cf79226fab4c06756c666062ddf1cee1528430e
+  - id: g0.requirements_model
+    status: pass
+    detail: 30 requirements; duplicate IDs=0; must without verify_method=0
+    evidence:
+    - path: model/requirements.yaml
+      status: present
+      sha256: 9ec9fd2309b4224e2c5780aad43ebec9bed4286f67c5891a05f28cd0adbf303f
+  findings: []
+- id: G1
+  status: pass
+  required_checks:
+  - g1.architecture_trace
+  checks:
+  - id: g1.architecture_trace
+    status: pass
+    detail: modules=4; uncovered must requirements=0; invalid requirement refs=0;
+      invalid modules=0
+    evidence:
+    - path: model/architecture.yaml
+      status: present
+      sha256: 3b92a1d5285d37efe78421f4303ebfb92d06718aec9e5c98610db4166906ff81
+    - path: model/external_interface.yaml
+      status: present
+      sha256: a9666328bcd1ca3fe49b0d8cb74b74cec98bef4139df46cf7fc63274634ab66e
+    - path: model/internal_interface.yaml
+      status: present
+      sha256: a37fa92a3be45784fd57293fa64a830dfe4ed0f5ca2951c60873cd9ad5cefbb6
+    - path: model/clock_domains.yaml
+      status: present
+      sha256: 9e82a115da7e8a658f3edbba0b0ca1282c3d22ced2806e297293beb65ce939d0
+    - path: model/cdc_paths.yaml
+      status: present
+      sha256: 0226a9d5bb7bf2571a1e5f7574fcec734bbb969f13aafca31be7d47f15f65f68
+  findings: []
+- id: G2
+  status: pass
+  required_checks:
+  - g2.microdesign_trace
+  checks:
+  - id: g2.microdesign_trace
+    status: pass
+    detail: modules=6; missing HLD coverage=0; unknown HLD refs=0; invalid modules=0;
+      invalid FSMs=0
+    evidence:
+    - path: model/micro_design.yaml
+      status: present
+      sha256: 3eaa8a5fd6fdee4347239576efdb8e15567b9f462788bf0e4931617dfe59aaec
+  findings: []
+- id: G3
+  status: pass
+  required_checks:
+  - g3.rtl_and_core
+  - g3.rtl_check_report
+  - g3.csr_consistency
+  checks:
+  - id: g3.rtl_and_core
+    status: pass
+    detail: rtl=7; cores=1
+    evidence:
+    - path: rtl/apb_cdc_async_fifo.sv
+      status: present
+      sha256: 961a5ef1794d8586a5711e396fb2e5d1877fec77827c31d8f2e5bed370ec1293
+    - path: rtl/apb_cdc_bridge_pkg.sv
+      status: present
+      sha256: bd0f4c9ece6300d82726af7c2f92b23b025ca3a0509d456530d55b069639cd46
+    - path: rtl/apb_cdc_bridge_top.sv
+      status: present
+      sha256: 6eb622d4a5e8faba9c3d097080c080a4dc373934f27f154d1183e01207e94f6a
+    - path: rtl/apb_cdc_dest.sv
+      status: present
+      sha256: 508b74d3bcb324f0e19476ba9eaa9c8949a3ebca0f5ca04af2858e9e91182330
+    - path: rtl/apb_cdc_handshake.sv
+      status: present
+      sha256: 4edfd43424bda3aa201fc636a90e6853169fd7a346a0270cba1563c20e526762
+    - path: rtl/apb_cdc_source.sv
+      status: present
+      sha256: 2eaa1277fe8a2a7882b362704256de0cc8f7e6b5fe9fbb5167c92e0897bdd59a
+    - path: rtl/apb_cdc_sync_chain.sv
+      status: present
+      sha256: 1fdfd4a4a87841456198f3a8038524bb9c9b8ed3749248a077a00b2a15981aa4
+    - path: apb_cdc_bridge.core
+      status: present
+      sha256: aba303962fbef897b094fc25e169f07308140309b37a71de34f1881a21f05f0a
+  - id: g3.rtl_check_report
+    status: pass
+    detail: validated REPORT_META
+    evidence:
+    - path: reports/quality/rtl_check_summary.md
+      status: present
+      sha256: 9fd0de0ff70089c045364e3be992af40e695c34db416747dc8fb712b6c1c38d0
+  - id: g3.csr_consistency
+    status: pass
+    detail: no SystemRDL source; CSR provenance not required
+    evidence: []
+  findings:
+  - GAP-001
+- id: G4
+  status: pass
+  required_checks:
+  - g4.verification_assets
+  - g4.smoke_report
+  checks:
+  - id: g4.verification_assets
+    status: pass
+    detail: verification features=8; smoke testcase IDs=2; all-tier testcase IDs=10;
+      req_to_test links=36; no source gaps; testplans=6; testbenches=1
+    evidence:
+    - path: model/verification.yaml
+      status: present
+      sha256: 6a28a06a8c570695441aaf2a944be320bd66c9731cecca8081e706ea5e0cbc2b
+    - path: trace/req_to_test.yaml
+      status: present
+      sha256: f72b487c1dd1a6c637251f89b5eb6303107f09cc3df1b4aad594da582e24a625
+    - path: docs/verification/agent_plan.md
+      status: present
+      sha256: 2445a8f5bfc3e13431c98203041574f0b6ff56d4ec9eb37a71eae8f2a3d603a1
+    - path: docs/verification/checker_plan.md
+      status: present
+      sha256: e35bc1783d143dd288f721a14528c7b9ecf17e6b1253c82bd1b8848d5e2fc0ba
+    - path: docs/verification/coverage_plan.md
+      status: present
+      sha256: cda0f58ab6641690c6ef2b1946b79d86d88d4d1cdde233b66a5238402b521ae6
+    - path: docs/verification/feature_list.md
+      status: present
+      sha256: 581146f6b0ab4da15fa3a5a660d00523f4971c90bc4bab0a07a3b6e929bcf489
+    - path: docs/verification/test_matrix.md
+      status: present
+      sha256: f6b4bd275d3c4c2f18367d026820d12b9f6b7c0a1e075717fcda140b242427f2
+    - path: docs/verification/verification_plan.md
+      status: present
+      sha256: 46700e1b8093ba6ed1585bfed704faec41285e76fa868159f8c23f24b9fdd79f
+    - path: verification/tests/README.md
+      status: present
+      sha256: e2cc2985d0c71d5de447eb804b95f6a0c11f20058e791823f79687d049a0d6b6
+  - id: g4.smoke_report
+    status: pass
+    detail: validated REPORT_META; tests=10; failures=0; errors=0; skipped=0; missing
+      testcase IDs=0
+    evidence:
+    - path: reports/smoke/smoke_summary.md
+      status: present
+      sha256: fc5c0d311bf81789213c9440de404be897adde7c231606309f03a90c6dd43fe7
+    - path: reports/smoke/junit.xml
+      status: present
+      sha256: 63d2a6a5a5d4ed3ce154bbf418c2d7974557bca331f8bb67d009070bd404d648
+  findings: []
+- id: G5
+  status: fail
+  required_checks:
+  - g5.release_inputs
+  checks:
+  - id: g5.release_inputs
+    status: pass
+    detail: release inputs present=8/8; valid trace models=4/4
+    evidence:
+    - path: docs/integration
+      status: present
+    - path: docs/user_manual
+      status: present
+    - path: reports/quality/trace_matrix.md
+      status: present
+      sha256: 4035134466752b341c72a5deea16b092b2d7fe2e9df498e987e32a5a53c67694
+    - path: reports/quality/review_findings.yaml
+      status: present
+      sha256: d232f88c45423df8ba9b9edb8e8b94f7a35d8a0f81ecc554f075d10939509f80
+    - path: trace/req_to_hld.yaml
+      status: present
+      sha256: dc5b48ec66b185641862b80f441de833f5ffaa0af7a1ba9cccf6471bb62dfaf7
+    - path: trace/hld_to_lld.yaml
+      status: present
+      sha256: 24afef5395088f42536d1d195284d8c925c6309c963cbd5ca8186e4d695541a1
+    - path: trace/lld_to_rtl.yaml
+      status: present
+      sha256: a19b8c7c8a015c64d2f72e0f46ea679658918696081a7f22adce540cd95e8b48
+    - path: trace/req_to_test.yaml
+      status: present
+      sha256: f72b487c1dd1a6c637251f89b5eb6303107f09cc3df1b4aad594da582e24a625
+  findings:
+  - GAP-001
+END_QUALITY_META -->

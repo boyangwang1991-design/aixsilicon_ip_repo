@@ -1,0 +1,48 @@
+schema_version: "1.0"
+ip_name: apb_cdc_bridge
+findings:
+  - id: GAP-001
+    gate: G3
+    severity: major
+    category: cdc_signoff
+    title: CDC 静态 signoff（SpyGlass CDC goal）未闭环（license 边界）
+    detail: "LRS.CONS.02.001 要求 CDC 静态检查。已打通 SGDC 注入（read_sdc_data -top <top> <file>）
+      并跑通 cdc/cdc_setup_check + cdc_verify_struct + cdc_abstract：时钟/复位约束生效
+      （Unclocked 2→0，Errors 5→2，AtrDomain 自动推断时钟域）。剩余仅 2 类 Error 均证实为
+      license 边界：Domain_Missing01（消除需 Ac_abstract01 规则，被 cdc_adv_checker license 阻断）+
+      Ac_license01（cdc_verify_struct 的 17 条核心结构规则 crossing/sync/unsync/convergence/glitch
+      全部因 cdc_adv_checker license 缺失未运行）。"
+    status: open
+    resolution_plan:
+    - "配置 Synopsys license 含 cdc_adv_checker feature 后复跑（无 license 客观不可完整执行）"
+    - "scripts/apb_cdc_bridge.sgdc（create_clock/set_async_reset/domain）内容已验证正确且生效"
+    - "license 允许后跑 cdc_abstract → cdc_verify_struct 至 0 Error 即闭环"
+  - id: GAP-002
+    gate: G3
+    severity: major
+    category: synthesis
+    title: 综合（DC synth）原始证据未补充
+    detail: "已闭环：真实 28nm 综合完成（dc_shell V-2023.12-SP3, GF CMOS28LP HVT,
+      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db, compile_ultra @400MHz tt）；
+      WNS=0/TNS=0/Violating=0, Total Cell Area=1035.1um2, Power=113.66uW；
+      网表 build/synth/outputs/apb_cdc_bridge_top_synth.v + reports + SHA 证据齐全"
+    status: closed
+    resolution: "28nm PDK 综合执行并 pass（logs/dc_synth.log, 2026-09-07）"
+  - id: GAP-003
+    gate: G4
+    severity: minor
+    category: verification
+    title: 全 test_matrix 扩展回归待运行
+    detail: "已闭环：全 test_matrix 回归 9/9 UVM TC PASS（sanity/wait/pslverr/handshake/
+      fifo/clk/pause/rst/apb4），UVM_ERROR=0；clk_matrix 4/4 PASS；junit 覆盖全部 10 TC"
+    status: closed
+    resolution: "reports/smoke/junit.xml + smoke_summary.md（2026-09-07）"
+  - id: GAP-004
+    gate: G3
+    severity: note
+    category: tooling
+    title: evaluate_quality 查 fusesoc/*.core 与 artifact-contract 冲突
+    detail: "已修复：evaluate_quality.py evaluate_g3 的 core 查找兼容 IP 根与 fusesoc/
+      两种位置（GAP-004）；现 core=<ip>.core（IP 根）可被识别"
+    status: closed
+    resolution: "skill 源仓 evaluate_quality.py 修复 + 重新物化（2026-09-07）"

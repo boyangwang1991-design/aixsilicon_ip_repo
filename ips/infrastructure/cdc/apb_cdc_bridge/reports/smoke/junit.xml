@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="apb_cdc_bridge_smoke" tests="10" failures="0" errors="0">
+  <testsuite name="smoke" tests="2" failures="0" errors="0" timestamp="2026-09-07T12:18:00">
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.01.001.SAN" classname="apb_cdc_bridge" time="0.05"/>
+    <testcase name="TC.CONS.APB_CDC_BRIDGE.01.001.CFG" classname="apb_cdc_bridge" time="0.01"/>
+  </testsuite>
+  <testsuite name="regression" tests="8" failures="0" errors="0" timestamp="2026-09-07T12:18:00">
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.02.001.DOWN" classname="apb_cdc_bridge" time="0.08"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.02.002.ERR" classname="apb_cdc_bridge" time="0.06"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.03.001.HS" classname="apb_cdc_bridge" time="0.09"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.04.001.FIFO" classname="apb_cdc_bridge" time="0.07"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.05.001.CLK" classname="apb_cdc_bridge" time="0.07"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.05.002.PAUSE" classname="apb_cdc_bridge" time="0.10"/>
+    <testcase name="TC.FUNC.APB_CDC_BRIDGE.06.001.RST" classname="apb_cdc_bridge" time="0.11"/>
+    <testcase name="TC.INTF.APB_CDC_BRIDGE.01.001.APB4" classname="apb_cdc_bridge" time="0.03"/>
+  </testsuite>
+</testsuites>

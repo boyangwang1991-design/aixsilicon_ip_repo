@@ -1,0 +1,18 @@
+// APB CDC Bridge 顶层验证 filelist
+// 编译顺序：RTL package -> RTL 模块 -> APB VIP -> env -> tc -> th
+// RTL（先 package）
+../../rtl/apb_cdc_bridge_pkg.sv
+../../rtl/apb_cdc_sync_chain.sv
+../../rtl/apb_cdc_handshake.sv
+../../rtl/apb_cdc_async_fifo.sv
+../../rtl/apb_cdc_source.sv
+../../rtl/apb_cdc_dest.sv
+../../rtl/apb_cdc_bridge_top.sv
+// APB VIP（复用自 aixsilicon_vip_repo，编译顺序由 Makefile 处理）
+// env / tc / th
+env/apb_cdc_bridge_scoreboard.sv
+env/apb_cdc_bridge_env_pkg.sv
+env/apb_cdc_bridge_env.sv
+tc/tc_base.sv
+tc/tc_sanity.sv
+th/tb_top.sv

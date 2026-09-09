@@ -1,0 +1,136 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+complexity_level: simple
+modules:
+- id: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  name: apb_cdc_bridge_top
+  level: 1
+  parent_id: null
+  responsibility: 参数化接口、非法配置校验、集成约束、CDC 模式策略（ASYNC_SAFE 默认）
+  clock_domain: SRC_CLK
+  reset_domain: SRC_RST
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.CONS.APB_CDC_BRIDGE.01.001
+  - LRS.CONS.APB_CDC_BRIDGE.03.001
+  - LRS.FUNC.APB_CDC_BRIDGE.04.002
+  - LRS.FUNC.APB_CDC_BRIDGE.07.001
+  - LRS.INTF.APB_CDC_BRIDGE.03.001
+  - LRS.INTF.APB_CDC_BRIDGE.03.002
+  interfaces:
+  - name: cfg_params
+    type: input
+    width: N
+    description: 编译期参数（ADDR_WIDTH/DATA_WIDTH/CDC_IMPL/SYNC_STAGES 等）
+    source: external
+    target: null
+- id: HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  name: apb_cdc_source
+  level: 1
+  parent_id: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  responsibility: 上游 APB 事务捕获与锁存、请求握手发起、响应返回
+  clock_domain: SRC_CLK
+  reset_domain: SRC_RST
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.01.001
+  - LRS.INTF.APB_CDC_BRIDGE.01.002
+  - LRS.INTF.APB_CDC_BRIDGE.03.001
+  - LRS.INTF.APB_CDC_BRIDGE.03.002
+  - LRS.FUNC.APB_CDC_BRIDGE.01.001
+  - LRS.FUNC.APB_CDC_BRIDGE.01.002
+  - LRS.FUNC.APB_CDC_BRIDGE.01.003
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+  - LRS.FUNC.APB_CDC_BRIDGE.05.001
+  - LRS.FUNC.APB_CDC_BRIDGE.08.001
+  - LRS.FUNC.APB_CDC_BRIDGE.09.001
+  - LRS.LP.APB_CDC_BRIDGE.01.001
+  - LRS.LP.APB_CDC_BRIDGE.02.001
+  - LRS.PERF.APB_CDC_BRIDGE.01.001
+  - LRS.CONS.APB_CDC_BRIDGE.02.001
+  - LRS.DFX.APB_CDC_BRIDGE.01.001
+  interfaces:
+  - name: s_apb
+    type: input
+    width: N
+    description: 上游 APB Slave 接口
+    source: external
+    target: null
+  - name: req_channel
+    type: output
+    width: N
+    description: Request bundle + req_toggle 输出（跨域）
+    source: null
+    target: apb_cdc_dest
+- id: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  name: apb_cdc_dest
+  level: 1
+  parent_id: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  responsibility: 请求检测、下游 APB 事务重新生成、响应锁存与返回握手
+  clock_domain: DST_CLK
+  reset_domain: DST_RST
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.INTF.APB_CDC_BRIDGE.02.001
+  - LRS.INTF.APB_CDC_BRIDGE.02.002
+  - LRS.INTF.APB_CDC_BRIDGE.03.001
+  - LRS.INTF.APB_CDC_BRIDGE.03.002
+  - LRS.FUNC.APB_CDC_BRIDGE.02.001
+  - LRS.FUNC.APB_CDC_BRIDGE.02.002
+  - LRS.FUNC.APB_CDC_BRIDGE.02.003
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+  - LRS.FUNC.APB_CDC_BRIDGE.04.001
+  - LRS.FUNC.APB_CDC_BRIDGE.04.002
+  - LRS.FUNC.APB_CDC_BRIDGE.06.001
+  - LRS.FUNC.APB_CDC_BRIDGE.08.001
+  - LRS.FUNC.APB_CDC_BRIDGE.09.001
+  - LRS.LP.APB_CDC_BRIDGE.02.001
+  - LRS.PERF.APB_CDC_BRIDGE.01.001
+  - LRS.CONS.APB_CDC_BRIDGE.02.001
+  - LRS.DFX.APB_CDC_BRIDGE.01.001
+  interfaces:
+  - name: m_apb
+    type: output
+    width: N
+    description: 下游 APB Master 接口
+    source: null
+    target: external
+  - name: req_channel
+    type: input
+    width: N
+    description: Request bundle + req_toggle 输入（跨域）
+    source: apb_cdc_source
+    target: null
+  - name: rsp_channel
+    type: output
+    width: N
+    description: Response bundle + rsp_toggle 输出（跨域）
+    source: null
+    target: apb_cdc_source
+- id: HLD.MOD.L1.APB_CDC_BRIDGE.SYNC
+  name: cdc_sync_chain
+  level: 1
+  parent_id: HLD.MOD.L1.APB_CDC_BRIDGE.TOP
+  responsibility: 提供 SYNC_STAGES 级 2FF synchronizer，同步 req/rsp toggle 控制
+  clock_domain: DST_CLK
+  reset_domain: DST_RST
+  power_domain: PD_ALWAYS_ON
+  req_ref:
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+  - LRS.FUNC.APB_CDC_BRIDGE.03.002
+  - LRS.PERF.APB_CDC_BRIDGE.01.002
+  - LRS.PERF.APB_CDC_BRIDGE.02.001
+  - LRS.CONS.APB_CDC_BRIDGE.02.001
+  interfaces:
+  - name: sync_in
+    type: input
+    width: '1'
+    description: 异步 toggle 输入
+    source: apb_cdc_source
+    target: null
+  - name: sync_out
+    type: output
+    width: '1'
+    description: 同步后 toggle 输出
+    source: null
+    target: apb_cdc_dest

@@ -1,0 +1,47 @@
+schema_version: '1.0'
+ip_name: apb_cdc_bridge
+internal_interfaces:
+- id: HLD.IF.INT.APB_CDC_BRIDGE.REQ_CH
+  name: req_channel
+  type: bundled-data handshake
+  source_module: HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  target_module: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  description: 源域到目的域的 Request payload + toggle 握手通道
+  signals:
+  - name: req_payload
+    width: PACKED_BUNDLE
+    direction: from_source
+    clock_domain: SRC_CLK
+  - name: req_toggle
+    width: '1'
+    direction: from_source
+    clock_domain: SRC_CLK
+  - name: req_ack_toggle
+    width: '1'
+    direction: to_source
+    clock_domain: DST_CLK
+  timing: {}
+  req_ref:
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001
+- id: HLD.IF.INT.APB_CDC_BRIDGE.RSP_CH
+  name: rsp_channel
+  type: bundled-data handshake
+  source_module: HLD.MOD.L1.APB_CDC_BRIDGE.DEST
+  target_module: HLD.MOD.L1.APB_CDC_BRIDGE.SOURCE
+  description: 目的域到源域的 Response payload + toggle 握手通道
+  signals:
+  - name: rsp_payload
+    width: PACKED_BUNDLE
+    direction: from_source
+    clock_domain: DST_CLK
+  - name: rsp_toggle
+    width: '1'
+    direction: from_source
+    clock_domain: DST_CLK
+  - name: rsp_ack_toggle
+    width: '1'
+    direction: to_source
+    clock_domain: SRC_CLK
+  timing: {}
+  req_ref:
+  - LRS.FUNC.APB_CDC_BRIDGE.03.001

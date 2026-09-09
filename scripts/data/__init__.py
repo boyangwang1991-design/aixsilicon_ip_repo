@@ -37,12 +37,6 @@ IMPLEMENTED_OVERRIDES = {
         "core": "boyangwang1991-design:ip:uart:0.1.0",
         "description": "通用 UART（APB 接口，含 CSR/RX/TX，G0-G5 曾通过；工作区目录未落盘，待恢复）",
     },
-    "axi2apb_bridge": {
-        "vendor": "aixsilicon", "version": "1.0.0", "status": "implemented",
-        "maturity": "experimental", "path": "ips/infrastructure/bridge/axi2apb_bridge",
-        "core": "aixsilicon:ip:axi2apb_bridge:1.0.0",
-        "description": "AXI→APB 桥（X2P，AXI4/AXI4-Lite → APB3/APB4；G0-G3 通过，G4 BUG-001 blocking）",
-    },
     "hac_aes": {
         "vendor": "aixsilicon", "version": "0.1.0", "status": "planned",
         "maturity": "experimental", "path": "ips/aixsilicon/hac_aes/0.1.0",

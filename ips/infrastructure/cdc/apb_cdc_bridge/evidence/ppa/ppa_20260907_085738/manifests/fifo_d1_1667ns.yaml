@@ -1,0 +1,43 @@
+schema_version: ppa-run-manifest/0.1
+run_id: ppa_20260907_085738
+point: fifo_d1_1667ns
+ip: apb_cdc_bridge
+params:
+  CDC_IMPL: 1
+  REQ_DEPTH: 1
+  RSP_DEPTH: 1
+  clock_ns: 1.667
+  freq_mhz: 600
+tool:
+  name: dc_shell
+  version: V-2023.12-SP3
+  compile: compile_ultra
+library_context:
+  pdk_status: PDK_READY
+  pdk_yaml: model/pdk.yaml
+  target_library: sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  operating_conditions: tt_nominal_max_1p00v_25c
+  clock_uncertainty_ns: 0.1
+  io_delay_ns:
+    in_max: 0.5
+    in_min: 0.2
+    out_max: 0.5
+    out_min: 0.2
+  load_pf: 0.01
+  drive_cell: BUFH_X4M_A9TH
+results:
+  total_area_um2: 1071.485962
+  dyn_power_uW: 777.4896
+  wns_ns: 0.0
+  tns_ns: 0.0
+  violating_paths: 0
+  slack_ns: 0.24
+evidence:
+  area_rpt: build/synth/fifo_d1_1667ns/reports/area.rpt
+  timing_rpt: build/synth/fifo_d1_1667ns/reports/timing.rpt
+  power_rpt: build/synth/fifo_d1_1667ns/reports/power.rpt
+  qor_rpt: build/synth/fifo_d1_1667ns/reports/qor.rpt
+  netlist: build/synth/fifo_d1_1667ns/outputs/apb_cdc_bridge_top_synth.v
+repro:
+  cmd: dc_shell -f scripts/synth.tcl -x 'set CLK_PERIOD_NS 1.667; set CDC_IMPL 1;
+    set REQ_DEPTH 1; set RSP_DEPTH 1; set RUN_TAG fifo_d1_1667ns'

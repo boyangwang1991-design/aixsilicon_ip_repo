@@ -1,0 +1,138 @@
+CAPI=2:
+name: aixsilicon:ip:apb_cdc_bridge:1.0.0
+description: "apb_cdc_bridge APB-to-APB Clock Domain Crossing Bridge (APB3/APB4, HANDSHAKE/ASYNC_FIFO, dual-clock)"
+
+parameters:
+  generation_profile:
+    datatype: str
+    paramtype: vlogparam
+    default: "sv"
+  CDC_IMPL:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  SYNC_STAGES:
+    datatype: int
+    paramtype: vlogparam
+    default: 2
+  REQ_DEPTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+  RSP_DEPTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+  APB_PROFILE:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+
+filesets:
+  rtl_handwritten:
+    files:
+      - rtl/apb_cdc_bridge_pkg.sv
+      - rtl/apb_cdc_sync_chain.sv
+      - rtl/apb_cdc_handshake.sv
+      - rtl/apb_cdc_async_fifo.sv
+      - rtl/apb_cdc_source.sv
+      - rtl/apb_cdc_dest.sv
+      - rtl/apb_cdc_bridge_top.sv
+    file_type: systemVerilogSource
+
+  rtl_includes:
+    files:
+      - rtl/include/apb_cdc_bridge_defs.svh
+    file_type: systemVerilogSource
+
+targets:
+  lint:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    toplevel: apb_cdc_bridge_top
+    tools:
+      vcs:
+        mode: lint
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -lint=all
+          - -q
+
+  elab:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    toplevel: apb_cdc_bridge_top
+    tools:
+      vcs:
+        mode: elab
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -q
+
+  sim:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    tools:
+      vcs:
+        mode: sim
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -ntb_opts uvm-1.2
+          - -debug_access+all
+          - -kdb
+          - +vpi
+          - -l sim.log
+        top_module: tb_top
+
+  smoke:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    tools:
+      vcs:
+        mode: sim
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -ntb_opts uvm-1.2
+          - -debug_access+all
+          - -kdb
+          - +vpi
+          - -l smoke.log
+        top_module: tb_top
+
+  synth:
+    default_tool: dc
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    toplevel: apb_cdc_bridge_top
+    tools:
+      dc:
+        script: |
+
+  formal:
+    default_tool: vc_formal
+    filesets:
+      - rtl_handwritten
+      - rtl_includes
+    tools:
+      vc_formal:
+        task: prove
+        depth: 10
+        flags:
+          - -sverilog
