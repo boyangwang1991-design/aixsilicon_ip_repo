@@ -1,0 +1,908 @@
+schema_version: '2.0'
+ip_name: apb_demux
+delivery_model: parameterized
+register_model: none
+ppa_signoff: none
+document_version: 1.0.0
+status: draft
+requirement_baseline: LRS-APB_DEMUX-V100
+requirements:
+- id: LRS.CFG.APB_DEMUX.01.001
+  category: CFG
+  feature: num_slaves
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的下游端口数量 `NUM_SLAVES`，默认值为 4，用于确定下游 APB Master-facing interface 的数量。
+  acceptance_criteria:
+  - '`NUM_SLAVES = 1/2/4/8/16` 均可合法实例化；'
+  - 下游端口数量与参数一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.01.002
+  category: CFG
+  feature: addr_width
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的地址宽度 `ADDR_WIDTH`，默认值为 32，用于确定 `PADDR`、 `BASE_ADDR`、`ADDR_MASK` 的位宽。
+  acceptance_criteria:
+  - '`ADDR_WIDTH` 可配置且影响所有地址相关信号位宽。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.01.003
+  category: CFG
+  feature: data_width
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的数据宽度 `DATA_WIDTH`，默认值为 32，用于确定 `PWDATA`/ `PRDATA` 位宽。
+  acceptance_criteria:
+  - '`DATA_WIDTH` 可配置且影响 `PWDATA`/`PRDATA` 位宽。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.02.001
+  category: CFG
+  feature: base_addr
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: IP 应提供可参数化的下游端口基地址数组 `BASE_ADDR[NUM_SLAVES]`，每个下游端口 拥有独立的基地址。
+  acceptance_criteria:
+  - 每个下游端口可配置独立基地址；
+  - 基地址数组长度与 `NUM_SLAVES` 一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.02.002
+  category: CFG
+  feature: addr_mask
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: IP 应提供可参数化的地址掩码数组 `ADDR_MASK[NUM_SLAVES]`，用于定义每个下游 端口的地址窗口。
+  acceptance_criteria:
+  - 每个下游端口可配置独立地址掩码；
+  - 地址掩码数组长度与 `NUM_SLAVES` 一致；
+  - 推荐内部转换为 `BASE_ADDR + ADDR_MASK` 形式进行地址译码。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.03.001
+  category: CFG
+  feature: addr_remap_enable
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的地址重映射使能 `ADDR_REMAP_ENABLE`，默认值为 0。开启时， 下游 `M_PADDR[i]` 为 `PADDR - BASE_ADDR[i]`（静态 offset）；关闭时
+    `M_PADDR[i] = PADDR`。
+  acceptance_criteria:
+  - '`ADDR_REMAP_ENABLE = 0` 时 `M_PADDR[i] = PADDR`；'
+  - '`ADDR_REMAP_ENABLE = 1` 时 `M_PADDR[i] = PADDR - BASE_ADDR[i]`；'
+  - 地址重映射为静态配置，V1.0 不支持 runtime programmable remap。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.03.002
+  category: CFG
+  feature: timeout_enable
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的超时使能 `TIMEOUT_ENABLE`，默认值为 0。当 `TIMEOUT_ENABLE=1` 且下游 `PREADY` 持续为 0 达到 `TIMEOUT_CYCLES` 周期时，IP
+    应终止 transaction 并向 upstream 返回 `PREADY=1, PSLVERR=1`。
+  acceptance_criteria:
+  - '`TIMEOUT_ENABLE=0` 时不引入有效 timeout counter 逻辑；'
+  - '`TIMEOUT_ENABLE=1` 且 `TIMEOUT_CYCLES>0` 时超时行为正确。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.03.003
+  category: CFG
+  feature: timeout_cycles
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的超时周期 `TIMEOUT_CYCLES`。当 `TIMEOUT_ENABLE=1` 时， `TIMEOUT_CYCLES` 必须大于 0。
+  acceptance_criteria:
+  - '`TIMEOUT_ENABLE=1` 时 `TIMEOUT_CYCLES > 0` 校验通过；'
+  - '`TIMEOUT_CYCLES=0` 且 `TIMEOUT_ENABLE=1` 时配置校验应报错。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.03.004
+  category: CFG
+  feature: output_register
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应提供可参数化的响应寄存器使能 `OUTPUT_REGISTER`，默认值为 0。开启时可通过 插入 APB wait-state 增加响应延迟以优化 timing。
+  acceptance_criteria:
+  - '`OUTPUT_REGISTER=0` 时采用低延迟组合响应路径；'
+  - '`OUTPUT_REGISTER=1` 时响应延迟增加但不得违反 APB protocol。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_DEMUX.04.001
+  category: CFG
+  feature: apb_profile
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应支持 APB3 与 APB4 两种协议 profile。APB4 时额外提供 `PSTRB`、`PPROT` 信号通路；APB3 时相关逻辑应裁剪。
+  acceptance_criteria:
+  - APB4 profile 下 `PSTRB`/`PPROT` 正确透传；
+  - APB3 profile 下无 `PSTRB`/`PPROT` 数据通路残留。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.01.001
+  category: INTF
+  feature: upstream_apb_interface
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 对上游应表现为 APB Slave，提供信号：`PCLK`、`PRESETn`、`PADDR`、`PSEL`、 `PENABLE`、`PWRITE`、`PWDATA`、`PRDATA`、`PREADY`、`PSLVERR`。
+  acceptance_criteria:
+  - 上游接口信号完整且符合 APB 协议时序。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.01.002
+  category: INTF
+  feature: upstream_apb_interface
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: APB4 profile 下，上游接口应额外提供 `PSTRB`、`PPROT` 信号。APB3 profile 下 这些信号应裁剪。
+  acceptance_criteria:
+  - APB4 配置下 `PSTRB`/`PPROT` 信号存在并正确参与路由。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.02.001
+  category: INTF
+  feature: downstream_apb_interface
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 对每个下游端口应表现为 APB Master，提供信号：`M_PADDR[i]`、`M_PSEL[i]`、 `M_PENABLE[i]`、`M_PWRITE[i]`、`M_PWDATA[i]`、`M_PRDATA[i]`、`M_PREADY[i]`、
+    `M_PSLVERR[i]`，其中 `i = 0 ... NUM_SLAVES-1`。
+  acceptance_criteria:
+  - 每个下游端口信号完整且符合 APB Master 时序；
+  - 下游端口数量等于 `NUM_SLAVES`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.02.002
+  category: INTF
+  feature: downstream_apb_interface
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: APB4 profile 下，每个下游接口应额外提供 `M_PSTRB[i]`、`M_PPROT[i]` 信号。
+  acceptance_criteria:
+  - APB4 配置下 `M_PSTRB[i]`/`M_PPROT[i]` 存在并与上游捕获的 payload 一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.03.001
+  category: INTF
+  feature: clock_reset
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  description: IP 应使用单一 `PCLK` 时钟域，上游与所有下游端口共享同一时钟。本 IP 不提供 跨时钟域访问能力。
+  acceptance_criteria:
+  - 所有端口共享单一 `PCLK`；
+  - 跨时钟访问应通过独立 APB CDC Bridge 完成（out of scope）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_DEMUX.03.002
+  category: INTF
+  feature: clock_reset
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应使用 `PRESETn` 作为复位输入，复位期间所有下游 `M_PSEL[i]` 应保持无效。
+  acceptance_criteria:
+  - Reset 期间无有效下游 transaction 产生。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.01.001
+  category: FUNC
+  feature: address_decode
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: 每个下游 APB port 应具有独立的地址映射区域，由 `BASE_ADDR[i]` 与 `ADDR_MASK[i]` 定义。
+  acceptance_criteria:
+  - 每个下游端口拥有独立非重叠的地址窗口。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.01.002
+  category: FUNC
+  feature: address_decode
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - formal
+  description: 地址译码应基于当前 APB transaction 的 `PADDR`，命中条件为 `hit[i] = (PADDR & ADDR_MASK[i]) == (BASE_ADDR[i] & ADDR_MASK[i])`。
+  acceptance_criteria:
+  - 合法地址访问命中唯一正确的下游端口。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.01.003
+  category: FUNC
+  feature: address_decode
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - formal
+  description: 任意合法地址最多只能命中一个下游 port，即 `$onehot0(hit)` 必须成立。地址 overlap 应优先通过静态配置检查发现。
+  acceptance_criteria:
+  - 任意地址访问 `hit` 向量满足 onehot0；
+  - 地址重叠配置被配置校验拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.01.004
+  category: FUNC
+  feature: address_decode
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 地址区域应满足 `size = power-of-two` 且 `base aligned to size`，以简化 decoder 逻辑。
+  acceptance_criteria:
+  - 配置校验检查 power-of-two 窗口与基地址对齐。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.01.005
+  category: FUNC
+  feature: address_decode
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  description: 对于合法配置，地址译码应尽量减少无意义地址位比较。综合结果不应人为引入完整 地址加减比较路径。
+  acceptance_criteria:
+  - 综合报告显示 decoder 逻辑深度合理，无非必要全位宽比较。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.02.001
+  category: FUNC
+  feature: request_routing
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: 以下请求信号允许广播至所有下游 ports：`PADDR`、`PENABLE`、`PWRITE`、`PWDATA`、 `PSTRB`、`PPROT`。
+  acceptance_criteria:
+  - 广播信号对所有下游端口一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.02.002
+  category: FUNC
+  feature: request_routing
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - formal
+  description: 只有地址命中的下游 port 可以接收到有效 `PSEL`，即 `M_PSEL[i] = upstream_PSEL & hit[i]`。未选中下游 port 的 `M_PSEL = 0`。
+  acceptance_criteria:
+  - 命中端口 `M_PSEL` 有效，未命中端口 `M_PSEL` 无效；
+  - '`M_PSEL` 满足 onehot0 约束。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.02.003
+  category: FUNC
+  feature: request_routing
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: '`M_PENABLE` 必须符合 APB protocol timing，不得产生 `PENABLE=1, PSEL=0` 的非法 下游 transaction。实现可通过 `M_PENABLE[i] = upstream_PENABLE`
+    配合 `M_PSEL[i]` 使用。'
+  acceptance_criteria:
+  - 任意时刻不出现 `M_PENABLE=1` 且 `M_PSEL=0` 的组合；
+  - APB 断言检查通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.03.001
+  category: FUNC
+  feature: transaction_behavior
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 不得改变标准 APB transaction semantics。APB transaction 应包含 SETUP PHASE （`PSEL=1, PENABLE=0`）与 ACCESS PHASE（`PSEL=1,
+    PENABLE=1`）。
+  acceptance_criteria:
+  - 上游与下游均观察标准 SETUP/ACCESS 两相时序。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.03.002
+  category: FUNC
+  feature: transaction_behavior
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: 当下游 `PREADY=0` 时，IP 必须保持 transaction 处于 ACCESS phase；wait-state 期间下游 selection 与返回 response source 不得改变。
+  acceptance_criteria:
+  - '`PREADY=0` 时 `PSEL`/`PENABLE` 保持稳定；'
+  - wait-state 期间被选端口不变。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.04.001
+  category: FUNC
+  feature: response_routing
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: 被选中下游 port 的 `PRDATA`、`PREADY`、`PSLVERR` 必须返回至 upstream。未选中 下游 port 的 response 不得影响 upstream response。
+  acceptance_criteria:
+  - 读取访问返回正确数据；
+  - 未选中端口响应被屏蔽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.04.002
+  category: FUNC
+  feature: response_routing
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: 当下游返回 `PSLVERR=1` 时，IP 必须向 upstream 透传 error response，不得屏蔽 下游 APB error。
+  acceptance_criteria:
+  - 下游 `PSLVERR=1` 时上游观察到 `PSLVERR=1`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.05.001
+  category: FUNC
+  feature: decode_error
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - formal
+  description: 若 `PSEL=1` 但当前 `PADDR` 未匹配任何下游 port，必须产生 Decode Error。
+  acceptance_criteria:
+  - 未命中地址访问产生 Decode Error 响应。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.05.002
+  category: FUNC
+  feature: decode_error
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: Decode Miss 推荐响应为 `PREADY=1, PSLVERR=1, PRDATA=0`，即立即结束 transaction。
+  acceptance_criteria:
+  - Decode Miss 时上游观察到 `PREADY=1, PSLVERR=1, PRDATA=0`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.05.003
+  category: FUNC
+  feature: decode_error
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: Decode Miss 不允许无限等待，禁止 `PREADY=0 forever`，否则可能导致整个 APB fabric hang。
+  acceptance_criteria:
+  - Decode Miss 时 transaction 在有限周期内完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.06.001
+  category: FUNC
+  feature: address_remap
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: '`ADDR_REMAP_ENABLE=0` 时，`M_PADDR[i] = PADDR`（透传）。'
+  acceptance_criteria:
+  - 关闭 remap 时下游地址与上游一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.06.002
+  category: FUNC
+  feature: address_remap
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: '`ADDR_REMAP_ENABLE=1` 时，`M_PADDR[i] = PADDR - BASE_ADDR[i]`，使下游看到 local offset 地址。例如上游 `0x4000_0120` → 下游
+    local `0x0000_0120`。'
+  acceptance_criteria:
+  - 开启 remap 时下游地址为 `PADDR - BASE_ADDR[i]`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.07.001
+  category: FUNC
+  feature: timeout
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: '`TIMEOUT_ENABLE=1` 且下游 `PREADY` 持续为 0 达到 `TIMEOUT_CYCLES` 时，IP 可以 终止 transaction 并向 upstream 返回 `PREADY=1,
+    PSLVERR=1`。'
+  acceptance_criteria:
+  - 超时后 transaction 以 error 响应结束。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.07.002
+  category: FUNC
+  feature: timeout
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: Timeout counter 仅在有效 ACCESS phase 且 `PREADY=0` 时计数。
+  acceptance_criteria:
+  - 非 ACCESS 或 `PREADY=1` 时计数不递增。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.08.001
+  category: FUNC
+  feature: response_register
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: '`OUTPUT_REGISTER=0`（默认）时，应采用低延迟组合 response path。'
+  acceptance_criteria:
+  - 默认配置下响应延迟最低。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_DEMUX.08.002
+  category: FUNC
+  feature: response_register
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: '`OUTPUT_REGISTER=1` 时，可通过插入 APB wait-state 增加一个或多个周期响应延迟， 但不得违反 APB protocol。该特性主要用于大 `NUM_SLAVES`、高频设计与 response
+    mux timing optimization。'
+  acceptance_criteria:
+  - 开启后响应延迟增加，但 APB 协议断言通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_DEMUX.01.001
+  category: PERF
+  feature: latency
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - review
+  description: 默认配置（`OUTPUT_REGISTER=0`）下，IP 应采用组合响应路径，transaction 延迟应 仅由下游端口的 wait-state 决定，IP 自身不应引入额外时钟周期。
+  acceptance_criteria:
+  - 下游 `PREADY=1`（immediate）时，事务在 SETUP 后下一周期完成；
+  - IP 自身延迟为 0 个额外时钟周期。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_DEMUX.02.001
+  category: PERF
+  feature: ppa
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: IP 应以轻量级 peripheral interconnect 为设计目标，重点优化：地址 decoder 的 comparator 位宽与逻辑深度、response mux 的树平衡性（避免明显不平衡 mux
+    tree）、 以及大 `NUM_SLAVES` 下请求信号的 fanout。
+  acceptance_criteria:
+  - 综合/面积报告显示 decoder 与 mux 结构平衡；
+  - RTL 不人为增加无必要 buffer/register。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_DEMUX.03.001
+  category: PERF
+  feature: scale
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: V1.0 至少应验证 `NUM_SLAVES = 1/2/4/8/16`，建议支持 `NUM_SLAVES <= 32`。RTL 本身不强制设定绝对最大值。
+  acceptance_criteria:
+  - '`NUM_SLAVES` 在 1~16 范围内功能正确；'
+  - 大量 peripherals（32+）建议升级为 Hierarchical APB Interconnect。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_DEMUX.01.001
+  category: RESET
+  feature: clock
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  description: IP 应使用单一 `PCLK` 时钟域，所有内部逻辑（地址译码、路由、响应 mux、可选 timeout/response register）均在同一时钟域内工作。
+  acceptance_criteria:
+  - 无跨时钟域逻辑，无 CDC 路径。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_DEMUX.02.001
+  category: RESET
+  feature: reset
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: IP 应使用 `PRESETn`（低有效）作为复位输入。
+  acceptance_criteria:
+  - 复位释放后 IP 进入确定状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_DEMUX.02.002
+  category: RESET
+  feature: reset
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  - assertion
+  description: Reset 期间不得产生有效 downstream transaction，所有 `M_PSEL[i]` 应保持无效。
+  acceptance_criteria:
+  - 复位期间所有下游 `M_PSEL[i]=0`；
+  - 复位期间无 `M_PENABLE=1` 与 `M_PSEL=1` 组合。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_DEMUX.02.003
+  category: RESET
+  feature: reset
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - simulation
+  description: 若实现 timeout counter、response register 或 selection register，这些内部状态 必须进入确定的 reset state。
+  acceptance_criteria:
+  - 复位后 timeout counter 清零、response register 无效、selection 无效。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_DEMUX.01.001
+  category: DFX
+  feature: protocol_assertions
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - formal
+  - assertion
+  description: IP 应提供协议断言检查 `$onehot0(M_PSEL)`，确保任意时刻下游 `M_PSEL` 为 one-hot 或全零。
+  acceptance_criteria:
+  - '`$onehot0(M_PSEL)` 断言在所有配置下成立。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_DEMUX.01.002
+  category: DFX
+  feature: protocol_assertions
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - formal
+  - assertion
+  description: IP 应提供断言检查：ACCESS phase 且 `PREADY=0` 期间，`PADDR`、`PWRITE`、 `PWDATA`、`PSTRB`、`PPROT` 以及 selected slave 必须保持稳定。
+  acceptance_criteria:
+  - Wait-state 期间相关信号稳定性断言成立。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_DEMUX.01.003
+  category: DFX
+  feature: protocol_assertions
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - formal
+  - assertion
+  description: IP 应提供断言检查：命中一个地址区域时只能选择对应下游 port；未命中地址时无 下游 `PSEL` 且必须产生合法 error response。
+  acceptance_criteria:
+  - Decode 正确性断言在所有配置下成立。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.001
+  category: CONS
+  feature: config_validation
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 配置校验脚本应检查 `NUM_SLAVES > 0`。
+  acceptance_criteria:
+  - '`NUM_SLAVES <= 0` 时配置校验报错。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.002
+  category: CONS
+  feature: config_validation
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 配置校验脚本应检查所有地址（`BASE_ADDR`、`ADDR_MASK`）在 `ADDR_WIDTH` 表示 范围以内。
+  acceptance_criteria:
+  - 超出地址范围时配置校验报错。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.003
+  category: CONS
+  feature: config_validation
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 配置校验脚本应检查地址区域 overlap：任何两个 slave address windows 不允许 重叠。
+  acceptance_criteria:
+  - 地址重叠时配置校验报错。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.004
+  category: CONS
+  feature: config_validation
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 采用 power-of-two window 时，配置校验脚本应检查 `SIZE = 2^N` 且 `BASE_ADDR % SIZE == 0`。
+  acceptance_criteria:
+  - 非对齐基地址配置校验报错。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.005
+  category: CONS
+  feature: config_validation
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 配置校验脚本应检查 `BASE_ADDR`、`ADDR_MASK` 配置数组长度与 `NUM_SLAVES` 一致。
+  acceptance_criteria:
+  - 数组长度不一致时配置校验报错。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.01.006
+  category: CONS
+  feature: config_validation
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  - static
+  description: 配置校验脚本应检查 `TIMEOUT_CYCLES` 合法：`TIMEOUT_ENABLE=1` 时 `TIMEOUT_CYCLES > 0`。
+  acceptance_criteria:
+  - '`TIMEOUT_ENABLE=1` 且 `TIMEOUT_CYCLES=0` 时配置校验报错。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.02.001
+  category: CONS
+  feature: implementation_constraint
+  priority: P1
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  description: 本 IP 推荐保持实现简单，主 RTL 保持为参数化 SystemVerilog 模块 （`apb_demux_top.sv`），不建议进一步拆分大量小型 RTL module。
+  acceptance_criteria:
+  - RTL 结构简洁，符合"Address Decoder + PSEL Generator + Response MUX"定位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_DEMUX.02.002
+  category: CONS
+  feature: implementation_constraint
+  priority: P0
+  status: active
+  source_ref: []
+  applicability: null
+  verify_method:
+  - review
+  description: 参数变化不应重新生成一份新的 APB Demux RTL。所有合法参数组合均应复用同一套 经过验证的 SystemVerilog 实现。
+  acceptance_criteria:
+  - 相同 RTL 支持所有合法参数组合；
+  - 参数化校验通过配置脚本完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: pass
+  requirement_freeze: true
+  approvals:
+  - role: Architecture
+    approver: rtl-team
+    date: 2026-09-09
+    conclusion: approved
+  - role: RTL
+    approver: rtl-team
+    date: 2026-09-09
+    conclusion: approved
+  - role: DV
+    approver: rtl-team
+    date: 2026-09-09
+    conclusion: approved
+ppa_signoff_reason: 本 IP 为轻量级纯逻辑互联（地址译码 + 响应 mux），无存储/时序关键路径，PPA 优化通过综合约束达成，不设独立 PPA signoff 门禁。

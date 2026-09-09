@@ -1,0 +1,434 @@
+schema_version: '2.0'
+ip_name: apb_demux
+generation_profile: sv
+parameters:
+- id: PARAM.APB_DEMUX.NUM_SLAVES
+  name: NUM_SLAVES
+  type: int
+  domain:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  default: 4
+  depends_on:
+  - NUM_SLAVES > 0
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.ADDR_WIDTH
+  name: ADDR_WIDTH
+  type: int
+  domain:
+    min: 16
+    max: 64
+  default: 32
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.DATA_WIDTH
+  name: DATA_WIDTH
+  type: int
+  domain:
+  - 8
+  - 16
+  - 32
+  - 64
+  - 128
+  default: 32
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.ADDR_REMAP_ENABLE
+  name: ADDR_REMAP_ENABLE
+  type: bool
+  domain:
+  - true
+  - false
+  default: false
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.TIMEOUT_ENABLE
+  name: TIMEOUT_ENABLE
+  type: bool
+  domain:
+  - true
+  - false
+  default: false
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.TIMEOUT_CYCLES
+  name: TIMEOUT_CYCLES
+  type: int
+  domain:
+    min: 2
+    max: 1024
+  default: 16
+  depends_on:
+  - TIMEOUT_ENABLE == true -> TIMEOUT_CYCLES > 0
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.OUTPUT_REGISTER
+  name: OUTPUT_REGISTER
+  type: bool
+  domain:
+  - true
+  - false
+  default: false
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.APB_DEMUX.APB_PROFILE
+  name: APB_PROFILE
+  type: bool
+  domain:
+  - true
+  - false
+  default: true
+  depends_on: []
+  category: compile_time
+  description: ''
+configurations:
+- id: CFG_BASE
+  purpose: 基础配置（默认参数，最小面积最低延迟）
+  values:
+    NUM_SLAVES: 4
+    ADDR_WIDTH: 32
+    DATA_WIDTH: 32
+    APB_PROFILE: true
+    ADDR_REMAP_ENABLE: false
+    TIMEOUT_ENABLE: false
+    OUTPUT_REGISTER: false
+- id: CFG_TIMEOUT
+  purpose: 使能 timeout 的配置
+  values:
+    NUM_SLAVES: 4
+    TIMEOUT_ENABLE: true
+    TIMEOUT_CYCLES: 16
+    OUTPUT_REGISTER: false
+- id: CFG_PIPELINED
+  purpose: 插入 response register 的高频配置
+  values:
+    NUM_SLAVES: 8
+    OUTPUT_REGISTER: true
+    TIMEOUT_ENABLE: false
+constraints:
+- NUM_SLAVES > 0
+- TIMEOUT_ENABLE == true -> TIMEOUT_CYCLES > 0
+support_matrix:
+  configs:
+  - id: CFG_DEFAULT
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+    mandatory: true
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: true
+  - id: CFG_NUM_SLAVES_MIN
+    params:
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      NUM_SLAVES: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_NUM_SLAVES_MAX
+    params:
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      NUM_SLAVES: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ADDR_WIDTH_MIN
+    params:
+      NUM_SLAVES: 4
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      ADDR_WIDTH: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ADDR_WIDTH_MAX
+    params:
+      NUM_SLAVES: 4
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      ADDR_WIDTH: 64
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DATA_WIDTH_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      DATA_WIDTH: 8
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DATA_WIDTH_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      DATA_WIDTH: 128
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ADDR_REMAP_ENABLE_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      ADDR_REMAP_ENABLE: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ADDR_REMAP_ENABLE_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      ADDR_REMAP_ENABLE: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TIMEOUT_ENABLE_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      TIMEOUT_ENABLE: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TIMEOUT_ENABLE_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      TIMEOUT_ENABLE: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TIMEOUT_CYCLES_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      TIMEOUT_CYCLES: 2
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TIMEOUT_CYCLES_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+      TIMEOUT_CYCLES: 1024
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_OUTPUT_REGISTER_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      APB_PROFILE: true
+      OUTPUT_REGISTER: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_OUTPUT_REGISTER_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      APB_PROFILE: true
+      OUTPUT_REGISTER: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_APB_PROFILE_MIN
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_APB_PROFILE_MAX
+    params:
+      NUM_SLAVES: 4
+      ADDR_WIDTH: 32
+      DATA_WIDTH: 32
+      ADDR_REMAP_ENABLE: false
+      TIMEOUT_ENABLE: false
+      TIMEOUT_CYCLES: 16
+      OUTPUT_REGISTER: false
+      APB_PROFILE: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  mandatory:
+  - CFG_DEFAULT
+  boundary:
+  - CFG_NUM_SLAVES_MIN
+  - CFG_NUM_SLAVES_MAX
+  - CFG_ADDR_WIDTH_MIN
+  - CFG_ADDR_WIDTH_MAX
+  - CFG_DATA_WIDTH_MIN
+  - CFG_DATA_WIDTH_MAX
+  - CFG_ADDR_REMAP_ENABLE_MIN
+  - CFG_ADDR_REMAP_ENABLE_MAX
+  - CFG_TIMEOUT_ENABLE_MIN
+  - CFG_TIMEOUT_ENABLE_MAX
+  - CFG_TIMEOUT_CYCLES_MIN
+  - CFG_TIMEOUT_CYCLES_MAX
+  - CFG_OUTPUT_REGISTER_MIN
+  - CFG_OUTPUT_REGISTER_MAX
+  - CFG_APB_PROFILE_MIN
+  - CFG_APB_PROFILE_MAX
+  pairwise: []
+  risk: []
+  random: []
+  negative: []
+  consumer: []

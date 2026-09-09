@@ -1,0 +1,466 @@
+schema_version: '2.0'
+ip_name: apb_demux
+verification_level: regression
+status: draft
+delivery_model: parameterized
+lrs_baseline: LRS-APB_DEMUX-V100
+hld_baseline: HLD-APB_DEMUX-V100
+lld_baseline: LLD-APB_DEMUX-V100
+features:
+- id: FL.INTF.APB_DEMUX.01
+  name: apb_interface
+  description: 上游/下游 APB 接口、APB3/APB4 profile、单时钟与复位接口
+  priority: P0
+  req_ref:
+  - LRS.INTF.APB_DEMUX.01.001
+  - LRS.INTF.APB_DEMUX.01.002
+  - LRS.INTF.APB_DEMUX.02.001
+  - LRS.INTF.APB_DEMUX.02.002
+  - LRS.INTF.APB_DEMUX.03.001
+  - LRS.INTF.APB_DEMUX.03.002
+  - LRS.CFG.APB_DEMUX.04.001
+  design_ref: []
+  testcases:
+  - id: TC.INTF.APB_DEMUX.01.001.SAN
+    name: sanity_read_write
+    type: directed
+    coverage_type: functional
+    description: 验证每个下游端口基础读写事务正确路由
+    preconditions: 复位释放，NUM_SLAVES=4
+    stimulus: 对每个端口发起单次读、单次写
+    expected_result: 命中端口收到事务，上游收到一致 PRDATA/无错误
+    timeout_policy: 10000 周期
+    priority: P0
+    tier: smoke
+    feature_ref:
+    - FL.INTF.APB_DEMUX.01
+    implementation: verification/tc/tc_sanity.sv
+  - id: TC.INTF.APB_DEMUX.01.002.APB4
+    name: apb4_extensions
+    type: directed
+    coverage_type: functional
+    description: 验证 APB4 profile 下 PSTRB/PPROT 透传与字节写入
+    preconditions: APB_PROFILE=APB4
+    stimulus: 字节/半字写（PSTRB 部分使能）+ PPROT 变化
+    expected_result: PSTRB/PPROT 正确透传；APB3 下无相关通路
+    timeout_policy: 20000 周期
+    priority: P0
+    tier: extended
+    feature_ref:
+    - FL.INTF.APB_DEMUX.01
+    implementation: verification/tc/tc_apb4.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.09
+    name: apb4_cov
+    type: functional
+    feature_ref:
+    - FL.INTF.APB_DEMUX.01
+    description: APB4 PSTRB/PPROT 活动覆盖
+  assertions: []
+  config_coverage: []
+- id: FL.CFG.APB_DEMUX.01
+  name: parameters
+  description: 核心参数、地址映射数组、配置合法性校验、参数化复用
+  priority: P0
+  req_ref:
+  - LRS.CFG.APB_DEMUX.01.001
+  - LRS.CFG.APB_DEMUX.01.002
+  - LRS.CFG.APB_DEMUX.01.003
+  - LRS.CFG.APB_DEMUX.02.001
+  - LRS.CFG.APB_DEMUX.02.002
+  - LRS.CONS.APB_DEMUX.01.001
+  - LRS.CONS.APB_DEMUX.01.002
+  - LRS.CONS.APB_DEMUX.01.003
+  - LRS.CONS.APB_DEMUX.01.004
+  - LRS.CONS.APB_DEMUX.01.005
+  - LRS.CONS.APB_DEMUX.01.006
+  - LRS.CONS.APB_DEMUX.02.001
+  - LRS.CONS.APB_DEMUX.02.002
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.01.002.PARAM
+    name: num_slaves_sweep
+    type: randomized
+    coverage_type: functional
+    description: 验证 NUM_SLAVES 1/2/4/8/16 各参数组合下功能正确
+    preconditions: NUM_SLAVES 参数扫描
+    stimulus: 随机地址/数据读写序列
+    expected_result: 所有参数组合下译码/路由/响应正确
+    timeout_policy: 50000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.CFG.APB_DEMUX.01
+    implementation: verification/tc/tc_num_slaves_sweep.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.08
+    name: num_slaves_cov
+    type: functional
+    feature_ref:
+    - FL.CFG.APB_DEMUX.01
+    description: NUM_SLAVES 参数组合覆盖（1/2/4/8/16）
+  assertions: []
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.01
+  name: address_decode
+  description: 地址译码正确性、单端口命中、对齐优化
+  priority: P0
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.01.001
+  - LRS.FUNC.APB_DEMUX.01.002
+  - LRS.FUNC.APB_DEMUX.01.003
+  - LRS.FUNC.APB_DEMUX.01.004
+  - LRS.FUNC.APB_DEMUX.01.005
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.01.001.DEC
+    name: address_decode_ports
+    type: directed
+    coverage_type: functional
+    description: 验证地址译码：每个端口命中唯一正确端口，边界地址
+    preconditions: NUM_SLAVES=4，地址窗口 0x4000_0000/0x4000_1000/0x4000_2000/0x4000_3000
+    stimulus: 覆盖每个端口基地址/末尾/边界外 1 地址的读写
+    expected_result: 命中唯一正确端口；边界外命中相邻端口或 decode miss
+    timeout_policy: 20000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.01
+    implementation: verification/tc/tc_address_decode.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.01
+    name: direction_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.01
+    description: 事务方向覆盖（read/write）
+  - id: COV.FUNC.APB_DEMUX.02
+    name: port_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.01
+    description: 命中端口覆盖（每个下游端口被访问）
+  assertions:
+  - id: ASR.APB_DEMUX.01.003
+    name: decode_correct
+    property: 命中一个地址区域时只能选择对应下游 port
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.01
+    description: 译码正确性
+    severity: error
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.02
+  name: request_routing
+  description: 请求信号广播、PSEL 命中门控、PENABLE 时序合规
+  priority: P0
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.02.001
+  - LRS.FUNC.APB_DEMUX.02.002
+  - LRS.FUNC.APB_DEMUX.02.003
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.02.001.PSEL
+    name: psel_onehot
+    type: directed
+    coverage_type: functional
+    description: 验证任意地址访问 M_PSEL 满足 onehot0，未命中端口 PSEL=0
+    preconditions: NUM_SLAVES=4
+    stimulus: 随机地址序列访问
+    expected_result: $onehot0(M_PSEL) 恒成立；未选中端口 PSEL=0
+    timeout_policy: 20000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.02
+    implementation: verification/tc/tc_psel_onehot.sv
+  coverage: []
+  assertions:
+  - id: ASR.APB_DEMUX.01.001
+    name: psel_onehot0
+    property: $onehot0(m_psel)
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.02
+    description: 任意时刻下游 M_PSEL 为 onehot 或全零
+    severity: error
+  - id: ASR.APB_DEMUX.01.005
+    name: penable_psel_legal
+    property: ~(M_PENABLE[i] && ~M_PSEL[i])
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.02
+    description: 禁止 PENABLE=1 且 PSEL=0 的非法下游事务
+    severity: error
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.03
+  name: transaction_behavior
+  description: APB 事务语义保持、wait-state 保持、低延迟
+  priority: P0
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.03.001
+  - LRS.FUNC.APB_DEMUX.03.002
+  - LRS.PERF.APB_DEMUX.01.001
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.03.001.WAIT
+    name: wait_states
+    type: randomized
+    coverage_type: functional
+    description: 验证下游任意 wait-state 下事务完成且 selection 稳定
+    preconditions: 复位释放
+    stimulus: 各端口配置随机 wait，上游发起读写
+    expected_result: wait 期间 PSEL/PENABLE/响应源稳定，最终完成
+    timeout_policy: 30000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.03
+    implementation: verification/tc/tc_wait_states.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.03
+    name: wait_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.03
+    description: wait-state 周期数覆盖（0/1/多周期）
+  assertions:
+  - id: ASR.APB_DEMUX.01.002
+    name: wait_stable
+    property: ACCESS phase && PREADY==0 期间 PADDR/PWRITE/PWDATA/PSTRB/PPROT/selected_slave
+      稳定
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.03
+    description: wait-state 期间请求信号与选中端口保持稳定
+    severity: error
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.04
+  name: response_routing
+  description: 响应 mux、未选中屏蔽、PSLVERR 透传
+  priority: P0
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.04.001
+  - LRS.FUNC.APB_DEMUX.04.002
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.04.001.ERR
+    name: pslverr_propagation
+    type: directed
+    coverage_type: functional
+    description: 验证下游 PSLVERR 正确透传上游
+    preconditions: 复位释放
+    stimulus: 特定端口对写访问返回 SLVERR
+    expected_result: 上游收到对应 PSLVERR，未被屏蔽
+    timeout_policy: 10000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.04
+    implementation: verification/tc/tc_pslverr.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.05
+    name: pslverr_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.04
+    description: PSLVERR 返回覆盖
+  assertions: []
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.05
+  name: decode_error
+  description: Decode Miss 检测、错误响应、不挂死
+  priority: P0
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.05.001
+  - LRS.FUNC.APB_DEMUX.05.002
+  - LRS.FUNC.APB_DEMUX.05.003
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.05.001.MISS
+    name: decode_miss
+    type: directed
+    coverage_type: functional
+    description: 验证 Decode Miss 立即返回 PREADY=1, PSLVERR=1, PRDATA=0
+    preconditions: 复位释放
+    stimulus: 访问未命中任何端口的地址
+    expected_result: 上游观察到 PREADY=1, PSLVERR=1, PRDATA=0，transaction 立即结束
+    timeout_policy: 10000 周期
+    priority: P0
+    tier: smoke
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.05
+    implementation: verification/tc/tc_decode_miss.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.04
+    name: miss_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.05
+    description: Decode Miss 命中覆盖
+  assertions:
+  - id: ASR.APB_DEMUX.01.004
+    name: decode_miss_response
+    property: 未命中地址时无下游 PSEL 且产生合法 error 响应
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.05
+    description: Decode Miss 错误响应合法性
+    severity: error
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.06
+  name: remap
+  description: 地址重映射开关与静态偏移
+  priority: P1
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.06.001
+  - LRS.FUNC.APB_DEMUX.06.002
+  - LRS.CFG.APB_DEMUX.03.001
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.06.001.REMAP
+    name: remap_enable
+    type: directed
+    coverage_type: functional
+    description: 验证 remap 开启时 M_PADDR = PADDR - BASE_ADDR
+    preconditions: ADDR_REMAP_ENABLE=1
+    stimulus: 访问各端口带 offset 地址
+    expected_result: 下游 M_PADDR 为 local offset；关闭时透传
+    timeout_policy: 20000 周期
+    priority: P1
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.06
+    implementation: verification/tc/tc_remap.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.06
+    name: remap_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.06
+    description: remap 开关状态覆盖
+  assertions: []
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.07
+  name: timeout
+  description: transaction timeout 终止与计数条件
+  priority: P1
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.07.001
+  - LRS.FUNC.APB_DEMUX.07.002
+  - LRS.CFG.APB_DEMUX.03.002
+  - LRS.CFG.APB_DEMUX.03.003
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.07.001.TOUT
+    name: timeout_terminate
+    type: directed
+    coverage_type: functional
+    description: 验证 timeout 终止 transaction 并返回 error
+    preconditions: TIMEOUT_ENABLE=1, TIMEOUT_CYCLES=16
+    stimulus: 下游保持 PREADY=0 超过 TIMEOUT_CYCLES
+    expected_result: 超时后返回 PREADY=1, PSLVERR=1
+    timeout_policy: 20000 周期
+    priority: P1
+    tier: regression
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.07
+    implementation: verification/tc/tc_timeout.sv
+  coverage:
+  - id: COV.FUNC.APB_DEMUX.07
+    name: timeout_cov
+    type: functional
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.07
+    description: timeout 触发覆盖
+  assertions: []
+  config_coverage: []
+- id: FL.FUNC.APB_DEMUX.08
+  name: response_register
+  description: 响应寄存器插入与协议合规
+  priority: P1
+  req_ref:
+  - LRS.FUNC.APB_DEMUX.08.001
+  - LRS.FUNC.APB_DEMUX.08.002
+  - LRS.CFG.APB_DEMUX.03.004
+  design_ref: []
+  testcases:
+  - id: TC.FUNC.APB_DEMUX.08.001.OREG
+    name: output_register
+    type: directed
+    coverage_type: functional
+    description: 验证 response register 插入后协议合规且延迟增加
+    preconditions: OUTPUT_REGISTER=1
+    stimulus: 基础读写事务
+    expected_result: APB 协议断言通过；响应延迟增加一拍
+    timeout_policy: 20000 周期
+    priority: P1
+    tier: extended
+    feature_ref:
+    - FL.FUNC.APB_DEMUX.08
+    implementation: verification/tc/tc_output_register.sv
+  coverage: []
+  assertions: []
+  config_coverage: []
+- id: FL.RESET.APB_DEMUX.01
+  name: reset_behavior
+  description: PRESETn 复位、复位期间无有效事务、内部状态确定复位
+  priority: P0
+  req_ref:
+  - LRS.RESET.APB_DEMUX.01.001
+  - LRS.RESET.APB_DEMUX.02.001
+  - LRS.RESET.APB_DEMUX.02.002
+  - LRS.RESET.APB_DEMUX.02.003
+  design_ref: []
+  testcases:
+  - id: TC.RESET.APB_DEMUX.01.001.RST
+    name: reset_scenarios
+    type: directed
+    coverage_type: functional
+    description: 验证 idle/transaction 期间复位，复位后无有效事务
+    preconditions: 无
+    stimulus: idle 时复位、事务进行中复位
+    expected_result: 复位期间 M_PSEL 全 0，复位后状态确定
+    timeout_policy: 20000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.RESET.APB_DEMUX.01
+    implementation: verification/tc/tc_reset.sv
+  coverage: []
+  assertions:
+  - id: ASR.APB_DEMUX.01.006
+    name: reset_no_transaction
+    property: 复位期间所有 M_PSEL[i]==0
+    feature_ref:
+    - FL.RESET.APB_DEMUX.01
+    description: 复位期间无有效下游事务
+    severity: error
+  config_coverage: []
+- id: FL.DFX.APB_DEMUX.01
+  name: protocol_assertions
+  description: onehot0、wait 稳定、decode 正确性、decode miss 响应断言；PPA 与规模
+  priority: P0
+  req_ref:
+  - LRS.DFX.APB_DEMUX.01.001
+  - LRS.DFX.APB_DEMUX.01.002
+  - LRS.DFX.APB_DEMUX.01.003
+  - LRS.PERF.APB_DEMUX.02.001
+  - LRS.PERF.APB_DEMUX.03.001
+  design_ref: []
+  testcases:
+  - id: TC.DFX.APB_DEMUX.01.001.ASSERT
+    name: assertion_checks
+    type: assertion
+    coverage_type: functional
+    description: 验证协议断言（onehot0/wait 稳定/decode 正确/decode miss 响应）
+    preconditions: 无
+    stimulus: 随机事务序列（含 miss/PSLVERR/wait）
+    expected_result: 所有断言成立，无违例
+    timeout_policy: 30000 周期
+    priority: P0
+    tier: regression
+    feature_ref:
+    - FL.DFX.APB_DEMUX.01
+    implementation: verification/tc/tc_assertions.sv
+  coverage: []
+  assertions: []
+  config_coverage: []
+config_sets: []
+config_coverage: []
+gates: []

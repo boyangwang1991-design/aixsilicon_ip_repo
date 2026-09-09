@@ -1,0 +1,24 @@
+# review_findings.yaml - APB Demux 评审 findings
+schema_version: "2.0"
+ip_name: apb_demux
+findings:
+  - id: FND-001
+    severity: major
+    gate: G3
+    status: resolved
+    title: "综合 target library 未装配"
+    description: "DC 综合在无 28nm target library 环境下运行，netlist 未映射；area/timing 报告已生成，PPA signoff 因 ppa_signoff=none 不适用。"
+    resolution: "记录为 known gap（GAP-001），PPA signoff policy=none 不阻塞发布。"
+    owner: rtl-team
+    approved_by: rtl-team
+    date: 2026-09-09
+  - id: FND-002
+    severity: minor
+    gate: G4
+    status: resolved
+    title: "timeout/remap/output_register 行为由参数化实例覆盖"
+    description: "timeout/remap/response register 为编译期参数（tb_top 默认关闭），V1.0 由参数化编译实例 + elab/formal 覆盖，未在默认实例动态切换。"
+    resolution: "与 LRS P1 特性声明一致（参数化交付，非运行时切换），由 check_config.py 参数校验 + 参数化编译覆盖。"
+    owner: rtl-team
+    approved_by: rtl-team
+    date: 2026-09-09

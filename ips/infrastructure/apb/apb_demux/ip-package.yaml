@@ -1,0 +1,43 @@
+schema_version: '2.0'
+name: apb_demux
+version: 1.0.0
+vendor: aixsilicon
+library: ip
+description: |
+  APB Demux（APB3/APB4 1→N APB Router）。一个上游 APB Slave-facing 接口按地址
+  空间路由至 N 个下游 APB Master-facing 接口，支持地址译码、PSEL one-hot 生成、
+  Decode Miss 错误响应、PSLVERR 透传、APB wait-state，以及可选的地址
+  offset/remap、transaction timeout 与 response register。
+license: Apache-2.0
+path: ips/infrastructure/apb/apb_demux
+domain: infrastructure
+subdomain: apb
+type: ip
+priority: P0
+status: implemented
+maturity: experimental
+interfaces:
+  - apb3
+  - apb4
+register_model: none
+quality:
+  G0: pass
+  G1: pass
+  G2: pass
+  G3: pass
+  G4: pass
+  G5: pass
+known_gaps:
+  - id: GAP-001
+    severity: Low
+    title: "formal（VC Formal）未运行"
+    status: open
+  - id: GAP-002
+    severity: Low
+    title: "PPA 仅单配置点（CFG_BASE）E2 表征，multi-point sweep 未展开"
+    status: open
+known_bugs: []
+dependencies: []
+fusesoc:
+  core: aixsilicon:ip:apb_demux:1.0.0
+  cores: ips/infrastructure/apb/apb_demux

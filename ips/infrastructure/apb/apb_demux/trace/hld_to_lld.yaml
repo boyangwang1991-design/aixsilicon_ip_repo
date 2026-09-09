@@ -1,0 +1,23 @@
+schema_version: '2.0'
+ip_name: apb_demux
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.L1.APB_DEMUX.DECODE
+  target_id: LLD.MOD.APB_DEMUX.TOP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_DEMUX.ERR
+  target_id: LLD.MOD.APB_DEMUX.TOP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_DEMUX.ROUTE
+  target_id: LLD.MOD.APB_DEMUX.TOP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.APB_DEMUX.TOP
+  target_id: LLD.MOD.APB_DEMUX.TOP
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

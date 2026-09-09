@@ -1,0 +1,14 @@
+schema_version: '2.0'
+config_id: CFG_BASE
+clock_freq_mhz: '400'
+area_um2: 19.889999
+slack_ns: 2.32
+fmax_mhz: null
+dyn_power_uW: 1.8616
+leak_power_nW: 2.6747
+activity: default_probability_estimate
+evidence_level: E2
+target_library: sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+operating_conditions: tt_nominal_max_1p00v_25c
+pdk_node: "28nm (GF CMOS28LP + ARM SC9)"
+notes: "slack_ns = 2.5ns(400MHz) - 0.18ns(最长组合路径，report_timing 实测)；默认配置(TIMEOUT_ENABLE=0, OUTPUT_REGISTER=0)无寄存器路径，关键路径为组合响应 mux。"

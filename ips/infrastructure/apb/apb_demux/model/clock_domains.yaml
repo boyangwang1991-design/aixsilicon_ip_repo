@@ -1,0 +1,27 @@
+schema_version: '2.0'
+ip_name: apb_demux
+domains:
+- id: HLD.DOM.APB_DEMUX.CLK_APB
+  type: clk
+  name: CLK_APB
+  source: PCLK
+  modules:
+  - HLD.MOD.L1.APB_DEMUX.TOP
+  req_ref:
+  - LRS.INTF.APB_DEMUX.03.001
+  - LRS.RESET.APB_DEMUX.01.001
+  applicability:
+    expr: 'true'
+- id: HLD.DOM.APB_DEMUX.RST_APB_N
+  type: rst
+  name: RST_APB_N
+  source: PRESETn
+  modules:
+  - HLD.MOD.L1.APB_DEMUX.TOP
+  req_ref:
+  - LRS.INTF.APB_DEMUX.03.002
+  - LRS.RESET.APB_DEMUX.02.001
+  - LRS.RESET.APB_DEMUX.02.002
+  - LRS.RESET.APB_DEMUX.02.003
+  applicability:
+    expr: 'true'

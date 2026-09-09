@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : apb_demux_top
+Version: V-2023.12-SP3
+Date   : Wed Sep  9 01:44:24 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c (File: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db)
+
+Number of ports:                          542
+Number of nets:                           142
+Number of cells:                           34
+Number of combinational cells:             34
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       2
+
+Combinational area:                 19.889999
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                    19.889999
+Total area:                         19.889999
+1

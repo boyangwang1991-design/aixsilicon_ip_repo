@@ -1,0 +1,131 @@
+CAPI=2:
+name: aixsilicon:ip:apb_demux:1.0.0
+description: "apb_demux APB Demux (1-to-N APB Router, APB3/APB4, parameterized)"
+
+parameters:
+  generation_profile:
+    datatype: str
+    paramtype: vlogparam
+    default: "sv"
+  NUM_SLAVES:
+    datatype: int
+    paramtype: vlogparam
+    default: 4
+  ADDR_WIDTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 32
+  DATA_WIDTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 32
+  APB_PROFILE:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+  ADDR_REMAP_ENABLE:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  TIMEOUT_ENABLE:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  TIMEOUT_CYCLES:
+    datatype: int
+    paramtype: vlogparam
+    default: 16
+  OUTPUT_REGISTER:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+
+filesets:
+  rtl_handwritten:
+    files:
+      - rtl/apb_demux_top.sv
+    file_type: systemVerilogSource
+
+targets:
+  lint:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      vcs:
+        mode: lint
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -lint=all
+          - -q
+
+  elab:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      vcs:
+        mode: elab
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -q
+
+  sim:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      vcs:
+        mode: sim
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -ntb_opts uvm-1.2
+          - -debug_access+all
+          - -kdb
+          - +vpi
+          - -l sim.log
+
+  smoke:
+    default_tool: vcs
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      vcs:
+        mode: sim
+        flags:
+          - -sverilog
+          - -full64
+          - -notice
+          - -ntb_opts uvm-1.2
+          - -debug_access+all
+          - -kdb
+          - +vpi
+          - -l smoke.log
+
+  synth:
+    default_tool: dc
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      dc:
+        mode: synthesis
+
+  formal:
+    default_tool: vcformal
+    filesets:
+      - rtl_handwritten
+    toplevel: apb_demux_top
+    tools:
+      vcformal:
+        mode: formal

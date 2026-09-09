@@ -1,0 +1,8 @@
+# lld_to_rtl.yaml - LLD→RTL 映射种子（07-rtl-code-generator 提供）
+# source 必须是 canonical LLD ID；target_id 以 RTL.FILE. 前缀 + workspace 相对 .sv 路径
+schema_version: "2.0"
+ip_name: apb_demux
+links:
+  - source_id: LLD.MOD.APB_DEMUX.TOP
+    target_id: RTL.FILE.rtl/apb_demux_top.sv
+    notes: "单模块参数化 RTL 承载全部 LLD 逻辑"

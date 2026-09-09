@@ -1,0 +1,42 @@
+smoke:
+- test: TC.FUNC.APB_DEMUX.05.001.MISS
+  name: decode_miss
+  implementation: verification/tc/tc_decode_miss.sv
+- test: TC.INTF.APB_DEMUX.01.001.SAN
+  name: sanity_read_write
+  implementation: verification/tc/tc_sanity.sv
+regression:
+- test: TC.FUNC.APB_DEMUX.01.002.PARAM
+  name: num_slaves_sweep
+  implementation: verification/tc/tc_num_slaves_sweep.sv
+- test: TC.DFX.APB_DEMUX.01.001.ASSERT
+  name: assertion_checks
+  implementation: verification/tc/tc_assertions.sv
+- test: TC.FUNC.APB_DEMUX.01.001.DEC
+  name: address_decode_ports
+  implementation: verification/tc/tc_address_decode.sv
+- test: TC.FUNC.APB_DEMUX.02.001.PSEL
+  name: psel_onehot
+  implementation: verification/tc/tc_psel_onehot.sv
+- test: TC.FUNC.APB_DEMUX.03.001.WAIT
+  name: wait_states
+  implementation: verification/tc/tc_wait_states.sv
+- test: TC.FUNC.APB_DEMUX.04.001.ERR
+  name: pslverr_propagation
+  implementation: verification/tc/tc_pslverr.sv
+- test: TC.FUNC.APB_DEMUX.06.001.REMAP
+  name: remap_enable
+  implementation: verification/tc/tc_remap.sv
+- test: TC.FUNC.APB_DEMUX.07.001.TOUT
+  name: timeout_terminate
+  implementation: verification/tc/tc_timeout.sv
+- test: TC.RESET.APB_DEMUX.01.001.RST
+  name: reset_scenarios
+  implementation: verification/tc/tc_reset.sv
+extended:
+- test: TC.FUNC.APB_DEMUX.08.001.OREG
+  name: output_register
+  implementation: verification/tc/tc_output_register.sv
+- test: TC.INTF.APB_DEMUX.01.002.APB4
+  name: apb4_extensions
+  implementation: verification/tc/tc_apb4.sv

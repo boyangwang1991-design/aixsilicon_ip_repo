@@ -1,0 +1,11 @@
+schema_version: '2.0'
+ip_name: apb_demux
+trace_type: lld_to_rtl
+links:
+- source_id: LLD.MOD.APB_DEMUX.TOP
+  target_id: RTL.FILE.rtl/apb_demux_top.sv
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

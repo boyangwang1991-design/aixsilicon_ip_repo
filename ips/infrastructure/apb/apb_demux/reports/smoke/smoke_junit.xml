@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="apb_demux-smoke" tests="2" failures="0" errors="0" skipped="0"><testcase id="TC.FUNC.APB_DEMUX.05.001.MISS" name="TC.FUNC.APB_DEMUX.05.001.MISS" /><testcase id="TC.INTF.APB_DEMUX.01.001.SAN" name="TC.INTF.APB_DEMUX.01.001.SAN" /></testsuite>

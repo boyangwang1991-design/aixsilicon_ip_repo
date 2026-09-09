@@ -1,0 +1,24 @@
+# pdk.yaml - APB Demux 工艺上下文（ip_pdk_scan.py / cbb pdk-scan 格式）
+# 28nm PDK：GF CMOS28LP + ARM SC9（/home/eda/pdk/CMOS28NM）
+schema_version: "2.0"
+ip_name: apb_demux
+schema: cbb-pdk-context/0.1
+status: PDK_READY
+node: "28nm"
+description: "GF CMOS28LP 28nm + ARM SC9"
+pdk_root: /home/eda/pdk/CMOS28NM
+dc_shell_available: true
+target_library: "/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db"
+link_libraries:
+  - "*"
+  - "/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db"
+operating_conditions: tt_nominal_max_1p00v_25c
+search_path:
+  - "/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db"
+  - "/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/lib"
+default_clock_mhz: 400
+usage_discipline:
+  - "权威视图只在 extracted/*-FB-* bundle"
+  - "DC 避坑：-full64/-timescale=1ns/1ps；set_driving_cell -lib_cell BUFH_X4M_A9TH -pin Y"
+  - "operating_conditions 名随 corner 变化，set_operating_conditions 必须同步"
+  - "本文件是工艺上下文快照，不是 PPA 表征结果；正式结论绑定 run_id 证据"
