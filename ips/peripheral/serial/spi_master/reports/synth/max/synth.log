@@ -1,0 +1,950 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version V-2023.12-SP3 for linux64 - Apr 17, 2024 
+
+                    Copyright (c) 1988 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+Current time:       Thu Sep 10 08:12:27 2026
+Hostname:           localhost.localdomain
+CPU Model:          Intel(R) Xeon(R) Gold 6444Y
+CPU Details:        Cores = 16 : Sockets = 8 : Cache Size = 46080 KB : Freq = 3.60 GHz
+OS:                 Linux 4.18.0-553.137.1.el8_10.x86_64
+RAM:                 15 GB (Free   0 GB)
+Swap:                 3 GB (Free   3 GB)
+Work Filesystem:    /home mounted to /dev/mapper/rl-home
+Tmp Filesystem:     / mounted to /dev/mapper/rl-root
+Work Disk:          424 GB (Free  12 GB)
+Tmp Disk:            69 GB (Free  59 GB)
+
+CPU Load: 9%, Ram Free: 0 GB, Swap Free: 3 GB, Work Disk Free: 12 GB, Tmp Disk Free: 59 GB
+############################################
+#
+# Auto-generated project tcl file:
+#  * sets up variable
+#  * runs customized script
+#
+############################################
+sh date
+Thu Sep 10 08:12:27 EDT 2026
+set TOP_MODULE spi_master_top
+spi_master_top
+set DC_SCRIPT synth.tcl
+synth.tcl
+set READ_SOURCES aixsilicon_ip_spi_master_1.0.0-read-sources
+aixsilicon_ip_spi_master_1.0.0-read-sources
+set SCRIPT_DIR $::env(SPI_IP_ROOT)/scripts/ppa
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/scripts/ppa
+set REPORT_DIR reports
+reports
+sh mkdir -p ${REPORT_DIR}
+############################################
+#
+# Run custom script
+#
+############################################
+source ${SCRIPT_DIR}/${DC_SCRIPT}
+Running PRESTO HDLC
+Compiling source file /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:98: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:102: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:103: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:107: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:108: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:112: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:113: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:117: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:118: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:122: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:174: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:178: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:179: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:183: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:184: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:188: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:189: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:193: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:194: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:198: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:239: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:243: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:244: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:248: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:249: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:253: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:254: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:258: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:259: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:263: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:319: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:323: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:324: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:328: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:329: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:333: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:334: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:338: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:339: The construct 'property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:343: The construct 'assert property' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:45: Invalid escape sequence '\0' in call to '$error'. (VER-941)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:48: Invalid escape sequence '\0' in call to '$error'. (VER-941)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:51: Invalid escape sequence '\0' in call to '$error'. (VER-941)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:54: Invalid escape sequence '\0' in call to '$error'. (VER-941)
+Presto compilation completed successfully.
+Loading db file '/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db'
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr_pkg.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_addr_pkg.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_queues.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv
+Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling source file ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv
+Presto compilation completed successfully.
+Loading db file '/home/eda/app/synopsys/syn/V-2023.12-SP3/libraries/syn/gtech.db'
+Loading db file '/home/eda/app/synopsys/syn/V-2023.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv:66: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv:80: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv:97: signed to unsigned conversion occurs. (VER-318)
+
+Statistics for case statements in always block at line 65 in file
+	'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            67            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 77 in file
+	'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            68            |    auto/auto     |
+|            85            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16 line 110 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_top.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  soft_reset_q_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16)
+Elaborated 1 design.
+Current design is now 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16'.
+Information: Building the design 'spi_master_csr'. (HDL-193)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:183: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:184: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:185: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:186: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:187: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:188: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:189: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:190: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:191: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:192: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:193: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:194: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:195: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:196: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:197: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:1574: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:1580: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:1583: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:1587: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv:1591: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine spi_master_csr line 572 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 595 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 618 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 641 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 664 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 690 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 716 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 742 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 765 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 791 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 817 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 843 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 869 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 895 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 921 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 947 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 973 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 999 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1025 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1048 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1071 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1094 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1117 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1140 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1163 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1186 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  15   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1209 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1232 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1256 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1279 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1302 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1325 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1348 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  120  |  Y  | N  | Y  | N  | N  | N  | N  |
+|  field_storage_reg  | Flip-flop |   8   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1371 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1394 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1417 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1440 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine spi_master_csr line 1463 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/generated/spi_master_csr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  field_storage_reg  | Flip-flop |  256  |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (spi_master_csr)
+Information: Building the design 'spi_master_queues' instantiated from design 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' with
+	the parameters "TX_FIFO_DEPTH=256,RX_FIFO_DEPTH=256,CMD_FIFO_DEPTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16 line 21 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_queues.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     clear_q_reg     | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16)
+Information: Building the design 'spi_master_engine' instantiated from design 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' with
+	the parameters "NUM_CS=8,RX_FIFO_DEPTH=256". (HDL-193)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv:64: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv:152: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv:203: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv:210: signed to unsigned conversion occurs. (VER-318)
+
+Statistics for case statements in always block at line 121 in file
+	'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           131            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256 line 266 in file
+		'./src/aixsilicon_ip_spi_master_1.0.0/rtl/spi_master_engine.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |  243  |  Y  | N  | Y  | N  | N  | N  | N  |
+|        q_reg        | Flip-flop |   8   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+====================================================================================
+|                block name/line                 | Inputs | Outputs | # sel inputs |
+====================================================================================
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/58  |   8    |    5    |      3       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/70  |   8    |   32    |      3       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/160 |   8    |   64    |      3       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/104 |   8    |   32    |      3       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/91  |   32   |    1    |      5       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/187 |   32   |    1    |      5       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/189 |   32   |    1    |      5       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/189 |   32   |    1    |      5       |
+| spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256/91  |   32   |    1    |      5       |
+====================================================================================
+Presto compilation completed successfully. (spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256)
+Information: Building the design 'sync_fifo' instantiated from design 'spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' with
+	the parameters "DATA_W=32,DEPTH=256,OUTPUT_REG=0,IMPL=0". (HDL-193)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:70: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:89: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:92: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0 line 81 in file
+		'/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+|   g_reg_comb.mem_reg   | Flip-flop | 8192  |  Y  | N  | N  | N  | N  | N  | N  |
+| g_reg_comb.count_q_reg | Flip-flop |   9   |  Y  | N  | Y  | N  | N  | N  | N  |
+| g_reg_comb.wptr_q_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+| g_reg_comb.rptr_q_reg  | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+Statistics for MUX_OPs
+======================================================================================
+|                 block name/line                  | Inputs | Outputs | # sel inputs |
+======================================================================================
+| sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0/79 |  256   |   32    |      8       |
+======================================================================================
+Presto compilation completed successfully. (sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0)
+Information: Building the design 'sync_fifo' instantiated from design 'spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' with
+	the parameters "DATA_W=64,DEPTH=16,OUTPUT_REG=0,IMPL=0". (HDL-193)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:70: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:89: signed to unsigned conversion occurs. (VER-318)
+Warning:  /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv:92: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0 line 81 in file
+		'/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+|   g_reg_comb.mem_reg   | Flip-flop | 1024  |  Y  | N  | N  | N  | N  | N  | N  |
+| g_reg_comb.count_q_reg | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+| g_reg_comb.wptr_q_reg  | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+| g_reg_comb.rptr_q_reg  | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+Statistics for MUX_OPs
+=====================================================================================
+|                block name/line                  | Inputs | Outputs | # sel inputs |
+=====================================================================================
+| sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0/79 |   16   |   64    |      4       |
+=====================================================================================
+Presto compilation completed successfully. (sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0)
+
+  Linking design 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (6 designs)               /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/rtl/synth-max/aixsilicon_ip_spi_master_1.0.0/synth-design_compiler/spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16.db, etc
+  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c (library) /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+
+Information: Uniquified 2 instances of design 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0'. (OPT-1056)
+Using operating conditions 'tt_nominal_max_1p00v_25c' found in library 'sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c'.
+Warning: Design rule attributes from the driving cell will be set on the port 'psel'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'penable'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwrite'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[11]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[10]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[9]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[8]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[7]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[6]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[5]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[4]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[3]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[2]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[1]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'paddr[0]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[31]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[30]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[29]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[28]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[27]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[26]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[25]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[24]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[23]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[22]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[21]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[20]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[19]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[18]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[17]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[16]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[15]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[14]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[13]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[12]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[11]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[10]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[9]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[8]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[7]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[6]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[5]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[4]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[3]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[2]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[1]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pwdata[0]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pstrb[3]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pstrb[2]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pstrb[1]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pstrb[0]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pprot[2]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pprot[1]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'pprot[0]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'spi_miso_i'. (UID-401)
+CPU Load: 11%, Ram Free: 0 GB, Swap Free: 3 GB, Work Disk Free: 12 GB, Tmp Disk Free: 59 GB
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | V-2023.12-DWBB_202312.2 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 28000                                  |
+| Number of User Hierarchies                              | 6                                      |
+| Sequential Cell Count                                   | 18809                                  |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 2029                                   |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+
+Information: There are 249 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Library cell 'CMPR42_X1M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+Warning: Library cell 'CMPR42_X1P4M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+Warning: Library cell 'CMPR42_X2M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+Warning: Library cell 'ADDFCIN_X1M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+Warning: Library cell 'ADDFCIN_X1P4M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+Warning: Library cell 'ADDFCIN_X2M_A9TH' has a valid function-id,
+	but it has also been annotated with the user_function_class
+	attribute.  Resolving this conflict by ignoring the
+	user_function_class attribute for this library cell. (OPT-200)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256'
+  Processing 'sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0'
+  Processing 'spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16'
+  Processing 'spi_master_csr'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_cmp2_0'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_cmp2_1'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_cmp2_2'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_cmp2_3'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_dec_0'
+  Processing 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16_DW01_cmp2_4'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_0_DW01_inc_2'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_cmp2_0_DW01_cmp2_5'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_0_DW01_dec_1'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_sub_0'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_cmp2_1_DW01_cmp2_6'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_add_0'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_cmp2_2_DW01_cmp2_7'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_1_DW01_inc_3'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_2_DW01_inc_4'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_cmp6_0_DW01_cmp6_1'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_1_DW01_dec_2'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_sub_1'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_2_DW01_dec_3'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_3_DW01_dec_4'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_3_DW01_inc_5'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_cmp6_1_DW01_cmp6_2'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_4_DW01_inc_6'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_inc_0_DW01_inc_7'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_inc_1_DW01_inc_8'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_inc_0_DW01_inc_9'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_inc_1_DW01_inc_10'
+  Building model 'DW01_NAND2'
+  Processing 'DW01_NAND2'
+  Building model 'DW01_sub_width5' (rpl)
+  Processing 'DW01_sub_width5'
+  Building model 'DW01_sub_width5' (cla)
+  Processing 'DW01_sub_width5'
+  Building model 'DW01_add_width5' (rpl)
+  Processing 'DW01_add_width5'
+  Building model 'DW01_add_width5' (cla)
+  Processing 'DW01_add_width5'
+  Building model 'DW01_add_width9' (rpl)
+  Processing 'DW01_add_width9'
+  Building model 'DW01_add_width9' (cla)
+  Processing 'DW01_add_width9'
+  Building model 'DW01_sub_width9' (rpl)
+  Processing 'DW01_sub_width9'
+  Building model 'DW01_sub_width9' (cla)
+  Processing 'DW01_sub_width9'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_sub_2'
+  Processing 'spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_add_1'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_add_0_DW01_add_2'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_sub_0_DW01_sub_3'
+  Processing 'sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0_DW01_sub_0_DW01_sub_4'
+  Processing 'sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0_DW01_add_0_DW01_add_3'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_add_0_DW01_add_4'
+  Processing 'sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_sub_0_DW01_sub_5'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:47   96919.6     19.19   47179.8  982442.0                          
+    0:00:47   96919.6     19.19   47179.8  982442.0                          
+    0:00:48  100855.3      6.11     324.7  922498.2                          
+    0:00:51  107701.9      6.11     193.0  455074.0                          
+    0:00:52  112311.5      6.11     193.0  455074.0                          
+    0:01:01  116640.9      0.00       0.0      77.3                          
+    0:01:02  116640.9      0.00       0.0      77.3                          
+    0:01:02  116640.9      0.00       0.0      77.3                          
+    0:01:02  116640.9      0.00       0.0      77.3                          
+    0:01:02  116640.9      0.00       0.0      77.3                          
+    0:01:19   73729.5      0.00       0.0      49.5                          
+    0:01:20   73721.3      0.00       0.0      49.5                          
+    0:01:25   73721.3      0.00       0.0       0.0                          
+    0:01:26   73721.3      0.00       0.0       0.0                          
+    0:01:26   73721.3      0.00       0.0       0.0                          
+    0:01:26   73721.3      0.00       0.0       0.0                          
+    0:01:26   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:27   73721.3      0.00       0.0       0.0                          
+    0:01:32   73468.0      0.00       0.0       0.0                          
+    0:01:35   73258.3      0.00       0.0       0.0                          
+    0:01:37   73066.0      0.00       0.0       0.0                          
+    0:01:39   72817.2      0.00       0.0       0.0                          
+    0:01:40   72629.3      0.00       0.0       0.0                          
+    0:01:42   72442.4      0.00       0.0       0.0                          
+    0:01:42   72435.3      0.00       0.0       0.0                          
+    0:01:42   72428.5      0.00       0.0       0.0                          
+    0:01:42   72421.9      0.00       0.0       0.0                          
+    0:01:43   72420.3      0.00       0.0       0.0                          
+    0:01:43   72419.0      0.00       0.0       0.0                          
+    0:01:43   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:44   72419.0      0.00       0.0       0.0                          
+    0:01:45   72418.6      0.00       0.0       0.0                          
+Loading db file '/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'u_queues/u_rx/clk': 18809 load(s), 1 driver(s)
+CPU Load: 11%, Ram Free: 1 GB, Swap Free: 3 GB, Work Disk Free: 12 GB, Tmp Disk Free: 59 GB
+Information: Total number of MV cells in the design.
+----------------------------------------------------------------------------------------------------
+ MV Cells                                           Total Number                                   
+----------------------------------------------------------------------------------------------------
+ Level Shifter:                                     0                                             
+ Enable Level Shifter:                              0                                             
+ Isolation Cell:                                    0                                             
+ Retention Cell:                                    0                                             
+ Retention Clamp Cell:                              0                                             
+ Switch Cell:                                       0                                             
+ Always-On Cell:                                    0                                             
+ Repeater Cell:                                     0                                             
+
+----------------------------------------------------------------------------------------------------
+Unmapped MV Cells 
+----------------------------------------------------------------------------------------------------
+0 Isolation Cells are unmapped 
+0 Retention Clamp Cells are unmapped 
+----------------------------------------------------------------------------------------------------
+Warning: In the design spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16, net 'pready' is connecting multiple ports. (UCN-1)
+Warning: The specified replacement character (_) is conflicting with the specified allowed or restricted character.   (UCN-4)
+Warning: In the design spi_master_csr, net '*Logic0*' is connecting multiple ports. (UCN-1)
+Warning: In the design spi_master_csr, net 's_cpuif_rd_err' is connecting multiple ports. (UCN-1)
+Warning: In the design spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256, net 'n1692' is connecting multiple ports. (UCN-1)
+Writing verilog file '/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/rtl/synth-max/aixsilicon_ip_spi_master_1.0.0/synth-design_compiler/outputs/spi_master_top_synth.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Writing ddc file 'outputs/spi_master_top.ddc'.
+SPI_SYNTH_COMPLETE
+
+Memory usage for this session 605 Mbytes.
+Memory usage for this session including child processes 605 Mbytes.
+CPU usage for this session 124 seconds ( 0.03 hours ).
+Elapsed time for this session 131 seconds ( 0.04 hours ).
+
+Thank you...

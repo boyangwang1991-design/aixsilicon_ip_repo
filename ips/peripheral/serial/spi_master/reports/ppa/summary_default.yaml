@@ -1,0 +1,32 @@
+schema_version: '2.0'
+run_id: default
+evidence_level: E2
+area_um2: 16622.30674
+slack_ns: 2.64
+dyn_power_uW: 1561.1999999999998
+leak_power_nW: 2580.7000000000003
+timing_constrained: true
+comparison_context:
+  pdk: GF CMOS28LP sc9 base HVT
+  corner: tt_nominal_max_1p00v_25c
+  clock_period_ns: 10
+  activity: vectorless default
+  constraints_sha256: dbec15f7e7371f37a66c5296990d402e5487948fb14ea4712a87fa2cd4aba088
+parameters:
+- 4
+- 32
+- 32
+- 4
+raw_reports:
+  area:
+    path: reports/synth/default/area.rpt
+    sha256: f91b24b005ef94f8e4d6c69118e83b17f4eef3fa32596f1ec6d256613486cc40
+  timing:
+    path: reports/synth/default/timing.rpt
+    sha256: 8d45353c0f2829fec6c035a830c9b3b170c0810431488255a97610246f2c2a79
+  power:
+    path: reports/synth/default/power.rpt
+    sha256: 5603abad38c823e38b6f59017604024c00926dbab5db191893af9e6c45950ab8
+manifest:
+  path: reports/synth/default/source-binding.json
+  sha256: 7cd75a63a7772ea85edeeab086113b9bf195c58615c0e363a6165bd243c9a9ac

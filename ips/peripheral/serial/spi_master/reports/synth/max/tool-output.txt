@@ -1,0 +1,9 @@
+COMMAND: ['fusesoc', '--cores-root=.', '--cores-root=build/dependencies', 'run', '--target=synth', '--setup', '--build', '--build-root=/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/rtl/synth-max', 'aixsilicon:ip:spi_master:1.0.0']
+WARNING: Replacing aixsilicon:cbb:sync_fifo:0.1.0 in ./build/dependencies with the version found in build/dependencies
+INFO: Preparing aixsilicon:cbb:sync_fifo:0.1.0
+INFO: Preparing aixsilicon:ip:spi_master:1.0.0
+INFO: Setting up project
+INFO: Building
+INFO: (running make, which runs dc_shell which has an unbelievably long lag before printing. be patient)
+Entering directory '/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/rtl/synth-max/aixsilicon_ip_spi_master_1.0.0/synth-design_compiler'
+Leaving directory '/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/rtl/synth-max/aixsilicon_ip_spi_master_1.0.0/synth-design_compiler'

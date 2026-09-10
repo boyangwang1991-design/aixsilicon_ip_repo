@@ -1,0 +1,20 @@
+ 
+****************************************
+Report : clocks
+Design : spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+Version: V-2023.12-SP3
+Date   : Thu Sep 10 08:09:53 2026
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+    g - lib_generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+pclk            10.00   {0 5}                         {pclk}
+--------------------------------------------------------------------------------
+1

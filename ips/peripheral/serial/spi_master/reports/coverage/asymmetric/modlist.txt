@@ -1,0 +1,30 @@
+Design Module List
+
+Total Module Definition Coverage Summary 
+SCORE   LINE              COND              TOGGLE             FSM           BRANCH          ASSERT       
+ 64.69   73.28 1541/2103   67.15 1110/1653   33.21 6314/19014   75.00 15/20   68.09 636/934   71.43 10/14 
+
+
+Total modules in report: 9
+-------------------------------------------------------------------------------
+SCORE                 LINE                  COND                 TOGGLE                FSM                  BRANCH               ASSERT               NAME                                                                              
+  3.19                  5.06   21/415         3.03   3/99          0.00   0/12         --       --            4.66   9/193       --       --          uvm_custom_install_verdi_recording                                                
+ 33.33                --       --           --       --          --       --           --       --          --       --           33.33   1/3         uvm_pkg                                                                           
+ 65.50                 88.23   1229/1393     65.41   764/1168     26.58   2133/8024    --       --           81.79   485/593     --       --          spi_master_csr                                                                    
+ 77.81                100.00   32/32         85.71   102/119      29.10   1679/5770    --       --           96.43   27/28       --       --          spi_master_top                                                                    
+ 79.52                100.00   176/176       90.07   136/151      35.39   1315/3716     75.00   15/20        97.14   68/70       --       --          spi_master_engine                                                                 
+ 87.01                100.00   3/3           74.07   20/27        73.95   460/622      --       --          100.00   2/2         --       --          spi_master_queues                                                                 
+ 87.96                100.00   30/30         95.00   57/60        84.79   526/662      --       --          100.00   27/27        60.00   3/5         sync_fifo                                                                         
+                   
+  ---------------- 
+  SCORE                 LINE                  COND                 TOGGLE                FSM                  BRANCH               ASSERT               NAME                                                                            
+   60.00                --       --           --       --          --       --           --       --          --       --           60.00   3/5         sync_fifo                                                                       
+   98.75                100.00   10/10         95.00   19/20       100.00   186/186      --       --          100.00   9/9         --       --          sync_fifo ( parameter DATA_W=32,DEPTH=16,OUTPUT_REG=0,IMPL=0,CNT_W=5,PTR_W=4 )  
+   98.75                100.00   10/10         95.00   19/20       100.00   178/178      --       --          100.00   9/9         --       --          sync_fifo ( parameter DATA_W=32,DEPTH=8,OUTPUT_REG=0,IMPL=0,CNT_W=4,PTR_W=3 )   
+   87.34                100.00   10/10         95.00   19/20        54.36   162/298      --       --          100.00   9/9         --       --          sync_fifo ( parameter DATA_W=64,DEPTH=4,OUTPUT_REG=0,IMPL=0,CNT_W=3,PTR_W=2 )   
+                   
+----------------   
+SCORE                 LINE                  COND                 TOGGLE                FSM                  BRANCH               ASSERT               NAME                                                                              
+ 90.48                 71.43   5/7          --       --          100.00   2/2          --       --          --       --          100.00   6/6         spi_master_tb                                                                     
+ 93.65                 95.74   45/47         96.55   28/29        96.60   199/206      --       --           85.71   18/21       --       --          spi_tb_if                                                                         
+

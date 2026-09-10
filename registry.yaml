@@ -1,5 +1,5 @@
 schema_version: "2.0"
-updated: "2026-09-10T08:12:52Z"
+updated: "2026-09-10T12:36:35Z"
 # 本文件是 AIXSILICON IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 治理）。
 # 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path
 # 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。
@@ -513,12 +513,13 @@ ips:
     subdomain: serial
     type: ip
     priority: P0
-    status: planned
-    maturity: alpha
-    version: "0.1.0"
-    interfaces: [apb4]
-    description: 'SPI 主机'
+    status: implemented
+    maturity: experimental
+    version: "1.0.0"
+    interfaces: [apb4, spi]
+    description: 'APB4 队列式 SPI master（四模式、暂停/中止，已完成仿真与 28nm 综合；候选实现，未量产冻结）'
     path: ips/peripheral/serial/spi_master
+    core: aixsilicon:ip:spi_master:1.0.0
   - id: PER-006
     name: spi_slave
     domain: peripheral

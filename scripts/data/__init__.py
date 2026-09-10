@@ -31,6 +31,13 @@ PRIORITY_LISTS = [
 # hac_aes / lowrisc_* 目录未落盘（gitignore 或未同步），暂标记 planned，
 # 待目录落盘后再置为 implemented/released。
 IMPLEMENTED_OVERRIDES = {
+    "spi_master": {
+        "vendor": "aixsilicon", "version": "1.0.0", "status": "implemented",
+        "maturity": "experimental", "interfaces": ["apb4", "spi"],
+        "path": "ips/peripheral/serial/spi_master",
+        "core": "aixsilicon:ip:spi_master:1.0.0",
+        "description": "APB4 队列式 SPI master（四模式、暂停/中止，已完成仿真与 28nm 综合；候选实现，未量产冻结）",
+    },
     "apb_demux": {
         "version": "1.0.0", "status": "implemented", "maturity": "experimental",
         "path": "ips/infrastructure/apb/apb_demux",

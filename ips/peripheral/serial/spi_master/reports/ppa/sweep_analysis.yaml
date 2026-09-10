@@ -1,0 +1,10 @@
+schema: ip-ppa-sweep-analysis/1.0
+point_count: 3
+pareto_run_ids:
+- small
+- default
+- max
+recommended_run_id: default
+rationale: Default is the contract capacity baseline; small saves area/power, max
+  serves burst capacity. These are capability tradeoffs, not equal-workload Pareto
+  dominance.

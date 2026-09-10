@@ -1,0 +1,64 @@
+[
+  {
+    "unit": "queues",
+    "status": "pass",
+    "commands": [
+      [
+        "vcs",
+        "-full64",
+        "-sverilog",
+        "-timescale=1ns/1ps",
+        "-top",
+        "spi_queues_ut",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/ut/spi_queues_ut",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr_pkg.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_addr_pkg.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_queues.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_engine.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_top.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/unit_test/ut_spi_queues.sv"
+      ],
+      [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/ut/spi_queues_ut",
+        "+ntb_random_seed=917"
+      ]
+    ],
+    "source_sha256": "92060a9bda7d027206d5e91ac4414bfd890cc76dd907e339be3e6ca808c1a98b",
+    "log": "build/ut/queues-1.log",
+    "log_sha256": "9d773da242674e45f834b45c4637c619459ec3b2e23207ecaad7c070b2d12a4e"
+  },
+  {
+    "unit": "engine",
+    "status": "pass",
+    "commands": [
+      [
+        "vcs",
+        "-full64",
+        "-sverilog",
+        "-timescale=1ns/1ps",
+        "-top",
+        "spi_engine_ut",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/ut/spi_engine_ut",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr_pkg.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_addr_pkg.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_queues.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_engine.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_top.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/unit_test/ut_spi_engine.sv"
+      ],
+      [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/ut/spi_engine_ut",
+        "+ntb_random_seed=917"
+      ]
+    ],
+    "source_sha256": "2badec1e6a45671e201e16c4f96f7d269c193f721be76029510fe953d10b1fcd",
+    "log": "build/ut/engine-1.log",
+    "log_sha256": "5d103985bdd1f2f076c858e507cada68578fa002bdfaa45fd9b4250d74a94865"
+  }
+]

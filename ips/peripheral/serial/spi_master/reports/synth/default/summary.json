@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "config": "default",
+  "parameters": [
+    4,
+    32,
+    32,
+    4
+  ],
+  "tool": "Design Compiler",
+  "exit_code": 0,
+  "area_um2": 16622.30674,
+  "worst_slack_ns": 2.64,
+  "period_ns": 10,
+  "activity": "default vectorless probability propagation; not measured workload power",
+  "netlist": "build/rtl/synth-default/aixsilicon_ip_spi_master_1.0.0/synth-design_compiler/outputs/spi_master_top_synth.v",
+  "hashes": {
+    "model/pdk.yaml": "3080f278d178f5cdf14ab43f94921a0a78100444b3f9e004391c6cf2eca75b66",
+    "constraints/characterization.sdc": "dbec15f7e7371f37a66c5296990d402e5487948fb14ea4712a87fa2cd4aba088",
+    "scripts/ppa/run_synthesis.py": "6230afd5568e3d0cdb8ea74a617ae7f7eb0daf30d5193b95d1dff1ada4798cd9",
+    "scripts/ppa/synth.tcl": "c18ec7c8bab742021bf9c90b624357f5549c5d7a2a78dcea92ab5faf1f9705f3",
+    "reports/synth/default/check_pre.rpt": "2e4a23e1011e1cad30358d47251a4d8b4681142c4bf57de376da8285a0fee073",
+    "reports/synth/default/check_post.rpt": "2181ed3accac73ef7451f114028810af69a51de3b43812eb9066db87fe0f1df9",
+    "reports/synth/default/area.rpt": "f91b24b005ef94f8e4d6c69118e83b17f4eef3fa32596f1ec6d256613486cc40",
+    "reports/synth/default/timing.rpt": "8d45353c0f2829fec6c035a830c9b3b170c0810431488255a97610246f2c2a79",
+    "reports/synth/default/power.rpt": "5603abad38c823e38b6f59017604024c00926dbab5db191893af9e6c45950ab8",
+    "reports/synth/default/constraints.rpt": "bfbe4d5411943a5887de85b715900f74c05a415389d3fc85e265917cec163d21",
+    "reports/synth/default/references.rpt": "a4d2175c97d6b9b2bbbf02afcb2fda0d97b97f8e221a55da4307fbc6085284cc",
+    "reports/synth/default/clock.rpt": "2752f1c436d5d370b0ab4327b3281812c9afbe17a8f187a4ccf55428e2e16d16"
+  }
+}

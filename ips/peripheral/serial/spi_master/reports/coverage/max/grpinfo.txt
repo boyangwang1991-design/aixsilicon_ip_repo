@@ -1,0 +1,596 @@
+Group : spi_master_tb.vif::command_coverage
+
+===============================================================================
+Group : spi_master_tb.vif::command_coverage
+===============================================================================
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING 
+100.00 100.00    1      100    1        1            64           64            
+
+
+Source File(s) : 
+
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv
+
+1 Instances:
+
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING NAME        
+100.00 1      100    1        64           64            command_cov 
+
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   spi_master_tb.vif::command_coverage
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 9        0         9       100.00  
+
+
+Variables for Group  spi_master_tb.vif::command_coverage
+
+
+VARIABLE EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+cp_op    5        0         5       100.00  100  1      1        0                    
+cp_keep  2        0         2       100.00  100  1      1        2                    
+cp_stall 2        0         2       100.00  100  1      1        2                    
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_op
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 5        0         5       100.00  
+
+
+User Defined Bins for cp_op
+
+
+Bins
+
+NAME         COUNT AT LEAST SUBSUMED VALUES 
+operations_0 28    1        --              
+operations_1 3     1        --              
+operations_2 111   1        --              
+operations_3 5     1        --              
+operations_4 4     1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_keep
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_keep
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 140   1        { [ 0 ] }       
+auto[1] 11    1        { [ 1 ] }       
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_stall
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_stall
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 117   1        { [ 0 ] }       
+auto[1] 34    1        { [ 1 ] }       
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : command_cov
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+100.00 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                                
+100.00 100.00    1      100    1        1            64           64                    spi_master_tb.vif::command_coverage 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   command_cov
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 9        0         9       100.00  
+
+
+Variables for Group Instance  command_cov
+
+
+VARIABLE EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+cp_op    5        0         5       100.00  100  1      1        0                    
+cp_keep  2        0         2       100.00  100  1      1        2                    
+cp_stall 2        0         2       100.00  100  1      1        2                    
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_op
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 5        0         5       100.00  
+
+
+User Defined Bins for cp_op
+
+
+Bins
+
+NAME         COUNT AT LEAST SUBSUMED VALUES 
+operations_0 28    1        --              
+operations_1 3     1        --              
+operations_2 111   1        --              
+operations_3 5     1        --              
+operations_4 4     1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_keep
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_keep
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 140   1        { [ 0 ] }       
+auto[1] 11    1        { [ 1 ] }       
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_stall
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_stall
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 117   1        { [ 0 ] }       
+auto[1] 34    1        { [ 1 ] }       
+
+
+Group : spi_master_tb.vif::serial_coverage
+
+===============================================================================
+Group : spi_master_tb.vif::serial_coverage
+===============================================================================
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING 
+100.00 100.00    1      100    1        1            64           64            
+
+
+Source File(s) : 
+
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv
+
+1 Instances:
+
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING NAME       
+100.00 1      100    1        64           64            serial_cov 
+
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   spi_master_tb.vif::serial_coverage
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 15       0         15      100.00  
+Crosses   72       0         72      100.00  
+
+
+Variables for Group  spi_master_tb.vif::serial_coverage
+
+
+VARIABLE EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+cp_mode  4        0         4       100.00  100  1      1        0                    
+cp_width 9        0         9       100.00  100  1      1        0                    
+cp_order 2        0         2       100.00  100  1      1        2                    
+
+
+Crosses for Group  spi_master_tb.vif::serial_coverage
+
+
+CROSS            EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+mode_width_order 72       0         72      100.00  100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_mode
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+User Defined Bins for cp_mode
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+modes_0 966   1        --              
+modes_1 150   1        --              
+modes_2 127   1        --              
+modes_3 143   1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_width
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 9        0         9       100.00  
+
+
+User Defined Bins for cp_width
+
+
+Bins
+
+NAME      COUNT AT LEAST SUBSUMED VALUES 
+widths_1  25    1        --              
+widths_2  48    1        --              
+widths_7  27    1        --              
+widths_8  809   1        --              
+widths_9  48    1        --              
+widths_16 36    1        --              
+widths_24 48    1        --              
+widths_31 24    1        --              
+widths_32 48    1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_order
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_order
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 1073  1        { [ 0 ] }       
+auto[1] 313   1        { [ 1 ] }       
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross mode_width_order
+
+
+Samples crossed: cp_mode cp_width cp_order
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 72       0         72      100.00          
+
+
+Automatically Generated Cross Bins for mode_width_order
+
+
+Bins
+
+cp_mode cp_width  cp_order COUNT AT LEAST 
+modes_0 widths_1  auto[0]  4     1        
+modes_0 widths_1  auto[1]  3     1        
+modes_0 widths_2  auto[0]  3     1        
+modes_0 widths_2  auto[1]  3     1        
+modes_0 widths_7  auto[0]  3     1        
+modes_0 widths_7  auto[1]  3     1        
+modes_0 widths_8  auto[0]  782   1        
+modes_0 widths_8  auto[1]  3     1        
+modes_0 widths_9  auto[0]  15    1        
+modes_0 widths_9  auto[1]  15    1        
+modes_0 widths_16 auto[0]  3     1        
+modes_0 widths_16 auto[1]  3     1        
+modes_0 widths_24 auto[0]  3     1        
+modes_0 widths_24 auto[1]  3     1        
+modes_0 widths_31 auto[0]  3     1        
+modes_0 widths_31 auto[1]  3     1        
+modes_0 widths_32 auto[0]  3     1        
+modes_0 widths_32 auto[1]  3     1        
+modes_1 widths_1  auto[0]  3     1        
+modes_1 widths_1  auto[1]  3     1        
+modes_1 widths_2  auto[0]  3     1        
+modes_1 widths_2  auto[1]  3     1        
+modes_1 widths_7  auto[0]  3     1        
+modes_1 widths_7  auto[1]  6     1        
+modes_1 widths_8  auto[0]  3     1        
+modes_1 widths_8  auto[1]  3     1        
+modes_1 widths_9  auto[0]  3     1        
+modes_1 widths_9  auto[1]  3     1        
+modes_1 widths_16 auto[0]  3     1        
+modes_1 widths_16 auto[1]  15    1        
+modes_1 widths_24 auto[0]  3     1        
+modes_1 widths_24 auto[1]  15    1        
+modes_1 widths_31 auto[0]  3     1        
+modes_1 widths_31 auto[1]  3     1        
+modes_1 widths_32 auto[0]  3     1        
+modes_1 widths_32 auto[1]  3     1        
+modes_2 widths_1  auto[0]  3     1        
+modes_2 widths_1  auto[1]  3     1        
+modes_2 widths_2  auto[0]  3     1        
+modes_2 widths_2  auto[1]  3     1        
+modes_2 widths_7  auto[0]  3     1        
+modes_2 widths_7  auto[1]  3     1        
+modes_2 widths_8  auto[0]  3     1        
+modes_2 widths_8  auto[1]  4     1        
+modes_2 widths_9  auto[0]  3     1        
+modes_2 widths_9  auto[1]  3     1        
+modes_2 widths_16 auto[0]  3     1        
+modes_2 widths_16 auto[1]  3     1        
+modes_2 widths_24 auto[0]  3     1        
+modes_2 widths_24 auto[1]  3     1        
+modes_2 widths_31 auto[0]  3     1        
+modes_2 widths_31 auto[1]  3     1        
+modes_2 widths_32 auto[0]  3     1        
+modes_2 widths_32 auto[1]  27    1        
+modes_3 widths_1  auto[0]  3     1        
+modes_3 widths_1  auto[1]  3     1        
+modes_3 widths_2  auto[0]  15    1        
+modes_3 widths_2  auto[1]  15    1        
+modes_3 widths_7  auto[0]  3     1        
+modes_3 widths_7  auto[1]  3     1        
+modes_3 widths_8  auto[0]  8     1        
+modes_3 widths_8  auto[1]  3     1        
+modes_3 widths_9  auto[0]  3     1        
+modes_3 widths_9  auto[1]  3     1        
+modes_3 widths_16 auto[0]  3     1        
+modes_3 widths_16 auto[1]  3     1        
+modes_3 widths_24 auto[0]  3     1        
+modes_3 widths_24 auto[1]  15    1        
+modes_3 widths_31 auto[0]  3     1        
+modes_3 widths_31 auto[1]  3     1        
+modes_3 widths_32 auto[0]  3     1        
+modes_3 widths_32 auto[1]  3     1        
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : serial_cov
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+100.00 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                               
+100.00 100.00    1      100    1        1            64           64                    spi_master_tb.vif::serial_coverage 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   serial_cov
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 15       0         15      100.00  
+Crosses   72       0         72      100.00  
+
+
+Variables for Group Instance  serial_cov
+
+
+VARIABLE EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+cp_mode  4        0         4       100.00  100  1      1        0                    
+cp_width 9        0         9       100.00  100  1      1        0                    
+cp_order 2        0         2       100.00  100  1      1        2                    
+
+
+Crosses for Group Instance  serial_cov
+
+
+CROSS            EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+mode_width_order 72       0         72      100.00  100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_mode
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 4        0         4       100.00  
+
+
+User Defined Bins for cp_mode
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+modes_0 966   1        --              
+modes_1 150   1        --              
+modes_2 127   1        --              
+modes_3 143   1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_width
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 9        0         9       100.00  
+
+
+User Defined Bins for cp_width
+
+
+Bins
+
+NAME      COUNT AT LEAST SUBSUMED VALUES 
+widths_1  25    1        --              
+widths_2  48    1        --              
+widths_7  27    1        --              
+widths_8  809   1        --              
+widths_9  48    1        --              
+widths_16 36    1        --              
+widths_24 48    1        --              
+widths_31 24    1        --              
+widths_32 48    1        --              
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable cp_order
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for cp_order
+
+
+Bins
+
+NAME    COUNT AT LEAST SUBSUMED VALUES 
+auto[0] 1073  1        { [ 0 ] }       
+auto[1] 313   1        { [ 1 ] }       
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross mode_width_order
+
+
+Samples crossed: cp_mode cp_width cp_order
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 72       0         72      100.00          
+
+
+Automatically Generated Cross Bins for mode_width_order
+
+
+Bins
+
+cp_mode cp_width  cp_order COUNT AT LEAST 
+modes_0 widths_1  auto[0]  4     1        
+modes_0 widths_1  auto[1]  3     1        
+modes_0 widths_2  auto[0]  3     1        
+modes_0 widths_2  auto[1]  3     1        
+modes_0 widths_7  auto[0]  3     1        
+modes_0 widths_7  auto[1]  3     1        
+modes_0 widths_8  auto[0]  782   1        
+modes_0 widths_8  auto[1]  3     1        
+modes_0 widths_9  auto[0]  15    1        
+modes_0 widths_9  auto[1]  15    1        
+modes_0 widths_16 auto[0]  3     1        
+modes_0 widths_16 auto[1]  3     1        
+modes_0 widths_24 auto[0]  3     1        
+modes_0 widths_24 auto[1]  3     1        
+modes_0 widths_31 auto[0]  3     1        
+modes_0 widths_31 auto[1]  3     1        
+modes_0 widths_32 auto[0]  3     1        
+modes_0 widths_32 auto[1]  3     1        
+modes_1 widths_1  auto[0]  3     1        
+modes_1 widths_1  auto[1]  3     1        
+modes_1 widths_2  auto[0]  3     1        
+modes_1 widths_2  auto[1]  3     1        
+modes_1 widths_7  auto[0]  3     1        
+modes_1 widths_7  auto[1]  6     1        
+modes_1 widths_8  auto[0]  3     1        
+modes_1 widths_8  auto[1]  3     1        
+modes_1 widths_9  auto[0]  3     1        
+modes_1 widths_9  auto[1]  3     1        
+modes_1 widths_16 auto[0]  3     1        
+modes_1 widths_16 auto[1]  15    1        
+modes_1 widths_24 auto[0]  3     1        
+modes_1 widths_24 auto[1]  15    1        
+modes_1 widths_31 auto[0]  3     1        
+modes_1 widths_31 auto[1]  3     1        
+modes_1 widths_32 auto[0]  3     1        
+modes_1 widths_32 auto[1]  3     1        
+modes_2 widths_1  auto[0]  3     1        
+modes_2 widths_1  auto[1]  3     1        
+modes_2 widths_2  auto[0]  3     1        
+modes_2 widths_2  auto[1]  3     1        
+modes_2 widths_7  auto[0]  3     1        
+modes_2 widths_7  auto[1]  3     1        
+modes_2 widths_8  auto[0]  3     1        
+modes_2 widths_8  auto[1]  4     1        
+modes_2 widths_9  auto[0]  3     1        
+modes_2 widths_9  auto[1]  3     1        
+modes_2 widths_16 auto[0]  3     1        
+modes_2 widths_16 auto[1]  3     1        
+modes_2 widths_24 auto[0]  3     1        
+modes_2 widths_24 auto[1]  3     1        
+modes_2 widths_31 auto[0]  3     1        
+modes_2 widths_31 auto[1]  3     1        
+modes_2 widths_32 auto[0]  3     1        
+modes_2 widths_32 auto[1]  27    1        
+modes_3 widths_1  auto[0]  3     1        
+modes_3 widths_1  auto[1]  3     1        
+modes_3 widths_2  auto[0]  15    1        
+modes_3 widths_2  auto[1]  15    1        
+modes_3 widths_7  auto[0]  3     1        
+modes_3 widths_7  auto[1]  3     1        
+modes_3 widths_8  auto[0]  8     1        
+modes_3 widths_8  auto[1]  3     1        
+modes_3 widths_9  auto[0]  3     1        
+modes_3 widths_9  auto[1]  3     1        
+modes_3 widths_16 auto[0]  3     1        
+modes_3 widths_16 auto[1]  3     1        
+modes_3 widths_24 auto[0]  3     1        
+modes_3 widths_24 auto[1]  15    1        
+modes_3 widths_31 auto[0]  3     1        
+modes_3 widths_31 auto[1]  3     1        
+modes_3 widths_32 auto[0]  3     1        
+modes_3 widths_32 auto[1]  3     1        
+
+

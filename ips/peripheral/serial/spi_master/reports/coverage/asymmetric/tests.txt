@@ -1,0 +1,20 @@
+Tests
+
+Total Coverage Summary 
+SCORE   LINE              COND              TOGGLE             FSM           BRANCH          ASSERT        GROUP        
+ 69.06   73.28 1541/2103   67.15 1110/1653   33.21 6314/19014   75.00 15/20   68.09 636/934   66.67 16/24  100.00 96/96 
+
+
+Total tests in report: 9
+-------------------------------------------------------------------------------
+Data from the following tests was used to generate this report
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/apb_1        
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/modes_1      
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/commands_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/fifo_stall_1 
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/recovery_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/irq_1        
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/extended_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/random_1     
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage/races_1      
+

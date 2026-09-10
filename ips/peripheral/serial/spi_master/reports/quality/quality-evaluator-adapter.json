@@ -1,0 +1,10 @@
+{
+  "upstream": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+  "upstream_sha256": "42c25865971c6ea27142652b6bab16d0bfc690ac1532df6cda8b47c959858995",
+  "adapter_sha256": "6ae8da59ab7f23e6b3a0f1aa6c0a5d429427dbd16219caeec9cc614c36161208",
+  "changes": [
+    "only exact static delivery testcase accepts Python implementation",
+    "static+C validates executable evidence, exit codes and current source/log hashes; UVM checks unchanged"
+  ],
+  "coverage_rules_modified": false
+}

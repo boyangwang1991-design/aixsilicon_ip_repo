@@ -1,0 +1,35 @@
+Dashboard
+
+Date: Thu Sep 10 08:49:42 2026
+
+User: eda
+
+Version: W-2024.09-SP1
+Command line: urg -full64 -dir /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/small/coverage.vdb -report /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/small -format both -show ratios -group show_bin_values -group maxmissing 100
+Number of tests: 9
+
+-------------------------------------------------------------------------------
+Total Coverage Summary 
+SCORE   LINE              COND              TOGGLE             FSM           BRANCH          ASSERT        GROUP        
+ 66.97   70.57 1484/2103   62.25 1029/1653   30.31 5743/18950   75.00 15/20   64.03 598/934   66.67 16/24  100.00 96/96 
+
+
+-------------------------------------------------------------------------------
+Hierarchical coverage data for top-level instances 
+SCORE   LINE              COND              TOGGLE             FSM            BRANCH          ASSERT         NAME                               
+ 68.16   86.67 1463/1688   66.02 1026/1554   30.33 5743/18938   75.00 15/20    79.49 589/741   71.43 15/21   spi_master_tb                      
+  3.19    5.06 21/415       3.03 3/99         0.00 0/12        --     --        4.66 9/193    --     --      uvm_custom_install_verdi_recording 
+ 33.33  --     --         --     --         --     --          --     --      --     --        33.33 1/3     uvm_pkg                            
+
+
+-------------------------------------------------------------------------------
+Total Module Definition Coverage Summary 
+SCORE   LINE              COND              TOGGLE             FSM           BRANCH          ASSERT       
+ 62.02   70.43 1474/2093   61.91 1011/1633   29.68 5573/18780   75.00 15/20   63.68 589/925   71.43 10/14 
+
+
+-------------------------------------------------------------------------------
+Total Groups Coverage Summary 
+COVERED EXPECTED SCORE  COVERED EXPECTED INST SCORE WEIGHT 
+96      96       100.00 96      96       100.00     1      
+

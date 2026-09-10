@@ -1,0 +1,11 @@
+/build/
+*.daidir/
+csrc/
+simv*
+*.vcd
+*.fsdb
+*.log
+__pycache__/
+*.py[cod]
+# Audit logs under reports are deliverables, unlike disposable build logs.
+!reports/**/*.log

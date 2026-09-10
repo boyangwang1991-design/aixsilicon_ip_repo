@@ -1,0 +1,121 @@
+{
+  "config": [
+    8,
+    256,
+    256,
+    16
+  ],
+  "results": [
+    {
+      "exit_code": 0,
+      "seconds": 6.530691560939886,
+      "log": "build/sim/max/apb_1.log",
+      "sha256": "e310bc5c4f5511065a1792fef4d2bd33f16920cc43c63b9a47f1f95f6e7bce83",
+      "test": "tc_spi_apb",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 7.433168168994598,
+      "log": "build/sim/max/modes_1.log",
+      "sha256": "65ab47b6da9b293f0c3efb61b4ad11ceca49600cb3e368f32d519317c96551ad",
+      "test": "tc_spi_modes",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 7.4824423239333555,
+      "log": "build/sim/max/commands_1.log",
+      "sha256": "a39283494ee678a67bb2a80760d1a8dfa6985c469fdfc9429b701275f39564d3",
+      "test": "tc_spi_commands",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 10.39116478501819,
+      "log": "build/sim/max/fifo_stall_1.log",
+      "sha256": "8e1744481ef0b38c091ca3ab7fd172622212872a748a33a19b79c43f8426241f",
+      "test": "tc_spi_fifo_stall",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 5.47713948704768,
+      "log": "build/sim/max/recovery_1.log",
+      "sha256": "645a4283791d8ac793c252771d541b0ac866d949cafa9630a68d7c7be06d1cbb",
+      "test": "tc_spi_recovery",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 10.439004890038632,
+      "log": "build/sim/max/irq_1.log",
+      "sha256": "18a46e6c5c65db07676a6d08cd81661b71200dae87ff52683beb5c7e02ee01b2",
+      "test": "tc_spi_irq",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 13.948618563008495,
+      "log": "build/sim/max/extended_1.log",
+      "sha256": "140b2ed13a8995bc4a2b2d69f862c7475cc588336f88a355c046b7d11210b71d",
+      "test": "tc_spi_extended",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 7.281564524048008,
+      "log": "build/sim/max/random_1.log",
+      "sha256": "ecd4e0aa0585e8574c8a37da28df3d959c79c1a8f0e8ebea89900ff018fab216",
+      "test": "tc_spi_random",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 5.526601128978655,
+      "log": "build/sim/max/races_1.log",
+      "sha256": "9e51ef655482241c2478522f69281d85006eccc5b71fb0a29fb5af012ba3dd13",
+      "test": "tc_spi_races",
+      "seed": 1,
+      "config": "max",
+      "status": "pass"
+    }
+  ],
+  "source_hashes": {
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr_pkg.sv": "de806be1ce8c273e5d27018d39fa8a5ab7797acea9da90a34f28b55922995fb6",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_addr_pkg.sv": "1ee00119debd0aff991f3572b21ad7e1a460f609b8525de710f5c8c4abeb6491",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/generated/spi_master_csr.sv": "8c8e27eb72ef38ffe8ad8d8338ed5252b54754494ab926d9353f688da6decd34",
+    "repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/rtl/sync_fifo.sv": "316b6504bb097aca44280de10fa30e2f41cc217dcfd467740f3b51e90eec71cb",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_queues.sv": "7c9f4f926a7990207e8576f8a6f62888a34a6e3c901b0d90caf461bfc8745e93",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_engine.sv": "4616a62021af589865d46c94fa4919720394a659bb54d8f10b815863c7ca1210",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/rtl/spi_master_top.sv": "77d20ef0f2aa1563156ba90e23fdf119b42cbb2c3619c61a8e8c1b349db30688",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv": "805e69f1735acbf68fd4cb812b7afb09855d4720fd6b56245ce0a137bc96b20c",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/env/spi_master_tests.sv": "462db001f6749eccd2d976bfb066ac371aded308992eb96be60193b9206cabd7",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_apb.sv": "972c2d846f440d196c5151fa848ac3e852ead6639c4a9e13de7483b2a95f711c",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_commands.sv": "90b6d9936667743e18f94c65fa17b8e2f0e6442050d5c4892f6c66accf8e6b2f",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_extended.sv": "d7234f8e68a50810144501bb4e2ebdcecc7e99f06bd85251e9f8176094f7b76b",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_fifo_stall.sv": "3d43ba0fed7ca3456c4cada0f3493802b108f217e22372f40807a16af487a259",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_irq.sv": "59ea0425a3443eabe36bc8964bfdc3ca4d5cf0d7a384f9fa289cc9a8c11ff576",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_modes.sv": "d6648ba5359048874dd778f69dfd97d8792e13a8b064bd210a0ef912bf3e07d4",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_races.sv": "a23ff33d6434ccc11cce3a20c537c103e1b3ab231995c197f9487237aa4190c9",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_random.sv": "c83ec9f1ead060835d0db8d6858983e755e351400409762c57ab8b682a57a1ae",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/tc/tc_spi_recovery.sv": "bfb05e71d7dce083818d6e221693c366c9f4171d1f60cd316ca0497a211e489e",
+    "repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_master_tb.sv": "ecd049e8901b8336717cbc2698241c93918e6d79b6490ddfd97f9cf8b1a22f3d"
+  }
+}

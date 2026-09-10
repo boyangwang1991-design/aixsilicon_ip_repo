@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="spi_master" tests="1" failures="0"><testcase name="tc_spi_random" classname="default" time="8.436680793995038" /></testsuite>

@@ -1,0 +1,465 @@
+COMMAND: ['/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/simv', '+UVM_TESTNAME=tc_spi_fifo_stall', '+ntb_random_seed=1', '-cm', 'line+cond+fsm+tgl+branch+assert', '-cm_name', 'fifo_stall_1']
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2024
+Contains Synopsys proprietary information.
+Compiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Sep 10 05:47 2026
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+
+ VCS Coverage Metrics Release W-2024.09-SP1_Full64 Copyright (c) 1991-2024 by Synopsys Inc.
+UVM_INFO @ 0: reporter [RNTST] Running test tc_spi_fifo_stall...
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 815001 ps
+CHECK fifo_stall: MOSI sample 16 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1035001 ps
+CHECK fifo_stall: MOSI sample 23 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1275001 ps
+CHECK fifo_stall: MOSI sample 31 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1295001 ps
+CHECK fifo_stall: MOSI sample 32 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1495001 ps
+CHECK fifo_stall: MOSI sample 38 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1735001 ps
+CHECK fifo_stall: MOSI sample 46 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1775001 ps
+CHECK fifo_stall: MOSI sample 48 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1975001 ps
+CHECK fifo_stall: MOSI sample 54 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 1995001 ps
+CHECK fifo_stall: MOSI sample 55 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2215001 ps
+CHECK fifo_stall: MOSI sample 62 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2235001 ps
+CHECK fifo_stall: MOSI sample 63 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2255001 ps
+CHECK fifo_stall: MOSI sample 64 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2435001 ps
+CHECK fifo_stall: MOSI sample 69 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2675001 ps
+CHECK fifo_stall: MOSI sample 77 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2735001 ps
+CHECK fifo_stall: MOSI sample 80 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2915001 ps
+CHECK fifo_stall: MOSI sample 85 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 2955001 ps
+CHECK fifo_stall: MOSI sample 87 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3155001 ps
+CHECK fifo_stall: MOSI sample 93 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3195001 ps
+CHECK fifo_stall: MOSI sample 95 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3215001 ps
+CHECK fifo_stall: MOSI sample 96 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3395001 ps
+CHECK fifo_stall: MOSI sample 101 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3415001 ps
+CHECK fifo_stall: MOSI sample 102 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3635001 ps
+CHECK fifo_stall: MOSI sample 109 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3655001 ps
+CHECK fifo_stall: MOSI sample 110 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3695001 ps
+CHECK fifo_stall: MOSI sample 112 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3875001 ps
+CHECK fifo_stall: MOSI sample 117 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3895001 ps
+CHECK fifo_stall: MOSI sample 118 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 3915001 ps
+CHECK fifo_stall: MOSI sample 119 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4115001 ps
+CHECK fifo_stall: MOSI sample 125 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4135001 ps
+CHECK fifo_stall: MOSI sample 126 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4155001 ps
+CHECK fifo_stall: MOSI sample 127 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4175001 ps
+CHECK fifo_stall: MOSI sample 128 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4335001 ps
+CHECK fifo_stall: MOSI sample 132 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4575001 ps
+CHECK fifo_stall: MOSI sample 140 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4655001 ps
+CHECK fifo_stall: MOSI sample 144 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4815001 ps
+CHECK fifo_stall: MOSI sample 148 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 4875001 ps
+CHECK fifo_stall: MOSI sample 151 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5055001 ps
+CHECK fifo_stall: MOSI sample 156 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5115001 ps
+CHECK fifo_stall: MOSI sample 159 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5135001 ps
+CHECK fifo_stall: MOSI sample 160 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5295001 ps
+CHECK fifo_stall: MOSI sample 164 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5335001 ps
+CHECK fifo_stall: MOSI sample 166 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5535001 ps
+CHECK fifo_stall: MOSI sample 172 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5575001 ps
+CHECK fifo_stall: MOSI sample 174 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5615001 ps
+CHECK fifo_stall: MOSI sample 176 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5775001 ps
+CHECK fifo_stall: MOSI sample 180 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5815001 ps
+CHECK fifo_stall: MOSI sample 182 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 5835001 ps
+CHECK fifo_stall: MOSI sample 183 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6015001 ps
+CHECK fifo_stall: MOSI sample 188 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6055001 ps
+CHECK fifo_stall: MOSI sample 190 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6075001 ps
+CHECK fifo_stall: MOSI sample 191 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6095001 ps
+CHECK fifo_stall: MOSI sample 192 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6255001 ps
+CHECK fifo_stall: MOSI sample 196 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6275001 ps
+CHECK fifo_stall: MOSI sample 197 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6495001 ps
+CHECK fifo_stall: MOSI sample 204 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6515001 ps
+CHECK fifo_stall: MOSI sample 205 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6575001 ps
+CHECK fifo_stall: MOSI sample 208 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6735001 ps
+CHECK fifo_stall: MOSI sample 212 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6755001 ps
+CHECK fifo_stall: MOSI sample 213 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6795001 ps
+CHECK fifo_stall: MOSI sample 215 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6975001 ps
+CHECK fifo_stall: MOSI sample 220 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 6995001 ps
+CHECK fifo_stall: MOSI sample 221 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7035001 ps
+CHECK fifo_stall: MOSI sample 223 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7055001 ps
+CHECK fifo_stall: MOSI sample 224 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7215001 ps
+CHECK fifo_stall: MOSI sample 228 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7235001 ps
+CHECK fifo_stall: MOSI sample 229 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7255001 ps
+CHECK fifo_stall: MOSI sample 230 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7455001 ps
+CHECK fifo_stall: MOSI sample 236 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7475001 ps
+CHECK fifo_stall: MOSI sample 237 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7495001 ps
+CHECK fifo_stall: MOSI sample 238 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7535001 ps
+CHECK fifo_stall: MOSI sample 240 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7695001 ps
+CHECK fifo_stall: MOSI sample 244 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7715001 ps
+CHECK fifo_stall: MOSI sample 245 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7735001 ps
+CHECK fifo_stall: MOSI sample 246 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7755001 ps
+CHECK fifo_stall: MOSI sample 247 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7935001 ps
+CHECK fifo_stall: MOSI sample 252 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7955001 ps
+CHECK fifo_stall: MOSI sample 253 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7975001 ps
+CHECK fifo_stall: MOSI sample 254 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 7995001 ps
+CHECK fifo_stall: MOSI sample 255 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8015001 ps
+CHECK fifo_stall: MOSI sample 256 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8155001 ps
+CHECK fifo_stall: MOSI sample 259 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8395001 ps
+CHECK fifo_stall: MOSI sample 267 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8495001 ps
+CHECK fifo_stall: MOSI sample 272 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8635001 ps
+CHECK fifo_stall: MOSI sample 275 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8715001 ps
+CHECK fifo_stall: MOSI sample 279 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8875001 ps
+CHECK fifo_stall: MOSI sample 283 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8955001 ps
+CHECK fifo_stall: MOSI sample 287 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 8975001 ps
+CHECK fifo_stall: MOSI sample 288 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9115001 ps
+CHECK fifo_stall: MOSI sample 291 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9175001 ps
+CHECK fifo_stall: MOSI sample 294 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9355001 ps
+CHECK fifo_stall: MOSI sample 299 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9415001 ps
+CHECK fifo_stall: MOSI sample 302 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9455001 ps
+CHECK fifo_stall: MOSI sample 304 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9595001 ps
+CHECK fifo_stall: MOSI sample 307 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9655001 ps
+CHECK fifo_stall: MOSI sample 310 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9675001 ps
+CHECK fifo_stall: MOSI sample 311 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9835001 ps
+CHECK fifo_stall: MOSI sample 315 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9895001 ps
+CHECK fifo_stall: MOSI sample 318 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9915001 ps
+CHECK fifo_stall: MOSI sample 319 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 9935001 ps
+CHECK fifo_stall: MOSI sample 320 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10075001 ps
+CHECK fifo_stall: MOSI sample 323 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10115001 ps
+CHECK fifo_stall: MOSI sample 325 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10315001 ps
+CHECK fifo_stall: MOSI sample 331 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10355001 ps
+CHECK fifo_stall: MOSI sample 333 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10415001 ps
+CHECK fifo_stall: MOSI sample 336 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10555001 ps
+CHECK fifo_stall: MOSI sample 339 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10595001 ps
+CHECK fifo_stall: MOSI sample 341 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10635001 ps
+CHECK fifo_stall: MOSI sample 343 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10795001 ps
+CHECK fifo_stall: MOSI sample 347 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10835001 ps
+CHECK fifo_stall: MOSI sample 349 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10875001 ps
+CHECK fifo_stall: MOSI sample 351 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 10895001 ps
+CHECK fifo_stall: MOSI sample 352 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11035001 ps
+CHECK fifo_stall: MOSI sample 355 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11075001 ps
+CHECK fifo_stall: MOSI sample 357 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11095001 ps
+CHECK fifo_stall: MOSI sample 358 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11275001 ps
+CHECK fifo_stall: MOSI sample 363 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11315001 ps
+CHECK fifo_stall: MOSI sample 365 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11335001 ps
+CHECK fifo_stall: MOSI sample 366 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11375001 ps
+CHECK fifo_stall: MOSI sample 368 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11515001 ps
+CHECK fifo_stall: MOSI sample 371 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11555001 ps
+CHECK fifo_stall: MOSI sample 373 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11575001 ps
+CHECK fifo_stall: MOSI sample 374 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11595001 ps
+CHECK fifo_stall: MOSI sample 375 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11755001 ps
+CHECK fifo_stall: MOSI sample 379 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11795001 ps
+CHECK fifo_stall: MOSI sample 381 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11815001 ps
+CHECK fifo_stall: MOSI sample 382 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11835001 ps
+CHECK fifo_stall: MOSI sample 383 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11855001 ps
+CHECK fifo_stall: MOSI sample 384 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 11995001 ps
+CHECK fifo_stall: MOSI sample 387 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12015001 ps
+CHECK fifo_stall: MOSI sample 388 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12235001 ps
+CHECK fifo_stall: MOSI sample 395 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12255001 ps
+CHECK fifo_stall: MOSI sample 396 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12335001 ps
+CHECK fifo_stall: MOSI sample 400 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12475001 ps
+CHECK fifo_stall: MOSI sample 403 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12495001 ps
+CHECK fifo_stall: MOSI sample 404 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12555001 ps
+CHECK fifo_stall: MOSI sample 407 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12715001 ps
+CHECK fifo_stall: MOSI sample 411 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12735001 ps
+CHECK fifo_stall: MOSI sample 412 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12795001 ps
+CHECK fifo_stall: MOSI sample 415 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12815001 ps
+CHECK fifo_stall: MOSI sample 416 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12955001 ps
+CHECK fifo_stall: MOSI sample 419 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 12975001 ps
+CHECK fifo_stall: MOSI sample 420 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13015001 ps
+CHECK fifo_stall: MOSI sample 422 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13195001 ps
+CHECK fifo_stall: MOSI sample 427 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13215001 ps
+CHECK fifo_stall: MOSI sample 428 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13255001 ps
+CHECK fifo_stall: MOSI sample 430 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13295001 ps
+CHECK fifo_stall: MOSI sample 432 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13435001 ps
+CHECK fifo_stall: MOSI sample 435 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13455001 ps
+CHECK fifo_stall: MOSI sample 436 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13495001 ps
+CHECK fifo_stall: MOSI sample 438 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13515001 ps
+CHECK fifo_stall: MOSI sample 439 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13675001 ps
+CHECK fifo_stall: MOSI sample 443 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13695001 ps
+CHECK fifo_stall: MOSI sample 444 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13735001 ps
+CHECK fifo_stall: MOSI sample 446 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13755001 ps
+CHECK fifo_stall: MOSI sample 447 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13775001 ps
+CHECK fifo_stall: MOSI sample 448 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13915001 ps
+CHECK fifo_stall: MOSI sample 451 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13935001 ps
+CHECK fifo_stall: MOSI sample 452 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 13955001 ps
+CHECK fifo_stall: MOSI sample 453 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14155001 ps
+CHECK fifo_stall: MOSI sample 459 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14175001 ps
+CHECK fifo_stall: MOSI sample 460 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14195001 ps
+CHECK fifo_stall: MOSI sample 461 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14255001 ps
+CHECK fifo_stall: MOSI sample 464 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14395001 ps
+CHECK fifo_stall: MOSI sample 467 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14415001 ps
+CHECK fifo_stall: MOSI sample 468 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14435001 ps
+CHECK fifo_stall: MOSI sample 469 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14475001 ps
+CHECK fifo_stall: MOSI sample 471 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14635001 ps
+CHECK fifo_stall: MOSI sample 475 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14655001 ps
+CHECK fifo_stall: MOSI sample 476 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14675001 ps
+CHECK fifo_stall: MOSI sample 477 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14715001 ps
+CHECK fifo_stall: MOSI sample 479 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14735001 ps
+CHECK fifo_stall: MOSI sample 480 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14875001 ps
+CHECK fifo_stall: MOSI sample 483 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14895001 ps
+CHECK fifo_stall: MOSI sample 484 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14915001 ps
+CHECK fifo_stall: MOSI sample 485 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 14935001 ps
+CHECK fifo_stall: MOSI sample 486 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15115001 ps
+CHECK fifo_stall: MOSI sample 491 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15135001 ps
+CHECK fifo_stall: MOSI sample 492 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15155001 ps
+CHECK fifo_stall: MOSI sample 493 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15175001 ps
+CHECK fifo_stall: MOSI sample 494 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15215001 ps
+CHECK fifo_stall: MOSI sample 496 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15355001 ps
+CHECK fifo_stall: MOSI sample 499 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15375001 ps
+CHECK fifo_stall: MOSI sample 500 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15395001 ps
+CHECK fifo_stall: MOSI sample 501 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15415001 ps
+CHECK fifo_stall: MOSI sample 502 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15435001 ps
+CHECK fifo_stall: MOSI sample 503 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15595001 ps
+CHECK fifo_stall: MOSI sample 507 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15615001 ps
+CHECK fifo_stall: MOSI sample 508 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15635001 ps
+CHECK fifo_stall: MOSI sample 509 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15655001 ps
+CHECK fifo_stall: MOSI sample 510 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15675001 ps
+CHECK fifo_stall: MOSI sample 511 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15695001 ps
+CHECK fifo_stall: MOSI sample 512 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 15815001 ps
+CHECK fifo_stall: MOSI sample 514 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16055001 ps
+CHECK fifo_stall: MOSI sample 522 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16175001 ps
+CHECK fifo_stall: MOSI sample 528 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16295001 ps
+CHECK fifo_stall: MOSI sample 530 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16395001 ps
+CHECK fifo_stall: MOSI sample 535 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16535001 ps
+CHECK fifo_stall: MOSI sample 538 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16635001 ps
+CHECK fifo_stall: MOSI sample 543 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16655001 ps
+CHECK fifo_stall: MOSI sample 544 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16775001 ps
+CHECK fifo_stall: MOSI sample 546 expected 1 got 0
+Error: "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/th/spi_tb_if.sv", 37: spi_master_tb.vif.check: at time 16855001 ps
+CHECK fifo_stall: MOSI sample 550 expected 1 got 0
+SPI_GROUP fifo_stall errors=202 checks=4364
+UVM_ERROR /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/verification/env/spi_master_tests.sv(24) @ 19170000: uvm_test_top [SPI_CHECK] 202 checks failed
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_objection.svh(1276) @ 19170000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_report_server.svh(904) @ 19170000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    3
+UVM_WARNING :    0
+UVM_ERROR :    1
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[SPI_CHECK]     1
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+
+$finish called from file "/home/eda/app/synopsys/vcs/W-2024.09-SP1/etc/uvm-1.2/base/uvm_root.svh", line 527.
+$finish at simulation time             19170000
+
+---------------------------------------------------------------------------
+VCS Coverage Metrics: during simulation line, cond, FSM, branch, tgl was monitored
+---------------------------------------------------------------------------
+
+ Coverage status: End of All Coverages ...
+
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 19170000 ps
+CPU Time:      0.410 seconds;       Data structure size:   0.6Mb
+Thu Sep 10 05:47:28 2026

@@ -1,0 +1,19 @@
+schema_version: '2.0'
+ip_name: spi_master
+interfaces:
+- id: HLD.IF.INT.SPI_MASTER.QUEUE
+  name: QUEUE
+  scope: internal
+  protocol: fifo_push_pop
+  owner_module: HLD.MOD.SPI_MASTER.QUEUES
+  signals:
+  - name: push
+    width: 1
+  - name: pop
+    width: 1
+  - name: data
+    width: 32 or 64
+  - name: count
+    width: clog2(DEPTH+1)
+  req_ref:
+  - LRS.FUNC.SPI_MASTER.FIFO.003

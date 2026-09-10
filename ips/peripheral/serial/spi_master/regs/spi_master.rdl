@@ -1,0 +1,75 @@
+addrmap spi_master {
+    desc = "SPI Master V1.0 software ABI; behavior in docs/lld/04_register_behavior.md";
+    default regwidth = 32;
+    default accesswidth = 32;
+    reg { field {sw=r; hw=r; reset=32'h00010000;} value[31:0]; } ip_version @ 0x000;
+    reg { field {sw=r; hw=w;} value[23:0]; } capability @ 0x004;
+    reg { field {sw=rw; hw=r; reset=0;} enable[0:0]; } ctrl @ 0x008;
+    reg { field {sw=w; hw=r; reset=0;} value[5:0]; } action @ 0x00c;
+    reg { field {sw=r; hw=w;} value[14:0]; } status @ 0x010;
+    reg { field {sw=r; hw=w;} value[22:0]; } fifo_level @ 0x014;
+    reg {
+        field {sw=rw; hw=r; reset=0;} tx[8:0];
+        field {sw=rw; hw=r; reset=1;} rx[17:9];
+    } watermark @ 0x018;
+    reg { field {sw=rw; hw=r; reset=0;} value[31:0]; } wait_timeout @ 0x01c;
+    reg {
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} seg_done[0:0];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} xfer_done[1:1];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} abort_done[2:2];
+    } irq_state @ 0x020;
+    reg { field {sw=rw; hw=r; reset=0;} value[5:0]; } irq_enable @ 0x024;
+    reg { field {sw=r; hw=w;} value[5:0]; } irq_raw @ 0x028;
+    reg {
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} apb_access[0:0];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} tx_full_write[1:1];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} rx_empty_read[2:2];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} cmd_full_push[3:3];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} cmd_invalid[4:4];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} config_write[5:5];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} tx_resource[6:6];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} rx_resource[7:7];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} wait_timeout[8:8];
+        field {sw=rw; hw=r; reset=0; onwrite=woclr; hwset; precedence=hw;} cs_mismatch[9:9];
+    } error_status @ 0x02c;
+    reg { field {sw=w; hw=r; reset=0;} value[31:0]; } txdata @ 0x030;
+    reg { field {sw=r; hw=w;} value[31:0]; } rxdata @ 0x034;
+    reg {
+        field {sw=rw; hw=r; reset=0;} csid[2:0];
+        field {sw=rw; hw=r; reset=0;} op[6:4];
+        field {sw=rw; hw=r; reset=8;} frame_bits[13:8];
+        field {sw=rw; hw=r; reset=0;} keep_cs[16:16];
+        field {sw=rw; hw=r; reset=0;} allow_stall[17:17];
+    } cmd_cfg @ 0x038;
+    reg { field {sw=rw; hw=r; reset=1;} value[15:0]; } cmd_len @ 0x03c;
+    reg { field {sw=rw; hw=r; reset=0;} value[15:0]; } cmd_tag @ 0x040;
+    reg { field {sw=w; hw=r; reset=0;} value[0:0]; } cmd_push @ 0x044;
+    reg { field {sw=r; hw=w;} value[15:0]; } active_tag @ 0x048;
+    reg { field {sw=r; hw=w;} value[15:0]; } progress @ 0x04c;
+    reg { field {sw=r; hw=w;} value[15:0]; } last_done_tag @ 0x050;
+    reg { field {sw=r; hw=w;} value[31:0]; } done_count @ 0x054;
+    reg {
+        field {sw=r; hw=w;} csid[2:0];
+        field {sw=r; hw=w;} op[6:4];
+        field {sw=r; hw=w;} valid[8:8];
+    } active_info @ 0x058;
+    regfile cs_slot {
+        reg {
+            field {sw=rw; hw=r; reset=0;} cpol[0:0];
+            field {sw=rw; hw=r; reset=0;} cpha[1:1];
+            field {sw=rw; hw=r; reset=0;} lsb_first[2:2];
+            field {sw=rw; hw=r; reset=0;} loopback[3:3];
+        } cfg @ 0x0;
+        reg { field {sw=rw; hw=r; reset=1;} value[15:0]; } clkdiv @ 0x4;
+        reg {
+            field {sw=rw; hw=r; reset=0;} setup[15:0];
+            field {sw=rw; hw=r; reset=0;} hold_time[31:16];
+        } timing0 @ 0x8;
+        reg {
+            field {sw=rw; hw=r; reset=0;} idle[15:0];
+            field {sw=rw; hw=r; reset=0;} frame_gap[31:16];
+        } timing1 @ 0xc;
+        reg { field {sw=rw; hw=r; reset=32'hffffffff;} value[31:0]; } dummy @ 0x10;
+    };
+    cs_slot cs[8] @ 0x100 += 0x20;
+};

@@ -1,0 +1,483 @@
+# Quality Gate Report - spi_master
+
+| Gate | Status | Required checks |
+|---|---|---|
+| G0 | pass | g0.required_lrs_docs, g0.requirements_model |
+| G1 | pass | g1.architecture_trace |
+| G2 | pass | g2.microdesign_and_register_freeze |
+| G3 | pass | g3.rtl_and_core, g3.rtl_check_report, g3.module_ut, g3.csr_consistency |
+| G4 | fail | g4.verification_assets, g4.smoke_evidence, g4.full_regression_evidence, g4.coverage_closure, g4.rtm_closure, g.param_space, g4.parameter_execution |
+| G5 | blocked | g5.release_inputs, g5.ppa_signoff |
+
+<!-- QUALITY_META
+schema_version: '2.0'
+ip_name: spi_master
+generated_by: 15-regression-quality-review/evaluate_quality.py
+gates:
+- id: G0
+  status: pass
+  required_checks:
+  - g0.required_lrs_docs
+  - g0.requirements_model
+  checks:
+  - id: g0.required_lrs_docs
+    status: pass
+    detail: LRS markdown files=23 (single-file docs/lrs/lrs.md or category-split layout,
+      must contain LRS_DOC_META)
+    evidence:
+    - path: docs/lrs/00_overview.md
+      status: present
+      sha256: aea14f9d48a058351b141c8cac05c8b2ab97919c813438517fe085a05b8ca05e
+    - path: docs/lrs/01_configuration.md
+      status: present
+      sha256: 43335296dbe5ed3825eefc3c4303a43f4ed8f49e6ec51610a8c66afa88f2e3c8
+    - path: docs/lrs/10_apb_0.md
+      status: present
+      sha256: b424f83f72c35b34974a699defcff623a176c2f66d6cd20a84273240a8d47b05
+    - path: docs/lrs/10_cmd_0.md
+      status: present
+      sha256: ca9cc6585b3f7f8362136ee3a9f5d584854232b6fe489c5c8548b2c8357c6ed4
+    - path: docs/lrs/10_cmd_1.md
+      status: present
+      sha256: db9c3c8bd82c7ce61bb4f5d043486ead99587fffeb93d9d95cca06d47e495892
+    - path: docs/lrs/10_cs_0.md
+      status: present
+      sha256: 4d2e187257add30ef19ffa93152878b6f40bf1ce6498bb921d38c053cf1236e4
+    - path: docs/lrs/10_dat_0.md
+      status: present
+      sha256: 4a2d4fc2bd6ec0f084923fc966826851cb82254a59f27d8ace8a88c5e30fee62
+    - path: docs/lrs/10_drv_0.md
+      status: present
+      sha256: 8bdacfaca65d8f720d0c98c898c31e4fc63a6809a4d2818e5be9021d38d898f4
+    - path: docs/lrs/10_err_0.md
+      status: present
+      sha256: f0a832f872564759163c173dca04515b92c4304f4614fc83e6af944dc73c4f9f
+    - path: docs/lrs/10_fifo_0.md
+      status: present
+      sha256: 8c533d7262824c6c76e6b8a0b68fb2b5caff8c32356c57518f4c02b5bbeecf24
+    - path: docs/lrs/10_if_0.md
+      status: present
+      sha256: d5c591185b7ae844f841a0c3be53de7fda151522ca868b5858ea678d85e720a7
+    - path: docs/lrs/10_int_0.md
+      status: present
+      sha256: 0e57ca11abf91a4f9b5c1dc1ec6a22087fce40e38bf0c89247854097809c1427
+    - path: docs/lrs/10_irq_0.md
+      status: present
+      sha256: d5f6d78ad3e3f67d62951e3215a0720efa349171389c06fb04fe991f4d409885
+    - path: docs/lrs/10_par_0.md
+      status: present
+      sha256: 598ef9d88e341b78769bc20dd8dc98280d134e5a52834fca0e66d50866439374
+    - path: docs/lrs/10_perf_0.md
+      status: present
+      sha256: 26708171a17f46fc7499db3e991da25c28404b505608e34e51131c9f70023658
+    - path: docs/lrs/10_ppa_0.md
+      status: present
+      sha256: 45921cd00080e4a19b336545d86be4378e15dec6768a3e4edd745d169452113a
+    - path: docs/lrs/10_rec_0.md
+      status: present
+      sha256: 16710b6dd8c19ba9d0b8e76057e7de28f90a9be72cea0446092ef2751cb00c68
+    - path: docs/lrs/10_reg_0.md
+      status: present
+      sha256: d2e28080c856845b11ab8e9852942ea778a1a27555e2d147a3dfb2b89bc0b553
+    - path: docs/lrs/10_scp_0.md
+      status: present
+      sha256: 3613b9ca45349b185e7c2675102b163f7f6f699b01be51ddaa2be5afbb2f8e41
+    - path: docs/lrs/10_scp_1.md
+      status: present
+      sha256: dfd8b5b8e1bb299c610fc720453b8c77cd9ff3363635a86cbac1a2812363a251
+    - path: docs/lrs/10_stall_0.md
+      status: present
+      sha256: ff841b53385623ba8614c36ef099def1f66781f51f2688da33bcb359718b39bb
+    - path: docs/lrs/10_tim_0.md
+      status: present
+      sha256: bbfad82e0c1e876532773e33741841b0bcc7d17b37c39b1daeea898deda5df9f
+    - path: docs/lrs/index.md
+      status: present
+      sha256: 3b2f7ea4282f24337cd9f3892c92c47e6a7d39c17a4897715074133fd35dc467
+  - id: g0.requirements_model
+    status: pass
+    detail: 93 requirements; duplicate IDs=0; must without verify_method=0; delivery_model=parameterized;
+      ppa_signoff=required; ppa override reason valid=True
+    evidence:
+    - path: model/requirements.yaml
+      status: present
+      sha256: 880434b6713918cad668d19a7a4a01b3c75303a956bdb02e0f1bc855b100f800
+  findings: []
+- id: G1
+  status: pass
+  required_checks:
+  - g1.architecture_trace
+  checks:
+  - id: g1.architecture_trace
+    status: pass
+    detail: modules=3; uncovered must requirements=0; invalid requirement refs=0;
+      invalid modules=0
+    evidence:
+    - path: model/architecture.yaml
+      status: present
+      sha256: 9419c89894704512d7c54d9ccba00a27f199c9aaefc25db43613fd2868fa63d1
+    - path: model/external_interface.yaml
+      status: present
+      sha256: 5f792c09f1369d42101dfb13839e396a54659288a95e1efc80b762adc4e28b34
+    - path: model/internal_interface.yaml
+      status: present
+      sha256: 37b1cc06a3b4f3d1bcac50b86d3667922a779386004e9774126a88e3ef17ef6b
+    - path: model/clock_domains.yaml
+      status: present
+      sha256: 11a3ca4b335581eb4e518f88441aff384860da8942e663b6ad092eecf793bebe
+    - path: model/cdc_paths.yaml
+      status: present
+      sha256: 0558167691030758c9f21993f34ec0e52dd97f250c738d57fd3b1f2dd8009ea4
+  findings: []
+- id: G2
+  status: pass
+  required_checks:
+  - g2.microdesign_and_register_freeze
+  checks:
+  - id: g2.microdesign_and_register_freeze
+    status: pass
+    detail: modules=3; missing HLD coverage=0; unknown HLD refs=0; invalid modules=0;
+      invalid child refs=0; invalid datapaths=0; invalid FSMs=0; modules without design
+      objects=0; register_model=required; invalid register behaviors=0; RDL files=1;
+      register report=validated REPORT_META; CSR evidence=CSR source and native SystemVerilog
+      hashes match the manifest
+    evidence:
+    - path: model/micro_design.yaml
+      status: present
+      sha256: ae2497e670733c8e70221c4327429c8ea3769787725683677073c7f199f97bf7
+    - path: model/requirements.yaml
+      status: present
+      sha256: 880434b6713918cad668d19a7a4a01b3c75303a956bdb02e0f1bc855b100f800
+    - path: reports/quality/register_check.md
+      status: present
+      sha256: 948512e02e4d290bcf739057b7c66b410e3ecba8f7037abe97533fcca9f5bdcb
+    - path: regs/spi_master.rdl
+      status: present
+      sha256: 235f55f9968cf8395f2efffe168183ae97ee22d78fa8966206fa50132005a3b8
+    - path: rtl/generated/spi_master_csr.sv
+      status: present
+      sha256: 8c8e27eb72ef38ffe8ad8d8338ed5252b54754494ab926d9353f688da6decd34
+    - path: rtl/generated/spi_master_csr_pkg.sv
+      status: present
+      sha256: de806be1ce8c273e5d27018d39fa8a5ab7797acea9da90a34f28b55922995fb6
+    - path: rtl/generated/spi_master_csr.manifest.yaml
+      status: present
+      sha256: eeee92397ff0423adab6c425867e02cf51e8bc10f9d550a58c14293360e03d93
+  findings: []
+- id: G3
+  status: pass
+  required_checks:
+  - g3.rtl_and_core
+  - g3.rtl_check_report
+  - g3.module_ut
+  - g3.csr_consistency
+  checks:
+  - id: g3.rtl_and_core
+    status: pass
+    detail: rtl=6; root cores=1; expected=aixsilicon_ip_spi_master.core; actual=aixsilicon_ip_spi_master.core
+    evidence:
+    - path: rtl/generated/spi_master_addr_pkg.sv
+      status: present
+      sha256: 1ee00119debd0aff991f3572b21ad7e1a460f609b8525de710f5c8c4abeb6491
+    - path: rtl/generated/spi_master_csr.sv
+      status: present
+      sha256: 8c8e27eb72ef38ffe8ad8d8338ed5252b54754494ab926d9353f688da6decd34
+    - path: rtl/generated/spi_master_csr_pkg.sv
+      status: present
+      sha256: de806be1ce8c273e5d27018d39fa8a5ab7797acea9da90a34f28b55922995fb6
+    - path: rtl/spi_master_engine.sv
+      status: present
+      sha256: 4616a62021af589865d46c94fa4919720394a659bb54d8f10b815863c7ca1210
+    - path: rtl/spi_master_queues.sv
+      status: present
+      sha256: 7c9f4f926a7990207e8576f8a6f62888a34a6e3c901b0d90caf461bfc8745e93
+    - path: rtl/spi_master_top.sv
+      status: present
+      sha256: 77d20ef0f2aa1563156ba90e23fdf119b42cbb2c3619c61a8e8c1b349db30688
+    - path: aixsilicon_ip_spi_master.core
+      status: present
+      sha256: 215eb24b2898a350cd2e60a0d4875e1049e48e609fb812b38efc254884828ef0
+    - path: ip-package.yaml
+      status: present
+      sha256: 538298e27b73b793d4ea522918eddd40759e23ab9b7bda0107e8022dcc5132b9
+  - id: g3.rtl_check_report
+    status: pass
+    detail: validated REPORT_META
+    evidence:
+    - path: reports/quality/rtl_check_summary.md
+      status: present
+      sha256: f71b7db49681822c40b2e108c6e39d033615cbb092ace08ec0a7b07be4e3a691
+  - id: g3.module_ut
+    status: pass
+    detail: module UT sources=2; module UT executions=2; compile/run evidence complete
+    evidence:
+    - path: verification/unit_test/ut_spi_engine.sv
+      status: present
+      sha256: 2badec1e6a45671e201e16c4f96f7d269c193f721be76029510fe953d10b1fcd
+    - path: verification/unit_test/ut_spi_queues.sv
+      status: present
+      sha256: 92060a9bda7d027206d5e91ac4414bfd890cc76dd907e339be3e6ca808c1a98b
+    - path: reports/quality/module_ut_summary.md
+      status: present
+      sha256: c1a714d6d50e7d3ff72042380ce2a088d1e293703bc98c33899a8379c7126301
+  - id: g3.csr_consistency
+    status: pass
+    detail: CSR source and native SystemVerilog hashes match the manifest
+    evidence:
+    - path: regs/spi_master.rdl
+      status: present
+      sha256: 235f55f9968cf8395f2efffe168183ae97ee22d78fa8966206fa50132005a3b8
+    - path: rtl/generated/spi_master_csr.sv
+      status: present
+      sha256: 8c8e27eb72ef38ffe8ad8d8338ed5252b54754494ab926d9353f688da6decd34
+    - path: rtl/generated/spi_master_csr_pkg.sv
+      status: present
+      sha256: de806be1ce8c273e5d27018d39fa8a5ab7797acea9da90a34f28b55922995fb6
+    - path: rtl/generated/spi_master_csr.manifest.yaml
+      status: present
+      sha256: eeee92397ff0423adab6c425867e02cf51e8bc10f9d550a58c14293360e03d93
+  findings: []
+- id: G4
+  status: fail
+  required_checks:
+  - g4.verification_assets
+  - g4.smoke_evidence
+  - g4.full_regression_evidence
+  - g4.coverage_closure
+  - g4.rtm_closure
+  - g.param_space
+  - g4.parameter_execution
+  checks:
+  - id: g4.verification_assets
+    status: fail
+    detail: verification features=10; smoke testcase IDs=1; all-tier testcase IDs=10;
+      implementation mappings=9; invalid mappings=1; regression list match=True; distinct
+      testcase implementations=10; valid lifecycle traces=4/4; testplans=11; UVM testcases=9
+    evidence:
+    - path: model/verification.yaml
+      status: present
+      sha256: 6e1cb036f360492a1f7c668d240ca38b7e71c45da65aa1bad62f65cac92023f6
+    - path: trace/req_to_hld.yaml
+      status: present
+      sha256: 3e4550769fc1964267f5d3e31ee3242ef6f5241e93a6b4696f0db603fadb0ae6
+    - path: trace/hld_to_lld.yaml
+      status: present
+      sha256: 9712abb2f18bf7433156855f2e23c9ddc31830a9e03e9a423d6115a97fda702d
+    - path: trace/lld_to_rtl.yaml
+      status: present
+      sha256: 0b2d82563cbbf2808a5447ac36ebbb3ed9f14c1f89eda7a7c9759448be4cf505
+    - path: trace/req_to_test.yaml
+      status: present
+      sha256: 94cd0cd4365a58cf09f41152ff2260c612dfd834d89f012bf06691d624744a5f
+    - path: verification/sim/regression_list.yaml
+      status: present
+      sha256: a31d1ccc271f38af8f50d3fd077618789c5dd8ddc04ac2cd11f9a57c9c348f1a
+    - path: docs/verification/99_quality_gate.md
+      status: present
+      sha256: 347f6064927128acbb03db4aad9fe722a55eae79378df03a7ad95eb0c2825cfc
+    - path: docs/verification/agent_plan.md
+      status: present
+      sha256: 98e45c98830977307741e4cb52fccb2b625a2f29f6924de9449cec353bdc6ced
+    - path: docs/verification/checker_plan.md
+      status: present
+      sha256: e07cd8097fd848dfd4996631fb2d03bbad1b3c5f130f48a0b55c2e0b0d0f1da7
+    - path: docs/verification/coverage_plan.md
+      status: present
+      sha256: b9c35fa88aff8cf0bc060e95a93df48447f74eeb1eb7d6f3e4887d87ffeb5d5b
+    - path: docs/verification/feature_list_closure.md
+      status: present
+      sha256: dbeb25c679453344fd79e73b34cebef12854c6c500da50738bd988bd7c035463
+    - path: docs/verification/feature_list_protocol.md
+      status: present
+      sha256: 699c065722fe374de9160e4c8835e62180d3b8ab016fd385d48e2fa37c88780a
+    - path: docs/verification/index.md
+      status: present
+      sha256: e447be6417c86660a5063f580bb2b650e8012422055828c5627dca31acef6420
+    - path: docs/verification/test_matrix_closure.md
+      status: present
+      sha256: af3bec902a0f6a652a97a0d56fe4431d9084b02acaff635192db2dc83d4d5537
+    - path: docs/verification/test_matrix_configs.md
+      status: present
+      sha256: ac02528c4d6bf9ad83d3dee8594095d9eceb6908b7a1a1e118bc3f0d3516163e
+    - path: docs/verification/test_matrix_protocol.md
+      status: present
+      sha256: 057844e41ae345290a5aef0d69eafd2bb80624bfbfc5e25dd446f1409edf9a71
+    - path: docs/verification/verification_plan.md
+      status: present
+      sha256: 320a4b4820133a06c888964d64e0e8b3dd81219e76d5a3d4fcb0e4178dcc413c
+    - path: verification/tc/tc_spi_apb.sv
+      status: present
+      sha256: 972c2d846f440d196c5151fa848ac3e852ead6639c4a9e13de7483b2a95f711c
+    - path: verification/tc/tc_spi_commands.sv
+      status: present
+      sha256: 90b6d9936667743e18f94c65fa17b8e2f0e6442050d5c4892f6c66accf8e6b2f
+    - path: verification/tc/tc_spi_extended.sv
+      status: present
+      sha256: d7234f8e68a50810144501bb4e2ebdcecc7e99f06bd85251e9f8176094f7b76b
+    - path: verification/tc/tc_spi_fifo_stall.sv
+      status: present
+      sha256: 3d43ba0fed7ca3456c4cada0f3493802b108f217e22372f40807a16af487a259
+    - path: verification/tc/tc_spi_irq.sv
+      status: present
+      sha256: 59ea0425a3443eabe36bc8964bfdc3ca4d5cf0d7a384f9fa289cc9a8c11ff576
+    - path: verification/tc/tc_spi_modes.sv
+      status: present
+      sha256: d6648ba5359048874dd778f69dfd97d8792e13a8b064bd210a0ef912bf3e07d4
+    - path: verification/tc/tc_spi_races.sv
+      status: present
+      sha256: a23ff33d6434ccc11cce3a20c537c103e1b3ab231995c197f9487237aa4190c9
+    - path: verification/tc/tc_spi_random.sv
+      status: present
+      sha256: c83ec9f1ead060835d0db8d6858983e755e351400409762c57ab8b682a57a1ae
+    - path: verification/tc/tc_spi_recovery.sv
+      status: present
+      sha256: bfb05e71d7dce083818d6e221693c366c9f4171d1f60cd316ca0497a211e489e
+    - path: verification/tc/tc_spi_irq.sv
+      status: present
+      sha256: 59ea0425a3443eabe36bc8964bfdc3ca4d5cf0d7a384f9fa289cc9a8c11ff576
+    - path: verification/tc/tc_spi_extended.sv
+      status: present
+      sha256: d7234f8e68a50810144501bb4e2ebdcecc7e99f06bd85251e9f8176094f7b76b
+    - path: verification/tc/tc_spi_random.sv
+      status: present
+      sha256: c83ec9f1ead060835d0db8d6858983e755e351400409762c57ab8b682a57a1ae
+    - path: verification/tc/tc_spi_races.sv
+      status: present
+      sha256: a23ff33d6434ccc11cce3a20c537c103e1b3ab231995c197f9487237aa4190c9
+    - path: verification/tc/tc_spi_apb.sv
+      status: present
+      sha256: 972c2d846f440d196c5151fa848ac3e852ead6639c4a9e13de7483b2a95f711c
+    - path: verification/tc/tc_spi_modes.sv
+      status: present
+      sha256: d6648ba5359048874dd778f69dfd97d8792e13a8b064bd210a0ef912bf3e07d4
+    - path: verification/tc/tc_spi_commands.sv
+      status: present
+      sha256: 90b6d9936667743e18f94c65fa17b8e2f0e6442050d5c4892f6c66accf8e6b2f
+    - path: verification/tc/tc_spi_fifo_stall.sv
+      status: present
+      sha256: 3d43ba0fed7ca3456c4cada0f3493802b108f217e22372f40807a16af487a259
+    - path: verification/tc/tc_spi_recovery.sv
+      status: present
+      sha256: bfb05e71d7dce083818d6e221693c366c9f4171d1f60cd316ca0497a211e489e
+  - id: g4.smoke_evidence
+    status: pass
+    detail: 'smoke: tests=1; failures=0; errors=0; skipped=0; missing/non-passing
+      testcase IDs=0; smoke_executions=1; every testcase is bound to a passing raw
+      log'
+    evidence:
+    - path: reports/regression/regression_summary.md
+      status: present
+      sha256: c14cd7b4c82095308c7576e5a04b4b4bddec5f3e0b0c0bffd8c721185cdbc095
+    - path: reports/smoke/smoke_junit.xml
+      status: present
+      sha256: 44f454be28f40b8bf41ec6b644a4f471716f64a0c19f66f3fc4f6175a6fcb1b4
+  - id: g4.full_regression_evidence
+    status: fail
+    detail: 'regression: validated REPORT_META; tests=53; failures=0; errors=0; skipped=0;
+      missing/non-passing testcase IDs=0; TC.SPI_MASTER.DELIVERY.001: missing final
+      UVM_ERROR/UVM_FATAL summary'
+    evidence:
+    - path: reports/regression/regression_summary.md
+      status: present
+      sha256: c14cd7b4c82095308c7576e5a04b4b4bddec5f3e0b0c0bffd8c721185cdbc095
+    - path: reports/regression/junit.xml
+      status: present
+      sha256: 92652099cf1f062554fed3f82e4cb7a07441541d740c21d1df4772e04b3418f1
+  - id: g4.coverage_closure
+    status: pass
+    detail: functional=100.0/100.0; code=91.62/90.0; assertion=100.0/100.0
+    evidence:
+    - path: reports/coverage/coverage_summary.md
+      status: present
+      sha256: 43d7e452728e8ab0ce195b6b3a762b56ff3cfc00e5b23b4258f04fc976eca622
+  - id: g4.rtm_closure
+    status: pass
+    detail: validated REPORT_META; valid lifecycle traces=4/4
+    evidence:
+    - path: reports/quality/trace_matrix.md
+      status: present
+      sha256: ce73de1f8e9a18632d3d6586094292ea12552589625164eabfe418dc6d8ec56a
+    - path: trace/req_to_hld.yaml
+      status: present
+      sha256: 3e4550769fc1964267f5d3e31ee3242ef6f5241e93a6b4696f0db603fadb0ae6
+    - path: trace/hld_to_lld.yaml
+      status: present
+      sha256: 9712abb2f18bf7433156855f2e23c9ddc31830a9e03e9a423d6115a97fda702d
+    - path: trace/lld_to_rtl.yaml
+      status: present
+      sha256: 0b2d82563cbbf2808a5447ac36ebbb3ed9f14c1f89eda7a7c9759448be4cf505
+    - path: trace/req_to_test.yaml
+      status: present
+      sha256: 94cd0cd4365a58cf09f41152ff2260c612dfd834d89f012bf06691d624744a5f
+  - id: g.param_space
+    status: pass
+    detail: parameters=4; configs=9; missing evidence=0
+    evidence:
+    - path: reports/quality/param_check.md
+      status: present
+      sha256: 911009eac5cbd614989ae17a3c5382a564d25e78427a0fa5b93fd418639c64ce
+    - path: reports/quality/param_matrix.md
+      status: present
+      sha256: 2fe3b2b879b29dbb80f762840313d0d3deca1997f7f066e652fc5f46d4055e30
+  - id: g4.parameter_execution
+    status: pass
+    detail: validated REPORT_META
+    evidence:
+    - path: model/requirements.yaml
+      status: present
+      sha256: 880434b6713918cad668d19a7a4a01b3c75303a956bdb02e0f1bc855b100f800
+    - path: reports/quality/param_execution.md
+      status: present
+      sha256: bd303551accf939540f5fa3d544f3aaf3346554f234c00f4f8fd11caa9c94c2f
+  findings: []
+- id: G5
+  status: blocked
+  required_checks:
+  - g5.release_inputs
+  - g5.ppa_signoff
+  checks:
+  - id: g5.release_inputs
+    status: pass
+    detail: release inputs present=3/3
+    evidence:
+    - path: docs/integration
+      status: present
+    - path: docs/user_manual
+      status: present
+    - path: reports/quality/review_findings.yaml
+      status: present
+      sha256: 56b2caef96dce3e7d1ac5c7b1970dc7d012d45be53d44a50a490ca9b9d05f5ed
+  - id: g5.ppa_signoff
+    status: pass
+    detail: policy=required; PDK_READY; valid E2/E3 summaries=3; unique_runs=3; comparable=True;
+      analysis=True; plots=1
+    evidence:
+    - path: model/requirements.yaml
+      status: present
+      sha256: 880434b6713918cad668d19a7a4a01b3c75303a956bdb02e0f1bc855b100f800
+    - path: model/pdk.yaml
+      status: present
+      sha256: 3080f278d178f5cdf14ab43f94921a0a78100444b3f9e004391c6cf2eca75b66
+    - path: reports/ppa-report.md
+      status: present
+      sha256: 1ef5d8de8d37f827538b89242450ee3f597e9b9dab7818b56ba846af95445ca5
+    - path: reports/ppa/sweep_analysis.yaml
+      status: present
+      sha256: 2ab293b51f926ee9eff3bf1bdc1fbca2c4901e16a4c192c705340af95616d52e
+    - path: reports/ppa/summary_default.yaml
+      status: present
+      sha256: ddaf2766bc9aa52bdbd4b5e2cad611a51c2701b75497edae00af125e48281f39
+    - path: reports/ppa/summary_max.yaml
+      status: present
+      sha256: 29b16df2152447caf8bd64e5f5d1113895d22d67f747ac2cce4bebf6fe2928fa
+    - path: reports/ppa/summary_small.yaml
+      status: present
+      sha256: d0a3ab37282af17edd66673c0068ef917a597fe54d39469c70f9a5a968f0f5aa
+    - path: reports/ppa/configuration_comparison.png
+      status: present
+      sha256: d4ed58eec5bed88dbf7ba7c70b3c2b1117ccbc565d5b02bcc8b7124ada7543cf
+  findings:
+  - FINDING.SPI_MASTER.BOARD_SIGNOFF
+  - FINDING.SPI_MASTER.FORMAL
+  - FINDING.SPI_MASTER.COVERAGE_RESIDUAL
+END_QUALITY_META -->

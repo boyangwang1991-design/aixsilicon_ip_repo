@@ -1,0 +1,10 @@
+schema_version: "1.0"
+name: spi_master
+version: "1.0.0"
+vendor: aixsilicon
+library: ip
+description: APB4 queued SPI master V1.0 implementation candidate
+status: draft
+domain: peripheral
+subdomain: serial
+interfaces: [apb4, spi]

@@ -1,0 +1,32 @@
+schema_version: '2.0'
+run_id: max
+evidence_level: E2
+area_um2: 72418.552976
+slack_ns: 2.85
+dyn_power_uW: 7692.2
+leak_power_nW: 11624.5
+timing_constrained: true
+comparison_context:
+  pdk: GF CMOS28LP sc9 base HVT
+  corner: tt_nominal_max_1p00v_25c
+  clock_period_ns: 10
+  activity: vectorless default
+  constraints_sha256: dbec15f7e7371f37a66c5296990d402e5487948fb14ea4712a87fa2cd4aba088
+parameters:
+- 8
+- 256
+- 256
+- 16
+raw_reports:
+  area:
+    path: reports/synth/max/area.rpt
+    sha256: 578061c61833e333e512a1815e3e4cd7f8b9a32963116264b93b2d3351fd6a49
+  timing:
+    path: reports/synth/max/timing.rpt
+    sha256: 6081f543d63c8d27a43e005ce894bbc1b64cda969c7e1297aa97c2c352ab0b83
+  power:
+    path: reports/synth/max/power.rpt
+    sha256: 6225bc6f9dc1b58c6d5d0e4e43ea757b36c4c2a55559a0616c42ff68f3cc5653
+manifest:
+  path: reports/synth/max/source-binding.json
+  sha256: 0fa111cd2a3e3c19a327f04e3d24be4fb2781cf0b75f4e06dfa203ab542fd77c

@@ -1,0 +1,747 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 10
+Design : spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+Version: V-2023.12-SP3
+Date   : Thu Sep 10 08:09:50 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_nominal_max_1p00v_25c   Library: sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+Wire Load Model Mode: top
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: prdata[4] (output port clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1922/Y (OAI21B_X0P5M_A9TH)                    0.23       4.68 r
+  u_engine/U1921/Y (NOR2_X0P5A_A9TH)                      0.13       4.81 f
+  u_engine/wait_cmd_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.81 f
+  u_csr/hwif_in[status][value][next][4] (spi_master_csr)
+                                                          0.00       4.81 f
+  u_csr/U1870/Y (AOI222_X1M_A9TH)                         0.11       4.92 r
+  u_csr/U1871/Y (NAND4_X1A_A9TH)                          0.09       5.01 f
+  u_csr/U740/Y (OR6_X1M_A9TH)                             0.10       5.11 f
+  u_csr/s_cpuif_rd_data[4] (spi_master_csr)               0.00       5.11 f
+  U200/Y (NOR2B_X2M_A9TH)                                 0.15       5.26 f
+  prdata[4] (out)                                         0.00       5.26 f
+  data arrival time                                                  5.26
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  output external delay                                  -2.00       7.90
+  data required time                                                 7.90
+  --------------------------------------------------------------------------
+  data required time                                                 7.90
+  data arrival time                                                 -5.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        2.64
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][10]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U681/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][10]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][10]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][7]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U754/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][7]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][7]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][5]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U752/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][5]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][5]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][9]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U686/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][9]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][9]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][3]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U750/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][3]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][3]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][2]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U749/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][2]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][2]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][0]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U1420/Y (AO22_X1M_A9TH)                   0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][0]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][0]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][8]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U687/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][8]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][8]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+  Startpoint: pstrb[1] (input port clocked by pclk)
+  Endpoint: u_queues/u_rx/g_reg_comb.mem_reg[1][6]
+            (rising edge-triggered flip-flop clocked by pclk)
+  Path Group: pclk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock pclk (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    2.00       2.00 r
+  pstrb[1] (in)                                           0.01       2.01 r
+  U272/Y (INV_X1M_A9TH)                                   0.06       2.07 f
+  U183/Y (INV_X1M_A9TH)                                   0.31       2.38 r
+  U217/Y (NAND4_X1A_A9TH)                                 0.17       2.56 f
+  U215/Y (AO21A1AI2_X1M_A9TH)                             0.08       2.64 r
+  U287/Y (OAI211_X1M_A9TH)                                0.07       2.71 f
+  U285/Y (AOI222_X1M_A9TH)                                0.09       2.80 r
+  U291/Y (OAI22_X1M_A9TH)                                 0.09       2.88 f
+  U289/Y (OR6_X1M_A9TH)                                   0.12       3.00 f
+  U214/Y (NOR2_X1A_A9TH)                                  0.10       3.11 r
+  U190/Y (INV_X1M_A9TH)                                   0.08       3.18 f
+  U206/Y (AOI31_X1M_A9TH)                                 0.07       3.25 r
+  U204/Y (AO22_X1M_A9TH)                                  0.08       3.34 r
+  U199/Y (OR6_X1M_A9TH)                                   0.26       3.59 r
+  U201/Y (NOR2_X1A_A9TH)                                  0.13       3.72 f
+  U189/Y (INV_X1M_A9TH)                                   0.07       3.80 r
+  U202/Y (NOR2_X1A_A9TH)                                  0.05       3.85 f
+  U188/Y (NAND2_X1A_A9TH)                                 0.09       3.93 r
+  U203/Y (NOR2_X1A_A9TH)                                  0.06       4.00 f
+  u_engine/abort_i (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       4.00 f
+  u_engine/U260/Y (NOR2_X1A_A9TH)                         0.19       4.18 r
+  u_engine/U1998/Y (INV_X0P5B_A9TH)                       0.27       4.45 f
+  u_engine/U1912/Y (NAND4_X0P5A_A9TH)                     0.26       4.71 r
+  u_engine/U156/Y (INV_X0P5B_A9TH)                        0.27       4.98 f
+  u_engine/U1268/Y (NOR3_X0P5A_A9TH)                      0.20       5.18 r
+  u_engine/rx_push_o (spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32)
+                                                          0.00       5.18 r
+  u_queues/rx_push_i (spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4)
+                                                          0.00       5.18 r
+  u_queues/U5/Y (NOR2B_X1M_A9TH)                          0.12       5.30 r
+  u_queues/u_rx/push_i (sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0)
+                                                          0.00       5.30 r
+  u_queues/u_rx/U430/Y (NAND2_X1A_A9TH)                   0.11       5.40 f
+  u_queues/u_rx/U377/Y (NOR2_X1A_A9TH)                    0.14       5.55 r
+  u_queues/u_rx/U5/Y (NOR3BB_X1M_A9TH)                    0.26       5.81 r
+  u_queues/u_rx/U379/Y (NAND2_X1A_A9TH)                   0.40       6.21 f
+  u_queues/u_rx/U241/Y (BUFH_X1M_A9TH)                    0.19       6.39 f
+  u_queues/u_rx/U68/Y (INV_X1M_A9TH)                      0.25       6.65 r
+  u_queues/u_rx/U753/Y (AO22_X1M_A9TH)                    0.15       6.79 r
+  u_queues/u_rx/g_reg_comb.mem_reg[1][6]/D (DFFQ_X1M_A9TH)
+                                                          0.00       6.79 r
+  data arrival time                                                  6.79
+
+  clock pclk (rise edge)                                 10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_queues/u_rx/g_reg_comb.mem_reg[1][6]/CK (DFFQ_X1M_A9TH)
+                                                          0.00       9.90 r
+  library setup time                                     -0.05       9.85
+  data required time                                                 9.85
+  --------------------------------------------------------------------------
+  data required time                                                 9.85
+  data arrival time                                                 -6.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.06
+
+
+1

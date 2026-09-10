@@ -1,0 +1,79 @@
+[
+  {
+    "parameter": "NUM_CS",
+    "value": 0,
+    "status": "pass",
+    "log": "build/parameter-checks/NUM_CS_0/run.log",
+    "sha256": "fd7705f84a424e3e94d7efef689d6f5d9d049eba54bcc04b195a08654055bd51"
+  },
+  {
+    "parameter": "NUM_CS",
+    "value": 9,
+    "status": "pass",
+    "log": "build/parameter-checks/NUM_CS_9/run.log",
+    "sha256": "8f0917115518b222300d82c21188b5091dd9b12e01523486a501b0341865177a"
+  },
+  {
+    "parameter": "TX_FIFO_DEPTH",
+    "value": 3,
+    "status": "pass",
+    "log": "build/parameter-checks/TX_FIFO_DEPTH_3/run.log",
+    "sha256": "f02a777ddebc83d837e74bbbc6f0dfcaafa7ab6227995ebad0650af962f4bed9"
+  },
+  {
+    "parameter": "TX_FIFO_DEPTH",
+    "value": 5,
+    "status": "pass",
+    "log": "build/parameter-checks/TX_FIFO_DEPTH_5/run.log",
+    "sha256": "10cb82687e3565379fc6b46622ea33d44955ef1210a58904acf8b2a4b0d1c6df"
+  },
+  {
+    "parameter": "TX_FIFO_DEPTH",
+    "value": 512,
+    "status": "pass",
+    "log": "build/parameter-checks/TX_FIFO_DEPTH_512/run.log",
+    "sha256": "f948d7a7b79b1995b768ab7ce660e45f2de36449789a8aa086e49b8bbad56025"
+  },
+  {
+    "parameter": "RX_FIFO_DEPTH",
+    "value": 3,
+    "status": "pass",
+    "log": "build/parameter-checks/RX_FIFO_DEPTH_3/run.log",
+    "sha256": "9c90dde6506eba668a1ed746537d8596817fd7b80e9133e82831241881564a91"
+  },
+  {
+    "parameter": "RX_FIFO_DEPTH",
+    "value": 5,
+    "status": "pass",
+    "log": "build/parameter-checks/RX_FIFO_DEPTH_5/run.log",
+    "sha256": "3034fe2307a0b2938d0347fb840d48cc103f41306fbc9b3fed890253c57e82b4"
+  },
+  {
+    "parameter": "RX_FIFO_DEPTH",
+    "value": 512,
+    "status": "pass",
+    "log": "build/parameter-checks/RX_FIFO_DEPTH_512/run.log",
+    "sha256": "b2fbbb8e979fb9a590d038c0031dedc3a084bfbb949f901cf8c357561a61a1db"
+  },
+  {
+    "parameter": "CMD_FIFO_DEPTH",
+    "value": 1,
+    "status": "pass",
+    "log": "build/parameter-checks/CMD_FIFO_DEPTH_1/run.log",
+    "sha256": "75208e1cb0c83ed2fc8e6688760ea506f3e96d5160cbb1adc079f78f730e93cf"
+  },
+  {
+    "parameter": "CMD_FIFO_DEPTH",
+    "value": 3,
+    "status": "pass",
+    "log": "build/parameter-checks/CMD_FIFO_DEPTH_3/run.log",
+    "sha256": "96fafb71d3006a67023121579112a57221963716cb50aa618d96f627ce9aa9d6"
+  },
+  {
+    "parameter": "CMD_FIFO_DEPTH",
+    "value": 32,
+    "status": "pass",
+    "log": "build/parameter-checks/CMD_FIFO_DEPTH_32/run.log",
+    "sha256": "a35318d19a9d582372423d80d9e039cb8ce7d501086b9d6d6842685cc36df5e7"
+  }
+]

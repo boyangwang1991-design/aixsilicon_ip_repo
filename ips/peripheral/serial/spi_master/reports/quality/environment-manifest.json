@@ -1,0 +1,22 @@
+{
+  "python": "3.11.13 (main, Apr 28 2026, 13:06:52) [GCC 8.5.0 20210514 (Red Hat 8.5.0-28)]",
+  "packages": {
+    "peakrdl": "1.5.0",
+    "peakrdl-regblock": "1.3.1",
+    "systemrdl-compiler": "1.32.2",
+    "fusesoc": "2.4.7",
+    "edalize": "0.6.8",
+    "matplotlib": "3.11.1",
+    "omegaconf": "2.0.6",
+    "antlr4-python3-runtime": "4.13.2"
+  },
+  "root_inputs": {
+    "/home/eda/workspace/aixsilicon_workflow/pyproject.toml": "572512b67c2287d67b5757f71072648fb8bbf3970a9f8f67c0c9c1c5cabc67be",
+    "/home/eda/workspace/aixsilicon_workflow/uv.lock": "3264d9d61a5b1ac7ac1c0d6fa4234592944b800f33a259a68664c971efc07cbd"
+  },
+  "checks": {
+    "uv pip check": "183 packages; compatible",
+    "Docling import": "passed",
+    "OmegaConf interpolation smoke": "passed"
+  }
+}

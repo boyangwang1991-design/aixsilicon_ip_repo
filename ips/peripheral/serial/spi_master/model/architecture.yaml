@@ -1,0 +1,174 @@
+schema_version: '2.0'
+ip_name: spi_master
+delivery_model: parameterized
+lrs_baseline: SPI_MASTER_V1_CONTRACT_0.1
+document_version: 1.0.0
+status: draft
+architecture_baseline: SPI_MASTER_HLD_V1
+modules:
+- id: HLD.MOD.SPI_MASTER.CSR
+  name: CSR
+  responsibility: APB 零等待访问检查、SystemRDL 配置/状态/中断、命令原子提交
+  inputs:
+  - pclk
+  - preset_n
+  - apb4
+  - engine_status
+  - fifo_status
+  outputs:
+  - csr_config
+  - queue_requests
+  - irq_o
+  req_ref:
+  - LRS.INTF.SPI_MASTER.IF.001
+  - LRS.INTF.SPI_MASTER.IF.002
+  - LRS.INTF.SPI_MASTER.IF.003
+  - LRS.REG.SPI_MASTER.REG.001
+  - LRS.REG.SPI_MASTER.REG.002
+  - LRS.REG.SPI_MASTER.REG.003
+  - LRS.REG.SPI_MASTER.REG.004
+  - LRS.REG.SPI_MASTER.REG.005
+  - LRS.REG.SPI_MASTER.REG.006
+  - LRS.REG.SPI_MASTER.REG.007
+  - LRS.REG.SPI_MASTER.REG.008
+  - LRS.REG.SPI_MASTER.IRQ.001
+  - LRS.REG.SPI_MASTER.IRQ.002
+  - LRS.REG.SPI_MASTER.IRQ.003
+  - LRS.REG.SPI_MASTER.ERR.001
+  - LRS.REG.SPI_MASTER.ERR.002
+  - LRS.CONS.SPI_MASTER.DRV.001
+  - LRS.CONS.SPI_MASTER.DRV.002
+  - LRS.INTF.SPI_MASTER.APB.001
+  - LRS.INTF.SPI_MASTER.APB.002
+  - LRS.INTF.SPI_MASTER.APB.003
+  - LRS.INTF.SPI_MASTER.APB.004
+  - LRS.INTF.SPI_MASTER.APB.005
+  - LRS.INTF.SPI_MASTER.APB.006
+  - LRS.INTF.SPI_MASTER.APB.007
+  - LRS.INTF.SPI_MASTER.APB.008
+  - LRS.INTF.SPI_MASTER.APB.009
+  - LRS.INTF.SPI_MASTER.APB.010
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.SPI_MASTER.ENGINE
+  name: ENGINE
+  responsibility: 片选/段/帧执行、时序调度、资源预留、超时、安全终止
+  inputs:
+  - pclk
+  - rst_n
+  - config
+  - cmd_head
+  - tx_head
+  - rx_count
+  - spi_miso_i
+  outputs:
+  - queue_pop_push
+  - progress
+  - events
+  - spi_pins
+  req_ref:
+  - LRS.FUNC.SPI_MASTER.DAT.001
+  - LRS.FUNC.SPI_MASTER.DAT.002
+  - LRS.FUNC.SPI_MASTER.DAT.003
+  - LRS.PERF.SPI_MASTER.TIM.001
+  - LRS.PERF.SPI_MASTER.TIM.002
+  - LRS.PERF.SPI_MASTER.TIM.003
+  - LRS.PERF.SPI_MASTER.TIM.004
+  - LRS.PERF.SPI_MASTER.TIM.005
+  - LRS.PERF.SPI_MASTER.TIM.006
+  - LRS.FUNC.SPI_MASTER.CMD.001
+  - LRS.FUNC.SPI_MASTER.CMD.002
+  - LRS.FUNC.SPI_MASTER.CMD.003
+  - LRS.FUNC.SPI_MASTER.CMD.004
+  - LRS.FUNC.SPI_MASTER.CMD.005
+  - LRS.FUNC.SPI_MASTER.CMD.006
+  - LRS.FUNC.SPI_MASTER.CMD.007
+  - LRS.FUNC.SPI_MASTER.CMD.008
+  - LRS.FUNC.SPI_MASTER.CMD.009
+  - LRS.FUNC.SPI_MASTER.CMD.010
+  - LRS.FUNC.SPI_MASTER.CMD.011
+  - LRS.FUNC.SPI_MASTER.CMD.012
+  - LRS.FUNC.SPI_MASTER.CS.001
+  - LRS.FUNC.SPI_MASTER.CS.002
+  - LRS.FUNC.SPI_MASTER.CS.003
+  - LRS.FUNC.SPI_MASTER.CS.004
+  - LRS.FUNC.SPI_MASTER.CS.005
+  - LRS.FUNC.SPI_MASTER.STALL.001
+  - LRS.FUNC.SPI_MASTER.STALL.002
+  - LRS.FUNC.SPI_MASTER.STALL.003
+  - LRS.FUNC.SPI_MASTER.STALL.004
+  - LRS.RESET.SPI_MASTER.REC.001
+  - LRS.RESET.SPI_MASTER.REC.002
+  - LRS.RESET.SPI_MASTER.REC.003
+  - LRS.RESET.SPI_MASTER.REC.004
+  - LRS.RESET.SPI_MASTER.REC.005
+  - LRS.RESET.SPI_MASTER.REC.006
+  - LRS.RESET.SPI_MASTER.REC.007
+  - LRS.RESET.SPI_MASTER.REC.008
+  - LRS.RESET.SPI_MASTER.REC.009
+  - LRS.PERF.SPI_MASTER.PERF.001
+  - LRS.PERF.SPI_MASTER.PERF.002
+  - LRS.PERF.SPI_MASTER.PERF.003
+  - LRS.PERF.SPI_MASTER.PERF.004
+  - LRS.CONS.SPI_MASTER.INT.001
+  - LRS.CONS.SPI_MASTER.INT.002
+  - LRS.FUNC.SPI_MASTER.SCP.001
+  - LRS.FUNC.SPI_MASTER.SCP.002
+  - LRS.FUNC.SPI_MASTER.SCP.003
+  - LRS.FUNC.SPI_MASTER.SCP.004
+  - LRS.FUNC.SPI_MASTER.SCP.005
+  - LRS.FUNC.SPI_MASTER.SCP.006
+  - LRS.FUNC.SPI_MASTER.SCP.007
+  - LRS.FUNC.SPI_MASTER.SCP.008
+  - LRS.FUNC.SPI_MASTER.SCP.009
+  - LRS.FUNC.SPI_MASTER.SCP.010
+  - LRS.FUNC.SPI_MASTER.SCP.011
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.SPI_MASTER.QUEUES
+  name: QUEUES
+  responsibility: 同步 TX/RX/命令队列及清除胶水；复用 sync_fifo
+  inputs:
+  - pclk
+  - rst_n
+  - clear
+  - push
+  - pop
+  - write_data
+  outputs:
+  - head_data
+  - occupancy
+  - full
+  - empty
+  req_ref:
+  - LRS.FUNC.SPI_MASTER.FIFO.001
+  - LRS.FUNC.SPI_MASTER.FIFO.002
+  - LRS.FUNC.SPI_MASTER.FIFO.003
+  - LRS.FUNC.SPI_MASTER.FIFO.004
+  - LRS.LP.SPI_MASTER.PPA.001
+  - LRS.CFG.SPI_MASTER.PAR.001
+  - LRS.CFG.SPI_MASTER.PAR.002
+  - LRS.CFG.SPI_MASTER.PAR.003
+  - LRS.CFG.SPI_MASTER.PAR.004
+  applicability:
+    expr: 'true'
+derived: []
+config: []
+flows: []
+policies: []
+perf:
+- id: HLD.PERF.SPI_MASTER.CONTINUOUS
+  metric: SCLK half period
+  target: CLKDIV+1 PCLK; no intra-segment bubble when FRAME_GAP=0 and resources available
+  allocated_to:
+  - HLD.MOD.SPI_MASTER.ENGINE
+safety: []
+gen: []
+decisions: []
+verify_hooks: []
+constraints: []
+gates:
+- gate: G1
+  status: open
+  architecture_freeze: false
+  approvals: {}

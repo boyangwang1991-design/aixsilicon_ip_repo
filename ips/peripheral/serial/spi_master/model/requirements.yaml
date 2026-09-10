@@ -1,0 +1,1712 @@
+schema_version: '2.0'
+ip_name: spi_master
+delivery_model: parameterized
+register_model: required
+ppa_signoff: required
+document_version: 1.0.0
+status: draft
+requirement_baseline: SPI_MASTER_V1_CONTRACT_0.1
+requirements:
+- id: LRS.INTF.SPI_MASTER.APB.001
+  category: INTF
+  feature: APB-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 副作用仅在 `psel && penable && pready` 的上升沿提交；SETUP 阶段不得提交
+  acceptance_criteria:
+  - 对照原合同 APB-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.002
+  category: INTF
+  feature: APB-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 正常运行时首个 ACCESS 周期 `pready=1`，零 wait-state；不得等待 SPI 完成、FIFO 可用或软件恢复
+  acceptance_criteria:
+  - 对照原合同 APB-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.003
+  category: INTF
+  feature: APB-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 支持同一 PSEL 下连续传输；每次均需合法 SETUP/ACCESS，恰好一次寄存器/FIFO 操作
+  acceptance_criteria:
+  - 对照原合同 APB-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.004
+  category: INTF
+  feature: APB-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 错误仅在完成周期以 PSLVERR 指示；失败读返回 0；失败访问不得部分修改目标寄存器或 FIFO
+  acceptance_criteria:
+  - 对照原合同 APB-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.005
+  category: INTF
+  feature: APB-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 所有 CSR 地址必须 4 字节对齐。非对齐、未映射、访问权限错误返回 PSLVERR
+  acceptance_criteria:
+  - 对照原合同 APB-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.006
+  category: INTF
+  feature: APB-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 普通 RW 字段按 PSTRB byte lane 更新；写零 strobe 对合法可写地址成功且无副作用
+  acceptance_criteria:
+  - 对照原合同 APB-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.007
+  category: INTF
+  feature: APB-007
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: PSTRB 不用于读；APB 本身不携带访问长度。本 IP 的 RXDATA 一次成功读固定弹出一个 entry
+  acceptance_criteria:
+  - 对照原合同 APB-007 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.008
+  category: INTF
+  feature: APB-008
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: PPROT 接入但本版本不实施权限过滤。全部合法属性取值功能一致；访问控制由上游完成
+  acceptance_criteria:
+  - 对照原合同 APB-008 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.009
+  category: INTF
+  feature: APB-009
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 非零 strobe 的 TXDATA、CMD_PUSH、ACTION 写必须 `PSTRB=4'b1111`，否则报错
+  acceptance_criteria:
+  - 对照原合同 APB-009 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.APB.010
+  category: INTF
+  feature: APB-010
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#APB-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: RO 写、WO 读报错；保留字段读 0、写忽略；W1C 只清除选中字节中写 1 的位
+  acceptance_criteria:
+  - 对照原合同 APB-010 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.001
+  category: FUNC
+  feature: CMD-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: segment 为一个 descriptor 描述的重复操作；transaction 为同一个 CS 从断言到释放之间的一组 segment。命令 FIFO 以提交顺序执行，不重排。
+  acceptance_criteria:
+  - 对照原合同 CMD-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.002
+  category: FUNC
+  feature: CMD-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 软件写 CMD_CFG/CMD_LEN/CMD_TAG，再写 CMD_PUSH bit0=1。仅 CMD_PUSH 成功的 APB 完成沿，将三个 shadow 寄存器原子快照入队。后续修改 shadow 不影响已入队命令。不需要独立
+    START。
+  acceptance_criteria:
+  - 对照原合同 CMD-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.003
+  category: FUNC
+  feature: CMD-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 命令包含：`CSID, OP, FRAME_BITS, KEEP_CS, ALLOW_STALL, TAG, LEN`。OP 如下：
+  acceptance_criteria:
+  - 对照原合同 CMD-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.004
+  category: FUNC
+  feature: CMD-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 数据/DUMMY 命令 LEN 为实际数量，支持 1～65535；0 非法，不采用减一编码。数据命令 FRAME_BITS 采用 1～32 实际值。DUMMY/RELEASE 要求 FRAME_BITS=0。RELEASE
+    要求 KEEP_CS=0、ALLOW_STALL=0。
+  acceptance_criteria:
+  - 对照原合同 CMD-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.005
+  category: FUNC
+  feature: CMD-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: CSID 必须小于 NUM_CS。控制器 ENABLE=0、FAULTED=1、正在中止、命令 FIFO 满或字段非法时拒绝 PUSH，不改变队列；记录对应 sticky 错误。CMD_PUSH=0 无操作。保留位忽略。
+  acceptance_criteria:
+  - 对照原合同 CMD-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.006
+  category: FUNC
+  feature: CMD-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: CS 的模式、分频、时序、位序、dummy pattern 在 ENABLE=1 时只读；软件必须等 BUSY=0 后清 ENABLE 再修改。这消除了“已排队命令引用配置被悄悄修改”的歧义。命令 shadow 和
+    FIFO 数据口在使能期间可访问。
+  acceptance_criteria:
+  - 对照原合同 CMD-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.007
+  category: FUNC
+  feature: CMD-007
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 数据命令第一次启动前检查 TX/RX 所需资源。资源不足时不提前断言 CS；BUSY=1，进入 WAIT_TX/WAIT_RX。DUMMY 无 FIFO 依赖。RELEASE 在无活动 CS 时合法，为无引脚变化的完成命令。
+  acceptance_criteria:
+  - 对照原合同 CMD-007 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.008
+  category: FUNC
+  feature: CMD-008
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 每个 frame 开始前取得完整 TX entry（如需要）并预留完整 RX entry 空间（如需要）；一旦 frame 开始，不得因 FIFO 流控在 frame 中间停 SCLK。
+  acceptance_criteria:
+  - 对照原合同 CMD-008 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.009
+  category: FUNC
+  feature: CMD-009
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: TX/RX 两种资源同时需要时须原子取得：RX 没有空间不得预先不可逆弹出 TX。移位寄存器和预留槽应单独计入设计状态，防止“FIFO 空”被误认为最后一帧已发送。
+  acceptance_criteria:
+  - 对照原合同 CMD-009 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.010
+  category: FUNC
+  feature: CMD-010
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 最后一帧/最后 Dummy 周期必须完成末尾 trailing edge。KEEP_CS=0 时，进一步满足 CS_HOLD 并释放 CS 后才产生 SEG_DONE；KEEP_CS=1 时，在末尾 trailing
+    edge 且 RX 数据提交完成后产生 SEG_DONE，进入保持或执行下一段。
+  acceptance_criteria:
+  - 对照原合同 CMD-010 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.011
+  category: FUNC
+  feature: CMD-011
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: SEG_DONE 表示 descriptor 完成；XFER_DONE 仅在一个实际断言过的 CS 被正常释放时产生。空闲 RELEASE 只有 SEG_DONE。命令 FIFO 空、TX FIFO 空或最后 TX
+    entry 被弹出均不是完成事件。
+  acceptance_criteria:
+  - 对照原合同 CMD-011 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CMD.012
+  category: FUNC
+  feature: CMD-012
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CMD-012
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: BUSY 从命令被接受开始覆盖排队、准备、执行、hold、idle 等待、KEEP_CS 等待及中止过程。仅在无活动段、无待执行命令、无有效 CS、无剩余时序等待及中止时清 0；TX/RX FIFO 残留不单独置
+    BUSY。
+  acceptance_criteria:
+  - 对照原合同 CMD-012 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CS.001
+  category: FUNC
+  feature: CS-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CS-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 任意时刻最多一个 CS 有效。KEEP_CS=1 保持当前 CS，便于组合指令、地址、Dummy、读数据等阶段。
+  acceptance_criteria:
+  - 对照原合同 CS-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CS.002
+  category: FUNC
+  feature: CS-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CS-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 保持期间后续命令必须为同一 CS。CS 不匹配在执行前检出，进入故障恢复，不允许悄悄释放旧 CS 后转移到新器件。正常切换器件须先用 KEEP_CS=0 的末段或 RELEASE 显式结束旧事务。
+  acceptance_criteria:
+  - 对照原合同 CS-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CS.003
+  category: FUNC
+  feature: CS-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CS-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 保持期间下一命令尚未到达时，SCLK 保持 CPOL、CS 保持有效，WAIT_CMD=1；适用等待超时。软件须确保目标器件允许该停顿。KEEP_CS 不等价于 SCLK 连续。
+  acceptance_criteria:
+  - 对照原合同 CS-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CS.004
+  category: FUNC
+  feature: CS-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CS-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 无 stall 的同段连续帧在 FRAME_GAP=0 时，应保持连续 SCLK，前提是下一帧所需资源在前帧最后 trailing edge 前至少一个 PCLK 已可用。RTL 应预取或等效提前判定。段间不保证连续
+    SCLK；需要严格无间断的协议应组织为单个 TXRX/TX/RX segment。
+  acceptance_criteria:
+  - 对照原合同 CS-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.CS.005
+  category: FUNC
+  feature: CS-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#CS-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: CS 自动覆盖整个 segment，不在每帧间翻转。如器件要求每个字单独片选，应提交多个单 frame、KEEP_CS=0 的 segment。
+  acceptance_criteria:
+  - 对照原合同 CS-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.DAT.001
+  category: FUNC
+  feature: DAT-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#DAT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 一个 frame 包含 `FRAME_BITS=1..32` 个串行 bit；一个 TX/RX FIFO entry 对应一帧，固定存储 32 位。有效数据右对齐在 `[FRAME_BITS-1:0]`。TX 高位忽略，RX
+    高位补零。
+  acceptance_criteria:
+  - 对照原合同 DAT-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.DAT.002
+  category: FUNC
+  feature: DAT-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#DAT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: MSB-first 按 `FRAME_BITS-1` 到 0 发送/接收；LSB-first 按 0 到 `FRAME_BITS-1` 发送/接收。回读数据的数值位置与发送定义一致，不因位序选择而自动 byte swap。
+  acceptance_criteria:
+  - 对照原合同 DAT-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.DAT.003
+  category: FUNC
+  feature: DAT-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#DAT-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 8-bit 帧时一次 TXDATA 写入一字节有效载荷，不把 32 位写数据自动拆成四字节。驱动应使用对齐 32 位 MMIO；多字节协议的字节顺序由 entry 顺序决定。例如地址 `0x123456` 应依协议分别写入
+    `0x12,0x34,0x56`。
+  acceptance_criteria:
+  - 对照原合同 DAT-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.SPI_MASTER.DRV.001
+  category: CONS
+  feature: DRV-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#DRV-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 控制器由单个驱动实例串行管理。多线程/CPU/DMA 不得在无锁条件下交错访问 CMD shadow/PUSH 或 TXDATA/RXDATA；驱动对命令构造和对应数据序列加锁，并使用平台规定的 MMIO 顺序屏障。
+  acceptance_criteria:
+  - 对照原合同 DRV-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.SPI_MASTER.DRV.002
+  category: CONS
+  feature: DRV-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#DRV-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 轮询必须包含软件总期限；WAIT_TIMEOUT 只覆盖资源等待，不能替代总期限。SEG_DONE sticky 可合并多个完成事件，驱动根据 DONE_COUNT 差值和软件队列核对；TAG 不强制唯一，不提供完整
+    completion FIFO。
+  acceptance_criteria:
+  - 对照原合同 DRV-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.ERR.001
+  category: REG
+  feature: ERR-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#ERR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 多个运行期条件同时出现允许多位置位；每次 APB 访问先检查地址/方向/对齐/strobe，失败仅记 APB_ACCESS；之后检查目标操作，记相应专用错误。非法 ACTION 组合或忙态 ACTION 记 APB_ACCESS。错误
+    CSR W1C 清除不解除 FAULTED。
+  acceptance_criteria:
+  - 对照原合同 ERR-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.ERR.002
+  category: REG
+  feature: ERR-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#ERR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 设计应通过资源预留避免真正 RX overflow；不得把覆盖旧数据作为正常流控策略。V1.0 不宣称检测所有内部硬件故障、线上 bit 错误或从机命令执行结果。
+  acceptance_criteria:
+  - 对照原合同 ERR-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.FIFO.001
+  category: FUNC
+  feature: FIFO-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#FIFO-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: TXDATA 成功写入恰好一 entry；RXDATA 成功读取恰好一 entry。TX 满写和 RX 空读立即 PSLVERR，保持 FIFO 原状，置错误标志。禁止静默丢弃或返回上次数据伪装成功。
+  acceptance_criteria:
+  - 对照原合同 FIFO-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.FIFO.002
+  category: FUNC
+  feature: FIFO-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#FIFO-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: TX_LEVEL/RX_LEVEL 是实际队列 occupancy，不含移位寄存器；CMD_LEVEL 不含活动命令。预留的 RX 槽可减少可用空间，但不得增加软件可读 RX_LEVEL。软件只能读取完整 frame。
+  acceptance_criteria:
+  - 对照原合同 FIFO-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.FIFO.003
+  category: FUNC
+  feature: FIFO-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#FIFO-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 判断本次 APB 操作是否合法，以提交沿之前 occupancy 为准。满 TX 与硬件同沿 pop 时仍拒绝写；空 RX 与硬件同沿 push 时仍拒绝读。非满/非空时允许同时 push/pop，计数和顺序正确。CMD
+    FIFO 满与同沿出队采用相同保守规则。
+  acceptance_criteria:
+  - 对照原合同 FIFO-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.FIFO.004
+  category: FUNC
+  feature: FIFO-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#FIFO-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 清 FIFO 只允许 ENABLE=0、BUSY=0；分别支持 TX/RX/CMD clear。RX 读取不改变命令进度；额外 TX 数据不自动发出，保留供后续命令使用。软件负责 entry 数量和描述符之间的对应关系。
+  acceptance_criteria:
+  - 对照原合同 FIFO-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.IF.001
+  category: INTF
+  feature: IF-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: V1.0 无 IO 三态控制；SCLK/MOSI/CS 为专用推挽输出，Pad 和 pinmux 属于 SoC。RX-only 时 MOSI 仍输出 dummy pattern。MISO 应由板级/Pad 保证未选中器件释放总线。
+  acceptance_criteria:
+  - 对照原合同 IF-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.IF.002
+  category: INTF
+  feature: IF-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 全部内部状态使用 `pclk`；不得以输出 SCLK 作为内部逻辑时钟。通过 clock enable 产生串行边沿及采样事件。
+  acceptance_criteria:
+  - 对照原合同 IF-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.SPI_MASTER.IF.003
+  category: INTF
+  feature: IF-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: MISO 是受外发 SCLK 和外设输出延迟约束的返回路径。必须给出 IO 时序预算及 STA 约束；不得将其简单标成异步 false path 后宣称时序通过，也不得无补偿地加入两级同步器而造成接收错位。
+  acceptance_criteria:
+  - 对照原合同 IF-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.SPI_MASTER.INT.001
+  category: CONS
+  feature: INT-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#INT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: BUSY=1 时不得关闭 PCLK或动态改频；安全流程为停止提交、完成或中止、确认 BUSY=0，再实施时钟管理。不能在 CS 保持有效时因系统门控无限挂住总线。
+  acceptance_criteria:
+  - 对照原合同 INT-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.SPI_MASTER.INT.002
+  category: CONS
+  feature: INT-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#INT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 驱动及数据手册须注明无从机存在检测、无线上 ACK、无自动校验、无故障自动回滚。上电、硬复位、掉电过程中由 SoC Pad 配置保证 CS 的安全高电平。
+  acceptance_criteria:
+  - 对照原合同 INT-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.IRQ.001
+  category: REG
+  feature: IRQ-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IRQ-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: IRQ_STATE 只有 bit[2:0] 可读写；IRQ_RAW[2:0] 来自 IRQ_STATE，bit[5:3] 来自实时条件。`irq_o = OR(IRQ_RAW & IRQ_ENABLE)`。IRQ_ENABLE
+    仅 bit[5:0] 有效。复位所有使能为 0。
+  acceptance_criteria:
+  - 对照原合同 IRQ-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.IRQ.002
+  category: REG
+  feature: IRQ-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IRQ-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 清 IRQ_STATE 不能清电平源；ERROR 必须清 ERROR_STATUS，TX/RX 水位必须服务 FIFO 或屏蔽。事件发生与 W1C 同沿时置位优先。读取状态无清除副作用。
+  acceptance_criteria:
+  - 对照原合同 IRQ-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.IRQ.003
+  category: REG
+  feature: IRQ-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#IRQ-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 最后一次接收可能不足 RX_WM，驱动在 SEG_DONE/XFER_DONE 后仍须读取 RX_LEVEL 并排空尾数据。TX 水位在控制器使能但空闲时亦可能持续成立，驱动不供数时应屏蔽该源。
+  acceptance_criteria:
+  - 对照原合同 IRQ-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.SPI_MASTER.PAR.001
+  category: CFG
+  feature: NUM_CS
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PAR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: '`NUM_CS` ； 1～8 ； 4 ； CS 输出数量'
+  acceptance_criteria:
+  - 对照原合同 PAR-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.SPI_MASTER.PAR.002
+  category: CFG
+  feature: TX_FIFO_DEPTH
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PAR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: '`TX_FIFO_DEPTH` ； 4/8/16/32/64/128/256 ； 32 ； 单位：32 位 entry'
+  acceptance_criteria:
+  - 对照原合同 PAR-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.SPI_MASTER.PAR.003
+  category: CFG
+  feature: RX_FIFO_DEPTH
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PAR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: '`RX_FIFO_DEPTH` ； 4/8/16/32/64/128/256 ； 32 ； 单位：32 位 entry'
+  acceptance_criteria:
+  - 对照原合同 PAR-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.SPI_MASTER.PAR.004
+  category: CFG
+  feature: CMD_FIFO_DEPTH
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PAR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: '`CMD_FIFO_DEPTH` ； 2/4/8/16 ； 4 ； 单位：待执行 descriptor；不含活动 descriptor'
+  acceptance_criteria:
+  - 对照原合同 PAR-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.PERF.001
+  category: PERF
+  feature: PERF-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PERF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 目标为同段正常资源条件下零额外帧间 bubble（FRAME_GAP=0）；最大逻辑 SPI 频率 PCLK/2。报告必须分别列 PCLK 约束、SPI 分频和外部接口可签核的最大 SCLK，不以仿真频率代替物理承诺。
+  acceptance_criteria:
+  - 对照原合同 PERF-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.PERF.002
+  category: PERF
+  feature: PERF-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PERF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 8-bit、PCLK/2 时，一帧 16 PCLK。无额外总线等待的 APB 32-bit 访问最少两 PCLK，因此全双工每帧一次写加一次读至少消耗 4 PCLK 总线时间，尚未包含 CPU 指令、仲裁和中断延迟。1-bit
+    帧时不能依赖 APB 持续达到同样最大串行速率。
+  acceptance_criteria:
+  - 对照原合同 PERF-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.PERF.003
+  category: PERF
+  feature: PERF-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PERF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 驱动服务预算按 entry 消耗率计算。数据帧 entry rate 约为 `f_sclk / FRAME_BITS`（忽略 gap）；TX 剩余 entry 或 RX 剩余空间所提供时间约为 `entry_count
+    × FRAME_BITS / f_sclk`。选择水位时预留最坏服务延迟，不以平均延迟设计。
+  acceptance_criteria:
+  - 对照原合同 PERF-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.PERF.004
+  category: PERF
+  feature: PERF-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PERF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 应交付至少 NUM_CS=1、FIFO=4 的小配置，默认配置，以及 NUM_CS=8、FIFO=256、CMD=16 的边界配置综合结果。当前未指定工艺库、Pad、PCLK 和负载，面积、功耗、最高实际 SCLK
+    不填写虚构指标，项目集成时补充目标。
+  acceptance_criteria:
+  - 对照原合同 PERF-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.SPI_MASTER.PPA.001
+  category: LP
+  feature: PPA-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#PPA-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: FIFO RAM 数据无需全量复位，只复位有效指针/计数；空闲移位器/计数器使用使能降低翻转。时钟门控由实现及低功耗流程确定，禁止组合逻辑随意门控 PCLK。
+  acceptance_criteria:
+  - 对照原合同 PPA-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.001
+  category: RESET
+  feature: REC-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: ABORT 可在 ENABLE=0/1 任意状态接受，重复请求幂等。若 frame/Dummy cycle 已开始，完成当前 frame/当前完整周期后停止，满足 CS_HOLD 并释放 CS；不得为了快速停止制造短
+    SCLK 脉冲。其间禁止继续预取下一帧或发起下一命令。
+  acceptance_criteria:
+  - 对照原合同 REC-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.002
+  category: RESET
+  feature: REC-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: ABORT 完成时清全部待执行命令及 TX FIFO，保留已经完整接收的 RX entry（包括中止时允许完成的当前 frame），设置 ABORT_DONE；活动 descriptor 不产生正常 SEG_DONE，即使恰好在中止边界送出其末帧。保留上一个正常完成
+    TAG/计数，FAULTED=1。
+  acceptance_criteria:
+  - 对照原合同 REC-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.003
+  category: RESET
+  feature: REC-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 资源错误、等待超时、保持期间 CS 不匹配按同一安全停止过程进入 FAULTED；无正在传输的 frame 时无须生成额外 SCLK。清待执行命令/TX、保留完整 RX。错误导致的终止不产生正常 XFER_DONE/SEG_DONE；ABORT_DONE
+    仅用于软件 ABORT。
+  acceptance_criteria:
+  - 对照原合同 REC-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.004
+  category: RESET
+  feature: REC-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 故障时记录 ERROR_STATUS，ACTIVE_TAG/PROGRESS 在恢复前保留终止位置；不自动重试。恢复顺序为等待 BUSY=0、处理或丢弃 RX、写 ENABLE=0、清 sticky 错误和事件、清
+    FIFO、写 CLEAR_FAULT、重新使能并提交事务。CLEAR_FAULT 只允许 ENABLE=0 且 BUSY=0。
+  acceptance_criteria:
+  - 对照原合同 REC-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.005
+  category: RESET
+  feature: REC-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: APB 操作错误、命令提交被拒绝、忙态配置写错误，只记录错误/返回 PSLVERR，不中断已经正常执行的事务。软件访问错误与串行执行故障须可区分。
+  acceptance_criteria:
+  - 对照原合同 REC-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.006
+  category: RESET
+  feature: REC-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: SW_RESET 仅允许 ENABLE=0 且 BUSY=0，复位全部 CSR、FIFO、计数和状态，效果等同功能复位；因此紧急恢复应先 ABORT。SW_RESET 成功 APB 访问正常完成，其后状态为复位值。
+  acceptance_criteria:
+  - 对照原合同 REC-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.007
+  category: RESET
+  feature: REC-007
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 硬复位立即清全部状态，CS 全高、SCLK=0、MOSI=0、IRQ=0；允许截断外部事务，不保证复位瞬间外部 SPI 波形完整。解除复位后不自动恢复旧事务。系统应在没有 APB 活动传输时释放复位。
+  acceptance_criteria:
+  - 对照原合同 REC-007 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.008
+  category: RESET
+  feature: REC-008
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 同沿优先级：硬复位 > 已接受 ABORT/运行期致命错误 > 正常段完成。RX 已完成帧提交仍可保留；中止抑制正常完成事件。普通软件清状态与新事件同沿时，新事件置位优先。SW_RESET 只能在静止状态接受，不与活动执行竞争。
+  acceptance_criteria:
+  - 对照原合同 REC-008 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.SPI_MASTER.REC.009
+  category: RESET
+  feature: REC-009
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REC-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 不包含额外排队的中止延迟上界为当前帧剩余时间（最多 `64H` 个 PCLK）+ CS_HOLD+1 + CS_IDLE+1 + 最多 4 个控制周期；BUSY 清零前完成 idle 等待。等待状态下中止不得等待
+    FIFO 或后续命令。
+  acceptance_criteria:
+  - 对照原合同 REC-009 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.001
+  category: REG
+  feature: REG-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-001 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.002
+  category: REG
+  feature: REG-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-002 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.003
+  category: REG
+  feature: REG-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-003 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.004
+  category: REG
+  feature: REG-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-004 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.005
+  category: REG
+  feature: REG-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-005 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.006
+  category: REG
+  feature: REG-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-006 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.007
+  category: REG
+  feature: REG-007
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-007 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-007 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.SPI_MASTER.REG.008
+  category: REG
+  feature: REG-008
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#REG-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 提供合同 REG-008 定义的软件可见能力和访问限制；字段结构在 SystemRDL 固化。
+  acceptance_criteria:
+  - 对照原合同 REG-008 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.001
+  category: FUNC
+  feature: SCP-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: APB4 Slave ； 32 位数据，4 位 PSTRB，3 位 PPROT，PREADY/PSLVERR
+  acceptance_criteria:
+  - 对照原合同 SCP-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.002
+  category: FUNC
+  feature: SCP-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: SPI Master ； 标准四线、单主机、单目标同时选通
+  acceptance_criteria:
+  - 对照原合同 SCP-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.003
+  category: FUNC
+  feature: SCP-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 四种模式 ； Mode 0/1/2/3，运行时配置
+  acceptance_criteria:
+  - 对照原合同 SCP-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.004
+  category: FUNC
+  feature: SCP-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 帧格式 ； 1～32 位，MSB-first/LSB-first
+  acceptance_criteria:
+  - 对照原合同 SCP-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.005
+  category: FUNC
+  feature: SCP-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 数据方向 ； TX-only、RX-only、全双工、Dummy
+  acceptance_criteria:
+  - 对照原合同 SCP-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.006
+  category: FUNC
+  feature: SCP-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 缓冲 ； 独立 TX/RX FIFO、命令 FIFO
+  acceptance_criteria:
+  - 对照原合同 SCP-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.007
+  category: FUNC
+  feature: SCP-007
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 片选 ； 自动片选、跨段保持、显式 RELEASE 命令
+  acceptance_criteria:
+  - 对照原合同 SCP-007 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.008
+  category: FUNC
+  feature: SCP-008
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 时序配置 ； 整数分频、CS setup/hold/idle、帧间间隔
+  acceptance_criteria:
+  - 对照原合同 SCP-008 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.009
+  category: FUNC
+  feature: SCP-009
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 软件访问 ； 轮询和电平中断；无须 DMA 亦可完成全部功能
+  acceptance_criteria:
+  - 对照原合同 SCP-009 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.010
+  category: FUNC
+  feature: SCP-010
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 异常恢复 ； 无效访问拒绝、资源等待、连续模式资源错误、等待超时、中止、软复位
+  acceptance_criteria:
+  - 对照原合同 SCP-010 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.SCP.011
+  category: FUNC
+  feature: SCP-011
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#SCP-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 调试 ； 内部回环、状态、累计完成计数、最后完成 TAG
+  acceptance_criteria:
+  - 对照原合同 SCP-011 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.STALL.001
+  category: FUNC
+  feature: STALL-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#STALL-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: ALLOW_STALL=1 时，资源不足在下一帧开始前暂停；SCLK 保持 CPOL。若事务已开始则 CS 保持有效；补数/读取 RX 后继续，不重复、不跳过 frame。
+  acceptance_criteria:
+  - 对照原合同 STALL-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.STALL.002
+  category: FUNC
+  feature: STALL-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#STALL-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: ALLOW_STALL=0 时，任何需要启动 frame 却资源未及时就绪的情况视为资源错误；不发送伪造数据、不覆盖 RX，进入故障恢复。首帧条件不足也属于错误。此选项不是吞吐保证，驱动仍须满足供数及排空条件。
+  acceptance_criteria:
+  - 对照原合同 STALL-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.STALL.003
+  category: FUNC
+  feature: STALL-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#STALL-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: WAIT_TIMEOUT 为 32 位 PCLK 周期数，0 关闭。仅统计 WAIT_TX/WAIT_RX/WAIT_CMD 连续无进展时间；等待原因切换不清计数。达到非零阈值则 WAIT_TIMEOUT 错误。若同沿出现可执行进展和超时，进展优先；计数清零。CS
+    setup/hold/idle、合法 frame 和 FRAME_GAP 不计入。
+  acceptance_criteria:
+  - 对照原合同 STALL-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.SPI_MASTER.STALL.004
+  category: FUNC
+  feature: STALL-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#STALL-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 无等待超时不代表外部器件响应正常。SPI 没有通用 ACK；MISO 固定 0/1、外设未接、器件内部忙或返回错误数据不能由本 IP 自动判定为超时。软件仍应使用完整操作期限和器件状态检查。
+  acceptance_criteria:
+  - 对照原合同 STALL-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.001
+  category: PERF
+  feature: TIM-001
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: CPHA=0，首个有效 MOSI bit 应在首个 leading edge 前建立；相邻帧连续传输时，在前帧最后 trailing edge 装载下一帧首 bit。CPHA=1，在首个 leading edge
+    移出首 bit，在 trailing edge 采样。
+  acceptance_criteria:
+  - 对照原合同 TIM-001 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.002
+  category: PERF
+  feature: TIM-002
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 每个正常完成 frame 必须生成恰好 `2 × FRAME_BITS` 个 SCLK 边沿，包含返回 CPOL 的最后 trailing edge；不得以最后一次 MISO 采样替代整个 frame 完成。
+  acceptance_criteria:
+  - 对照原合同 TIM-002 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.003
+  category: PERF
+  feature: TIM-003
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: SCLK 半周期为 `H = CLKDIV + 1` 个 PCLK，CLKDIV 为 16 位无符号数：
+  acceptance_criteria:
+  - 对照原合同 TIM-003 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.004
+  category: PERF
+  feature: TIM-004
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 每个 CS 独立配置以下时序，字段单位均为 PCLK，避免软件对不同 SCLK 重新解释计数值：
+  acceptance_criteria:
+  - 对照原合同 TIM-004 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.005
+  category: PERF
+  feature: TIM-005
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 切换器件/CPOL 时：先以旧配置完成 hold 并释放全部 CS，等待旧 CS_IDLE；再更新 SCLK 空闲电平，等待新 CS_IDLE，方可断言新 CS 并执行 setup。若 CPOL 不变，允许合并等待为
+    `max(old_idle,new_idle)`。CS 有效时严禁因配置写产生 SCLK 跳变。
+  acceptance_criteria:
+  - 对照原合同 TIM-005 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.SPI_MASTER.TIM.006
+  category: PERF
+  feature: TIM-006
+  priority: P0
+  status: active
+  source_ref:
+  - spi_master_contract.md#TIM-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 空闲时 SCLK 保持最近一次实际启用的 CPOL；写配置不立即翻转输出。复位 SCLK=0。MOSI 在活动帧按位输出；正常段间等待保留末位；事务释放后置 0。
+  acceptance_criteria:
+  - 对照原合同 TIM-006 的全部条件，检查可观察结果及异常路径；不得以成功通路替代边界检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: open
+  requirement_freeze: false
+  approvals: {}

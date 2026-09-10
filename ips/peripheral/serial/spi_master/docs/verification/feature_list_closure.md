@@ -1,0 +1,135 @@
+# 验证功能 closure
+
+## FL.SPI_MASTER.IRQ
+
+<!-- FEATURE_META
+id: FL.SPI_MASTER.IRQ
+name: irq
+description: 事件、水位、屏蔽、W1C
+priority: must
+req_ref:
+- LRS.REG.SPI_MASTER.ERR.001
+- LRS.REG.SPI_MASTER.ERR.002
+- LRS.REG.SPI_MASTER.IRQ.001
+- LRS.REG.SPI_MASTER.IRQ.002
+- LRS.REG.SPI_MASTER.IRQ.003
+proof_methods:
+- simulation
+- assertion
+applicability:
+  expr: 'true'
+END_FEATURE_META -->
+事件、水位、屏蔽、W1C。映射表示验证责任；是否通过取决于真实证据。
+
+## FL.SPI_MASTER.EXTENDED
+
+<!-- FEATURE_META
+id: FL.SPI_MASTER.EXTENDED
+name: extended
+description: 精确时序、最大计时值、MISO 延迟
+priority: must
+req_ref:
+- LRS.PERF.SPI_MASTER.PERF.001
+- LRS.PERF.SPI_MASTER.PERF.002
+- LRS.PERF.SPI_MASTER.PERF.003
+- LRS.PERF.SPI_MASTER.PERF.004
+- LRS.PERF.SPI_MASTER.TIM.001
+- LRS.PERF.SPI_MASTER.TIM.002
+- LRS.PERF.SPI_MASTER.TIM.003
+- LRS.PERF.SPI_MASTER.TIM.004
+- LRS.PERF.SPI_MASTER.TIM.005
+- LRS.PERF.SPI_MASTER.TIM.006
+proof_methods:
+- simulation
+- assertion
+applicability:
+  expr: 'true'
+END_FEATURE_META -->
+精确时序、最大计时值、MISO 延迟。映射表示验证责任；是否通过取决于真实证据。
+
+## FL.SPI_MASTER.RANDOM
+
+<!-- FEATURE_META
+id: FL.SPI_MASTER.RANDOM
+name: random
+description: 随机配置和数据
+priority: must
+req_ref:
+- LRS.FUNC.SPI_MASTER.CS.001
+- LRS.FUNC.SPI_MASTER.CS.002
+- LRS.FUNC.SPI_MASTER.CS.003
+- LRS.FUNC.SPI_MASTER.CS.004
+- LRS.FUNC.SPI_MASTER.CS.005
+- LRS.FUNC.SPI_MASTER.DAT.001
+- LRS.FUNC.SPI_MASTER.DAT.002
+- LRS.FUNC.SPI_MASTER.DAT.003
+- LRS.PERF.SPI_MASTER.TIM.001
+- LRS.PERF.SPI_MASTER.TIM.002
+- LRS.PERF.SPI_MASTER.TIM.003
+- LRS.PERF.SPI_MASTER.TIM.004
+- LRS.PERF.SPI_MASTER.TIM.005
+- LRS.PERF.SPI_MASTER.TIM.006
+proof_methods:
+- simulation
+- assertion
+applicability:
+  expr: 'true'
+END_FEATURE_META -->
+随机配置和数据。映射表示验证责任；是否通过取决于真实证据。
+
+## FL.SPI_MASTER.RACES
+
+<!-- FEATURE_META
+id: FL.SPI_MASTER.RACES
+name: races
+description: 完成/W1C 同沿、复位阶段
+priority: must
+req_ref:
+- LRS.REG.SPI_MASTER.IRQ.001
+- LRS.REG.SPI_MASTER.IRQ.002
+- LRS.REG.SPI_MASTER.IRQ.003
+- LRS.RESET.SPI_MASTER.REC.001
+- LRS.RESET.SPI_MASTER.REC.002
+- LRS.RESET.SPI_MASTER.REC.003
+- LRS.RESET.SPI_MASTER.REC.004
+- LRS.RESET.SPI_MASTER.REC.005
+- LRS.RESET.SPI_MASTER.REC.006
+- LRS.RESET.SPI_MASTER.REC.007
+- LRS.RESET.SPI_MASTER.REC.008
+- LRS.RESET.SPI_MASTER.REC.009
+proof_methods:
+- simulation
+- assertion
+applicability:
+  expr: 'true'
+END_FEATURE_META -->
+完成/W1C 同沿、复位阶段。映射表示验证责任；是否通过取决于真实证据。
+
+## FL.SPI_MASTER.DELIVERY
+
+<!-- FEATURE_META
+id: FL.SPI_MASTER.DELIVERY
+name: delivery
+description: 软件、参数空间、静态集成和交付
+priority: must
+req_ref:
+- LRS.CONS.SPI_MASTER.DRV.001
+- LRS.CONS.SPI_MASTER.DRV.002
+- LRS.INTF.SPI_MASTER.IF.001
+- LRS.INTF.SPI_MASTER.IF.002
+- LRS.INTF.SPI_MASTER.IF.003
+- LRS.CONS.SPI_MASTER.INT.001
+- LRS.CONS.SPI_MASTER.INT.002
+- LRS.CFG.SPI_MASTER.PAR.001
+- LRS.CFG.SPI_MASTER.PAR.002
+- LRS.CFG.SPI_MASTER.PAR.003
+- LRS.CFG.SPI_MASTER.PAR.004
+- LRS.LP.SPI_MASTER.PPA.001
+proof_methods:
+- review
+- static
+applicability:
+  expr: 'true'
+END_FEATURE_META -->
+软件、参数空间、静态集成和交付。映射表示验证责任；是否通过取决于真实证据。
+

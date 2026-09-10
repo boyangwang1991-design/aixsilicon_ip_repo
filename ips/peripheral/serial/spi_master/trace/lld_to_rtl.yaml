@@ -1,0 +1,23 @@
+schema_version: '2.0'
+ip_name: spi_master
+trace_type: lld_to_rtl
+links:
+- source_id: LLD.MOD.SPI_MASTER.CSR
+  target_id: RTL.FILE.rtl/generated/spi_master_csr.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.SPI_MASTER.CSR
+  target_id: RTL.FILE.rtl/spi_master_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.SPI_MASTER.ENGINE
+  target_id: RTL.FILE.rtl/spi_master_engine.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.SPI_MASTER.QUEUES
+  target_id: RTL.FILE.rtl/spi_master_queues.sv
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

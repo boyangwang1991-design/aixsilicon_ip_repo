@@ -1,0 +1,13 @@
+Testbench Group List
+
+Total Groups Coverage Summary 
+COVERED EXPECTED SCORE  COVERED EXPECTED INST SCORE WEIGHT 
+96      96       100.00 96      96       100.00     1      
+
+
+Total groups in report: 2
+-------------------------------------------------------------------------------
+COVERED EXPECTED SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                                
+9       9        100.00 100.00    1      100    1        1            64           64                    spi_master_tb.vif::command_coverage 
+87      87       100.00 100.00    1      100    1        1            64           64                    spi_master_tb.vif::serial_coverage  
+

@@ -1,0 +1,115 @@
+schema_version: '2.0'
+ip_name: spi_master
+interfaces:
+- id: HLD.IF.EXT.SPI_MASTER.APB
+  name: APB
+  scope: external
+  protocol: APB4
+  role: slave
+  owner_module: HLD.MOD.SPI_MASTER.CSR
+  signals:
+  - name: pclk
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: preset_n
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: psel
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: penable
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: pwrite
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: paddr
+    direction: input
+    width: 12
+    clock: pclk
+    reset: preset_n
+  - name: pwdata
+    direction: input
+    width: 32
+    clock: pclk
+    reset: preset_n
+  - name: pstrb
+    direction: input
+    width: 4
+    clock: pclk
+    reset: preset_n
+  - name: pprot
+    direction: input
+    width: 3
+    clock: pclk
+    reset: preset_n
+  - name: prdata
+    direction: output
+    width: 32
+    clock: pclk
+    reset: preset_n
+  - name: pready
+    direction: output
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: pslverr
+    direction: output
+    width: 1
+    clock: pclk
+    reset: preset_n
+  req_ref:
+  - LRS.INTF.SPI_MASTER.IF.002
+- id: HLD.IF.EXT.SPI_MASTER.SPI
+  name: SPI
+  scope: external
+  protocol: SPI
+  role: master
+  owner_module: HLD.MOD.SPI_MASTER.ENGINE
+  signals:
+  - name: spi_sclk_o
+    direction: output
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: spi_mosi_o
+    direction: output
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: spi_miso_i
+    direction: input
+    width: 1
+    clock: pclk
+    reset: preset_n
+  - name: spi_cs_n_o
+    direction: output
+    width: NUM_CS
+    clock: pclk
+    reset: preset_n
+  req_ref:
+  - LRS.INTF.SPI_MASTER.IF.002
+- id: HLD.IF.EXT.SPI_MASTER.IRQ
+  name: IRQ
+  scope: external
+  protocol: event
+  role: master
+  owner_module: HLD.MOD.SPI_MASTER.CSR
+  signals:
+  - name: irq_o
+    direction: output
+    width: 1
+    clock: pclk
+    reset: preset_n
+  req_ref:
+  - LRS.INTF.SPI_MASTER.IF.002

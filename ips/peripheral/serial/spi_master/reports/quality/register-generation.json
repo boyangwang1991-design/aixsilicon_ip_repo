@@ -1,0 +1,17 @@
+{
+  "tool": "PeakRDL",
+  "versions": {
+    "peakrdl": "1.5.0",
+    "peakrdl-regblock": "1.3.1",
+    "systemrdl-compiler": "1.32.2"
+  },
+  "cpuif": "passthrough with zero-wait APB wrapper",
+  "files": {
+    "regs/spi_master.rdl": "235f55f9968cf8395f2efffe168183ae97ee22d78fa8966206fa50132005a3b8",
+    "rtl/generated/spi_master_addr_pkg.sv": "1ee00119debd0aff991f3572b21ad7e1a460f609b8525de710f5c8c4abeb6491",
+    "rtl/generated/spi_master_csr.sv": "8c8e27eb72ef38ffe8ad8d8338ed5252b54754494ab926d9353f688da6decd34",
+    "rtl/generated/spi_master_csr_pkg.sv": "de806be1ce8c273e5d27018d39fa8a5ab7797acea9da90a34f28b55922995fb6",
+    "sw/include/spi_master_regs.h": "8de4a6add08245875b7f65c777f5077c6e626a158c00c3fbbab2d588e9aa014c",
+    "verification/ral/spi_master_ral.sv": "ccf5fa91f0d311c16866966a9490559d118dd45ad4827b26857ccc7bfb379f94"
+  }
+}

@@ -1,0 +1,54 @@
+<session version="1.1" release="W-2024.09-SP1" timestp="2026-09-10 12:49:26 GMT">
+  <info>
+    <attr name="datetime" value="Thu Sep 10 08:49:35 2026
+"/>
+    <attr name="command" value="urg -full64 -dir /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage.vdb -report /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/default -format both -show ratios -group show_bin_values -group maxmissing 100"/>
+    <attr name="top_instance" value="spi_master_tb,uvm_custom_install_verdi_recording,uvm_pkg"/>
+  </info>
+  <hvp>
+    <datadef>
+      <metdef name="Line" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Cond" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Toggle" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="FSM" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Branch" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Assert" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Group" type="ratio" aggregator="average" builtin="1" />
+    </datadef>
+  </hvp>
+  <old_coverage>
+  <scope type="top" name="top">
+    <metric name="Line" value="1568/2103" />
+    <metric name="Cond" value="1149/1653" />
+    <metric name="Toggle" value="6614/19056" />
+    <metric name="FSM" value="15/20" />
+    <metric name="Branch" value="654/934" />
+    <metric name="Assert" value="16/24" />
+    <metric name="Group" value="96/96" />
+  </scope>
+  <scope type="instance" name="top">
+  </scope>
+  <scope type="group" name="top">
+    <scope type="group" name="spi_master_tb.vif::command_coverage">
+      <metric name="Group" value="9/9" />
+    </scope>
+    <scope type="group" name="spi_master_tb.vif::serial_coverage">
+      <metric name="Group" value="87/87" />
+    </scope>
+  </scope>
+  <scope type="assert" name="Statistics">
+    <scorelist type="total" name="Design Hierarchy Assert">
+      <score name="Assert" value="16/24" />
+      <score name="Score" value="66.67" />
+    </scorelist>
+    <scorelist type="total" name="Module List Assert">
+      <score name="Assert" value="10/14" />
+      <score name="Score" value="71.43" />
+    </scorelist>
+    <scorelist type="total" name="Assertion">
+      <score name="Assert" value="16/24" />
+      <score name="Score" value="66.67" />
+    </scorelist>
+  </scope>
+  </old_coverage>
+</session>

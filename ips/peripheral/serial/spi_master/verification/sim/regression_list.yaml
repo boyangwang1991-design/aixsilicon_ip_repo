@@ -1,0 +1,33 @@
+smoke:
+- test: TC.SPI_MASTER.APB.001
+  name: tc_spi_apb
+  implementation: verification/tc/tc_spi_apb.sv
+regression:
+- test: TC.SPI_MASTER.IRQ.001
+  name: tc_spi_irq
+  implementation: verification/tc/tc_spi_irq.sv
+- test: TC.SPI_MASTER.EXTENDED.001
+  name: tc_spi_extended
+  implementation: verification/tc/tc_spi_extended.sv
+- test: TC.SPI_MASTER.RANDOM.001
+  name: tc_spi_random
+  implementation: verification/tc/tc_spi_random.sv
+- test: TC.SPI_MASTER.RACES.001
+  name: tc_spi_races
+  implementation: verification/tc/tc_spi_races.sv
+- test: TC.SPI_MASTER.DELIVERY.001
+  name: tc_spi_delivery
+  implementation: scripts/check_delivery.py
+- test: TC.SPI_MASTER.MODES.001
+  name: tc_spi_modes
+  implementation: verification/tc/tc_spi_modes.sv
+- test: TC.SPI_MASTER.COMMANDS.001
+  name: tc_spi_commands
+  implementation: verification/tc/tc_spi_commands.sv
+- test: TC.SPI_MASTER.FIFO_STALL.001
+  name: tc_spi_fifo_stall
+  implementation: verification/tc/tc_spi_fifo_stall.sv
+- test: TC.SPI_MASTER.RECOVERY.001
+  name: tc_spi_recovery
+  implementation: verification/tc/tc_spi_recovery.sv
+extended: []

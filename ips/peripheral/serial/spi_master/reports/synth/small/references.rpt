@@ -1,0 +1,659 @@
+ 
+****************************************
+Report : reference
+Design : spi_master_top_NUM_CS1_TX_FIFO_DEPTH4_RX_FIFO_DEPTH4_CMD_FIFO_DEPTH2
+Version: V-2023.12-SP3
+Date   : Thu Sep 10 08:06:40 2026
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+AND3_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       2      1.404000  
+AO1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+AO21A1AI2_X1M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+AO22_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      11     10.296000  
+AOI21_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+AOI22_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      11      7.722000  
+AOI31_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+AOI32_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       3      2.457000  
+AOI221_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       1      0.936000  
+AOI222_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       2      2.106000  
+AOI222_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       3      3.159000  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       7      3.276000  
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       1      2.574000  n
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      45     15.795000  
+INV_X2M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       5      2.340000  
+NAND3BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NAND4BB_X0P5M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+NAND4BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       3      2.457000  
+NAND4B_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+NAND4_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       7      4.914000  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       3      1.755000  
+NOR2B_X2M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000      32     26.208000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      12      5.616000  
+NOR3BB_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       5      3.510000  
+NOR3_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+NOR3_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       8      4.680000  
+NOR4BB_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       2      1.638000  
+OA1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       2      1.404000  
+OAI2XB1_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+OAI21_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+OAI21_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       3      1.755000  
+OAI22BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+OAI31_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OAI31_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OAI211_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+OR2_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       5      2.925000  
+OR2_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+OR3_X0P5M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OR3_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OR4_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       4      4.212000  
+OR6_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000       7      9.009000  
+TIEHI_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+TIELO_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+XNOR2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       2      1.872000  
+XNOR2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       1      0.936000  
+spi_master_csr                 5381.414891       1   5381.414891  h, n
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4
+                               2221.712979       1   2221.712979  h, n
+spi_master_queues_TX_FIFO_DEPTH4_RX_FIFO_DEPTH4_CMD_FIFO_DEPTH2
+                               1543.931979       1   1543.931979  h, n
+-----------------------------------------------------------------------------
+Total 51 references                                  9295.532850
+
+****************************************
+Design: spi_master_csr 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      12      7.020000  
+AND3_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+AO21A1AI2_X1M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      38     26.676001  
+AOI21_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+AOI22_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      65     45.630001  
+AOI221_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      51     47.735999  
+AOI222_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000     196    206.387995  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000     555    259.739997  
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000     816   2100.383904  n
+DFFSQ_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000     267    687.257968  n
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000    1210    424.710013  
+NAND2B_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      10      5.850000  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000     141     65.987999  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      19     11.115000  
+NAND4BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       4      3.276000  
+NAND4B_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       2      1.638000  
+NAND4_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      65     45.630001  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      13      7.605000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000    1002    468.935995  
+NOR3BB_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      10      7.020000  
+NOR3_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       3      1.755000  
+NOR4BB_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       3      2.457000  
+OA21A1OI2_X1M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      14      9.828000  
+OAI21_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      78     45.629998  
+OAI22_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000    1072    752.544024  
+OAI31_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       2      1.404000  
+OAI211_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+OAI221_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      34     31.824000  
+OAI222_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000      62     65.285998  
+OR6_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000      34     43.757998  
+TIEHI_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+TIELO_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+-----------------------------------------------------------------------------
+Total 32 references                                  5381.414891
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDF_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.989000       4      7.956000  r
+ADDH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000       3      3.861000  r
+AND2_X0P5B_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      14      8.190000  
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       6      3.510000  
+AND4_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000      23     18.837000  
+AO1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      26     18.252001  
+AO1B2_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       2      1.404000  
+AO21A1AI2_X0P5M_A9TH
+                   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      32     22.464001  
+AO22_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000     136    127.295999  
+AOI2XB1_X0P5M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+AOI21B_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+AOI21_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       5      2.925000  
+AOI22_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000     671    471.042015  
+AOI31_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       7      4.914000  
+AOI32_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       2      1.638000  
+AOI211_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       4      2.808000  
+AOI222_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000      17     17.901000  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000     185     86.579999  
+BUF_X2M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+DFFRPQN_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.457000       1      2.457000  n
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000     242    622.907971  n
+DFFSQ_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       1      2.574000  n
+INV_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      98     34.398001  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      96     33.696001  
+MXIT2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       9      8.424000  
+MXT2_X0P5B_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000      83     87.398998  
+MXT2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+NAND2B_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       5      2.925000  
+NAND2_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      28     13.104000  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       3      1.404000  
+NAND2_X1B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NAND3B_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       4      2.808000  
+NAND3_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      17      9.945000  
+NAND3_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       4      2.340000  
+NAND4BB_X0P5M_A9TH sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       2      1.638000  
+NAND4B_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+NAND4_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000     146    102.492003  
+NAND4_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+NOR2B_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      28     16.379999  
+NOR2B_X2M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+NOR2_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      55     25.740000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       3      1.404000  
+NOR2_X2A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+NOR3BB_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       3      2.106000  
+NOR3_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       9      5.265000  
+NOR3_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NOR4BB_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       7      5.733000  
+OA1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OA1B2_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OA21A1OI2_X0P5M_A9TH
+                   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OA21_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+OA211_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       1      0.936000  
+OAI21B_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+OAI21_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      48     28.079999  
+OAI21_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+OAI22BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+OAI22_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      96     67.392002  
+OAI31_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       6      4.212000  
+OAI211_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       4      2.808000  
+OAI221_X0P5M_A9TH  sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      29     27.144000  
+OAI221_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       1      0.936000  
+OR2_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      12      7.020000  
+OR2_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      17      9.945000  
+OR3_X0P5M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+OR4_X0P5M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       4      4.212000  
+OR6_X0P5M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000       5      6.435000  
+OR6_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000       1      1.287000  
+TIEHI_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+TIELO_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+XNOR2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      27     25.272000  
+XNOR2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000      21     19.656000  
+XOR2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_add_0
+                                 31.472999       1     31.472999  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_dec_0_DW01_dec_1
+                                 40.248000       1     40.248000  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_dec_2_DW01_dec_3
+                                 20.943000       1     20.943000  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_0_DW01_inc_2
+                                 40.013998       1     40.013998  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_2_DW01_inc_4
+                                  7.839000       1      7.839000  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_3_DW01_inc_5
+                                 40.013998       1     40.013998  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_4_DW01_inc_6
+                                 19.421999       1     19.421999  h
+spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_sub_1
+                                 13.689000       1     13.689000  h
+-----------------------------------------------------------------------------
+Total 81 references                                  2221.712979
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_add_0 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDF_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.989000      15     29.834999  r
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+XOR2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 3 references                                     31.472999
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_dec_0_DW01_dec_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AO1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      27     18.954001  
+AO21_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       2      0.702000  
+NAND2_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NOR2_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+OAI21_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+OR2_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      28     16.379999  
+XNOR2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       2      1.872000  
+-----------------------------------------------------------------------------
+Total 8 references                                     40.248000
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_dec_2_DW01_dec_3 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AO1B2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      12      8.424000  
+AO21_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       2      0.702000  
+NAND2_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NOR2_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+OAI21_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+OR2_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      13      7.605000  
+XNOR2_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       2      1.872000  
+-----------------------------------------------------------------------------
+Total 8 references                                     20.943000
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_0_DW01_inc_2 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000      30     38.609998  r
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       1      0.351000  
+XOR2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 3 references                                     40.013998
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_2_DW01_inc_4 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000       5      6.435000  r
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       1      0.351000  
+XOR2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 3 references                                      7.839000
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_3_DW01_inc_5 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000      30     38.609998  r
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       1      0.351000  
+XOR2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 3 references                                     40.013998
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_inc_4_DW01_inc_6 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.287000      14     18.017999  r
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       1      0.351000  
+XOR2_X0P5M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 3 references                                     19.421999
+
+****************************************
+Design: spi_master_engine_NUM_CS1_RX_FIFO_DEPTH4_DW01_sub_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+ADDF_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.989000       5      9.945000  r
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       6      2.106000  
+XOR2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       1      1.053000  
+-----------------------------------------------------------------------------
+Total 4 references                                     13.689000
+
+****************************************
+Design: spi_master_queues_TX_FIFO_DEPTH4_RX_FIFO_DEPTH4_CMD_FIFO_DEPTH2 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       3      7.722000  n
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       1      0.351000  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       6      3.510000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       3      1.404000  
+TIELO_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+sync_fifo_DATA_W32_DEPTH4_OUTPUT_REG0_IMPL0_0
+                                522.872991       1    522.872991  h, n
+sync_fifo_DATA_W32_DEPTH4_OUTPUT_REG0_IMPL0_1
+                                522.872991       1    522.872991  h, n
+sync_fifo_DATA_W64_DEPTH2_OUTPUT_REG0_IMPL0
+                                484.730997       1    484.730997  h, n
+-----------------------------------------------------------------------------
+Total 8 references                                   1543.931979
+
+****************************************
+Design: sync_fifo_DATA_W32_DEPTH4_OUTPUT_REG0_IMPL0_0 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      33     19.304999  
+AO22_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000     128    119.807999  
+AOI22_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      64     44.928001  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      19      8.892000  
+BUF_X0P7M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       2      0.936000  
+DFFQ_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.106000     128    269.567993  n
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       7     18.017999  n
+INV_X1B_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       2      0.702000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      14      4.914000  
+MXIT2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       2      1.872000  
+NAND2_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      32     14.976000  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       7      3.276000  
+NAND3BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       3      1.755000  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NOR2_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       4      1.872000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NOR3_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+OAI2XB1_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+XNOR2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       6      5.616000  
+XOR2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       2      2.106000  
+-----------------------------------------------------------------------------
+Total 21 references                                   522.872991
+
+****************************************
+Design: sync_fifo_DATA_W32_DEPTH4_OUTPUT_REG0_IMPL0_1 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000      33     19.304999  
+AO22_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000     128    119.807999  
+AOI22_X0P5M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000      64     44.928001  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      19      8.892000  
+BUF_X0P7M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       2      0.936000  
+DFFQ_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.106000     128    269.567993  n
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       7     18.017999  n
+INV_X1B_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       2      0.702000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      14      4.914000  
+MXIT2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       2      1.872000  
+NAND2_X0P5A_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      32     14.976000  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       7      3.276000  
+NAND3BB_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000       1      0.702000  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       3      1.755000  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NOR2_X0P5A_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       4      1.872000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+NOR3_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+OAI2XB1_X1M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.819000       1      0.819000  
+XNOR2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       6      5.616000  
+XOR2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  1.053000       2      2.106000  
+-----------------------------------------------------------------------------
+Total 21 references                                   522.872991
+
+****************************************
+Design: sync_fifo_DATA_W64_DEPTH2_OUTPUT_REG0_IMPL0 
+****************************************
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AND2_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       1      0.585000  
+BUFH_X1M_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000      71     33.228000  
+DFFQN_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.106000     128    269.567993  n
+DFFRPQ_X1M_A9TH    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  2.574000       4     10.296000  n
+INV_X0P5B_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000       5      1.755000  
+INV_X1M_A9TH       sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.351000      69     24.219001  
+NAND2_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       4      1.872000  
+NAND3_X1A_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NOR2B_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.585000       2      1.170000  
+NOR2_X1A_A9TH      sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.468000       1      0.468000  
+OAI22_X1M_A9TH     sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.702000     192    134.784004  
+XNOR2_X0P7M_A9TH   sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+                                  0.936000       6      5.616000  
+-----------------------------------------------------------------------------
+Total 12 references                                   484.730997
+1

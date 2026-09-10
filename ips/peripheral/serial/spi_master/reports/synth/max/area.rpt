@@ -1,0 +1,64 @@
+ 
+****************************************
+Report : area
+Design : spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16
+Version: V-2023.12-SP3
+Date   : Thu Sep 10 08:14:18 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c (File: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db)
+
+Number of ports:                         3765
+Number of nets:                         65693
+Number of cells:                        61962
+Number of combinational cells:          43135
+Number of sequential cells:             18809
+Number of macros/black boxes:               0
+Number of buf/inv:                       7617
+Number of references:                      47
+
+Combinational area:              32151.249071
+Buf/Inv area:                     3259.386002
+Noncombinational area:           40267.303905
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 72418.552976
+Total area:                      72418.552976
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ------------------------------ 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-   Black-
+                                  Total       Total    national    national    boxes   Design
+--------------------------------  ----------  -------  ----------  ----------  ------  ----------------------------------------------------------------------
+spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16
+                                  72418.5530    100.0    161.4600      2.5740  0.0000  spi_master_top_NUM_CS8_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16
+u_csr                              5381.8829      7.4   2594.2410   2787.6419  0.0000  spi_master_csr
+u_engine                           2246.9850      3.1   1387.3860    645.9570  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256
+u_engine/add_181                      7.8390      0.0      7.8390      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_2_DW01_inc_4
+u_engine/add_206                     31.4730      0.0     31.4730      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_add_0
+u_engine/add_245_S2                  40.0140      0.1     40.0140      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_0_DW01_inc_2
+u_engine/r299                        40.0140      0.1     40.0140      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_3_DW01_inc_5
+u_engine/r301                        20.9430      0.0     20.9430      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_2_DW01_dec_3
+u_engine/r306                        19.4220      0.0     19.4220      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_inc_4_DW01_inc_6
+u_engine/sub_1_root_sub_66_2         13.6890      0.0     13.6890      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_sub_1
+u_engine/sub_244                     40.2480      0.1     40.2480      0.0000  0.0000  spi_master_engine_NUM_CS8_RX_FIFO_DEPTH256_DW01_dec_0_DW01_dec_1
+u_queues                          64625.6511     89.2      5.2650      7.7220  0.0000  spi_master_queues_TX_FIFO_DEPTH256_RX_FIFO_DEPTH256_CMD_FIFO_DEPTH16
+u_queues/u_cmd                     3837.0149      5.3   1647.0090   2190.0059  0.0000  sync_fifo_DATA_W64_DEPTH16_OUTPUT_REG0_IMPL0
+u_queues/u_rx                     30387.8246     42.0  13052.8710  17316.7016  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0
+u_queues/u_rx/add_89                  9.1260      0.0      9.1260      0.0000  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_inc_1_DW01_inc_8
+u_queues/u_rx/add_92                  9.1260      0.0      9.1260      0.0000  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_0_DW01_inc_0_DW01_inc_7
+u_queues/u_tx                     30387.8246     42.0  13052.8710  17316.7016  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1
+u_queues/u_tx/add_89                  9.1260      0.0      9.1260      0.0000  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_inc_1_DW01_inc_10
+u_queues/u_tx/add_92                  9.1260      0.0      9.1260      0.0000  0.0000  sync_fifo_DATA_W32_DEPTH256_OUTPUT_REG0_IMPL0_1_DW01_inc_0_DW01_inc_9
+--------------------------------  ----------  -------  ----------  ----------  ------  ----------------------------------------------------------------------
+Total                                                  32151.2491  40267.3039  0.0000
+
+1

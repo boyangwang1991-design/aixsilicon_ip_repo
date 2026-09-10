@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="spi_master_smoke" tests="1" failures="0"><testcase id="TC.SPI_MASTER.APB.001" name="TC.SPI_MASTER.APB.001" /></testsuite>

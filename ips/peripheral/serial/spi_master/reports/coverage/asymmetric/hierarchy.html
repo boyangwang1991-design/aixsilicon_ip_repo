@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Author" content="<username>"> <meta name="GENERATOR" content="urg/version [en] (platform name) [urg]">
+<title>Unified Coverage Report :: Design Hierarchy</title>
+<link type="text/css" rel="stylesheet" href="css/.urg.css">
+<link type="text/css" rel="stylesheet" href="css/.treetable.css">
+<link type="text/css" rel="stylesheet" href="css/.layout.css">
+<script type="text/javascript" src="js/.jquery.js"></script>
+<script type="text/javascript" src="js/.jquery-ui.js"></script>
+<script type="text/javascript" src="js/.sortable.js"></script>
+<script type="text/javascript" src="js/.treetable.js"></script>
+<script type="text/javascript" src="js/.colResizable.js"></script>
+<script type="text/javascript" src="js/.layout.js"></script>
+<script type="text/javascript">
+var layout, westLayout, centerLayout;
+$(document).ready(function () {
+  layout = $("body").layout({ 
+    resizable: true,
+    spacing_open: 4,
+    spacing_closed: 4,
+    north: {
+      size: 76
+    },
+    south: {
+      size: 45,
+      initClosed: true
+    }  });
+  $("#hierarchyTable tbody tr").mousedown(function() {
+    $("tr.selected").removeClass("selected");
+    $("td.selected").removeClass("selected");
+    $(this).addClass("selected");
+    $(this).children().addClass("selected");
+  });
+  $("tr[data-tt-id='hierarchyTable_root']").each(function () {
+    $(this).attr("style", "display:none");
+  });
+  $("tr[data-tt-parent-id='hierarchyTable_root']").each(function () {
+    $(this).attr("style", "display:table-row");
+    $("#hierarchyTable").treetable("expandNode", $(this).attr("data-tt-id"));
+  });
+  $("table").colResizable({    liveDrag:true,
+    fixed:false,
+    draggingClass:"dragging"
+  });
+});
+function expandAll() {
+  $("#hierarchyTable").treetable("expandAll");
+}
+function collapseAll() {
+  if ($("tr[data-tt-parent-id='hierarchyTable_root']").length > 0) {
+    $("tr[data-tt-parent-id='hierarchyTable_root']").each(function () {
+      var nodeId = $(this).attr("data-tt-id");
+      var node = $("#hierarchyTable").treetable("node", nodeId);
+      $("#hierarchyTable").treetable("collapseNodeRecursive", node);
+    });
+  } else {
+    $("#hierarchyTable").treetable("collapseAll");
+  }
+}
+</script>
+</head>
+<body><div class="ui-layout-north">
+<div class="logo"></div>
+<center class="pagetitle">Design Hierarchy</center>
+<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | <a href="groups.html" ><b>groups</b></a> | <a href="tests.html" ><b>tests</b></a> | <a href="asserts.html" ><b>asserts</b></a>
+<div style="float:right; display:inline; cursor:pointer; width: 90px;">
+<a title="Hide Ratios" onClick="showHideRatios(this);">Hide Ratios</a>
+</div>
+</div>
+
+</div>
+<div class="ui-layout-center">
+<table class="noborder">
+  <tr>
+    <td class="noborder"><input type="button" value="Expand All" onClick="expandAll()"></td>
+    <td class="noborder"><input type="button" value="Collapse All" onClick="collapseAll()"></td>
+  </tr>
+</table>
+<br clear=all>
+<table id="hierarchyTable" border="0" cellpadding="0" cellspacing="0" class="sortable">
+  <thead class="table-header">
+    <tr>
+<th class="alfsrt">NAME</th><th>SCORE</th><th colspan=2 class="ratioshead">LINE</th><th colspan=2 class="ratioshead">COND</th><th colspan=2 class="ratioshead">TOGGLE</th><th colspan=2 class="ratioshead">FSM</th><th colspan=2 class="ratioshead">BRANCH</th><th colspan=2 class="ratioshead">ASSERT</th>    </tr>
+  </thead>
+  <tbody>
+    <tr data-tt-id="hierarchyTable_root">
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>    </tr>
+    <tr data-tt-id="inst_hash_731791848" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a href="mod1.html#inst_tag_1" id="tag_urg_inst_1">spi_master_tb</a></td>
+<td class="s7 cl rt"> 70.93</td>
+<td class="s9 cl rt"> 90.05</td>
+<td class="s9 cl rt ratios">1520/1688</td>
+<td class="s7 cl rt"> 71.24</td>
+<td class="s7 cl rt ratios">1107/1554</td>
+<td class="s3 cl rt"> 33.23</td>
+<td class="s3 cl rt ratios">6314/19002</td>
+<td class="s7 cl rt"> 75.00</td>
+<td class="s7 cl rt ratios">15/20</td>
+<td class="s8 cl rt"> 84.62</td>
+<td class="s8 cl rt ratios">627/741</td>
+<td class="s7 cl rt"> 71.43</td>
+<td class="s7 cl rt ratios">15/21</td>
+    </tr>
+    <tr data-tt-id="inst_hash_680819053" data-tt-parent-id="inst_hash_731791848">
+<td class="wordwrap"><a href="mod9.html#inst_tag_9" id="tag_urg_inst_9">dut</a></td>
+<td class="s6 cl rt"> 68.80</td>
+<td class="s8 cl rt"> 89.96</td>
+<td class="s8 cl rt ratios">1470/1634</td>
+<td class="s7 cl rt"> 70.75</td>
+<td class="s7 cl rt ratios">1079/1525</td>
+<td class="s3 cl rt"> 32.53</td>
+<td class="s3 cl rt ratios">6113/18794</td>
+<td class="s7 cl rt"> 75.00</td>
+<td class="s7 cl rt ratios">15/20</td>
+<td class="s8 cl rt"> 84.58</td>
+<td class="s8 cl rt ratios">609/720</td>
+<td class="s6 cl rt"> 60.00</td>
+<td class="s6 cl rt ratios">9/15</td>
+    </tr>
+    <tr data-tt-id="inst_hash_972531017" data-tt-parent-id="inst_hash_680819053">
+<td class="wordwrap"><a href="mod8.html#inst_tag_8" id="tag_urg_inst_8">u_csr</a></td>
+<td class="s6 cl rt"> 65.50</td>
+<td class="s8 cl rt"> 88.23</td>
+<td class="s8 cl rt ratios">1229/1393</td>
+<td class="s6 cl rt"> 65.41</td>
+<td class="s6 cl rt ratios">764/1168</td>
+<td class="s2 cl rt"> 26.58</td>
+<td class="s2 cl rt ratios">2133/8024</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s8 cl rt"> 81.79</td>
+<td class="s8 cl rt ratios">485/593</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+    </tr>
+    <tr data-tt-id="inst_hash_224492045" data-tt-parent-id="inst_hash_680819053">
+<td class="wordwrap"><a href="mod0.html#inst_tag_0" id="tag_urg_inst_0">u_engine</a></td>
+<td class="s7 cl rt"> 79.52</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">176/176</td>
+<td class="s9 cl rt"> 90.07</td>
+<td class="s9 cl rt ratios">136/151</td>
+<td class="s3 cl rt"> 35.39</td>
+<td class="s3 cl rt ratios">1315/3716</td>
+<td class="s7 cl rt"> 75.00</td>
+<td class="s7 cl rt ratios">15/20</td>
+<td class="s9 cl rt"> 97.14</td>
+<td class="s9 cl rt ratios">68/70</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+    </tr>
+    <tr data-tt-id="inst_hash_414091021" data-tt-parent-id="inst_hash_680819053">
+<td class="wordwrap"><a href="mod3.html#inst_tag_3" id="tag_urg_inst_3">u_queues</a></td>
+<td class="s8 cl rt"> 85.06</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">33/33</td>
+<td class="s8 cl rt"> 88.51</td>
+<td class="s8 cl rt ratios">77/87</td>
+<td class="s7 cl rt"> 76.79</td>
+<td class="s7 cl rt ratios">986/1284</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">29/29</td>
+<td class="s6 cl rt"> 60.00</td>
+<td class="s6 cl rt ratios">9/15</td>
+    </tr>
+    <tr data-tt-id="inst_hash_187876559" data-tt-parent-id="inst_hash_414091021">
+<td class="wordwrap"><a href="mod12.html#inst_tag_14" id="tag_urg_inst_14">u_cmd</a></td>
+<td class="s8 cl rt"> 81.87</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">10/10</td>
+<td class="s9 cl rt"> 95.00</td>
+<td class="s9 cl rt ratios">19/20</td>
+<td class="s5 cl rt"> 54.36</td>
+<td class="s5 cl rt ratios">162/298</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">9/9</td>
+<td class="s6 cl rt"> 60.00</td>
+<td class="s6 cl rt ratios">3/5</td>
+    </tr>
+    <tr data-tt-id="inst_hash_1307381455" data-tt-parent-id="inst_hash_414091021">
+<td class="wordwrap"><a href="mod12.html#inst_tag_13" id="tag_urg_inst_13">u_rx</a></td>
+<td class="s9 cl rt"> 91.00</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">10/10</td>
+<td class="s9 cl rt"> 95.00</td>
+<td class="s9 cl rt ratios">19/20</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">186/186</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">9/9</td>
+<td class="s6 cl rt"> 60.00</td>
+<td class="s6 cl rt ratios">3/5</td>
+    </tr>
+    <tr data-tt-id="inst_hash_1284749201" data-tt-parent-id="inst_hash_414091021">
+<td class="wordwrap"><a href="mod12.html#inst_tag_12" id="tag_urg_inst_12">u_tx</a></td>
+<td class="s9 cl rt"> 91.00</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">10/10</td>
+<td class="s9 cl rt"> 95.00</td>
+<td class="s9 cl rt ratios">19/20</td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">178/178</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt ratios">9/9</td>
+<td class="s6 cl rt"> 60.00</td>
+<td class="s6 cl rt ratios">3/5</td>
+    </tr>
+    <tr data-tt-id="inst_hash_2111924093" data-tt-parent-id="inst_hash_731791848">
+<td class="wordwrap"><a href="mod13.html#inst_tag_15" id="tag_urg_inst_15">vif</a></td>
+<td class="s9 cl rt"> 93.65</td>
+<td class="s9 cl rt"> 95.74</td>
+<td class="s9 cl rt ratios">45/47</td>
+<td class="s9 cl rt"> 96.55</td>
+<td class="s9 cl rt ratios">28/29</td>
+<td class="s9 cl rt"> 96.60</td>
+<td class="s9 cl rt ratios">199/206</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="s8 cl rt ratios">18/21</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+    </tr>
+    <tr data-tt-id="inst_hash_1161439237" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a href="mod11.html#inst_tag_11" id="tag_urg_inst_11">uvm_custom_install_verdi_recording</a></td>
+<td class="s0 cl rt">  3.19</td>
+<td class="s0 cl rt">  5.06</td>
+<td class="s0 cl rt ratios">21/415</td>
+<td class="s0 cl rt">  3.03</td>
+<td class="s0 cl rt ratios">3/99</td>
+<td class="s0 cl rt">  0.00</td>
+<td class="s0 cl rt ratios">0/12</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s0 cl rt">  4.66</td>
+<td class="s0 cl rt ratios">9/193</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+    </tr>
+    <tr data-tt-id="inst_hash_93290809" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a href="mod6.html#inst_tag_6" id="tag_urg_inst_6">uvm_pkg</a></td>
+<td class="s3 cl rt"> 33.33</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt ratios"></td>
+<td class="s3 cl rt"> 33.33</td>
+<td class="s3 cl rt ratios">1/3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="ui-layout-south">
+<table align=center><tr><td class="s0 cl">0%</td>
+<td class="s1 cl">10%</td>
+<td class="s2 cl">20%</td>
+<td class="s3 cl">30%</td>
+<td class="s4 cl">40%</td>
+<td class="s5 cl">50%</td>
+<td class="s6 cl">60%</td>
+<td class="s7 cl">70%</td>
+<td class="s8 cl">80%</td>
+<td class="s9 cl">90%</td>
+<td class="s10 cl">100%</td></tr></table></div>
+
+<script>
+$("#hierarchyTable").treetable({ expandable: true });
+</script>
+</body>
+</html>

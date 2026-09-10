@@ -1,0 +1,106 @@
+[
+  {
+    "config": "default",
+    "status": "pass",
+    "command": [
+      "urg",
+      "-full64",
+      "-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage.vdb",
+      "-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/default",
+      "-format",
+      "both",
+      "-show",
+      "ratios",
+      "-group",
+      "show_bin_values",
+      "-group",
+      "maxmissing",
+      "100"
+    ],
+    "environment": {
+      "VCS_USE_MALLOC": "1"
+    },
+    "log": "build/urg-default.log",
+    "sha256": "2832fef98a42e98ad2c9b53baefc38729a7f09b94e6d38c506b46f4b48e6e524"
+  },
+  {
+    "config": "small",
+    "status": "pass",
+    "command": [
+      "urg",
+      "-full64",
+      "-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/small/coverage.vdb",
+      "-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/small",
+      "-format",
+      "both",
+      "-show",
+      "ratios",
+      "-group",
+      "show_bin_values",
+      "-group",
+      "maxmissing",
+      "100"
+    ],
+    "environment": {
+      "VCS_USE_MALLOC": "1"
+    },
+    "log": "build/urg-small.log",
+    "sha256": "c5d19a82b2ddd85d6a99095d678b4fdfb1a2dfbd890e26048074817fae96925f"
+  },
+  {
+    "config": "max",
+    "status": "pass",
+    "command": [
+      "urg",
+      "-full64",
+      "-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/max/coverage.vdb",
+      "-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/max",
+      "-format",
+      "both",
+      "-show",
+      "ratios",
+      "-group",
+      "show_bin_values",
+      "-group",
+      "maxmissing",
+      "100"
+    ],
+    "environment": {
+      "VCS_USE_MALLOC": "1"
+    },
+    "log": "build/urg-max.log",
+    "sha256": "07b3b47e53680aa63fdfcee0324fab4cb2629d4322fcb977d8e313913ec04fb5"
+  },
+  {
+    "config": "asymmetric",
+    "status": "pass",
+    "command": [
+      "urg",
+      "-full64",
+      "-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/asymmetric/coverage.vdb",
+      "-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/reports/coverage/asymmetric",
+      "-format",
+      "both",
+      "-show",
+      "ratios",
+      "-group",
+      "show_bin_values",
+      "-group",
+      "maxmissing",
+      "100"
+    ],
+    "environment": {
+      "VCS_USE_MALLOC": "1"
+    },
+    "log": "build/urg-asymmetric.log",
+    "sha256": "55192ad8616e5cbafd7c74b0f920f7d19ea065c4fbf822432f00d05232d77044"
+  }
+]

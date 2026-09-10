@@ -1,0 +1,221 @@
+schema_version: '2.0'
+ip_name: spi_master
+generation_profile: sv
+parameters:
+- id: PARAM.SPI_MASTER.NUM_CS
+  name: NUM_CS
+  type: int
+  domain:
+    min: 1
+    max: 8
+  default: 4
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.SPI_MASTER.TX_FIFO_DEPTH
+  name: TX_FIFO_DEPTH
+  type: int
+  domain:
+  - 4
+  - 8
+  - 16
+  - 32
+  - 64
+  - 128
+  - 256
+  default: 32
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.SPI_MASTER.RX_FIFO_DEPTH
+  name: RX_FIFO_DEPTH
+  type: int
+  domain:
+  - 4
+  - 8
+  - 16
+  - 32
+  - 64
+  - 128
+  - 256
+  default: 32
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.SPI_MASTER.CMD_FIFO_DEPTH
+  name: CMD_FIFO_DEPTH
+  type: int
+  domain:
+  - 2
+  - 4
+  - 8
+  - 16
+  default: 4
+  depends_on: []
+  category: compile_time
+  description: ''
+configurations:
+- id: CFG_SMALL
+  purpose: SMALL
+  values:
+    NUM_CS: 1
+    TX_FIFO_DEPTH: 4
+    RX_FIFO_DEPTH: 4
+    CMD_FIFO_DEPTH: 2
+- id: CFG_DEFAULT
+  purpose: DEFAULT
+  values:
+    NUM_CS: 4
+    TX_FIFO_DEPTH: 32
+    RX_FIFO_DEPTH: 32
+    CMD_FIFO_DEPTH: 4
+- id: CFG_MAX
+  purpose: MAX
+  values:
+    NUM_CS: 8
+    TX_FIFO_DEPTH: 256
+    RX_FIFO_DEPTH: 256
+    CMD_FIFO_DEPTH: 16
+- id: CFG_ASYMMETRIC
+  purpose: ASYMMETRIC
+  values:
+    NUM_CS: 3
+    TX_FIFO_DEPTH: 8
+    RX_FIFO_DEPTH: 16
+    CMD_FIFO_DEPTH: 4
+constraints: []
+support_matrix:
+  configs:
+  - id: CFG_DEFAULT
+    params:
+      NUM_CS: 4
+      TX_FIFO_DEPTH: 32
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+    mandatory: true
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: true
+  - id: CFG_NUM_CS_MIN
+    params:
+      TX_FIFO_DEPTH: 32
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      NUM_CS: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_NUM_CS_MAX
+    params:
+      TX_FIFO_DEPTH: 32
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      NUM_CS: 8
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TX_FIFO_DEPTH_MIN
+    params:
+      NUM_CS: 4
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      TX_FIFO_DEPTH: 4
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_TX_FIFO_DEPTH_MAX
+    params:
+      NUM_CS: 4
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      TX_FIFO_DEPTH: 256
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_RX_FIFO_DEPTH_MIN
+    params:
+      NUM_CS: 4
+      TX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      RX_FIFO_DEPTH: 4
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_RX_FIFO_DEPTH_MAX
+    params:
+      NUM_CS: 4
+      TX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 4
+      RX_FIFO_DEPTH: 256
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_CMD_FIFO_DEPTH_MIN
+    params:
+      NUM_CS: 4
+      TX_FIFO_DEPTH: 32
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 2
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_CMD_FIFO_DEPTH_MAX
+    params:
+      NUM_CS: 4
+      TX_FIFO_DEPTH: 32
+      RX_FIFO_DEPTH: 32
+      CMD_FIFO_DEPTH: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  mandatory:
+  - CFG_DEFAULT
+  boundary:
+  - CFG_NUM_CS_MIN
+  - CFG_NUM_CS_MAX
+  - CFG_TX_FIFO_DEPTH_MIN
+  - CFG_TX_FIFO_DEPTH_MAX
+  - CFG_RX_FIFO_DEPTH_MIN
+  - CFG_RX_FIFO_DEPTH_MAX
+  - CFG_CMD_FIFO_DEPTH_MIN
+  - CFG_CMD_FIFO_DEPTH_MAX
+  pairwise: []
+  risk: []
+  random: []
+  negative: []
+  consumer: []

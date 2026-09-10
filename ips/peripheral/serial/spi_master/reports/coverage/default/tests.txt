@@ -1,0 +1,23 @@
+Tests
+
+Total Coverage Summary 
+SCORE   LINE              COND              TOGGLE             FSM           BRANCH          ASSERT        GROUP        
+ 70.07   74.56 1568/2103   69.51 1149/1653   34.71 6614/19056   75.00 15/20   70.02 654/934   66.67 16/24  100.00 96/96 
+
+
+Total tests in report: 12
+-------------------------------------------------------------------------------
+Data from the following tests was used to generate this report
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/apb_1        
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/modes_1      
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/commands_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/fifo_stall_1 
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/recovery_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/irq_1        
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/extended_1   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/random_1     
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/races_1      
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/random_17    
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/random_101   
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/sim/default/coverage/random_2026  
+

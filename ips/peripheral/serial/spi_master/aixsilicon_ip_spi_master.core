@@ -1,0 +1,74 @@
+CAPI=2:
+name: aixsilicon:ip:spi_master:1.0.0
+description: APB4 queued four-wire SPI master
+parameters:
+  NUM_CS: {datatype: int, paramtype: vlogparam, default: 4}
+  TX_FIFO_DEPTH: {datatype: int, paramtype: vlogparam, default: 32}
+  RX_FIFO_DEPTH: {datatype: int, paramtype: vlogparam, default: 32}
+  CMD_FIFO_DEPTH: {datatype: int, paramtype: vlogparam, default: 4}
+filesets:
+  generated:
+    files: [rtl/generated/spi_master_csr_pkg.sv, rtl/generated/spi_master_addr_pkg.sv, rtl/generated/spi_master_csr.sv]
+    file_type: systemVerilogSource
+  rtl:
+    depend: [aixsilicon:cbb:sync_fifo:0.1.0]
+    files: [rtl/spi_master_queues.sv, rtl/spi_master_engine.sv, rtl/spi_master_top.sv]
+    file_type: systemVerilogSource
+  tb:
+    files:
+      - verification/th/spi_tb_if.sv
+      - verification/env/spi_master_tests.sv
+      - verification/tc/tc_spi_apb.sv
+      - verification/tc/tc_spi_commands.sv
+      - verification/tc/tc_spi_extended.sv
+      - verification/tc/tc_spi_fifo_stall.sv
+      - verification/tc/tc_spi_irq.sv
+      - verification/tc/tc_spi_modes.sv
+      - verification/tc/tc_spi_races.sv
+      - verification/tc/tc_spi_random.sv
+      - verification/tc/tc_spi_recovery.sv
+      - verification/th/spi_master_tb.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets: [generated, rtl]
+    toplevel: spi_master_top
+  elab: &elab
+    default_tool: vcs
+    filesets: [generated, rtl]
+    parameters: [NUM_CS, TX_FIFO_DEPTH, RX_FIFO_DEPTH, CMD_FIFO_DEPTH]
+    toplevel: spi_master_top
+    tools:
+      vcs:
+        vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+  lint:
+    <<: *elab
+    tools:
+      vcs:
+        vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2, +lint=all]
+  synth:
+    default_tool: design_compiler
+    filesets: [generated, rtl]
+    parameters: [NUM_CS, TX_FIFO_DEPTH, RX_FIFO_DEPTH, CMD_FIFO_DEPTH]
+    toplevel: spi_master_top
+    tools:
+      design_compiler:
+        script_dir: "$::env(SPI_IP_ROOT)/scripts/ppa"
+        dc_script: synth.tcl
+        report_dir: reports
+  sim:
+    default_tool: vcs
+    filesets: [generated, rtl, tb]
+    toplevel: spi_master_tb
+    tools:
+      vcs:
+        vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+        run_options: [+UVM_TESTNAME=tc_spi_modes]
+  smoke:
+    default_tool: vcs
+    filesets: [generated, rtl, tb]
+    toplevel: spi_master_tb
+    tools:
+      vcs:
+        vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+        run_options: [+UVM_TESTNAME=tc_spi_apb]

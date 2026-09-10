@@ -1,0 +1,180 @@
+{
+  "executions": [
+    {
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-I",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/sw/include",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/sw/src/spi_master.c",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/sw/tests/test_driver.c",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/delivery/driver-test"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/build/delivery/driver-test"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-I",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/sw/include",
+        "-fsyntax-only",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/serial/spi_master/sw/examples/transactions.c"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "status": "pass",
+  "checks": [
+    {
+      "name": "artifact scripts/check_delivery.py",
+      "status": "pass"
+    },
+    {
+      "name": "artifact sw/tests/test_driver.c",
+      "status": "pass"
+    },
+    {
+      "name": "artifact rtl/spi_master_top.sv",
+      "status": "pass"
+    },
+    {
+      "name": "artifact rtl/spi_master_engine.sv",
+      "status": "pass"
+    },
+    {
+      "name": "artifact rtl/spi_master_queues.sv",
+      "status": "pass"
+    },
+    {
+      "name": "artifact regs/spi_master.rdl",
+      "status": "pass"
+    },
+    {
+      "name": "artifact aixsilicon_ip_spi_master.core",
+      "status": "pass"
+    },
+    {
+      "name": "artifact sw/include/spi_master_regs.h",
+      "status": "pass"
+    },
+    {
+      "name": "artifact sw/include/spi_master.h",
+      "status": "pass"
+    },
+    {
+      "name": "artifact sw/src/spi_master.c",
+      "status": "pass"
+    },
+    {
+      "name": "artifact sw/examples/transactions.c",
+      "status": "pass"
+    },
+    {
+      "name": "artifact docs/integration.md",
+      "status": "pass"
+    },
+    {
+      "name": "artifact docs/verification/index.md",
+      "status": "pass"
+    },
+    {
+      "name": "artifact reports/skill-improvement-report.md",
+      "status": "pass"
+    },
+    {
+      "name": "four extracted parameters",
+      "status": "pass"
+    },
+    {
+      "name": "full regression small",
+      "status": "pass"
+    },
+    {
+      "name": "full regression default",
+      "status": "pass"
+    },
+    {
+      "name": "full regression max",
+      "status": "pass"
+    },
+    {
+      "name": "full regression asymmetric",
+      "status": "pass"
+    },
+    {
+      "name": "real PDK synthesis small",
+      "status": "pass"
+    },
+    {
+      "name": "real PDK synthesis default",
+      "status": "pass"
+    },
+    {
+      "name": "real PDK synthesis max",
+      "status": "pass"
+    },
+    {
+      "name": "negative-parameters.json",
+      "status": "pass"
+    },
+    {
+      "name": "unit-tests.json",
+      "status": "pass"
+    },
+    {
+      "name": "driver 0",
+      "status": "pass"
+    },
+    {
+      "name": "driver 1",
+      "status": "pass"
+    },
+    {
+      "name": "driver 2",
+      "status": "pass"
+    },
+    {
+      "name": "single PCLK sequential domain",
+      "status": "pass"
+    },
+    {
+      "name": "MISO is not false-pathed",
+      "status": "pass"
+    }
+  ],
+  "hashes": {
+    "scripts/check_delivery.py": "117836df697ebeb00fd5d83922dd446b668195c802fe9e714fe146b27d56de58",
+    "sw/tests/test_driver.c": "9b1b9b6b7909a6e3284f7cc489f6c682eab6bc0126f71ccf3e79af3a362c11ac",
+    "rtl/spi_master_top.sv": "77d20ef0f2aa1563156ba90e23fdf119b42cbb2c3619c61a8e8c1b349db30688",
+    "rtl/spi_master_engine.sv": "4616a62021af589865d46c94fa4919720394a659bb54d8f10b815863c7ca1210",
+    "rtl/spi_master_queues.sv": "7c9f4f926a7990207e8576f8a6f62888a34a6e3c901b0d90caf461bfc8745e93",
+    "regs/spi_master.rdl": "235f55f9968cf8395f2efffe168183ae97ee22d78fa8966206fa50132005a3b8",
+    "aixsilicon_ip_spi_master.core": "215eb24b2898a350cd2e60a0d4875e1049e48e609fb812b38efc254884828ef0",
+    "sw/include/spi_master_regs.h": "8de4a6add08245875b7f65c777f5077c6e626a158c00c3fbbab2d588e9aa014c",
+    "sw/include/spi_master.h": "c1c93f7a1d42f7ac14e4030bbf4d9f62a995abbb07d74e70bfcca226b55c729f",
+    "sw/src/spi_master.c": "00115ba6d69654867d58c2fdba5c77f4bb5a8d308f54091d1f0b2b05805771ac",
+    "sw/examples/transactions.c": "0cb7dfde08133186da25c0d70d5fde106e15ab204fc15d50a5c3e55c91fd8636",
+    "docs/integration.md": "1589c5d2c5b8aab4f6fecdab467968ea1525ff56c0cd73c7118aed056e73b088",
+    "docs/verification/index.md": "e447be6417c86660a5063f580bb2b650e8012422055828c5627dca31acef6420",
+    "reports/skill-improvement-report.md": "f2f698eca8603cd9bd0bc3ce44cadecc23971a48e083e240e3c3305457aa09e1",
+    "build/delivery/driver-0.log": "45e31a3ec4a6547e44db57118a3ca66250a8fbdd6f7d16c822fcd7080706761a",
+    "build/delivery/driver-1.log": "69b38b8a8d5a2dfe08767fa56c88923af477f0dc322b79c46c63a5a334c2188a",
+    "build/delivery/driver-2.log": "137c681f9da4ea395e37a0f077722dfa3f7aedadfe425ceed8b2ac1563586428"
+  }
+}

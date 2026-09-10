@@ -1,0 +1,5 @@
+{
+  "upstream": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/06-verification-plan/scripts/extract_verification.py",
+  "sha256": "8e09cbcd5c252668265a31fc3a9b6b36cb19d4f8cbbe19240d3e0483104de162",
+  "change": "allow exactly type=static scripts/check_delivery.py, require real file; retain all other guards"
+}

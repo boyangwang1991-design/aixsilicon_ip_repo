@@ -1,0 +1,343 @@
+ 
+****************************************
+check_design summary:
+Version:     V-2023.12-SP3
+Date:        Thu Sep 10 08:09:20 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                    115
+    Unconnected ports (LINT-28)                                    21
+    Feedthrough (LINT-29)                                           1
+    Shorted outputs (LINT-31)                                      45
+    Constant outputs (LINT-52)                                     48
+
+Cells                                                              78
+    Cells do not drive (LINT-1)                                    24
+    Connected to power or ground (LINT-32)                         42
+    Nets connected to multiple pins on same cell (LINT-33)         12
+
+Nets                                                               71
+    Unloaded nets (LINT-2)                                         71
+--------------------------------------------------------------------------------
+
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', cell 'B_93' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', cell 'C1931' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', cell 'C1953' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'B_126' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6444' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6468' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6478' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6482' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6536' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6537' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6561' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6574' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6577' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6593' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6596' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6661' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6672' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', cell 'C6721' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_1', cell 'C4335' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_1', cell 'C4340' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W64_DEPTH4_OUTPUT_REG0_IMPL0', cell 'C1202' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W64_DEPTH4_OUTPUT_REG0_IMPL0', cell 'C1207' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0', cell 'C4335' does not drive any nets. (LINT-1)
+Warning: In design 'sync_fifo_DATA_W32_DEPTH32_OUTPUT_REG0_IMPL0_0', cell 'C4340' does not drive any nets. (LINT-1)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][0]' driven by pin 'u_csr/hwif_out[ip_version][value][value][0]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][1]' driven by pin 'u_csr/hwif_out[ip_version][value][value][1]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][2]' driven by pin 'u_csr/hwif_out[ip_version][value][value][2]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][3]' driven by pin 'u_csr/hwif_out[ip_version][value][value][3]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][4]' driven by pin 'u_csr/hwif_out[ip_version][value][value][4]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][5]' driven by pin 'u_csr/hwif_out[ip_version][value][value][5]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][6]' driven by pin 'u_csr/hwif_out[ip_version][value][value][6]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][7]' driven by pin 'u_csr/hwif_out[ip_version][value][value][7]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][8]' driven by pin 'u_csr/hwif_out[ip_version][value][value][8]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][9]' driven by pin 'u_csr/hwif_out[ip_version][value][value][9]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][10]' driven by pin 'u_csr/hwif_out[ip_version][value][value][10]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][11]' driven by pin 'u_csr/hwif_out[ip_version][value][value][11]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][12]' driven by pin 'u_csr/hwif_out[ip_version][value][value][12]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][13]' driven by pin 'u_csr/hwif_out[ip_version][value][value][13]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][14]' driven by pin 'u_csr/hwif_out[ip_version][value][value][14]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][15]' driven by pin 'u_csr/hwif_out[ip_version][value][value][15]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][17]' driven by pin 'u_csr/hwif_out[ip_version][value][value][17]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][18]' driven by pin 'u_csr/hwif_out[ip_version][value][value][18]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][19]' driven by pin 'u_csr/hwif_out[ip_version][value][value][19]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][20]' driven by pin 'u_csr/hwif_out[ip_version][value][value][20]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][21]' driven by pin 'u_csr/hwif_out[ip_version][value][value][21]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][22]' driven by pin 'u_csr/hwif_out[ip_version][value][value][22]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][23]' driven by pin 'u_csr/hwif_out[ip_version][value][value][23]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][24]' driven by pin 'u_csr/hwif_out[ip_version][value][value][24]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][25]' driven by pin 'u_csr/hwif_out[ip_version][value][value][25]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][26]' driven by pin 'u_csr/hwif_out[ip_version][value][value][26]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][27]' driven by pin 'u_csr/hwif_out[ip_version][value][value][27]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][28]' driven by pin 'u_csr/hwif_out[ip_version][value][value][28]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][29]' driven by pin 'u_csr/hwif_out[ip_version][value][value][29]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][30]' driven by pin 'u_csr/hwif_out[ip_version][value][value][30]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][31]' driven by pin 'u_csr/hwif_out[ip_version][value][value][31]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[cmd_push][value][value]' driven by pin 'u_csr/hwif_out[cmd_push][value][value]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][0]' driven by pin 'u_csr/hwif_out[txdata][value][value][0]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][1]' driven by pin 'u_csr/hwif_out[txdata][value][value][1]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][2]' driven by pin 'u_csr/hwif_out[txdata][value][value][2]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][3]' driven by pin 'u_csr/hwif_out[txdata][value][value][3]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][4]' driven by pin 'u_csr/hwif_out[txdata][value][value][4]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][5]' driven by pin 'u_csr/hwif_out[txdata][value][value][5]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][6]' driven by pin 'u_csr/hwif_out[txdata][value][value][6]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][7]' driven by pin 'u_csr/hwif_out[txdata][value][value][7]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][8]' driven by pin 'u_csr/hwif_out[txdata][value][value][8]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][9]' driven by pin 'u_csr/hwif_out[txdata][value][value][9]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][10]' driven by pin 'u_csr/hwif_out[txdata][value][value][10]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][11]' driven by pin 'u_csr/hwif_out[txdata][value][value][11]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][12]' driven by pin 'u_csr/hwif_out[txdata][value][value][12]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][13]' driven by pin 'u_csr/hwif_out[txdata][value][value][13]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][14]' driven by pin 'u_csr/hwif_out[txdata][value][value][14]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][15]' driven by pin 'u_csr/hwif_out[txdata][value][value][15]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][16]' driven by pin 'u_csr/hwif_out[txdata][value][value][16]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][17]' driven by pin 'u_csr/hwif_out[txdata][value][value][17]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][18]' driven by pin 'u_csr/hwif_out[txdata][value][value][18]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][19]' driven by pin 'u_csr/hwif_out[txdata][value][value][19]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][20]' driven by pin 'u_csr/hwif_out[txdata][value][value][20]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][21]' driven by pin 'u_csr/hwif_out[txdata][value][value][21]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][22]' driven by pin 'u_csr/hwif_out[txdata][value][value][22]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][23]' driven by pin 'u_csr/hwif_out[txdata][value][value][23]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][24]' driven by pin 'u_csr/hwif_out[txdata][value][value][24]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][25]' driven by pin 'u_csr/hwif_out[txdata][value][value][25]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][26]' driven by pin 'u_csr/hwif_out[txdata][value][value][26]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][27]' driven by pin 'u_csr/hwif_out[txdata][value][value][27]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][28]' driven by pin 'u_csr/hwif_out[txdata][value][value][28]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][29]' driven by pin 'u_csr/hwif_out[txdata][value][value][29]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][30]' driven by pin 'u_csr/hwif_out[txdata][value][value][30]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[txdata][value][value][31]' driven by pin 'u_csr/hwif_out[txdata][value][value][31]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][0]' driven by pin 'u_csr/hwif_out[action][value][value][0]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][1]' driven by pin 'u_csr/hwif_out[action][value][value][1]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][2]' driven by pin 'u_csr/hwif_out[action][value][value][2]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][3]' driven by pin 'u_csr/hwif_out[action][value][value][3]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][4]' driven by pin 'u_csr/hwif_out[action][value][value][4]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[action][value][value][5]' driven by pin 'u_csr/hwif_out[action][value][value][5]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', net 'hwo[ip_version][value][value][16]' driven by pin 'u_csr/hwif_out[ip_version][value][value][16]' has no loads. (LINT-2)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', port 'pprot[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', port 'pprot[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', port 'pprot[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[22]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[21]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[20]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[19]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[18]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', port 'cmd_data_i[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', input port 'preset_n' is connected directly to output port 'pready'. (LINT-29)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][0]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][1]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][2]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][3]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][4]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][5]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][6]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][7]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][8]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][9]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][10]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][11]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][12]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][13]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][14]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][15]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][17]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][18]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][19]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][20]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][21]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][22]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][23]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][24]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][25]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][26]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][27]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][28]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][29]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][30]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 'hwif_out[ip_version][value][value][31]'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to output port 's_cpuif_req_stall_rd'. (LINT-31)
+Warning: In design 'spi_master_csr', output port 's_cpuif_rd_err' is connected directly to output port 's_cpuif_wr_err'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'cmd_count_o[3]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'cmd_count_o[4]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'rx_count_o[6]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'rx_count_o[7]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'rx_count_o[8]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'tx_count_o[6]'. (LINT-31)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to output port 'tx_count_o[7]'. (LINT-31)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to output port 'error_o[0]'. (LINT-31)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to output port 'error_o[1]'. (LINT-31)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to output port 'error_o[2]'. (LINT-31)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to output port 'error_o[3]'. (LINT-31)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to output port 'error_o[4]'. (LINT-31)
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][23]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][22]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][21]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][20]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][19]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][18]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][17]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][16]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][15]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][14]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][13]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][12]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][11]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][10]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][9]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][8]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][7]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][6]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][5]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][4]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][3]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][2]' is connected to logic 1. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][1]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_csr' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'hwif_in[capability][value][next][0]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[31]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[30]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[29]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[28]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[27]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[26]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[25]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[24]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[23]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[22]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[21]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[20]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[19]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[18]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[15]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[14]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[7]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', a pin on submodule 'u_queues' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'cmd_data_i[3]' is connected to logic 0. 
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'pstrb[3]' is connected to pins 's_cpuif_wr_biten[31]', 's_cpuif_wr_biten[30]'', 's_cpuif_wr_biten[29]', 's_cpuif_wr_biten[28]', 's_cpuif_wr_biten[27]', 's_cpuif_wr_biten[26]', 's_cpuif_wr_biten[25]', 's_cpuif_wr_biten[24]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'pstrb[2]' is connected to pins 's_cpuif_wr_biten[23]', 's_cpuif_wr_biten[22]'', 's_cpuif_wr_biten[21]', 's_cpuif_wr_biten[20]', 's_cpuif_wr_biten[19]', 's_cpuif_wr_biten[18]', 's_cpuif_wr_biten[17]', 's_cpuif_wr_biten[16]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'pstrb[1]' is connected to pins 's_cpuif_wr_biten[15]', 's_cpuif_wr_biten[14]'', 's_cpuif_wr_biten[13]', 's_cpuif_wr_biten[12]', 's_cpuif_wr_biten[11]', 's_cpuif_wr_biten[10]', 's_cpuif_wr_biten[9]', 's_cpuif_wr_biten[8]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'pstrb[0]' is connected to pins 's_cpuif_wr_biten[7]', 's_cpuif_wr_biten[6]'', 's_cpuif_wr_biten[5]', 's_cpuif_wr_biten[4]', 's_cpuif_wr_biten[3]', 's_cpuif_wr_biten[2]', 's_cpuif_wr_biten[1]', 's_cpuif_wr_biten[0]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net '*Logic1*' is connected to pins 'hwif_in[capability][value][next][23]', 'hwif_in[capability][value][next][22]'', 'hwif_in[capability][value][next][21]', 'hwif_in[capability][value][next][13]', 'hwif_in[capability][value][next][10]', 'hwif_in[capability][value][next][8]', 'hwif_in[capability][value][next][6]', 'hwif_in[capability][value][next][4]', 'hwif_in[capability][value][next][2]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'hwif_in[capability][value][next][20]', 'hwif_in[capability][value][next][19]'', 'hwif_in[capability][value][next][18]', 'hwif_in[capability][value][next][17]', 'hwif_in[capability][value][next][16]', 'hwif_in[capability][value][next][15]', 'hwif_in[capability][value][next][14]', 'hwif_in[capability][value][next][12]', 'hwif_in[capability][value][next][11]', 'hwif_in[capability][value][next][9]', 'hwif_in[capability][value][next][7]', 'hwif_in[capability][value][next][5]', 'hwif_in[capability][value][next][3]', 'hwif_in[capability][value][next][1]', 'hwif_in[capability][value][next][0]'.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'hwi[status][value][next][14]' is connected to pins 'hwif_in[status][value][next][14]', 'hwif_in[active_info][valid][next]''.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'hwi[status][value][next][13]' is connected to pins 'hwif_in[status][value][next][13]', 'hwif_out[ctrl][enable][value]''.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'irq_raw[2]' is connected to pins 'hwif_in[irq_raw][value][next][2]', 'hwif_out[irq_state][abort_done][value]''.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'irq_raw[1]' is connected to pins 'hwif_in[irq_raw][value][next][1]', 'hwif_out[irq_state][xfer_done][value]''.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_csr'. (LINT-33)
+   Net 'irq_raw[0]' is connected to pins 'hwif_in[irq_raw][value][next][0]', 'hwif_out[irq_state][seg_done][value]''.
+Warning: In design 'spi_master_top_NUM_CS4_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', the same net is connected to more than one pin on submodule 'u_queues'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'cmd_data_i[31]', 'cmd_data_i[30]'', 'cmd_data_i[29]', 'cmd_data_i[28]', 'cmd_data_i[27]', 'cmd_data_i[26]', 'cmd_data_i[25]', 'cmd_data_i[24]', 'cmd_data_i[23]', 'cmd_data_i[22]', 'cmd_data_i[21]', 'cmd_data_i[20]', 'cmd_data_i[19]', 'cmd_data_i[18]', 'cmd_data_i[15]', 'cmd_data_i[14]', 'cmd_data_i[7]', 'cmd_data_i[3]'.
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_wr' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 's_cpuif_req_stall_rd' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][31]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][30]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][29]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][28]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][27]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][26]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][25]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][24]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][23]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][22]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][21]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][20]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][19]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][18]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][17]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][16]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][15]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][14]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][13]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][12]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][11]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][10]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][9]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][8]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_csr', output port 'hwif_out[ip_version][value][value][0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[8]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'tx_count_o[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'rx_count_o[8]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'rx_count_o[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'rx_count_o[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'cmd_count_o[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_queues_TX_FIFO_DEPTH32_RX_FIFO_DEPTH32_CMD_FIFO_DEPTH4', output port 'cmd_count_o[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'spi_master_engine_NUM_CS4_RX_FIFO_DEPTH32', output port 'error_o[0]' is connected directly to 'logic 0'. (LINT-52)
+1

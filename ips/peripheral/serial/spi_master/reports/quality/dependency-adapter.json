@@ -1,0 +1,11 @@
+{
+  "original_core": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/fifo_queue_buffer/sync_fifo/fusesoc/aixsilicon_cbb_sync_fifo.core",
+  "original_sha256": "d582179e1d336dc2551f6f47ca745cf23e51a59ea05d638a8157fb137c1ea3af",
+  "adapter": "build/dependencies/sync_fifo.core",
+  "changes": [
+    "declare vlogparam",
+    "drop unused provider metadata",
+    "resolve source paths"
+  ],
+  "rtl_modified": false
+}

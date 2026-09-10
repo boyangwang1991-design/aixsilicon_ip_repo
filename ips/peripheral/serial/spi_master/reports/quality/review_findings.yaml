@@ -1,0 +1,44 @@
+schema_version: '2.0'
+ip_name: spi_master
+findings:
+- id: FINDING.SPI_MASTER.COVERAGE
+  gate: G4
+  severity: major
+  status: resolved
+  owner: project_verification_review
+  description: User explicitly requested relaxed coverage for G5. Default raw DUT
+    line target changed from provisional 95% to 90%; actual 91.62%. Functional and
+    required assertion targets remain 100%. Raw FSM/branch/condition/toggle gaps retained
+    in coverage report.
+- id: FINDING.SPI_MASTER.MIXED_PROOF
+  gate: G4
+  severity: major
+  status: resolved
+  owner: ip_development_suite
+  description: IP-local bounded evaluator adapter validates exact static/C delivery
+    proof using current source/log hashes and command exit codes. Upstream report
+    retained; shared skill not changed.
+- id: FINDING.SPI_MASTER.BOARD_SIGNOFF
+  gate: G5
+  severity: note
+  status: open
+  owner: system_integration
+  description: 'Scope clarification: G5 is IP delivery and documented 100 MHz GF28nm
+    characterization, not a board/product release. Final Pad/board IO, target pause
+    policy and post-layout recovery/removal remain mandatory system-integration work;
+    no board signoff claimed.'
+- id: FINDING.SPI_MASTER.FORMAL
+  gate: G5
+  severity: note
+  status: open
+  owner: project_verification_review
+  description: No independent formal engine found; dynamic SVA and structural review
+    are separate from formal or CDC/RDC proof.
+- id: FINDING.SPI_MASTER.COVERAGE_RESIDUAL
+  gate: G5
+  severity: note
+  status: open
+  owner: project_verification_review
+  description: 'User-accepted residual risk: raw line 91.62%, FSM transitions 75%,
+    low toggle and other raw gaps remain. No automatic exclusions; future coverage
+    improvement remains possible.'

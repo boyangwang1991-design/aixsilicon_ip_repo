@@ -1,0 +1,11 @@
+schema_version: '2.0'
+ip_name: spi_master
+links:
+- source_id: LLD.MOD.SPI_MASTER.CSR
+  target_id: RTL.FILE.rtl/spi_master_top.sv
+- source_id: LLD.MOD.SPI_MASTER.CSR
+  target_id: RTL.FILE.rtl/generated/spi_master_csr.sv
+- source_id: LLD.MOD.SPI_MASTER.ENGINE
+  target_id: RTL.FILE.rtl/spi_master_engine.sv
+- source_id: LLD.MOD.SPI_MASTER.QUEUES
+  target_id: RTL.FILE.rtl/spi_master_queues.sv

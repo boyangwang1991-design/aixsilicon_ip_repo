@@ -136,7 +136,7 @@ ips:
 <!-- IP-CATALOG-STATUS:BEGIN -->
 > 本节由 `scripts/update_registry_readme.py` 依据 `registry.yaml`（SSOT）自动生成。
 > 修改 `registry.yaml` 后必须运行 `python3 scripts/update_registry_readme.py` 刷新本节；勿手工编辑。
-> 最后更新：`2026-09-10T08:12:52Z`
+> 最后更新：`2026-09-10T12:36:35Z`
 
 ### 总览
 
@@ -144,22 +144,23 @@ ips:
 |------------------------------|------|
 | 总条目（ips）                | 354  |
 | released（已发布）           | 0    |
-| implemented（已实现/已交付） | 1    |
-| planned（规划候选）          | 353  |
+| implemented（已实现/已交付） | 2    |
+| planned（规划候选）          | 352  |
 | deprecated（已废弃）         | 0    |
-| 实现率                       | 0.3% |
+| 实现率                       | 0.6% |
 
-### 已发布 / 已实现 / 已纳管 IP（1）
+### 已发布 / 已实现 / 已纳管 IP（2）
 
-| ID      | IP                                                      | 类型 | 优先级 | 状态        | 版本  | 领域           |
-|---------|---------------------------------------------------------|------|--------|-------------|-------|----------------|
-| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md) | ip   | P0     | implemented | 1.0.0 | infrastructure |
+| ID      | IP                                                       | 类型 | 优先级 | 状态        | 版本  | 领域           |
+|---------|----------------------------------------------------------|------|--------|-------------|-------|----------------|
+| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)  | ip   | P0     | implemented | 1.0.0 | infrastructure |
+| PER-005 | [spi_master](ips/peripheral/serial/spi_master/README.md) | ip   | P0     | implemented | 1.0.0 | peripheral     |
 
 ### 按优先级分布（released+implemented / planned）
 
 | 优先级 | 已交付 | planned | 合计 |
 |--------|--------|---------|------|
-| P0     | 1      | 79      | 80   |
+| P0     | 2      | 78      | 80   |
 | P1     | 0      | 94      | 94   |
 | P2     | 0      | 100     | 100  |
 | P3     | 0      | 80      | 80   |
@@ -507,35 +508,35 @@ ips:
 | NET-005 | [qos_scheduler](ips/network/qos/qos_scheduler/README.md)            | ip   | planned | P3     | 0.1.0 | QoS 调度器  |
 | NET-006 | [traffic_manager](ips/network/qos/traffic_manager/README.md)        | ip   | planned | P3     | 0.1.0 | 流量管理器  |
 
-#### peripheral（25，已交付=0）
+#### peripheral（25，已交付=1）
 
-| ID      | IP                                                                            | 类型 | 状态    | 优先级 | 版本  | 功能/描述                                                                   |
-|---------|-------------------------------------------------------------------------------|------|---------|--------|-------|-----------------------------------------------------------------------------|
-| PER-001 | [gpio](ips/peripheral/io/gpio/README.md)                                      | ip   | planned | P0     | 0.1.0 | 通用 GPIO                                                                   |
-| PER-002 | [i2c_master](ips/peripheral/serial/i2c_master/README.md)                      | ip   | planned | P0     | 0.1.0 | I2C 主机                                                                    |
-| PER-003 | [i2c_slave](ips/peripheral/serial/i2c_slave/README.md)                        | ip   | planned | P0     | 0.1.0 | I2C 从机                                                                    |
-| PER-004 | [pwm](ips/peripheral/timer/pwm/README.md)                                     | ip   | planned | P0     | 0.1.0 | PWM 控制器                                                                  |
-| PER-005 | [spi_master](ips/peripheral/serial/spi_master/README.md)                      | ip   | planned | P0     | 0.1.0 | SPI 主机                                                                    |
-| PER-006 | [spi_slave](ips/peripheral/serial/spi_slave/README.md)                        | ip   | planned | P0     | 0.1.0 | SPI 从机                                                                    |
-| PER-007 | [timer](ips/peripheral/timer/timer/README.md)                                 | ip   | planned | P0     | 0.1.0 | APB 定时器 IP（定时核 + CSR + 中断接口）                                    |
-| PER-008 | [uart](ips/boyangwang1991-design/uart/0.1.0/README.md)                        | ip   | planned | P0     | 0.1.0 | 通用 UART（APB 接口，含 CSR/RX/TX，G0-G5 曾通过；工作区目录未落盘，待恢复） |
-| PER-009 | [watchdog](ips/peripheral/timer/watchdog/README.md)                           | ip   | planned | P0     | 0.1.0 | APB 看门狗 IP（看门狗核 + CSR + 复位/中断策略）                             |
-| PER-010 | [can](ips/peripheral/automotive/can/README.md)                                | ip   | planned | P1     | 0.1.0 | CAN 控制器                                                                  |
-| PER-011 | [can_fd](ips/peripheral/automotive/can_fd/README.md)                          | ip   | planned | P1     | 0.1.0 | CAN-FD 控制器                                                               |
-| PER-012 | [doorbell_controller](ips/peripheral/intercore/doorbell_controller/README.md) | ip   | planned | P1     | 0.1.0 | 门铃（Doorbell）控制器                                                      |
-| PER-013 | [emmc_controller](ips/peripheral/storage/emmc_controller/README.md)           | ip   | planned | P1     | 0.1.0 | eMMC 控制器                                                                 |
-| PER-014 | [hardware_semaphore](ips/peripheral/intercore/hardware_semaphore/README.md)   | ip   | planned | P1     | 0.1.0 | 硬件信号量                                                                  |
-| PER-015 | [i3c_controller](ips/peripheral/serial/i3c_controller/README.md)              | ip   | planned | P1     | 0.1.0 | I3C 控制器                                                                  |
-| PER-016 | [input_capture](ips/peripheral/timer/input_capture/README.md)                 | ip   | planned | P1     | 0.1.0 | 输入捕获                                                                    |
-| PER-017 | [lin](ips/peripheral/automotive/lin/README.md)                                | ip   | planned | P1     | 0.1.0 | LIN 控制器                                                                  |
-| PER-018 | [mailbox](ips/peripheral/intercore/mailbox/README.md)                         | ip   | planned | P1     | 0.1.0 | 核间邮箱                                                                    |
-| PER-019 | [ospi](ips/peripheral/serial/ospi/README.md)                                  | ip   | planned | P1     | 0.1.0 | OSPI 控制器                                                                 |
-| PER-020 | [output_compare](ips/peripheral/timer/output_compare/README.md)               | ip   | planned | P1     | 0.1.0 | 输出比较                                                                    |
-| PER-021 | [qspi](ips/peripheral/serial/qspi/README.md)                                  | ip   | planned | P1     | 0.1.0 | QSPI 控制器                                                                 |
-| PER-022 | [quadrature_encoder](ips/peripheral/timer/quadrature_encoder/README.md)       | ip   | planned | P1     | 0.1.0 | 正交编码器接口                                                              |
-| PER-023 | [rtc](ips/peripheral/timer/rtc/README.md)                                     | ip   | planned | P1     | 0.1.0 | 实时时钟（RTC）                                                             |
-| PER-024 | [sd_host](ips/peripheral/storage/sd_host/README.md)                           | ip   | planned | P1     | 0.1.0 | SD Host 控制器                                                              |
-| PER-025 | [sdio](ips/peripheral/storage/sdio/README.md)                                 | ip   | planned | P1     | 0.1.0 | SDIO 控制器                                                                 |
+| ID      | IP                                                                            | 类型 | 状态        | 优先级 | 版本  | 功能/描述                                                                                 |
+|---------|-------------------------------------------------------------------------------|------|-------------|--------|-------|-------------------------------------------------------------------------------------------|
+| PER-001 | [gpio](ips/peripheral/io/gpio/README.md)                                      | ip   | planned     | P0     | 0.1.0 | 通用 GPIO                                                                                 |
+| PER-002 | [i2c_master](ips/peripheral/serial/i2c_master/README.md)                      | ip   | planned     | P0     | 0.1.0 | I2C 主机                                                                                  |
+| PER-003 | [i2c_slave](ips/peripheral/serial/i2c_slave/README.md)                        | ip   | planned     | P0     | 0.1.0 | I2C 从机                                                                                  |
+| PER-004 | [pwm](ips/peripheral/timer/pwm/README.md)                                     | ip   | planned     | P0     | 0.1.0 | PWM 控制器                                                                                |
+| PER-005 | [spi_master](ips/peripheral/serial/spi_master/README.md)                      | ip   | implemented | P0     | 1.0.0 | APB4 队列式 SPI master（四模式、暂停/中止，已完成仿真与 28nm 综合；候选实现，未量产冻结） |
+| PER-006 | [spi_slave](ips/peripheral/serial/spi_slave/README.md)                        | ip   | planned     | P0     | 0.1.0 | SPI 从机                                                                                  |
+| PER-007 | [timer](ips/peripheral/timer/timer/README.md)                                 | ip   | planned     | P0     | 0.1.0 | APB 定时器 IP（定时核 + CSR + 中断接口）                                                  |
+| PER-008 | [uart](ips/boyangwang1991-design/uart/0.1.0/README.md)                        | ip   | planned     | P0     | 0.1.0 | 通用 UART（APB 接口，含 CSR/RX/TX，G0-G5 曾通过；工作区目录未落盘，待恢复）               |
+| PER-009 | [watchdog](ips/peripheral/timer/watchdog/README.md)                           | ip   | planned     | P0     | 0.1.0 | APB 看门狗 IP（看门狗核 + CSR + 复位/中断策略）                                           |
+| PER-010 | [can](ips/peripheral/automotive/can/README.md)                                | ip   | planned     | P1     | 0.1.0 | CAN 控制器                                                                                |
+| PER-011 | [can_fd](ips/peripheral/automotive/can_fd/README.md)                          | ip   | planned     | P1     | 0.1.0 | CAN-FD 控制器                                                                             |
+| PER-012 | [doorbell_controller](ips/peripheral/intercore/doorbell_controller/README.md) | ip   | planned     | P1     | 0.1.0 | 门铃（Doorbell）控制器                                                                    |
+| PER-013 | [emmc_controller](ips/peripheral/storage/emmc_controller/README.md)           | ip   | planned     | P1     | 0.1.0 | eMMC 控制器                                                                               |
+| PER-014 | [hardware_semaphore](ips/peripheral/intercore/hardware_semaphore/README.md)   | ip   | planned     | P1     | 0.1.0 | 硬件信号量                                                                                |
+| PER-015 | [i3c_controller](ips/peripheral/serial/i3c_controller/README.md)              | ip   | planned     | P1     | 0.1.0 | I3C 控制器                                                                                |
+| PER-016 | [input_capture](ips/peripheral/timer/input_capture/README.md)                 | ip   | planned     | P1     | 0.1.0 | 输入捕获                                                                                  |
+| PER-017 | [lin](ips/peripheral/automotive/lin/README.md)                                | ip   | planned     | P1     | 0.1.0 | LIN 控制器                                                                                |
+| PER-018 | [mailbox](ips/peripheral/intercore/mailbox/README.md)                         | ip   | planned     | P1     | 0.1.0 | 核间邮箱                                                                                  |
+| PER-019 | [ospi](ips/peripheral/serial/ospi/README.md)                                  | ip   | planned     | P1     | 0.1.0 | OSPI 控制器                                                                               |
+| PER-020 | [output_compare](ips/peripheral/timer/output_compare/README.md)               | ip   | planned     | P1     | 0.1.0 | 输出比较                                                                                  |
+| PER-021 | [qspi](ips/peripheral/serial/qspi/README.md)                                  | ip   | planned     | P1     | 0.1.0 | QSPI 控制器                                                                               |
+| PER-022 | [quadrature_encoder](ips/peripheral/timer/quadrature_encoder/README.md)       | ip   | planned     | P1     | 0.1.0 | 正交编码器接口                                                                            |
+| PER-023 | [rtc](ips/peripheral/timer/rtc/README.md)                                     | ip   | planned     | P1     | 0.1.0 | 实时时钟（RTC）                                                                           |
+| PER-024 | [sd_host](ips/peripheral/storage/sd_host/README.md)                           | ip   | planned     | P1     | 0.1.0 | SD Host 控制器                                                                            |
+| PER-025 | [sdio](ips/peripheral/storage/sdio/README.md)                                 | ip   | planned     | P1     | 0.1.0 | SDIO 控制器                                                                               |
 
 #### phy（4，已交付=0）
 
