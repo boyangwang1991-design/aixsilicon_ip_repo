@@ -1,0 +1,63 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+interfaces:
+- id: HLD.IF.INT.AXI_MPU.REGION_TABLE
+  name: region_table_if
+  scope: internal
+  protocol: internal
+  role: config_bus
+  owner_module: HLD.MOD.L1.AXI_MPU.REG_FILE
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  req_ref:
+  - LRS.REG.AXI_MPU.REGION.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.AXI_MPU.MASTER_ATTR_IF
+  name: master_attr_if
+  scope: internal
+  protocol: internal
+  role: config_bus
+  owner_module: HLD.MOD.L1.AXI_MPU.REG_FILE
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  req_ref:
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  applicability:
+    expr: has_master_attr == true
+- id: HLD.IF.INT.AXI_MPU.REQ_CTX
+  name: req_ctx_if
+  scope: internal
+  protocol: internal
+  role: data
+  owner_module: HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.AXI_MPU.PERM
+  name: perm_result_if
+  scope: internal
+  protocol: internal
+  role: control
+  owner_module: HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  req_ref:
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.AXI_MPU.WQ
+  name: write_queue_if
+  scope: internal
+  protocol: internal
+  role: control
+  owner_module: HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  req_ref:
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  applicability:
+    expr: 'true'

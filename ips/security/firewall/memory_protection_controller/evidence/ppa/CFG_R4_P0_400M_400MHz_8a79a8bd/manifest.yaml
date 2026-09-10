@@ -1,0 +1,36 @@
+schema: ip-ppa-run/1.0
+run_id: CFG_R4_P0_400M_400MHz_8a79a8bd
+ip_name: axi_mpu
+config_id: CFG_R4_P0_400M
+corner: tt_nominal_max_1p00v_25c
+node: CMOS28NM
+library: sc9_cmos28lp_base_hvt
+target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+params:
+  REGION_NUM: '4'
+  PIPELINE: '0'
+clock_freq_mhz: 400.0
+clock_period_ns: 2.5
+pdk:
+  status: PDK_READY
+  node: CMOS28NM
+  library: sc9_cmos28lp_base_hvt
+  corner: tt_nominal_max_1p00v_25c
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  link_libraries:
+  - '*'
+  - /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+tool: dc_shell
+tool_version: V-2023.12-SP3
+rtl_dir_hash: a5824b12e485dc0f65ef2aeaa17351ebfef61e681089402799f1c7f31cd67681
+sdc: constraints/timing.sdc
+sdc_sha256: f9a5d0dc275a3cb35f0f6cccfe8538439a2a509d521cab8bd03c4a4f7aac3736
+constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+compile_options: compile -map_effort medium
+activity_method: default-probability-propagation (no SAIF)
+evaluator_script: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/scripts/ppa/extract_ppa_summary.py
+evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+raw_reports:
+  area: area.rpt
+  timing: timing.rpt
+  power: power.rpt

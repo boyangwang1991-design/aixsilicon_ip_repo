@@ -1,0 +1,41 @@
+CAPI=2:
+name: aixsilicon:ip:axi_mpu:1.0.0
+description: >
+  AXI Memory Protection Unit (AXI MPU): Region-based, Default-Deny,
+  Context-aware AXI access control. Runtime configurable protection table
+  via APB4, violation logging/IRQ, region/global lock.
+
+filesets:
+  rtl_files:
+    files:
+      - rtl/include/axi_mpu_defs.svh
+      - rtl/generated/axi_mpu_csr_pkg.sv
+      - rtl/generated/axi_mpu_csr.sv
+      - rtl/axi_mpu_permission.sv
+      - rtl/axi_mpu_read.sv
+      - rtl/axi_mpu_write.sv
+      - rtl/axi_mpu.sv
+    file_type: systemVerilogSource
+    is_include_file: false
+
+targets:
+  default:
+    filesets:
+      - rtl_files
+  lint:
+    filesets:
+      - rtl_files
+    toplevel: axi_mpu
+    tools:
+      verilator:
+        mode: lint-only
+  elaboration:
+    filesets:
+      - rtl_files
+    toplevel: axi_mpu
+    tools:
+      vcs:
+        vcs_options:
+          - -sverilog
+          - -ntb_opts
+          - uvm-1.2

@@ -1,0 +1,39 @@
+# AXI MPU - Regression list (tier -> testcase -> implementation)
+# 由 06-verification-plan / 15-regression-quality-review 维护；
+# 与 model/verification.yaml testcase tier/implementation 一一对应。
+schema_version: "2.0"
+ip_name: axi_mpu
+
+smoke:
+  - test: TC.AXI_MPU.SMOKE.001
+    implementation: verification/tc/tc_smoke_basic.sv
+
+regression:
+  - test: TC.AXI_MPU.DEFAULT_DENY.001
+    implementation: verification/tc/tc_default_deny.sv
+  - test: TC.AXI_MPU.MASTER.001
+    implementation: verification/tc/tc_master_permission.sv
+  - test: TC.AXI_MPU.SECURITY.001
+    implementation: verification/tc/tc_security_permission.sv
+  - test: TC.AXI_MPU.REGION.001
+    implementation: verification/tc/tc_region_boundary.sv
+  - test: TC.AXI_MPU.BURST.001
+    implementation: verification/tc/tc_burst_boundary.sv
+  - test: TC.AXI_MPU.PRIVILEGE.001
+    implementation: verification/tc/tc_privilege_permission.sv
+  - test: TC.AXI_MPU.OP.001
+    implementation: verification/tc/tc_op_permission.sv
+  - test: TC.AXI_MPU.ERR_RESP.001
+    implementation: verification/tc/tc_local_decerr.sv
+  - test: TC.AXI_MPU.VIOLATION.001
+    implementation: verification/tc/tc_violation_capture.sv
+  - test: TC.AXI_MPU.LOCK.001
+    implementation: verification/tc/tc_config_lock.sv
+  - test: TC.AXI_MPU.RESET.001
+    implementation: verification/tc/tc_reset_behavior.sv
+  - test: TC.AXI_MPU.OUTSTANDING.001
+    implementation: verification/tc/tc_outstanding.sv
+
+extended:
+  - test: TC.AXI_MPU.RANDOM.001
+    implementation: verification/tc/tc_random_traffic.sv

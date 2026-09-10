@@ -1,0 +1,70 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+findings:
+- id: FIND.AXI_MPU.001
+  severity: minor
+  gate: G3
+  title: 读写路径 master identity 位宽硬编码
+  detail: >-
+    axi_mpu_read/write 的 master_id sideband 原为 16 位硬编码，与顶层
+    MASTER_ID_WIDTH 参数不一致（VCS lint PCWM / DC LINK-3 实测）。已修复为
+    参数化并重新通过 lint/elab/synth。
+  status: resolved
+  owner: ip-development-suite/07-rtl
+  approved_by: gate-review
+- id: FIND.AXI_MPU.002
+  severity: major
+  gate: G3
+  title: AxPROT[1] 安全语义颠倒
+  detail: >-
+    RTL 捕获 cap_secure<=AxPROT[1] 违反 AXI 标准（0=Secure/1=Non-secure）。
+    已修复为 cap_secure<=~AxPROT[1]，并用 directed TC 回归验证
+    secure-only/nonsecure-only/forged-secure 全场景。
+  status: resolved
+  owner: ip-development-suite/07-rtl
+  approved_by: gate-review
+- id: FIND.AXI_MPU.003
+  severity: major
+  gate: G3
+  title: 本地 DECERR RLAST off-by-one
+  detail: >-
+    读路径本地错误响应的 RLAST 以 cnt==resp_total 判定且 FSM 退出条件使用
+    同一计数，造成额外 DECERR beat 与跨事务误配。已将 RLAST 与 FSM 退出统一
+    为 cnt==resp_total-1，并以 tc_local_decerr beat 计数用例回归确认。
+  status: resolved
+  owner: ip-development-suite/07-rtl
+  approved_by: gate-review
+- id: FIND.AXI_MPU.004
+  severity: major
+  gate: G2
+  title: Region/Global Lock 写保护未在 CSR 结构中建模
+  detail: >-
+    原 RDL 未表达 lock 对配置寄存器写的抑制。已在 SystemRDL 增加 cfg_swwe
+    signal + swwe 属性（BASE/LIMIT/MASK/PERM）与 GLOBAL_LOCK onwrite=woset，
+    由 axi_mpu.sv 驱动 gate；重新生成 CSR 并以 tc_config_lock 回归确认。
+  status: resolved
+  owner: ip-development-suite/02-reg-model
+  approved_by: gate-review
+- id: FIND.AXI_MPU.005
+  severity: minor
+  gate: G4
+  title: WRAP 跨界用例几何不可构造
+  detail: >-
+    Region0 LIMIT=0x1FFF 与 64B WRAP 块边界重合，"wrap 跨界" 无法在该几何下
+    构造。tc_burst_boundary #6 改为 wrap 非对齐起始（绕回正确性，allow），
+    跨界 deny 由 INCR cross-LIMIT 用例覆盖；wrap 跨界留给参数空间中
+    LIMIT 非块对齐的配置矩阵。
+  status: resolved
+  owner: ip-development-suite/06-verification-plan
+  approved_by: gate-review
+- id: FIND.AXI_MPU.006
+  severity: note
+  gate: G4
+  title: mid-transaction R backpressure 压测为已知限制
+  detail: >-
+    现有 directed TC 架构（rready 恒 1 + 顺序激励）无法在不引入采样竞态的
+    前提下模拟事务中段的上游 R backpressure；下游 slave 固定延迟已覆盖
+    响应延迟路径。建议后续以 UVM agent+monitor 架构增强专项压测。
+  status: open
+  owner: ip-development-suite/12-env-rm-checker-coverage
+  approved_by: ''

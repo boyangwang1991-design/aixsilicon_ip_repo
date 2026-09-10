@@ -1,0 +1,41 @@
+schema_version: '2.0'
+schema: ip-ppa-summary/1.0
+run_id: CFG_R16_P0_400M_400MHz_f783dde9
+manifest:
+  path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_400M_400MHz_f783dde9/manifest.yaml
+  sha256: e986d0028deae63cfa7a3530be49b1d275086d18ce5ea6252cc32689be6aa744
+config_id: CFG_R16_P0_400M
+clock_freq_mhz: 400.0
+params:
+  REGION_NUM: '16'
+  PIPELINE: '0'
+area_um2: 25785.395858
+slack_ns: -1.5
+critical_delay_ns: 4.0
+data_arrival_ns: 3.96
+fmax_mhz: 250.0
+dyn_power_uW: 6230.5
+leak_power_nW: 5106.900000000001
+activity: default_probability_estimate
+timing_constrained: true
+evidence_level: E2
+comparison_context:
+  pdk_sha256: null
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+  evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+  compile_options: compile -map_effort medium
+  activity: default_probability_estimate
+raw_reports:
+  area:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_400M_400MHz_f783dde9/area.rpt
+    sha256: 2950141390989a607ad1b23e2315ff3c2c8862e143cb3f8aaa0972114207229f
+  timing:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_400M_400MHz_f783dde9/timing.rpt
+    sha256: b121a5ee7d433ef4fa97309c17b1298d6c2e041762ca298a0d068dbacb8b44aa
+  power:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_400M_400MHz_f783dde9/power.rpt
+    sha256: e5f08364253d04a7c084d592c31a5f1437fd7108c0ec381e75545d4b23af8d6d

@@ -1,0 +1,43 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  target_id: LLD.MOD.AXI_MPU.MASTER_ATTR
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  target_id: LLD.MOD.AXI_MPU.PERM
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  target_id: LLD.MOD.AXI_MPU.ERR_RESP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  target_id: LLD.MOD.AXI_MPU.READ
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.REG_FILE
+  target_id: LLD.MOD.AXI_MPU.REGS
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.TOP
+  target_id: LLD.MOD.AXI_MPU.TOP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.VIOLATION
+  target_id: LLD.MOD.AXI_MPU.VIOLATION
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  target_id: LLD.MOD.AXI_MPU.ERR_RESP
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  target_id: LLD.MOD.AXI_MPU.WRITE
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

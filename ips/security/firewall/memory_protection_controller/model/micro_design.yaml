@@ -1,0 +1,532 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+delivery_model: generator
+lrs_baseline: null
+hld_baseline: HLD-AXI_MPU-V100
+document_version: 1.0.0
+status: draft
+microarchitecture_baseline: null
+modules:
+- id: LLD.MOD.AXI_MPU.TOP
+  name: axi_mpu
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.TOP
+  req_ref:
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  - LRS.INTF.AXI_MPU.AXI_MASTER.001
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  - LRS.CFG.AXI_MPU.ADDR_WIDTH.001
+  - LRS.CFG.AXI_MPU.MASTER_NUM.001
+  - LRS.CFG.AXI_MPU.REGION_NUM.001
+  - LRS.CFG.AXI_MPU.OUTSTANDING.001
+  - LRS.CFG.AXI_MPU.FEATURE.001
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+  - LRS.RESET.AXI_MPU.RESET.001
+  description: 顶层参数化模块，实例化 read/write/permission/violation/regs/master_attr
+  rtl_intent:
+    suggested_name: rtl/axi_mpu.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.READ
+  name: axi_mpu_read
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  - LRS.FUNC.AXI_MPU.READ.001
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  description: AR 捕获、Request Context 构建、合法转发、非法本地 R DECERR、Read outstanding 跟踪
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_read.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.WRITE
+  name: axi_mpu_write
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  - LRS.FUNC.AXI_MPU.WRITE.001
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  description: AW/W 捕获、Request Context 构建、Write Decision Queue 维护、合法转发、非法 W consume + 本地 B DECERR
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_write.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.PERM
+  name: axi_mpu_permission
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  req_ref:
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.001
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  - LRS.FUNC.AXI_MPU.REGION.002
+  - LRS.FUNC.AXI_MPU.REGION.003
+  - LRS.FUNC.AXI_MPU.REGION.004
+  - LRS.FUNC.AXI_MPU.BURST.001
+  - LRS.FUNC.AXI_MPU.BURST.002
+  - LRS.FUNC.AXI_MPU.PERM_MASTER.001
+  - LRS.FUNC.AXI_MPU.PERM_SECURITY.001
+  - LRS.FUNC.AXI_MPU.PERM_PRIVILEGE.001
+  - LRS.FUNC.AXI_MPU.PERM_OP.001
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+  description: Burst Analyzer + Region Matcher + Priority Select + Permission Checker
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_permission.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.VIOLATION
+  name: axi_mpu_violation
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.VIOLATION
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.001
+  - LRS.FUNC.AXI_MPU.VIOLATION.002
+  - LRS.FUNC.AXI_MPU.VIOLATION.003
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  - LRS.DFX.AXI_MPU.OBSERVABILITY.001
+  description: violation 捕获（FIRST_ERROR_STICKY）、计数器、IRQ 生成
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_violation.sv
+  applicability:
+    expr: has_violation_log == true
+- id: LLD.MOD.AXI_MPU.ERR_RESP
+  name: axi_mpu_error_resp
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  description: 本地 R/B DECERR 响应生成
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_error_resp.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.REGS
+  name: axi_mpu_regs
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  req_ref:
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  - LRS.REG.AXI_MPU.GLOBAL.001
+  - LRS.REG.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.VIOLATION.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  - LRS.REG.AXI_MPU.REGION.001
+  - LRS.FUNC.AXI_MPU.REGION_LOCK.001
+  - LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+  description: APB4 从接口、PeakRDL 生成 CSR + 特殊 HW 行为、Lock 保护
+  rtl_intent:
+    suggested_name: rtl/generated/axi_mpu_csr.sv
+  applicability:
+    expr: 'true'
+- id: LLD.MOD.AXI_MPU.MASTER_ATTR
+  name: axi_mpu_master_attr
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  req_ref:
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  description: 每 Master SECURE_CAPABLE/NONSECURE_CAPABLE 存储
+  rtl_intent:
+    suggested_name: rtl/axi_mpu_master_attr.sv
+  applicability:
+    expr: has_master_attr == true
+interfaces: []
+timing: []
+datapaths:
+- id: LLD.DATAPATH.AXI_MPU.REQ_CTX
+  module_ref: LLD.MOD.AXI_MPU.READ
+  hld_ref:
+  - HLD.IF.INT.AXI_MPU.REQ_CTX
+  width: ADDR_WIDTH + 16 + MASTER_ID_WIDTH
+  direction: combinational
+  latency: 0
+  description: 'req.ctx.address = ARADDR; read_write = READ; axi_id = ARID;
+
+    secure = ARPROT[1]; privileged = ARPROT[0]; instruction = ARPROT[2];
+
+    master_id = 输入 sideband / 配置；
+
+    burst_start/end 由 Burst Analyzer 计算（INCR/FIXED/WRAP）。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+- id: LLD.DATAPATH.AXI_MPU.REGION_MATCH
+  module_ref: LLD.MOD.AXI_MPU.PERM
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  width: REGION_NUM
+  direction: combinational
+  latency: 0-1 (pipeline 可配置)
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION.003
+  - LRS.FUNC.AXI_MPU.REGION.002
+- id: LLD.DATAPATH.AXI_MPU.PRIORITY
+  module_ref: LLD.MOD.AXI_MPU.PERM
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  width: clog2(REGION_NUM)+1
+  direction: combinational
+  latency: 0-1
+  description: 'priority_encode(match) 选择最小索引命中 Region；
+
+    no_match 时 selected_valid=0（NO_REGION）。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION.004
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+- id: LLD.DATAPATH.AXI_MPU.PERM_CHECK
+  module_ref: LLD.MOD.AXI_MPU.PERM
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  width: 1
+  direction: combinational
+  latency: 0-1
+  description: "allow = master_allowed && master_security_valid && security_allowed\n        && privilege_allowed && operation_allowed；\n\
+    deny_reason 按首因编码（NO_REGION/MASTER_DENY/MASTER_SECURITY_DENY/\nSECURITY_DENY/PRIVILEGE_DENY/READ_DENY/WRITE_DENY/EXECUTE_DENY/\n\
+    BURST_BOUNDARY_DENY/INVALID_CONTEXT）。\n"
+  req_ref:
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.002
+- id: LLD.DATAPATH.AXI_MPU.LOCAL_RESP
+  module_ref: LLD.MOD.AXI_MPU.ERR_RESP
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  width: 1
+  direction: sequential
+  latency: (len+1) beats (read) / W consume 后 1 beat (write)
+  description: 'Read deny: 本地返回 (AWLEN+1) beat，每 beat RRESP=DECERR、RDATA=0、RLAST 正确；
+
+    Write deny: 消费 W beats（直至 WLAST），返回 BRESP=DECERR；
+
+    不向 M_AXI 发送任何 deny 事务。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+- id: LLD.DATAPATH.AXI_MPU.CSR_PROJ
+  module_ref: LLD.MOD.AXI_MPU.REGS
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  width: ADDR_WIDTH*2 + MASTER_NUM + 3 (per region)
+  direction: combinational
+  latency: 0
+  description: 'CSR 寄存器值投影为权限引擎输入：REGION_ENABLE/BASE/LIMIT/MASTER_MASK/
+
+    SECURE_ALLOW/NONSECURE_ALLOW/PRIV_ALLOW/UNPRIV_ALLOW/READ_ALLOW/
+
+    WRITE_ALLOW/EXEC_ALLOW 与 MASTER_ATTR.SECURE_CAPABLE/NONSECURE_CAPABLE；
+
+    Region/Global Lock 屏蔽相应写路径。
+
+    '
+  req_ref:
+  - LRS.REG.AXI_MPU.REGION.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+- id: LLD.DATAPATH.AXI_MPU.MASTER_SEC
+  module_ref: LLD.MOD.AXI_MPU.MASTER_ATTR
+  hld_ref:
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  width: 1
+  direction: combinational
+  latency: 0
+  description: "master_security_valid =\n  (request.secure ? MASTER_ATTR[master_id].SECURE_CAPABLE : 1)\n  && (!request.secure\
+    \ ? MASTER_ATTR[master_id].NONSECURE_CAPABLE : 1)；\nmaster_id >= MASTER_NUM 时 INVALID_CONTEXT。\n"
+  req_ref:
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+pipelines:
+- id: LLD.PIPELINE.AXI_MPU.PERM
+  module_ref: LLD.MOD.AXI_MPU.PERM
+  stages: 0-1
+  description: 'PIPELINE=0: 组合判定；PIPELINE=1: Burst Analyzer+Region Match 后插 1 级寄存器。
+
+    吞吐保持 1 request/cycle。
+
+    '
+  req_ref:
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.002
+buffers:
+- id: LLD.BUFFER.AXI_MPU.WQ
+  module_ref: LLD.MOD.AXI_MPU.WRITE
+  type: circular_fifo
+  depth: WRITE_OUTSTANDING
+  entry_fields:
+  - AWID
+  - AWLEN
+  - ALLOW/DENY
+  - selected_region
+  - deny_reason
+  - master_id
+  - security_state
+  flow_control: 满时 AWREADY=0（背压）
+  req_ref:
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+fsms:
+- id: LLD.FSM.AXI_MPU.READ
+  module_ref: LLD.MOD.AXI_MPU.READ
+  states:
+  - IDLE
+  - CHECK
+  - FWD_AR
+  - WAIT_R
+  - LOCAL_R
+  transitions: 'IDLE --ARVALID && ARREADY--> CHECK
+
+    CHECK --ALLOW--> FWD_AR
+
+    CHECK --DENY--> LOCAL_R
+
+    FWD_AR --M_ARREADY--> WAIT_R
+
+    WAIT_R --RLAST && RVALID && RREADY--> IDLE
+
+    LOCAL_R --(len+1) beats R, RLAST--> IDLE
+
+    '
+  reset_state: IDLE
+  encoding: onehot
+  illegal_state_handling: 全 0 复位；非法状态经全局复位恢复 IDLE
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.001
+  - LRS.FUNC.AXI_MPU.READ.002
+- id: LLD.FSM.AXI_MPU.WRITE
+  module_ref: LLD.MOD.AXI_MPU.WRITE
+  states:
+  - IDLE
+  - AW_CHECK
+  - WQ_WAIT
+  - FWD_AW
+  - FWD_W
+  - CONSUME_W
+  - LOCAL_B
+  transitions: 'IDLE --AWVALID && AWREADY--> AW_CHECK
+
+    AW_CHECK --ALLOW--> FWD_AW
+
+    AW_CHECK --DENY--> CONSUME_W
+
+    FWD_AW --M_AWREADY--> FWD_W
+
+    FWD_W --WLAST && WVALID && WREADY--> WQ_WAIT
+
+    WQ_WAIT --M_BVALID && BREADY--> IDLE
+
+    CONSUME_W --WLAST && WVALID && WREADY--> LOCAL_B
+
+    LOCAL_B --BVALID && BREADY--> IDLE
+
+    '
+  reset_state: IDLE
+  encoding: onehot
+  illegal_state_handling: 复位恢复 IDLE
+  req_ref:
+  - LRS.FUNC.AXI_MPU.WRITE.001
+  - LRS.FUNC.AXI_MPU.WRITE.002
+arbiters: []
+ordering:
+- id: LLD.ORDER.AXI_MPU.WRITE
+  model: per_id_fifo
+  description: '同一 AWID 的 write 按发出顺序返回 B（WQ 顺序出队）；
+
+    不同 ID 间保持 AXI 允许的 reorder 自由度。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.ORDERING.001
+registers:
+- id: LLD.REG.AXI_MPU.VIOL_STATUS
+  register_ref: VIOL_STATUS
+  behavior: FIRST_ERROR_STICKY
+  sw_behavior: RO；VIOL_VALID 置位后 sticky；W1C 清除（写 1 清）
+  hw_behavior: 首次 violation 时置 VIOL_VALID 并锁存首错信息；后续 violation 不覆盖
+  update_timing: violation 发生拍
+  collision: hw_capture 优先于 sw_read
+  reset_semantics: reset 清除（VIOL_VALID=0）
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.002
+- id: LLD.REG.AXI_MPU.VIOL_COUNT
+  register_ref: VIOL_COUNT
+  behavior: saturating_counter
+  sw_behavior: RO；软件 W1C 清零
+  hw_behavior: 每次 violation count+1，饱和到最大值
+  update_timing: violation 发生拍
+  collision: hw 递增优先于 sw 清零
+  reset_semantics: reset 清零
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.003
+- id: LLD.REG.AXI_MPU.REGION_LOCK
+  register_ref: REGION_CONTROL
+  field: LOCK
+  behavior: write_once_lock
+  sw_behavior: 写 0 无效果；写 1 锁定（BASE/LIMIT/ATTR/MASTER_MASK 写保护）
+  hw_behavior: lock 置位后对应 Region 写路径屏蔽
+  update_timing: 写拍
+  collision: sw 写 lock 生效
+  reset_semantics: reset 清除
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION_LOCK.001
+- id: LLD.REG.AXI_MPU.GLOBAL_LOCK
+  register_ref: GLOBAL_LOCK
+  behavior: write_once_lock
+  sw_behavior: 0->1 allowed；1->0 prohibited
+  hw_behavior: 置位后 Region/Master Attr/Global 保护策略写屏蔽；运行态（violation/IRQ clear）仍可访问
+  update_timing: 写拍
+  collision: sw 写 lock 生效
+  reset_semantics: reset 清除
+  req_ref:
+  - LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+- id: LLD.REG.AXI_MPU.IRQ_REGS
+  register_ref: IRQ_ENABLE
+  field: VIOL_EN
+  behavior: rw
+  sw_behavior: RW 使能位
+  hw_behavior: 无
+  update_timing: 写拍
+  collision: sw
+  reset_semantics: reset 清除
+  irq_model: IRQ = IRQ_STATUS.VIOL_STICKY & IRQ_ENABLE.VIOL_EN；IRQ_CLEAR W1C
+  req_ref:
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.IRQ.001
+reset:
+- id: LLD.RESET.AXI_MPU.SYS
+  module_ref: LLD.MOD.AXI_MPU.TOP
+  reset_domain: RST_SYS_N
+  type: async_active_low
+  release: synchronous
+  reset_value: 默认拒绝（所有 Region disabled）
+  modules:
+  - LLD.MOD.AXI_MPU.TOP
+  req_ref:
+  - LRS.RESET.AXI_MPU.RESET.001
+cdc:
+- id: LLD.CDC.AXI_MPU.NO_CDC
+  module_ref: LLD.MOD.AXI_MPU.TOP
+  source_domain: CLK_SYS
+  destination_domain: CLK_SYS
+  architecture_strategy: 单时钟域，无同步器需求；APB4 与 AXI datapath 同域
+  req_ref:
+  - LRS.RESET.AXI_MPU.CLOCK.001
+interrupts:
+- id: LLD.IRQ.AXI_MPU.VIOLATION
+  module_ref: LLD.MOD.AXI_MPU.VIOLATION
+  source: violation_event
+  irq_model: status_sticky + enable + w1c_clear
+  trigger: IRQ_ENABLE.VIOL_EN & violation_event
+  clear: 软件写 IRQ_CLEAR（W1C）
+  priority: 单一中断源
+  req_ref:
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  - LRS.INTF.AXI_MPU.IRQ.001
+errors:
+- id: LLD.ERROR.AXI_MPU.DECERR
+  module_ref: LLD.MOD.AXI_MPU.ERR_RESP
+  detection: permission_deny
+  response: 'Read: 返回 (AWLEN+1) beat，每 beat RRESP=DECERR, RDATA=0, RLAST 正确；
+
+    Write: consume W beats（WVALID && WREADY 直到 WLAST），返回 BRESP=DECERR。
+
+    '
+  escalation: violation 记录 + IRQ（可配）
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+safety: []
+ppa:
+- id: LLD.PPA.AXI_MPU.PERM_STRUCT
+  cost: 并行比较器面积随 REGION_NUM 线性增长；pipeline 增 1 拍延迟换时序。
+  req_ref:
+  - LRS.GEN.AXI_MPU.STRUCTURE.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+- id: LLD.PPA.AXI_MPU.REGS
+  decision: 由 PeakRDL 生成 CSR RTL，避免手写寄存器译码；APB 数据宽 32
+  cost: 生成 CSR 面积固定；Region 配置寄存器随 REGION_NUM 增长
+  req_ref:
+  - LRS.REG.AXI_MPU.REGION.001
+gen: []
+derived: []
+decisions: []
+verify_hooks: []
+rtl_map:
+- id: RTL.MAP.AXI_MPU.TOP
+  rtl_module: rtl/axi_mpu.sv
+  implements:
+  - LLD.MOD.AXI_MPU.TOP
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: 顶层参数化 + 实例化 read/write/permission/violation/regs/master_attr。
+- id: RTL.MAP.AXI_MPU.READ
+  rtl_module: rtl/axi_mpu_read.sv
+  implements:
+  - LLD.MOD.AXI_MPU.READ
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: Read path：AR 捕获/转发/DECERR/outstanding。
+- id: RTL.MAP.AXI_MPU.WRITE
+  rtl_module: rtl/axi_mpu_write.sv
+  implements:
+  - LLD.MOD.AXI_MPU.WRITE
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: Write path：AW/W/Write Decision Queue/DECERR。
+- id: RTL.MAP.AXI_MPU.PERM
+  rtl_module: rtl/axi_mpu_permission.sv
+  implements:
+  - LLD.MOD.AXI_MPU.PERM
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: Burst Analyzer + Region Matcher + Priority Select + Permission Checker。
+- id: RTL.MAP.AXI_MPU.VIOLATION
+  rtl_module: rtl/axi_mpu_violation.sv
+  implements:
+  - LLD.MOD.AXI_MPU.VIOLATION
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: violation 捕获/计数/IRQ。
+- id: RTL.MAP.AXI_MPU.REGS
+  rtl_module: rtl/generated/axi_mpu_csr.sv
+  implements:
+  - LLD.MOD.AXI_MPU.REGS
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: PeakRDL 生成 CSR + 特殊 HW 行为（Lock/violation）。
+- id: RTL.MAP.AXI_MPU.MASTER_ATTR
+  rtl_module: rtl/axi_mpu_master_attr.sv
+  implements:
+  - LLD.MOD.AXI_MPU.MASTER_ATTR
+  language: systemverilog
+  profile: commercial-systemverilog
+  synthesizable: true
+  notes: Master SECURE/NONSECURE_CAPABLE 存储。
+gates:
+- gate: G2
+  status: open
+  architecture_freeze: false
+  register_freeze: false
+  notes: LLD 编写完成，待 micro_design.yaml 抽取、SystemRDL 生成与 register_check 证据后置为 pass。

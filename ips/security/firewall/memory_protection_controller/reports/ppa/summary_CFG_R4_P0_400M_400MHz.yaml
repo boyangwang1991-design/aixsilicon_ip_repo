@@ -1,0 +1,41 @@
+schema_version: '2.0'
+schema: ip-ppa-summary/1.0
+run_id: CFG_R4_P0_400M_400MHz_8a79a8bd
+manifest:
+  path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R4_P0_400M_400MHz_8a79a8bd/manifest.yaml
+  sha256: 2f872f8ddac7471047c0a11092c294c373d53c73346fd57ef9644e307154da6d
+config_id: CFG_R4_P0_400M
+clock_freq_mhz: 400.0
+params:
+  REGION_NUM: '4'
+  PIPELINE: '0'
+area_um2: 19826.936699
+slack_ns: -1.16
+critical_delay_ns: 3.66
+data_arrival_ns: 3.64
+fmax_mhz: 273.22404371584696
+dyn_power_uW: 5939.0
+leak_power_nW: 3680.0
+activity: default_probability_estimate
+timing_constrained: true
+evidence_level: E2
+comparison_context:
+  pdk_sha256: null
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+  evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+  compile_options: compile -map_effort medium
+  activity: default_probability_estimate
+raw_reports:
+  area:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R4_P0_400M_400MHz_8a79a8bd/area.rpt
+    sha256: 441f1ce12ed82fedc324760fd293a42e566bb765b3be7dae11567c65caaf85e0
+  timing:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R4_P0_400M_400MHz_8a79a8bd/timing.rpt
+    sha256: 988d74d1fb458f02844dfb643fc1fd544d9fe1b595293898dcfbf09e3e686933
+  power:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R4_P0_400M_400MHz_8a79a8bd/power.rpt
+    sha256: ff8ea529208a6c152ec22c26ec5e5b38b0939bd0678ec2e17d012bc926ad0831

@@ -1,0 +1,39 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+domains:
+- id: HLD.DOMAIN.AXI_MPU.CLK_SYS
+  type: clk
+  name: CLK_SYS
+  source: 外部输入 CLK
+  modules:
+  - HLD.MOD.L1.AXI_MPU.TOP
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - HLD.MOD.L1.AXI_MPU.VIOLATION
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  req_ref:
+  - LRS.RESET.AXI_MPU.CLOCK.001
+- id: HLD.DOMAIN.AXI_MPU.RST_SYS_N
+  type: rst
+  name: RST_SYS_N
+  source: 外部输入 RST_N（异步低有效）
+  modules:
+  - HLD.MOD.L1.AXI_MPU.TOP
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - HLD.MOD.L1.AXI_MPU.VIOLATION
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  req_ref:
+  - LRS.RESET.AXI_MPU.RESET.001
+- id: HLD.DOMAIN.AXI_MPU.PD_ALWAYS_ON
+  type: pwr
+  name: PD_ALWAYS_ON
+  source: SoC 常开电源
+  modules:
+  - HLD.MOD.L1.AXI_MPU.TOP
+  req_ref:
+  - LRS.LP.AXI_MPU.LOW_POWER.001

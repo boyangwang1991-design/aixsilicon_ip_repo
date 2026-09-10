@@ -1,0 +1,331 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+delivery_model: generator
+lrs_baseline: LRS-AXI_MPU-V100
+document_version: 1.0.0
+status: draft
+architecture_baseline: HLD-AXI_MPU-V100
+modules:
+- id: HLD.MOD.L1.AXI_MPU.TOP
+  name: axi_mpu
+  level: 1
+  responsibility: 顶层集成：连接 Read/Write Frontend、Permission Engine、Violation Logger、Register File 与 Master Attr；承载 Generator
+    参数化；单时钟域集成
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.EXT.AXI_MPU.S_AXI
+  - HLD.IF.EXT.AXI_MPU.M_AXI
+  - HLD.IF.EXT.AXI_MPU.APB4
+  - HLD.IF.EXT.AXI_MPU.IRQ
+  req_ref:
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  - LRS.INTF.AXI_MPU.AXI_MASTER.001
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  - LRS.CFG.AXI_MPU.ADDR_WIDTH.001
+  - LRS.CFG.AXI_MPU.DATA_WIDTH.001
+  - LRS.CFG.AXI_MPU.ID_WIDTH.001
+  - LRS.CFG.AXI_MPU.MASTER_NUM.001
+  - LRS.CFG.AXI_MPU.REGION_NUM.001
+  - LRS.CFG.AXI_MPU.OUTSTANDING.001
+  - LRS.CFG.AXI_MPU.FEATURE.001
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+  - LRS.RESET.AXI_MPU.CLOCK.001
+  - LRS.RESET.AXI_MPU.RESET.001
+  - LRS.PERF.AXI_MPU.OUTSTANDING.001
+  - LRS.GEN.AXI_MPU.INPUT.001
+  - LRS.GEN.AXI_MPU.OUTPUT.001
+  - LRS.GEN.AXI_MPU.DETERMINISM.001
+  - LRS.CONS.AXI_MPU.DEPLOY.001
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  name: axi_mpu_read
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: AR 通道捕获、Request Context 构建、合法转发、非法本地 DECERR responder、Read outstanding 跟踪
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.EXT.AXI_MPU.S_AXI
+  - HLD.IF.EXT.AXI_MPU.M_AXI
+  - HLD.IF.INT.AXI_MPU.REQ_CTX
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  - LRS.FUNC.AXI_MPU.READ.001
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.FUNC.AXI_MPU.ORDERING.001
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  name: axi_mpu_write
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: AW/W 通道捕获、Request Context 构建、Write Decision Queue 维护、合法转发、非法 W consume + 本地 B DECERR
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.EXT.AXI_MPU.S_AXI
+  - HLD.IF.EXT.AXI_MPU.M_AXI
+  - HLD.IF.INT.AXI_MPU.REQ_CTX
+  - HLD.IF.INT.AXI_MPU.WQ
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  - LRS.FUNC.AXI_MPU.WRITE.001
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.FUNC.AXI_MPU.ORDERING.001
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  name: axi_mpu_permission
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: Burst Analyzer + Region Matcher + Priority Select + Permission Checker 组合，产生 ALLOW/DENY 与 deny_reason；可配置
+    0/1-stage pipeline
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.INT.AXI_MPU.REQ_CTX
+  - HLD.IF.INT.AXI_MPU.PERM
+  - HLD.IF.INT.AXI_MPU.REGION_TABLE
+  - HLD.IF.INT.AXI_MPU.MASTER_ATTR_IF
+  req_ref:
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.001
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  - LRS.FUNC.AXI_MPU.REGION.001
+  - LRS.FUNC.AXI_MPU.REGION.002
+  - LRS.FUNC.AXI_MPU.REGION.003
+  - LRS.FUNC.AXI_MPU.REGION.004
+  - LRS.FUNC.AXI_MPU.BURST.001
+  - LRS.FUNC.AXI_MPU.BURST.002
+  - LRS.FUNC.AXI_MPU.PERM_MASTER.001
+  - LRS.FUNC.AXI_MPU.PERM_SECURITY.001
+  - LRS.FUNC.AXI_MPU.PERM_PRIVILEGE.001
+  - LRS.FUNC.AXI_MPU.PERM_OP.001
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.002
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  - LRS.FUNC.AXI_MPU.MASTER_ID.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.002
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+  - LRS.CFG.AXI_MPU.BURST.001
+  - LRS.GEN.AXI_MPU.STRUCTURE.001
+  - LRS.SEC.AXI_MPU.ATTACK.001
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.L1.AXI_MPU.VIOLATION
+  name: axi_mpu_violation
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: violation 捕获（FIRST_ERROR_STICKY）、violation counter、IRQ 生成
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.INT.AXI_MPU.PERM
+  - HLD.IF.EXT.AXI_MPU.IRQ
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.001
+  - LRS.FUNC.AXI_MPU.VIOLATION.002
+  - LRS.FUNC.AXI_MPU.VIOLATION.003
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  - LRS.INTF.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.VIOLATION.001
+  - LRS.REG.AXI_MPU.IRQ.001
+  - LRS.DFX.AXI_MPU.OBSERVABILITY.001
+  applicability:
+    expr: has_violation_log == true
+- id: HLD.MOD.L1.AXI_MPU.REG_FILE
+  name: axi_mpu_regs
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: APB4 从接口、全局/IRQ/violation/Region/Master Attr 寄存器、Region/Global Lock 保护、配置访问路径
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.EXT.AXI_MPU.APB4
+  - HLD.IF.INT.AXI_MPU.REGION_TABLE
+  - HLD.IF.INT.AXI_MPU.MASTER_ATTR_IF
+  req_ref:
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  - LRS.REG.AXI_MPU.GLOBAL.001
+  - LRS.REG.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.VIOLATION.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  - LRS.REG.AXI_MPU.REGION.001
+  - LRS.FUNC.AXI_MPU.REGION_LOCK.001
+  - LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+  - LRS.FUNC.AXI_MPU.RESET.001
+  - LRS.SEC.AXI_MPU.CONFIG_SEC.001
+  - LRS.CONS.AXI_MPU.CONFIG_BUS.001
+  applicability:
+    expr: 'true'
+- id: HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  name: axi_mpu_master_attr
+  level: 1
+  parent_id: HLD.MOD.L1.AXI_MPU.TOP
+  responsibility: 维护每个 Master 的 SECURE_CAPABLE/NONSECURE_CAPABLE 属性，供 Permission Engine 的 master_security_valid 检查
+  clock_domains:
+  - CLK_SYS
+  reset_domains:
+  - RST_SYS_N
+  power_domain: PD_ALWAYS_ON
+  interfaces:
+  - HLD.IF.INT.AXI_MPU.MASTER_ATTR_IF
+  req_ref:
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  applicability:
+    expr: has_master_attr == true
+derived: []
+config: []
+flows:
+- id: HLD.FLOW.AXI_MPU.READ
+  name: read_path
+  description: Read 事务流：AR 捕获 → Request Context → Permission Engine → ALLOW/DENY → 转发或本地 DECERR
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.001
+  - LRS.FUNC.AXI_MPU.READ.002
+- id: HLD.FLOW.AXI_MPU.WRITE
+  name: write_path
+  description: Write 事务流：AW 捕获 → Request Context → Permission Engine → WQ 记录决策 → ALLOW 转发 AW/W 或 DENY consume W + 本地 B DECERR
+  req_ref:
+  - LRS.FUNC.AXI_MPU.WRITE.001
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+policies:
+- id: HLD.POLICY.AXI_MPU.PERM
+  type: permission
+  policy: "selected_region = priority_encode(region_match)  // Lowest Index Wins\nif no region match: DENY\nelse: ALLOW =\
+    \ master_allowed && master_security_valid && security_allowed\n             && privilege_allowed && operation_allowed\n"
+  req_ref:
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.001
+- id: HLD.POLICY.AXI_MPU.BURST
+  type: burst
+  policy: 'burst 有效地址范围 [burst_start, burst_end] 必须完全位于 selected Region 内；
+
+    跨边界 → DENY WHOLE TRANSACTION，不允许部分 beat 进入下游。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.BURST.001
+  - LRS.FUNC.AXI_MPU.BURST.002
+- id: HLD.POLICY.AXI_MPU.VIOLATION
+  type: violation
+  policy: 'FIRST_ERROR_STICKY：首错捕获后 VIOL_VALID=1，后续错误不覆盖首错，
+
+    软件显式清除后重新捕获；VIOL_COUNT 每次 violation 递增且饱和。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.002
+  - LRS.FUNC.AXI_MPU.VIOLATION.003
+- id: HLD.POLICY.AXI_MPU.LOCK
+  type: lock
+  policy: 'REGION_LOCK 置位后对应 Region BASE/LIMIT/ATTR/MASTER_MASK 冻结；
+
+    GLOBAL_LOCK 置位后所有保护配置冻结；锁仅 reset 清除；
+
+    violation status / IRQ clear 等运行态寄存器在 GLOBAL_LOCK 下仍可访问。
+
+    '
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION_LOCK.001
+  - LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+perf:
+- id: HLD.PERF.AXI_MPU.THROUGHPUT
+  metric: address_transactions_per_cycle
+  target: 1
+  allocated_to:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  req_ref:
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+- id: HLD.PERF.AXI_MPU.LATENCY
+  metric: permission_pipeline_stages
+  target: 0-1
+  allocated_to:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  req_ref:
+  - LRS.PERF.AXI_MPU.THROUGHPUT.002
+  - LRS.CFG.AXI_MPU.PIPELINE.001
+safety:
+- id: HLD.SAFETY.AXI_MPU.NO_FUSA
+  name: v1.0_no_fusa_mechanism
+  protects:
+  - 无（V1.0 baseline 不要求 ISO 26262 机制）
+  detection_strategy: 未来 Profile 可增加配置寄存器 parity / Region table parity / lockstep checker / violation escalation / fault injection
+    / safety interrupt
+  req_ref:
+  - LRS.SAFE.AXI_MPU.SAFETY.001
+gen:
+- id: HLD.GEN.AXI_MPU.STRUCTURE
+  config_ref: REGION_NUM
+  req_ref:
+  - LRS.GEN.AXI_MPU.STRUCTURE.001
+  - LRS.CFG.AXI_MPU.REGION_NUM.001
+decisions:
+- id: HLD.DECISION.AXI_MPU.REG_ARCH
+  level: architecture
+  status: accepted
+  options:
+  - 独立权限位字段（SECURE/NONSECURE/PRIV/UNPRIV/R/W/X）
+  - Master×Security 笛卡尔积权限表
+  decision: 独立权限位字段，各维度独立 AND 组合（符合 LRS 独立权限维度原则）
+  rationale: 避免指数级字段膨胀，保持软件模型可读，符合 LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  req_ref:
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  - LRS.REG.AXI_MPU.REGION.001
+verify_hooks: []
+constraints:
+- id: HLD.CONSTRAINT.AXI_MPU.SINGLE_CLK
+  constraint: V1.0 必须为单时钟域设计，AXI datapath 与 APB4 同域，不引入异步 CDC
+  status: active
+  req_ref:
+  - LRS.RESET.AXI_MPU.CLOCK.001
+- id: HLD.CONSTRAINT.AXI_MPU.DEPLOY
+  constraint: 推荐部署于受保护 Slave 侧，也允许 Master 侧；V1.0 不依赖特定部署位置
+  status: active
+  req_ref:
+  - LRS.CONS.AXI_MPU.DEPLOY.001
+- id: HLD.CONSTRAINT.AXI_MPU.PROFILE
+  constraint: FULL AXI4 Profile 默认支持 WRAP burst；裁剪 WRAP 时 INCR/FIXED 必须支持
+  status: active
+  req_ref:
+  - LRS.CONS.AXI_MPU.PROFILE.001
+  - LRS.CFG.AXI_MPU.BURST.001
+gates:
+- gate: G1
+  status: open
+  architecture_freeze: false
+  approvals:
+  - role: architecture
+    status: pending
+  - role: rtl
+    status: pending
+  - role: dv
+    status: pending
+  notes: HLD 编写完成，待 extract_hld.py 抽取与需求覆盖校验通过后置为 pass。

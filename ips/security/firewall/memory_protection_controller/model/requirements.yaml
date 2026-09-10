@@ -1,0 +1,1441 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+delivery_model: generator
+register_model: required
+ppa_signoff: required
+document_version: 1.0.0
+status: draft
+requirement_baseline: LRS-AXI_MPU-V100
+requirements:
+- id: LRS.CFG.AXI_MPU.ADDR_WIDTH.001
+  category: CFG
+  feature: ADDR_WIDTH
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.DATA_WIDTH.001
+  category: CFG
+  feature: DATA_WIDTH
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.ID_WIDTH.001
+  category: CFG
+  feature: ID_WIDTH
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.MASTER_NUM.001
+  category: CFG
+  feature: MASTER_NUM
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.MASTER_ID_WIDTH.001
+  category: CFG
+  feature: MASTER_ID_WIDTH
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.REGION_NUM.001
+  category: CFG
+  feature: REGION_NUM
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.OUTSTANDING.001
+  category: CFG
+  feature: OUTSTANDING
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.FEATURE.001
+  category: CFG
+  feature: HAS_
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.PIPELINE.001
+  category: CFG
+  feature: PIPELINE
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.AXI_MPU.BURST.001
+  category: CFG
+  feature: WRAP_SUPPORT
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: Generator 应支持可配置的 AXI 地址位宽 `ADDR_WIDTH`，合法范围 32–64，默认 48。
+  acceptance_criteria:
+  - 生成器接受 `ADDR_WIDTH ∈ [32,64]` 并产生对应位宽的比较逻辑；
+  - 地址位宽影响 `REGION_BASE`/`REGION_LIMIT` 与 `VIOL_ADDR` 寄存器位宽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  category: INTF
+  feature: axi_slave_interface
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供符合 AXI4 Full 协议规范的从接口 `S_AXI`，支持独立的 AR/R 与 AW/W/B 通道以及完整的 AXI burst（INCR/FIXED/WRAP）。配置接口 `APB4` 与受保护的
+    AXI datapath 必须独立。
+  acceptance_criteria:
+  - AXI4 协议断言检查通过；
+  - '`S_AXI` 支持合法 burst 的地址握手与数据握手。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.AXI_MPU.AXI_SLAVE.002
+  category: INTF
+  feature: axi_slave_interface
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: '`S_AXI` 与 `M_AXI` 接口位宽应匹配 Generator 参数：`ADDR_WIDTH`、`DATA_WIDTH`、 `ID_WIDTH`。'
+  acceptance_criteria:
+  - 生成 RTL 的端口位宽与 Generator 参数一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.AXI_MPU.AXI_MASTER.001
+  category: INTF
+  feature: axi_master_interface
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供符合 AXI4 Full 协议规范的 `M_AXI` 主接口。合法访问的 AR/AW/W 信号应 转发至 `M_AXI`，来自下游的 R/B 响应应返回至 `S_AXI`。
+  acceptance_criteria:
+  - 合法事务在 `M_AXI` 上完整出现且 `S_AXI` 收到正确响应；
+  - 非法事务不出现在 `M_AXI`（断言：Denied AR/AW shall never reach M_AXI）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.AXI_MPU.APB_CFG.001
+  category: INTF
+  feature: apb_config_interface
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供符合 APB4 协议规范的配置从接口，支持对 Region 配置、Master Attribute、 全局控制/状态、Violation 状态与中断寄存器的读写访问。APB 数据宽度应为 32 位。
+  acceptance_criteria:
+  - APB4 协议断言检查通过；
+  - 配置寄存器可经 APB4 正确读写（受 Lock 保护的寄存器除外）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.AXI_MPU.IRQ.001
+  category: INTF
+  feature: irq_interface
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_irq == true
+  verify_method:
+  - simulation
+  - assertion
+  description: 当 `HAS_IRQ=1` 时，IP 应提供电平型中断输出 `IRQ`。当 violation interrupt enable 置位且发生 protection violation 时置位，采用 sticky 中断并由软件
+    W1C 清除。
+  acceptance_criteria:
+  - 使能后 violation 触发 `IRQ=1`；
+  - 软件 W1C 清除后 `IRQ` 回到 0（无新 violation 时）。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.DEFAULT_DENY.001
+  category: FUNC
+  feature: default_deny
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: IP 应采用 `Default Deny + Explicit Allow` 策略：未匹配任何有效 Region 的访问 默认拒绝，不得允许。Reset 后所有可编程 Region 默认 disabled。
+  acceptance_criteria:
+  - 无 Region 命中时访问被拒绝；
+  - Reset 后任意访问（含合法 Region 范围内）均被拒绝，直到软件配置 Region；
+  - 断言：`No unmatched access may be allowed under DEFAULT_DENY`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  category: FUNC
+  feature: default_deny
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - formal
+  description: 权限判断应独立建模以下维度：Address、Master Identity、Security State、 Privilege State、Operation Type。最终权限 `ALLOW = region_match
+    && master_allowed && master_security_valid && security_allowed && privilege_allowed && operation_allowed`。不得将 Master 与
+    Security State 直接编码为组合权限矩阵。
+  acceptance_criteria:
+  - 五个独立维度均可独立导致拒绝；
+  - 任一维度为假时 `ALLOW=0`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  category: FUNC
+  feature: request_context
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每个 AXI transaction 应被转换成统一内部 Request Context，至少包含 address、 read_write、axi_id、master_id、secure、privileged、instruction、burst_type、
+    burst_len、burst_size、burst_start、burst_end。Read 使用 AR 通道信号，Write 使用 AW 通道信号。
+  acceptance_criteria:
+  - Read 与 Write 均能正确构建 Request Context；
+  - burst_start/burst_end 正确反映完整 burst 地址范围。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.MASTER_ID.001
+  category: FUNC
+  feature: master_identity
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: AXI `AxID` 默认不得作为 Master Identity。IP 应提供独立 Master Context （`MASTER_ID`）或通过系统定义的 AXI USER sideband 传递。Master
+    ID 位宽由 `MASTER_ID_WIDTH` 决定。
+  acceptance_criteria:
+  - 权限判定使用 `request.master_id` 而非 `AxID`；
+  - 配置可通过 AXI USER sideband 或独立输入指定 Master ID。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  category: FUNC
+  feature: master_security_attr
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_master_attr == true
+  verify_method:
+  - simulation
+  - formal
+  description: IP 应为每个 Master 维护 `SECURE_CAPABLE` 与 `NONSECURE_CAPABLE` 属性。若 `request.secure == 1` 而 `MASTER_ATTR[master_id].SECURE_CAPABLE
+    == 0`，访问必须 拒绝。Master Security Attribution 与 Region Security Permission 是两个独立检查 阶段。
+  acceptance_criteria:
+  - Secure 请求被非 Secure-capable Master 发出时拒绝；
+  - Non-secure 请求被非 Non-secure-capable Master 发出时拒绝；
+  - 两阶段检查独立可验证。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REGION.001
+  category: FUNC
+  feature: region_model
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 每个 Protection Region 应至少包含：`REGION_ENABLE`、`REGION_BASE`、 `REGION_LIMIT`、`MASTER_MASK`、`SECURE_ALLOW`、`NONSECURE_ALLOW`、
+    `PRIVILEGED_ALLOW`、`UNPRIVILEGED_ALLOW`、`READ_ALLOW`、`WRITE_ALLOW`、 `EXECUTE_ALLOW`、`REGION_LOCK`。
+  acceptance_criteria:
+  - 每个 Region 可通过 APB4 完整配置上述字段；
+  - 字段间相互独立。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REGION.002
+  category: FUNC
+  feature: region_model
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: Region 地址模型应采用 `BASE + LIMIT` 模式，Region match 条件为 `REGION_BASE <= ADDRESS <= REGION_LIMIT`。Region 必须满足 `BASE
+    <= LIMIT`； 非法 Region 配置（`BASE > LIMIT`）不得导致未定义硬件行为，应视为 Region disabled。
+  acceptance_criteria:
+  - 地址在 `[BASE, LIMIT]` 内命中；
+  - '`BASE > LIMIT` 时 Region 视为 disabled（不命中）。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REGION.003
+  category: FUNC
+  feature: region_match
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 Region `i`，`region_match[i] = REGION_ENABLE[i] && address >= REGION_BASE[i] && address <= REGION_LIMIT[i]`。所有
+    Region 的匹配应可并行计算。
+  acceptance_criteria:
+  - 使能与地址范围均为真时命中；
+  - 边界地址（`BASE`/`LIMIT` 本身）命中。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REGION.004
+  category: FUNC
+  feature: region_priority
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 允许 Region overlap。Region 优先级固定为 `Lowest Region Index Wins`：若一个 transaction 同时命中多个 Region，`selected_region =
+    最小索引命中 Region`。该规则 必须确定且不可依赖综合实现。
+  acceptance_criteria:
+  - overlap 时命中最小索引 Region；
+  - 任意综合/实现下优先级结果一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.BURST.001
+  category: FUNC
+  feature: burst_protection
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: Burst transaction 必须同时满足完整 burst 地址范围位于 Region 内，即 `burst_start >= REGION_BASE && burst_end <= REGION_LIMIT`。不得只判断
+    `ARADDR/AWADDR` 首地址。
+  acceptance_criteria:
+  - 首地址在 Region 内但 burst 跨越边界的访问被拒绝；
+  - 完整 burst 在 Region 内的访问允许。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.BURST.002
+  category: FUNC
+  feature: burst_protection
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 若 burst 跨越 Region 边界，默认应 `DENY WHOLE TRANSACTION`。不得允许 "部分 beat 合法、部分 beat 非法"的 transaction 进入下游。IP 应支持 INCR、FIXED、
+    WRAP 三种 burst 的地址范围计算。
+  acceptance_criteria:
+  - 跨边界 burst 整体拒绝（无 beat 进入下游）；
+  - INCR/FIXED/WRAP 均正确计算地址范围并检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_MASTER.001
+  category: FUNC
+  feature: master_permission
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 每个 Region 应包含 `MASTER_MASK[MASTER_NUM-1:0]`。 `master_allowed = MASTER_MASK[request.master_id]`。非法 Master ID
+    （`master_id >= MASTER_NUM`）必须被拒绝。
+  acceptance_criteria:
+  - '`MASTER_MASK` 对应位为 1 时允许；'
+  - 非法 Master ID 拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_SECURITY.001
+  category: FUNC
+  feature: security_permission
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: Region 应独立支持 `SECURE_ALLOW` 与 `NONSECURE_ALLOW`，可表达 Secure-only、 Non-secure-only、Both、Neither 四种策略。Region Security
+    Permission 不负责判断 Master 是否具有声明该 Security State 的资格（该判断由 Master Security Attribution 完成）。
+  acceptance_criteria:
+  - Secure 请求命中 `SECURE_ALLOW=0` Region 时拒绝；
+  - Non-secure 请求命中 `NONSECURE_ALLOW=0` Region 时拒绝；
+  - 四种策略组合均正确。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_PRIVILEGE.001
+  category: FUNC
+  feature: privilege_permission
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 使用 `AxPROT[0]` 判定 Privilege。Region 应独立提供 `PRIVILEGED_ALLOW` 与 `UNPRIVILEGED_ALLOW`，可表达 Privileged-only、Unprivileged-only、Both、None。
+  acceptance_criteria:
+  - Privileged 请求命中 `PRIVILEGED_ALLOW=0` Region 时拒绝；
+  - Unprivileged 请求命中 `UNPRIVILEGED_ALLOW=0` Region 时拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_OP.001
+  category: FUNC
+  feature: operation_permission
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: Region 应提供 `READ_ALLOW`、`WRITE_ALLOW`、`EXECUTE_ALLOW`。Read transaction 应 要求 `READ_ALLOW`；Write transaction
+    应要求 `WRITE_ALLOW`；Instruction access 应要求 `READ_ALLOW && EXECUTE_ALLOW`。Execute 权限属于 system-level secondary protection，不替代
+    CPU MMU/MPU 的 architectural execute permission。
+  acceptance_criteria:
+  - Write 访问只读 Region 时拒绝；
+  - Instruction 访问 NX（`EXECUTE_ALLOW=0`）Region 时拒绝；
+  - Data read 不要求 `EXECUTE_ALLOW`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  category: FUNC
+  feature: permission_decision
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 完整权限判定应为：`selected_region = priority_encode(region_match)`；若 `no region match` 则 `DENY`；否则 `ALLOW = master_allowed
+    && master_security_valid && security_allowed && privilege_allowed && operation_allowed`。
+  acceptance_criteria:
+  - 判定逻辑与需求公式一致；
+  - 每种拒绝条件有明确原因。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.PERM_DECISION.002
+  category: FUNC
+  feature: permission_decision
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: IP 应产生内部 `deny_reason`，至少包括：`NO_REGION`、`MASTER_DENY`、 `MASTER_SECURITY_DENY`、`SECURITY_DENY`、`PRIVILEGE_DENY`、`READ_DENY`、
+    `WRITE_DENY`、`EXECUTE_DENY`、`BURST_BOUNDARY_DENY`、`INVALID_CONTEXT`。
+  acceptance_criteria:
+  - 每种拒绝场景产生对应的 `deny_reason` 编码。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.READ.001
+  category: FUNC
+  feature: read_handling
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 合法 Read：AR 通过 Protection Check 后应转发至下游，下游 R 响应返回上游。
+  acceptance_criteria:
+  - 合法 AR 出现在 `M_AXI_AR`；
+  - 下游 R 数据/响应完整返回。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.READ.002
+  category: FUNC
+  feature: read_handling
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 非法 Read：不得发送 AR 至下游。IP 应在本地完成上游 transaction，返回 `RRESP=DECERR`。非法 burst read 应按 AXI transaction 语义返回对应 beat
+    数量， 并正确产生 `RID/RVALID/RRESP/RLAST`；所有非法 read beat 的 `RRESP=DECERR`， `RDATA` 固定为 0。
+  acceptance_criteria:
+  - 非法 AR 不出现在 `M_AXI_AR`；
+  - 非法 burst read 返回全部 beat 且每 beat `RRESP=DECERR`、`RDATA=0`；
+  - '`RLAST` 与 `RVALID` 时序正确。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.WRITE.001
+  category: FUNC
+  feature: write_handling
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 合法 Write：AW 通过 Protection Check 后应转发至下游，W beats 转发下游， 下游 B 响应返回上游。Write path 必须考虑 AXI AW/W channel 解耦。
+  acceptance_criteria:
+  - 合法 AW/W 出现在 `M_AXI`；
+  - 下游 B 响应完整返回。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.WRITE.002
+  category: FUNC
+  feature: write_handling
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 非法 Write：不得发送 AW 至下游，应消费对应 W beats、丢弃 `WDATA`，并在本地生成 `BRESP=DECERR`。必须确保非法 Write 不造成 W channel deadlock、后续
+    transaction 串扰、AW/W ownership 丢失或下游部分写入。
+  acceptance_criteria:
+  - 非法 AW 不出现在 `M_AXI_AW`；
+  - 非法 Write 返回 `BRESP=DECERR`；
+  - 断言：`Denied W data shall never modify downstream state`；
+  - 非法 Write 后后续事务正常完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  category: FUNC
+  feature: write_queue
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 为正确支持 multiple outstanding write，IP 应维护 Write Decision Queue。每个 Entry 至少记录 `AWID`、`AWLEN`、`ALLOW/DENY`、`selected_region`；可按体系需要记录
+    `deny_reason`、`master_id`、`security_state`。队列必须保证 AW transaction 与后续 W beats 正确关联。
+  acceptance_criteria:
+  - 多 outstanding write 下 AW 决策与 W beats 正确配对；
+  - 队列满时背压且不破坏 AXI 握手语义。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  category: FUNC
+  feature: multiple_outstanding
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: V1.0 应支持多个 outstanding transaction。MPU 不得因为 permission check 强制 AXI 降级为单 outstanding。Read/Write outstanding
+    深度由 `READ_OUTSTANDING` / `WRITE_OUTSTANDING` 决定。
+  acceptance_criteria:
+  - 在许可范围内可同时存在多个 outstanding read/write；
+  - 队列深度未满时背压不生效。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.ORDERING.001
+  category: FUNC
+  feature: ordering
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 必须遵守 AXI ordering requirement。对于合法 transaction，不得改变原有 AXI ordering semantics；对于非法 transaction，本地 response
+    仍必须满足对应 ID 的 ordering requirement。
+  acceptance_criteria:
+  - 合法事务保持原有 ordering；
+  - 非法事务本地响应满足 ordering（不提前/不重排破坏）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.ERR_RESP.001
+  category: FUNC
+  feature: error_response
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: Protection violation 默认响应应为 `DECERR`（`RRESP=DECERR` / `BRESP=DECERR`）。 不得因为权限拒绝而永久拉低 READY，也不得造成 bus hang。
+  acceptance_criteria:
+  - violation 时本地返回 `DECERR`；
+  - 拒绝后握手可继续（无永久 READY 拉低）；
+  - 断言：`Every accepted denied transaction shall eventually receive local error
+  - response`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.VIOLATION.001
+  category: FUNC
+  feature: violation_logging
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: IP 应支持 violation capture，至少包含：`VIOL_VALID`、`VIOL_ADDR`、 `VIOL_MASTER_ID`、`VIOL_AXID`、`VIOL_READ`、`VIOL_WRITE`、`VIOL_INSTRUCTION`、
+    `VIOL_SECURE`、`VIOL_PRIVILEGED`、`VIOL_REGION_ID`、`VIOL_REASON`。可选 `VIOL_COUNT`。
+  acceptance_criteria:
+  - 每次 violation 正确记录上述字段；
+  - 字段可经 APB4 读取。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.VIOLATION.002
+  category: FUNC
+  feature: violation_logging
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: V1.0 默认应采用 `FIRST_ERROR_STICKY`：发生第一次错误后 `VIOL_VALID=1`，后续错误 不得覆盖首个错误信息，直到软件显式清除。Generator 可选支持 `LAST_ERROR`，但不作为
+    V1.0 必需配置。
+  acceptance_criteria:
+  - 首个错误信息被 sticky 捕获；
+  - 后续错误不覆盖首个错误；
+  - 软件清除后可捕获新错误。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.VIOLATION.003
+  category: FUNC
+  feature: violation_counter
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: IP 应支持 `VIOL_COUNT` 计数器：每次 protection violation 计数加一，支持 saturation （`MAX -> MAX`）而不是 wrap-around。
+  acceptance_criteria:
+  - violation 触发计数递增；
+  - 达到最大值后保持（饱和）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.IRQ.001
+  category: FUNC
+  feature: violation_irq
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_irq == true
+  verify_method:
+  - simulation
+  - assertion
+  description: 当 `violation interrupt enable && protection violation` 时 IRQ 应置位。建议采用 sticky interrupt，由软件 W1C 清除。
+  acceptance_criteria:
+  - 使能后 violation 触发 IRQ；
+  - W1C 清除后 IRQ 释放（无新 violation）；
+  - 未使能时 IRQ 不触发。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.REGION_LOCK.001
+  category: FUNC
+  feature: region_lock
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每个 Region 应支持 `REGION_LOCK`。置位后对应 Region 的 `BASE/LIMIT/ATTR/ MASTER_MASK` 均不得再修改。推荐语义：`write 0 -> no effect`，`write
+    1 -> lock`。 Lock 仅通过 reset 清除。
+  acceptance_criteria:
+  - Lock 置位后 Region 配置写操作被忽略；
+  - Lock 仅 reset 清除；
+  - 断言：`Locked region configuration shall remain stable until reset`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+  category: FUNC
+  feature: global_lock
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供 `GLOBAL_LOCK`。置位后所有 protection configuration frozen（Region Configuration、Master Attribution、Global Protection
+    Policy）。Violation status / interrupt clear 等运行态寄存器仍允许软件访问。`GLOBAL_LOCK` 语义为 `0 -> 1` allowed，`1 -> 0` prohibited，仅 reset
+    清除。
+  acceptance_criteria:
+  - Global Lock 置位后保护配置写被忽略；
+  - 运行态（violation status/IRQ clear）仍可访问；
+  - 断言：`GLOBAL_LOCK cannot transition 1 -> 0 except reset`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.RESET.001
+  category: FUNC
+  feature: reset_behavior
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: Reset 后必须：所有 Region disabled、default policy = DENY、locks cleared、 violation status cleared、interrupt cleared。Reset
+    后 AXI protected datapath 默认 deny all protected access，直到 trusted software 完成 MPU 初始化。
+  acceptance_criteria:
+  - Reset 后所有 Region disabled；
+  - Reset 后 locks 清除、violation 状态清除；
+  - Reset 后默认拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.AXI_MPU.BOOT_BYPASS.001
+  category: FUNC
+  feature: boot_bypass
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: boot_bypass == true
+  verify_method:
+  - review
+  description: Generator 可提供 `BOOT_BYPASS`，但 `BOOT_BYPASS=false` 应为默认配置。若启用， 必须有明确、不可由 non-secure software 控制的退出机制。V1.0 不推荐默认启用。
+  acceptance_criteria:
+  - 默认 `BOOT_BYPASS=false`；
+  - 启用时有非 non-secure 可控制的退出机制。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.AXI_MPU.GLOBAL.001
+  category: REG
+  feature: global_regs
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应提供全局控制寄存器，包含全局保护使能、Global Lock 状态等能力（ `GLOBAL_CTRL`/`GLOBAL_STATUS`/`GLOBAL_LOCK` 语义）。
+  acceptance_criteria:
+  - 全局控制/状态寄存器可正确读写；
+  - Global Lock 置位后保护配置冻结。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.AXI_MPU.IRQ.001
+  category: REG
+  feature: irq_regs
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_irq == true
+  verify_method:
+  - simulation
+  description: IP 应提供中断使能、中断状态与中断清除寄存器（`IRQ_ENABLE`/`IRQ_STATUS`/ `IRQ_CLEAR`）。中断状态应 sticky，由软件 W1C 清除。
+  acceptance_criteria:
+  - 中断使能寄存器可读写；
+  - 中断状态 sticky 且 W1C 清除正确。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.AXI_MPU.VIOLATION.001
+  category: REG
+  feature: violation_regs
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: IP 应提供 Violation 状态寄存器组，至少包含 `VIOL_STATUS`、`VIOL_ADDR_LO/HI`、 `VIOL_INFO0/INFO1`（master_id/axi_id/读写/指令/secure/privileged/region_id/
+    reason）与可选的 `VIOL_COUNT`。
+  acceptance_criteria:
+  - violation 后状态寄存器正确反映首错信息；
+  - W1C/sticky 清除行为正确。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.AXI_MPU.MASTER_ATTR.001
+  category: REG
+  feature: master_attr_regs
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_master_attr == true
+  verify_method:
+  - simulation
+  description: IP 应为每个 Master 提供 `MASTER_ATTR` 寄存器，包含 `SECURE_CAPABLE` 与 `NONSECURE_CAPABLE` 字段。未来版本可扩展 TRUST_LEVEL/DOMAIN/VMID
+    等，V1.0 不 要求实现。
+  acceptance_criteria:
+  - 每个 Master 的 SECURE/NONSECURE_CAPABLE 可配置；
+  - Global Lock 后不可改写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.AXI_MPU.REGION.001
+  category: REG
+  feature: region_regs
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每个 Region 应提供配置寄存器：`REGIONx_BASE_LO/HI`、`REGIONx_LIMIT_LO/HI`、 `REGIONx_MASTER_MASK`、`REGIONx_PERMISSION`、`REGIONx_CONTROL`（含
+    ENABLE 与 LOCK）。字段必须保持独立，不得实现为 Master×Security 笛卡尔积式 permission table。
+  acceptance_criteria:
+  - Region 字段独立可配置；
+  - 独立权限维度（SECURE/NONSECURE/PRIV/UNPRIV/R/W/X）保持独立字段；
+  - Region Lock 置位后配置不可改写。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.AXI_MPU.THROUGHPUT.001
+  category: PERF
+  feature: throughput
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: Allow-path throughput 设计目标应支持 >= 1 address transaction / cycle。Permission check 不应固定引入 bubble；pipeline latency
+    可参数化；Read/Write path 独立。
+  acceptance_criteria:
+  - 连续合法地址请求下吞吐达到 1 request/cycle；
+  - 无固定 permission-check bubble。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.AXI_MPU.THROUGHPUT.002
+  category: PERF
+  feature: throughput
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: pipeline == 1
+  verify_method:
+  - simulation
+  description: '`PIPELINE=1` 时 permission engine 应增加 1 拍延迟但不降低吞吐；`PIPELINE=0` 时 为组合判定。不要求 V1.0 固定 zero-latency。'
+  acceptance_criteria:
+  - 1-stage pipeline 下吞吐保持 1 request/cycle；
+  - 延迟符合配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.AXI_MPU.OUTSTANDING.001
+  category: PERF
+  feature: outstanding_capacity
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: Read/Write outstanding 容量应等于配置值（默认 8），支持背压但不得破坏 AXI 握手 语义。多 outstanding 场景下不得因 permission check 强制降级为单 outstanding。
+  acceptance_criteria:
+  - 队列深度达到配置值时产生背压；
+  - 背压时无协议违约。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.AXI_MPU.CLOCK.001
+  category: RESET
+  feature: clock
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: AXI MPU 应在单一主时钟 `CLK` 下工作。AXI datapath 与 APB4 配置接口默认位于同一 时钟域（V1.0 不引入异步 CDC）。
+  acceptance_criteria:
+  - 所有时序逻辑使用 `CLK`；
+  - 无未声明跨时钟路径。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.AXI_MPU.RESET.001
+  category: RESET
+  feature: reset
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: IP 应支持异步复位（`RST_N` 低有效）。Reset 后所有 Region disabled、默认策略 DENY、Locks 清除、Violation 状态与中断清除。
+  acceptance_criteria:
+  - 异步复位置位时所有寄存器回到复位值；
+  - 复位释放后默认拒绝策略生效；
+  - Reset 期间与之后无非法行为。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.AXI_MPU.LOW_POWER.001
+  category: LP
+  feature: low_power
+  priority: P2
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: V1.0 不要求专用低功耗特性。寄存器访问（APB4 配置接口）应在无访问时保持静止； datapath 信号在无事务时不应翻转。
+  acceptance_criteria:
+  - 无事务时 datapath 无无效翻转；
+  - 无专用电源域/门控要求（可由 SoC 级低功耗统一管理）。
+  - N/A - 本 IP V1.0 不要求独立低功耗机制**（时钟门控与电源管理由 SoC 级统一处理，
+  - 本声明作为人工可审计的覆盖声明）。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.AXI_MPU.SAFETY.001
+  category: SAFE
+  feature: functional_safety
+  priority: P2
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: MPU V1.0 baseline 不要求 ISO 26262 功能安全机制。若用于功能安全场景，可在未来 Profile 增加配置寄存器 parity、Region table parity、lockstep checker、violation
+    escalation、fault injection、safety interrupt。
+  acceptance_criteria:
+  - V1.0 不引入上述机制（作为范围声明）；
+  - 未来 Profile 扩展不破坏 V1.0 软件接口。
+  - N/A - 本 IP V1.0 baseline 不要求功能安全机制**（如用于功能安全场景需走独立
+  - Profile 扩展，本声明作为人工可审计的覆盖声明）。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.AXI_MPU.ATTACK.001
+  category: SEC
+  feature: attack_surface
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: IP 必须重点防范：未授权 Master access、Non-secure→Secure Region、 Unprivileged→Privileged Region、Write→Read-only Region、instruction
+    access→NX Region、Burst crossing protection boundary、forged Secure AxPROT、invalid Master ID、configuration tampering、Region
+    overlap ambiguity、default allow、AXI denied transaction deadlock。
+  acceptance_criteria:
+  - 上述每种攻击场景均被拒绝；
+  - forged Secure AxPROT（非 Secure-capable Master 声明 secure）被拒绝；
+  - 无 default allow 路径。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.AXI_MPU.CONFIG_SEC.001
+  category: SEC
+  feature: config_security
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - simulation
+  description: AXI MPU 本身不能保证 APB 配置总线的访问安全。系统必须确保 Only trusted software / trusted master 能访问 MPU configuration interface。MPU
+    自身提供 Region Lock 与 Global Lock 作为第二层配置保护。
+  acceptance_criteria:
+  - Region/Global Lock 防止配置篡改；
+  - 文档明确配置接口依赖系统级访问控制。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.AXI_MPU.OBSERVABILITY.001
+  category: DFX
+  feature: observability
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: has_violation_log == true
+  verify_method:
+  - simulation
+  description: Violation 状态应通过软件可见寄存器可观测（`VIOL_STATUS`/`VIOL_ADDR`/ `VIOL_INFO*`/`VIOL_COUNT`），用于系统诊断与安全审计。
+  acceptance_criteria:
+  - violation 后软件可读取完整错误信息；
+  - 状态清除/计数行为符合定义。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.AXI_MPU.DEBUG.001
+  category: DFX
+  feature: observability
+  priority: P2
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: 软件应能读取全局状态寄存器确认 MPU 处于默认拒绝/已配置状态，便于诊断初始化 流程。
+  acceptance_criteria:
+  - 全局状态寄存器反映保护配置生效状态。
+  - N/A - 本 IP 不要求 scan/debug 接口集成**（复位后软件可观测性即可满足 DFX
+  - 声明，本声明作为人工可审计的覆盖声明）。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.GEN.AXI_MPU.INPUT.001
+  category: GEN
+  feature: generator_io
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: Generator 应接受 YAML 配置输入，至少包含：interface（protocol/addr_width/ data_width/id_width）、protection（region_num/master_num/secure/privilege/
+    execute/master_identity/master_security_attribution）、region （runtime_configurable/address_mode/overlap_policy）、transaction
+    （read_outstanding/write_outstanding/fixed_burst/incr_burst/wrap_burst/ burst_boundary_check）、violation（logging/irq/counter/capture_policy）、
+    configuration（interface=apb4）、implementation（pipeline）。
+  acceptance_criteria:
+  - Generator 接受契约 §43 的 YAML 结构；
+  - 非法配置被校验拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.GEN.AXI_MPU.OUTPUT.001
+  category: GEN
+  feature: generator_io
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: Generator 应输出可综合 SystemVerilog RTL（含 CSR RTL）、寄存器模型（SystemRDL 派生）、C header 与 FuseSoC core。行为逻辑用 SystemVerilog，结构变化用
+    Python Hardware IR/Graph 表达。
+  acceptance_criteria:
+  - 生成 RTL 通过 lint/elaboration；
+  - CSR RTL/C header 与 SystemRDL 一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.GEN.AXI_MPU.DETERMINISM.001
+  category: GEN
+  feature: determinism
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  description: 相同 Generator 配置输入应产生逐字节一致的 RTL 输出（确定性生成）。
+  acceptance_criteria:
+  - 两次生成产物哈希一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.GEN.AXI_MPU.STRUCTURE.001
+  category: GEN
+  feature: structure_scaling
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: Generator 应根据 Region 数选择不同结构：`REGION_NUM <= 4` 用 Flat comparator； `<= 16` 用 Parallel comparator + priority
+    tree；`> 16` 用 Hierarchical match + optional pipeline。具体 threshold 属于 implementation policy，不构成 architectural software
+    contract。Generator 不得把普通 Region 地址与访问策略直接硬编码进 RTL （除非选择 Static Region Profile）。
+  acceptance_criteria:
+  - Region 数变化时生成器选择对应结构；
+  - 默认配置为 runtime configurable Region。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.AXI_MPU.DEPLOY.001
+  category: CONS
+  feature: integration
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: 推荐部署于受保护 Slave 侧（Master→Interconnect→AXI MPU→Protected Slave），也允许 部署于 Master 侧。V1.0 不依赖特定部署位置。
+  acceptance_criteria:
+  - 集成文档说明两种部署场景；
+  - 行为不依赖部署位置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.AXI_MPU.CONFIG_BUS.001
+  category: CONS
+  feature: integration
+  priority: P0
+  status: active
+  source_ref:
+  - SRC-001
+  - SRC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: 系统必须确保仅 trusted software / trusted master 能访问 MPU configuration interface（APB4）。MPU 自身提供 Region Lock / Global
+    Lock 作为第二层保护。
+  acceptance_criteria:
+  - 集成指南明确配置总线安全要求；
+  - 无系统级访问控制时 MPU 配置可被任意改写（文档明确风险）。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.AXI_MPU.PROFILE.001
+  category: CONS
+  feature: integration
+  priority: P1
+  status: active
+  source_ref:
+  - SRC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: Full AXI4 Profile 默认支持 WRAP burst；Generator 可裁剪 WRAP 支持但 INCR/FIXED 必须始终支持。用户手册应说明 Profile 差异。
+  acceptance_criteria:
+  - 默认配置支持 WRAP；
+  - 裁剪配置在文档中明确。
+  - '文档版本: v1.0*'
+  - '创建日期: 2026-09-09*'
+  - '创建者: IP Development Suite - 01-lrs-author*'
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: open
+  requirement_freeze: false
+  checklist:
+  - requirements_atomic: true
+  - requirements_verifiable: true
+  - requirements_traceable: true
+  - config_space_defined: true
+  - out_of_scope_declared: true
+  - priority_assigned: true
+  notes: LRS 编写完成，待抽取 requirements.yaml 并通过 extractor 校验后置为 pass。
+ppa_signoff_reason: Generator IP 按参数空间交付，PPA（面积/时序/功耗）随 REGION_NUM/PIPELINE/频率变化显著；G5 发布前须以 28nm（PDK_READY）Sweep/Pareto 表征并给出推荐配置与
+  budget 结论（20-ppa-optimization，E2 证据等级）。

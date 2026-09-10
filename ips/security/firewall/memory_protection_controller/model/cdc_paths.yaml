@@ -1,0 +1,9 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+paths:
+- id: HLD.CDC.AXI_MPU.NO_CDC
+  source_domain: CLK_SYS
+  destination_domain: CLK_SYS
+  architecture_strategy: V1.0 单时钟域，无异步 CDC 路径；AXI datapath 与 APB4 同域
+  req_ref:
+  - LRS.RESET.AXI_MPU.CLOCK.001

@@ -1,0 +1,895 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+generation_profile: sv
+parameters:
+- id: PARAM.AXI_MPU.ADDR_WIDTH
+  name: ADDR_WIDTH
+  type: int
+  domain:
+    min: 32
+    max: 64
+  default: 48
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.AXI_MPU.DATA_WIDTH
+  name: DATA_WIDTH
+  type: int
+  domain:
+  - 32
+  - 64
+  - 128
+  - 256
+  - 512
+  default: 128
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.AXI_MPU.ID_WIDTH
+  name: ID_WIDTH
+  type: int
+  domain:
+    min: 1
+    max: 16
+  default: 8
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.AXI_MPU.MASTER_NUM
+  name: MASTER_NUM
+  type: int
+  domain:
+    min: 1
+    max: 64
+  default: 8
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.MASTER_ID_WIDTH
+  name: MASTER_ID_WIDTH
+  type: int
+  domain:
+    min: 1
+    max: 16
+  default: 4
+  depends_on:
+  - MASTER_ID_WIDTH in [1, 2, 4, 8, 16]
+  category: compile_time
+  description: ''
+- id: PARAM.AXI_MPU.REGION_NUM
+  name: REGION_NUM
+  type: int
+  domain:
+    min: 1
+    max: 64
+  default: 16
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.READ_OUTSTANDING
+  name: READ_OUTSTANDING
+  type: int
+  domain:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  default: 8
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.WRITE_OUTSTANDING
+  name: WRITE_OUTSTANDING
+  type: int
+  domain:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  default: 8
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.HAS_EXECUTE
+  name: HAS_EXECUTE
+  type: bool
+  domain:
+  - false
+  - true
+  default: true
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.HAS_MASTER_ATTR
+  name: HAS_MASTER_ATTR
+  type: bool
+  domain:
+  - false
+  - true
+  default: true
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.HAS_IRQ
+  name: HAS_IRQ
+  type: bool
+  domain:
+  - false
+  - true
+  default: true
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.HAS_VIOLATION_LOG
+  name: HAS_VIOLATION_LOG
+  type: bool
+  domain:
+  - false
+  - true
+  default: true
+  depends_on: []
+  category: structural
+  description: ''
+- id: PARAM.AXI_MPU.PIPELINE
+  name: PIPELINE
+  type: enum
+  domain:
+  - '0'
+  - '1'
+  default: '0'
+  depends_on: []
+  category: compile_time
+  description: ''
+- id: PARAM.AXI_MPU.WRAP_SUPPORT
+  name: WRAP_SUPPORT
+  type: bool
+  domain:
+  - false
+  - true
+  default: true
+  depends_on: []
+  category: compile_time
+  description: ''
+configurations:
+- id: CFG_MAIN
+  purpose: Axi MPU 主配置：REGION_NUM=16, MASTER_NUM=8, ADDR_WIDTH=48, DATA_WIDTH=128, ID_WIDTH=8, 全部功能使能，PIPELINE=0
+  values:
+    ADDR_WIDTH: 48
+    DATA_WIDTH: 128
+    ID_WIDTH: 8
+    MASTER_NUM: 8
+    MASTER_ID_WIDTH: 4
+    REGION_NUM: 16
+    READ_OUTSTANDING: 8
+    WRITE_OUTSTANDING: 8
+    HAS_EXECUTE: true
+    HAS_MASTER_ATTR: true
+    HAS_IRQ: true
+    HAS_VIOLATION_LOG: true
+    PIPELINE: 0
+    WRAP_SUPPORT: true
+- id: CFG_MINIMAL
+  purpose: 最小裁剪配置：REGION_NUM=4, MASTER_NUM=2, 无 IRQ/Violation Log/Execute，用于面积敏感场景
+  values:
+    ADDR_WIDTH: 32
+    DATA_WIDTH: 32
+    ID_WIDTH: 4
+    MASTER_NUM: 2
+    MASTER_ID_WIDTH: 1
+    REGION_NUM: 4
+    READ_OUTSTANDING: 2
+    WRITE_OUTSTANDING: 2
+    HAS_EXECUTE: false
+    HAS_MASTER_ATTR: true
+    HAS_IRQ: false
+    HAS_VIOLATION_LOG: false
+    PIPELINE: 0
+    WRAP_SUPPORT: false
+constraints: []
+support_matrix:
+  configs:
+  - id: CFG_DEFAULT
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+    mandatory: true
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: true
+  - id: CFG_ADDR_WIDTH_MIN
+    params:
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      ADDR_WIDTH: 32
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ADDR_WIDTH_MAX
+    params:
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      ADDR_WIDTH: 64
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DATA_WIDTH_MIN
+    params:
+      ADDR_WIDTH: 48
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      DATA_WIDTH: 32
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DATA_WIDTH_MAX
+    params:
+      ADDR_WIDTH: 48
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      DATA_WIDTH: 512
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ID_WIDTH_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      ID_WIDTH: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ID_WIDTH_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      ID_WIDTH: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_MASTER_NUM_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      MASTER_NUM: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_MASTER_NUM_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      MASTER_NUM: 64
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_MASTER_ID_WIDTH_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      MASTER_ID_WIDTH: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_MASTER_ID_WIDTH_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      MASTER_ID_WIDTH: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_REGION_NUM_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      REGION_NUM: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_REGION_NUM_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      REGION_NUM: 64
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_READ_OUTSTANDING_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      READ_OUTSTANDING: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_READ_OUTSTANDING_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      READ_OUTSTANDING: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_WRITE_OUTSTANDING_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      WRITE_OUTSTANDING: 1
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_WRITE_OUTSTANDING_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      WRITE_OUTSTANDING: 16
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_EXECUTE_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_EXECUTE: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_EXECUTE_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_EXECUTE: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_MASTER_ATTR_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_MASTER_ATTR: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_MASTER_ATTR_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_MASTER_ATTR: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_IRQ_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_IRQ: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_IRQ_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_IRQ: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_VIOLATION_LOG_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_VIOLATION_LOG: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_HAS_VIOLATION_LOG_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+      HAS_VIOLATION_LOG: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_PIPELINE_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      WRAP_SUPPORT: true
+      PIPELINE: '0'
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_PIPELINE_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      WRAP_SUPPORT: true
+      PIPELINE: '1'
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_WRAP_SUPPORT_MIN
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_WRAP_SUPPORT_MAX
+    params:
+      ADDR_WIDTH: 48
+      DATA_WIDTH: 128
+      ID_WIDTH: 8
+      MASTER_NUM: 8
+      MASTER_ID_WIDTH: 4
+      REGION_NUM: 16
+      READ_OUTSTANDING: 8
+      WRITE_OUTSTANDING: 8
+      HAS_EXECUTE: true
+      HAS_MASTER_ATTR: true
+      HAS_IRQ: true
+      HAS_VIOLATION_LOG: true
+      PIPELINE: '0'
+      WRAP_SUPPORT: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  mandatory:
+  - CFG_DEFAULT
+  boundary:
+  - CFG_ADDR_WIDTH_MIN
+  - CFG_ADDR_WIDTH_MAX
+  - CFG_DATA_WIDTH_MIN
+  - CFG_DATA_WIDTH_MAX
+  - CFG_ID_WIDTH_MIN
+  - CFG_ID_WIDTH_MAX
+  - CFG_MASTER_NUM_MIN
+  - CFG_MASTER_NUM_MAX
+  - CFG_MASTER_ID_WIDTH_MIN
+  - CFG_MASTER_ID_WIDTH_MAX
+  - CFG_REGION_NUM_MIN
+  - CFG_REGION_NUM_MAX
+  - CFG_READ_OUTSTANDING_MIN
+  - CFG_READ_OUTSTANDING_MAX
+  - CFG_WRITE_OUTSTANDING_MIN
+  - CFG_WRITE_OUTSTANDING_MAX
+  - CFG_HAS_EXECUTE_MIN
+  - CFG_HAS_EXECUTE_MAX
+  - CFG_HAS_MASTER_ATTR_MIN
+  - CFG_HAS_MASTER_ATTR_MAX
+  - CFG_HAS_IRQ_MIN
+  - CFG_HAS_IRQ_MAX
+  - CFG_HAS_VIOLATION_LOG_MIN
+  - CFG_HAS_VIOLATION_LOG_MAX
+  - CFG_PIPELINE_MIN
+  - CFG_PIPELINE_MAX
+  - CFG_WRAP_SUPPORT_MIN
+  - CFG_WRAP_SUPPORT_MAX
+  pairwise: []
+  risk: []
+  random: []
+  negative: []
+  consumer: []

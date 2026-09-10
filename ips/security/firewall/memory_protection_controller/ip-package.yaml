@@ -1,0 +1,37 @@
+schema_version: '2.0'
+name: axi_mpu
+version: 1.0.0
+vendor: aixsilicon
+library: ip
+description: |
+  AXI Memory Protection Unit（AXI MPU）：在 AXI Master 与受保护 Slave/Interconnect
+  之间提供基于地址、Master 身份、Security/Privilege 状态与 R/W/X 操作类型的访问控制。
+  Region-based、Default-Deny、Context-aware 的 AXI System Access Control。支持
+  Runtime Region 配置、Master Security Attribution、Burst Boundary Protection、
+  本地 DECERR、Violation Logging/IRQ、Region/Global Lock、APB4 配置接口与 Generator
+  结构裁剪。
+license: Apache-2.0
+path: ips/security/firewall/memory_protection_controller
+domain: security
+subdomain: firewall
+type: generator
+priority: P1
+status: planned
+maturity: alpha
+interfaces:
+  - axi4
+  - apb4
+register_model: required
+quality:
+  G0: open
+  G1: open
+  G2: open
+  G3: open
+  G4: open
+  G5: open
+known_gaps: []
+known_bugs: []
+dependencies: []
+fusesoc:
+  core: aixsilicon:ip:axi_mpu:1.0.0
+  cores: ips/security/firewall/memory_protection_controller

@@ -1,0 +1,41 @@
+schema_version: '2.0'
+schema: ip-ppa-summary/1.0
+run_id: CFG_R16_P1_400M_400MHz_d916efef
+manifest:
+  path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P1_400M_400MHz_d916efef/manifest.yaml
+  sha256: 5f9f66e7c4d098beea188c8342b183403ca7a8328c67ab7af68439a70427c434
+config_id: CFG_R16_P1_400M
+clock_freq_mhz: 400.0
+params:
+  REGION_NUM: '16'
+  PIPELINE: '1'
+area_um2: 25785.395858
+slack_ns: -1.5
+critical_delay_ns: 4.0
+data_arrival_ns: 3.96
+fmax_mhz: 250.0
+dyn_power_uW: 6230.5
+leak_power_nW: 5106.900000000001
+activity: default_probability_estimate
+timing_constrained: true
+evidence_level: E2
+comparison_context:
+  pdk_sha256: null
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+  evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+  compile_options: compile -map_effort medium
+  activity: default_probability_estimate
+raw_reports:
+  area:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P1_400M_400MHz_d916efef/area.rpt
+    sha256: f6ac1bcaf757d7e6d6819ba03ea711ceb35c6dbdd50e83f33b4afa424e3636d4
+  timing:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P1_400M_400MHz_d916efef/timing.rpt
+    sha256: 09e5b1e32bb3881c3ff2b835ad949b4bb7f0f8d6086369905aa6e54d8d21f1bb
+  power:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P1_400M_400MHz_d916efef/power.rpt
+    sha256: 11dc79fdf4c9666d303bcd525c5d69ebc0733155b08ed73b7c3a562c96052a77

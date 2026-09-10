@@ -1,0 +1,1031 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+verification_level: full
+status: draft
+delivery_model: generator
+lrs_baseline: LRS-AXI_MPU-V100
+hld_baseline: HLD-AXI_MPU-V100
+lld_baseline: LLD-AXI_MPU-V100
+features:
+- id: FL.AXI_MPU.DEFAULT_DENY
+  name: Default_Deny
+  description: 未匹配任何有效 Region 的访问默认拒绝；Reset 后所有可编程 Region 默认 disabled；Default Deny
+    与 Explicit Allow 组合
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.001
+  - LRS.FUNC.AXI_MPU.DEFAULT_DENY.002
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - LLD.MOD.AXI_MPU.PERM
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.AXI_MPU.DEFAULT_DENY.001
+    name: default_deny
+    type: negative
+    description: 未配置任何 Region 或访问地址未命中任何 Region 时，read/write 均返回 DECERR
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_default_deny.sv
+    feature_ref:
+    - FL.AXI_MPU.DEFAULT_DENY
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - reset 后未配置 Region（或仅配置不覆盖测试地址的 Region）
+    stimulus:
+    - AXI 发 read 到未匹配地址
+    - AXI 发 write 到未匹配地址
+    expected_result:
+    - RRESP=DECERR、BRESP=DECERR
+    - M_AXI 上无对应事务
+    - VIOL_STATUS.valid 置位
+    timeout_policy: 1000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.DEFAULT_DENY.001
+    name: default_deny_invariant
+    feature_ref:
+    - FL.AXI_MPU.DEFAULT_DENY
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    property: DEFAULT_DENY 下，任何未匹配有效 Region 的访问不得被允许
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.REQ_CONTEXT
+  name: Request_Context
+  description: 每个 AXI transaction 转换为基础 Request Context（address/read_write/axi_id/master_id/secure/privileged/instruction/burst
+    属性）
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REQ_CONTEXT.001
+  design_ref:
+  - HLD.IF.INT.AXI_MPU.REQ_CTX
+  - LLD.DATAPATH.AXI_MPU.REQ_CTX
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.REQ_CONTEXT.001
+    name: req_ctx_mapping
+    feature_ref:
+    - FL.AXI_MPU.REQ_CONTEXT
+    design_ref:
+    - LLD.DATAPATH.AXI_MPU.REQ_CTX
+    property: Request Context 的 address/read_write/secure/privileged/instruction/master_id
+      字段必须与 AXI 通道信号一致映射
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.MASTER
+  name: Master_Identity
+  description: MASTER_MASK 按 master_id 判定；非法 Master ID（>=MASTER_NUM）必须拒绝；AxID 不作为
+    Master Identity
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.MASTER_ID.001
+  - LRS.FUNC.AXI_MPU.PERM_MASTER.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  - LLD.MOD.AXI_MPU.MASTER_ATTR
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.AXI_MPU.MASTER.001
+    name: master_permission
+    type: negative
+    description: MASTER_MASK 判定 allowed/denied Master；非法 Master ID（>=MASTER_NUM）拒绝
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_master_permission.sv
+    feature_ref:
+    - FL.AXI_MPU.MASTER
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    preconditions:
+    - 配置 Region 仅允许 Master0/2；Master1 访问同地址
+    stimulus:
+    - Master0/2 访问（应允许）
+    - Master1 访问（应拒绝）
+    - 非法 master_id（越界）访问（应拒绝）
+    expected_result:
+    - Master0/2 事务正常完成
+    - Master1 与非法 ID 事务返回 DECERR
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.MASTER.001
+    name: master_permission_cov
+    type: functional
+    description: MASTER_MASK allowed/denied、非法 Master ID 覆盖
+    feature_ref:
+    - FL.AXI_MPU.MASTER
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.AXI_MPU.MASTER.001
+    name: invalid_master_rejected
+    feature_ref:
+    - FL.AXI_MPU.MASTER
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    property: master_id >= MASTER_NUM 的访问必须被拒绝
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.MASTER_SEC
+  name: Master_Security_Attribution
+  description: MASTER_ATTR（SECURE_CAPABLE/NONSECURE_CAPABLE）校验声明的 Security 状态；Master
+    Security 与 Region Security 独立检查
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.MASTER_SEC_ATTR.001
+  - LRS.SEC.AXI_MPU.ATTACK.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.MASTER_ATTR
+  - LLD.MOD.AXI_MPU.MASTER_ATTR
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - formal
+  testcases:
+  - id: TC.AXI_MPU.SECURITY.001
+    name: security_permission
+    type: negative
+    description: Secure/Non-secure Region 权限；Master Security Attribution 拒绝 forged
+      Secure；Master 无 Secure capability 时 Secure 访问拒绝
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_security_permission.sv
+    feature_ref:
+    - FL.AXI_MPU.MASTER_SEC
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - Region 仅允许 Secure；Master Attr 配置 Master 无 SECURE_CAPABLE
+    stimulus:
+    - Non-secure 访问 secure-only Region（拒绝）
+    - 无 capability Master 发 Secure 访问（forged，拒绝）
+    - 有 capability Master 发 Secure 访问（允许）
+    expected_result:
+    - forged/无 capability Secure 访问返回 DECERR 且 reason=MASTER_SECURITY_DENY
+    - 合法 Secure 访问正常完成
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.SECURITY.001
+    name: security_permission_cov
+    type: functional
+    description: Secure/Non-secure allow/deny、forged Secure、Master Attr violation
+      覆盖
+    feature_ref:
+    - FL.AXI_MPU.MASTER_SEC
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    - LLD.MOD.AXI_MPU.PERM
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.AXI_MPU.MASTER_SEC.001
+    name: forged_secure_rejected
+    feature_ref:
+    - FL.AXI_MPU.MASTER_SEC
+    design_ref:
+    - LLD.MOD.AXI_MPU.MASTER_ATTR
+    property: Master 无 SECURE_CAPABLE 时声明 Secure 的访问必须被拒绝
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.REGION
+  name: Region_Match
+  description: BASE+LIMIT 模式；region_match（enable && addr>=base && addr<=limit）；Lowest
+    Region Index Wins；非法 BASE>LIMIT 视为 disabled
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION.001
+  - LRS.FUNC.AXI_MPU.REGION.002
+  - LRS.FUNC.AXI_MPU.REGION.003
+  - LRS.FUNC.AXI_MPU.REGION.004
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - LLD.MOD.AXI_MPU.PERM
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - formal
+  testcases:
+  - id: TC.AXI_MPU.REGION.001
+    name: region_boundary
+    type: boundary
+    description: 验证 REGION_BASE/LIMIT 边界（等于 BASE、等于 LIMIT、BASE±1、LIMIT±1）、Region overlap
+      与 lowest-index-wins 优先级、非法 BASE>LIMIT 视为 disabled
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_region_boundary.sv
+    feature_ref:
+    - FL.AXI_MPU.REGION
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - 通过 APB 配置多个 overlap Region 与边界 Region
+    stimulus:
+    - 对 BASE、LIMIT、BASE-1、LIMIT+1 地址发 read/write
+    - 配置 Region0/Region1 overlap 并访问
+    - 配置非法 BASE>LIMIT 并访问
+    expected_result:
+    - 边界地址按 BASE<=addr<=LIMIT 规则判定
+    - overlap 时按最低索引 Region 权限判定
+    - 非法 Region 视为 disabled（访问走其他 Region 或 deny）
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.REGION.001
+    name: region_match_class
+    type: functional
+    description: Region 匹配类别覆盖：无匹配/单匹配/多匹配/优先级/BASE/LIMIT/boundary ±1/非法 BASE>LIMIT
+    feature_ref:
+    - FL.AXI_MPU.REGION
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.AXI_MPU.BURST
+  name: Burst_Boundary
+  description: INCR/FIXED/WRAP burst 计算完整地址范围；跨 Region 边界整事务拒绝；不能部分 beat 合法部分非法
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.BURST.001
+  - LRS.FUNC.AXI_MPU.BURST.002
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - LLD.MOD.AXI_MPU.PERM
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - formal
+  testcases:
+  - id: TC.AXI_MPU.BURST.001
+    name: burst_boundary
+    type: boundary
+    description: INCR/FIXED/WRAP burst 完整地址范围计算；跨 Region 边界整事务拒绝
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_burst_boundary.sv
+    feature_ref:
+    - FL.AXI_MPU.BURST
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - Region 覆盖固定地址段
+    stimulus:
+    - burst 完全在 Region 内（INCR/FIXED/WRAP）
+    - burst 跨 LIMIT（INCR 上跨）
+    - burst 跨 BASE（INCR 下跨）
+    - WRAP burst 跨边界
+    expected_result:
+    - 完全在内：正常完成
+    - 跨边界：整事务 DENY（DECERR），M_AXI 无部分事务
+    timeout_policy: 3000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.BURST.001
+    name: burst_cov
+    type: functional
+    description: INCR/FIXED/WRAP、fully inside/cross BASE/cross LIMIT/cross Region
+      覆盖
+    feature_ref:
+    - FL.AXI_MPU.BURST
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.AXI_MPU.BURST.001
+    name: burst_cross_deny_whole
+    feature_ref:
+    - FL.AXI_MPU.BURST
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    property: burst 若跨 Region 边界，整事务被拒绝，不得部分转发
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.PERM_DIM
+  name: Permission_Dimensions
+  description: Secure/Non-secure、Privileged/Unprivileged、Read/Write/Execute 独立判定并
+    AND 组合；deny_reason 可观测
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.PERM_SECURITY.001
+  - LRS.FUNC.AXI_MPU.PERM_PRIVILEGE.001
+  - LRS.FUNC.AXI_MPU.PERM_OP.001
+  - LRS.FUNC.AXI_MPU.PERM_DECISION.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.PERM_ENGINE
+  - LLD.MOD.AXI_MPU.PERM
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.AXI_MPU.PRIVILEGE.001
+    name: privilege_permission
+    type: directed
+    description: PRIVILEGED_ALLOW/UNPRIVILEGED_ALLOW 判定
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_privilege_permission.sv
+    feature_ref:
+    - FL.AXI_MPU.PERM_DIM
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - Region 仅允许 Privileged
+    stimulus:
+    - Privileged 访问（允许）
+    - Unprivileged 访问（拒绝）
+    expected_result:
+    - Unprivileged 访问返回 DECERR
+    - Privileged 访问正常完成
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.AXI_MPU.OP.001
+    name: op_permission
+    type: directed
+    description: READ_ALLOW/WRITE_ALLOW/EXECUTE_ALLOW 判定；instruction access 需 READ_ALLOW
+      && EXECUTE_ALLOW
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_op_permission.sv
+    feature_ref:
+    - FL.AXI_MPU.PERM_DIM
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    preconditions:
+    - Region 配置 READ=1, WRITE=0, EXEC=0
+    stimulus:
+    - Read 访问（允许）
+    - Write 访问（拒绝）
+    - Instruction (PROT[2]=1) 访问（拒绝，NX）
+    expected_result:
+    - Write/Instruction 返回 DECERR 且 reason=WRITE_DENY/EXECUTE_DENY
+    - Read 正常完成
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.PERM.001
+    name: perm_dimension_cov
+    type: functional
+    description: Privileged/Unprivileged、Read/Write/Execute/NX 判定覆盖
+    feature_ref:
+    - FL.AXI_MPU.PERM_DIM
+    design_ref:
+    - LLD.MOD.AXI_MPU.PERM
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.AXI_MPU.READ_PATH
+  name: Read_Path
+  description: AR 捕获、合法性判断、合法转发、非法本地 R DECERR（RID/RVALID/RRESP/RLAST 完整）、read outstanding
+    跟踪
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.READ.001
+  - LRS.FUNC.AXI_MPU.READ.002
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  - LRS.INTF.AXI_MPU.AXI_MASTER.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - LLD.MOD.AXI_MPU.READ
+  - LLD.FSM.AXI_MPU.READ
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.AXI_MPU.SMOKE.001
+    name: smoke_basic
+    type: directed
+    description: Reset 后通过 APB 配置一个 Region 并完成一条合法读与一条合法写；验证 DUT 可编译、reset、基本访问与基本事务响应
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_smoke_basic.sv
+    feature_ref:
+    - FL.AXI_MPU.READ_PATH
+    design_ref:
+    - LLD.MOD.AXI_MPU.TOP
+    preconditions:
+    - DUT 处于 reset 释放状态
+    - 通过 APB 配置 REGION0 覆盖测试地址，允许当前 Master
+    stimulus:
+    - APB 写 GLOBAL_CTRL/REGION0_* 配置
+    - AXI 发一条合法 read burst（len=0）
+    - AXI 发一条合法 write burst（len=0）
+    expected_result:
+    - read 返回 OKAY 且数据正确
+    - write 返回 BOKAY 且下游收到
+    timeout_policy: 1000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.READ_PATH.001
+    name: denied_ar_no_forward
+    feature_ref:
+    - FL.AXI_MPU.READ_PATH
+    design_ref:
+    - LLD.MOD.AXI_MPU.READ
+    property: 若某 AR 事务被判定为 DENY，则其不得出现在 M_AXI_AR 通道
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.WRITE_PATH
+  name: Write_Path
+  description: AW/W 解耦、Write Decision Queue 关联 AW 与 W、非法 W consume+本地 B DECERR、无 deadlock/串扰/部分写入
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.WRITE.001
+  - LRS.FUNC.AXI_MPU.WRITE.002
+  - LRS.FUNC.AXI_MPU.WRITE_QUEUE.001
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  - LRS.INTF.AXI_MPU.AXI_MASTER.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  - LLD.MOD.AXI_MPU.WRITE
+  - LLD.FSM.AXI_MPU.WRITE
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.WRITE_PATH.001
+    name: denied_aw_no_forward
+    feature_ref:
+    - FL.AXI_MPU.WRITE_PATH
+    design_ref:
+    - LLD.MOD.AXI_MPU.WRITE
+    property: 若某 AW 事务被判定为 DENY，则其不得出现在 M_AXI_AW 通道
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.AXI_MPU.WRITE_PATH.002
+    name: denied_w_no_downstream
+    feature_ref:
+    - FL.AXI_MPU.WRITE_PATH
+    design_ref:
+    - LLD.MOD.AXI_MPU.WRITE
+    property: 被拒绝的 write 事务的 W beats 不得驱动到 M_AXI_W，下游状态不被修改
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.ERR_RESP
+  name: Error_Response
+  description: 非法访问本地 DECERR（RRESP/BRESP=DECERR）；满足 AXI ordering；不拉低 READY、不 hang
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.ERR_RESP.001
+  - LRS.FUNC.AXI_MPU.ORDERING.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  - LLD.MOD.AXI_MPU.ERR_RESP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.AXI_MPU.ERR_RESP.001
+    name: local_decerr
+    type: error_injection
+    description: 非法 read/write 本地 DECERR；RID/RVALID/RRESP/RLAST 完整；W beat 被 consume；无
+      hang、无部分写入
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_local_decerr.sv
+    feature_ref:
+    - FL.AXI_MPU.ERR_RESP
+    design_ref:
+    - LLD.MOD.AXI_MPU.ERR_RESP
+    preconditions:
+    - 配置 Region 拒绝某地址段
+    stimulus:
+    - 非法 read burst（len=3）→ 期望 4 个 DECERR beat + RLAST
+    - 非法 write burst（len=3）→ 期望 W 被 consume、1 个 B DECERR
+    expected_result:
+    - read: RRESP=DECERR 全部 beat、RDATA=0、RLAST 正确
+    - write: 无 M_AXI 写、B 返回 DECERR
+    - 后续合法事务不受影响
+    timeout_policy: 3000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.ERR_RESP.001
+    name: denied_eventual_decerr
+    feature_ref:
+    - FL.AXI_MPU.ERR_RESP
+    design_ref:
+    - LLD.MOD.AXI_MPU.ERR_RESP
+    property: 每个被接受的 denied transaction 最终收到本地 DECERR 响应（read 全 beat / write B）
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.AXI_MPU.ERR_RESP.002
+    name: no_hang
+    feature_ref:
+    - FL.AXI_MPU.ERR_RESP
+    design_ref:
+    - LLD.MOD.AXI_MPU.ERR_RESP
+    property: 被拒绝事务在有限周期内完成本地响应，READY 不被永久拉低
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.VIOLATION
+  name: Violation_Logging
+  description: VIOL_* 寄存器捕获（FIRST_ERROR_STICKY）、VIOL_COUNT（saturating）、IRQ（sticky+W1C）
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.VIOLATION.001
+  - LRS.FUNC.AXI_MPU.VIOLATION.002
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.VIOLATION.001
+  - LRS.INTF.AXI_MPU.IRQ.001
+  - LRS.DFX.AXI_MPU.OBSERVABILITY.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.VIOLATION
+  - LLD.MOD.AXI_MPU.VIOLATION
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.AXI_MPU.VIOLATION.001
+    name: violation_capture
+    type: directed
+    description: FIRST_ERROR_STICKY 捕获、VIOL_COUNT 计数（saturating）、IRQ sticky+W1C
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_violation_capture.sv
+    feature_ref:
+    - FL.AXI_MPU.VIOLATION
+    design_ref:
+    - LLD.MOD.AXI_MPU.VIOLATION
+    preconditions:
+    - 使能 IRQ_ENABLE
+    stimulus:
+    - 连续触发多个 violation
+    - 读 VIOL_STATUS/VIOL_ADDR/VIOL_INFO0/VIOL_COUNT
+    - W1C 清除 IRQ/VIOL_STATUS
+    expected_result:
+    - 首个 violation 信息 sticky 保持，后续不覆盖
+    - VIOL_COUNT 累加并饱和到 MAX
+    - IRQ 置位，W1C 清除后 IRQ 释放
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.VIOLATION.001
+    name: violation_cov
+    type: functional
+    description: FIRST_ERROR_STICKY、VIOL_COUNT saturation、IRQ sticky/W1C、simultaneous
+      violations 覆盖
+    feature_ref:
+    - FL.AXI_MPU.VIOLATION
+    design_ref:
+    - LLD.MOD.AXI_MPU.VIOLATION
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.AXI_MPU.LOCK
+  name: Configuration_Lock
+  description: REGION_LOCK（置位后配置冻结、仅 reset 清除）；GLOBAL_LOCK（0->1 allowed、1->0 仅 reset）；Violation
+    状态清除仍可访问
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.REGION_LOCK.001
+  - LRS.FUNC.AXI_MPU.GLOBAL_LOCK.001
+  - LRS.REG.AXI_MPU.REGION.001
+  - LRS.REG.AXI_MPU.GLOBAL.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  - LLD.MOD.AXI_MPU.REGS
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.AXI_MPU.LOCK.001
+    name: config_lock
+    type: negative
+    description: REGION_LOCK 置位后 BASE/LIMIT/ATTR/MASTER_MASK 冻结；GLOBAL_LOCK 置位后全配置冻结、1->0
+      仅 reset
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_config_lock.sv
+    feature_ref:
+    - FL.AXI_MPU.LOCK
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    preconditions:
+    - 配置 Region0 并置 REGION_CONTROL.lock
+    - 置 GLOBAL_LOCK.lock
+    stimulus:
+    - 改写 locked Region 的 BASE/LIMIT/PERMISSION（应无效）
+    - 尝试写 GLOBAL_LOCK=0（应无效）
+    - reset 后验证 lock 清除
+    expected_result:
+    - lock 后配置保持稳定；GLOBAL_LOCK 不能 1->0；reset 后全部清除
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.LOCK.001
+    name: lock_cov
+    type: functional
+    description: Region Lock、Global Lock、reset unlock 覆盖
+    feature_ref:
+    - FL.AXI_MPU.LOCK
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.AXI_MPU.LOCK.001
+    name: locked_region_stable
+    feature_ref:
+    - FL.AXI_MPU.LOCK
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    property: REGION_LOCK 置位后，该 Region 的 BASE/LIMIT/ATTR/MASTER_MASK 保持稳定直到 reset
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.AXI_MPU.LOCK.002
+    name: global_lock_oneway
+    feature_ref:
+    - FL.AXI_MPU.LOCK
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    property: GLOBAL_LOCK 不能从 1 转 0，除 reset 外
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.RESET
+  name: Reset_Behavior
+  description: Reset 后所有 Region disabled、Default Deny、locks/violation/IRQ 清除；异步复位
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.RESET.001
+  - LRS.RESET.AXI_MPU.CLOCK.001
+  - LRS.RESET.AXI_MPU.RESET.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.TOP
+  - LLD.MOD.AXI_MPU.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.AXI_MPU.RESET.001
+    name: reset_behavior
+    type: reset
+    description: Reset 后所有 Region disabled、Default Deny、lock/violation/IRQ 清除；traffic
+      中 reset 恢复
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_reset_behavior.sv
+    feature_ref:
+    - FL.AXI_MPU.RESET
+    design_ref:
+    - LLD.MOD.AXI_MPU.TOP
+    preconditions:
+    - 配置 Region 并产生 violation 后执行 reset
+    stimulus:
+    - reset（idle 与 traffic 中）
+    - reset 后读 GLOBAL_STATUS/VIOL_STATUS/IRQ_STATUS
+    - reset 后发未匹配访问
+    expected_result:
+    - reset 后 region_any_enabled=0、lock=0、violation/IRQ 清除
+    - 未匹配访问被 deny
+    timeout_policy: 2000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions: []
+  config_coverage: []
+- id: FL.AXI_MPU.OUTSTANDING
+  name: Multiple_Outstanding
+  description: 多 outstanding read/write 支持；permission check 不降级；ordering 保持
+  priority: must
+  req_ref:
+  - LRS.FUNC.AXI_MPU.OUTSTANDING.001
+  - LRS.PERF.AXI_MPU.THROUGHPUT.001
+  - LRS.PERF.AXI_MPU.OUTSTANDING.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.READ_FRONTEND
+  - HLD.MOD.L1.AXI_MPU.WRITE_FRONTEND
+  - LLD.MOD.AXI_MPU.READ
+  - LLD.MOD.AXI_MPU.WRITE
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - performance
+  testcases:
+  - id: TC.AXI_MPU.OUTSTANDING.001
+    name: outstanding
+    type: stress
+    description: 多 ID 多 outstanding read/write、backpressure、AW/W 解耦；ordering 保持
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_outstanding.sv
+    feature_ref:
+    - FL.AXI_MPU.OUTSTANDING
+    design_ref:
+    - LLD.MOD.AXI_MPU.READ
+    - LLD.MOD.AXI_MPU.WRITE
+    preconditions:
+    - 配置多个 Region 覆盖测试地址
+    stimulus:
+    - 多 ID（4 个）混合 read/write outstanding（各 8 深度）
+    - 下游随机 backpressure（M_AXI READY 随机拉低）
+    - AW/W 通道解耦注入
+    expected_result:
+    - 所有合法事务按 AXI ordering 完成，无数据错误
+    - 非法事务 DECERR 且不阻塞合法事务
+    - 无 deadlock
+    timeout_policy: 10000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.AXI_MPU.RANDOM.001
+    name: random_traffic
+    type: random
+    description: 随机混合流量（合法/非法、read/write、burst、多 ID、随机 backpressure）压力验证
+    priority: should
+    tier: extended
+    implementation: verification/tc/tc_random_traffic.sv
+    feature_ref:
+    - FL.AXI_MPU.OUTSTANDING
+    design_ref:
+    - LLD.MOD.AXI_MPU.READ
+    - LLD.MOD.AXI_MPU.WRITE
+    preconditions:
+    - 配置多个 Region（含允许/拒绝组合）与 Master Attr
+    stimulus:
+    - 随机地址（命中/未命中 Region）、随机 burst 类型/长度
+    - 随机 PROT（secure/privileged/instruction）组合
+    - 随机 ID、随机 backpressure
+    expected_result:
+    - 所有事务按权限模型判定正确（RM 对比）
+    - 无 hang、无断言违例、无数据破坏
+    timeout_policy: 50000 cycles
+    config_ref:
+    - CFGSET.AXI_MPU.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.AXI_MPU.TXN.001
+    name: axi_txn_cov
+    type: functional
+    description: 多 ID、多 outstanding、backpressure、AW/W 解耦、local DECERR、reset during
+      traffic 覆盖
+    feature_ref:
+    - FL.AXI_MPU.OUTSTANDING
+    design_ref:
+    - LLD.MOD.AXI_MPU.READ
+    - LLD.MOD.AXI_MPU.WRITE
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.AXI_MPU.CONFIG
+  name: Configuration
+  description: APB4 配置接口正确性（reset/RW/RO/W1C/illegal addr）；配置安全（Region/Global Lock、reset
+    unlock）
+  priority: must
+  req_ref:
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  - LRS.REG.AXI_MPU.IRQ.001
+  - LRS.REG.AXI_MPU.MASTER_ATTR.001
+  - LRS.SEC.AXI_MPU.CONFIG_SEC.001
+  - LRS.CONS.AXI_MPU.CONFIG_BUS.001
+  design_ref:
+  - HLD.MOD.L1.AXI_MPU.REG_FILE
+  - LLD.MOD.AXI_MPU.REGS
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases: []
+  coverage:
+  - id: COV.AXI_MPU.CONFIG.001
+    name: config_cov
+    type: functional
+    description: APB4 访问（RW/RO/W1C）、illegal address 覆盖
+    feature_ref:
+    - FL.AXI_MPU.CONFIG
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.AXI_MPU.CONFIG.001
+    name: apb_illegal_addr
+    feature_ref:
+    - FL.AXI_MPU.CONFIG
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    property: APB 对未定义地址的访问必须被拒绝（PSLVERR 或忽略），不得破坏 DUT 状态
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.AXI_MPU.CONFIG.002
+    name: locked_cfg_write_ignored
+    feature_ref:
+    - FL.AXI_MPU.CONFIG
+    design_ref:
+    - LLD.MOD.AXI_MPU.REGS
+    property: Region/Global Lock 生效后，对受保护配置字段的写访问不得改变其值
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.AXI_MPU.GEN_PARAM
+  name: Generator_Parameters
+  description: Generator 参数（ADDR/DATA/ID_WIDTH、MASTER_NUM、REGION_NUM、OUTSTANDING、HAS_*、PIPELINE、WRAP_SUPPORT）结构裁剪与配置契约
+  priority: must
+  req_ref:
+  - LRS.CFG.AXI_MPU.ADDR_WIDTH.001
+  - LRS.CFG.AXI_MPU.MASTER_NUM.001
+  - LRS.CFG.AXI_MPU.REGION_NUM.001
+  - LRS.CFG.AXI_MPU.OUTSTANDING.001
+  - LRS.CFG.AXI_MPU.FEATURE.001
+  - LRS.GEN.AXI_MPU.INPUT.001
+  - LRS.GEN.AXI_MPU.OUTPUT.001
+  - LRS.GEN.AXI_MPU.DETERMINISM.001
+  - LRS.CONS.AXI_MPU.DEPLOY.001
+  design_ref:
+  - HLD.GEN.AXI_MPU.GENERATOR
+  - LLD.MOD.AXI_MPU.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - equivalence
+  - simulation
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.AXI_MPU.GEN_PARAM.001
+    name: region_table_width
+    feature_ref:
+    - FL.AXI_MPU.GEN_PARAM
+    design_ref:
+    - LLD.MOD.AXI_MPU.TOP
+    property: REGION_BASE/LIMIT 与 VIOL_ADDR 寄存器位宽必须等于 ADDR_WIDTH；MASTER_MASK 位宽必须等于
+      MASTER_NUM
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage:
+  - id: CCOV.AXI_MPU.GEN_PARAMS
+    dimensions: &id001
+    - REGION_NUM
+    - MASTER_NUM
+    - DATA_WIDTH
+    - HAS_IRQ
+    - HAS_VIOLATION_LOG
+    strategy: &id002
+      default: true
+      boundary: true
+      risk_based: true
+    feature_ref: &id003
+    - FL.AXI_MPU.GEN_PARAM
+config_sets:
+- id: CFGSET.AXI_MPU.DEFAULT
+  strategy: default
+  parameters:
+    ADDR_WIDTH: 48
+    DATA_WIDTH: 128
+    ID_WIDTH: 8
+    MASTER_NUM: 8
+    MASTER_ID_WIDTH: 4
+    REGION_NUM: 16
+    READ_OUTSTANDING: 8
+    WRITE_OUTSTANDING: 8
+    HAS_EXECUTE: true
+    HAS_MASTER_ATTR: true
+    HAS_IRQ: true
+    HAS_VIOLATION_LOG: true
+    PIPELINE: 0
+    WRAP_SUPPORT: true
+  purpose: 默认配置（CFG_MAIN）：验证主功能路径与完整特性集
+- id: CFGSET.AXI_MPU.MINIMAL
+  strategy: boundary
+  parameters:
+    ADDR_WIDTH: 32
+    DATA_WIDTH: 32
+    ID_WIDTH: 4
+    MASTER_NUM: 2
+    MASTER_ID_WIDTH: 1
+    REGION_NUM: 4
+    READ_OUTSTANDING: 2
+    WRITE_OUTSTANDING: 2
+    HAS_EXECUTE: false
+    HAS_MASTER_ATTR: true
+    HAS_IRQ: false
+    HAS_VIOLATION_LOG: false
+    PIPELINE: 0
+    WRAP_SUPPORT: false
+  purpose: 最小裁剪配置（CFG_MINIMAL）：验证功能裁剪下的最小结构
+config_coverage:
+- id: CCOV.AXI_MPU.GEN_PARAMS
+  dimensions: *id001
+  strategy: *id002
+  feature_ref: *id003
+gates: []

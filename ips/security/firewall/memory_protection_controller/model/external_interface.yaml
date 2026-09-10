@@ -1,0 +1,70 @@
+schema_version: '2.0'
+ip_name: axi_mpu
+interfaces:
+- id: HLD.IF.EXT.AXI_MPU.S_AXI
+  name: s_axi
+  scope: external
+  protocol: AXI4
+  role: slave
+  owner_module: HLD.MOD.L1.AXI_MPU.TOP
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  signal_groups:
+  - name: AR channel (ARADDR/ARPROT/ARID/ARBURST/ARLEN/ARSIZE/ARVALID/ARREADY)
+  - name: R channel (RID/RDATA/RRESP/RLAST/RVALID/RREADY)
+  - name: AW channel (AWADDR/AWPROT/AWID/AWBURST/AWLEN/AWSIZE/AWVALID/AWREADY)
+  - name: W channel (WDATA/WSTRB/WLAST/WVALID/WREADY)
+  - name: B channel (BID/BRESP/BVALID/BREADY)
+  req_ref:
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.001
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.AXI_MPU.M_AXI
+  name: m_axi
+  scope: external
+  protocol: AXI4
+  role: master
+  owner_module: HLD.MOD.L1.AXI_MPU.TOP
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  signal_groups:
+  - name: AR channel (forward AR)
+  - name: R channel (return R)
+  - name: AW channel (forward AW)
+  - name: W channel (forward W)
+  - name: B channel (return B)
+  req_ref:
+  - LRS.INTF.AXI_MPU.AXI_MASTER.001
+  - LRS.INTF.AXI_MPU.AXI_SLAVE.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.AXI_MPU.APB4
+  name: apb4_cfg
+  scope: external
+  protocol: APB4
+  role: slave
+  owner_module: HLD.MOD.L1.AXI_MPU.REG_FILE
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  signal_groups:
+  - name: PADDR/PSEL/PENABLE/PWRITE/PWDATA/PSTRB/PPROT/PRDATA/PREADY/PSLVERR
+  req_ref:
+  - LRS.INTF.AXI_MPU.APB_CFG.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.AXI_MPU.IRQ
+  name: irq
+  scope: external
+  protocol: level_irq
+  role: output
+  owner_module: HLD.MOD.L1.AXI_MPU.VIOLATION
+  clock_domain: CLK_SYS
+  reset_domain: RST_SYS_N
+  signal_groups:
+  - name: irq (level, sticky, W1C clear)
+  req_ref:
+  - LRS.INTF.AXI_MPU.IRQ.001
+  - LRS.FUNC.AXI_MPU.IRQ.001
+  applicability:
+    expr: has_irq == true

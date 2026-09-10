@@ -1,0 +1,146 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : axi_mpu_REGION_NUM16_PIPELINE1
+Version: V-2023.12-SP3
+Date   : Thu Sep 10 02:33:38 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_nominal_max_1p00v_25c   Library: sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+Wire Load Model Mode: top
+
+  Startpoint: u_csr/field_storage_reg[REGION][9][REGION_LIMIT_LO][limit_lo][value][1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: u_csr/field_storage_reg[VIOL_INFO0][master_id][value][0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  axi_mpu_REGION_NUM16_PIPELINE1
+                     Small                 sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  u_csr/field_storage_reg[REGION][9][REGION_LIMIT_LO][limit_lo][value][1]/CK (DFFRPQ_X1M_A9TH)
+                                                          0.00 #     0.00 r
+  u_csr/field_storage_reg[REGION][9][REGION_LIMIT_LO][limit_lo][value][1]/Q (DFFRPQ_X1M_A9TH)
+                                                          0.15       0.15 r
+  u_csr/hwif_out[REGION][9][REGION_LIMIT_LO][limit_lo][value][1] (axi_mpu_csr)
+                                                          0.00       0.15 r
+  u_perm/region_limit[9][1] (axi_mpu_permission_48_8_4_16_1_1_1)
+                                                          0.00       0.15 r
+  u_perm/lte_134_I10/B[1] (axi_mpu_permission_48_8_4_16_1_1_1_DW01_cmp2_20)
+                                                          0.00       0.15 r
+  u_perm/lte_134_I10/U91/Y (INV_X1M_A9TH)                 0.05       0.20 f
+  u_perm/lte_134_I10/U90/Y (OA1B2_X1M_A9TH)               0.08       0.28 f
+  u_perm/lte_134_I10/U89/Y (AOI222_X1M_A9TH)              0.11       0.38 r
+  u_perm/lte_134_I10/U88/Y (INV_X1M_A9TH)                 0.05       0.44 f
+  u_perm/lte_134_I10/U10/Y (OAI221_X1M_A9TH)              0.05       0.49 r
+  u_perm/lte_134_I10/U9/Y (OAI221_X1M_A9TH)               0.07       0.56 f
+  u_perm/lte_134_I10/U87/Y (OAI221_X1M_A9TH)              0.06       0.62 r
+  u_perm/lte_134_I10/U84/Y (OAI221_X1M_A9TH)              0.08       0.70 f
+  u_perm/lte_134_I10/U29/Y (OAI221_X2M_A9TH)              0.05       0.75 r
+  u_perm/lte_134_I10/U28/Y (OAI221_X2M_A9TH)              0.05       0.80 f
+  u_perm/lte_134_I10/U11/Y (OAI221_X1M_A9TH)              0.05       0.85 r
+  u_perm/lte_134_I10/U142/Y (OAI221_X0P5M_A9TH)           0.09       0.94 f
+  u_perm/lte_134_I10/U141/Y (OAI221_X0P5M_A9TH)           0.09       1.03 r
+  u_perm/lte_134_I10/U140/Y (OAI221_X0P5M_A9TH)           0.10       1.13 f
+  u_perm/lte_134_I10/U139/Y (OAI221_X0P5M_A9TH)           0.09       1.22 r
+  u_perm/lte_134_I10/U138/Y (OAI221_X0P5M_A9TH)           0.10       1.33 f
+  u_perm/lte_134_I10/U137/Y (OAI221_X0P5M_A9TH)           0.09       1.42 r
+  u_perm/lte_134_I10/U12/Y (OAI221_X1M_A9TH)              0.09       1.51 f
+  u_perm/lte_134_I10/U30/Y (OAI221_X2M_A9TH)              0.06       1.56 r
+  u_perm/lte_134_I10/U26/Y (OAI221_X2M_A9TH)              0.05       1.61 f
+  u_perm/lte_134_I10/U15/Y (OAI221_X1M_A9TH)              0.05       1.66 r
+  u_perm/lte_134_I10/U13/Y (OAI221_X1M_A9TH)              0.07       1.73 f
+  u_perm/lte_134_I10/U136/Y (OAI221_X0P5M_A9TH)           0.07       1.81 r
+  u_perm/lte_134_I10/U135/Y (OAI221_X0P5M_A9TH)           0.10       1.91 f
+  u_perm/lte_134_I10/U134/Y (OAI221_X0P5M_A9TH)           0.09       2.00 r
+  u_perm/lte_134_I10/U133/Y (OAI221_X0P5M_A9TH)           0.10       2.11 f
+  u_perm/lte_134_I10/U132/Y (OAI221_X0P5M_A9TH)           0.09       2.20 r
+  u_perm/lte_134_I10/U16/Y (OAI221_X1M_A9TH)              0.09       2.28 f
+  u_perm/lte_134_I10/U32/Y (OAI221_X2M_A9TH)              0.06       2.34 r
+  u_perm/lte_134_I10/U27/Y (OAI221_X2M_A9TH)              0.05       2.39 f
+  u_perm/lte_134_I10/U18/Y (OAI221_X1M_A9TH)              0.05       2.44 r
+  u_perm/lte_134_I10/U17/Y (OAI221_X1M_A9TH)              0.07       2.51 f
+  u_perm/lte_134_I10/U131/Y (OAI221_X0P5M_A9TH)           0.07       2.58 r
+  u_perm/lte_134_I10/U130/Y (OAI221_X0P5M_A9TH)           0.10       2.69 f
+  u_perm/lte_134_I10/U129/Y (OAI221_X0P5M_A9TH)           0.10       2.79 r
+  u_perm/lte_134_I10/U4/Y (OAI221_X2M_A9TH)               0.07       2.86 f
+  u_perm/lte_134_I10/U3/Y (NAND3_X2A_A9TH)                0.05       2.91 r
+  u_perm/lte_134_I10/U5/Y (OAI221_X4M_A9TH)               0.04       2.95 f
+  u_perm/lte_134_I10/U31/Y (OAI221_X2M_A9TH)              0.04       2.99 r
+  u_perm/lte_134_I10/U6/Y (OAI221_X2M_A9TH)               0.05       3.04 f
+  u_perm/lte_134_I10/U20/Y (OAI221_X1M_A9TH)              0.05       3.09 r
+  u_perm/lte_134_I10/U19/Y (OAI221_X1M_A9TH)              0.08       3.17 f
+  u_perm/lte_134_I10/U25/Y (OAI221_X2M_A9TH)              0.05       3.22 r
+  u_perm/lte_134_I10/U33/Y (OAI221_X2M_A9TH)              0.05       3.27 f
+  u_perm/lte_134_I10/U22/Y (OAI221_X1M_A9TH)              0.05       3.32 r
+  u_perm/lte_134_I10/U21/Y (OAI221_X1M_A9TH)              0.08       3.40 f
+  u_perm/lte_134_I10/U8/Y (OAI221_X2M_A9TH)               0.05       3.45 r
+  u_perm/lte_134_I10/U7/Y (OAI221_X2M_A9TH)               0.05       3.50 f
+  u_perm/lte_134_I10/U24/Y (AOI21B_X1M_A9TH)              0.07       3.57 f
+  u_perm/lte_134_I10/U23/Y (AO21A1AI2_X1M_A9TH)           0.10       3.67 r
+  u_perm/lte_134_I10/LT_LE (axi_mpu_permission_48_8_4_16_1_1_1_DW01_cmp2_20)
+                                                          0.00       3.67 r
+  u_perm/U727/Y (NAND4_X2A_A9TH)                          0.09       3.77 f
+  u_perm/U405/Y (NOR4BB_X4M_A9TH)                         0.10       3.86 f
+  u_perm/U5/Y (NAND2_X6M_A9TH)                            0.04       3.90 r
+  u_perm/U92/Y (OAI31_X6M_A9TH)                           0.04       3.94 f
+  u_perm/U412/Y (OR2_X6M_A9TH)                            0.05       3.99 f
+  u_perm/U65/Y (NAND2_X6M_A9TH)                           0.02       4.01 r
+  u_perm/U1026/Y (OA21A1OI2_X6M_A9TH)                     0.04       4.04 f
+  u_perm/U50/Y (AND2_X4M_A9TH)                            0.06       4.11 f
+  u_perm/U7/Y (BUFH_X11M_A9TH)                            0.03       4.14 f
+  u_perm/U528/Y (AND2_X6B_A9TH)                           0.06       4.20 f
+  u_perm/U910/Y (AO22_X1M_A9TH)                           0.08       4.28 f
+  u_perm/U465/Y (NAND4BB_X3M_A9TH)                        0.07       4.35 f
+  u_perm/U489/Y (OR2_X3M_A9TH)                            0.06       4.41 f
+  u_perm/U488/Y (AO22_X6M_A9TH)                           0.07       4.48 f
+  u_perm/U77/Y (NOR2_X8M_A9TH)                            0.03       4.51 r
+  u_perm/U9/Y (NAND2_X6A_A9TH)                            0.02       4.53 f
+  u_perm/U161/Y (NAND2_X8A_A9TH)                          0.02       4.55 r
+  u_perm/U163/Y (INV_X11M_A9TH)                           0.02       4.57 f
+  u_perm/U64/Y (AND3_X8M_A9TH)                            0.05       4.62 f
+  u_perm/perm_allow (axi_mpu_permission_48_8_4_16_1_1_1)
+                                                          0.00       4.62 f
+  u_read/perm_allow (axi_mpu_read_ADDR_WIDTH48_DATA_WIDTH128_ID_WIDTH8)
+                                                          0.00       4.62 f
+  u_read/U9/Y (INV_X9M_A9TH)                              0.02       4.64 r
+  u_read/U11/Y (NAND2_X8B_A9TH)                           0.02       4.66 f
+  u_read/U15/Y (INV_X7P5B_A9TH)                           0.02       4.68 r
+  u_read/viol_valid (axi_mpu_read_ADDR_WIDTH48_DATA_WIDTH128_ID_WIDTH8)
+                                                          0.00       4.68 r
+  U230/Y (AOI2XB1_X8M_A9TH)                               0.06       4.74 r
+  U173/Y (BUFH_X16M_A9TH)                                 0.04       4.78 r
+  u_csr/hwif_in[VIOL_INFO0][master_id][we] (axi_mpu_csr)
+                                                          0.00       4.78 r
+  u_csr/U48/Y (BUF_X2M_A9TH)                              0.08       4.86 r
+  u_csr/U4698/Y (MXT2_X0P7M_A9TH)                         0.10       4.96 f
+  u_csr/field_storage_reg[VIOL_INFO0][master_id][value][0]/D (DFFRPQ_X0P5M_A9TH)
+                                                          0.00       4.96 f
+  data arrival time                                                  4.96
+
+  clock clk (rise edge)                                   5.00       5.00
+  clock network delay (ideal)                             0.00       5.00
+  u_csr/field_storage_reg[VIOL_INFO0][master_id][value][0]/CK (DFFRPQ_X0P5M_A9TH)
+                                                          0.00       5.00 r
+  library setup time                                     -0.03       4.97
+  data required time                                                 4.97
+  --------------------------------------------------------------------------
+  data required time                                                 4.97
+  data arrival time                                                 -4.96
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

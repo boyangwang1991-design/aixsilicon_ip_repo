@@ -1,0 +1,42 @@
+// ============================================================================
+// AXI MPU - UVM Verification Filelist (top-level)
+// ============================================================================
+// 从 verification/ 目录运行 VCS:
+//   vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 \
+//       -f verification.list -top harness -o ../build/sim/simv
+// ============================================================================
+
++incdir+../rtl/include
++incdir+../rtl/generated
++incdir+./th
++incdir+./env
++incdir+./tc
+
+// ---- RTL (DUT) ----
+../rtl/include/axi_mpu_defs.svh
+../rtl/generated/axi_mpu_csr_pkg.sv
+../rtl/generated/axi_mpu_csr.sv
+../rtl/axi_mpu_permission.sv
+../rtl/axi_mpu_read.sv
+../rtl/axi_mpu_write.sv
+../rtl/axi_mpu.sv
+
+// ---- Verification ----
+./th/axi_mpu_if.sv
+./env/axi_mpu_env_pkg.sv
+./tc/tc_base.sv
+./tc/tc_smoke_basic.sv
+./tc/tc_default_deny.sv
+./tc/tc_master_permission.sv
+./tc/tc_security_permission.sv
+./tc/tc_privilege_permission.sv
+./tc/tc_op_permission.sv
+./tc/tc_region_boundary.sv
+./tc/tc_burst_boundary.sv
+./tc/tc_local_decerr.sv
+./tc/tc_violation_capture.sv
+./tc/tc_config_lock.sv
+./tc/tc_reset_behavior.sv
+./tc/tc_outstanding.sv
+./tc/tc_random_traffic.sv
+./th/harness.sv

@@ -1,0 +1,29 @@
+schema_version: '2.0'
+schema: ip-ppa-sweep-analysis/1.0
+point_count: 7
+comparison_context:
+  pdk_sha256: null
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+  evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+  compile_options: compile -map_effort medium
+  activity: default_probability_estimate
+metric_directions:
+  area_um2: min
+  slack_ns: max
+  dyn_power_uW: min
+  leak_power_nW: min
+pareto_run_ids:
+- CFG_R16_P0_200M_200MHz_f783dde9
+- CFG_R16_P1_200M_200MHz_d916efef
+- CFG_R4_P0_400M_400MHz_8a79a8bd
+budgets:
+  max_area_um2: null
+  min_slack_ns: -0.5
+  max_dyn_power_uW: null
+objective: area
+recommended_run_id: CFG_R16_P0_200M_200MHz_f783dde9
+recommended_config_id: CFG_R16_P0_200M

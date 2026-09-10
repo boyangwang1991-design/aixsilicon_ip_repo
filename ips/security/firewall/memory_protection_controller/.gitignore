@@ -1,0 +1,23 @@
+# 运行中间件统一落点（git 忽略，不交付）
+build/
+# 防漏网：典型 EDA/仿真中间产物（若工具写入源码目录则视为违规）
+*.daidir/
+csrc/
+simv*
+*.vcd
+*.fsdb
+*.shm
+*.log
+.Xil/
+edalize_work_root/
+# Verdi / VCS 图形与调试产物
+AN.DB/
+ucli.key
+vc_hdrs.h
+novas.conf
+novas.rc
+novas/
+# Python
+.venv/
+__pycache__/
+*.py[cod]

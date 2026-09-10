@@ -1,0 +1,34 @@
+schema_version: '2.0'
+schema: ip-pdk-context/1.0
+source_schema: cbb-pdk-context/0.1
+bound_ip: axi_mpu
+ip_name: axi_mpu
+status: PDK_READY
+pdk_root: /home/eda/pdk
+requested_node: 28nm
+node: CMOS28NM
+description: CMOS28NM (GF 28nm LP) PDK 环境说明
+process: cmos28lp
+bundle: GF21LB004-FB-00000-r5p0-03rel0
+library: sc9_cmos28lp_base_hvt
+corner: tt_nominal_max_1p00v_25c
+target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+link_libraries:
+- '*'
+- /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+operating_conditions: tt_nominal_max_1p00v_25c
+search_path:
+- /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db
+- /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/lib
+dc_shell:
+  tool: dc_shell
+  available: true
+  path: /home/eda/app/synopsys/syn/V-2023.12-SP3/bin/dc_shell
+synthesis_capable: true
+discovery:
+  nodes:
+  - CMOS28NM
+  selected_node_libraries: 5
+  selected_node_timing_views: 70
+provenance:
+  scanner: cbb-development-suite/pdk-scan

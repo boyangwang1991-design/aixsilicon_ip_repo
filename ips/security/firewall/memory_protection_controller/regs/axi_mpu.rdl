@@ -1,0 +1,288 @@
+// ============================================================================
+// AXI MPU - Register Definition Language (SystemRDL)
+// IP: axi_mpu
+// Version: 1.0.0
+// Bus: APB4, 32-bit data
+//
+// NOTE: axi_mpu 是 Generator IP。本文件是 Generator 默认配置基线
+// (REGION_NUM=16, MASTER_NUM=8) 生成的 SystemRDL 结构 SSOT；
+// 参数变化时由 Generator 重新生成本文件及其派生视图。
+//
+// Source of Intent: docs/lld (LLD_REG_META) + docs/hld (Register Architecture)
+// ============================================================================
+
+addrmap axi_mpu {
+    desc = "AXI Memory Protection Unit Register Map";
+
+    // ------------------------------------------------------------------------
+    // 配置写使能 gate（lock 抑制写）：由 RTL 侧驱动
+    //   - 全局冻结：GLOBAL_LOCK.lock=1
+    //   - 区域冻结：REGION[r].REGION_CONTROL.lock=1
+    // 生成的 hwif_in.cfg_swwe 由 axi_mpu.sv 依据 lock 状态驱动。
+    // ------------------------------------------------------------------------
+    signal {desc = "Region 配置 SW 写使能（lock 抑制写 gate）";} cfg_swwe;
+
+    // ========================================================================
+    // Global Control & Status Region (0x000 ~ 0x01F)
+    // ========================================================================
+
+    // GLOBAL_CTRL (0x000) - Global Control
+    reg {
+        desc = "Global Control Register";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; } global_enable[0:0];
+        field { reset = 1'b0; } boot_bypass[1:1];
+    } GLOBAL_CTRL @ 0x000;
+
+    // GLOBAL_STATUS (0x004) - Global Status
+    reg {
+        desc = "Global Status Register";
+        default sw = r;
+        default hw = r;
+
+        field { reset = 1'b0; } global_lock[0:0];
+        field { reset = 1'b0; } region_any_enabled[1:1];
+    } GLOBAL_STATUS @ 0x004;
+
+    // GLOBAL_LOCK (0x008) - Global Lock (write 1 to lock, 0->1 only)
+    // onwrite=woset：写 1 置位、写 0 无效（1->0 仅复位清除）
+    reg {
+        desc = "Global Lock Register";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; onwrite = woset; } lock[0:0];
+    } GLOBAL_LOCK @ 0x008;
+
+    // IRQ_ENABLE (0x00C) - Interrupt Enable
+    reg {
+        desc = "Interrupt Enable Register";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; } viol_en[0:0];
+    } IRQ_ENABLE @ 0x00C;
+
+    // IRQ_STATUS (0x010) - Interrupt Status (sticky, HW set / SW W1C clear)
+    // 只读 + 硬件置位；W1C 清除走 IRQ_CLEAR（0x014）。
+    reg {
+        desc = "Interrupt Status Register";
+        default sw = r;
+        default hw = r;
+
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } viol_sticky[0:0];
+    } IRQ_STATUS @ 0x010;
+
+    // IRQ_CLEAR (0x014) - Interrupt Clear (W1C aliased)
+    reg {
+        desc = "Interrupt Clear Register";
+        default sw = r;
+        default hw = r;
+
+        field {
+            sw = w;
+            hw = r;
+            onwrite = wclr;
+        } viol_clear[0:0];
+    } IRQ_CLEAR @ 0x014;
+
+    // ========================================================================
+    // Violation Region (0x020 ~ 0x03F)
+    // ========================================================================
+
+    // VIOL_STATUS (0x020) - Violation Status (sticky)
+    // valid: 外部硬件置位（hwset），软件只读；W1C 清除走 VIOL_CLEAR（0x03C）。
+    // read/write/instruction/secure/privileged: 首次 violation 属性快照（hwset 锁存）。
+    reg {
+        desc = "Violation Status Register";
+        default sw = r;
+        default hw = r;
+
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } valid[0:0];
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } read[1:1];
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } write[2:2];
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } instruction[3:3];
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } secure[4:4];
+        field {
+            sw = rw;
+            hwset;
+            onwrite = wclr;
+            reset = 1'b0;
+        } privileged[5:5];
+    } VIOL_STATUS @ 0x020;
+
+    // VIOL_ADDR_LO (0x024) - Violation Address Low (HW-captured)
+    reg {
+        desc = "Violation Address Low Register";
+        default sw = r;
+        default hw = r;
+
+        // FIRST_ERROR_STICKY：we 仅在首错拍由 RTL 驱动（viol_capture && !viol_latched）
+        field { hw = w; we; reset = 32'h00000000; } addr_lo[31:0];
+    } VIOL_ADDR_LO @ 0x024;
+
+    // VIOL_ADDR_HI (0x028) - Violation Address High (HW-captured)
+    reg {
+        desc = "Violation Address High Register";
+        default sw = r;
+        default hw = r;
+
+        field { hw = w; we; reset = 32'h00000000; } addr_hi[31:0];
+    } VIOL_ADDR_HI @ 0x028;
+
+    // VIOL_INFO0 (0x02C) - Violation Info 0: master_id / axi_id / region_id / reason
+    reg {
+        desc = "Violation Info 0 Register";
+        default sw = r;
+        default hw = r;
+
+        field { hw = w; we; reset = 8'h00; } master_id[7:0];
+        field { hw = w; we; reset = 8'h00; } axi_id[15:8];
+        field { hw = w; we; reset = 8'h00; } region_id[23:16];
+        field { hw = w; we; reset = 8'h00; } reason[31:24];
+    } VIOL_INFO0 @ 0x02C;
+
+    // VIOL_INFO1 (0x030) - Violation Info 1: reserved for future
+    reg {
+        desc = "Violation Info 1 Register";
+        default sw = r;
+        default hw = r;
+
+        field { reset = 32'h00000000; } info1[31:0];
+    } VIOL_INFO1 @ 0x030;
+
+    // VIOL_COUNT (0x034) - Violation Counter (saturating, RO, SW clear via VIOL_CLEAR)
+    reg {
+        desc = "Violation Counter Register";
+        default sw = r;
+        default hw = r;
+
+        field {
+            sw = rw;
+            hw = r;
+            counter;
+            onwrite = wclr;
+            reset = 16'h0000;
+        } count[15:0];
+    } VIOL_COUNT @ 0x034;
+
+    // ========================================================================
+    // Master Attribute Region (0x100 ~ 0x11F) - MASTER_NUM=8 baseline
+    // ========================================================================
+
+    reg {
+        desc = "Master Security Attribution Register";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; } secure_capable[0:0];
+        field { reset = 1'b0; } nonsecure_capable[1:1];
+    } MASTER_ATTR[8] @ 0x100 += 0x4;
+
+    // ========================================================================
+    // Region Configuration Region (0x200 ~ 0x5FF) - REGION_NUM=16 baseline
+    // REGION_STRIDE = 0x40 (16 words per region)
+    // ========================================================================
+
+    regfile region_regs {
+        desc = "Per-Region Register Group";
+
+        reg {
+            desc = "Region Control Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 1'b0; } enable[0:0];
+            field { reset = 1'b0; } lock[1:1];
+        } REGION_CONTROL @ 0x0;
+
+        reg {
+            desc = "Region Base Address Low Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 32'h0; swwe = cfg_swwe; } base_lo[31:0];
+        } REGION_BASE_LO @ 0x4;
+
+        reg {
+            desc = "Region Base Address High Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 32'h0; swwe = cfg_swwe; } base_hi[31:0];
+        } REGION_BASE_HI @ 0x8;
+
+        reg {
+            desc = "Region Limit Address Low Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 32'h0; swwe = cfg_swwe; } limit_lo[31:0];
+        } REGION_LIMIT_LO @ 0xC;
+
+        reg {
+            desc = "Region Limit Address High Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 32'h0; swwe = cfg_swwe; } limit_hi[31:0];
+        } REGION_LIMIT_HI @ 0x10;
+
+        reg {
+            desc = "Region Master Mask Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 32'h0; swwe = cfg_swwe; } master_mask[31:0];
+        } REGION_MASTER_MASK @ 0x14;
+
+        reg {
+            desc = "Region Permission Register";
+            default sw = rw;
+            default hw = r;
+
+            field { reset = 1'b0; swwe = cfg_swwe; } secure_allow[0:0];
+            field { reset = 1'b0; swwe = cfg_swwe; } nonsecure_allow[1:1];
+            field { reset = 1'b0; swwe = cfg_swwe; } priv_allow[2:2];
+            field { reset = 1'b0; swwe = cfg_swwe; } unpriv_allow[3:3];
+            field { reset = 1'b0; swwe = cfg_swwe; } read_allow[4:4];
+            field { reset = 1'b0; swwe = cfg_swwe; } write_allow[5:5];
+            field { reset = 1'b0; swwe = cfg_swwe; } exec_allow[6:6];
+        } REGION_PERMISSION @ 0x18;
+    };
+
+    // 16 regions, base 0x200, stride 0x40
+    region_regs REGION[16] @ 0x200 += 0x40;
+};

@@ -1,0 +1,22 @@
+schema_version: '2.0'
+generator: peakrdl-regblock
+generator_version: 1.3.1
+rdl_source: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/regs/axi_mpu.rdl
+rdl_source_sha256: f7cac5296e922c4b5ffa87757e5106ab22167c6fe43188bccb5c7c2cbb286dde
+outputs:
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/rtl/generated/axi_mpu_csr_pkg.sv
+  sha256: 160f1c94f02a030d0323b85c895c0f1bd92694e6b571e3367f54eacf223b155f
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/rtl/generated/axi_mpu_csr.sv
+  sha256: cc108732db4d58525a950aa8c3f1dff991843b75f0c5b6b76bcc36cf476c1243
+lint_command:
+- vcs
+- -full64
+- -sverilog
+- -ntb_opts
+- uvm-1.2
+- '{files}'
+- -top
+- axi_mpu_csr
+- -o
+- build/rtl/csr_lint_simv
+timeout_seconds: 300

@@ -1,0 +1,41 @@
+schema_version: '2.0'
+schema: ip-ppa-summary/1.0
+run_id: CFG_R16_P0_500M_500MHz_f783dde9
+manifest:
+  path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_500M_500MHz_f783dde9/manifest.yaml
+  sha256: c3ebfab6d8c3557e29b8c4d99683792e50b9025299b1c70f6ade8e2b81568c03
+config_id: CFG_R16_P0_500M
+clock_freq_mhz: 500.0
+params:
+  REGION_NUM: '16'
+  PIPELINE: '0'
+area_um2: 25650.611877
+slack_ns: -2.01
+critical_delay_ns: 4.01
+data_arrival_ns: 3.96
+fmax_mhz: 249.37655860349128
+dyn_power_uW: 7818.2
+leak_power_nW: 5014.599999999999
+activity: default_probability_estimate
+timing_constrained: true
+evidence_level: E2
+comparison_context:
+  pdk_sha256: null
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: lrs-axi_mpu-ppa-sweep-v1
+  evaluator_sha256: ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b
+  compile_options: compile -map_effort medium
+  activity: default_probability_estimate
+raw_reports:
+  area:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_500M_500MHz_f783dde9/area.rpt
+    sha256: ba699175e6f2b14f0df4f7d15b40e8c50319cb61d937618cdaf3b03f2be9b60f
+  timing:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_500M_500MHz_f783dde9/timing.rpt
+    sha256: 607904fbbc32513aaecf2e98e80ee3c34514281a7272c3837dd34122dac8d2fb
+  power:
+    path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/security/firewall/memory_protection_controller/evidence/ppa/CFG_R16_P0_500M_500MHz_f783dde9/power.rpt
+    sha256: 8a95a99f399661dec135fff233be3c71878f590fbfcce39d6e1e5f0687802686
