@@ -31,6 +31,11 @@ PRIORITY_LISTS = [
 # hac_aes / lowrisc_* 目录未落盘（gitignore 或未同步），暂标记 planned，
 # 待目录落盘后再置为 implemented/released。
 IMPLEMENTED_OVERRIDES = {
+    "apb_demux": {
+        "version": "1.0.0", "status": "implemented", "maturity": "experimental",
+        "path": "ips/infrastructure/apb/apb_demux",
+        "description": "APB Demux（1→N APB Router）",
+    },
     "uart": {
         "vendor": "boyangwang1991-design", "version": "0.1.0", "status": "planned",
         "maturity": "beta", "path": "ips/boyangwang1991-design/uart/0.1.0",

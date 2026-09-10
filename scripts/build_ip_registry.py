@@ -19,6 +19,9 @@ build_ip_registry.py — AIXSILICON IP registry.yaml 生成 / 校验 / 规范化
 import argparse
 import os
 import sys
+import json
+import re
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ip_lib import (ROOT, REGISTRY_PATH, ID_PREFIX, REQUIRED_FIELDS, validate)
@@ -30,14 +33,26 @@ except ImportError as exc:  # pragma: no cover
     raise SystemExit(20)
 
 
-def _assign_ids(entries):
-    """按 domain 顶层前缀 + 序号分配稳定 ID。"""
-    counters = {}
+ID_MAP_PATH = Path(__file__).parent / "data/ip_ids.json"
+
+
+def _assign_ids(entries, id_map=None):
+    """保留历史编号（含已移除名称），仅为新名称分配编号。"""
+    if id_map is None:
+        id_map = json.loads(ID_MAP_PATH.read_text(encoding="utf-8"))
+    if len(set(id_map.values())) != len(id_map):
+        raise ValueError("ip_ids.json 存在重复 ID")
+    if any(not re.fullmatch(r"[A-Z]+-\d{3,}", v) for v in id_map.values()):
+        raise ValueError("ip_ids.json 存在非法 ID")
+    used = set(id_map.values())
     for e in entries:
         top = e["domain"].split("/")[0]
         prefix = ID_PREFIX.get(top, "IP")
-        counters[prefix] = counters.get(prefix, 0) + 1
-        e["id"] = "%s-%03d" % (prefix, counters[prefix])
+        if e["name"] not in id_map:
+            number = max([int(v.split("-")[1]) for v in used if v.startswith(prefix + "-")] or [0]) + 1
+            id_map[e["name"]] = "%s-%03d" % (prefix, number)
+            used.add(id_map[e["name"]])
+        e["id"] = id_map[e["name"]]
     return entries
 
 
@@ -70,6 +85,7 @@ def write_registry(reg):
     lines.append("# 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path")
     lines.append("# 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。")
     lines.append("# status=implemented/released 表示物理目录存在且已交付；planned 条目仅为规划候选。")
+    lines.append("# 边界: IP 必须对外提供独立集成合同（如 CSR/地址图、中断、系统策略或产品级接口）；通用构件归 CBB。")
     lines.append("vendor: aixsilicon")
     lines.append("library: ip")
     lines.append("")
@@ -102,15 +118,23 @@ def main():
     ap.add_argument("--generate", action="store_true",
                     help="依据 scripts/data/*.py 生成 registry.yaml（默认行为）")
     ap.add_argument("--check", action="store_true", help="只读校验 registry.yaml")
+    ap.add_argument("--check-source", action="store_true", help="只读检查 registry 与生成源一致")
     ap.add_argument("--write", action="store_true", help="校验通过后规范化重写 registry.yaml")
     args = ap.parse_args()
 
     import yaml  # noqa: F401  (确保依赖存在)
 
-    if args.check or args.write:
+    if args.check or args.write or args.check_source:
         with open(REGISTRY_PATH, encoding="utf-8") as f:
             reg = yaml.safe_load(f)
         errors, warnings = validate(reg)
+        if args.check_source:
+            def normalized(entries):
+                return sorted([{k: v for k, v in e.items() if not (k == "interfaces" and not v)
+                                and not (k == "vendor" and v == "aixsilicon")} for e in entries],
+                              key=lambda e: e["name"])
+            if normalized(reg["ips"]) != normalized(build_registry_dict()["ips"]):
+                errors.append("registry 与 scripts/data 生成源不一致，请 --generate 后刷新 README")
         ips = reg.get("ips", [])
         implemented = sum(1 for e in ips if e.get("status") in ("implemented", "released"))
         print("registry.yaml: 共 %d 条（implemented/released=%d）" % (len(ips), implemented))
@@ -130,6 +154,13 @@ def main():
 
     # 默认：生成
     reg = build_registry_dict()
+    errors, _ = validate(reg)
+    if errors:
+        print("\n".join(errors))
+        raise SystemExit(10)
+    id_map = json.loads(ID_MAP_PATH.read_text(encoding="utf-8"))
+    id_map.update({e["name"]: e["id"] for e in reg["ips"]})
+    ID_MAP_PATH.write_text(json.dumps(id_map, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     write_registry(reg)
     total = len(reg["ips"])
     impl = sum(1 for e in reg["ips"] if e.get("status") in ("implemented", "released"))

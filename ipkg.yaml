@@ -21,7 +21,7 @@ fusesoc:
   vendor: aixsilicon
   library: ip
   # Core 文件输出目录（相对于 IP 版本目录）
-  cores_dir: fusesoc
+  cores_dir: .
 
 # 发布配置
 publish:

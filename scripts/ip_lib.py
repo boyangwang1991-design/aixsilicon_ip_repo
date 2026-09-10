@@ -12,6 +12,7 @@ ip_lib.py — AIXSILICON IP registry 公共库（供 build_ip_registry.py / upda
 - implemented/released 条目必须有物理目录（path 存在且包含 README.md / metadata.yaml）
 """
 import os
+from pathlib import Path
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTRY_PATH = os.path.join(ROOT, "registry.yaml")
@@ -101,19 +102,31 @@ def load_registry(path=REGISTRY_PATH):
     return data
 
 
-def validate(reg):
+def validate(reg, root=None):
     """返回 (errors, warnings)。errors 非空 → 校验失败。"""
     errors, warnings = [], []
+    root = Path(root or ROOT).resolve()
+    if not isinstance(reg, dict):
+        return ["registry 必须是 object"], warnings
     ips = reg.get("ips", [])
     if not isinstance(ips, list):
         errors.append("ips 必须是列表")
         return errors, warnings
     ids = set()
+    names, paths = set(), set()
     for i, e in enumerate(ips):
         if not isinstance(e, dict):
             errors.append("[%d] 条目不是 object" % i)
             continue
         cid = e.get("id")
+        for field, seen in (("name", names), ("path", paths)):
+            value = e.get(field)
+            if not isinstance(value, str) or not value:
+                errors.append("[%s] %s 必须为非空字符串" % (cid, field))
+            elif value in seen:
+                errors.append("%s 重复: %s" % (field, value))
+            else:
+                seen.add(value)
         if not cid:
             errors.append("[%d] 缺 id" % i)
         elif cid in ids:
@@ -142,6 +155,12 @@ def validate(reg):
             if top not in VALID_DOMAIN_TOPS:
                 errors.append("[%s] domain 顶层非法: %s" % (cid, dom))
         p = e.get("path", "")
+        if not isinstance(p, str):
+            continue
+        target = (root / p).resolve()
+        if Path(p).is_absolute() or ".." in Path(p).parts or not target.is_relative_to(root):
+            errors.append("[%s] path 越出仓库: %s" % (cid, p))
+            continue
         vendor_layout = False
         if p:
             parts = p.split("/")
@@ -154,9 +173,17 @@ def validate(reg):
                     # 纯规划条目应遵循 ips/<domain>/<subdomain>/<name> 布局
                     errors.append("[%s] planned 条目 path(%s) 与 domain(%s) 不一致" % (cid, p, dom))
         if st in ("implemented", "released"):
-            if not os.path.isdir(os.path.join(ROOT, p)):
+            if not target.is_dir():
                 errors.append("[%s] status=%s 但目录不存在: %s" % (cid, st, p))
-        elif st == "planned":
-            if p and os.path.isdir(os.path.join(ROOT, p)):
-                warnings.append("[%s] status=planned 但目录存在（可能已实现未更新状态）: %s" % (cid, p))
+        package = target / "ip-package.yaml"
+        if package.is_file():
+            import yaml
+            try:
+                meta = yaml.safe_load(package.read_text(encoding="utf-8"))
+                for field in ("name", "version"):
+                    if str(meta.get(field, "")) != str(e.get(field, "")):
+                        (errors if st in ("implemented", "released") else warnings).append(
+                            "[%s] ip-package.yaml %s 与 registry 不一致；完成身份对齐后才能交付" % (cid, field))
+            except (AttributeError, OSError, yaml.YAMLError) as exc:
+                errors.append("[%s] 无效包元数据: %s" % (cid, exc))
     return errors, warnings

@@ -180,7 +180,7 @@ def main():
         print(build_status_section(reg))
         return
 
-    changed, _ = refresh_readme(reg, dry_run=args.dry_run)
+    changed, _ = refresh_readme(reg, dry_run=args.dry_run or args.check)
     if args.check:
         if changed:
             print("==> README.md 状态总览与 registry.yaml 不一致（需要刷新）。")
