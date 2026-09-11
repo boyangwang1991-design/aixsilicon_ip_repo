@@ -126,6 +126,10 @@ filesets:
     file_type: systemVerilogSource
     depend:
     - aixsilicon:cbb:parity_gen_check:0.1.0
+  lint_waivers:
+    files:
+    - constraints/lint_waivers.tcl
+    file_type: tclSource
   ut_gpio:
     files:
     - verification/unit_test/ut_gpio.sv
@@ -165,6 +169,10 @@ filesets:
   ut_gpio_output:
     files:
     - verification/unit_test/ut_gpio_output.sv
+    file_type: systemVerilogSource
+  ut_gpio_regfile:
+    files:
+    - verification/unit_test/ut_gpio_regfile.sv
     file_type: systemVerilogSource
   ut_gpio_security:
     files:
@@ -213,7 +221,10 @@ targets:
         - -l
         - compile.log
   lint:
-    filesets: *id001
+    filesets:
+    - generated
+    - rtl
+    - lint_waivers
     toplevel: gpio
     parameters: *id002
     default_tool: spyglass
@@ -224,6 +235,16 @@ targets:
         spyglass_options:
         - enableSV yes
         - handlememory yes
+  synth:
+    filesets: *id001
+    toplevel: gpio
+    parameters: *id002
+    default_tool: design_compiler
+    tools:
+      design_compiler:
+        script_dir: $::env(IP_ROOT)/scripts/ppa
+        dc_script: synth.tcl
+        report_dir: reports
   ut_gpio:
     filesets:
     - generated
@@ -383,6 +404,23 @@ targets:
     - rtl
     - ut_gpio_output
     toplevel: ut_gpio_output
+    default_tool: vcs
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -l
+        - compile.log
+  ut_gpio_regfile:
+    filesets:
+    - generated
+    - rtl
+    - ut_gpio_regfile
+    toplevel: ut_gpio_regfile
     default_tool: vcs
     tools:
       vcs:

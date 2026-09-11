@@ -1,0 +1,87 @@
+[
+  {
+    "test": "tc_cdc",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_cdc.log"
+  },
+  {
+    "test": "tc_hw_event",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_hw_event.log"
+  },
+  {
+    "test": "tc_service",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_service.log"
+  },
+  {
+    "test": "tc_state",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_state.log"
+  },
+  {
+    "test": "tc_group",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_group.log"
+  },
+  {
+    "test": "tc_alive",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_alive.log"
+  },
+  {
+    "test": "tc_flow",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_flow.log"
+  },
+  {
+    "test": "tc_commit",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_commit.log"
+  },
+  {
+    "test": "tc_timing",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_timing.log"
+  },
+  {
+    "test": "tc_snapshot",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_snapshot.log"
+  },
+  {
+    "test": "tc_lock",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_lock.log"
+  },
+  {
+    "test": "tc_fault",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_fault.log"
+  },
+  {
+    "test": "tc_recovery",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_recovery.log"
+  },
+  {
+    "test": "tc_reset",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_reset.log"
+  },
+  {
+    "test": "tc_pause",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_pause.log"
+  },
+  {
+    "test": "tc_safety",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_safety.log"
+  },
+  {
+    "test": "tc_dfx",
+    "exit_code": 0,
+    "log": "reports/full_flow/uvm_assertion_features_dfx.log"
+  }
+]

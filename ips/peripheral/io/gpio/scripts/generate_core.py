@@ -1,7 +1,5 @@
 """Generate the GPIO FuseSoC package from local sources and parameter metadata."""
 from pathlib import Path
-import hashlib
-import json
 import yaml
 
 
@@ -23,9 +21,11 @@ def main():
     filesets={'generated':{'files':generated,'file_type':'systemVerilogSource'},
               'rtl':{'files':rtl,'file_type':'systemVerilogSource','depend':['aixsilicon:cbb:parity_gen_check:0.1.0']}}
     base={'filesets':['generated','rtl'],'toplevel':'gpio','parameters':list(parameters)}
+    filesets['lint_waivers']={'files':['constraints/lint_waivers.tcl'],'file_type':'tclSource'}
     targets={'default':dict(base),
       'elab':dict(base,default_tool='vcs',tools={'vcs':{'vcs_options':['-full64','-sverilog','-timescale=1ns/1ps','-ntb_opts','uvm-1.2','-l','compile.log']}}),
-      'lint':dict(base,default_tool='spyglass',tools={'spyglass':{'goals':['lint/lint_rtl'],'spyglass_options':['enableSV yes','handlememory yes']}})}
+      'lint':dict(base,filesets=['generated','rtl','lint_waivers'],default_tool='spyglass',tools={'spyglass':{'goals':['lint/lint_rtl'],'spyglass_options':['enableSV yes','handlememory yes']}}),
+      'synth':dict(base,default_tool='design_compiler',tools={'design_compiler':{'script_dir':'$::env(IP_ROOT)/scripts/ppa','dc_script':'synth.tcl','report_dir':'reports'}})}
     for test in sorted((root/'verification/unit_test').glob('ut_*.sv')):
         filesets[test.stem]={'files':[str(test.relative_to(root))],'file_type':'systemVerilogSource'}
         targets[test.stem]={'filesets':['generated','rtl',test.stem],'toplevel':test.stem,'default_tool':'vcs',
