@@ -1,0 +1,41 @@
+{
+  "schema": "ip-command-proof/1.0",
+  "testcase_id": "TC.WDT.DRIVER.001",
+  "proof_kind": "software",
+  "implementation": "scripts/test_driver.sh",
+  "command": [
+    "bash",
+    "scripts/test_driver.sh"
+  ],
+  "tool": "cc",
+  "tool_version": "GCC 8.5.0",
+  "inputs": [
+    {
+      "path": "scripts/test_driver.sh",
+      "sha256": "945bcef56ec16790559b3e8ec8aab3daac5ca9993e47443d98f3d70895316ef8"
+    },
+    {
+      "path": "sw/include/watchdog.h",
+      "sha256": "5a9694ec14070c4bbada254b4632976936724fedf8cacf28e1e1518de6a1baa9"
+    },
+    {
+      "path": "sw/include/watchdog_regs.h",
+      "sha256": "9b5c5fe719c4d871a0a84efc832e8ede95a352b9fff7df161086338c9c1a5529"
+    },
+    {
+      "path": "sw/tests/test_watchdog.c",
+      "sha256": "0abe4bda9317f0a72ae6cff11352f398919e3b70fe9fac462629d30c6b93f9f8"
+    },
+    {
+      "path": "sw/watchdog.c",
+      "sha256": "f77f1b9219047cd151cd64a4b1928bd132e2b379cbcdf639b05aab7c714afee5"
+    }
+  ],
+  "exit_code": 0,
+  "status": "pass",
+  "pass_line": "WATCHDOG_DRIVER_TEST PASS",
+  "log": {
+    "path": "reports/software/driver_run_001.log",
+    "sha256": "a70a90fa76cc22a735b13444c0b593c450a28fc9400173ac322d13cf16e286cb"
+  }
+}

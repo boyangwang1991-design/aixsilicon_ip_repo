@@ -1,0 +1,27 @@
+Dashboard
+
+Date: Thu Sep 10 10:28:08 2026
+
+User: eda
+
+Version: W-2024.09-SP1
+Command line: urg -dir build/regression/20260910_102320/channel32/aixsilicon_ip_watchdog_1.0.0/ut_channel-vcs/aixsilicon_ip_watchdog_1.0.0.vdb -report build/coverage/channel32 -format both
+Number of tests: 1
+
+-------------------------------------------------------------------------------
+Total Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 48.62  92.06  69.62   1.02  11.36  69.02 
+
+
+-------------------------------------------------------------------------------
+Hierarchical coverage data for top-level instances 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME                
+ 48.62  92.06  69.62   1.02  11.36  69.02 ut_watchdog_channel 
+
+
+-------------------------------------------------------------------------------
+Total Module Definition Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 48.62  92.06  69.62   1.02  11.36  69.02 
+

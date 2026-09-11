@@ -1,0 +1,13 @@
+Design Module List
+
+Total Module Definition Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 48.62  92.06  69.62   1.02  11.36  69.02 
+
+
+Total modules in report: 2
+-------------------------------------------------------------------------------
+SCORE  LINE   COND   TOGGLE FSM    BRANCH NAME                
+ 47.78  87.61  69.62   1.07  11.36  69.23 watchdog_channel    
+ 49.97  99.02 --       0.88 --      50.00 ut_watchdog_channel 
+

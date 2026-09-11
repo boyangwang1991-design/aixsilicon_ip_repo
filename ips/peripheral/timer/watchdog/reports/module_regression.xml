@@ -1,0 +1,1 @@
+<testsuite name="watchdog_module_regression" tests="5" failures="0"><testcase name="channel32" time="25.52" /><testcase name="channel48" time="21.51" /><testcase name="channel64" time="25.52" /><testcase name="top_async" time="34.2" /><testcase name="top_fast_apb" time="35.34" /></testsuite>

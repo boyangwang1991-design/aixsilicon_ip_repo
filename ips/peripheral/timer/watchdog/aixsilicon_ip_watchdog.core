@@ -1,0 +1,216 @@
+CAPI=2:
+name: aixsilicon:ip:watchdog:1.0.0
+description: Candidate parameterized watchdog
+parameters:
+  NUM_CHANNELS:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+  COUNTER_WIDTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 32
+  PRESCALE_WIDTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 16
+  NUM_CLIENTS:
+    datatype: int
+    paramtype: vlogparam
+    default: 1
+  SOURCE_WIDTH:
+    datatype: int
+    paramtype: vlogparam
+    default: 4
+  SYNC_STAGES:
+    datatype: int
+    paramtype: vlogparam
+    default: 2
+  SUPPORT_TOKEN_QA:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  SUPPORT_SUPERVISION:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  SUPPORT_HW_EVENT:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  SAFETY_EN:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  ALLOW_RUNTIME_UPDATE:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  DIAG_INJECT_EN:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  W:
+    datatype: int
+    paramtype: vlogparam
+    default: 32
+  PS:
+    datatype: int
+    paramtype: vlogparam
+    default: 7
+  WS:
+    datatype: int
+    paramtype: vlogparam
+    default: 5
+filesets:
+  pkg:
+    files:
+    - rtl/watchdog_pkg.sv
+    file_type: systemVerilogSource
+  generated:
+    files:
+    - rtl/generated/watchdog_csr_pkg.sv
+    - rtl/generated/watchdog_csr.sv
+    - rtl/generated/watchdog_reg_adapter.sv
+    file_type: systemVerilogSource
+  rtl:
+    files:
+    - rtl/watchdog_channel.sv
+    - rtl/watchdog_top.sv
+    file_type: systemVerilogSource
+    depend:
+    - aixsilicon:cbb:round_robin_arbiter:0.1.0
+  ut_channel:
+    files:
+    - verification/unit_test/ut_watchdog_channel.sv
+    file_type: systemVerilogSource
+  ut_top:
+    files:
+    - verification/unit_test/ut_watchdog_top.sv
+    file_type: systemVerilogSource
+targets:
+  default:
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    toplevel: watchdog_top
+  elab:
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    toplevel: watchdog_top
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+  lint:
+    default_tool: spyglass
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    toplevel: watchdog_top
+    tools:
+      spyglass:
+        goals:
+        - lint/lint_rtl
+        spyglass_options:
+        - enableSV09 yes
+        - mthresh 1048576
+        - define SYNTHESIS
+  ut_channel: &id002
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - ut_channel
+    toplevel: ut_watchdog_channel
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        - -cm
+        - line+cond+branch+fsm+tgl
+        run_options:
+        - -no_save
+        - -cm
+        - line+cond+branch+fsm+tgl
+    parameters:
+    - W
+  ut_top: &id001
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - ut_top
+    toplevel: ut_watchdog_top
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        - -cm
+        - line+cond+branch+fsm+tgl
+        run_options:
+        - -no_save
+        - -cm
+        - line+cond+branch+fsm+tgl
+    parameters:
+    - PS
+    - WS
+  sim: *id001
+  smoke: *id002
+  synth:
+    default_tool: design_compiler
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    parameters: []
+    toplevel: watchdog_top
+    tools:
+      design_compiler:
+        script_dir: $::env(WATCHDOG_IP_ROOT)/scripts/ppa
+        dc_script: synth.tcl

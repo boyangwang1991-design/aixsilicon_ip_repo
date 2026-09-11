@@ -1,0 +1,9599 @@
+[
+  {
+    "name": "IP_ID",
+    "address": 0,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "VERSION",
+    "address": 4,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "CAPABILITY0",
+    "address": 8,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "CAPABILITY1",
+    "address": 12,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "CMD_STATUS",
+    "address": 16,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ISSUED_SEQ",
+    "address": 20,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "DONE_SEQ",
+    "address": 24,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "DONE_INFO",
+    "address": 28,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "IRQ_SUMMARY",
+    "address": 32,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "FAULT_SUMMARY",
+    "address": 36,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "RESET_SUMMARY",
+    "address": 40,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CTRL_STAGE",
+    "address": 4096,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].PRESCALE_STAGE",
+    "address": 4100,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].WIN_MIN_LO_STAGE",
+    "address": 4104,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].WIN_MIN_HI_STAGE",
+    "address": 4108,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].TIMEOUT_LO_STAGE",
+    "address": 4112,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].TIMEOUT_HI_STAGE",
+    "address": 4116,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].PRETIMEOUT_LO_STAGE",
+    "address": 4120,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].PRETIMEOUT_HI_STAGE",
+    "address": 4124,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].BOOT_TIMEOUT_LO_STAGE",
+    "address": 4128,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].BOOT_TIMEOUT_HI_STAGE",
+    "address": 4132,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].SEQ_LIMIT_STAGE",
+    "address": 4136,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].REQUIRE_MASK_STAGE",
+    "address": 4140,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].FAULT_POLICY_STAGE",
+    "address": 4144,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].LOCAL_DELAY_STAGE",
+    "address": 4148,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].FINAL_DELAY_STAGE",
+    "address": 4152,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].RECOVERY_LIMIT_STAGE",
+    "address": 4156,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].UNLOCK",
+    "address": 4160,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].COMMAND",
+    "address": 4164,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].LOCK_SET",
+    "address": 4168,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].SERVICE_SELECT",
+    "address": 4172,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].SERVICE",
+    "address": 4176,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].IRQ_ENABLE",
+    "address": 4180,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].IRQ_CLEAR",
+    "address": 4184,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].IRQ_TEST",
+    "address": 4188,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].DIAG_CLEAR",
+    "address": 4192,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].FAULT_INJECT",
+    "address": 4196,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[0].SNAP_META",
+    "address": 4200,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].SNAP_SEQ",
+    "address": 4204,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].STATUS_SNAP",
+    "address": 4208,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CFG_VERSION_SNAP",
+    "address": 4212,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].COUNT_LO_SNAP",
+    "address": 4216,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].COUNT_HI_SNAP",
+    "address": 4220,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].EVENT_RAW_SNAP",
+    "address": 4224,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].IRQ_ENABLE_SNAP",
+    "address": 4228,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].SEEN_MASK_SNAP",
+    "address": 4232,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].MISSING_MASK_SNAP",
+    "address": 4236,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].LAST_SERVICE_SEQ_SNAP",
+    "address": 4240,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FAULT_COUNT_SNAP",
+    "address": 4244,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].RECOVERY_COUNT_SNAP",
+    "address": 4248,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].ESC_AGE_SNAP",
+    "address": 4252,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_FLAGS_SNAP",
+    "address": 4256,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_CAUSE_SNAP",
+    "address": 4260,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_COUNT_LO_SNAP",
+    "address": 4264,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_COUNT_HI_SNAP",
+    "address": 4268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_SOURCE_SNAP",
+    "address": 4272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_CFG_VERSION_SNAP",
+    "address": 4276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_MISSING_SNAP",
+    "address": 4280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_SERVICE_SEQ_SNAP",
+    "address": 4284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FIRST_STATE_SNAP",
+    "address": 4288,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CTRL_ACTIVE_SNAP",
+    "address": 4352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].PRESCALE_ACTIVE_SNAP",
+    "address": 4356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 4360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 4364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 4368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 4372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 4376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 4380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 4384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 4388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 4392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 4396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 4400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 4404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 4408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 4412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_SELECT",
+    "address": 4416,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_OWNER_STAGE",
+    "address": 4420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_ALIVE_STAGE",
+    "address": 4424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_FLOW_STAGE",
+    "address": 4428,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 4432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 4436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 4440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 4444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[0].CLIENT_FLAGS_SNAP",
+    "address": 4480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_TOKEN_SNAP",
+    "address": 4484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 4488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_ELAPSED_LO_SNAP",
+    "address": 4492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_ELAPSED_HI_SNAP",
+    "address": 4496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 4512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 4516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 4520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 4524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 4528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 4532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[0].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 4536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CTRL_STAGE",
+    "address": 5120,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].PRESCALE_STAGE",
+    "address": 5124,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].WIN_MIN_LO_STAGE",
+    "address": 5128,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].WIN_MIN_HI_STAGE",
+    "address": 5132,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].TIMEOUT_LO_STAGE",
+    "address": 5136,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].TIMEOUT_HI_STAGE",
+    "address": 5140,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].PRETIMEOUT_LO_STAGE",
+    "address": 5144,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].PRETIMEOUT_HI_STAGE",
+    "address": 5148,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].BOOT_TIMEOUT_LO_STAGE",
+    "address": 5152,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].BOOT_TIMEOUT_HI_STAGE",
+    "address": 5156,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].SEQ_LIMIT_STAGE",
+    "address": 5160,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].REQUIRE_MASK_STAGE",
+    "address": 5164,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].FAULT_POLICY_STAGE",
+    "address": 5168,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].LOCAL_DELAY_STAGE",
+    "address": 5172,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].FINAL_DELAY_STAGE",
+    "address": 5176,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].RECOVERY_LIMIT_STAGE",
+    "address": 5180,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].UNLOCK",
+    "address": 5184,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].COMMAND",
+    "address": 5188,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].LOCK_SET",
+    "address": 5192,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].SERVICE_SELECT",
+    "address": 5196,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].SERVICE",
+    "address": 5200,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].IRQ_ENABLE",
+    "address": 5204,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].IRQ_CLEAR",
+    "address": 5208,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].IRQ_TEST",
+    "address": 5212,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].DIAG_CLEAR",
+    "address": 5216,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].FAULT_INJECT",
+    "address": 5220,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[1].SNAP_META",
+    "address": 5224,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].SNAP_SEQ",
+    "address": 5228,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].STATUS_SNAP",
+    "address": 5232,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CFG_VERSION_SNAP",
+    "address": 5236,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].COUNT_LO_SNAP",
+    "address": 5240,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].COUNT_HI_SNAP",
+    "address": 5244,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].EVENT_RAW_SNAP",
+    "address": 5248,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].IRQ_ENABLE_SNAP",
+    "address": 5252,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].SEEN_MASK_SNAP",
+    "address": 5256,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].MISSING_MASK_SNAP",
+    "address": 5260,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].LAST_SERVICE_SEQ_SNAP",
+    "address": 5264,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FAULT_COUNT_SNAP",
+    "address": 5268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].RECOVERY_COUNT_SNAP",
+    "address": 5272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].ESC_AGE_SNAP",
+    "address": 5276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_FLAGS_SNAP",
+    "address": 5280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_CAUSE_SNAP",
+    "address": 5284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_COUNT_LO_SNAP",
+    "address": 5288,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_COUNT_HI_SNAP",
+    "address": 5292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_SOURCE_SNAP",
+    "address": 5296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_CFG_VERSION_SNAP",
+    "address": 5300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_MISSING_SNAP",
+    "address": 5304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_SERVICE_SEQ_SNAP",
+    "address": 5308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FIRST_STATE_SNAP",
+    "address": 5312,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CTRL_ACTIVE_SNAP",
+    "address": 5376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].PRESCALE_ACTIVE_SNAP",
+    "address": 5380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 5384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 5388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 5392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 5396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 5400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 5404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 5408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 5412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 5416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 5420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 5424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 5428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 5432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 5436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_SELECT",
+    "address": 5440,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_OWNER_STAGE",
+    "address": 5444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_ALIVE_STAGE",
+    "address": 5448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_FLOW_STAGE",
+    "address": 5452,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 5456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 5460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 5464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 5468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[1].CLIENT_FLAGS_SNAP",
+    "address": 5504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_TOKEN_SNAP",
+    "address": 5508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 5512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_ELAPSED_LO_SNAP",
+    "address": 5516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_ELAPSED_HI_SNAP",
+    "address": 5520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 5536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 5540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 5544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 5548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 5552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 5556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[1].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 5560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CTRL_STAGE",
+    "address": 6144,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].PRESCALE_STAGE",
+    "address": 6148,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].WIN_MIN_LO_STAGE",
+    "address": 6152,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].WIN_MIN_HI_STAGE",
+    "address": 6156,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].TIMEOUT_LO_STAGE",
+    "address": 6160,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].TIMEOUT_HI_STAGE",
+    "address": 6164,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].PRETIMEOUT_LO_STAGE",
+    "address": 6168,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].PRETIMEOUT_HI_STAGE",
+    "address": 6172,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].BOOT_TIMEOUT_LO_STAGE",
+    "address": 6176,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].BOOT_TIMEOUT_HI_STAGE",
+    "address": 6180,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].SEQ_LIMIT_STAGE",
+    "address": 6184,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].REQUIRE_MASK_STAGE",
+    "address": 6188,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].FAULT_POLICY_STAGE",
+    "address": 6192,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].LOCAL_DELAY_STAGE",
+    "address": 6196,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].FINAL_DELAY_STAGE",
+    "address": 6200,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].RECOVERY_LIMIT_STAGE",
+    "address": 6204,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].UNLOCK",
+    "address": 6208,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].COMMAND",
+    "address": 6212,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].LOCK_SET",
+    "address": 6216,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].SERVICE_SELECT",
+    "address": 6220,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].SERVICE",
+    "address": 6224,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].IRQ_ENABLE",
+    "address": 6228,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].IRQ_CLEAR",
+    "address": 6232,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].IRQ_TEST",
+    "address": 6236,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].DIAG_CLEAR",
+    "address": 6240,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].FAULT_INJECT",
+    "address": 6244,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[2].SNAP_META",
+    "address": 6248,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].SNAP_SEQ",
+    "address": 6252,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].STATUS_SNAP",
+    "address": 6256,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CFG_VERSION_SNAP",
+    "address": 6260,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].COUNT_LO_SNAP",
+    "address": 6264,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].COUNT_HI_SNAP",
+    "address": 6268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].EVENT_RAW_SNAP",
+    "address": 6272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].IRQ_ENABLE_SNAP",
+    "address": 6276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].SEEN_MASK_SNAP",
+    "address": 6280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].MISSING_MASK_SNAP",
+    "address": 6284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].LAST_SERVICE_SEQ_SNAP",
+    "address": 6288,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FAULT_COUNT_SNAP",
+    "address": 6292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].RECOVERY_COUNT_SNAP",
+    "address": 6296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].ESC_AGE_SNAP",
+    "address": 6300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_FLAGS_SNAP",
+    "address": 6304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_CAUSE_SNAP",
+    "address": 6308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_COUNT_LO_SNAP",
+    "address": 6312,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_COUNT_HI_SNAP",
+    "address": 6316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_SOURCE_SNAP",
+    "address": 6320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_CFG_VERSION_SNAP",
+    "address": 6324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_MISSING_SNAP",
+    "address": 6328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_SERVICE_SEQ_SNAP",
+    "address": 6332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FIRST_STATE_SNAP",
+    "address": 6336,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CTRL_ACTIVE_SNAP",
+    "address": 6400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].PRESCALE_ACTIVE_SNAP",
+    "address": 6404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 6408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 6412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 6416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 6420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 6424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 6428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 6432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 6436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 6440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 6444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 6448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 6452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 6456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 6460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_SELECT",
+    "address": 6464,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_OWNER_STAGE",
+    "address": 6468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_ALIVE_STAGE",
+    "address": 6472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_FLOW_STAGE",
+    "address": 6476,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 6480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 6484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 6488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 6492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[2].CLIENT_FLAGS_SNAP",
+    "address": 6528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_TOKEN_SNAP",
+    "address": 6532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 6536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_ELAPSED_LO_SNAP",
+    "address": 6540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_ELAPSED_HI_SNAP",
+    "address": 6544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 6560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 6564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 6568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 6572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 6576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 6580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[2].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 6584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CTRL_STAGE",
+    "address": 7168,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].PRESCALE_STAGE",
+    "address": 7172,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].WIN_MIN_LO_STAGE",
+    "address": 7176,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].WIN_MIN_HI_STAGE",
+    "address": 7180,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].TIMEOUT_LO_STAGE",
+    "address": 7184,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].TIMEOUT_HI_STAGE",
+    "address": 7188,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].PRETIMEOUT_LO_STAGE",
+    "address": 7192,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].PRETIMEOUT_HI_STAGE",
+    "address": 7196,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].BOOT_TIMEOUT_LO_STAGE",
+    "address": 7200,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].BOOT_TIMEOUT_HI_STAGE",
+    "address": 7204,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].SEQ_LIMIT_STAGE",
+    "address": 7208,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].REQUIRE_MASK_STAGE",
+    "address": 7212,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].FAULT_POLICY_STAGE",
+    "address": 7216,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].LOCAL_DELAY_STAGE",
+    "address": 7220,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].FINAL_DELAY_STAGE",
+    "address": 7224,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].RECOVERY_LIMIT_STAGE",
+    "address": 7228,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].UNLOCK",
+    "address": 7232,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].COMMAND",
+    "address": 7236,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].LOCK_SET",
+    "address": 7240,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].SERVICE_SELECT",
+    "address": 7244,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].SERVICE",
+    "address": 7248,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].IRQ_ENABLE",
+    "address": 7252,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].IRQ_CLEAR",
+    "address": 7256,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].IRQ_TEST",
+    "address": 7260,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].DIAG_CLEAR",
+    "address": 7264,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].FAULT_INJECT",
+    "address": 7268,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[3].SNAP_META",
+    "address": 7272,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].SNAP_SEQ",
+    "address": 7276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].STATUS_SNAP",
+    "address": 7280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CFG_VERSION_SNAP",
+    "address": 7284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].COUNT_LO_SNAP",
+    "address": 7288,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].COUNT_HI_SNAP",
+    "address": 7292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].EVENT_RAW_SNAP",
+    "address": 7296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].IRQ_ENABLE_SNAP",
+    "address": 7300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].SEEN_MASK_SNAP",
+    "address": 7304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].MISSING_MASK_SNAP",
+    "address": 7308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].LAST_SERVICE_SEQ_SNAP",
+    "address": 7312,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FAULT_COUNT_SNAP",
+    "address": 7316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].RECOVERY_COUNT_SNAP",
+    "address": 7320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].ESC_AGE_SNAP",
+    "address": 7324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_FLAGS_SNAP",
+    "address": 7328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_CAUSE_SNAP",
+    "address": 7332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_COUNT_LO_SNAP",
+    "address": 7336,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_COUNT_HI_SNAP",
+    "address": 7340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_SOURCE_SNAP",
+    "address": 7344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_CFG_VERSION_SNAP",
+    "address": 7348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_MISSING_SNAP",
+    "address": 7352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_SERVICE_SEQ_SNAP",
+    "address": 7356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FIRST_STATE_SNAP",
+    "address": 7360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CTRL_ACTIVE_SNAP",
+    "address": 7424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].PRESCALE_ACTIVE_SNAP",
+    "address": 7428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 7432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 7436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 7440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 7444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 7448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 7452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 7456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 7460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 7464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 7468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 7472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 7476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 7480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 7484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_SELECT",
+    "address": 7488,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_OWNER_STAGE",
+    "address": 7492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_ALIVE_STAGE",
+    "address": 7496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_FLOW_STAGE",
+    "address": 7500,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 7504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 7508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 7512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 7516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[3].CLIENT_FLAGS_SNAP",
+    "address": 7552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_TOKEN_SNAP",
+    "address": 7556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 7560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_ELAPSED_LO_SNAP",
+    "address": 7564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_ELAPSED_HI_SNAP",
+    "address": 7568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 7584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 7588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 7592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 7596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 7600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 7604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[3].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 7608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CTRL_STAGE",
+    "address": 8192,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].PRESCALE_STAGE",
+    "address": 8196,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].WIN_MIN_LO_STAGE",
+    "address": 8200,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].WIN_MIN_HI_STAGE",
+    "address": 8204,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].TIMEOUT_LO_STAGE",
+    "address": 8208,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].TIMEOUT_HI_STAGE",
+    "address": 8212,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].PRETIMEOUT_LO_STAGE",
+    "address": 8216,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].PRETIMEOUT_HI_STAGE",
+    "address": 8220,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].BOOT_TIMEOUT_LO_STAGE",
+    "address": 8224,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].BOOT_TIMEOUT_HI_STAGE",
+    "address": 8228,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].SEQ_LIMIT_STAGE",
+    "address": 8232,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].REQUIRE_MASK_STAGE",
+    "address": 8236,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].FAULT_POLICY_STAGE",
+    "address": 8240,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].LOCAL_DELAY_STAGE",
+    "address": 8244,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].FINAL_DELAY_STAGE",
+    "address": 8248,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].RECOVERY_LIMIT_STAGE",
+    "address": 8252,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].UNLOCK",
+    "address": 8256,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].COMMAND",
+    "address": 8260,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].LOCK_SET",
+    "address": 8264,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].SERVICE_SELECT",
+    "address": 8268,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].SERVICE",
+    "address": 8272,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].IRQ_ENABLE",
+    "address": 8276,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].IRQ_CLEAR",
+    "address": 8280,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].IRQ_TEST",
+    "address": 8284,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].DIAG_CLEAR",
+    "address": 8288,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].FAULT_INJECT",
+    "address": 8292,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[4].SNAP_META",
+    "address": 8296,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].SNAP_SEQ",
+    "address": 8300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].STATUS_SNAP",
+    "address": 8304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CFG_VERSION_SNAP",
+    "address": 8308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].COUNT_LO_SNAP",
+    "address": 8312,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].COUNT_HI_SNAP",
+    "address": 8316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].EVENT_RAW_SNAP",
+    "address": 8320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].IRQ_ENABLE_SNAP",
+    "address": 8324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].SEEN_MASK_SNAP",
+    "address": 8328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].MISSING_MASK_SNAP",
+    "address": 8332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].LAST_SERVICE_SEQ_SNAP",
+    "address": 8336,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FAULT_COUNT_SNAP",
+    "address": 8340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].RECOVERY_COUNT_SNAP",
+    "address": 8344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].ESC_AGE_SNAP",
+    "address": 8348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_FLAGS_SNAP",
+    "address": 8352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_CAUSE_SNAP",
+    "address": 8356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_COUNT_LO_SNAP",
+    "address": 8360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_COUNT_HI_SNAP",
+    "address": 8364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_SOURCE_SNAP",
+    "address": 8368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_CFG_VERSION_SNAP",
+    "address": 8372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_MISSING_SNAP",
+    "address": 8376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_SERVICE_SEQ_SNAP",
+    "address": 8380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FIRST_STATE_SNAP",
+    "address": 8384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CTRL_ACTIVE_SNAP",
+    "address": 8448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].PRESCALE_ACTIVE_SNAP",
+    "address": 8452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 8456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 8460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 8464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 8468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 8472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 8476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 8480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 8484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 8488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 8492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 8496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 8500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 8504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 8508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_SELECT",
+    "address": 8512,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_OWNER_STAGE",
+    "address": 8516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_ALIVE_STAGE",
+    "address": 8520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_FLOW_STAGE",
+    "address": 8524,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 8528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 8532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 8536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 8540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[4].CLIENT_FLAGS_SNAP",
+    "address": 8576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_TOKEN_SNAP",
+    "address": 8580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 8584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_ELAPSED_LO_SNAP",
+    "address": 8588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_ELAPSED_HI_SNAP",
+    "address": 8592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 8608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 8612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 8616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 8620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 8624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 8628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[4].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 8632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CTRL_STAGE",
+    "address": 9216,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].PRESCALE_STAGE",
+    "address": 9220,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].WIN_MIN_LO_STAGE",
+    "address": 9224,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].WIN_MIN_HI_STAGE",
+    "address": 9228,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].TIMEOUT_LO_STAGE",
+    "address": 9232,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].TIMEOUT_HI_STAGE",
+    "address": 9236,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].PRETIMEOUT_LO_STAGE",
+    "address": 9240,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].PRETIMEOUT_HI_STAGE",
+    "address": 9244,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].BOOT_TIMEOUT_LO_STAGE",
+    "address": 9248,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].BOOT_TIMEOUT_HI_STAGE",
+    "address": 9252,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].SEQ_LIMIT_STAGE",
+    "address": 9256,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].REQUIRE_MASK_STAGE",
+    "address": 9260,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].FAULT_POLICY_STAGE",
+    "address": 9264,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].LOCAL_DELAY_STAGE",
+    "address": 9268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].FINAL_DELAY_STAGE",
+    "address": 9272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].RECOVERY_LIMIT_STAGE",
+    "address": 9276,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].UNLOCK",
+    "address": 9280,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].COMMAND",
+    "address": 9284,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].LOCK_SET",
+    "address": 9288,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].SERVICE_SELECT",
+    "address": 9292,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].SERVICE",
+    "address": 9296,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].IRQ_ENABLE",
+    "address": 9300,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].IRQ_CLEAR",
+    "address": 9304,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].IRQ_TEST",
+    "address": 9308,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].DIAG_CLEAR",
+    "address": 9312,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].FAULT_INJECT",
+    "address": 9316,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[5].SNAP_META",
+    "address": 9320,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].SNAP_SEQ",
+    "address": 9324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].STATUS_SNAP",
+    "address": 9328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CFG_VERSION_SNAP",
+    "address": 9332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].COUNT_LO_SNAP",
+    "address": 9336,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].COUNT_HI_SNAP",
+    "address": 9340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].EVENT_RAW_SNAP",
+    "address": 9344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].IRQ_ENABLE_SNAP",
+    "address": 9348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].SEEN_MASK_SNAP",
+    "address": 9352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].MISSING_MASK_SNAP",
+    "address": 9356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].LAST_SERVICE_SEQ_SNAP",
+    "address": 9360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FAULT_COUNT_SNAP",
+    "address": 9364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].RECOVERY_COUNT_SNAP",
+    "address": 9368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].ESC_AGE_SNAP",
+    "address": 9372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_FLAGS_SNAP",
+    "address": 9376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_CAUSE_SNAP",
+    "address": 9380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_COUNT_LO_SNAP",
+    "address": 9384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_COUNT_HI_SNAP",
+    "address": 9388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_SOURCE_SNAP",
+    "address": 9392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_CFG_VERSION_SNAP",
+    "address": 9396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_MISSING_SNAP",
+    "address": 9400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_SERVICE_SEQ_SNAP",
+    "address": 9404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FIRST_STATE_SNAP",
+    "address": 9408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CTRL_ACTIVE_SNAP",
+    "address": 9472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].PRESCALE_ACTIVE_SNAP",
+    "address": 9476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 9480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 9484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 9488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 9492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 9496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 9500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 9504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 9508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 9512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 9516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 9520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 9524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 9528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 9532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_SELECT",
+    "address": 9536,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_OWNER_STAGE",
+    "address": 9540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_ALIVE_STAGE",
+    "address": 9544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_FLOW_STAGE",
+    "address": 9548,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 9552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 9556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 9560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 9564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[5].CLIENT_FLAGS_SNAP",
+    "address": 9600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_TOKEN_SNAP",
+    "address": 9604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 9608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_ELAPSED_LO_SNAP",
+    "address": 9612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_ELAPSED_HI_SNAP",
+    "address": 9616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 9632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 9636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 9640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 9644,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 9648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 9652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[5].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 9656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CTRL_STAGE",
+    "address": 10240,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].PRESCALE_STAGE",
+    "address": 10244,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].WIN_MIN_LO_STAGE",
+    "address": 10248,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].WIN_MIN_HI_STAGE",
+    "address": 10252,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].TIMEOUT_LO_STAGE",
+    "address": 10256,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].TIMEOUT_HI_STAGE",
+    "address": 10260,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].PRETIMEOUT_LO_STAGE",
+    "address": 10264,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].PRETIMEOUT_HI_STAGE",
+    "address": 10268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].BOOT_TIMEOUT_LO_STAGE",
+    "address": 10272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].BOOT_TIMEOUT_HI_STAGE",
+    "address": 10276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].SEQ_LIMIT_STAGE",
+    "address": 10280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].REQUIRE_MASK_STAGE",
+    "address": 10284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].FAULT_POLICY_STAGE",
+    "address": 10288,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].LOCAL_DELAY_STAGE",
+    "address": 10292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].FINAL_DELAY_STAGE",
+    "address": 10296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].RECOVERY_LIMIT_STAGE",
+    "address": 10300,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].UNLOCK",
+    "address": 10304,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].COMMAND",
+    "address": 10308,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].LOCK_SET",
+    "address": 10312,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].SERVICE_SELECT",
+    "address": 10316,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].SERVICE",
+    "address": 10320,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].IRQ_ENABLE",
+    "address": 10324,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].IRQ_CLEAR",
+    "address": 10328,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].IRQ_TEST",
+    "address": 10332,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].DIAG_CLEAR",
+    "address": 10336,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].FAULT_INJECT",
+    "address": 10340,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[6].SNAP_META",
+    "address": 10344,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].SNAP_SEQ",
+    "address": 10348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].STATUS_SNAP",
+    "address": 10352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CFG_VERSION_SNAP",
+    "address": 10356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].COUNT_LO_SNAP",
+    "address": 10360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].COUNT_HI_SNAP",
+    "address": 10364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].EVENT_RAW_SNAP",
+    "address": 10368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].IRQ_ENABLE_SNAP",
+    "address": 10372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].SEEN_MASK_SNAP",
+    "address": 10376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].MISSING_MASK_SNAP",
+    "address": 10380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].LAST_SERVICE_SEQ_SNAP",
+    "address": 10384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FAULT_COUNT_SNAP",
+    "address": 10388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].RECOVERY_COUNT_SNAP",
+    "address": 10392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].ESC_AGE_SNAP",
+    "address": 10396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_FLAGS_SNAP",
+    "address": 10400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_CAUSE_SNAP",
+    "address": 10404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_COUNT_LO_SNAP",
+    "address": 10408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_COUNT_HI_SNAP",
+    "address": 10412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_SOURCE_SNAP",
+    "address": 10416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_CFG_VERSION_SNAP",
+    "address": 10420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_MISSING_SNAP",
+    "address": 10424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_SERVICE_SEQ_SNAP",
+    "address": 10428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FIRST_STATE_SNAP",
+    "address": 10432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CTRL_ACTIVE_SNAP",
+    "address": 10496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].PRESCALE_ACTIVE_SNAP",
+    "address": 10500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 10504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 10508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 10512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 10516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 10520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 10524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 10528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 10532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 10536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 10540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 10544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 10548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 10552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 10556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_SELECT",
+    "address": 10560,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_OWNER_STAGE",
+    "address": 10564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_ALIVE_STAGE",
+    "address": 10568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_FLOW_STAGE",
+    "address": 10572,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 10576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 10580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 10584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 10588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[6].CLIENT_FLAGS_SNAP",
+    "address": 10624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_TOKEN_SNAP",
+    "address": 10628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 10632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_ELAPSED_LO_SNAP",
+    "address": 10636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_ELAPSED_HI_SNAP",
+    "address": 10640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 10656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 10660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 10664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 10668,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 10672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 10676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[6].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 10680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CTRL_STAGE",
+    "address": 11264,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].PRESCALE_STAGE",
+    "address": 11268,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].WIN_MIN_LO_STAGE",
+    "address": 11272,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].WIN_MIN_HI_STAGE",
+    "address": 11276,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].TIMEOUT_LO_STAGE",
+    "address": 11280,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].TIMEOUT_HI_STAGE",
+    "address": 11284,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].PRETIMEOUT_LO_STAGE",
+    "address": 11288,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].PRETIMEOUT_HI_STAGE",
+    "address": 11292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].BOOT_TIMEOUT_LO_STAGE",
+    "address": 11296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].BOOT_TIMEOUT_HI_STAGE",
+    "address": 11300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].SEQ_LIMIT_STAGE",
+    "address": 11304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].REQUIRE_MASK_STAGE",
+    "address": 11308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].FAULT_POLICY_STAGE",
+    "address": 11312,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].LOCAL_DELAY_STAGE",
+    "address": 11316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].FINAL_DELAY_STAGE",
+    "address": 11320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].RECOVERY_LIMIT_STAGE",
+    "address": 11324,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].UNLOCK",
+    "address": 11328,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].COMMAND",
+    "address": 11332,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].LOCK_SET",
+    "address": 11336,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].SERVICE_SELECT",
+    "address": 11340,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].SERVICE",
+    "address": 11344,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].IRQ_ENABLE",
+    "address": 11348,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].IRQ_CLEAR",
+    "address": 11352,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].IRQ_TEST",
+    "address": 11356,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].DIAG_CLEAR",
+    "address": 11360,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].FAULT_INJECT",
+    "address": 11364,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[7].SNAP_META",
+    "address": 11368,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].SNAP_SEQ",
+    "address": 11372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].STATUS_SNAP",
+    "address": 11376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CFG_VERSION_SNAP",
+    "address": 11380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].COUNT_LO_SNAP",
+    "address": 11384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].COUNT_HI_SNAP",
+    "address": 11388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].EVENT_RAW_SNAP",
+    "address": 11392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].IRQ_ENABLE_SNAP",
+    "address": 11396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].SEEN_MASK_SNAP",
+    "address": 11400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].MISSING_MASK_SNAP",
+    "address": 11404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].LAST_SERVICE_SEQ_SNAP",
+    "address": 11408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FAULT_COUNT_SNAP",
+    "address": 11412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].RECOVERY_COUNT_SNAP",
+    "address": 11416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].ESC_AGE_SNAP",
+    "address": 11420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_FLAGS_SNAP",
+    "address": 11424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_CAUSE_SNAP",
+    "address": 11428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_COUNT_LO_SNAP",
+    "address": 11432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_COUNT_HI_SNAP",
+    "address": 11436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_SOURCE_SNAP",
+    "address": 11440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_CFG_VERSION_SNAP",
+    "address": 11444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_MISSING_SNAP",
+    "address": 11448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_SERVICE_SEQ_SNAP",
+    "address": 11452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FIRST_STATE_SNAP",
+    "address": 11456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CTRL_ACTIVE_SNAP",
+    "address": 11520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].PRESCALE_ACTIVE_SNAP",
+    "address": 11524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 11528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 11532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 11536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 11540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 11544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 11548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 11552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 11556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 11560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 11564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 11568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 11572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 11576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 11580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_SELECT",
+    "address": 11584,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_OWNER_STAGE",
+    "address": 11588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_ALIVE_STAGE",
+    "address": 11592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_FLOW_STAGE",
+    "address": 11596,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 11600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 11604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 11608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 11612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[7].CLIENT_FLAGS_SNAP",
+    "address": 11648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_TOKEN_SNAP",
+    "address": 11652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 11656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_ELAPSED_LO_SNAP",
+    "address": 11660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_ELAPSED_HI_SNAP",
+    "address": 11664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 11680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 11684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 11688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 11692,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 11696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 11700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[7].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 11704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CTRL_STAGE",
+    "address": 12288,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].PRESCALE_STAGE",
+    "address": 12292,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].WIN_MIN_LO_STAGE",
+    "address": 12296,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].WIN_MIN_HI_STAGE",
+    "address": 12300,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].TIMEOUT_LO_STAGE",
+    "address": 12304,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].TIMEOUT_HI_STAGE",
+    "address": 12308,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].PRETIMEOUT_LO_STAGE",
+    "address": 12312,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].PRETIMEOUT_HI_STAGE",
+    "address": 12316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].BOOT_TIMEOUT_LO_STAGE",
+    "address": 12320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].BOOT_TIMEOUT_HI_STAGE",
+    "address": 12324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].SEQ_LIMIT_STAGE",
+    "address": 12328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].REQUIRE_MASK_STAGE",
+    "address": 12332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].FAULT_POLICY_STAGE",
+    "address": 12336,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].LOCAL_DELAY_STAGE",
+    "address": 12340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].FINAL_DELAY_STAGE",
+    "address": 12344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].RECOVERY_LIMIT_STAGE",
+    "address": 12348,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].UNLOCK",
+    "address": 12352,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].COMMAND",
+    "address": 12356,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].LOCK_SET",
+    "address": 12360,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].SERVICE_SELECT",
+    "address": 12364,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].SERVICE",
+    "address": 12368,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].IRQ_ENABLE",
+    "address": 12372,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].IRQ_CLEAR",
+    "address": 12376,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].IRQ_TEST",
+    "address": 12380,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].DIAG_CLEAR",
+    "address": 12384,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].FAULT_INJECT",
+    "address": 12388,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[8].SNAP_META",
+    "address": 12392,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].SNAP_SEQ",
+    "address": 12396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].STATUS_SNAP",
+    "address": 12400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CFG_VERSION_SNAP",
+    "address": 12404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].COUNT_LO_SNAP",
+    "address": 12408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].COUNT_HI_SNAP",
+    "address": 12412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].EVENT_RAW_SNAP",
+    "address": 12416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].IRQ_ENABLE_SNAP",
+    "address": 12420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].SEEN_MASK_SNAP",
+    "address": 12424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].MISSING_MASK_SNAP",
+    "address": 12428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].LAST_SERVICE_SEQ_SNAP",
+    "address": 12432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FAULT_COUNT_SNAP",
+    "address": 12436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].RECOVERY_COUNT_SNAP",
+    "address": 12440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].ESC_AGE_SNAP",
+    "address": 12444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_FLAGS_SNAP",
+    "address": 12448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_CAUSE_SNAP",
+    "address": 12452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_COUNT_LO_SNAP",
+    "address": 12456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_COUNT_HI_SNAP",
+    "address": 12460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_SOURCE_SNAP",
+    "address": 12464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_CFG_VERSION_SNAP",
+    "address": 12468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_MISSING_SNAP",
+    "address": 12472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_SERVICE_SEQ_SNAP",
+    "address": 12476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FIRST_STATE_SNAP",
+    "address": 12480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CTRL_ACTIVE_SNAP",
+    "address": 12544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].PRESCALE_ACTIVE_SNAP",
+    "address": 12548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 12552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 12556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 12560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 12564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 12568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 12572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 12576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 12580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 12584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 12588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 12592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 12596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 12600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 12604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_SELECT",
+    "address": 12608,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_OWNER_STAGE",
+    "address": 12612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_ALIVE_STAGE",
+    "address": 12616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_FLOW_STAGE",
+    "address": 12620,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 12624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 12628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 12632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 12636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[8].CLIENT_FLAGS_SNAP",
+    "address": 12672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_TOKEN_SNAP",
+    "address": 12676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 12680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_ELAPSED_LO_SNAP",
+    "address": 12684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_ELAPSED_HI_SNAP",
+    "address": 12688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 12704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 12708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 12712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 12716,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 12720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 12724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[8].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 12728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CTRL_STAGE",
+    "address": 13312,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].PRESCALE_STAGE",
+    "address": 13316,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].WIN_MIN_LO_STAGE",
+    "address": 13320,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].WIN_MIN_HI_STAGE",
+    "address": 13324,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].TIMEOUT_LO_STAGE",
+    "address": 13328,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].TIMEOUT_HI_STAGE",
+    "address": 13332,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].PRETIMEOUT_LO_STAGE",
+    "address": 13336,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].PRETIMEOUT_HI_STAGE",
+    "address": 13340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].BOOT_TIMEOUT_LO_STAGE",
+    "address": 13344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].BOOT_TIMEOUT_HI_STAGE",
+    "address": 13348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].SEQ_LIMIT_STAGE",
+    "address": 13352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].REQUIRE_MASK_STAGE",
+    "address": 13356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].FAULT_POLICY_STAGE",
+    "address": 13360,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].LOCAL_DELAY_STAGE",
+    "address": 13364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].FINAL_DELAY_STAGE",
+    "address": 13368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].RECOVERY_LIMIT_STAGE",
+    "address": 13372,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].UNLOCK",
+    "address": 13376,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].COMMAND",
+    "address": 13380,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].LOCK_SET",
+    "address": 13384,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].SERVICE_SELECT",
+    "address": 13388,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].SERVICE",
+    "address": 13392,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].IRQ_ENABLE",
+    "address": 13396,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].IRQ_CLEAR",
+    "address": 13400,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].IRQ_TEST",
+    "address": 13404,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].DIAG_CLEAR",
+    "address": 13408,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].FAULT_INJECT",
+    "address": 13412,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[9].SNAP_META",
+    "address": 13416,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].SNAP_SEQ",
+    "address": 13420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].STATUS_SNAP",
+    "address": 13424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CFG_VERSION_SNAP",
+    "address": 13428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].COUNT_LO_SNAP",
+    "address": 13432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].COUNT_HI_SNAP",
+    "address": 13436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].EVENT_RAW_SNAP",
+    "address": 13440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].IRQ_ENABLE_SNAP",
+    "address": 13444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].SEEN_MASK_SNAP",
+    "address": 13448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].MISSING_MASK_SNAP",
+    "address": 13452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].LAST_SERVICE_SEQ_SNAP",
+    "address": 13456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FAULT_COUNT_SNAP",
+    "address": 13460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].RECOVERY_COUNT_SNAP",
+    "address": 13464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].ESC_AGE_SNAP",
+    "address": 13468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_FLAGS_SNAP",
+    "address": 13472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_CAUSE_SNAP",
+    "address": 13476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_COUNT_LO_SNAP",
+    "address": 13480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_COUNT_HI_SNAP",
+    "address": 13484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_SOURCE_SNAP",
+    "address": 13488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_CFG_VERSION_SNAP",
+    "address": 13492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_MISSING_SNAP",
+    "address": 13496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_SERVICE_SEQ_SNAP",
+    "address": 13500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FIRST_STATE_SNAP",
+    "address": 13504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CTRL_ACTIVE_SNAP",
+    "address": 13568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].PRESCALE_ACTIVE_SNAP",
+    "address": 13572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 13576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 13580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 13584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 13588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 13592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 13596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 13600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 13604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 13608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 13612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 13616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 13620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 13624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 13628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_SELECT",
+    "address": 13632,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_OWNER_STAGE",
+    "address": 13636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_ALIVE_STAGE",
+    "address": 13640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_FLOW_STAGE",
+    "address": 13644,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 13648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 13652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 13656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 13660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[9].CLIENT_FLAGS_SNAP",
+    "address": 13696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_TOKEN_SNAP",
+    "address": 13700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 13704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_ELAPSED_LO_SNAP",
+    "address": 13708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_ELAPSED_HI_SNAP",
+    "address": 13712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 13728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 13732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 13736,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 13740,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 13744,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 13748,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[9].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 13752,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CTRL_STAGE",
+    "address": 14336,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].PRESCALE_STAGE",
+    "address": 14340,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].WIN_MIN_LO_STAGE",
+    "address": 14344,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].WIN_MIN_HI_STAGE",
+    "address": 14348,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].TIMEOUT_LO_STAGE",
+    "address": 14352,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].TIMEOUT_HI_STAGE",
+    "address": 14356,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].PRETIMEOUT_LO_STAGE",
+    "address": 14360,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].PRETIMEOUT_HI_STAGE",
+    "address": 14364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].BOOT_TIMEOUT_LO_STAGE",
+    "address": 14368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].BOOT_TIMEOUT_HI_STAGE",
+    "address": 14372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].SEQ_LIMIT_STAGE",
+    "address": 14376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].REQUIRE_MASK_STAGE",
+    "address": 14380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].FAULT_POLICY_STAGE",
+    "address": 14384,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].LOCAL_DELAY_STAGE",
+    "address": 14388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].FINAL_DELAY_STAGE",
+    "address": 14392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].RECOVERY_LIMIT_STAGE",
+    "address": 14396,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].UNLOCK",
+    "address": 14400,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].COMMAND",
+    "address": 14404,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].LOCK_SET",
+    "address": 14408,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].SERVICE_SELECT",
+    "address": 14412,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].SERVICE",
+    "address": 14416,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].IRQ_ENABLE",
+    "address": 14420,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].IRQ_CLEAR",
+    "address": 14424,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].IRQ_TEST",
+    "address": 14428,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].DIAG_CLEAR",
+    "address": 14432,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].FAULT_INJECT",
+    "address": 14436,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[10].SNAP_META",
+    "address": 14440,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].SNAP_SEQ",
+    "address": 14444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].STATUS_SNAP",
+    "address": 14448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CFG_VERSION_SNAP",
+    "address": 14452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].COUNT_LO_SNAP",
+    "address": 14456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].COUNT_HI_SNAP",
+    "address": 14460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].EVENT_RAW_SNAP",
+    "address": 14464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].IRQ_ENABLE_SNAP",
+    "address": 14468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].SEEN_MASK_SNAP",
+    "address": 14472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].MISSING_MASK_SNAP",
+    "address": 14476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].LAST_SERVICE_SEQ_SNAP",
+    "address": 14480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FAULT_COUNT_SNAP",
+    "address": 14484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].RECOVERY_COUNT_SNAP",
+    "address": 14488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].ESC_AGE_SNAP",
+    "address": 14492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_FLAGS_SNAP",
+    "address": 14496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_CAUSE_SNAP",
+    "address": 14500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_COUNT_LO_SNAP",
+    "address": 14504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_COUNT_HI_SNAP",
+    "address": 14508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_SOURCE_SNAP",
+    "address": 14512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_CFG_VERSION_SNAP",
+    "address": 14516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_MISSING_SNAP",
+    "address": 14520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_SERVICE_SEQ_SNAP",
+    "address": 14524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FIRST_STATE_SNAP",
+    "address": 14528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CTRL_ACTIVE_SNAP",
+    "address": 14592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].PRESCALE_ACTIVE_SNAP",
+    "address": 14596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 14600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 14604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 14608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 14612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 14616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 14620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 14624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 14628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 14632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 14636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 14640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 14644,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 14648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 14652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_SELECT",
+    "address": 14656,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_OWNER_STAGE",
+    "address": 14660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_ALIVE_STAGE",
+    "address": 14664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_FLOW_STAGE",
+    "address": 14668,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 14672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 14676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 14680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 14684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[10].CLIENT_FLAGS_SNAP",
+    "address": 14720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_TOKEN_SNAP",
+    "address": 14724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 14728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_ELAPSED_LO_SNAP",
+    "address": 14732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_ELAPSED_HI_SNAP",
+    "address": 14736,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 14752,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 14756,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 14760,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 14764,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 14768,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 14772,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[10].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 14776,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CTRL_STAGE",
+    "address": 15360,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].PRESCALE_STAGE",
+    "address": 15364,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].WIN_MIN_LO_STAGE",
+    "address": 15368,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].WIN_MIN_HI_STAGE",
+    "address": 15372,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].TIMEOUT_LO_STAGE",
+    "address": 15376,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].TIMEOUT_HI_STAGE",
+    "address": 15380,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].PRETIMEOUT_LO_STAGE",
+    "address": 15384,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].PRETIMEOUT_HI_STAGE",
+    "address": 15388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].BOOT_TIMEOUT_LO_STAGE",
+    "address": 15392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].BOOT_TIMEOUT_HI_STAGE",
+    "address": 15396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].SEQ_LIMIT_STAGE",
+    "address": 15400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].REQUIRE_MASK_STAGE",
+    "address": 15404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].FAULT_POLICY_STAGE",
+    "address": 15408,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].LOCAL_DELAY_STAGE",
+    "address": 15412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].FINAL_DELAY_STAGE",
+    "address": 15416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].RECOVERY_LIMIT_STAGE",
+    "address": 15420,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].UNLOCK",
+    "address": 15424,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].COMMAND",
+    "address": 15428,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].LOCK_SET",
+    "address": 15432,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].SERVICE_SELECT",
+    "address": 15436,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].SERVICE",
+    "address": 15440,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].IRQ_ENABLE",
+    "address": 15444,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].IRQ_CLEAR",
+    "address": 15448,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].IRQ_TEST",
+    "address": 15452,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].DIAG_CLEAR",
+    "address": 15456,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].FAULT_INJECT",
+    "address": 15460,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[11].SNAP_META",
+    "address": 15464,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].SNAP_SEQ",
+    "address": 15468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].STATUS_SNAP",
+    "address": 15472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CFG_VERSION_SNAP",
+    "address": 15476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].COUNT_LO_SNAP",
+    "address": 15480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].COUNT_HI_SNAP",
+    "address": 15484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].EVENT_RAW_SNAP",
+    "address": 15488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].IRQ_ENABLE_SNAP",
+    "address": 15492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].SEEN_MASK_SNAP",
+    "address": 15496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].MISSING_MASK_SNAP",
+    "address": 15500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].LAST_SERVICE_SEQ_SNAP",
+    "address": 15504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FAULT_COUNT_SNAP",
+    "address": 15508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].RECOVERY_COUNT_SNAP",
+    "address": 15512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].ESC_AGE_SNAP",
+    "address": 15516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_FLAGS_SNAP",
+    "address": 15520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_CAUSE_SNAP",
+    "address": 15524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_COUNT_LO_SNAP",
+    "address": 15528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_COUNT_HI_SNAP",
+    "address": 15532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_SOURCE_SNAP",
+    "address": 15536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_CFG_VERSION_SNAP",
+    "address": 15540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_MISSING_SNAP",
+    "address": 15544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_SERVICE_SEQ_SNAP",
+    "address": 15548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FIRST_STATE_SNAP",
+    "address": 15552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CTRL_ACTIVE_SNAP",
+    "address": 15616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].PRESCALE_ACTIVE_SNAP",
+    "address": 15620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 15624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 15628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 15632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 15636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 15640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 15644,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 15648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 15652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 15656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 15660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 15664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 15668,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 15672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 15676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_SELECT",
+    "address": 15680,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_OWNER_STAGE",
+    "address": 15684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_ALIVE_STAGE",
+    "address": 15688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_FLOW_STAGE",
+    "address": 15692,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 15696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 15700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 15704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 15708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[11].CLIENT_FLAGS_SNAP",
+    "address": 15744,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_TOKEN_SNAP",
+    "address": 15748,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 15752,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_ELAPSED_LO_SNAP",
+    "address": 15756,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_ELAPSED_HI_SNAP",
+    "address": 15760,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 15776,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 15780,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 15784,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 15788,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 15792,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 15796,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[11].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 15800,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CTRL_STAGE",
+    "address": 16384,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].PRESCALE_STAGE",
+    "address": 16388,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].WIN_MIN_LO_STAGE",
+    "address": 16392,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].WIN_MIN_HI_STAGE",
+    "address": 16396,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].TIMEOUT_LO_STAGE",
+    "address": 16400,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].TIMEOUT_HI_STAGE",
+    "address": 16404,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].PRETIMEOUT_LO_STAGE",
+    "address": 16408,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].PRETIMEOUT_HI_STAGE",
+    "address": 16412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].BOOT_TIMEOUT_LO_STAGE",
+    "address": 16416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].BOOT_TIMEOUT_HI_STAGE",
+    "address": 16420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].SEQ_LIMIT_STAGE",
+    "address": 16424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].REQUIRE_MASK_STAGE",
+    "address": 16428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].FAULT_POLICY_STAGE",
+    "address": 16432,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].LOCAL_DELAY_STAGE",
+    "address": 16436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].FINAL_DELAY_STAGE",
+    "address": 16440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].RECOVERY_LIMIT_STAGE",
+    "address": 16444,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].UNLOCK",
+    "address": 16448,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].COMMAND",
+    "address": 16452,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].LOCK_SET",
+    "address": 16456,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].SERVICE_SELECT",
+    "address": 16460,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].SERVICE",
+    "address": 16464,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].IRQ_ENABLE",
+    "address": 16468,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].IRQ_CLEAR",
+    "address": 16472,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].IRQ_TEST",
+    "address": 16476,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].DIAG_CLEAR",
+    "address": 16480,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].FAULT_INJECT",
+    "address": 16484,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[12].SNAP_META",
+    "address": 16488,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].SNAP_SEQ",
+    "address": 16492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].STATUS_SNAP",
+    "address": 16496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CFG_VERSION_SNAP",
+    "address": 16500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].COUNT_LO_SNAP",
+    "address": 16504,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].COUNT_HI_SNAP",
+    "address": 16508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].EVENT_RAW_SNAP",
+    "address": 16512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].IRQ_ENABLE_SNAP",
+    "address": 16516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].SEEN_MASK_SNAP",
+    "address": 16520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].MISSING_MASK_SNAP",
+    "address": 16524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].LAST_SERVICE_SEQ_SNAP",
+    "address": 16528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FAULT_COUNT_SNAP",
+    "address": 16532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].RECOVERY_COUNT_SNAP",
+    "address": 16536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].ESC_AGE_SNAP",
+    "address": 16540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_FLAGS_SNAP",
+    "address": 16544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_CAUSE_SNAP",
+    "address": 16548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_COUNT_LO_SNAP",
+    "address": 16552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_COUNT_HI_SNAP",
+    "address": 16556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_SOURCE_SNAP",
+    "address": 16560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_CFG_VERSION_SNAP",
+    "address": 16564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_MISSING_SNAP",
+    "address": 16568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_SERVICE_SEQ_SNAP",
+    "address": 16572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FIRST_STATE_SNAP",
+    "address": 16576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CTRL_ACTIVE_SNAP",
+    "address": 16640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].PRESCALE_ACTIVE_SNAP",
+    "address": 16644,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 16648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 16652,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 16656,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 16660,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 16664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 16668,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 16672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 16676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 16680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 16684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 16688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 16692,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 16696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 16700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_SELECT",
+    "address": 16704,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_OWNER_STAGE",
+    "address": 16708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_ALIVE_STAGE",
+    "address": 16712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_FLOW_STAGE",
+    "address": 16716,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 16720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 16724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 16728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 16732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[12].CLIENT_FLAGS_SNAP",
+    "address": 16768,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_TOKEN_SNAP",
+    "address": 16772,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 16776,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_ELAPSED_LO_SNAP",
+    "address": 16780,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_ELAPSED_HI_SNAP",
+    "address": 16784,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 16800,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 16804,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 16808,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 16812,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 16816,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 16820,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[12].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 16824,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CTRL_STAGE",
+    "address": 17408,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].PRESCALE_STAGE",
+    "address": 17412,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].WIN_MIN_LO_STAGE",
+    "address": 17416,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].WIN_MIN_HI_STAGE",
+    "address": 17420,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].TIMEOUT_LO_STAGE",
+    "address": 17424,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].TIMEOUT_HI_STAGE",
+    "address": 17428,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].PRETIMEOUT_LO_STAGE",
+    "address": 17432,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].PRETIMEOUT_HI_STAGE",
+    "address": 17436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].BOOT_TIMEOUT_LO_STAGE",
+    "address": 17440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].BOOT_TIMEOUT_HI_STAGE",
+    "address": 17444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].SEQ_LIMIT_STAGE",
+    "address": 17448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].REQUIRE_MASK_STAGE",
+    "address": 17452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].FAULT_POLICY_STAGE",
+    "address": 17456,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].LOCAL_DELAY_STAGE",
+    "address": 17460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].FINAL_DELAY_STAGE",
+    "address": 17464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].RECOVERY_LIMIT_STAGE",
+    "address": 17468,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].UNLOCK",
+    "address": 17472,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].COMMAND",
+    "address": 17476,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].LOCK_SET",
+    "address": 17480,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].SERVICE_SELECT",
+    "address": 17484,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].SERVICE",
+    "address": 17488,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].IRQ_ENABLE",
+    "address": 17492,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].IRQ_CLEAR",
+    "address": 17496,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].IRQ_TEST",
+    "address": 17500,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].DIAG_CLEAR",
+    "address": 17504,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].FAULT_INJECT",
+    "address": 17508,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[13].SNAP_META",
+    "address": 17512,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].SNAP_SEQ",
+    "address": 17516,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].STATUS_SNAP",
+    "address": 17520,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CFG_VERSION_SNAP",
+    "address": 17524,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].COUNT_LO_SNAP",
+    "address": 17528,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].COUNT_HI_SNAP",
+    "address": 17532,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].EVENT_RAW_SNAP",
+    "address": 17536,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].IRQ_ENABLE_SNAP",
+    "address": 17540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].SEEN_MASK_SNAP",
+    "address": 17544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].MISSING_MASK_SNAP",
+    "address": 17548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].LAST_SERVICE_SEQ_SNAP",
+    "address": 17552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FAULT_COUNT_SNAP",
+    "address": 17556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].RECOVERY_COUNT_SNAP",
+    "address": 17560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].ESC_AGE_SNAP",
+    "address": 17564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_FLAGS_SNAP",
+    "address": 17568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_CAUSE_SNAP",
+    "address": 17572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_COUNT_LO_SNAP",
+    "address": 17576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_COUNT_HI_SNAP",
+    "address": 17580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_SOURCE_SNAP",
+    "address": 17584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_CFG_VERSION_SNAP",
+    "address": 17588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_MISSING_SNAP",
+    "address": 17592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_SERVICE_SEQ_SNAP",
+    "address": 17596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FIRST_STATE_SNAP",
+    "address": 17600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CTRL_ACTIVE_SNAP",
+    "address": 17664,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].PRESCALE_ACTIVE_SNAP",
+    "address": 17668,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 17672,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 17676,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 17680,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 17684,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 17688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 17692,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 17696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 17700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 17704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 17708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 17712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 17716,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 17720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 17724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_SELECT",
+    "address": 17728,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_OWNER_STAGE",
+    "address": 17732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_ALIVE_STAGE",
+    "address": 17736,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_FLOW_STAGE",
+    "address": 17740,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 17744,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 17748,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 17752,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 17756,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[13].CLIENT_FLAGS_SNAP",
+    "address": 17792,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_TOKEN_SNAP",
+    "address": 17796,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 17800,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_ELAPSED_LO_SNAP",
+    "address": 17804,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_ELAPSED_HI_SNAP",
+    "address": 17808,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 17824,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 17828,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 17832,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 17836,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 17840,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 17844,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[13].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 17848,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CTRL_STAGE",
+    "address": 18432,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].PRESCALE_STAGE",
+    "address": 18436,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].WIN_MIN_LO_STAGE",
+    "address": 18440,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].WIN_MIN_HI_STAGE",
+    "address": 18444,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].TIMEOUT_LO_STAGE",
+    "address": 18448,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].TIMEOUT_HI_STAGE",
+    "address": 18452,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].PRETIMEOUT_LO_STAGE",
+    "address": 18456,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].PRETIMEOUT_HI_STAGE",
+    "address": 18460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].BOOT_TIMEOUT_LO_STAGE",
+    "address": 18464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].BOOT_TIMEOUT_HI_STAGE",
+    "address": 18468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].SEQ_LIMIT_STAGE",
+    "address": 18472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].REQUIRE_MASK_STAGE",
+    "address": 18476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].FAULT_POLICY_STAGE",
+    "address": 18480,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].LOCAL_DELAY_STAGE",
+    "address": 18484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].FINAL_DELAY_STAGE",
+    "address": 18488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].RECOVERY_LIMIT_STAGE",
+    "address": 18492,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].UNLOCK",
+    "address": 18496,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].COMMAND",
+    "address": 18500,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].LOCK_SET",
+    "address": 18504,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].SERVICE_SELECT",
+    "address": 18508,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].SERVICE",
+    "address": 18512,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].IRQ_ENABLE",
+    "address": 18516,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].IRQ_CLEAR",
+    "address": 18520,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].IRQ_TEST",
+    "address": 18524,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].DIAG_CLEAR",
+    "address": 18528,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].FAULT_INJECT",
+    "address": 18532,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[14].SNAP_META",
+    "address": 18536,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].SNAP_SEQ",
+    "address": 18540,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].STATUS_SNAP",
+    "address": 18544,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CFG_VERSION_SNAP",
+    "address": 18548,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].COUNT_LO_SNAP",
+    "address": 18552,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].COUNT_HI_SNAP",
+    "address": 18556,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].EVENT_RAW_SNAP",
+    "address": 18560,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].IRQ_ENABLE_SNAP",
+    "address": 18564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].SEEN_MASK_SNAP",
+    "address": 18568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].MISSING_MASK_SNAP",
+    "address": 18572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].LAST_SERVICE_SEQ_SNAP",
+    "address": 18576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FAULT_COUNT_SNAP",
+    "address": 18580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].RECOVERY_COUNT_SNAP",
+    "address": 18584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].ESC_AGE_SNAP",
+    "address": 18588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_FLAGS_SNAP",
+    "address": 18592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_CAUSE_SNAP",
+    "address": 18596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_COUNT_LO_SNAP",
+    "address": 18600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_COUNT_HI_SNAP",
+    "address": 18604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_SOURCE_SNAP",
+    "address": 18608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_CFG_VERSION_SNAP",
+    "address": 18612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_MISSING_SNAP",
+    "address": 18616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_SERVICE_SEQ_SNAP",
+    "address": 18620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FIRST_STATE_SNAP",
+    "address": 18624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CTRL_ACTIVE_SNAP",
+    "address": 18688,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].PRESCALE_ACTIVE_SNAP",
+    "address": 18692,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 18696,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 18700,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 18704,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 18708,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 18712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 18716,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 18720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 18724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 18728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 18732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 18736,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 18740,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 18744,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 18748,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_SELECT",
+    "address": 18752,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_OWNER_STAGE",
+    "address": 18756,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_ALIVE_STAGE",
+    "address": 18760,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_FLOW_STAGE",
+    "address": 18764,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 18768,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 18772,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 18776,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 18780,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[14].CLIENT_FLAGS_SNAP",
+    "address": 18816,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_TOKEN_SNAP",
+    "address": 18820,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 18824,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_ELAPSED_LO_SNAP",
+    "address": 18828,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_ELAPSED_HI_SNAP",
+    "address": 18832,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 18848,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 18852,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 18856,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 18860,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 18864,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 18868,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[14].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 18872,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CTRL_STAGE",
+    "address": 19456,
+    "mask": 8191,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].PRESCALE_STAGE",
+    "address": 19460,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].WIN_MIN_LO_STAGE",
+    "address": 19464,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].WIN_MIN_HI_STAGE",
+    "address": 19468,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].TIMEOUT_LO_STAGE",
+    "address": 19472,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].TIMEOUT_HI_STAGE",
+    "address": 19476,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].PRETIMEOUT_LO_STAGE",
+    "address": 19480,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].PRETIMEOUT_HI_STAGE",
+    "address": 19484,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].BOOT_TIMEOUT_LO_STAGE",
+    "address": 19488,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].BOOT_TIMEOUT_HI_STAGE",
+    "address": 19492,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].SEQ_LIMIT_STAGE",
+    "address": 19496,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].REQUIRE_MASK_STAGE",
+    "address": 19500,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].FAULT_POLICY_STAGE",
+    "address": 19504,
+    "mask": 2046,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].LOCAL_DELAY_STAGE",
+    "address": 19508,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].FINAL_DELAY_STAGE",
+    "address": 19512,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].RECOVERY_LIMIT_STAGE",
+    "address": 19516,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].UNLOCK",
+    "address": 19520,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].COMMAND",
+    "address": 19524,
+    "mask": 255,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].LOCK_SET",
+    "address": 19528,
+    "mask": 15,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].SERVICE_SELECT",
+    "address": 19532,
+    "mask": 1823,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].SERVICE",
+    "address": 19536,
+    "mask": 4294967295,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].IRQ_ENABLE",
+    "address": 19540,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].IRQ_CLEAR",
+    "address": 19544,
+    "mask": 524287,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].IRQ_TEST",
+    "address": 19548,
+    "mask": 1,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].DIAG_CLEAR",
+    "address": 19552,
+    "mask": 3,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].FAULT_INJECT",
+    "address": 19556,
+    "mask": 1023,
+    "readable": false,
+    "writable": true
+  },
+  {
+    "name": "ch[15].SNAP_META",
+    "address": 19560,
+    "mask": 1,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].SNAP_SEQ",
+    "address": 19564,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].STATUS_SNAP",
+    "address": 19568,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CFG_VERSION_SNAP",
+    "address": 19572,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].COUNT_LO_SNAP",
+    "address": 19576,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].COUNT_HI_SNAP",
+    "address": 19580,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].EVENT_RAW_SNAP",
+    "address": 19584,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].IRQ_ENABLE_SNAP",
+    "address": 19588,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].SEEN_MASK_SNAP",
+    "address": 19592,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].MISSING_MASK_SNAP",
+    "address": 19596,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].LAST_SERVICE_SEQ_SNAP",
+    "address": 19600,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FAULT_COUNT_SNAP",
+    "address": 19604,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].RECOVERY_COUNT_SNAP",
+    "address": 19608,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].ESC_AGE_SNAP",
+    "address": 19612,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_FLAGS_SNAP",
+    "address": 19616,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_CAUSE_SNAP",
+    "address": 19620,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_COUNT_LO_SNAP",
+    "address": 19624,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_COUNT_HI_SNAP",
+    "address": 19628,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_SOURCE_SNAP",
+    "address": 19632,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_CFG_VERSION_SNAP",
+    "address": 19636,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_MISSING_SNAP",
+    "address": 19640,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_SERVICE_SEQ_SNAP",
+    "address": 19644,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FIRST_STATE_SNAP",
+    "address": 19648,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CTRL_ACTIVE_SNAP",
+    "address": 19712,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].PRESCALE_ACTIVE_SNAP",
+    "address": 19716,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].WIN_MIN_LO_ACTIVE_SNAP",
+    "address": 19720,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].WIN_MIN_HI_ACTIVE_SNAP",
+    "address": 19724,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 19728,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 19732,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].PRETIMEOUT_LO_ACTIVE_SNAP",
+    "address": 19736,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].PRETIMEOUT_HI_ACTIVE_SNAP",
+    "address": 19740,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].BOOT_TIMEOUT_LO_ACTIVE_SNAP",
+    "address": 19744,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].BOOT_TIMEOUT_HI_ACTIVE_SNAP",
+    "address": 19748,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].SEQ_LIMIT_ACTIVE_SNAP",
+    "address": 19752,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].REQUIRE_MASK_ACTIVE_SNAP",
+    "address": 19756,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FAULT_POLICY_ACTIVE_SNAP",
+    "address": 19760,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].LOCAL_DELAY_ACTIVE_SNAP",
+    "address": 19764,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].FINAL_DELAY_ACTIVE_SNAP",
+    "address": 19768,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].RECOVERY_LIMIT_ACTIVE_SNAP",
+    "address": 19772,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_SELECT",
+    "address": 19776,
+    "mask": 31,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_OWNER_STAGE",
+    "address": 19780,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_ALIVE_STAGE",
+    "address": 19784,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_FLOW_STAGE",
+    "address": 19788,
+    "mask": 255,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MIN_LO_STAGE",
+    "address": 19792,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MIN_HI_STAGE",
+    "address": 19796,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MAX_LO_STAGE",
+    "address": 19800,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MAX_HI_STAGE",
+    "address": 19804,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": true
+  },
+  {
+    "name": "ch[15].CLIENT_FLAGS_SNAP",
+    "address": 19840,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_TOKEN_SNAP",
+    "address": 19844,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_ALIVE_COUNT_SNAP",
+    "address": 19848,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_ELAPSED_LO_SNAP",
+    "address": 19852,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_ELAPSED_HI_SNAP",
+    "address": 19856,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_OWNER_ACTIVE_SNAP",
+    "address": 19872,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_ALIVE_ACTIVE_SNAP",
+    "address": 19876,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_FLOW_ACTIVE_SNAP",
+    "address": 19880,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP",
+    "address": 19884,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP",
+    "address": 19888,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP",
+    "address": 19892,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  },
+  {
+    "name": "ch[15].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP",
+    "address": 19896,
+    "mask": 4294967295,
+    "readable": true,
+    "writable": false
+  }
+]

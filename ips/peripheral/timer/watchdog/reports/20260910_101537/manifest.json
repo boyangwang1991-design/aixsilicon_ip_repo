@@ -1,0 +1,45 @@
+{
+  "schema": "watchdog-execution/1",
+  "inputs": {
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/fusesoc/aixsilicon_cbb_round_robin_arbiter.core": "f8c6a705f515c7a49d7e4e44d55c32571d5907b6b17f1e9b1a6c723585b0a230",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/rtl/round_robin_arbiter.sv": "0c1248cae1ab2963f8e25f46b5d5e964e48fabf0b23b1bcd23550e00caf0d084",
+    "aixsilicon_ip_watchdog.core": "f0356263606e1f2fc38676a40b7c5534bd5604b273a9dce14b51fb844844a1f4",
+    "regs/watchdog.rdl": "c3e42ed0cf938d3dd7da3da02c3c943a7747c47382a6ef0568e9d5d8602f43be",
+    "rtl/generated/watchdog_csr.sv": "d1f2c031f4e9f724384394fce3fc6e3b8a11fad34c3ae64bd81ff09ea99b0660",
+    "rtl/generated/watchdog_csr_pkg.sv": "a20925d1227ed6701779f78a6c21d8746be91a4928b912dc64a3324d9e494650",
+    "rtl/generated/watchdog_reg_adapter.sv": "2eec1a3f7daa17fcd73af81cf925766b55057cc0f86f130b1c0aa2a45eadd69e",
+    "rtl/watchdog_channel.sv": "ce520c6e83ffc5550e769b03351f62e63ed785cefa9cf25aae74b3ea6602b2b6",
+    "rtl/watchdog_pkg.sv": "a319d6a2e447838c5e139eb066b1ef67175bd7940241cf2f484f76863dc93c6a",
+    "rtl/watchdog_top.sv": "495fbed887f5c8d6f83e738cdac4062eed39be7db075d7624bdaf47412772400",
+    "scripts/generate_package.py": "731e9708b1de66f0a778c388d395f8c43aec77f4eac627044345b6e9dd32f05f",
+    "scripts/generate_register_views.py": "8a35bb0026ec79d78f8b271de1bcfdf3275ca33ecbb58acafaf2d2dd231bdb8c",
+    "scripts/run_validation.py": "0ab5416ac85c83303730234f18b2e8f6ac1ff89a350cc21e60aded1873c76083",
+    "verification/unit_test/ut_watchdog_channel.sv": "5a8d651e87c770c73c1ae08093fa90430d113a3dd88c69faed545752165e6303",
+    "verification/unit_test/ut_watchdog_top.sv": "28e81eab9e0d51f206ebaa9d6713952f59c2409d43e0f18d3667c5a3de786337"
+  },
+  "results": [
+    {
+      "configuration": "channel32",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/fusesoc",
+        "run",
+        "--target",
+        "ut_channel",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_101537/channel32",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--W=32"
+      ],
+      "exit_code": 1,
+      "status": "fail",
+      "elapsed_s": 0.36,
+      "log": "reports/20260910_101537/channel32.log",
+      "log_sha256": "17680e0738af1ed261515d49f4953a53e4b6d9d146b69abc771ac98e23902a6a",
+      "binaries": {}
+    }
+  ]
+}

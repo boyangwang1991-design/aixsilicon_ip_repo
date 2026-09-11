@@ -1,0 +1,12 @@
+{
+  "reports/20260910_102926/manifest.json": "1b73c021daed330e86d25ca008b17771a036a1f5457111685cbc8206c199abcf",
+  "reports/module_regression.xml": "fcf55e5d646ad8509a7bfc72e02b9f500e563175206884a5b86b68e32bcfe59f",
+  "reports/validation_report.md": "f25151a79216371cc39a5231e9338499ffca215a10760fa1df2f12a5ad35962d",
+  "reports/requirement_inventory.md": "8fcf4de342e662a6ef5a8a3cfe45c50d42307efaa42e70c8b50b6d14c40800cf",
+  "reports/static/spyglass_moresimple.rpt.gz": "2da096b2035f2c0be810ded08d4f03a29513c352fd9215193ca9f1af38f3c4b2",
+  "reports/static/lint_counts.json": "2cd1311afb1d9b39f88011a4c0fbfe80b92f2ab34410b5e6d43fec4b5e9f69c3",
+  "reports/static/dc_synth.log": "cd4fc4f94897d9d8d9bb4ab9d99f8dd052465c8c3dce50a99745b493f961f1ac",
+  "reports/static/coverage_dashboard.txt": "c6009b2b457ac6edbc178e85c101a8dc7e2d3358ac85484ac30a7d47f4b0069a",
+  "reports/static/coverage_modlist.txt": "278d4bde97340add6740b8dac5e13dbe1d709d95fb08574993e6977f1b576f0a",
+  "reports/static/coverage_tests.txt": "2ea0b36ef384811615bc27336b1292776b43cc3179eab2c4bbfcfb9e6923d23f"
+}

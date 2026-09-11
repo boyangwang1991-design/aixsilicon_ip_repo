@@ -1,0 +1,12 @@
+Tests
+
+Total Coverage Summary 
+SCORE  LINE   COND   TOGGLE FSM    BRANCH 
+ 48.62  92.06  69.62   1.02  11.36  69.02 
+
+
+Total tests in report: 1
+-------------------------------------------------------------------------------
+Data from the following tests was used to generate this report
+build/regression/20260910_102320/channel32/aixsilicon_ip_watchdog_1.0.0/ut_channel-vcs/aixsilicon_ip_watchdog_1.0.0/test 
+

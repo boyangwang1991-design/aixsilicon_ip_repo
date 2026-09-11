@@ -1,0 +1,140 @@
+{
+  "schema": "watchdog-execution/1",
+  "inputs": {
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/fusesoc/aixsilicon_cbb_round_robin_arbiter.core": "f8c6a705f515c7a49d7e4e44d55c32571d5907b6b17f1e9b1a6c723585b0a230",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/rtl/round_robin_arbiter.sv": "0c1248cae1ab2963f8e25f46b5d5e964e48fabf0b23b1bcd23550e00caf0d084",
+    "aixsilicon_ip_watchdog.core": "b4d9d3dd1d6debbebb5aeefad47484ac4284f3aadb0f3a488990ddcf366dc9ce",
+    "regs/watchdog.rdl": "ef453feb551ecaa968feb76851094c6eb6e8458e2b5e857dcebd03b1f9cd751e",
+    "rtl/generated/watchdog_csr.sv": "d1f2c031f4e9f724384394fce3fc6e3b8a11fad34c3ae64bd81ff09ea99b0660",
+    "rtl/generated/watchdog_csr_pkg.sv": "a20925d1227ed6701779f78a6c21d8746be91a4928b912dc64a3324d9e494650",
+    "rtl/generated/watchdog_reg_adapter.sv": "2eec1a3f7daa17fcd73af81cf925766b55057cc0f86f130b1c0aa2a45eadd69e",
+    "rtl/watchdog_channel.sv": "ec80bb1446a0cb4c7903c476b940a136d82377bea044d1421c4e7ac055637d7a",
+    "rtl/watchdog_pkg.sv": "a319d6a2e447838c5e139eb066b1ef67175bd7940241cf2f484f76863dc93c6a",
+    "rtl/watchdog_top.sv": "698e63f0ace8bae8b0a40bf3c9475b5d51dd0f11495c8d3632ba331c0ba2715f",
+    "scripts/generate_package.py": "9e89301ad1c36fe78e6a6f7d4bf976384356b86a2d4d1d3b273de9cd3d053696",
+    "scripts/generate_register_views.py": "8a35bb0026ec79d78f8b271de1bcfdf3275ca33ecbb58acafaf2d2dd231bdb8c",
+    "scripts/run_validation.py": "ec6a6e5ba6b3c16fa3b9d18fbf42058bf35b1d17a050814bbd272b5450c5dcb8",
+    "verification/ral/watchdog_ral.sv": "5fe251e0af3981e5cba7c7d7cbd3ab508abc1e431c8a4bdbe0f28c50ac1468d7",
+    "verification/unit_test/ut_watchdog_channel.sv": "5a8d651e87c770c73c1ae08093fa90430d113a3dd88c69faed545752165e6303",
+    "verification/unit_test/ut_watchdog_top.sv": "28e81eab9e0d51f206ebaa9d6713952f59c2409d43e0f18d3667c5a3de786337"
+  },
+  "results": [
+    {
+      "configuration": "channel32",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/dependency_adapter",
+        "run",
+        "--target",
+        "ut_channel",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_102320/channel32",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--W=32"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "elapsed_s": 28.43,
+      "log": "reports/20260910_102320/channel32.log",
+      "log_sha256": "ceb2a0009a2a6e4fc8693ffd2d07782093540f44a33f978928caf49b80a6eb8c",
+      "binaries": {}
+    },
+    {
+      "configuration": "channel48",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/dependency_adapter",
+        "run",
+        "--target",
+        "ut_channel",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_102320/channel48",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--W=48"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "elapsed_s": 26.58,
+      "log": "reports/20260910_102320/channel48.log",
+      "log_sha256": "19a08e11191de76128e7d879218f85c223f60593f6563b312c9be75284de0352",
+      "binaries": {}
+    },
+    {
+      "configuration": "channel64",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/dependency_adapter",
+        "run",
+        "--target",
+        "ut_channel",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_102320/channel64",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--W=64"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "elapsed_s": 30.04,
+      "log": "reports/20260910_102320/channel64.log",
+      "log_sha256": "1979e3729243f1881f42350bef0322dfb3dfd8ce9391b37be30adc5ef9c9fd06",
+      "binaries": {}
+    },
+    {
+      "configuration": "top_async",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/dependency_adapter",
+        "run",
+        "--target",
+        "ut_top",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_102320/top_async",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--PS=7",
+        "--WS=5"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "elapsed_s": 32.49,
+      "log": "reports/20260910_102320/top_async.log",
+      "log_sha256": "17365dbb14d6e9696334923c844439ac9a6536d50cf2ef3a7c8f0ca3c28f65b5",
+      "binaries": {}
+    },
+    {
+      "configuration": "top_fast_apb",
+      "command": [
+        "fusesoc",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+        "--cores-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/dependency_adapter",
+        "run",
+        "--target",
+        "ut_top",
+        "--build-root",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/regression/20260910_102320/top_fast_apb",
+        "aixsilicon:ip:watchdog:1.0.0",
+        "--PS=3",
+        "--WS=7"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "elapsed_s": 40.51,
+      "log": "reports/20260910_102320/top_fast_apb.log",
+      "log_sha256": "b62443a7758d139cbf4f5084bba57c0cc9d15cafc234b434b86ce4e2336f8fd7",
+      "binaries": {}
+    }
+  ]
+}
