@@ -1,0 +1,73 @@
+# Watchdog：功能架构与数据/控制流
+
+## 故障分类、升级及可信恢复
+
+<!-- HLD_FLOW_META
+id: HLD.FLOW.WATCHDOG.FAULT
+name: fault
+req_ref:
+- LRS.FUNC.WATCHDOG.ESC.001
+- LRS.FUNC.WATCHDOG.ESC.002
+- LRS.FUNC.WATCHDOG.ESC.003
+- LRS.FUNC.WATCHDOG.FLT.001
+- LRS.FUNC.WATCHDOG.FLT.002
+- LRS.FUNC.WATCHDOG.REC.001
+- LRS.FUNC.WATCHDOG.REC.002
+- LRS.FUNC.WATCHDOG.REC.003
+- LRS.FUNC.WATCHDOG.REC.004
+- LRS.FUNC.WATCHDOG.REC.005
+- LRS.DFX.WATCHDOG.DIA.001
+- LRS.DFX.WATCHDOG.DIA.002
+- LRS.DFX.WATCHDOG.DIA.003
+- LRS.DFX.WATCHDOG.DIA.004
+- LRS.DFX.WATCHDOG.DIA.005
+- LRS.DFX.WATCHDOG.DIA.006
+participants:
+- HLD.MOD.WATCHDOG.CHANNEL
+- HLD.MOD.WATCHDOG.SAFETY
+- HLD.MOD.WATCHDOG.INTEGRATION
+applicability:
+  expr: 'true'
+END_HLD_FLOW_META -->
+
+访问格式错误走记录路径；强制监督错误进入 FAULT，致命完整性异常直接最终升级。
+IRQ_ENABLE 只影响中断可见性，不改变事件记录、活动故障和最终请求。进入故障后
+独立未分频升级时限继续，服务/重复错误/暂停不重新起算。
+DIRECT_SYSTEM 当次置最终请求；LOCAL_THEN_SYSTEM 先告警，再按局部与最终期限
+提出保持请求。合格局部恢复只在已提出局部请求且未最终到期时接受，受次数限制，
+旧 done 不得重复授予恢复。可信 warm 可重启原活动通道并保留锁/历史；POR 清全体。
+
+## 一致快照与留痕
+
+<!-- HLD_FLOW_META
+id: HLD.FLOW.WATCHDOG.DIAGNOSTIC
+name: diagnostic
+req_ref:
+- LRS.REG.WATCHDOG.SNP.001
+- LRS.REG.WATCHDOG.SNP.002
+- LRS.REG.WATCHDOG.SNP.003
+- LRS.DFX.WATCHDOG.TST.001
+- LRS.DFX.WATCHDOG.TST.002
+- LRS.DFX.WATCHDOG.TST.003
+- LRS.DFX.WATCHDOG.TST.004
+- LRS.DFX.WATCHDOG.TST.005
+- LRS.DFX.WATCHDOG.DIA.001
+- LRS.DFX.WATCHDOG.DIA.002
+- LRS.DFX.WATCHDOG.DIA.003
+- LRS.DFX.WATCHDOG.DIA.004
+- LRS.DFX.WATCHDOG.DIA.005
+- LRS.DFX.WATCHDOG.DIA.006
+participants:
+- HLD.MOD.WATCHDOG.CHANNEL
+- HLD.MOD.WATCHDOG.TRANSPORT
+- HLD.MOD.WATCHDOG.BUS
+applicability:
+  expr: 'true'
+END_HLD_FLOW_META -->
+
+快照在一个 WDT 边沿原子捕获通道及全部客户端的更新后状态；返回期间保持负载。
+普通读只访问保持镜像，不从运行域拼接高低字或等待 WDT 时钟。FIRST_FAULT 保存
+首次有效故障的当时上下文，不被预警/访问错误抢占、不被后续故障覆盖。每次真正
+进入故障仅增加一次饱和计数；W1C 只清历史事件，不能解除活动请求。
+真实故障与清除同拍时保留新故障；测试上下文单独标记，不能覆盖真实原因。
+

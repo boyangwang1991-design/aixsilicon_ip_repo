@@ -1,0 +1,1 @@
+errors=0 warnings=0 -> /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/quality/param_check.md

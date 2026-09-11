@@ -1,0 +1,9 @@
+{
+  "scope": "document structure, source projection, references; not independent semantic review or RTL evidence",
+  "requirements": 258,
+  "modules": 12,
+  "external_interfaces": 8,
+  "internal_interfaces": 9,
+  "uncovered_requirements": [],
+  "issues": []
+}

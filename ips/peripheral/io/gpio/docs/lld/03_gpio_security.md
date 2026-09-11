@@ -1,0 +1,96 @@
+# GPIO 微设计：gpio_security
+
+<!-- LLD_MODULE_META
+id: LLD.MOD.GPIO.SECURITY
+name: gpio_security
+hld_ref:
+- HLD.MOD.GPIO.SECURITY
+req_ref:
+- LRS.SEC.GPIO.SEC001.001
+- LRS.SEC.GPIO.SEC002.001
+- LRS.SEC.GPIO.SEC002.002
+- LRS.SEC.GPIO.SEC002A.001
+- LRS.SEC.GPIO.SEC002A.002
+- LRS.SEC.GPIO.SEC002A.003
+- LRS.SEC.GPIO.SEC003.001
+- LRS.SEC.GPIO.SEC003.002
+- LRS.SEC.GPIO.SEC004.001
+- LRS.SEC.GPIO.SEC005.001
+- LRS.SEC.GPIO.SEC005.002
+- LRS.SEC.GPIO.SEC006.001
+- LRS.SEC.GPIO.SEC006.002
+parent_ref:
+- HLD.MOD.GPIO.TOP
+applicability:
+  expr: 'true'
+rtl_intent:
+  separate_module: true
+  suggested_name: gpio_security
+clock_domains:
+- CLK_MAIN
+reset_domains:
+- RST_MAIN
+- RST_POR_MAIN
+END_LLD_MODULE_META -->
+
+## 周期行为与状态
+
+GLOBAL_LOCK、每Bank CFG_LOCK/DATA_LOCK及ACCESS_CFG按POR清除/恢复BOOT策略，main复位保持。锁寄存器接受写1置位，写0无效果。ACCESS_CFG和置锁写在访问控制启用时固定要求secure+privileged。
+CFG_LOCK覆盖IN_ENABLE、PIN_CFG/FILTER/DEBOUNCE/DIAG配置、IRQ_ENABLE/DETECT、EVENT_ENABLE/DIAG_ENABLE；DATA_LOCK覆盖OUT/OE全部入口。BankDIV若任一CFG_LOCK置位则禁写。
+GLOBAL_LOCK禁止配置和FIFO控制/策略/诊断配置/IRQ_TEST/DIAG_TEST/COMMIT/LOCK，允许OUT/OE（仍受DATA_LOCK）、Pending清除、FIFO POP、快照和增加CFG/DATA锁。各命令豁免以寄存行为分册为准。
+访问首故障和FAULT.ACCESS属于main业务状态，不跨暖复位保持；与清故障同拍的新错误占优。不记录PWDATA以避免泄露。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.GPIO.SECURITY
+module_ref: LLD.MOD.GPIO.SECURITY
+hld_ref:
+- HLD.MOD.GPIO.SECURITY
+req_ref:
+- LRS.SEC.GPIO.SEC001.001
+- LRS.SEC.GPIO.SEC002.001
+- LRS.SEC.GPIO.SEC002.002
+- LRS.SEC.GPIO.SEC002A.001
+- LRS.SEC.GPIO.SEC002A.002
+- LRS.SEC.GPIO.SEC002A.003
+- LRS.SEC.GPIO.SEC003.001
+- LRS.SEC.GPIO.SEC003.002
+- LRS.SEC.GPIO.SEC004.001
+- LRS.SEC.GPIO.SEC005.001
+- LRS.SEC.GPIO.SEC005.002
+- LRS.SEC.GPIO.SEC006.001
+- LRS.SEC.GPIO.SEC006.002
+input_width: 32
+output_width: 32
+latency: 按本册周期行为定义
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+
+<!-- LLD_RESET_META
+id: LLD.RST.GPIO.SECURITY
+module_ref: LLD.MOD.GPIO.SECURITY
+reset_domain: RST_MAIN/RST_POR_MAIN
+type: async_assert_sync_release
+affected_objects:
+- LLD.MOD.GPIO.SECURITY
+req_ref:
+- LRS.SEC.GPIO.SEC001.001
+- LRS.SEC.GPIO.SEC002.001
+- LRS.SEC.GPIO.SEC002.002
+- LRS.SEC.GPIO.SEC002A.001
+- LRS.SEC.GPIO.SEC002A.002
+- LRS.SEC.GPIO.SEC002A.003
+- LRS.SEC.GPIO.SEC003.001
+- LRS.SEC.GPIO.SEC003.002
+- LRS.SEC.GPIO.SEC004.001
+- LRS.SEC.GPIO.SEC005.001
+- LRS.SEC.GPIO.SEC005.002
+- LRS.SEC.GPIO.SEC006.001
+- LRS.SEC.GPIO.SEC006.002
+reset_value: 本册及寄存器行为分册所列默认值
+release: 本时钟域两拍同步释放
+END_LLD_RESET_META -->
+
+## PPA决策
+
+Bank共享采样节拍与分层译码；每脚保留必需状态。参数裁剪使用静态generate，避免关闭功能仍切换。IRQ/readback采用平衡归约；FIFO只单写端口。不同配置分别综合，不从默认配置推断最大配置。

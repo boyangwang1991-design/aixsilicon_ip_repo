@@ -1,0 +1,8 @@
+{
+  "reason": "Native core missing paramtype; local metadata-only adapter, original core/RTL unchanged",
+  "original_core_sha256": "21f728208d5cdff661330b710b9aa56d9ef1b1d29a63405ef35d25e667bed6fc",
+  "source_sha256": "b5d3f097bbfffce66c4d35a3a206352237fcaac702113479d99f04749f605c6c",
+  "adapter_sha256": "dcf2df985d43207b254d3a046eebb04f00f632707447b2c785536f6f77ad38b7",
+  "source": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/coding_integrity/parity_gen_check/rtl/parity_gen_check.sv",
+  "adapter": "build/package/compat/parity_gen_check.core"
+}

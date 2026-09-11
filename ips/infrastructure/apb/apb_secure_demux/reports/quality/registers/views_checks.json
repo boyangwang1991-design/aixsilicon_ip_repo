@@ -1,0 +1,34 @@
+[
+  {
+    "name": "header_compile",
+    "command": [
+      "cc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/sw/include",
+      "-c",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/registers/csr_header_probe.c",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/views/header_probe.o"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/header_compile.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "ral_compile",
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "-ntb_opts",
+      "uvm-1.2",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/ral/apb_secure_demux_ral.sv"
+    ],
+    "exit_code": 255,
+    "log": "reports/quality/registers/ral_compile.log",
+    "log_sha256": "92ec55da193677558b70a23d876d6faa91c8f1991cb0ceb106ce2575fc59c3a3"
+  }
+]

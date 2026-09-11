@@ -1,0 +1,32 @@
+[
+  {
+    "check": "hld_check",
+    "hashes_current": true,
+    "count": 34
+  },
+  {
+    "check": "lld_check",
+    "hashes_current": true,
+    "count": 79
+  },
+  {
+    "check": "links",
+    "path": "README.md",
+    "passed": true
+  },
+  {
+    "check": "links",
+    "path": "reports/full_flow/plan.md",
+    "passed": true
+  },
+  {
+    "check": "links",
+    "path": "reports/full_flow/execution_results.md",
+    "passed": true
+  },
+  {
+    "check": "links",
+    "path": "reports/full_flow/g2_review_package.md",
+    "passed": true
+  }
+]

@@ -1,0 +1,109 @@
+[
+  {
+    "name": "registry_generate",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/scripts/build_ip_registry.py",
+      "--generate"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 0,
+    "log": "reports/quality/raw/registry_generate.txt",
+    "sha256": "18974855aba70b1493339bd4aa08d8a7982806841bb10415946308fa1b1a4c32"
+  },
+  {
+    "name": "registry_readme",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/scripts/update_registry_readme.py"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 0,
+    "log": "reports/quality/raw/registry_readme.txt",
+    "sha256": "36ba15b362e0404641d1a11c0970018f4c965677e7d8945efd2ed8fba8953353"
+  },
+  {
+    "name": "registry_check",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/scripts/build_ip_registry.py",
+      "--check-source"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 0,
+    "log": "reports/quality/raw/registry_check.txt",
+    "sha256": "8ca5489be2c96614291894cb369d5c73ac9c9c2b73d09bb40fa1c416af05adf9"
+  },
+  {
+    "name": "lrs_extract",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/01-lrs-author/scripts/extract_requirements.py",
+      "--lrs-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/docs/lrs",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/requirements.yaml",
+      "--ip-name",
+      "apb_secure_demux"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 0,
+    "log": "reports/quality/raw/lrs_extract.txt",
+    "sha256": "3499ea2b0dca9105ff2ce498623688adc705dba8b5b3daf310539229509b8c80"
+  },
+  {
+    "name": "tools",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/scripts/preflight_ip_tools.py"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 0,
+    "log": "reports/quality/raw/tools.txt",
+    "sha256": "04671e2da02e8f427d49d0b559cfccba258bdbe6c615e4aafef92b2603fe0b9b"
+  },
+  {
+    "name": "dc_version",
+    "command": [
+      "dc_shell",
+      "-version"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/preflight",
+    "exit_code": 1,
+    "log": "reports/quality/raw/dc_version.txt",
+    "sha256": "57d3436fd54972419063477f79f6bfe99eb61cbc39918fd0d65d305a29e5e81c"
+  },
+  {
+    "name": "env_complete",
+    "command": [
+      "bash",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_tools.sh",
+      "--report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/env_check_report.md"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/preflight",
+    "exit_code": 124,
+    "log": "reports/quality/raw/env_complete.txt",
+    "sha256": "cdff85f2a73ce84978611addc3b6a708e97a6513dd3fcc77d7ee6938d32f86a9"
+  },
+  {
+    "name": "quality",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+      "--ip-name",
+      "apb_secure_demux",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/quality.yaml",
+      "--gate-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/gate_report.md",
+      "--fail-on-gate"
+    ],
+    "cwd": "/home/eda/workspace/aixsilicon_workflow",
+    "exit_code": 2,
+    "log": "reports/quality/raw/quality.txt",
+    "sha256": "c3d70b4d606ec6e2f4deedc8c4cfada21f5b7ac4739c84c501d49f541c22baf9"
+  }
+]

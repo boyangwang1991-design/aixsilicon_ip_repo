@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+    "-m",
+    "pytest",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests",
+    "-q",
+    "-o",
+    "addopts="
+  ],
+  "exit_code": 0,
+  "scope": "canonical suite path; does not erase materialized path failure"
+}

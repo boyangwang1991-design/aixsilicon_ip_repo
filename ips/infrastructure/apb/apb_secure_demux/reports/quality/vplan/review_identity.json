@@ -1,0 +1,217 @@
+{
+  "scope": "VP0 review of verification strategy and coverage obligations; not execution or release approval",
+  "files": [
+    {
+      "path": "docs/verification/99_quality_gate.md",
+      "sha256": "acf09684751d21e63ed7f74c848d6c4e79f16106de2c32b969b8eaf4b13440a3"
+    },
+    {
+      "path": "docs/verification/agent_plan.md",
+      "sha256": "f4b0ad07451137f7391d6aaefe904d812f6f8ccad6ad8009ca19f580a40bc52a"
+    },
+    {
+      "path": "docs/verification/checker_plan.md",
+      "sha256": "7d84942ca81e25d5beeda5c8f9bb5e38f52cafdfb9622ccbf2e24239c7ae51de"
+    },
+    {
+      "path": "docs/verification/checker_plan_assertions_01.md",
+      "sha256": "f01ea8234928f74b39e3352349d3718e3ee1206d5e7cc703673f1b058ae7166a"
+    },
+    {
+      "path": "docs/verification/checker_plan_assertions_02.md",
+      "sha256": "a5b420d969c0374cf0f6d5dbe92e1f28e992324827014b3e66cd0af0227d2f1c"
+    },
+    {
+      "path": "docs/verification/coverage_plan.md",
+      "sha256": "0e3316ee55a9ee8c34f25a08f534be673fc77bb2a7e19bb128b5060c55f3cff5"
+    },
+    {
+      "path": "docs/verification/coverage_plan_bins_01.md",
+      "sha256": "36f093c68fc255ea2f61bd2beea214d946ad2f06c55887aace54dce2c1036e4d"
+    },
+    {
+      "path": "docs/verification/coverage_plan_bins_02.md",
+      "sha256": "d099196ca8f0a1d3fe9dba1659eea6e7dcdf11a7ef1567773625dde0dadfb7a9"
+    },
+    {
+      "path": "docs/verification/coverage_plan_bins_03.md",
+      "sha256": "d3ae9c8a56ce88494114a252584888027a23f8b22832f0c2f700599fb64b6c40"
+    },
+    {
+      "path": "docs/verification/coverage_plan_bins_04.md",
+      "sha256": "400d0fe06a60564eda2fa4a6707555e7c6a058699722313e4aa871074671780f"
+    },
+    {
+      "path": "docs/verification/feature_list.md",
+      "sha256": "9d08551fdf15cf561c5ab2f76d6ce8ba6030607199204eece0c004fcde02a2cc"
+    },
+    {
+      "path": "docs/verification/feature_list_acl.md",
+      "sha256": "d6bc6d4087cfcb6495981d01b96d0b01cfe64d8f9cc81c7290f3c061aeb6f6a6"
+    },
+    {
+      "path": "docs/verification/feature_list_apb.md",
+      "sha256": "dbb9317d7b8a6ed415cdd74d7c0164a1f23cbe4ffb9b1a7a5834b95b115f24ff"
+    },
+    {
+      "path": "docs/verification/feature_list_csr.md",
+      "sha256": "a5e4bee5af42c4da6bc8a7a04055d2aa5d8196fc08e2b364b7ce08bc3cd5fce3"
+    },
+    {
+      "path": "docs/verification/feature_list_decode.md",
+      "sha256": "532fdc87ff05254a86cd2992368e4431d7c21c31375e432bc20618a6b25345f5"
+    },
+    {
+      "path": "docs/verification/feature_list_delivery.md",
+      "sha256": "d96c8290e48be0aa2d9d7f2a03e22672472bef11d7136e4421ccf56c64b81480"
+    },
+    {
+      "path": "docs/verification/feature_list_dfx.md",
+      "sha256": "59edf58480ef42229975c913ba11290d88c0f2d7149023da1a95fb1168e866db"
+    },
+    {
+      "path": "docs/verification/feature_list_error.md",
+      "sha256": "02628f2037834cc3f49d6c6c63cae417eaba6b7b248e8bd6f00b2613748059b2"
+    },
+    {
+      "path": "docs/verification/feature_list_integrity.md",
+      "sha256": "5eed234474f20a19745cc35533a61b9af91ed92970d90dbd0d68baf5502c56f5"
+    },
+    {
+      "path": "docs/verification/feature_list_interface.md",
+      "sha256": "da1c8c18fc6b9b76b364c2b33242ae27304fb30929daf85307ac1eaf726be11b"
+    },
+    {
+      "path": "docs/verification/feature_list_irq.md",
+      "sha256": "6781283f3c936efdeaddee367d25ad1010f6b32cd9534707a55968ab6fd3a5ee"
+    },
+    {
+      "path": "docs/verification/feature_list_log.md",
+      "sha256": "b88a370f8151c8f95dd84b8f58b9a97b0979a416c674e8ea591b5530f8df0e53"
+    },
+    {
+      "path": "docs/verification/feature_list_ppa.md",
+      "sha256": "86d9eba1cde38ab1fd6f63961a18e65655a11558252efde6b4762445ae8aab75"
+    },
+    {
+      "path": "docs/verification/feature_list_reset.md",
+      "sha256": "b445d8ddb612e12abd663f4a9e2a9845b705f9baad2ad376bcb1f861f7936198"
+    },
+    {
+      "path": "docs/verification/feature_list_system.md",
+      "sha256": "92883439718a16b51599cb37a66d50beea5f82e6f60b2c44330ac9ae2e3562c8"
+    },
+    {
+      "path": "docs/verification/feature_list_update.md",
+      "sha256": "4803d53b70266a9208bfb50508ec1e39279c6c8b45f2e7694f8a89af458dbb6b"
+    },
+    {
+      "path": "docs/verification/index.md",
+      "sha256": "6fd46e4239ca4d3b68f187e17075409803ba1a280393fb04b69b2b96da77d11d"
+    },
+    {
+      "path": "docs/verification/test_matrix.md",
+      "sha256": "9d611c1fe31e93b74f03552efa44fb721a128e852580f0e9fc3b8ef44300051a"
+    },
+    {
+      "path": "docs/verification/test_matrix_acl.md",
+      "sha256": "39c3d2dde836e452f69f1f719cc2a3a94d929eea16c5a95769cdae270f34c49e"
+    },
+    {
+      "path": "docs/verification/test_matrix_apb.md",
+      "sha256": "7496cca36447f4a52f0fe2a1f76e97fabd42de2a59062784c967e25eabb3e01f"
+    },
+    {
+      "path": "docs/verification/test_matrix_csr.md",
+      "sha256": "194aa2c694de39244ea97d4f1cf068f150ab5f14a00382e979431fb587367f1e"
+    },
+    {
+      "path": "docs/verification/test_matrix_decode.md",
+      "sha256": "fda014922bab231fa87f0c2d5b661cce6f14915fb657e11bfec82e71493cd002"
+    },
+    {
+      "path": "docs/verification/test_matrix_delivery.md",
+      "sha256": "8d86da309acc49b046d9abd091918dd66737aa48d6d151de83eeb1a9a42e7695"
+    },
+    {
+      "path": "docs/verification/test_matrix_dfx.md",
+      "sha256": "d63bbf496bcba2441c52a5f0ef2e4362b13284386e3930ad28d7cae27000eb75"
+    },
+    {
+      "path": "docs/verification/test_matrix_error.md",
+      "sha256": "06c0bb19b14457bff3f4ef0759c07be9bf2ec3ee3950b2aaa2849c955293ebf5"
+    },
+    {
+      "path": "docs/verification/test_matrix_integrity.md",
+      "sha256": "95f8b6be56afa69849c784ca067bfb8fd1e4717e0c02a93fc93318cb9d2430e3"
+    },
+    {
+      "path": "docs/verification/test_matrix_interface.md",
+      "sha256": "c6d6fb111248f143c89a463f9f5331dc30279008eeacc139672993fd09381073"
+    },
+    {
+      "path": "docs/verification/test_matrix_irq.md",
+      "sha256": "674289d516a6084a26eba0c2bcc457b591c6578af2e94ba794760b6a4d4aea21"
+    },
+    {
+      "path": "docs/verification/test_matrix_log.md",
+      "sha256": "90b919400056c70d681e1f6a090ea3a8645bb3876bfacbc73d6462fe47716332"
+    },
+    {
+      "path": "docs/verification/test_matrix_parameter_campaign.md",
+      "sha256": "1b5b04c337b6e5dbf353e4f7f662d8032bfa4abbf1e36d2d4197a7879eaf20ef"
+    },
+    {
+      "path": "docs/verification/test_matrix_ppa.md",
+      "sha256": "71de7cd86c8b71d4e184e90562bc4cd4b2c158c455054f955569b5a6739fa6ce"
+    },
+    {
+      "path": "docs/verification/test_matrix_reset.md",
+      "sha256": "5cd1f69e75c2eab717e5fbfc7d6bef061313e01e2dcbf0f4733031ef602d21b6"
+    },
+    {
+      "path": "docs/verification/test_matrix_smoke_and_stress.md",
+      "sha256": "cdef9edbd84ed0d7068c8bbded907e7db4ae18213e98aebdd9858bd5dfc178e4"
+    },
+    {
+      "path": "docs/verification/test_matrix_system.md",
+      "sha256": "7d04ed635fcf3b20ed977b98bad0e07db87cf7a39cadbaf74098f8ffc2d850e1"
+    },
+    {
+      "path": "docs/verification/test_matrix_update.md",
+      "sha256": "5d9cd5efdc123ebf98ed3826f5be0af1c88be14fcea7b3fd4c8a6e132c2f033b"
+    },
+    {
+      "path": "docs/verification/verification_plan.md",
+      "sha256": "69844e5962932b3cf96636dae247a35d33e422e120c37f7420a0f6c41b782775"
+    },
+    {
+      "path": "docs/reviews/vp0_review.md",
+      "sha256": "e7057f4d17950c0e050d88ab797cd1eb0ba094baf2ed87c87a7fbf8c7a3a428d"
+    },
+    {
+      "path": "model/verification.yaml",
+      "sha256": "7c605890ef5c6586d854a721ceeabbff26cd39b630688ab7ceffc4391e3a34e1"
+    },
+    {
+      "path": "model/requirements.yaml",
+      "sha256": "694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16"
+    },
+    {
+      "path": "model/architecture.yaml",
+      "sha256": "671811a814850099a674911d3401689e7728d16ba2372e156973998f5e35ad73"
+    },
+    {
+      "path": "model/micro_design.yaml",
+      "sha256": "04b645d34eb30fce34ff5e86150d9877eeceade4cd155cf244c30aea71b2e693"
+    },
+    {
+      "path": "model/parameter_space.yaml",
+      "sha256": "bd35f3242190c2b5ef626dce6d4bc8f949b4c59e4fa8a20c7c010c67295ec8fa"
+    },
+    {
+      "path": "regs/apb_secure_demux.rdl",
+      "sha256": "321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4"
+    }
+  ]
+}

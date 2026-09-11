@@ -1,0 +1,37 @@
+# 通知与W1C竞争
+
+<!-- FEATURE_META
+id: FL.APB_SECURE_DEMUX.IRQ
+name: 通知与W1C竞争
+description: 通知与W1C竞争
+priority: must
+req_ref:
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.001
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.002
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.003
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.004
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.00601
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.00602
+- LRS.FUNC.APB_SECURE_DEMUX.IRQ.007
+- LRS.FUNC.APB_SECURE_DEMUX.IRQMAP.010
+design_ref:
+- LLD.MOD.APB_SECURE_DEMUX.IRQ
+proof_methods:
+- simulation
+- assertion
+END_FEATURE_META -->
+
+## 逐需求验收范围
+
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.001`：`irq_o = |(INTR_RAW & INTR_ENABLE)`；`security_alert_o = |(INTR_RAW & ALERT_ENABLE)`。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.002`：INTR_RAW 为 W1C 粘滞状态，新事件优先于同周期清除；bits31:9 RAZ/WI。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.003`：屏蔽只控制输出，不影响事件捕获、拒绝、计数和日志。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.004`：完整性故障未复位时 bit4 清除后仍保持置位；其他事件清除后需新事件才重置。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501`：INTR_TEST 仅产生 bit8，不设置真实错误位、不改变权限、不增加真实拒绝计数、不写日志。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502`：合成日志使用 INJECT_CMD。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.00601`：ALERT_ENABLE 的修改仅限管理授权，不受策略锁影响。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.00602`：FATAL 本身即使告警被屏蔽仍阻断外设。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQ.007`：irq/alert 为 pclk 域电平，跨域送往中断/安全控制器由系统负责同步；本 IP 不直接复位系统。
+- `LRS.FUNC.APB_SECURE_DEMUX.IRQMAP.010`：RAW 事件应按输入契约第 10 节位表映射访问拒绝、CSR 错误、空洞、多命中、完整性、丢失、下游错误、等待和 DFX；同一次失败可置多个相关位。

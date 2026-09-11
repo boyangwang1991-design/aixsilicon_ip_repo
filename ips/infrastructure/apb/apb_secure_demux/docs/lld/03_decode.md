@@ -1,0 +1,67 @@
+# DECODE 微设计
+
+<!-- LLD_MODULE_META
+id: LLD.MOD.APB_SECURE_DEMUX.DECODE
+name: decode
+hld_ref:
+- HLD.MOD.APB_SECURE_DEMUX.DECODE
+req_ref:
+- LRS.CFG.APB_SECURE_DEMUX.PAR.001
+- LRS.CFG.APB_SECURE_DEMUX.PAR.002
+- LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+- LRS.CFG.APB_SECURE_DEMUX.PAR.00302
+- LRS.CFG.APB_SECURE_DEMUX.PAR.004
+- LRS.CFG.APB_SECURE_DEMUX.PAR.005
+- LRS.CFG.APB_SECURE_DEMUX.PAR.006
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+- LRS.CFG.APB_SECURE_DEMUX.PARAMETERS.001
+objects:
+- LLD.DP.APB_SECURE_DEMUX.DECODE
+rtl_intent:
+  separate_module: true
+  suggested_name: apb_secure_demux_decode
+clock_domains:
+- CLK_PCLK
+reset_domains:
+- RST_PRESET_N
+END_LLD_MODULE_META -->
+
+## 完整地址并行命中
+
+输入为 SETUP 原始地址。每个端口比较 zero_extend(PADDR)>=BASE 且 <=扩展后的 LIMIT；CSR 使用同样比较。命中向量包含 NUM_PORTS 个端口位和一个 CSR 位。计数宽度 max(1,clog2(NUM_PORTS+2))，不会把全部命中归约成一个布尔值。
+
+先区分多命中、无命中、唯一 CSR、唯一外设。port_valid 仅唯一外设时置位；禁用不影响译码。多个命中不优先选择最低端口，只在诊断需要时选择位置，访问一律拒绝。外设输出原地址不减 BASE。CSR 内部 offset 仅在唯一 CSR 后做全宽减法，随后做对齐检查。
+
+索引宽度 max(1,clog2(NUM_PORTS))。全宽比较 MASTERID 的责任在 ACCESS，不能因端口译码缩窄身份。NUM_PORTS=1 与非二幂规模使用相同逻辑。
+
+## 参数失效
+
+正常配置由 checker 阻止重叠；运行时译码仍检查 onehot，便于覆盖比较逻辑故障造成的 MULTI_HIT。故障注入只在 verification，不把测试 mux 放入功能地址路径。MAP_LIMIT 的端点计算沿用参数扩展表达式，不能用截断后的范围计算另一个镜像。
+<!-- LLD_DATAPATH_META
+id: LLD.DP.APB_SECURE_DEMUX.DECODE
+module_ref: LLD.MOD.APB_SECURE_DEMUX.DECODE
+operation: 对完整原始地址并行检测全部端口和 CSR 范围，产生零/唯一/多重命中分类。禁用端口仍保留地址命中；CSR 与外设相撞不予优先通行。
+latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+req_ref:
+- LRS.CFG.APB_SECURE_DEMUX.PAR.001
+- LRS.CFG.APB_SECURE_DEMUX.PAR.002
+- LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+- LRS.CFG.APB_SECURE_DEMUX.PAR.00302
+- LRS.CFG.APB_SECURE_DEMUX.PAR.004
+- LRS.CFG.APB_SECURE_DEMUX.PAR.005
+- LRS.CFG.APB_SECURE_DEMUX.PAR.006
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+- LRS.CFG.APB_SECURE_DEMUX.PARAMETERS.001
+END_LLD_DATAPATH_META -->

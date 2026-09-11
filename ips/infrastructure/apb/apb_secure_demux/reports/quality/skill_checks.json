@@ -1,0 +1,27 @@
+[
+  {
+    "name": "suite_validate",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/validate_suite.py"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/suite_validate.txt",
+    "sha256": "5422f8f7a8994abd79a4bc1eb459b5e7b14c60e09dd679a50ce2a83e479739d3"
+  },
+  {
+    "name": "suite_tests",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "pytest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests",
+      "-q",
+      "-o",
+      "cache_dir=/tmp/apb-secure-pytest-cache"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/suite_tests.txt",
+    "sha256": "2c230d1a1d582f47226570ff6e97514e6fcb07096dfac755adef1212433646bf"
+  }
+]

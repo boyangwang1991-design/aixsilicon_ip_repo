@@ -1,0 +1,2 @@
+verification/env/watchdog_control_if.sv
+verification/env/watchdog_env_pkg.sv

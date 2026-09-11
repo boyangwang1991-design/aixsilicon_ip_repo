@@ -1,0 +1,18 @@
+schema_version: '2.0'
+generator: peakrdl-regblock
+generator_version: 1.3.1
+rdl_source: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl
+rdl_source_sha256: 4573e2d0dce7ac1eb295ad4901ad4b4b86e33e871e43f431456b5035c5b38950
+outputs:
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_pkg.sv
+  sha256: 3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_regblock.sv
+  sha256: 171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8
+lint_command:
+- vlogan
+- -full64
+- -sverilog
+- '{files}'
+lint_work_dir: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/compile
+verification_scope: native_systemverilog_compile_and_provenance
+timeout_seconds: 300

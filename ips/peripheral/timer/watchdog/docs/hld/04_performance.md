@@ -1,0 +1,187 @@
+# Watchdog：性能、容量与 PPA 预算
+
+## APB_RESPONSE
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.APB_RESPONSE
+metric: latency
+target: ACCESS 后最多 2 个 pclk 周期
+allocated_to:
+- HLD.MOD.WATCHDOG.BUS
+req_ref:
+- LRS.INTF.WATCHDOG.BUS.001
+- LRS.INTF.WATCHDOG.BUS.002
+- LRS.INTF.WATCHDOG.BUS.003
+- LRS.PERF.WATCHDOG.COMMAND.001
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+BUS 不等待 WDT 执行。pclk 持续运行、合法 APB 相位下，读状态和忙拒绝也满足此界。
+
+## COMMAND_VISIBLE
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.COMMAND_VISIBLE
+metric: latency
+target: 请求跨域可见预算 SYNC_STAGES+1 个目的时钟边沿
+allocated_to:
+- HLD.MOD.WATCHDOG.TRANSPORT
+req_ref:
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+从源接受并稳定负载开始计。该工程预算包含相位不确定性及控制同步观察；以 LLD 实现和 CDC 稳定窗证明核对，时钟停止时不适用。
+
+## COMMAND_EXECUTE
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.COMMAND_EXECUTE
+metric: latency
+target: 目的域可见后无竞争 <=2、有持续硬件竞争 <=3 个 wdt_clk 周期
+allocated_to:
+- HLD.MOD.WATCHDOG.DISPATCH
+- HLD.MOD.WATCHDOG.CHANNEL
+req_ref:
+- LRS.PERF.WATCHDOG.COMMAND.001
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+一个命令当次完成状态修改；快照/整组配置不能以循环扫描延长为多拍原子伪装。
+
+## COMMAND_RETURN
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.COMMAND_RETURN
+metric: latency
+target: 执行完成后 <=SYNC_STAGES+1 个 pclk 边沿发布结果
+allocated_to:
+- HLD.MOD.WATCHDOG.TRANSPORT
+- HLD.MOD.WATCHDOG.BUS
+req_ref:
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.REG.WATCHDOG.SNP.001
+- LRS.REG.WATCHDOG.SNP.002
+- LRS.REG.WATCHDOG.SNP.003
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+源返回负载保持；在两个时钟都连续且数据稳定约束满足时，总预算为 (SYNC_STAGES+4)*Twdt + (SYNC_STAGES+1)*Tpclk，另计 APB 请求阶段。
+
+## SUPERVISION
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.SUPERVISION
+metric: latency
+target: 无暂停时精确 TIMEOUT*(P+1) 个 WDT 周期
+allocated_to:
+- HLD.MOD.WATCHDOG.CHANNEL
+req_ref:
+- LRS.FUNC.WATCHDOG.SUP.001
+- LRS.FUNC.WATCHDOG.SUP.002
+- LRS.FUNC.WATCHDOG.SUP.003
+- LRS.FUNC.WATCHDOG.SUP.004
+- LRS.FUNC.WATCHDOG.SUP.005
+- LRS.FUNC.WATCHDOG.SUP.006
+- LRS.FUNC.WATCHDOG.SUP.007
+- LRS.FUNC.WATCHDOG.SUP.008
+- LRS.FUNC.WATCHDOG.SUP.009
+- LRS.FUNC.WATCHDOG.SUP.010
+- LRS.FUNC.WATCHDOG.TIM.001
+- LRS.FUNC.WATCHDOG.TIM.002
+- LRS.FUNC.WATCHDOG.TIM.003
+- LRS.FUNC.WATCHDOG.TIM.004
+- LRS.FUNC.WATCHDOG.TIM.005
+- LRS.FUNC.WATCHDOG.TIM.006
+- LRS.PERF.WATCHDOG.TIME.001
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+BOOT 使用 BOOT_TIMEOUT，ALIVE 为固定周期评价；窗口合法性采用同一候选年龄，仲裁和 APB 背压不延长期限。
+
+## SAFETY_REACTION
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.SAFETY_REACTION
+metric: latency
+target: 数字异常可观察后最多 2 个 wdt_clk 周期
+allocated_to:
+- HLD.MOD.WATCHDOG.SAFETY
+- HLD.MOD.WATCHDOG.INTEGRATION
+req_ref:
+- LRS.PERF.WATCHDOG.SAFETY.001
+- LRS.SAFE.WATCHDOG.SAF.001
+- LRS.SAFE.WATCHDOG.SAF.002
+- LRS.SAFE.WATCHDOG.SAF.003
+- LRS.SAFE.WATCHDOG.SAF.004
+- LRS.SAFE.WATCHDOG.SAF.005
+- LRS.SAFE.WATCHDOG.SAF.006
+applicability:
+  expr: SAFETY_EN == 1
+END_HLD_PERF_META -->
+
+跨 APB 域错误先成为 WDT 可观察异常再计本界；系统停钟/潜伏/模拟故障另由系统安全分析承担。
+
+## CAPACITY
+
+<!-- HLD_PERF_META
+id: HLD.PERF.WATCHDOG.CAPACITY
+metric: capacity
+target: 1 个在途软件命令；16 通道、每通道32客户端、64-bit计时上限
+allocated_to:
+- HLD.MOD.WATCHDOG.BUS
+- HLD.MOD.WATCHDOG.TRANSPORT
+- HLD.MOD.WATCHDOG.CHANNEL
+req_ref:
+- LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+- LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+- LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+- LRS.CFG.WATCHDOG.PAR.001
+- LRS.CFG.WATCHDOG.PAR.002
+- LRS.CFG.WATCHDOG.PAR.003
+applicability:
+  expr: 'true'
+END_HLD_PERF_META -->
+
+容量按参数裁剪；结构规模不改变每通道计时频度，最终升级不共享排队。
+
+## 吞吐与软件余量
+
+软件通道吞吐受单在途完整往返限制；硬件路径受单命令/拍仲裁限制。该 IP 面向活性
+监督而非高吞吐数据传输。服务预算需叠加软件健康判定、总线等待、CDC/仲裁及最坏
+时钟误差，不能在窗口最后边沿才发起 APB 请求。
+
+## PPA 表征条件与代价
+
+既有 SDC 的 pclk=100 MHz、wdt_clk=50 MHz 只是表征输入，不是已达到频率或通用需求。
+后续按真实工艺/库/corner/活动假设分别报告 STANDARD、SAFETY、SUPERVISOR 的面积、
+时序、功耗和冗余开销；无工艺无关门数或功率门槛，generic elaborate 不能代替映射综合。
+
+架构采用并行通道计时、并行客户端评价/快照以保持固定响应界，代价是随通道/客户端
+规模增长的比较、状态和镜像面积。共享总线解码、邮箱和仲裁节省外围逻辑但不共享
+监督时间；安全冗余不为节省面积合并。LLD 需给出关键路径、裁剪、门控与防合并决策。

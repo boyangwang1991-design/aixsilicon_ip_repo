@@ -1,0 +1,42 @@
+{
+  "schema": "watchdog-formal-run/1.0",
+  "status": "fail",
+  "command": [
+    "/home/eda/app/synopsys/vcs/W-2024.09-SP1/vcfca/bin/vcf",
+    "-batch",
+    "-no_init",
+    "-fmode",
+    "FPV",
+    "-f",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/formal/20260911_054401/prove.tcl"
+  ],
+  "exit_code": 4,
+  "parameters": {
+    "W": "32",
+    "P": "16",
+    "SAFETY": "1"
+  },
+  "inputs": {
+    "rtl/watchdog_pkg.sv": "a319d6a2e447838c5e139eb066b1ef67175bd7940241cf2f484f76863dc93c6a",
+    "rtl/watchdog_channel.sv": "71a7f77773031cb1444233f1b5f41be266c893770cfb133dd903b12acf23b9c4",
+    "verification/formal/watchdog_formal_harness.sv": "3b6f6942c5924fecb17330ccaaf2a740d0e2db557ac895a2bee1cb33c19d12da",
+    "scripts/run_formal.py": "fb0c4d7751cfc8e73e479ca702f0a9ce30da83d9ecf211eb9b3a5f01b9075b84"
+  },
+  "inputs_after": {
+    "rtl/watchdog_pkg.sv": "a319d6a2e447838c5e139eb066b1ef67175bd7940241cf2f484f76863dc93c6a",
+    "rtl/watchdog_channel.sv": "71a7f77773031cb1444233f1b5f41be266c893770cfb133dd903b12acf23b9c4",
+    "verification/formal/watchdog_formal_harness.sv": "3b6f6942c5924fecb17330ccaaf2a740d0e2db557ac895a2bee1cb33c19d12da",
+    "scripts/run_formal.py": "fb0c4d7751cfc8e73e479ca702f0a9ce30da83d9ecf211eb9b3a5f01b9075b84"
+  },
+  "required_properties": [
+    "final_hold",
+    "safe_follows_final",
+    "counter_bounded",
+    "exact_timeout",
+    "paused_count"
+  ],
+  "artifacts": {
+    "build/formal/20260911_054401/prove.tcl": "514f10e6a68c384e1c70b0833189370b42304bfc56406ad4730dfdfa635e90ef",
+    "reports/formal/20260911_054401/vcf.log": "acb0771fd1ff0dbc4785a4d64031715b3d92bc5a6a05556534890a80f6ca9f4e"
+  }
+}

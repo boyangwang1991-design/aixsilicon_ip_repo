@@ -1,0 +1,121 @@
+# 原契约到规范 LRS 的来源映射
+
+输入 SHA-256：`9bbb88115193928f73fe13e899f4713a677bc4a6be1c78a5153299619769f302`。全部 109 个原编号条目均保留来源引用。
+
+这是需求迁移映射，不是需求到通过测试的最终 RTM。补充的表格/非编号条目见 LRS 分册。
+
+| 原需求 | 规范需求 | 编辑分册 |
+|---|---|---|
+| WDT-PAR-001 | LRS.CFG.WATCHDOG.PAR.001 | [01_configuration_rules.md](../../docs/lrs/01_configuration_rules.md) |
+| WDT-PAR-002 | LRS.CFG.WATCHDOG.PAR.002 | [01_configuration_rules.md](../../docs/lrs/01_configuration_rules.md) |
+| WDT-PAR-003 | LRS.CFG.WATCHDOG.PAR.003 | [01_configuration_rules.md](../../docs/lrs/01_configuration_rules.md) |
+| WDT-IF-001 | LRS.INTF.WATCHDOG.IF.001 | [02_interface_rules.md](../../docs/lrs/02_interface_rules.md) |
+| WDT-IF-002 | LRS.INTF.WATCHDOG.IF.002 | [02_interface_rules.md](../../docs/lrs/02_interface_rules.md) |
+| WDT-IF-003 | LRS.INTF.WATCHDOG.IF.003 | [02_interface_rules.md](../../docs/lrs/02_interface_rules.md) |
+| WDT-IF-004 | LRS.INTF.WATCHDOG.IF.004 | [02_interface_rules.md](../../docs/lrs/02_interface_rules.md) |
+| WDT-TIM-001 | LRS.FUNC.WATCHDOG.TIM.001 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-TIM-002 | LRS.FUNC.WATCHDOG.TIM.002 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-TIM-003 | LRS.FUNC.WATCHDOG.TIM.003 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-TIM-004 | LRS.FUNC.WATCHDOG.TIM.004 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-TIM-005 | LRS.FUNC.WATCHDOG.TIM.005 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-TIM-006 | LRS.FUNC.WATCHDOG.TIM.006 | [03_functional_timing.md](../../docs/lrs/03_functional_timing.md) |
+| WDT-STA-001 | LRS.FUNC.WATCHDOG.STA.001 | [03_functional_start.md](../../docs/lrs/03_functional_start.md) |
+| WDT-STA-002 | LRS.FUNC.WATCHDOG.STA.002 | [03_functional_start.md](../../docs/lrs/03_functional_start.md) |
+| WDT-STA-003 | LRS.FUNC.WATCHDOG.STA.003 | [03_functional_start.md](../../docs/lrs/03_functional_start.md) |
+| WDT-STA-004 | LRS.FUNC.WATCHDOG.STA.004 | [03_functional_start.md](../../docs/lrs/03_functional_start.md) |
+| WDT-STA-005 | LRS.FUNC.WATCHDOG.STA.005 | [03_functional_start.md](../../docs/lrs/03_functional_start.md) |
+| WDT-SRV-001 | LRS.FUNC.WATCHDOG.SRV.001 | [03_functional_service_1.md](../../docs/lrs/03_functional_service_1.md) |
+| WDT-SRV-002 | LRS.FUNC.WATCHDOG.SRV.002 | [03_functional_service_1.md](../../docs/lrs/03_functional_service_1.md) |
+| WDT-SRV-003 | LRS.FUNC.WATCHDOG.SRV.003 | [03_functional_service_1.md](../../docs/lrs/03_functional_service_1.md) |
+| WDT-SRV-004 | LRS.FUNC.WATCHDOG.SRV.004 | [03_functional_service_1.md](../../docs/lrs/03_functional_service_1.md) |
+| WDT-SRV-005 | LRS.FUNC.WATCHDOG.SRV.005 | [03_functional_service_1.md](../../docs/lrs/03_functional_service_1.md) |
+| WDT-SRV-006 | LRS.FUNC.WATCHDOG.SRV.006 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SRV-007 | LRS.FUNC.WATCHDOG.SRV.007 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SRV-008 | LRS.FUNC.WATCHDOG.SRV.008 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SRV-009 | LRS.FUNC.WATCHDOG.SRV.009 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SRV-010 | LRS.FUNC.WATCHDOG.SRV.010 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SRV-011 | LRS.FUNC.WATCHDOG.SRV.011 | [03_functional_service_2.md](../../docs/lrs/03_functional_service_2.md) |
+| WDT-SUP-001 | LRS.FUNC.WATCHDOG.SUP.001 | [03_functional_supervision_1.md](../../docs/lrs/03_functional_supervision_1.md) |
+| WDT-SUP-002 | LRS.FUNC.WATCHDOG.SUP.002 | [03_functional_supervision_1.md](../../docs/lrs/03_functional_supervision_1.md) |
+| WDT-SUP-003 | LRS.FUNC.WATCHDOG.SUP.003 | [03_functional_supervision_1.md](../../docs/lrs/03_functional_supervision_1.md) |
+| WDT-SUP-004 | LRS.FUNC.WATCHDOG.SUP.004 | [03_functional_supervision_1.md](../../docs/lrs/03_functional_supervision_1.md) |
+| WDT-SUP-005 | LRS.FUNC.WATCHDOG.SUP.005 | [03_functional_supervision_1.md](../../docs/lrs/03_functional_supervision_1.md) |
+| WDT-SUP-006 | LRS.FUNC.WATCHDOG.SUP.006 | [03_functional_supervision_2.md](../../docs/lrs/03_functional_supervision_2.md) |
+| WDT-SUP-007 | LRS.FUNC.WATCHDOG.SUP.007 | [03_functional_supervision_2.md](../../docs/lrs/03_functional_supervision_2.md) |
+| WDT-SUP-008 | LRS.FUNC.WATCHDOG.SUP.008 | [03_functional_supervision_2.md](../../docs/lrs/03_functional_supervision_2.md) |
+| WDT-SUP-009 | LRS.FUNC.WATCHDOG.SUP.009 | [03_functional_supervision_2.md](../../docs/lrs/03_functional_supervision_2.md) |
+| WDT-SUP-010 | LRS.FUNC.WATCHDOG.SUP.010 | [03_functional_supervision_2.md](../../docs/lrs/03_functional_supervision_2.md) |
+| WDT-CFG-001 | LRS.REG.WATCHDOG.CFG.001 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-002 | LRS.REG.WATCHDOG.CFG.002 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-003 | LRS.REG.WATCHDOG.CFG.003 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-004 | LRS.REG.WATCHDOG.CFG.004 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-005 | LRS.REG.WATCHDOG.CFG.005 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-006 | LRS.REG.WATCHDOG.CFG.006 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-CFG-007 | LRS.REG.WATCHDOG.CFG.007 | [04_register_configuration.md](../../docs/lrs/04_register_configuration.md) |
+| WDT-FLT-001 | LRS.FUNC.WATCHDOG.FLT.001 | [03_functional_fault_policy.md](../../docs/lrs/03_functional_fault_policy.md) |
+| WDT-FLT-002 | LRS.FUNC.WATCHDOG.FLT.002 | [03_functional_fault_policy.md](../../docs/lrs/03_functional_fault_policy.md) |
+| WDT-ESC-001 | LRS.FUNC.WATCHDOG.ESC.001 | [03_functional_escalation.md](../../docs/lrs/03_functional_escalation.md) |
+| WDT-ESC-002 | LRS.FUNC.WATCHDOG.ESC.002 | [03_functional_escalation.md](../../docs/lrs/03_functional_escalation.md) |
+| WDT-ESC-003 | LRS.FUNC.WATCHDOG.ESC.003 | [03_functional_escalation.md](../../docs/lrs/03_functional_escalation.md) |
+| WDT-REC-001 | LRS.FUNC.WATCHDOG.REC.001 | [03_functional_recovery.md](../../docs/lrs/03_functional_recovery.md) |
+| WDT-REC-002 | LRS.FUNC.WATCHDOG.REC.002 | [03_functional_recovery.md](../../docs/lrs/03_functional_recovery.md) |
+| WDT-REC-003 | LRS.FUNC.WATCHDOG.REC.003 | [03_functional_recovery.md](../../docs/lrs/03_functional_recovery.md) |
+| WDT-REC-004 | LRS.FUNC.WATCHDOG.REC.004 | [03_functional_recovery.md](../../docs/lrs/03_functional_recovery.md) |
+| WDT-REC-005 | LRS.FUNC.WATCHDOG.REC.005 | [03_functional_recovery.md](../../docs/lrs/03_functional_recovery.md) |
+| WDT-PWR-001 | LRS.LP.WATCHDOG.PWR.001 | [07_low_power.md](../../docs/lrs/07_low_power.md) |
+| WDT-PWR-002 | LRS.LP.WATCHDOG.PWR.002 | [07_low_power.md](../../docs/lrs/07_low_power.md) |
+| WDT-PWR-003 | LRS.LP.WATCHDOG.PWR.003 | [07_low_power.md](../../docs/lrs/07_low_power.md) |
+| WDT-PWR-004 | LRS.LP.WATCHDOG.PWR.004 | [07_low_power.md](../../docs/lrs/07_low_power.md) |
+| WDT-PWR-005 | LRS.LP.WATCHDOG.PWR.005 | [07_low_power.md](../../docs/lrs/07_low_power.md) |
+| WDT-BUS-001 | LRS.INTF.WATCHDOG.BUS.001 | [02_interface_apb.md](../../docs/lrs/02_interface_apb.md) |
+| WDT-BUS-002 | LRS.INTF.WATCHDOG.BUS.002 | [02_interface_apb.md](../../docs/lrs/02_interface_apb.md) |
+| WDT-BUS-003 | LRS.INTF.WATCHDOG.BUS.003 | [02_interface_apb.md](../../docs/lrs/02_interface_apb.md) |
+| WDT-CDC-001 | LRS.INTF.WATCHDOG.CDC.001 | [02_interface_transactions.md](../../docs/lrs/02_interface_transactions.md) |
+| WDT-CDC-002 | LRS.INTF.WATCHDOG.CDC.002 | [02_interface_transactions.md](../../docs/lrs/02_interface_transactions.md) |
+| WDT-CDC-003 | LRS.INTF.WATCHDOG.CDC.003 | [02_interface_transactions.md](../../docs/lrs/02_interface_transactions.md) |
+| WDT-CDC-004 | LRS.INTF.WATCHDOG.CDC.004 | [02_interface_transactions.md](../../docs/lrs/02_interface_transactions.md) |
+| WDT-CDC-005 | LRS.INTF.WATCHDOG.CDC.005 | [02_interface_transactions.md](../../docs/lrs/02_interface_transactions.md) |
+| WDT-SNP-001 | LRS.REG.WATCHDOG.SNP.001 | [04_register_snapshot.md](../../docs/lrs/04_register_snapshot.md) |
+| WDT-SNP-002 | LRS.REG.WATCHDOG.SNP.002 | [04_register_snapshot.md](../../docs/lrs/04_register_snapshot.md) |
+| WDT-SNP-003 | LRS.REG.WATCHDOG.SNP.003 | [04_register_snapshot.md](../../docs/lrs/04_register_snapshot.md) |
+| WDT-RST-001 | LRS.RESET.WATCHDOG.RST.001 | [06_clock_reset.md](../../docs/lrs/06_clock_reset.md) |
+| WDT-RST-002 | LRS.RESET.WATCHDOG.RST.002 | [06_clock_reset.md](../../docs/lrs/06_clock_reset.md) |
+| WDT-RST-003 | LRS.RESET.WATCHDOG.RST.003 | [06_clock_reset.md](../../docs/lrs/06_clock_reset.md) |
+| WDT-RST-004 | LRS.RESET.WATCHDOG.RST.004 | [06_clock_reset.md](../../docs/lrs/06_clock_reset.md) |
+| WDT-SAF-001 | LRS.SAFE.WATCHDOG.SAF.001 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-SAF-002 | LRS.SAFE.WATCHDOG.SAF.002 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-SAF-003 | LRS.SAFE.WATCHDOG.SAF.003 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-SAF-004 | LRS.SAFE.WATCHDOG.SAF.004 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-SAF-005 | LRS.SAFE.WATCHDOG.SAF.005 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-SAF-006 | LRS.SAFE.WATCHDOG.SAF.006 | [08_safety.md](../../docs/lrs/08_safety.md) |
+| WDT-TST-001 | LRS.DFX.WATCHDOG.TST.001 | [10_dfx.md](../../docs/lrs/10_dfx.md) |
+| WDT-TST-002 | LRS.DFX.WATCHDOG.TST.002 | [10_dfx.md](../../docs/lrs/10_dfx.md) |
+| WDT-TST-003 | LRS.DFX.WATCHDOG.TST.003 | [10_dfx.md](../../docs/lrs/10_dfx.md) |
+| WDT-TST-004 | LRS.DFX.WATCHDOG.TST.004 | [10_dfx.md](../../docs/lrs/10_dfx.md) |
+| WDT-TST-005 | LRS.DFX.WATCHDOG.TST.005 | [10_dfx.md](../../docs/lrs/10_dfx.md) |
+| WDT-DIA-001 | LRS.DFX.WATCHDOG.DIA.001 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-DIA-002 | LRS.DFX.WATCHDOG.DIA.002 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-DIA-003 | LRS.DFX.WATCHDOG.DIA.003 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-DIA-004 | LRS.DFX.WATCHDOG.DIA.004 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-DIA-005 | LRS.DFX.WATCHDOG.DIA.005 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-DIA-006 | LRS.DFX.WATCHDOG.DIA.006 | [10_dfx_diagnostics.md](../../docs/lrs/10_dfx_diagnostics.md) |
+| WDT-REG-001 | LRS.REG.WATCHDOG.REG.001 | [04_register_validation.md](../../docs/lrs/04_register_validation.md) |
+| WDT-REG-002 | LRS.REG.WATCHDOG.REG.002 | [04_register_validation.md](../../docs/lrs/04_register_validation.md) |
+| WDT-REG-003 | LRS.REG.WATCHDOG.REG.003 | [04_register_validation.md](../../docs/lrs/04_register_validation.md) |
+| WDT-REG-004 | LRS.REG.WATCHDOG.REG.004 | [04_register_validation.md](../../docs/lrs/04_register_validation.md) |
+| WDT-NFR-001 | LRS.CONS.WATCHDOG.NFR.001 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-NFR-002 | LRS.CONS.WATCHDOG.NFR.002 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-NFR-003 | LRS.CONS.WATCHDOG.NFR.003 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-NFR-004 | LRS.CONS.WATCHDOG.NFR.004 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-NFR-005 | LRS.CONS.WATCHDOG.NFR.005 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-NFR-006 | LRS.CONS.WATCHDOG.NFR.006 | [12_constraints.md](../../docs/lrs/12_constraints.md) |
+| WDT-VER-001 | LRS.CONS.WATCHDOG.VER.001 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+| WDT-VER-002 | LRS.CONS.WATCHDOG.VER.002 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+| WDT-VER-003 | LRS.CONS.WATCHDOG.VER.003 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+| WDT-VER-004 | LRS.CONS.WATCHDOG.VER.004 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+| WDT-VER-005 | LRS.CONS.WATCHDOG.VER.005 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+| WDT-VER-006 | LRS.CONS.WATCHDOG.VER.006 | [12_constraints_acceptance.md](../../docs/lrs/12_constraints_acceptance.md) |
+
+## 分层处置
+
+SAF-001/002/003 的保护实现、CDC-002/003 的电路组织及 NFR-001 的时钟实现归 HLD/LLD；LRS 保留其安全/一致性/可综合约束。DIA-006 的 bit 分配归 SystemRDL。原契约全文保留供后续一致性检查，没有用旧 RTL 的实现细节替换输入要求。

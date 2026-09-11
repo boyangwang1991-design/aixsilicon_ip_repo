@@ -1,0 +1,36 @@
+# Verification fixture, not an integration default.
+NUM_PORTS: 3
+NUM_MASTERS: 3
+MASTER_ID_WIDTH: 2
+PORT_BASE:
+- 256
+- 512
+- 768
+RESET_PERM:
+- 1
+- 12
+- 23
+- 38
+- 49
+- 60
+- 75
+- 86
+- 97
+EVENT_FIFO_DEPTH: 3
+ADDR_WIDTH: 32
+DATA_WIDTH: 32
+REGISTER_MODE: false
+OUTPUT_ISOLATION_EN: true
+POLICY_PARITY_EN: true
+DFX_EN: true
+PUBLIC_ID_EN: true
+MGMT_MASTER_MASK: 1
+CSR_BASE: 16384
+PORT_SIZE:
+- 256
+- 256
+- 256
+RESET_PORT_CFG:
+- 1
+- 2
+- 3

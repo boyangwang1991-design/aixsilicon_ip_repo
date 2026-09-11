@@ -1,0 +1,107 @@
+# GPIO 微设计：gpio_input
+
+<!-- LLD_MODULE_META
+id: LLD.MOD.GPIO.INPUT
+name: gpio_input
+hld_ref:
+- HLD.MOD.GPIO.INPUT
+req_ref:
+- LRS.FUNC.GPIO.FLT001.001
+- LRS.FUNC.GPIO.FLT001.002
+- LRS.FUNC.GPIO.FLT002.001
+- LRS.FUNC.GPIO.FLT002.002
+- LRS.FUNC.GPIO.FLT002.003
+- LRS.FUNC.GPIO.FLT003.001
+- LRS.FUNC.GPIO.FLT004.001
+- LRS.FUNC.GPIO.FLT004.002
+- LRS.FUNC.GPIO.FLT005.001
+- LRS.FUNC.GPIO.FLT006.001
+- LRS.FUNC.GPIO.FLT007.001
+- LRS.FUNC.GPIO.IN001.001
+- LRS.FUNC.GPIO.IN002.001
+- LRS.FUNC.GPIO.IN002.002
+- LRS.FUNC.GPIO.IN003.001
+- LRS.FUNC.GPIO.IN004.001
+- LRS.FUNC.GPIO.IN005.001
+parent_ref:
+- HLD.MOD.GPIO.TOP
+applicability:
+  expr: 'true'
+rtl_intent:
+  separate_module: true
+  suggested_name: gpio_input
+clock_domains:
+- CLK_MAIN
+reset_domains:
+- RST_MAIN
+END_LLD_MODULE_META -->
+
+## 周期行为与状态
+
+每通道同步移位寄存器SYNC_STAGES级，末级为物理IN_SYNC。前提=INPUT_CAP_MASK & IN_ENABLE & input_available_i。前提失效沿清填充计数、滤波/去抖有效、候选和计数以及IN_DATA/VALID，并使软件IN_SYNC视图为0。
+前提建立后，前SYNC_STAGES个有效沿仅填充同步器；随后以末级沿前值进入处理。滤波启用时每沿观察样本：同候选计数加1（最多K），不同样本重设候选且count=1；count达到K当沿置滤波有效/输出。关闭则直接用已填充同步视图。
+每Bank分频计数从0到DIV，等于DIV的沿产生tick并归0。DIV写归0；只在tick时去抖观察已有效滤波输出，各通道D候选/计数独立。启用级使用寄存输出，下级同沿读旧上级值。
+最终有效数据经IN_INV得到逻辑值；首次有效交给IRQ建立基线，不能生成边沿。稳定输入最坏填充+阶段注册裕量+K+D*(DIV+1)不超过LRS给定上界。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.GPIO.INPUT
+module_ref: LLD.MOD.GPIO.INPUT
+hld_ref:
+- HLD.MOD.GPIO.INPUT
+req_ref:
+- LRS.FUNC.GPIO.FLT001.001
+- LRS.FUNC.GPIO.FLT001.002
+- LRS.FUNC.GPIO.FLT002.001
+- LRS.FUNC.GPIO.FLT002.002
+- LRS.FUNC.GPIO.FLT002.003
+- LRS.FUNC.GPIO.FLT003.001
+- LRS.FUNC.GPIO.FLT004.001
+- LRS.FUNC.GPIO.FLT004.002
+- LRS.FUNC.GPIO.FLT005.001
+- LRS.FUNC.GPIO.FLT006.001
+- LRS.FUNC.GPIO.FLT007.001
+- LRS.FUNC.GPIO.IN001.001
+- LRS.FUNC.GPIO.IN002.001
+- LRS.FUNC.GPIO.IN002.002
+- LRS.FUNC.GPIO.IN003.001
+- LRS.FUNC.GPIO.IN004.001
+- LRS.FUNC.GPIO.IN005.001
+input_width: 32
+output_width: 32
+latency: 按本册周期行为定义
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+
+<!-- LLD_RESET_META
+id: LLD.RST.GPIO.INPUT
+module_ref: LLD.MOD.GPIO.INPUT
+reset_domain: RST_MAIN
+type: async_assert_sync_release
+affected_objects:
+- LLD.MOD.GPIO.INPUT
+req_ref:
+- LRS.FUNC.GPIO.FLT001.001
+- LRS.FUNC.GPIO.FLT001.002
+- LRS.FUNC.GPIO.FLT002.001
+- LRS.FUNC.GPIO.FLT002.002
+- LRS.FUNC.GPIO.FLT002.003
+- LRS.FUNC.GPIO.FLT003.001
+- LRS.FUNC.GPIO.FLT004.001
+- LRS.FUNC.GPIO.FLT004.002
+- LRS.FUNC.GPIO.FLT005.001
+- LRS.FUNC.GPIO.FLT006.001
+- LRS.FUNC.GPIO.FLT007.001
+- LRS.FUNC.GPIO.IN001.001
+- LRS.FUNC.GPIO.IN002.001
+- LRS.FUNC.GPIO.IN002.002
+- LRS.FUNC.GPIO.IN003.001
+- LRS.FUNC.GPIO.IN004.001
+- LRS.FUNC.GPIO.IN005.001
+reset_value: 本册及寄存器行为分册所列默认值
+release: 本时钟域两拍同步释放
+END_LLD_RESET_META -->
+
+## PPA决策
+
+Bank共享采样节拍与分层译码；每脚保留必需状态。参数裁剪使用静态generate，避免关闭功能仍切换。IRQ/readback采用平衡归约；FIFO只单写端口。不同配置分别综合，不从默认配置推断最大配置。

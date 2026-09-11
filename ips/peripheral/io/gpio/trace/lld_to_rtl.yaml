@@ -1,0 +1,31 @@
+schema_version: '2.0'
+ip_name: gpio
+trace_type: lld_to_rtl
+links: []
+gap_analysis:
+  unlinked_sources:
+  - id: LLD.MOD.GPIO.AON
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.APB
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.CAPTURE
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.DIAG
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.FIFO
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.INPUT
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.IRQ
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.MAILBOX
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.OUTPUT
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.REG
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.SECURITY
+    reason: no current downstream mapping
+  - id: LLD.MOD.GPIO.TOP
+    reason: no current downstream mapping
+  unlinked_targets: []

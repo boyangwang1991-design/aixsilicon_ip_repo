@@ -1,0 +1,205 @@
+[
+  {
+    "name": "g2_hld_status_00_overview",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/03-hld-architect/scripts/extract_hld.py",
+      "--hld-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/hld",
+      "--requirements",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/requirements.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_hld_status_03_register_architecture",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/03-hld-architect/scripts/extract_hld.py",
+      "--hld-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/hld",
+      "--requirements",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/requirements.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_hld_status_06_dfx",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/03-hld-architect/scripts/extract_hld.py",
+      "--hld-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/hld",
+      "--requirements",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/requirements.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_hld_status_08_decisions",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/03-hld-architect/scripts/extract_hld.py",
+      "--hld-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/hld",
+      "--requirements",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/requirements.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_hld_check",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/scripts/check_hld.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_lld_check",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/scripts/check_lld.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_machine_gates",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+      "--ip-name",
+      "watchdog",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/quality.yaml",
+      "--gate-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/reports/quality/gate_report.md",
+      "--fail-on-gate"
+    ],
+    "exit_code": 2,
+    "expected": 2
+  },
+  {
+    "name": "g2_suite_validation",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/validate_suite.py"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_repo_status_workflow",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "workflow"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_repo_status_ip",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "ip"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g2_repo_status_skills",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "skills"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  }
+]

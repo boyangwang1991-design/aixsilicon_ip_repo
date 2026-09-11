@@ -1,0 +1,11 @@
+{
+  "command": [
+    "make",
+    "check",
+    "PYTHON=/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3"
+  ],
+  "environment_entry": "uv run --offline --no-sync python",
+  "exit_code": 0,
+  "log": "reports/quality/raw/make_check_uv_interpreter.txt",
+  "sha256": "0200c3aac44501390ffd999eb07d39f47c5d9b9d5256f21bab7563cd700b791d"
+}

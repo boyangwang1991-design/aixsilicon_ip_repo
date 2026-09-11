@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "tool": "vlogan",
+  "tool_version": "W-2024.09-SP1",
+  "order": [
+    "uvm_pkg.sv",
+    "apb_secure_demux_ral.sv"
+  ],
+  "log": "reports/quality/registers/ral_compile_with_uvm.log",
+  "log_sha256": "65661c68b7256da1276d6efbd6ab4e6b24a6d4cd0a920ec454ae052b13d8e94a"
+}

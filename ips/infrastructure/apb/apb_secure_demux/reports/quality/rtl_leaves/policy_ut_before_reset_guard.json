@@ -1,0 +1,34 @@
+{
+  "inputs": [
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/coding_integrity/parity_gen_check/rtl/parity_gen_check.sv",
+      "sha256": "b5d3f097bbfffce66c4d35a3a206352237fcaac702113479d99f04749f605c6c"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/policy/aixsilicon_ip_apb_secure_demux_1.0.0/ut_policy-vcs/src/aixsilicon_ip_apb_secure_demux_1.0.0/rtl/apb_secure_demux_policy.sv",
+      "sha256": "92aaf290acf72bfed237414d4d5bf4d93bea3915489a8e364ea617ec1d9e48f1"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/policy/aixsilicon_ip_apb_secure_demux_1.0.0/ut_policy-vcs/src/aixsilicon_ip_apb_secure_demux_1.0.0/verification/unit_test/ut_apb_secure_demux_policy.sv",
+      "sha256": "5361b07eacba237d9abbb7f08a6d32fbbf9fe6d813b0e35134d225b87eba402b"
+    }
+  ],
+  "command": [
+    "fusesoc",
+    "--config",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/fusesoc.conf",
+    "--cores-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "run",
+    "--target=ut_policy",
+    "--build",
+    "--run",
+    "--build-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/policy",
+    "aixsilicon:ip:apb_secure_demux:1.0.0"
+  ],
+  "exit_code": 0,
+  "log_sha256": "6b7466a845d98fa289a643c94966a073b87d66bf3bcc51d16e52937f5ab82c4e",
+  "passed": false,
+  "failure": "CBB immediate assertions fired on unknown inputs at time zero; process exit and UT marker alone are insufficient"
+}

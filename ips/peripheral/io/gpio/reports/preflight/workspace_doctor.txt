@@ -1,0 +1,15 @@
+[OK ] python: 3.11
+[OK ] git: /usr/bin/git
+[OK ] fusesoc: optional
+[OK ] repos_root: /home/eda/workspace/aixsilicon_workflow/repos
+[OK ] dependency_dag: 10 repos, acyclic
+[OK ] repo:hwif: remote=ok; 631135bf21d6
+[OK ] repo:cbb: remote=ok; ac34181283d2
+[OK ] repo:ip: remote=ok; 2fd687b61943
+[OK ] repo:dv-common: remote=ok; 357b41c09ace
+[OK ] repo:vip: remote=ok; ac4bfad02ce2
+[OK ] repo:tools: remote=ok; a8496b099691
+[OK ] repo:catalog: remote=ok; a0e38caf5472
+[OK ] repo:soc-integration: remote=ok; 24d0ab737a7f
+[OK ] repo:knowledge: remote=ok; 30c7d1456528
+doctor complete

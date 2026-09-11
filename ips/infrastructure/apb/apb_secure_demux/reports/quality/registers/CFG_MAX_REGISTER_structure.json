@@ -1,0 +1,8 @@
+{
+  "scope": "RDL structure/reset audit, not external state implementation or RTL proof",
+  "register_count": 4503,
+  "logical_behaviors_covered": 122,
+  "errors": [],
+  "rdl_sha256": "046c0302179f6f0f03e5f2915cae07c9f85984e41659c20d0b303f7acbbec5f5",
+  "configuration": "CFG_MAX_REGISTER"
+}

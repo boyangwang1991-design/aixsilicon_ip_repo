@@ -1,0 +1,82 @@
+[
+  {
+    "name": "pre_commit",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "pre_commit",
+      "run",
+      "--all-files"
+    ],
+    "exit_code": 124,
+    "log": "reports/quality/raw/pre_commit.txt",
+    "sha256": "736021fe67551699380256dcd419d50a1727a3e000d5f218c01ecb0cf0140d25"
+  },
+  {
+    "name": "registry_final",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/scripts/build_ip_registry.py",
+      "--check-source"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/registry_final.txt",
+    "sha256": "8ca5489be2c96614291894cb369d5c73ac9c9c2b73d09bb40fa1c416af05adf9"
+  },
+  {
+    "name": "readme_final",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/scripts/update_registry_readme.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/readme_final.txt",
+    "sha256": "6584515b65b36514017e00aa79ba5f56a414bd99c4809f1b9535aa02c86fa095"
+  },
+  {
+    "name": "ip_status",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "ip"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/ip_status.txt",
+    "sha256": "ac61a1ef5394ef0ab285508e2a2991d12378963e72401642a1447b1bb19a3ab7"
+  },
+  {
+    "name": "skills_status",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "skills"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/skills_status.txt",
+    "sha256": "947a80288bd1ff19f274a2af46eab4b8066ae44fb8afb7e7b2473c77ff4888e2"
+  },
+  {
+    "name": "workflow_status",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "workflow"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/raw/workflow_status.txt",
+    "sha256": "30ce79607180d5975a622c6711814943b957a7bc1fcd44f278b00894499010d5"
+  }
+]

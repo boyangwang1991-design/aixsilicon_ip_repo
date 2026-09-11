@@ -1,0 +1,2 @@
+Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/requirements.yaml
+INFO: 未抽取到以下需求类别（如适用请在该章节显式写 `N/A - <理由>` 作为人工可审计的覆盖声明）：GEN, LP

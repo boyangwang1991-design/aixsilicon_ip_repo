@@ -1,0 +1,93 @@
+# 安全与故障架构
+
+<!-- HLD_SAFETY_META
+id: HLD.SAFETY.APB_SECURE_DEMUX.PARITY
+name: 配置偶校验
+protects:
+- HLD.MOD.APB_SECURE_DEMUX.POLICY
+detection_strategy: 所有 active/shadow PERM 与 CFG 持续组合偶校验；用零填充适配 CBB CFG 宽度，不增加检测流水延迟。
+req_ref:
+- LRS.REG.APB_SECURE_DEMUX.COMMITSTATUS.007
+- LRS.REG.APB_SECURE_DEMUX.UPD.001
+- LRS.REG.APB_SECURE_DEMUX.UPD.002
+- LRS.REG.APB_SECURE_DEMUX.UPD.003
+- LRS.REG.APB_SECURE_DEMUX.UPD.004
+- LRS.REG.APB_SECURE_DEMUX.UPD.00501
+- LRS.REG.APB_SECURE_DEMUX.UPD.00502
+applicability:
+  expr: POLICY_PARITY_EN == 1
+END_HLD_SAFETY_META -->
+
+所有 active/shadow PERM 与 CFG 持续组合偶校验；用零填充适配 CBB CFG 宽度，不增加检测流水延迟。
+
+<!-- HLD_SAFETY_META
+id: HLD.SAFETY.APB_SECURE_DEMUX.LOCKCODE
+name: 单向锁编码
+protects:
+- HLD.MOD.APB_SECURE_DEMUX.POLICY
+detection_strategy: 互补双位合法锁编码；非法码不可解释为解锁。
+req_ref:
+- LRS.REG.APB_SECURE_DEMUX.COMMITSTATUS.007
+- LRS.REG.APB_SECURE_DEMUX.UPD.001
+- LRS.REG.APB_SECURE_DEMUX.UPD.002
+- LRS.REG.APB_SECURE_DEMUX.UPD.003
+- LRS.REG.APB_SECURE_DEMUX.UPD.004
+- LRS.REG.APB_SECURE_DEMUX.UPD.00501
+- LRS.REG.APB_SECURE_DEMUX.UPD.00502
+applicability:
+  expr: POLICY_PARITY_EN == 1
+END_HLD_SAFETY_META -->
+
+互补双位合法锁编码；非法码不可解释为解锁。
+
+<!-- HLD_SAFETY_META
+id: HLD.SAFETY.APB_SECURE_DEMUX.FAILCLOSED
+name: 准入失效关闭
+protects:
+- HLD.MOD.APB_SECURE_DEMUX.ACCESS
+- HLD.MOD.APB_SECURE_DEMUX.ROUTE
+detection_strategy: 原始完整性直接阻断新的 SETUP；粘滞 FATAL 保持阻断，已发送事务继续完成。
+req_ref:
+- LRS.CONS.APB_SECURE_DEMUX.PPA.014
+- LRS.FUNC.APB_SECURE_DEMUX.ERRORPRIORITY.008
+- LRS.INTF.APB_SECURE_DEMUX.APB.001
+- LRS.INTF.APB_SECURE_DEMUX.APB.002
+- LRS.INTF.APB_SECURE_DEMUX.APB.003
+- LRS.INTF.APB_SECURE_DEMUX.APB.004
+- LRS.INTF.APB_SECURE_DEMUX.APB.00501
+applicability:
+  expr: 'true'
+END_HLD_SAFETY_META -->
+
+原始完整性直接阻断新的 SETUP；粘滞 FATAL 保持阻断，已发送事务继续完成。
+
+<!-- HLD_SAFETY_META
+id: HLD.SAFETY.APB_SECURE_DEMUX.IDENTITY
+name: 身份范围隔离
+protects:
+- HLD.MOD.APB_SECURE_DEMUX.ACCESS
+- HLD.MOD.APB_SECURE_DEMUX.CSR
+detection_strategy: 先验证完整身份有效且范围合法，再选择权限或管理掩码；禁止高位截断别名。
+req_ref:
+- LRS.FUNC.APB_SECURE_DEMUX.ERRORPRIORITY.008
+- LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005
+- LRS.REG.APB_SECURE_DEMUX.CSR.00101
+- LRS.REG.APB_SECURE_DEMUX.CSR.00102
+- LRS.REG.APB_SECURE_DEMUX.CSR.002
+- LRS.REG.APB_SECURE_DEMUX.CSR.00301
+- LRS.REG.APB_SECURE_DEMUX.CSR.00302
+applicability:
+  expr: 'true'
+END_HLD_SAFETY_META -->
+
+先验证完整身份有效且范围合法，再选择权限或管理掩码；禁止高位截断别名。
+
+## 故障定位、告警与恢复
+
+首次完整性错误按全局锁、端口升序及各类配置优先序记录；只保留首个位置，不让后续抖动覆盖根因。
+管理诊断在 FATAL 后仍开放，普通清除不能恢复受保护配置。只有可信模块复位解除 FATAL 和锁。
+
+## 保护边界
+
+不声称覆盖任意多 bit、组合译码故障、日志存储或外部传输；不声明特定 ASIL 认证。
+可信输入路径与旁路访问保护为系统假设。DFX 合成只覆盖检测结果之后的阻断/告警路径；验证还须能访问真实存储进行翻转。

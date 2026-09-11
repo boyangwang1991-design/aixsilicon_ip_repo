@@ -1,0 +1,16 @@
+schema_version: '2.0'
+generator: peakrdl-regblock
+generator_version: 1.3.1
+rdl_source: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/regs/watchdog.rdl
+rdl_source_sha256: ef453feb551ecaa968feb76851094c6eb6e8458e2b5e857dcebd03b1f9cd751e
+outputs:
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/rtl/generated/watchdog_csr_pkg.sv
+  sha256: a20925d1227ed6701779f78a6c21d8746be91a4928b912dc64a3324d9e494650
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/rtl/generated/watchdog_csr.sv
+  sha256: 277b9d5b34a1c03295dc1eb65a6ed9f1b18a122c96d67fe153df7cced39bce04
+lint_command:
+- vlogan
+- -full64
+- -sverilog
+- '{files}'
+timeout_seconds: 300

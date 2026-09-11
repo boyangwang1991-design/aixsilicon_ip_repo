@@ -1,0 +1,38 @@
+[
+  {
+    "name": "configuration_tests",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "pytest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/tests",
+      "-q",
+      "-o",
+      "cache_dir=/tmp/asd-config-pytest"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/configuration_tests.txt",
+    "sha256": "f44919a3367dc52929a8af8f8919d5f9536d2eb90b5c6c6d38b1e58904be21bc"
+  },
+  {
+    "name": "suite_validate",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/validate_suite.py"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/suite_validate.txt",
+    "sha256": "5422f8f7a8994abd79a4bc1eb459b5e7b14c60e09dd679a50ce2a83e479739d3"
+  },
+  {
+    "name": "make_check",
+    "command": [
+      "make",
+      "check",
+      "PYTHON=/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/make_check.txt",
+    "sha256": "8622ddc4304aa4263ca2b620d05b586d0518a0c5c1518f80ebe14886e9fcb457"
+  }
+]

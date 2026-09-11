@@ -1,0 +1,11 @@
+checked=84 failures=10
+{'config_id': 'CFG_BOUNDARY_MASTER_ID_WIDTH_0', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_63ea32f5eb88', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_b827f9b43d6d', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_36f493861573', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_7eab46bbd34b', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_8110d3588317', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_8c4a27bc7041', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_49711283a5e5', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_6dd5480001eb', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}
+{'config_id': 'CFG_PW_3597ce650947', 'expected_failure_stage': None, 'observed_failure_stage': 'Schema', 'passed': False, 'errors': ['NUM_MASTERS exceeds the complete identity encoding space']}

@@ -1,0 +1,12 @@
+rtl/generated/apb_secure_demux_csr_pkg.sv
+rtl/instance/apb_secure_demux_instance_pkg.sv
+rtl/generated/apb_secure_demux_csr_regblock.sv
+rtl/instance/apb_secure_demux_register_bridge.sv
+rtl/apb_secure_demux_decode.sv
+rtl/apb_secure_demux_access.sv
+rtl/apb_secure_demux_irq.sv
+rtl/apb_secure_demux_events.sv
+rtl/apb_secure_demux_dfx.sv
+rtl/apb_secure_demux_policy.sv
+rtl/apb_secure_demux_csr.sv
+rtl/apb_secure_demux.sv

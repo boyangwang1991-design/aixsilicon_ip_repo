@@ -1,0 +1,16 @@
+schema_version: '2.0'
+generator: peakrdl-regblock
+generator_version: 1.3.1
+rdl_source: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/regs/gpio.rdl
+rdl_source_sha256: 46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984
+outputs:
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_csr_pkg.sv
+  sha256: 2f03ee84f808170fc92a4ce3ba4ae9c18b96a4a1b7b29b190e9d2e63c0335656
+- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_csr.sv
+  sha256: 2eaf95e045f9394366dec9fa2b43ddbb908b403ff7ddf5b79cd5ebe324cca82c
+lint_command:
+- vlogan
+- -full64
+- -sverilog
+- '{files}'
+timeout_seconds: 300

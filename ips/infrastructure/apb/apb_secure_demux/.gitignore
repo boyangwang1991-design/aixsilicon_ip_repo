@@ -1,0 +1,19 @@
+build/
+*.daidir/
+csrc/
+simv*
+*.vcd
+*.fsdb
+*.shm
+*.log
+.Xil/
+edalize_work_root/
+.venv/
+__pycache__/
+*.py[cod]
+
+# PeakRDL HTML is local-only, including legacy export locations.
+/docs/generated/*_regs.html/
+
+# Local commercial process context; never publish library paths.
+/model/pdk.yaml

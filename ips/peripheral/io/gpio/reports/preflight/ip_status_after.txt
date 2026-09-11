@@ -1,0 +1,4 @@
+ip: branch=main head=2fd687b61943 dirty=True
+  staged=0 unstaged=9 untracked=38
+  ahead=0 behind=0 upstream=origin/main
+  remote=git@github.com:boyangwang1991-design/aixsilicon_ip_repo.git

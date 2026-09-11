@@ -1,0 +1,7 @@
+# Build through verification/sim/Makefile and the generated FuseSoC UVM fileset.
+# The package explicitly includes every implementation; APB source is owned by its dependency.
+verification/ral/watchdog_ral.sv
+verification/ral/watchdog_reg_views_pkg.sv
+verification/env/watchdog_control_if.sv
+verification/env/watchdog_env_pkg.sv
+verification/th/watchdog_harness.sv

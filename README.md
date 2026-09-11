@@ -136,16 +136,16 @@ ips:
 <!-- IP-CATALOG-STATUS:BEGIN -->
 > 本节由 `scripts/update_registry_readme.py` 依据 `registry.yaml`（SSOT）自动生成。
 > 修改 `registry.yaml` 后必须运行 `python3 scripts/update_registry_readme.py` 刷新本节；勿手工编辑。
-> 最后更新：`2026-09-10T12:36:35Z`
+> 最后更新：`2026-09-11T04:15:41Z`
 
 ### 总览
 
 | 指标                         | 数量 |
 |------------------------------|------|
-| 总条目（ips）                | 354  |
+| 总条目（ips）                | 355  |
 | released（已发布）           | 0    |
 | implemented（已实现/已交付） | 2    |
-| planned（规划候选）          | 352  |
+| planned（规划候选）          | 353  |
 | deprecated（已废弃）         | 0    |
 | 实现率                       | 0.6% |
 
@@ -160,7 +160,7 @@ ips:
 
 | 优先级 | 已交付 | planned | 合计 |
 |--------|--------|---------|------|
-| P0     | 2      | 78      | 80   |
+| P0     | 2      | 79      | 81   |
 | P1     | 0      | 94      | 94   |
 | P2     | 0      | 100     | 100  |
 | P3     | 0      | 80      | 80   |
@@ -170,7 +170,7 @@ ips:
 | 类型      | 数量 |
 |-----------|------|
 | generator | 16   |
-| ip        | 312  |
+| ip        | 313  |
 | subsystem | 10   |
 | wrapper   | 16   |
 
@@ -190,7 +190,7 @@ ips:
 | debug_trace    | 12   |
 | dft            | 8    |
 | high_speed_io  | 11   |
-| infrastructure | 45   |
+| infrastructure | 46   |
 | memory         | 35   |
 | mmu            | 4    |
 | multimedia     | 14   |
@@ -205,7 +205,7 @@ ips:
 | test           | 3    |
 | virtualization | 3    |
 
-### 全部 IP 明细（354，按领域分组）
+### 全部 IP 明细（355，按领域分组）
 
 #### accelerator（22，已交付=0）
 
@@ -379,55 +379,56 @@ ips:
 | HSI-010 | [usb2_controller](ips/high_speed_io/usb/usb2_controller/README.md)          | ip   | planned | P2     | 0.1.0 | USB 2.0 控制器  |
 | HSI-011 | [usb3_controller](ips/high_speed_io/usb/usb3_controller/README.md)          | ip   | planned | P2     | 0.1.0 | USB 3.x 控制器  |
 
-#### infrastructure（45，已交付=1）
+#### infrastructure（46，已交付=1）
 
-| ID      | IP                                                                                     | 类型      | 状态        | 优先级 | 版本  | 功能/描述                            |
-|---------|----------------------------------------------------------------------------------------|-----------|-------------|--------|-------|--------------------------------------|
-| INF-001 | [ahb2apb_bridge](ips/infrastructure/bridge/ahb2apb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→APB 桥（H2P）                    |
-| INF-002 | [ahb2axi_bridge](ips/infrastructure/bridge/ahb2axi_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→AXI 桥（H2X）                    |
-| INF-003 | [ahb_cdc_bridge](ips/infrastructure/cdc/ahb_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AHB CDC 桥                           |
-| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)                                | ip        | implemented | P0     | 1.0.0 | APB Demux（1→N APB Router）          |
-| INF-005 | [apb_error_slave](ips/infrastructure/apb/apb_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | APB 错误默认 Slave                   |
-| INF-006 | [apb_mux](ips/infrastructure/apb/apb_mux/README.md)                                    | ip        | planned     | P0     | 0.1.0 | APB Mux                              |
-| INF-007 | [apb_timeout](ips/infrastructure/apb/apb_timeout/README.md)                            | ip        | planned     | P0     | 0.1.0 | APB 超时监控                         |
-| INF-008 | [axi2ahb_bridge](ips/infrastructure/bridge/axi2ahb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AXI→AHB 桥（X2H）                    |
-| INF-009 | [axi4_axi4lite_converter](ips/infrastructure/bridge/axi4_axi4lite_converter/README.md) | ip        | planned     | P0     | 0.1.0 | AXI4→AXI4-Lite 协议转换              |
-| INF-010 | [axi_address_remapper](ips/infrastructure/axi/axi_address_remapper/README.md)          | ip        | planned     | P0     | 0.1.0 | AXI 地址重映射                       |
-| INF-011 | [axi_cdc_bridge](ips/infrastructure/cdc/axi_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AXI CDC 桥（异步时钟）               |
-| INF-012 | [axi_error_slave](ips/infrastructure/axi/axi_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | AXI 默认错误响应 Slave               |
-| INF-013 | [axi_interconnect](ips/infrastructure/axi/axi_interconnect/README.md)                  | generator | planned     | P0     | 0.1.0 | 多 Master/Slave AXI 互联（拓扑生成） |
-| INF-014 | [axi_pipeline](ips/infrastructure/axi/axi_pipeline/README.md)                          | ip        | planned     | P0     | 0.1.0 | AXI 流水线（timing）                 |
-| INF-015 | [axi_register_slice](ips/infrastructure/axi/axi_register_slice/README.md)              | ip        | planned     | P0     | 0.1.0 | AXI 寄存器切片（timing/PPA）         |
-| INF-016 | [interrupt_cdc_bridge](ips/infrastructure/cdc/interrupt_cdc_bridge/README.md)          | ip        | planned     | P0     | 0.1.0 | 中断 CDC 桥                          |
-| INF-017 | [register_cdc_bridge](ips/infrastructure/cdc/register_cdc_bridge/README.md)            | ip        | planned     | P0     | 0.1.0 | 寄存器 CDC 桥                        |
-| INF-018 | [ahb_interconnect](ips/infrastructure/ahb/ahb_interconnect/README.md)                  | generator | planned     | P1     | 0.1.0 | AHB 互联                             |
-| INF-019 | [ahb_mux_demux](ips/infrastructure/ahb/ahb_mux_demux/README.md)                        | ip        | planned     | P1     | 0.1.0 | AHB Mux/Demux                        |
-| INF-020 | [apb_firewall](ips/infrastructure/apb/apb_firewall/README.md)                          | ip        | planned     | P1     | 0.1.0 | APB 防火墙                           |
-| INF-021 | [apb_isolation_bridge](ips/infrastructure/apb/apb_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | APB 隔离桥                           |
-| INF-022 | [axi_arbiter](ips/infrastructure/axi/axi_arbiter/README.md)                            | ip        | planned     | P1     | 0.1.0 | AXI 仲裁器                           |
-| INF-023 | [axi_bandwidth_limiter](ips/infrastructure/axi/axi_bandwidth_limiter/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 带宽限制器                       |
-| INF-024 | [axi_exclusive_monitor](ips/infrastructure/axi/axi_exclusive_monitor/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 独占访问监控                     |
-| INF-025 | [axi_isolation_bridge](ips/infrastructure/axi/axi_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | AXI 隔离桥                           |
-| INF-026 | [axi_ordering_controller](ips/infrastructure/axi/axi_ordering_controller/README.md)    | ip        | planned     | P1     | 0.1.0 | AXI 顺序控制器                       |
-| INF-027 | [axi_protocol_firewall](ips/infrastructure/axi/axi_protocol_firewall/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 协议防火墙                       |
-| INF-028 | [axi_qos_controller](ips/infrastructure/axi/axi_qos_controller/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI QoS 控制器                       |
-| INF-029 | [axi_traffic_shaper](ips/infrastructure/axi/axi_traffic_shaper/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI 流量整形器                       |
-| INF-030 | [axis_cdc](ips/infrastructure/cdc/axis_cdc/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream CDC                       |
-| INF-031 | [axis_demux](ips/infrastructure/axi/axis_demux/README.md)                              | ip        | planned     | P1     | 0.1.0 | AXI-Stream Demux                     |
-| INF-032 | [axis_mux](ips/infrastructure/axi/axis_mux/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream Mux                       |
-| INF-033 | [event_cdc_bridge](ips/infrastructure/cdc/event_cdc_bridge/README.md)                  | ip        | planned     | P1     | 0.1.0 | 事件 CDC 桥                          |
-| INF-034 | [reset_domain_bridge](ips/infrastructure/cdc/reset_domain_bridge/README.md)            | ip        | planned     | P1     | 0.1.0 | 复位域桥（RDC）                      |
-| INF-035 | [stream_cdc_bridge](ips/infrastructure/cdc/stream_cdc_bridge/README.md)                | ip        | planned     | P1     | 0.1.0 | 流 CDC 桥                            |
-| INF-036 | [stream_interconnect](ips/infrastructure/axi/stream_interconnect/README.md)            | generator | planned     | P1     | 0.1.0 | AXI-Stream 互联                      |
-| INF-037 | [apb_noc_bridge](ips/infrastructure/noc/apb_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | APB↔NoC 桥                           |
-| INF-038 | [axi_noc_bridge](ips/infrastructure/noc/axi_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | AXI↔NoC 桥                           |
-| INF-039 | [noc_crossbar](ips/infrastructure/noc/noc_crossbar/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC Crossbar                         |
-| INF-040 | [noc_firewall](ips/infrastructure/noc/noc_firewall/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC 防火墙                           |
-| INF-041 | [noc_network_interface](ips/infrastructure/noc/noc_network_interface/README.md)        | ip        | planned     | P2     | 0.1.0 | NoC 网络接口（NI）                   |
-| INF-042 | [noc_performance_monitor](ips/infrastructure/noc/noc_performance_monitor/README.md)    | ip        | planned     | P2     | 0.1.0 | NoC 性能监控器                       |
-| INF-043 | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                    | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                       |
-| INF-044 | [noc_router](ips/infrastructure/noc/noc_router/README.md)                              | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                 |
-| INF-045 | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)              | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                       |
+| ID      | IP                                                                                     | 类型      | 状态        | 优先级 | 版本  | 功能/描述                                                          |
+|---------|----------------------------------------------------------------------------------------|-----------|-------------|--------|-------|--------------------------------------------------------------------|
+| INF-001 | [ahb2apb_bridge](ips/infrastructure/bridge/ahb2apb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→APB 桥（H2P）                                                  |
+| INF-002 | [ahb2axi_bridge](ips/infrastructure/bridge/ahb2axi_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→AXI 桥（H2X）                                                  |
+| INF-003 | [ahb_cdc_bridge](ips/infrastructure/cdc/ahb_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AHB CDC 桥                                                         |
+| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)                                | ip        | implemented | P0     | 1.0.0 | APB Demux（1→N APB Router）                                        |
+| INF-005 | [apb_error_slave](ips/infrastructure/apb/apb_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | APB 错误默认 Slave                                                 |
+| INF-006 | [apb_mux](ips/infrastructure/apb/apb_mux/README.md)                                    | ip        | planned     | P0     | 0.1.0 | APB Mux                                                            |
+| INF-007 | [apb_timeout](ips/infrastructure/apb/apb_timeout/README.md)                            | ip        | planned     | P0     | 0.1.0 | APB 超时监控                                                       |
+| INF-008 | [axi2ahb_bridge](ips/infrastructure/bridge/axi2ahb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AXI→AHB 桥（X2H）                                                  |
+| INF-009 | [axi4_axi4lite_converter](ips/infrastructure/bridge/axi4_axi4lite_converter/README.md) | ip        | planned     | P0     | 0.1.0 | AXI4→AXI4-Lite 协议转换                                            |
+| INF-010 | [axi_address_remapper](ips/infrastructure/axi/axi_address_remapper/README.md)          | ip        | planned     | P0     | 0.1.0 | AXI 地址重映射                                                     |
+| INF-011 | [axi_cdc_bridge](ips/infrastructure/cdc/axi_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AXI CDC 桥（异步时钟）                                             |
+| INF-012 | [axi_error_slave](ips/infrastructure/axi/axi_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | AXI 默认错误响应 Slave                                             |
+| INF-013 | [axi_interconnect](ips/infrastructure/axi/axi_interconnect/README.md)                  | generator | planned     | P0     | 0.1.0 | 多 Master/Slave AXI 互联（拓扑生成）                               |
+| INF-014 | [axi_pipeline](ips/infrastructure/axi/axi_pipeline/README.md)                          | ip        | planned     | P0     | 0.1.0 | AXI 流水线（timing）                                               |
+| INF-015 | [axi_register_slice](ips/infrastructure/axi/axi_register_slice/README.md)              | ip        | planned     | P0     | 0.1.0 | AXI 寄存器切片（timing/PPA）                                       |
+| INF-016 | [interrupt_cdc_bridge](ips/infrastructure/cdc/interrupt_cdc_bridge/README.md)          | ip        | planned     | P0     | 0.1.0 | 中断 CDC 桥                                                        |
+| INF-017 | [register_cdc_bridge](ips/infrastructure/cdc/register_cdc_bridge/README.md)            | ip        | planned     | P0     | 0.1.0 | 寄存器 CDC 桥                                                      |
+| INF-018 | [ahb_interconnect](ips/infrastructure/ahb/ahb_interconnect/README.md)                  | generator | planned     | P1     | 0.1.0 | AHB 互联                                                           |
+| INF-019 | [ahb_mux_demux](ips/infrastructure/ahb/ahb_mux_demux/README.md)                        | ip        | planned     | P1     | 0.1.0 | AHB Mux/Demux                                                      |
+| INF-020 | [apb_firewall](ips/infrastructure/apb/apb_firewall/README.md)                          | ip        | planned     | P1     | 0.1.0 | APB 防火墙                                                         |
+| INF-021 | [apb_isolation_bridge](ips/infrastructure/apb/apb_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | APB 隔离桥                                                         |
+| INF-022 | [axi_arbiter](ips/infrastructure/axi/axi_arbiter/README.md)                            | ip        | planned     | P1     | 0.1.0 | AXI 仲裁器                                                         |
+| INF-023 | [axi_bandwidth_limiter](ips/infrastructure/axi/axi_bandwidth_limiter/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 带宽限制器                                                     |
+| INF-024 | [axi_exclusive_monitor](ips/infrastructure/axi/axi_exclusive_monitor/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 独占访问监控                                                   |
+| INF-025 | [axi_isolation_bridge](ips/infrastructure/axi/axi_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | AXI 隔离桥                                                         |
+| INF-026 | [axi_ordering_controller](ips/infrastructure/axi/axi_ordering_controller/README.md)    | ip        | planned     | P1     | 0.1.0 | AXI 顺序控制器                                                     |
+| INF-027 | [axi_protocol_firewall](ips/infrastructure/axi/axi_protocol_firewall/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 协议防火墙                                                     |
+| INF-028 | [axi_qos_controller](ips/infrastructure/axi/axi_qos_controller/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI QoS 控制器                                                     |
+| INF-029 | [axi_traffic_shaper](ips/infrastructure/axi/axi_traffic_shaper/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI 流量整形器                                                     |
+| INF-030 | [axis_cdc](ips/infrastructure/cdc/axis_cdc/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream CDC                                                     |
+| INF-031 | [axis_demux](ips/infrastructure/axi/axis_demux/README.md)                              | ip        | planned     | P1     | 0.1.0 | AXI-Stream Demux                                                   |
+| INF-032 | [axis_mux](ips/infrastructure/axi/axis_mux/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream Mux                                                     |
+| INF-033 | [event_cdc_bridge](ips/infrastructure/cdc/event_cdc_bridge/README.md)                  | ip        | planned     | P1     | 0.1.0 | 事件 CDC 桥                                                        |
+| INF-034 | [reset_domain_bridge](ips/infrastructure/cdc/reset_domain_bridge/README.md)            | ip        | planned     | P1     | 0.1.0 | 复位域桥（RDC）                                                    |
+| INF-035 | [stream_cdc_bridge](ips/infrastructure/cdc/stream_cdc_bridge/README.md)                | ip        | planned     | P1     | 0.1.0 | 流 CDC 桥                                                          |
+| INF-036 | [stream_interconnect](ips/infrastructure/axi/stream_interconnect/README.md)            | generator | planned     | P1     | 0.1.0 | AXI-Stream 互联                                                    |
+| INF-037 | [apb_noc_bridge](ips/infrastructure/noc/apb_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | APB↔NoC 桥                                                         |
+| INF-038 | [axi_noc_bridge](ips/infrastructure/noc/axi_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | AXI↔NoC 桥                                                         |
+| INF-039 | [noc_crossbar](ips/infrastructure/noc/noc_crossbar/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC Crossbar                                                       |
+| INF-040 | [noc_firewall](ips/infrastructure/noc/noc_firewall/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC 防火墙                                                         |
+| INF-041 | [noc_network_interface](ips/infrastructure/noc/noc_network_interface/README.md)        | ip        | planned     | P2     | 0.1.0 | NoC 网络接口（NI）                                                 |
+| INF-042 | [noc_performance_monitor](ips/infrastructure/noc/noc_performance_monitor/README.md)    | ip        | planned     | P2     | 0.1.0 | NoC 性能监控器                                                     |
+| INF-043 | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                    | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                                                     |
+| INF-044 | [noc_router](ips/infrastructure/noc/noc_router/README.md)                              | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                                               |
+| INF-045 | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)              | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                                                     |
+| INF-046 | [apb_secure_demux](ips/infrastructure/apb/apb_secure_demux/README.md)                  | ip        | planned     | P0     | 1.0.0 | 安全 APB Demux（可信主体权限、原子策略提交、日志与 DFX；需求草案） |
 
 #### memory（35，已交付=0）
 

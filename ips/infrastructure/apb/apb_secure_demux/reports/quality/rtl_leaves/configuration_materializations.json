@@ -1,0 +1,17 @@
+[
+  {
+    "configuration": "CFG_TYPICAL_REGISTER",
+    "exit_code": 0,
+    "output": "build/configurations/CFG_TYPICAL_REGISTER"
+  },
+  {
+    "configuration": "CFG_MINIMAL",
+    "exit_code": 1,
+    "output": "build/configurations/CFG_MINIMAL"
+  },
+  {
+    "configuration": "CFG_NONPOWER",
+    "exit_code": 0,
+    "output": "build/configurations/CFG_NONPOWER"
+  }
+]

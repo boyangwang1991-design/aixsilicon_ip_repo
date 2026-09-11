@@ -1,0 +1,12 @@
+{
+  "generator": "scripts/gen_csr_adapter.py",
+  "scope": "RDL structure only; not behavioral RTL",
+  "inputs": {
+    "scripts/gen_csr_adapter.py": "d5192986c4f8dec76e74795a42fd4293af82d24ae3d25e5701b05607dd3275a6",
+    "regs/gpio.rdl": "46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984"
+  },
+  "outputs": {
+    "rtl/generated/gpio_reg_desc_pkg.sv": "f709bb8faecdf59f6206e77564f5e51c6599770c62b0c69797b39e65a304f507",
+    "rtl/generated/gpio_csr_adapter.sv": "b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936"
+  }
+}

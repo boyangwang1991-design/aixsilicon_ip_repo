@@ -1,0 +1,44 @@
+# GPIO 架构模块：gpio_aon_mailbox
+
+<!-- HLD_MODULE_META
+id: HLD.MOD.GPIO.MAILBOX
+name: gpio_aon_mailbox
+responsibility: 主/AON 跨域命令、稳定载荷、结果缓存、超时及暖复位恢复
+req_ref:
+- LRS.LP.GPIO.WAK004.001
+- LRS.LP.GPIO.WAK004.002
+- LRS.LP.GPIO.WAK005.001
+- LRS.LP.GPIO.WAK005.002
+- LRS.LP.GPIO.WAK005.003
+- LRS.LP.GPIO.WAK006.001
+- LRS.LP.GPIO.WAK007.001
+- LRS.LP.GPIO.WAK007.002
+- LRS.LP.GPIO.WAK007.003
+- LRS.LP.GPIO.WAK008.001
+- LRS.LP.GPIO.WAK008.002
+- LRS.LP.GPIO.WAK009.001
+- LRS.LP.GPIO.WAK009.002
+- LRS.LP.GPIO.WAK010.001
+- LRS.LP.GPIO.WAK010.002
+- LRS.LP.GPIO.WAK010A.001
+- LRS.LP.GPIO.WAK010A.002
+- LRS.LP.GPIO.WAK011.001
+- LRS.LP.GPIO.WAK012.001
+- LRS.LP.GPIO.WAK012.002
+applicability:
+  expr: AON_WAKE_EN == 1
+clock_domains:
+- CLK_MAIN
+- CLK_AON
+reset_domains:
+- RST_MAIN
+- RST_POR_MAIN
+- RST_AON
+power_domain: PD_MAIN
+interfaces:
+- HLD.IF.INT.GPIO.MAILBOX
+END_HLD_MODULE_META -->
+
+## 职责与边界
+
+稳定载荷与请求身份保存在主时钟/POR 复位域，跨暖复位保留。staging/cache/软件状态位属于主业务复位域。AON 无返回前保持占用，超时仅报告，不回收传输槽。恢复必须排空既有应答再宣布 READY。

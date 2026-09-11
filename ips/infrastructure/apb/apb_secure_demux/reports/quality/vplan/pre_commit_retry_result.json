@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "execution_context": "approved sandbox-external execution",
+  "command": "uv run --offline --no-sync pre-commit run --all-files",
+  "log": "reports/quality/vplan/pre_commit_network_context.log",
+  "log_sha256": "46eade2235f56420bea3d04f14d54c0d4770ceb8d62a2976c789a507b1974bca"
+}

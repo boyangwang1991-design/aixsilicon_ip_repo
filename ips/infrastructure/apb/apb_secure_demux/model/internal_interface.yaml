@@ -1,0 +1,195 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+interfaces:
+- id: HLD.IF.INT.APB_SECURE_DEMUX.CLASSIFY
+  name: classify
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  - HLD.MOD.APB_SECURE_DEMUX.DECODE
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.TARGET
+  name: target
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.DECODE
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.DECODE
+  - HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.001
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.002
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.POLICY_LOOKUP
+  name: policy_lookup
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.POLICY
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.POLICY
+  - HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.UPD.001
+  - LRS.REG.APB_SECURE_DEMUX.UPD.002
+  - LRS.REG.APB_SECURE_DEMUX.UPD.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.ADMISSION
+  name: admission
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  - HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00101
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00102
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00201
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.CSR_COMMAND
+  name: csr_command
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.CSR
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  - HLD.MOD.APB_SECURE_DEMUX.POLICY
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00101
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00102
+  - LRS.REG.APB_SECURE_DEMUX.CSR.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.EVENT_CANDIDATES
+  name: event_candidates
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.EVENTS
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.EVENTS
+  - HLD.MOD.APB_SECURE_DEMUX.IRQ
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.001
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00201
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00202
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.DFX_INJECTION
+  name: dfx_injection
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.DFX
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.DFX
+  - HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00201
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.ACTIVITY
+  name: activity
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  - HLD.MOD.APB_SECURE_DEMUX.DFX
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.APB.001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.002
+  - LRS.INTF.APB_SECURE_DEMUX.APB.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.AUDIT_CONTROL
+  name: audit_control
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.CSR
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  - HLD.MOD.APB_SECURE_DEMUX.EVENTS
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00101
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00102
+  - LRS.REG.APB_SECURE_DEMUX.CSR.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.LOCAL_REQUEST
+  name: local_request
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.DECODE
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.DECODE
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.IRQ_CONTROL
+  name: irq_control
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.CSR
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  - HLD.MOD.APB_SECURE_DEMUX.IRQ
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.APB_SECURE_DEMUX.DFX_CONTROL
+  name: dfx_control
+  scope: internal
+  protocol: synchronous_control
+  role: producer_consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.CSR
+  participants:
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  - HLD.MOD.APB_SECURE_DEMUX.DFX
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  applicability:
+    expr: 'true'

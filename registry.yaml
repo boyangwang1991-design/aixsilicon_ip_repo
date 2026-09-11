@@ -1,5 +1,5 @@
 schema_version: "2.0"
-updated: "2026-09-10T12:36:35Z"
+updated: "2026-09-11T04:15:41Z"
 # 本文件是 AIXSILICON IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 治理）。
 # 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path
 # 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。
@@ -310,6 +310,18 @@ ips:
     version: "0.1.0"
     description: '寄存器 CDC 桥'
     path: ips/infrastructure/cdc/register_cdc_bridge
+  - id: INF-046
+    name: apb_secure_demux
+    domain: infrastructure
+    subdomain: apb
+    type: ip
+    priority: P0
+    status: planned
+    maturity: experimental
+    version: "1.0.0"
+    interfaces: [apb4]
+    description: '安全 APB Demux（可信主体权限、原子策略提交、日志与 DFX；需求草案）'
+    path: ips/infrastructure/apb/apb_secure_demux
   - id: MEM-001
     name: lowrisc_prim
     domain: memory

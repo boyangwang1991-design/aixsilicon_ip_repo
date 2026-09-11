@@ -76,7 +76,8 @@ module watchdog_top #(
   logic native_req;
 
   assign native_req=PSEL && PENABLE && apb_rst_n;
-  watchdog_reg_adapter u_regs(.clk(pclk),.rst_n(apb_rst_n),.req(native_req),.write(PWRITE),
+  watchdog_reg_adapter u_regs(.clk(pclk),.rst_n(apb_rst_n),.sel(PSEL && apb_rst_n),
+    .enable(PENABLE),.write(PWRITE),.prot(PPROT),.strb(PSTRB),
     .addr(PADDR),.wdata(PWDATA),.rdata(local_read),.ready(native_ready),.error(native_error),
     .read_data(rdl_read),.write_mask(write_mask),.writable(writable),.valid_addr(valid_addr));
   always_comb begin
@@ -233,7 +234,8 @@ module watchdog_top #(
   assign mailbox_integrity=SAFETY_EN && (control_error_sync[SYNC_STAGES-1] || ack_toggle!=~ack_bar ||
      (mailbox_available && ((^{mailbox_cmd,mailbox_config})!=mailbox_parity)));
   assign mailbox_available=req_sync[SYNC_STAGES-1]!=ack_toggle;
-  assign arb_req={SUPPORT_HW_EVENT && hw_evt_valid,mailbox_available};
+  assign arb_req=cancel_mailbox ? 2'b00 :
+    {SUPPORT_HW_EVENT && hw_evt_valid,mailbox_available};
   round_robin_arbiter #(.NUM_REQ(2),.PC_IMPL(0)) u_arb(
     .clk(wdt_clk),.rst_n(wrst_n),.req_i(arb_req),.grant_ack_i(1'b1),.grant_o(arb_grant));
   // Warm reset cancels a visible command regardless of the service arbiter.

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "html_make_check",
+    "command": [
+      "make",
+      "check"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/html_make_check.log",
+    "log_sha256": "4344b1936e38fa0d99ab91a49e6ddf216264d5f07b4168144142f8f65257f4eb"
+  },
+  {
+    "name": "html_pre_commit",
+    "command": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-sync",
+      "pre-commit",
+      "run",
+      "--all-files"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/html_pre_commit.log",
+    "log_sha256": "46eade2235f56420bea3d04f14d54c0d4770ceb8d62a2976c789a507b1974bca"
+  },
+  {
+    "name": "html_ip_status",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "ip"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/html_ip_status.log",
+    "log_sha256": "ee816148b150e741f3bc4a6b85c3e6e5b9ae8d2fc808ff415051455f7a4cd407"
+  }
+]

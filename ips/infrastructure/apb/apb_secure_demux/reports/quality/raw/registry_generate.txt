@@ -1,0 +1,1 @@
+==> registry.yaml 已生成：共 355 条（implemented/released=2）

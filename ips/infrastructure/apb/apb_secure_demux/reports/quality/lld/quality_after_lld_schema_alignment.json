@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+    "--workspace",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "--ip-name",
+    "apb_secure_demux",
+    "--output",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/quality.yaml",
+    "--gate-report",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/gate_report.md",
+    "--fail-on-gate"
+  ],
+  "exit_code": 2
+}

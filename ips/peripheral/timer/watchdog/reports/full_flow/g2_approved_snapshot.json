@@ -1,0 +1,441 @@
+{
+  "schema_version": "watchdog-lld-author-check/1.0",
+  "role": "author_check_only",
+  "passed": true,
+  "gate": "G2 open; no approval inferred",
+  "errors": [],
+  "counts": {
+    "requirements": 139,
+    "covered": 139,
+    "modules": 6,
+    "interfaces": 22,
+    "register_fields": 97,
+    "fsms": 6,
+    "cdc_paths": 6,
+    "parameters": 16,
+    "objects": 167
+  },
+  "documents": [
+    {
+      "file": "00_doc_control.md",
+      "lines": 18,
+      "meta": 1
+    },
+    {
+      "file": "01_overview.md",
+      "lines": 17,
+      "meta": 0
+    },
+    {
+      "file": "02_global_constraints.md",
+      "lines": 35,
+      "meta": 0
+    },
+    {
+      "file": "03_bus.md",
+      "lines": 78,
+      "meta": 1
+    },
+    {
+      "file": "03_bus_datapath.md",
+      "lines": 40,
+      "meta": 1
+    },
+    {
+      "file": "03_channel.md",
+      "lines": 122,
+      "meta": 1
+    },
+    {
+      "file": "03_channel_clients.md",
+      "lines": 62,
+      "meta": 1
+    },
+    {
+      "file": "03_channel_configuration.md",
+      "lines": 97,
+      "meta": 2
+    },
+    {
+      "file": "03_channel_fault.md",
+      "lines": 98,
+      "meta": 2
+    },
+    {
+      "file": "03_channel_flow_fsm.md",
+      "lines": 66,
+      "meta": 1
+    },
+    {
+      "file": "03_channel_interrupt.md",
+      "lines": 76,
+      "meta": 2
+    },
+    {
+      "file": "03_channel_service.md",
+      "lines": 76,
+      "meta": 1
+    },
+    {
+      "file": "03_channel_timing.md",
+      "lines": 171,
+      "meta": 2
+    },
+    {
+      "file": "03_dispatch.md",
+      "lines": 52,
+      "meta": 1
+    },
+    {
+      "file": "03_dispatch_datapath.md",
+      "lines": 41,
+      "meta": 1
+    },
+    {
+      "file": "03_dispatch_timing.md",
+      "lines": 169,
+      "meta": 5
+    },
+    {
+      "file": "03_integration.md",
+      "lines": 82,
+      "meta": 1
+    },
+    {
+      "file": "03_integration_reset.md",
+      "lines": 96,
+      "meta": 3
+    },
+    {
+      "file": "03_safety.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "file": "03_safety_datapath.md",
+      "lines": 32,
+      "meta": 1
+    },
+    {
+      "file": "03_safety_injection.md",
+      "lines": 27,
+      "meta": 0
+    },
+    {
+      "file": "03_safety_mechanisms_1.md",
+      "lines": 104,
+      "meta": 3
+    },
+    {
+      "file": "03_safety_mechanisms_2.md",
+      "lines": 73,
+      "meta": 2
+    },
+    {
+      "file": "03_transport.md",
+      "lines": 52,
+      "meta": 1
+    },
+    {
+      "file": "03_transport_cdc_1.md",
+      "lines": 103,
+      "meta": 3
+    },
+    {
+      "file": "03_transport_cdc_2.md",
+      "lines": 117,
+      "meta": 3
+    },
+    {
+      "file": "03_transport_fsm.md",
+      "lines": 51,
+      "meta": 1
+    },
+    {
+      "file": "04_interface_external_1.md",
+      "lines": 149,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_external_2.md",
+      "lines": 117,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_external_3.md",
+      "lines": 131,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_external_4.md",
+      "lines": 91,
+      "meta": 2
+    },
+    {
+      "file": "04_interface_internal_1.md",
+      "lines": 154,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_internal_2.md",
+      "lines": 116,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_internal_3.md",
+      "lines": 123,
+      "meta": 3
+    },
+    {
+      "file": "04_interface_internal_4.md",
+      "lines": 72,
+      "meta": 2
+    },
+    {
+      "file": "05_register_channel_snapshot_1.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_2.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_3.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_4.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_5.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_6.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_7.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_snapshot_8.md",
+      "lines": 64,
+      "meta": 2
+    },
+    {
+      "file": "05_register_channel_stage_1.md",
+      "lines": 164,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_stage_2.md",
+      "lines": 164,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_stage_3.md",
+      "lines": 164,
+      "meta": 5
+    },
+    {
+      "file": "05_register_channel_stage_4.md",
+      "lines": 36,
+      "meta": 1
+    },
+    {
+      "file": "05_register_client_snapshot_1.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_client_snapshot_2.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_client_snapshot_3.md",
+      "lines": 64,
+      "meta": 2
+    },
+    {
+      "file": "05_register_client_stage_1.md",
+      "lines": 164,
+      "meta": 5
+    },
+    {
+      "file": "05_register_client_stage_2.md",
+      "lines": 68,
+      "meta": 2
+    },
+    {
+      "file": "05_register_commands_1.md",
+      "lines": 174,
+      "meta": 5
+    },
+    {
+      "file": "05_register_commands_2.md",
+      "lines": 140,
+      "meta": 4
+    },
+    {
+      "file": "05_register_global_1.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_global_2.md",
+      "lines": 154,
+      "meta": 5
+    },
+    {
+      "file": "05_register_global_3.md",
+      "lines": 34,
+      "meta": 1
+    },
+    {
+      "file": "05_register_selectors_1.md",
+      "lines": 103,
+      "meta": 3
+    },
+    {
+      "file": "05_register_snapshot_control_1.md",
+      "lines": 62,
+      "meta": 2
+    },
+    {
+      "file": "06_parameter_mapping.md",
+      "lines": 29,
+      "meta": 0
+    },
+    {
+      "file": "06_ppa_1.md",
+      "lines": 92,
+      "meta": 3
+    },
+    {
+      "file": "06_ppa_2.md",
+      "lines": 92,
+      "meta": 3
+    },
+    {
+      "file": "07_delivery_generated.md",
+      "lines": 14,
+      "meta": 0
+    },
+    {
+      "file": "07_delivery_mapping.md",
+      "lines": 151,
+      "meta": 1
+    },
+    {
+      "file": "07_delivery_mapping_channel.md",
+      "lines": 44,
+      "meta": 1
+    },
+    {
+      "file": "99_quality_gate.md",
+      "lines": 29,
+      "meta": 1
+    },
+    {
+      "file": "implementation.md",
+      "lines": 3,
+      "meta": 0
+    },
+    {
+      "file": "index.md",
+      "lines": 71,
+      "meta": 0
+    }
+  ],
+  "source_sha256": {
+    "model/micro_design.yaml": "84a090a2fc1aab63e5d3422e282d81516ac1f6c14d4f0d15abcd863718cc7af8",
+    "model/architecture.yaml": "bf17edbd072f26f72285bd1eb248b6387e1225dc5f1fbca9350791cee8699c64",
+    "model/requirements.yaml": "a65e448c10140ca009ac320df2ce9e9be048967c55713853bf63f1ec43c13107",
+    "model/parameter_space.yaml": "02fd005bd41d771a821ac767927aa804432031637c4916bc5f87814c7b814763",
+    "model/external_interface.yaml": "073f982fdd08fc33ffe8823b711e3e463dcb2efb3fcbd70cabdcc0cd646ceffc",
+    "model/internal_interface.yaml": "1b23e9d701e6970c6f3f64bf9fce47d8b70698828cfc95180beb896b1679ef66",
+    "model/clock_domains.yaml": "e51e3632e7d38e152eedd428504c75c2e0b4c69c4f933e4211e461a73054a3ce",
+    "model/cdc_paths.yaml": "7c908390e33dcbb89b8fbd5245caed1546ec157db1f7a560001351b83dafde53",
+    "docs/lld/00_doc_control.md": "f802bdd2776fea109122e3fd7a4c914583e8894a0e75fc25919053cd96e712ae",
+    "docs/lld/01_overview.md": "37806856178e2eedfa399537de74f495ac766479a7fbc9fb4e60f2c199810c90",
+    "docs/lld/02_global_constraints.md": "5eab8fff244600c6649a0187081aa9b3ffd73ce465a20be56aaccf8064091c30",
+    "docs/lld/03_bus.md": "ff1a7bc51ce7f29e4c588b84e65a959eb222381a57ef63952954be79cb694844",
+    "docs/lld/03_bus_datapath.md": "7d69dc1c7fad93b347a08ebc098bd004ec5c02dc5c6123ab9c269890a96e201f",
+    "docs/lld/03_channel.md": "7fb6b08a56c7cd34252209835d170844ce58f38275d3d454f3522261b904833f",
+    "docs/lld/03_channel_clients.md": "250ea869110216ee56395199ed3ba2d4be0c99ffc90d5562fc86cd16119bbcae",
+    "docs/lld/03_channel_configuration.md": "4a200f856a81e0419d16950b568dfb61030fad8d3ae6663405a0e83a0e9d324e",
+    "docs/lld/03_channel_fault.md": "9e84af86b10634181bc427911a1490a9013c6a72ff6aea9f28ca54f4f3993682",
+    "docs/lld/03_channel_flow_fsm.md": "6c10ad4e70bef7312c304df82f7aa8b04a0ae2571f54f4cc0677d337b5c09976",
+    "docs/lld/03_channel_interrupt.md": "c3bcee573a60466abd29aa207ced1fd9ccbcf2021c8f38d633c1ed0587a298a0",
+    "docs/lld/03_channel_service.md": "4aee167bcb9294a3dcbbbb281f14dfce81383e5211e896dc61d62bd1d6919dad",
+    "docs/lld/03_channel_timing.md": "9d3562eb1c40a7c3e5d0d42672d8baebd3c2f59515bfa91ccc0d4d87536798a2",
+    "docs/lld/03_dispatch.md": "4692ccdb50f1216c97263722f1ce860e54db4c9b47426e59f7cef1bf4b85fd6b",
+    "docs/lld/03_dispatch_datapath.md": "25f93d539ddc0fc94014220d053bf941cb70f878cc54234f37b04ca300dd44fd",
+    "docs/lld/03_dispatch_timing.md": "d8fb80952c9300dc10ee189dac3b548462005fc959d373245b1f5e30efe34dee",
+    "docs/lld/03_integration.md": "f7bbe3e744bd54a9d2769d286f9ab495c18d5ba52a6483901bb41ab08294d06f",
+    "docs/lld/03_integration_reset.md": "6a8ded998ba2f7917ce1f34561b044420bd7ec37ebc3a7bddb07335305e3090b",
+    "docs/lld/03_safety.md": "c9d7d6cd190e049af0dd20c216f54627ccf7429d39b9b1d33b3b3d37cb6f6690",
+    "docs/lld/03_safety_datapath.md": "7795b6c01187e568648a7128a547cc0a17fb8b7382c36fcaaa7168a335e41abd",
+    "docs/lld/03_safety_injection.md": "cb6f04272c2e1aa102ba8545505b39bf5d977cfc60dd4f8bc4576b5203e27eb1",
+    "docs/lld/03_safety_mechanisms_1.md": "cc6e5f48b63d170c571c6945609646cf532b010d65c0222e21ec7b229b7c9abd",
+    "docs/lld/03_safety_mechanisms_2.md": "cd2f67908ec089d05c9cd6dc0e914edb4eab6d1a5e3a0605ba0a6166473f2cc0",
+    "docs/lld/03_transport.md": "bc21832fd7944f46b8c298ea7229bd171f589a798150a226991fce4532673d60",
+    "docs/lld/03_transport_cdc_1.md": "62a7a17cdc8473d57793b5d1068181051b5bf2f519c97a47ad5dddbe837dd7ae",
+    "docs/lld/03_transport_cdc_2.md": "3b48b5d46db2075a361b860912db1bfb00c7f0da753ce0932ef846392b269d75",
+    "docs/lld/03_transport_fsm.md": "76b5c46ac57e233cef5040ca0b35a76f381689c5935a83bdd8397636c844e8fd",
+    "docs/lld/04_interface_external_1.md": "1c76e3cabc1d252d77cbbb5df2aba1bed1eed652a3dacb0cc496037e7c2bd828",
+    "docs/lld/04_interface_external_2.md": "767e8a6b783b6508be18e2fcc1c6ca73a52f8f663df0d225659e72d545f86c34",
+    "docs/lld/04_interface_external_3.md": "162ced0cf62a63f79a635246a31b0814977eff639c9b95ff1d55e24349061be9",
+    "docs/lld/04_interface_external_4.md": "ffbce670b2e110a9f9aafbc4c9c35d0d77054737271fe98f49784371e5a46961",
+    "docs/lld/04_interface_internal_1.md": "1c0f65ecbab1350b33ab060db34a334c27eef2e7dcfab77412e8586bfd77397a",
+    "docs/lld/04_interface_internal_2.md": "9babfdc49bfae70e0197548da7bad6b36c7aae26935a4c1b5a512ac3d898b23a",
+    "docs/lld/04_interface_internal_3.md": "7d433d84064c8387ba0cdb25288c78740a5c147cf7e9a825547984b2e8a79e2c",
+    "docs/lld/04_interface_internal_4.md": "633649d6290975af98922d6fd25032f882b8cc269798422bf479e9dca64d6fa9",
+    "docs/lld/05_register_channel_snapshot_1.md": "7bbf5c80960a57366cfdd45577fa9c4a5a871d04a4445312cc3045992774e092",
+    "docs/lld/05_register_channel_snapshot_2.md": "28b8886ceadd7683ecb40f34aabc8ef1f70736498374e41cac1ffe2a1c7ff17e",
+    "docs/lld/05_register_channel_snapshot_3.md": "1c45dba0d39bbdd432f33e080cd96f28f3f2721e052fd7e0b5cb04102960b563",
+    "docs/lld/05_register_channel_snapshot_4.md": "be64ee5dd3b56b2f4c9645c2f3e01cc3d3fc4a48aea6c7b43e1de4664d4e4679",
+    "docs/lld/05_register_channel_snapshot_5.md": "086ccb5f2381d76f259bb8430c0d1fd5a5d50b8e6b0c12bbaafa7cba4052ff31",
+    "docs/lld/05_register_channel_snapshot_6.md": "8858124442094186f99516da560c17183d0fd9cdd484c355454f168eabbf1698",
+    "docs/lld/05_register_channel_snapshot_7.md": "41d22b9c1b8da080bec5ffaebb59ab9a3806233fac847e6d905df48a029ccd02",
+    "docs/lld/05_register_channel_snapshot_8.md": "95b8d204524602b001b4e548df76163ae57ce3ce3551fa0fe5954cb44432939e",
+    "docs/lld/05_register_channel_stage_1.md": "c9c276f8644684eadc08b754ef2e3e0e65a6c4375ecd5cbe667df8c2cda97aad",
+    "docs/lld/05_register_channel_stage_2.md": "1104e282e989516a65839dc495e7bf7822093319d23abec6fc7e04683909e674",
+    "docs/lld/05_register_channel_stage_3.md": "7eb1b879bccc798ee4b6b243d759be162d563095f515e6ea44223c30625779d6",
+    "docs/lld/05_register_channel_stage_4.md": "c5b346cf99ba90b13678602057981f83ecec3c3f8dec10f29d9b656d611e1a77",
+    "docs/lld/05_register_client_snapshot_1.md": "7c356c7b307f727b194632af55b06881b36358dc46714e49fe544a042cc39429",
+    "docs/lld/05_register_client_snapshot_2.md": "2cd3e8ac36a6847980ee68ac44a3d4e4a4a3fba65afe9b846b52a91dc61bead0",
+    "docs/lld/05_register_client_snapshot_3.md": "f0439f7d3c5e5d0014986438e2718285dad075cff74b5729428f4dd739268fd6",
+    "docs/lld/05_register_client_stage_1.md": "36f345ef20ababcd102451e5677f94deb36f4710b5011e6efbbfd432aa4c8b6d",
+    "docs/lld/05_register_client_stage_2.md": "897a2d0ba3117d30a46d51347d542a513ba761f5dc8aef233f2adcd9041b026e",
+    "docs/lld/05_register_commands_1.md": "9025a585fad90e2d3a3f68de83dc5fb4bba4e2b2594ba14c7183f48950f7a25f",
+    "docs/lld/05_register_commands_2.md": "3e6e471b1fe32cdb964d5794eb219bc874bad1c1e042359ca7373ee181002c65",
+    "docs/lld/05_register_global_1.md": "51e50db4873dee6437a2cb7fce0a836eb0a6a6eb6de405ffbdcab3c1ac55c824",
+    "docs/lld/05_register_global_2.md": "10fbeee61393a1af772b756eaf196f1f4db491072122f89b24c90cc78cde5bb5",
+    "docs/lld/05_register_global_3.md": "2c81bc409628a0e12505c6f494092fd28d873965df6fbd60ba17d08f992a7ecb",
+    "docs/lld/05_register_selectors_1.md": "01dfba3ce1f4f8ae1c06a2189f3be9c59fa19811bb04bef76548ebdd18420a01",
+    "docs/lld/05_register_snapshot_control_1.md": "41a781c214b33c0d2ed7d73ac86359ab64a32ca586e1c78c0ea610d9dee2e0cd",
+    "docs/lld/06_parameter_mapping.md": "3fd46610a168cb06a89f2ef184e81ad7f8dc3888b012b55ac63a7137a6ef6eff",
+    "docs/lld/06_ppa_1.md": "cfa86905d8f5c0967d3d553deb6607903c74ff6b0cdfc1375141a36186800d2b",
+    "docs/lld/06_ppa_2.md": "3d6cf47057acbe561412b9c9d2428437683da3087c8d63b79e92212f12f68032",
+    "docs/lld/07_delivery_generated.md": "ed6308500ac057d0f4808b4424700fcb3b6e83c4d3d924710e2371326d8c4ed0",
+    "docs/lld/07_delivery_mapping.md": "636408e586206f105845427df5c77d00693443dcfb8cbd07fbaa3027b1f32291",
+    "docs/lld/07_delivery_mapping_channel.md": "17b45457950a418ae97a012c1383c3243a30b527c69e6d41598c81505c3831e6",
+    "docs/lld/99_quality_gate.md": "f59852a0617ab8160bc647625dcffe057a28b2f8e8c3a866e6e07b15c546f22a",
+    "docs/lld/implementation.md": "c8ef25c548d3417bec86a855ca4d3952c229a07493fdbc5463526e5eddfe2c58",
+    "docs/lld/index.md": "78321a6545ce8112dafecadc0ac9d854bf41bfb047443136245be7103039f8f1",
+    "reports/full_flow/g1_approval.md": "3decf2fcd09bda1430a43e788b22f1e66e618b9dade349482d3aadf4a07d6bab",
+    "regs/watchdog.rdl": "ef453feb551ecaa968feb76851094c6eb6e8458e2b5e857dcebd03b1f9cd751e",
+    "scripts/check_lld.py": "646df8c8ce29e5cfcad86a021d8a1b62221306ea4af5c3574826e3ab86215b1d"
+  }
+}

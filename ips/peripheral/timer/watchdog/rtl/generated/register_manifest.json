@@ -1,6 +1,6 @@
 {
   "regs/watchdog.rdl": "ef453feb551ecaa968feb76851094c6eb6e8458e2b5e857dcebd03b1f9cd751e",
   "rtl/generated/watchdog_csr_pkg.sv": "a20925d1227ed6701779f78a6c21d8746be91a4928b912dc64a3324d9e494650",
-  "rtl/generated/watchdog_csr.sv": "d1f2c031f4e9f724384394fce3fc6e3b8a11fad34c3ae64bd81ff09ea99b0660",
-  "rtl/generated/watchdog_reg_adapter.sv": "2eec1a3f7daa17fcd73af81cf925766b55057cc0f86f130b1c0aa2a45eadd69e"
+  "rtl/generated/watchdog_csr.sv": "277b9d5b34a1c03295dc1eb65a6ed9f1b18a122c96d67fe153df7cced39bce04",
+  "rtl/generated/watchdog_reg_adapter.sv": "e9b3a3b93944f624b8256a8be5d45b7c878c2d00916da01477bc7becfb8b8718"
 }

@@ -1,0 +1,39 @@
+# GPIO 架构模块：gpio_diag
+
+<!-- HLD_MODULE_META
+id: HLD.MOD.GPIO.DIAG
+name: gpio_diag
+responsibility: 物理回读消隐/失配诊断、parity 校验和保持型安全故障
+req_ref:
+- LRS.SAFE.GPIO.DIAG001.001
+- LRS.SAFE.GPIO.DIAG001.002
+- LRS.SAFE.GPIO.DIAG002.001
+- LRS.SAFE.GPIO.DIAG002.002
+- LRS.SAFE.GPIO.DIAG002.003
+- LRS.SAFE.GPIO.DIAG002.004
+- LRS.SAFE.GPIO.DIAG003.001
+- LRS.SAFE.GPIO.DIAG003.002
+- LRS.SAFE.GPIO.DIAG004.001
+- LRS.SAFE.GPIO.DIAG004.002
+- LRS.SAFE.GPIO.DIAG005.001
+- LRS.SAFE.GPIO.DIAG005.002
+- LRS.SAFE.GPIO.DIAG006.001
+- LRS.SAFE.GPIO.DIAG007.001
+- LRS.SAFE.GPIO.DIAG007.002
+- LRS.DFX.GPIO.OBSERVE.001
+applicability:
+  expr: DIAG_EN == 1 or CFG_PARITY_EN == 1
+clock_domains:
+- CLK_MAIN
+reset_domains:
+- RST_MAIN
+- RST_POR_MAIN
+power_domain: PD_MAIN
+interfaces:
+- HLD.IF.INT.GPIO.DIAG
+- HLD.IF.INT.GPIO.SAFE
+END_HLD_MODULE_META -->
+
+## 职责与边界
+
+诊断以物理最终 OUT/OE 与同步回读比较；不查高阻/开漏释放。输出或路由/状态变化触发消隐。parity 校验保护完整字，注入只翻 parity；其安全请求仅 POR 可清。

@@ -9,18 +9,18 @@ p=Path(__file__).resolve().parents[1]
 c=RDLCompiler(); c.compile_file(str(p/'regs/watchdog.rdl')); root=c.elaborate().top
 regs=[n for n in root.descendants(unroll=True) if isinstance(n,RegNode)]
 s=['// Generated from regs/watchdog.rdl. Do not edit.','module watchdog_reg_adapter(',
-'input logic clk,rst_n,req,write, input logic [14:0] addr,',
+'input logic clk,rst_n,sel,enable,write, input logic [14:0] addr,',
+'input logic [2:0] prot, input logic [3:0] strb,',
 'input logic [31:0] wdata,rdata, output logic ready,error,',
 'output logic [31:0] read_data,write_mask, output logic writable,valid_addr);',
 'watchdog_csr_pkg::watchdog_regs__in_t hin;',
 'watchdog_csr_pkg::watchdog_regs__out_t hout;',
-'logic ra,wa,re,we;','watchdog_csr u_csr(.clk(clk),.arst_n(rst_n),',
-'.s_cpuif_req(req),.s_cpuif_req_is_wr(write),.s_cpuif_addr(addr),',
-'.s_cpuif_wr_data(wdata),.s_cpuif_wr_biten(32\'hffffffff),',
-'.s_cpuif_req_stall_wr(),.s_cpuif_req_stall_rd(),.s_cpuif_rd_ack(ra),',
-'.s_cpuif_rd_err(re),.s_cpuif_rd_data(read_data),.s_cpuif_wr_ack(wa),',
-'.s_cpuif_wr_err(we),.hwif_in(hin),.hwif_out(hout));',
-'assign ready=write ? wa : ra; assign error=write ? we : re;']
+'watchdog_csr u_csr(.clk(clk),.arst_n(rst_n),',
+'.s_apb_psel(sel),.s_apb_penable(enable),.s_apb_pwrite(write),',
+'.s_apb_paddr(addr),.s_apb_pprot(prot),.s_apb_pstrb(strb),',
+'.s_apb_pwdata(wdata),.s_apb_prdata(read_data),',
+'.s_apb_pready(ready),.s_apb_pslverr(error),',
+'.hwif_in(hin),.hwif_out(hout));']
 meta=[]; h=['/* Generated from SystemRDL. Do not edit. */','#ifndef WATCHDOG_REGS_H','#define WATCHDOG_REGS_H','#include <stdint.h>','#define WDT_CHANNEL_BASE(ch) (0x1000u + (uint32_t)(ch)*0x400u)']
 for r in regs:
  path=r.get_path().split('.',1)[1]; mask=sum(((1<<f.width)-1)<<f.low for f in r.fields()); rd=any(f.is_sw_readable for f in r.fields()); wr=any(f.is_sw_writable for f in r.fields())

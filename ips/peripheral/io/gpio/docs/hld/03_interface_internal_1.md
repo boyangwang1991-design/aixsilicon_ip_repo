@@ -1,0 +1,177 @@
+# GPIO 内部接口组 1
+
+## CSR
+
+预检查后的合法读写提交、字节掩码、读回及业务错误理由。由 APB 生产、REG 消费；时序细节在 LLD 冻结。
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.INT.GPIO.CSR
+name: csr
+scope: internal
+protocol: same_clock_state
+role: producer_consumer
+owner_module: HLD.MOD.GPIO.APB
+participants:
+- HLD.MOD.GPIO.APB
+- HLD.MOD.GPIO.REG
+clock_domain: CLK_MAIN
+reset_domain: RST_MAIN
+req_ref:
+- LRS.REG.GPIO.BUS001.001
+- LRS.REG.GPIO.BUS002.001
+- LRS.REG.GPIO.BUS002.002
+- LRS.REG.GPIO.BUS003.001
+- LRS.REG.GPIO.BUS003.002
+- LRS.REG.GPIO.BUS004.001
+- LRS.REG.GPIO.BUS005.001
+- LRS.REG.GPIO.BUS005.002
+- LRS.REG.GPIO.BUS005A.001
+- LRS.REG.GPIO.BUS005A.002
+- LRS.REG.GPIO.BUS005A.003
+- LRS.REG.GPIO.BUS005A.004
+- LRS.REG.GPIO.BUS006.001
+- LRS.REG.GPIO.BUS006.002
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+## INPUT_VIEW
+
+逻辑输入与有效位、物理同步值、重建基线指示。由 INPUT 生产、IRQ 消费；时序细节在 LLD 冻结。
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.INT.GPIO.INPUT_VIEW
+name: input_view
+scope: internal
+protocol: same_clock_state
+role: producer_consumer
+owner_module: HLD.MOD.GPIO.INPUT
+participants:
+- HLD.MOD.GPIO.INPUT
+- HLD.MOD.GPIO.IRQ
+clock_domain: CLK_MAIN
+reset_domain: RST_MAIN
+req_ref:
+- LRS.FUNC.GPIO.FLT001.001
+- LRS.FUNC.GPIO.FLT001.002
+- LRS.FUNC.GPIO.FLT002.001
+- LRS.FUNC.GPIO.FLT002.002
+- LRS.FUNC.GPIO.FLT002.003
+- LRS.FUNC.GPIO.FLT003.001
+- LRS.FUNC.GPIO.FLT004.001
+- LRS.FUNC.GPIO.FLT004.002
+- LRS.FUNC.GPIO.FLT005.001
+- LRS.FUNC.GPIO.FLT006.001
+- LRS.FUNC.GPIO.FLT007.001
+- LRS.FUNC.GPIO.IN001.001
+- LRS.FUNC.GPIO.IN002.001
+- LRS.FUNC.GPIO.IN002.002
+- LRS.FUNC.GPIO.IN003.001
+- LRS.FUNC.GPIO.IN004.001
+- LRS.FUNC.GPIO.IN005.001
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+## OUT_CONFIG
+
+正常数据/OE、模式及静态能力/安全值。由 REG 生产、OUTPUT 消费；时序细节在 LLD 冻结。
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.INT.GPIO.OUT_CONFIG
+name: out_config
+scope: internal
+protocol: same_clock_state
+role: producer_consumer
+owner_module: HLD.MOD.GPIO.REG
+participants:
+- HLD.MOD.GPIO.REG
+- HLD.MOD.GPIO.OUTPUT
+clock_domain: CLK_MAIN
+reset_domain: RST_MAIN
+req_ref:
+- LRS.REG.GPIO.MAP.001
+- LRS.REG.GPIO.IDENTITY.002
+- LRS.REG.GPIO.FAULT.003
+- LRS.REG.GPIO.FIRST.004
+- LRS.REG.GPIO.LOST.005
+- LRS.REG.GPIO.AONRESULT.006
+- LRS.REG.GPIO.DEFAULT.007
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+## EVENT
+
+每脚合格边沿、方向；仅边沿检测路径产生。由 IRQ 生产、FIFO 消费；时序细节在 LLD 冻结。
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.INT.GPIO.EVENT
+name: event
+scope: internal
+protocol: same_clock_state
+role: producer_consumer
+owner_module: HLD.MOD.GPIO.IRQ
+participants:
+- HLD.MOD.GPIO.IRQ
+- HLD.MOD.GPIO.FIFO
+clock_domain: CLK_MAIN
+reset_domain: RST_MAIN
+req_ref:
+- LRS.FUNC.GPIO.IRQ001.001
+- LRS.FUNC.GPIO.IRQ002.001
+- LRS.FUNC.GPIO.IRQ002.002
+- LRS.FUNC.GPIO.IRQ003.001
+- LRS.FUNC.GPIO.IRQ003.002
+- LRS.FUNC.GPIO.IRQ004.001
+- LRS.FUNC.GPIO.IRQ005.001
+- LRS.FUNC.GPIO.IRQ006.001
+- LRS.FUNC.GPIO.IRQ007.001
+- LRS.FUNC.GPIO.IRQ007.002
+- LRS.FUNC.GPIO.IRQ008.001
+- LRS.FUNC.GPIO.IRQ008.002
+- LRS.FUNC.GPIO.IRQ008.003
+- LRS.FUNC.GPIO.IRQ009.001
+- LRS.FUNC.GPIO.IRQ009.002
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+## CAPTURE
+
+全脚沿前逻辑数据/有效位和物理同步输入。由 INPUT 生产、CAPTURE 消费；时序细节在 LLD 冻结。
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.INT.GPIO.CAPTURE
+name: capture
+scope: internal
+protocol: same_clock_state
+role: producer_consumer
+owner_module: HLD.MOD.GPIO.INPUT
+participants:
+- HLD.MOD.GPIO.INPUT
+- HLD.MOD.GPIO.CAPTURE
+clock_domain: CLK_MAIN
+reset_domain: RST_MAIN
+req_ref:
+- LRS.FUNC.GPIO.FLT001.001
+- LRS.FUNC.GPIO.FLT001.002
+- LRS.FUNC.GPIO.FLT002.001
+- LRS.FUNC.GPIO.FLT002.002
+- LRS.FUNC.GPIO.FLT002.003
+- LRS.FUNC.GPIO.FLT003.001
+- LRS.FUNC.GPIO.FLT004.001
+- LRS.FUNC.GPIO.FLT004.002
+- LRS.FUNC.GPIO.FLT005.001
+- LRS.FUNC.GPIO.FLT006.001
+- LRS.FUNC.GPIO.FLT007.001
+- LRS.FUNC.GPIO.IN001.001
+- LRS.FUNC.GPIO.IN002.001
+- LRS.FUNC.GPIO.IN002.002
+- LRS.FUNC.GPIO.IN003.001
+- LRS.FUNC.GPIO.IN004.001
+- LRS.FUNC.GPIO.IN005.001
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+

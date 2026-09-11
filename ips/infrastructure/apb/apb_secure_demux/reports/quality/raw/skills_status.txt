@@ -1,0 +1,4 @@
+skills: branch=main head=768872ec6ab4 dirty=True
+  staged=0 unstaged=4 untracked=4
+  ahead=0 behind=0 upstream=origin/main
+  remote=git@github.com:boyangwang1991-design/aixsilicon_skill_repo.git

@@ -1,0 +1,169 @@
+# Watchdog：调度、公平性和端到端预算
+
+## 两源公平仲裁
+
+<!-- LLD_ARB_META
+id: LLD.ARB.WATCHDOG.DISPATCH.RR
+module_ref: LLD.MOD.WATCHDOG.DISPATCH
+hld_ref:
+- HLD.MOD.WATCHDOG.DISPATCH
+req_ref:
+- LRS.FUNC.WATCHDOG.SRV.001
+- LRS.FUNC.WATCHDOG.SRV.002
+- LRS.FUNC.WATCHDOG.SRV.003
+- LRS.FUNC.WATCHDOG.SRV.004
+- LRS.FUNC.WATCHDOG.SRV.005
+- LRS.FUNC.WATCHDOG.SRV.006
+- LRS.FUNC.WATCHDOG.SRV.007
+- LRS.FUNC.WATCHDOG.SRV.008
+- LRS.FUNC.WATCHDOG.SRV.009
+- LRS.FUNC.WATCHDOG.SRV.010
+- LRS.FUNC.WATCHDOG.SRV.011
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+policy: round_robin
+requesters:
+- mailbox
+- hardware_event
+fairness: true
+starvation_bound: 2
+cbb_ref: aixsilicon:cbb:round_robin_arbiter:0.1.0
+parameters:
+  NUM_REQ: 2
+  PC_IMPL: 0
+END_LLD_ARB_META -->
+
+无锁事务，不在stall时锁住grant；取消窗口屏蔽CBB请求，正常一次执行推进指针。mailbox可见持续
+到ack执行，硬件源必须valid保持，取消warm优先且不消费硬件事件。两个持续请求
+轮换，每拍最多一命令。无硬件支持时req1固定0，但保留可复用仲裁合同。
+
+## 单在途有序提交
+
+<!-- LLD_ORDER_META
+id: LLD.ORDER.WATCHDOG.MAILBOX
+module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+hld_ref:
+- HLD.MOD.WATCHDOG.TRANSPORT
+model: in_order
+tracking_method: tag
+req_ref:
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.REG.WATCHDOG.CFG.001
+- LRS.REG.WATCHDOG.CFG.002
+- LRS.REG.WATCHDOG.CFG.003
+- LRS.REG.WATCHDOG.CFG.004
+- LRS.REG.WATCHDOG.CFG.005
+- LRS.REG.WATCHDOG.CFG.006
+- LRS.REG.WATCHDOG.CFG.007
+applicability:
+  expr: 'true'
+END_LLD_ORDER_META -->
+
+同一全局邮箱顺序提交，32位issued/done自然回卷，每次新接收相邻序号不同。
+RAW：staging读当前本地值，active读最近快照，须等待commit完成并新snapshot。
+WAR：已捕获mailbox_config不受后续staging写影响。WAW：busy拒绝第二命令，不覆盖。
+取消也发布对应序号完成，接口同步拒绝不改变DONE；不自动重试，软件查询后决定。
+
+## APB
+
+<!-- LLD_TIMING_META
+id: LLD.TIMING.WATCHDOG.APB
+module_ref: LLD.MOD.WATCHDOG.BUS
+interface_ref: LLD.IF.WATCHDOG.EXTERNAL.APB
+scenario: apb_access
+latency:
+  min_cycles: 1
+  max_cycles: 2
+req_ref:
+- LRS.INTF.WATCHDOG.BUS.001
+- LRS.INTF.WATCHDOG.BUS.002
+- LRS.INTF.WATCHDOG.BUS.003
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+END_LLD_TIMING_META -->
+
+APB ACCESS开始后至多2个pclk完成，常规组合external应答首个完成边沿即可；无WDT时钟依赖。
+
+## COMMAND
+
+<!-- LLD_TIMING_META
+id: LLD.TIMING.WATCHDOG.COMMAND
+module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+interface_ref: LLD.IF.WATCHDOG.INTERNAL.WDT_MAILBOX
+scenario: mailbox_visible_to_execute
+latency:
+  min_cycles: 1
+  max_cycles: 3
+req_ref:
+- LRS.INTF.WATCHDOG.BUS.001
+- LRS.INTF.WATCHDOG.BUS.002
+- LRS.INTF.WATCHDOG.BUS.003
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+END_LLD_TIMING_META -->
+
+目的可见后，无硬件竞争最多2个WDT边沿；连续竞争最多3个，当前组合仲裁通常1/2。warm取消走取消规则，不计为合法服务执行。
+
+## RETURN
+
+<!-- LLD_TIMING_META
+id: LLD.TIMING.WATCHDOG.RETURN
+module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+interface_ref: LLD.IF.WATCHDOG.INTERNAL.APB_REPLY
+scenario: reply_return
+latency:
+  min_cycles: SYNC_STAGES
+  max_cycles: SYNC_STAGES+1
+req_ref:
+- LRS.INTF.WATCHDOG.BUS.001
+- LRS.INTF.WATCHDOG.BUS.002
+- LRS.INTF.WATCHDOG.BUS.003
+- LRS.INTF.WATCHDOG.CDC.001
+- LRS.INTF.WATCHDOG.CDC.002
+- LRS.INTF.WATCHDOG.CDC.003
+- LRS.INTF.WATCHDOG.CDC.004
+- LRS.INTF.WATCHDOG.CDC.005
+- LRS.CONS.WATCHDOG.NFR.001
+- LRS.CONS.WATCHDOG.NFR.002
+- LRS.CONS.WATCHDOG.NFR.003
+- LRS.CONS.WATCHDOG.NFR.004
+- LRS.CONS.WATCHDOG.NFR.005
+- LRS.CONS.WATCHDOG.NFR.006
+applicability:
+  expr: 'true'
+END_LLD_TIMING_META -->
+
+从目的完成到APB发布应答需要S级同步及发布边沿。正常持续时钟总界(S+4)*Twdt+(S+1)*Tpclk，不含APB接收前总线等待。
+

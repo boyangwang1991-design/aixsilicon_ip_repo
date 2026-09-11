@@ -1,0 +1,181 @@
+{
+  "scope": "G2 approved behavior and generated register evidence",
+  "files": [
+    {
+      "path": "docs/lld/00_doc_control.md",
+      "sha256": "27d02a71d30a91e5f5e61fc1b4e806f0e1608cbca005a81c76a242e8e63f3239"
+    },
+    {
+      "path": "docs/lld/01_overview.md",
+      "sha256": "e790e4185b675b87b085fa4aa0cf026f0db96aaee728756340a712f5cb6fca6f"
+    },
+    {
+      "path": "docs/lld/02_global_constraints.md",
+      "sha256": "c0d2d372703bbf0b75fb093a4738579250fe420738ab4b348a20198ad093757b"
+    },
+    {
+      "path": "docs/lld/03_access.md",
+      "sha256": "14d2bcaff6221e90b7d2232435f1862b40c756ad399a655219dedff67afa184a"
+    },
+    {
+      "path": "docs/lld/03_csr.md",
+      "sha256": "80c2698ff617009c21524251235a186d4a29b7165b50b86a5bee9c51158d768a"
+    },
+    {
+      "path": "docs/lld/03_decode.md",
+      "sha256": "22681c6868f3c0e37d6ff7243dacfb6f8eae84d601a22ed41fed93c5b2c50dc7"
+    },
+    {
+      "path": "docs/lld/03_dfx.md",
+      "sha256": "e8c12ace7d7ed785d1d0dcfe991e855428708e4ca586bae27da41fdf1a076172"
+    },
+    {
+      "path": "docs/lld/03_events.md",
+      "sha256": "589ccc1c442dee55a814d2fdd4e7c35c644e4f8ca334f29c648124f0ac39ea0b"
+    },
+    {
+      "path": "docs/lld/03_frontend.md",
+      "sha256": "928f357c36d392e9a0688c55bfc4a6c0b8eb4868d89debac82856b672dcb2f61"
+    },
+    {
+      "path": "docs/lld/03_irq.md",
+      "sha256": "139b93a35ef60a7cc92b2a30c946ffb40dd13c3a4e7b073125539f5f5a3248a5"
+    },
+    {
+      "path": "docs/lld/03_policy.md",
+      "sha256": "78321833ebbc2bc276a4169caf78f6e54d3baa3ba8bc8f3b5e5e39923eb164f5"
+    },
+    {
+      "path": "docs/lld/03_route.md",
+      "sha256": "4049654ff7d69fb90c4715d36bb288d61890f0d4b980c65bed5161c28f6f68c2"
+    },
+    {
+      "path": "docs/lld/04_register_dfx_01.md",
+      "sha256": "fa713aab48922833a9416e833873b64b08b4c7a35f6bf839030acdc9404e453d"
+    },
+    {
+      "path": "docs/lld/04_register_dfx_02.md",
+      "sha256": "be65775a2ce5e967aaab42f810c3e1fafcecf70dabc26e4ec4aa2150a32a2170"
+    },
+    {
+      "path": "docs/lld/04_register_identity_01.md",
+      "sha256": "34dd1ed28346d0018467c1260e28a4af507bcd5c2dd8793da335661ebbf6a1b0"
+    },
+    {
+      "path": "docs/lld/04_register_identity_02.md",
+      "sha256": "1893014d34ba9c967b21a8871c80fab4e55c98b833f24e29bebc21549d9cdadc"
+    },
+    {
+      "path": "docs/lld/04_register_interrupt_01.md",
+      "sha256": "487875ecdf70a021de3655002db4bbfae76f83d79e6ca5acba965600450eac17"
+    },
+    {
+      "path": "docs/lld/04_register_interrupt_02.md",
+      "sha256": "443f004189c863ea235d0638bed8a420c63fa0ee3c021289902929ef9b489166"
+    },
+    {
+      "path": "docs/lld/04_register_interrupt_03.md",
+      "sha256": "57ecd6502526aaba4ce38513f2cd41ea43e9892abc28a4d0599e4d90dcee05d1"
+    },
+    {
+      "path": "docs/lld/04_register_interrupt_04.md",
+      "sha256": "e382235898512c8e8734ba459b46c2d05fd890dd9902f8a830da40bc1eb24557"
+    },
+    {
+      "path": "docs/lld/04_register_logging_01.md",
+      "sha256": "5f1b0f094812993af59fdb41c503741acc418a09db54498c295699554a363554"
+    },
+    {
+      "path": "docs/lld/04_register_logging_02.md",
+      "sha256": "5215d2afe6e68c9ff2e1ed08c12b12caa228125008d37de12c4ccef2b0af2d65"
+    },
+    {
+      "path": "docs/lld/04_register_policy_01.md",
+      "sha256": "ee9af453db713925063cca4155c22ff5e36357ca3460f2097624a7b25153d954"
+    },
+    {
+      "path": "docs/lld/04_register_policy_02.md",
+      "sha256": "c16215b7732359f3c014507422a675ca9d0e779d315c47a28efc0b3e081b3588"
+    },
+    {
+      "path": "docs/lld/04_register_port_01.md",
+      "sha256": "05d8b4e62d2adb00e58c0dae809034e68d0ed37626eb79b4fd53a281933b1d5e"
+    },
+    {
+      "path": "docs/lld/04_register_port_02.md",
+      "sha256": "2e5d642f2804aec9dbf9b56bfe6991aaf6f0949f8d6b868e6313be530a8bfe6d"
+    },
+    {
+      "path": "docs/lld/05_interfaces_external.md",
+      "sha256": "0dea4d946be897fc8907e55dee213251491787b2932a1f3cb0199892e6e368ad"
+    },
+    {
+      "path": "docs/lld/05_interfaces_internal_01.md",
+      "sha256": "8df72189a2e249161ea459538658af0d758c55ac149eb7f1081158c878d66a8d"
+    },
+    {
+      "path": "docs/lld/05_interfaces_internal_02.md",
+      "sha256": "283160df3c31796117608d8ba236126a7bf1238906670d663177c5445c22425e"
+    },
+    {
+      "path": "docs/lld/05_interfaces_internal_03.md",
+      "sha256": "7a2db51f147a3bade7cfeba1573224a15f54ba884efa542297f3721b38480df5"
+    },
+    {
+      "path": "docs/lld/06_register_generation_contract.md",
+      "sha256": "dcddb1f05ec29c83b83767afa7c639e991bfe0c1006a0dc1872f16b7fd2ab08b"
+    },
+    {
+      "path": "docs/lld/06_timing_and_observation.md",
+      "sha256": "99f47d2e3726f12a3ff5bab99eee9ed50c69156d938b2caea278a8af1882b957"
+    },
+    {
+      "path": "docs/lld/07_delivery_mapping.md",
+      "sha256": "32c5c7db8113cef91b9b174c4f47f0e24b16ecc1098ae55637775c20748ad526"
+    },
+    {
+      "path": "docs/lld/99_quality_gate.md",
+      "sha256": "d6bdd2bf9b2cfa16ac48c752befc2c864d5e7d85a85fbaac0fe59247dbc8ab10"
+    },
+    {
+      "path": "docs/lld/index.md",
+      "sha256": "1cf2eb42af112924bfc7ecfc0c6c1a625cfbf8b328b0ce13d98f63ad0a76b5fb"
+    },
+    {
+      "path": "docs/reviews/g2_behavior_approval.md",
+      "sha256": "29a222ee87a6f08623ea1a7c356158fb602d12fa5e0709217f2d994e11c123b1"
+    },
+    {
+      "path": "model/micro_design.yaml",
+      "sha256": "04b645d34eb30fce34ff5e86150d9877eeceade4cd155cf244c30aea71b2e693"
+    },
+    {
+      "path": "regs/apb_secure_demux.rdl",
+      "sha256": "321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4"
+    },
+    {
+      "path": "regs/apb_secure_demux.config.json",
+      "sha256": "e8cd7e7377f99cb34c571ab584f8fcfd3f95aeb3769578601165a5b5e9f5e27a"
+    },
+    {
+      "path": "regs/templates/apb_secure_demux.rdl.j2",
+      "sha256": "a9818960227643a97d3b761762321e0ddcd3e538bd8268dd14586ec1c98eb261"
+    },
+    {
+      "path": "scripts/render_registers.py",
+      "sha256": "fda68f37f768878ef5e9488b31853504c00e8b94d867074e743fe5d2324a269b"
+    },
+    {
+      "path": "scripts/check_register_structure.py",
+      "sha256": "db15eefc5273b2d3128ac0ffba522d1d2775fbc9d1ce150bfe56687bc7e85a43"
+    },
+    {
+      "path": "reports/quality/register_check.md",
+      "sha256": "1f3dbcdc9439f0450261835fc5bb600e91a5acdc4f2e0b69a011dac0a8f2d527"
+    },
+    {
+      "path": "reports/quality/registers/probe_success.json",
+      "sha256": "354f4c5c63193a9ba74bb5d05ac5abd4f642bb1656c0ddf5c58a4d7e34bde7d9"
+    }
+  ]
+}

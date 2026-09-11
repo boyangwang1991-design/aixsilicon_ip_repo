@@ -1,0 +1,50 @@
+[
+  {
+    "depth": 0,
+    "exit_code": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/run_leaf_ut.py",
+      "events",
+      "--depth",
+      "0"
+    ],
+    "output": "Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.\nPlease use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.\nChronologic VCS simulator copyright 1991-2024\nContains Synopsys proprietary information.\nCompiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Sep 11 03:51 2026\nUT_APB_SECURE_DEMUX_EVENTS: PASS (errors=0 depth=0 checks=13)\n$finish called from file \"/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_events.sv\", line 76.\n$finish at simulation time               100000\n           V C S   S i m u l a t i o n   R e p o r t \nTime: 100000 ps\nCPU Time:      0.150 seconds;       Data structure size:   0.0Mb\nFri Sep 11 03:51:23 2026\n\n/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_events_1789113063693083891/manifest.json\n"
+  },
+  {
+    "depth": 1,
+    "exit_code": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/run_leaf_ut.py",
+      "events",
+      "--depth",
+      "1"
+    ],
+    "output": "Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.\nPlease use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.\nChronologic VCS simulator copyright 1991-2024\nContains Synopsys proprietary information.\nCompiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Sep 11 03:51 2026\nUT_APB_SECURE_DEMUX_EVENTS: PASS (errors=0 depth=1 checks=20)\n$finish called from file \"/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_events.sv\", line 76.\n$finish at simulation time               130000\n           V C S   S i m u l a t i o n   R e p o r t \nTime: 130000 ps\nCPU Time:      0.160 seconds;       Data structure size:   0.0Mb\nFri Sep 11 03:51:46 2026\n\n/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_events_1789113083485965357/manifest.json\n"
+  },
+  {
+    "depth": 3,
+    "exit_code": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/run_leaf_ut.py",
+      "events",
+      "--depth",
+      "3"
+    ],
+    "output": "Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.\nPlease use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.\nChronologic VCS simulator copyright 1991-2024\nContains Synopsys proprietary information.\nCompiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Sep 11 03:51 2026\nUT_APB_SECURE_DEMUX_EVENTS: PASS (errors=0 depth=3 checks=22)\n$finish called from file \"/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_events.sv\", line 76.\n$finish at simulation time               170000\n           V C S   S i m u l a t i o n   R e p o r t \nTime: 170000 ps\nCPU Time:      0.160 seconds;       Data structure size:   0.0Mb\nFri Sep 11 03:52:05 2026\n\n/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_events_1789113106541237321/manifest.json\n"
+  },
+  {
+    "depth": 32,
+    "exit_code": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/run_leaf_ut.py",
+      "events",
+      "--depth",
+      "32"
+    ],
+    "output": "Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.\nPlease use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.\nChronologic VCS simulator copyright 1991-2024\nContains Synopsys proprietary information.\nCompiler version W-2024.09-SP1_Full64; Runtime version W-2024.09-SP1_Full64;  Sep 11 03:52 2026\nUT_APB_SECURE_DEMUX_EVENTS: PASS (errors=0 depth=32 checks=51)\n$finish called from file \"/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_events.sv\", line 76.\n$finish at simulation time               750000\n           V C S   S i m u l a t i o n   R e p o r t \nTime: 750000 ps\nCPU Time:      0.150 seconds;       Data structure size:   0.0Mb\nFri Sep 11 03:52:24 2026\n\n/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_events_1789113125179529632/manifest.json\n"
+  }
+]

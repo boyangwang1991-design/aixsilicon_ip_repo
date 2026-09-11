@@ -1,0 +1,1 @@
+Wrote repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/model/quality.yaml and repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/quality/gate_report.md

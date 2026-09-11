@@ -1,0 +1,243 @@
+schema_version: '2.0'
+ip_name: watchdog
+interfaces:
+- id: HLD.IF.EXT.WATCHDOG.APB
+  name: apb
+  scope: external
+  protocol: APB4
+  role: slave
+  owner_module: HLD.MOD.WATCHDOG.BUS
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.PORTS.001
+  - LRS.REG.WATCHDOG.ACCESS.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.AUTH
+  name: auth
+  scope: external
+  protocol: trusted_sideband
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.BUS
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.SEC.WATCHDOG.AUTH.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.APB_CLOCK_RESET
+  name: apb_clock_reset
+  scope: external
+  protocol: clock_reset
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.WDT_CLOCK_RESET
+  name: wdt_clock_reset
+  scope: external
+  protocol: clock_reset
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.POWER_DEBUG
+  name: power_debug
+  scope: external
+  protocol: trusted_level
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.CHANNEL
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.WARM_EVENT
+  name: warm_event
+  scope: external
+  protocol: trusted_event
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.CHANNEL
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.RECOVERY
+  name: recovery
+  scope: external
+  protocol: four_phase_handshake
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.CHANNEL
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.HW_EVENT
+  name: hw_event
+  scope: external
+  protocol: ready_valid
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.DISPATCH
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  applicability:
+    expr: SUPPORT_HW_EVENT == 1
+- id: HLD.IF.EXT.WATCHDOG.TEST_AUTH
+  name: test_auth
+  scope: external
+  protocol: trusted_level
+  role: consumer
+  owner_module: HLD.MOD.WATCHDOG.SAFETY
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+- id: HLD.IF.EXT.WATCHDOG.REQUESTS
+  name: requests
+  scope: external
+  protocol: sticky_request
+  role: producer
+  owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.WATCHDOG.IRQ
+  name: irq
+  scope: external
+  protocol: synchronized_level
+  role: producer
+  owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'

@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 277, in <module>
+    main()
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 260, in main
+    configs = generate_configs(data, args.seed)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 187, in generate_configs
+    add(c["id"], c["values"], "mandatory", dict(methods, synth=True), named=True)
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 163, in add
+    constraint_ok = _valid(constraints, combo)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 109, in _valid
+    return all(_evaluate_constraint(expr, combo) for expr in constraints)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 109, in <genexpr>
+    return all(_evaluate_constraint(expr, combo) for expr in constraints)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 87, in _evaluate_constraint
+    tree = ast.parse(normalised, mode="eval")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/ast.py", line 50, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<unknown>", line 1
+    (MASTER_ID_WIDTH >= 6) or (MASTER_ID_WIDTH == 5 and NUM_MASTERS <= 32) or (MASTER_ID_WIDTH == 4 and NUM_MASTERS
+                                                                              ^
+SyntaxError: '(' was never closed

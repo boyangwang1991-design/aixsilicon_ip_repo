@@ -1,0 +1,4782 @@
+schema_version: '2.0'
+ip_name: gpio
+delivery_model: parameterized
+register_model: required
+ppa_signoff: required
+document_version: 1.0.0-draft
+status: approved
+requirement_baseline: GPIO-CONTRACT-59597f3b2da6
+requirements:
+- id: LRS.CFG.GPIO.PARAM.001
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/N_GPIO
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 N_GPIO，合法值/默认值为 1～128 / 32，用于引脚数；N_BANK=ceil(N_GPIO/32)。
+  acceptance_criteria:
+  - 默认实例中 N_GPIO 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.002
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/SYNC_STAGES
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 SYNC_STAGES，合法值/默认值为 2～4 / 2，用于主域输入同步级数。
+  acceptance_criteria:
+  - 默认实例中 SYNC_STAGES 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.003
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/INPUT_CAP_MASK
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 INPUT_CAP_MASK，合法值/默认值为 N_GPIO 位 / 全 1，用于输入能力。
+  acceptance_criteria:
+  - 默认实例中 INPUT_CAP_MASK 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.004
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/OUTPUT_CAP_MASK
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 OUTPUT_CAP_MASK，合法值/默认值为 N_GPIO 位 / 全 1，用于输出能力。
+  acceptance_criteria:
+  - 默认实例中 OUTPUT_CAP_MASK 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.005
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/RESET_OUT
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 RESET_OUT，合法值/默认值为 N_GPIO 位 / 0，用于输出锁存复位值。
+  acceptance_criteria:
+  - 默认实例中 RESET_OUT 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.006
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/RESET_OE
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 RESET_OE，合法值/默认值为 N_GPIO 位 / 0，用于输出使能复位值。
+  acceptance_criteria:
+  - 默认实例中 RESET_OE 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.007
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/RESET_IN_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 RESET_IN_EN，合法值/默认值为 N_GPIO 位 / INPUT_CAP_MASK，用于输入处理复位使能。
+  acceptance_criteria:
+  - 默认实例中 RESET_IN_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.008
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/N_IRQ_GROUPS
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 N_IRQ_GROUPS，合法值/默认值为 1～4 / 1，用于中断分组。
+  acceptance_criteria:
+  - 默认实例中 N_IRQ_GROUPS 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.009
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/OUT_INV_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 OUT_INV_EN，合法值/默认值为 0/1 / 1，用于输出反相。
+  acceptance_criteria:
+  - 默认实例中 OUT_INV_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.010
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/AON_WAKE_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 AON_WAKE_EN，合法值/默认值为 0/1 / 1，用于常开唤醒模块。
+  acceptance_criteria:
+  - 默认实例中 AON_WAKE_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.011
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/SNAPSHOT_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 SNAPSHOT_EN，合法值/默认值为 0/1 / 1，用于输入快照。
+  acceptance_criteria:
+  - 默认实例中 SNAPSHOT_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.012
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/STRAP_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 STRAP_EN，合法值/默认值为 0/1 / 1，用于主功能域一次性 Strap。
+  acceptance_criteria:
+  - 默认实例中 STRAP_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.013
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/EVENT_FIFO_DEPTH
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 EVENT_FIFO_DEPTH，合法值/默认值为 0、4、8、16、32、64 / 16，用于0 裁剪事件记录。
+  acceptance_criteria:
+  - 默认实例中 EVENT_FIFO_DEPTH 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.014
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/DIAG_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 DIAG_EN，合法值/默认值为 0/1 / 1，用于输出回读诊断。
+  acceptance_criteria:
+  - 默认实例中 DIAG_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.015
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/ACCESS_CTRL_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 ACCESS_CTRL_EN，合法值/默认值为 0/1 / 1，用于安全/特权访问控制。
+  acceptance_criteria:
+  - 默认实例中 ACCESS_CTRL_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.016
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/CFG_PARITY_EN
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 CFG_PARITY_EN，合法值/默认值为 0/1 / 0，用于关键寄存器 parity。
+  acceptance_criteria:
+  - 默认实例中 CFG_PARITY_EN 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.017
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/BOOT_SECURE_ONLY
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 BOOT_SECURE_ONLY，合法值/默认值为 0/1 / 1，用于上电业务访问安全限制。
+  acceptance_criteria:
+  - 默认实例中 BOOT_SECURE_ONLY 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.018
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/BOOT_PRIV_ONLY
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 BOOT_PRIV_ONLY，合法值/默认值为 0/1 / 1，用于上电业务访问特权限制。
+  acceptance_criteria:
+  - 默认实例中 BOOT_PRIV_ONLY 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.PARAM.019
+  category: CFG
+  feature: param
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§2.1/HW_SAFE_OUT / HW_SAFE_OE
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应提供静态参数 HW_SAFE_OUT / HW_SAFE_OE，合法值/默认值为 N_GPIO 位 / 0，用于独立安全覆盖的物理值。
+  acceptance_criteria:
+  - 默认实例中 HW_SAFE_OUT / HW_SAFE_OE 符合所列默认值。
+  - 合法范围内可配置；超出范围或位宽不匹配时配置检查或 elaboration 失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.CFG001.001
+  category: CFG
+  feature: cfg001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CFG-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-CFG-001 定义的场景下，RESET_OE/HW_SAFE_OE 不得对无输出能力引脚置 1；RESET_IN_EN 不得对无输入能力引脚置 1。参数非法必须 elaboration 或配置检查失败。
+  acceptance_criteria:
+  - RESET_OE/HW_SAFE_OE 不得对无输出能力引脚置 1；RESET_IN_EN 不得对无输入能力引脚置 1。参数非法 elaboration 或配置检查失败。
+  - 检查默认、最小/最大合法配置及越界配置；裁剪实例的能力/地址读写行为符合要求。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.CFG002.001
+  category: CFG
+  feature: cfg002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CFG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-CFG-002 定义的场景下，裁剪后寄存器地址不移动；声明的可选寄存器读 0、写忽略。参数范围外 Bank/引脚地址为非法地址。未实现引脚位读 0、写忽略。
+  acceptance_criteria:
+  - 裁剪后寄存器地址不移动；声明的可选寄存器读 0、写忽略。参数范围外 Bank/引脚地址为非法地址。未实现引脚位读 0、写忽略。
+  - 检查默认、最小/最大合法配置及越界配置；裁剪实例的能力/地址读写行为符合要求。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.GPIO.CFG003.001
+  category: CFG
+  feature: cfg003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CFG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-CFG-003 定义的场景下，FEATURE 寄存器如实反映裁剪；能力位为静态只读，不可由软件修改。默认配置用于功能覆盖，不作为最小面积推荐配置。
+  acceptance_criteria:
+  - FEATURE 寄存器如实反映裁剪；能力位为静态只读，不可由软件修改。默认配置用于功能覆盖，不作为最小面积推荐配置。
+  - 检查默认、最小/最大合法配置及越界配置；裁剪实例的能力/地址读写行为符合要求。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.SCP001.001
+  category: CONS
+  feature: scp001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SCP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-SCP-001 定义的场景下，IP 应提供 1～128 路 GPIO，支持 32-bit APB4 配置、输入同步、滤波去抖、推挽/开漏输出、原子位操作、完整中断、配置锁、低功耗控制，以及可裁剪的 AON
+    唤醒、事件记录、快照、Strap 和诊断。
+  acceptance_criteria:
+  - IP 提供 1～128 路 GPIO，支持 32-bit APB4 配置、输入同步、滤波去抖、推挽/开漏输出、原子位操作、完整中断、配置锁、低功耗控制，以及可裁剪的 AON 唤醒、事件记录、快照、Strap 和诊断。
+  - 核对产品功能、交付语言和系统边界，逐项确认均有后续设计/交付 owner。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.SCP002.001
+  category: CONS
+  feature: scp002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SCP-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-SCP-002 定义的场景下，实现应以参数化 SystemVerilog 交付。软件应按每 Bank 最多 32 路组织寄存器；Bank 不表示独立电源或时钟域。主功能仅使用一个外部时钟。
+  acceptance_criteria:
+  - 实现以参数化 SystemVerilog 交付。软件按每 Bank 最多 32 路组织寄存器；Bank 不表示独立电源或时钟域。主功能仅使用一个外部时钟。
+  - 核对产品功能、交付语言和系统边界，逐项确认均有后续设计/交付 owner。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.SCP003.001
+  category: CONS
+  feature: scp003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SCP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-SCP-003 定义的场景下，GPIO 不承担全芯片 Pinmux、模拟模式、上下拉电阻、驱动强度、Slew Rate、Schmitt、耐压和工艺 IO Cell 的实现。上述能力由 Pinmux/Pad
+    Controller/Pad Adapter 提供。
+  acceptance_criteria:
+  - GPIO 不承担全芯片 Pinmux、模拟模式、上下拉电阻、驱动强度、Slew Rate、Schmitt、耐压和工艺 IO Cell 的实现。上述能力由 Pinmux/Pad Controller/Pad Adapter 提供。
+  - 核对产品功能、交付语言和系统边界，逐项确认均有后续设计/交付 owner。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.SCP003.002
+  category: CONS
+  feature: scp003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SCP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-SCP-003 定义的场景下，GPIO 应提供明确的数字数据、OE、输入有效性和所有权接口。
+  acceptance_criteria:
+  - GPIO 提供明确的数字数据、OE、输入有效性和所有权接口。
+  - 核对产品功能、交付语言和系统边界，逐项确认均有后续设计/交付 owner。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.001
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/pclk_i
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 pclk_i（输入），其外部合同为：主域及 APB 时钟。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 pclk_i 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.002
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/por_ni
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 por_ni（输入），其外部合同为：芯片冷复位；各域异步置位、同步释放。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 por_ni 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.003
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/main_rst_ni
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 main_rst_ni（输入），其外部合同为：主功能暖复位；与 POR 组合生成主域复位。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 main_rst_ni 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.004
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/APB4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 APB4（双向），其外部合同为：PADDR[13:0]、PWDATA/PRDATA[31:0]、PSTRB[3:0]、PPROT[2:0]、PSEL/PENABLE/PWRITE/PREADY/PSLVERR。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 APB4 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.005
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/gpio_in_i[N_GPIO]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 gpio_in_i[N_GPIO]（输入），其外部合同为：来自 PAD/输入路由的数字信号，可异步。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 gpio_in_i[N_GPIO] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.006
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/input_available_i[N_GPIO]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 input_available_i[N_GPIO]（输入），其外部合同为：主域同步状态；输入路由和接收器有效。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 input_available_i[N_GPIO] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.007
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/output_owned_i[N_GPIO]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 output_owned_i[N_GPIO]（输入），其外部合同为：主域同步状态；GPIO 当前拥有输出路径。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 output_owned_i[N_GPIO] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.008
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/gpio_out_o / gpio_oe_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 gpio_out_o / gpio_oe_o（输出），其外部合同为：主域数字输出/OE，高有效。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 gpio_out_o / gpio_oe_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.009
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/irq_pin_o[N_GPIO]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 irq_pin_o[N_GPIO]（输出），其外部合同为：逐引脚电平中断。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 irq_pin_o[N_GPIO] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.010
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/irq_group_o[N_IRQ_GROUPS]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 irq_group_o[N_IRQ_GROUPS]（输出），其外部合同为：路由后分组电平中断。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 irq_group_o[N_IRQ_GROUPS] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.011
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/irq_summary_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 irq_summary_o（输出），其外部合同为：全部引脚 IRQ 的 OR。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 irq_summary_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.012
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/event_o[N_GPIO]
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 event_o[N_GPIO]（输出），其外部合同为：主域单周期合格边沿事件，与 IRQ_ENABLE 无关。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 event_o[N_GPIO] 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.013
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/sleep_req_i / sleep_ack_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 sleep_req_i / sleep_ack_o（输入/输出），其外部合同为：主域同步休眠覆盖握手。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 sleep_req_i / sleep_ack_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.014
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/safe_req_i
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 safe_req_i（输入），其外部合同为：主域同步安全覆盖请求。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 safe_req_i 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.015
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/safe_active_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 safe_active_o（输出），其外部合同为：主域安全覆盖已生效。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 safe_active_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.016
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/snapshot_req_i
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 snapshot_req_i（输入），其外部合同为：主域单周期快照触发。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 snapshot_req_i 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.017
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/strap_sample_i
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 strap_sample_i（输入），其外部合同为：主域同步 Strap 捕获请求。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 strap_sample_i 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.018
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/fault_irq_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 fault_irq_o（输出），其外部合同为：主域诊断/访问/FIFO 故障汇总。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 fault_irq_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.019
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/dma_req_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 dma_req_o（输出），其外部合同为：主域事件 FIFO 数据可用请求。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 dma_req_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.020
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/aon_clk_i / aon_rst_ni
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 aon_clk_i / aon_rst_ni（输入），其外部合同为：可选常开时钟/复位，aon_rst_ni 仅由冷复位树控制。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 aon_clk_i / aon_rst_ni 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.021
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/aon_gpio_in_i / aon_input_available_i
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 aon_gpio_in_i / aon_input_available_i（输入），其外部合同为：AON 电源域有效的 PAD 输入及路由有效性。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 aon_gpio_in_i / aon_input_available_i 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.PORT.022
+  category: INTF
+  feature: port
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3/wake_req_o
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应提供 wake_req_o（输出），其外部合同为：AON 粘滞唤醒请求，供 PMU 同步。
+  acceptance_criteria:
+  - 检查端口方向、位宽及域归属符合定义；配置变化时宽度随参数一致变化。
+  - 集成检查确认 wake_req_o 的驱动/接收方及未用时绑定值已声明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF001.001
+  category: INTF
+  feature: if001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-001 定义的场景下，未使用的 available/owned 接口应按实际集成情况绑常量，不能默认以读到 0 代替有效性说明。
+  acceptance_criteria:
+  - 未使用的 available/owned 接口按实际集成情况绑常量，不能默认以读到 0 代替有效性说明。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF001.002
+  category: INTF
+  feature: if001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-001 定义的场景下，改变输入路由时，集成层应先撤销 available，切换并稳定后再拉高。
+  acceptance_criteria:
+  - 改变输入路由时，集成层先撤销 available，切换并稳定后再拉高。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF002.001
+  category: INTF
+  feature: if002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-002 定义的场景下，内部 RTL 不产生 Z；OE=0 表示释放 PAD。
+  acceptance_criteria:
+  - 内部 RTL 不产生 Z；OE=0 表示释放 PAD。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF002.002
+  category: INTF
+  feature: if002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-002 定义的场景下，GPIO 输出拥有权不能直接替代 Pinmux 的最终物理选择逻辑。
+  acceptance_criteria:
+  - GPIO 输出拥有权不能直接替代 Pinmux 的最终物理选择逻辑。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF003.001
+  category: INTF
+  feature: if003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-003 定义的场景下，safe_req_i 仅提供主域有时钟时的同步响应。
+  acceptance_criteria:
+  - safe_req_i 仅提供主域有时钟时的同步响。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF003.002
+  category: INTF
+  feature: if003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-003 定义的场景下，断钟/掉电下必须生效的安全覆盖，由常开 PAD/安全控制器实施，可复用 HW_SAFE_OUT/OE 参数；不得宣称主域同步逻辑提供异步紧急切断。
+  acceptance_criteria:
+  - 断钟/掉电下生效的安全覆盖，由常开 PAD/安全控制器实施，可复用 HW_SAFE_OUT/OE 参数；不得宣称主域同步逻辑提供异步紧急切断。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF004.001
+  category: INTF
+  feature: if004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-004 定义的场景下，AON 输入应在 AON 时钟域可靠采样；aon_input_available_i 由常开路由逻辑同步提供。
+  acceptance_criteria:
+  - AON 输入在 AON 时钟域可靠采样；aon_input_available_i 由常开路由逻辑同步提供。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.GPIO.IF004.002
+  category: INTF
+  feature: if004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IF-004 定义的场景下，交付应包含输入同步的 CDC 约束与实现要求；同步结构细节在 HLD/LLD 冻结。
+  acceptance_criteria:
+  - 交付包含输入同步的 CDC 约束与实现要求；同步结构细节在 HLD/LLD 冻结。
+  - 检查正常连接及未用端口绑定、时钟有效/无效条件，满足所述接口限制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP001.001
+  category: FUNC
+  feature: cap001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-001
+  applicability:
+    expr: SNAPSHOT_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-001 定义的场景下，SNAPSHOT_CMD bit0 或 snapshot_req_i 触发时，同一主边沿捕获所有 Bank 的边沿前 IN_DATA 与 IN_VALID。
+  acceptance_criteria:
+  - SNAPSHOT_CMD bit0 或 snapshot_req_i 触发时，同一主边沿捕获所有 Bank 的边沿前 IN_DATA 与 IN_VALID。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP001.002
+  category: FUNC
+  feature: cap001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-001
+  applicability:
+    expr: SNAPSHOT_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-001 定义的场景下，软件读 SNAP_DATA/SNAP_VALID 为冻结值；SNAP_SEQ 加 1（32-bit 回绕）。同拍软硬件请求合并一次；允许下一拍覆盖，SEQ 用于检测读取期间更新。
+  acceptance_criteria:
+  - 软件读 SNAP_DATA/SNAP_VALID 为冻结值；SNAP_SEQ 加 1（32-bit 回绕）。同拍软硬件请求合并一次；允许下一拍覆盖，SEQ 用于检测读取期间更新。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP002.001
+  category: FUNC
+  feature: cap002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-002
+  applicability:
+    expr: STRAP_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-002 定义的场景下，Strap 使用 IN_SYNC 的物理值，忽略 IN_INV/滤波/去抖；仅在所有 INPUT_CAP_MASK 指定输入均处于可用且同步填充完成后接受第一次 strap_sample_i=1。
+  acceptance_criteria:
+  - Strap 使用 IN_SYNC 的物理值，忽略 IN_INV/滤波/去抖；仅在所有 INPUT_CAP_MASK 指定输入均处于可用且同步填充完成后接受第一次 strap_sample_i=1。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP002.002
+  category: FUNC
+  feature: cap002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-002
+  applicability:
+    expr: STRAP_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-002 定义的场景下，捕获 STRAP_DATA、STRAP_VALID=1，之后忽略请求直至主域复位。过早请求忽略并置 FAULT_STATUS.STRAP_EARLY，软件/启动逻辑须重新请求。
+  acceptance_criteria:
+  - 捕获 STRAP_DATA、STRAP_VALID=1，之后忽略请求直至主域复位。过早请求忽略并置 FAULT_STATUS.STRAP_EARLY，软件/启动逻辑须重新请求。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP003.001
+  category: FUNC
+  feature: cap003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-003
+  applicability:
+    expr: STRAP_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-003 定义的场景下，Strap 只能用于主域时钟和复位已可用后的配置读取。
+  acceptance_criteria:
+  - Strap 只能用于主域时钟和复位已可用后的配置读取。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.CAP003.002
+  category: FUNC
+  feature: cap003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-CAP-003
+  applicability:
+    expr: STRAP_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-CAP-003 定义的场景下，决定主时钟/复位释放本身的启动 Strap 必须由专用 Boot/AON 模块承担。
+  acceptance_criteria:
+  - 决定主时钟/复位释放本身的启动 Strap 由专用 Boot/AON 模块承担。
+  - 检查同拍触发、首次/重复/过早请求、SEQ 回绕及暖复位，比较数据和有效位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT001.001
+  category: FUNC
+  feature: evt001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-001
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-001 定义的场景下，FIFO 记录 IRQ 边沿检测事件，受每 Bank EVENT_ENABLE 进一步筛选。IRQ_TEST 和电平模式不写 FIFO。
+  acceptance_criteria:
+  - FIFO 记录 IRQ 边沿检测事件，受每 Bank EVENT_ENABLE 进一步筛选。IRQ_TEST 和电平模式不写 FIFO。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT001.002
+  category: FUNC
+  feature: evt001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-001
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-001 定义的场景下，每个记录 128-bit：WORD0[6:0]=pin_id、[8]=1 上升/0 下降，其余 0；WORD1=timestamp[31:0]；WORD2=timestamp[63:32]；WORD3=0（保留）。
+  acceptance_criteria:
+  - 每个记录 128-bit：WORD0[6:0]=pin_id、[8]=1 上升/0 下降，其余 0；WORD1=timestamp[31:0]；WORD2=timestamp[63:32]；WORD3=0（保留）。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT002.001
+  category: FUNC
+  feature: evt002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-002
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-002 定义的场景下，timestamp 为主域 64-bit 每周期加 1 自由运行计数器，主复位清零，停钟停止，不代表墙上时间。事件时间戳为生成 event_o 的主域周期计数值。读取当前时间
+    TS_LO 时锁存 TS_HI 快照，后续读 TS_HI 返回锁存高位；多执行者需要软件互斥。
+  acceptance_criteria:
+  - timestamp 为主域 64-bit 每周期加 1 自由运行计数器，主复位清零，停钟停止，不代表墙上时间。事件时间戳为生成 event_o 的主域周期计数值。读取当前时间 TS_LO 时锁存 TS_HI 快照，后续读 TS_HI 返回锁存高位；多执行者需要软件互斥。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT003.001
+  category: FUNC
+  feature: evt003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-003
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-003 定义的场景下，每周期最多写一条记录。同拍多个选中引脚事件按最小 pin_id 选择一个，其余按丢失计入 LOST_COUNT；FIFO 满时丢弃新事件，不覆盖旧记录。
+  acceptance_criteria:
+  - 每周期最多写一条记录。同拍多个选中引脚事件按最小 pin_id 选择一个，其余按丢失计入 LOST_COUNT；FIFO 满时丢弃新事件，不覆盖旧记录。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT003.002
+  category: FUNC
+  feature: evt003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-003
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-003 定义的场景下，LOST_COUNT 为 32-bit 饱和计数；任何丢失置 OVERFLOW。该产品不承诺多引脚事件无损记录。
+  acceptance_criteria:
+  - LOST_COUNT 为 32-bit 饱和计数；任何丢失置 OVERFLOW。该产品不承诺多引脚事件无损记录。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT004.001
+  category: FUNC
+  feature: evt004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-004
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-004 定义的场景下，EVENT_HEAD0～3 是不消费的队头读取。
+  acceptance_criteria:
+  - EVENT_HEAD0～3 是不消费的队头读取。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT004.002
+  category: FUNC
+  feature: evt004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-004
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-004 定义的场景下，EVENT_POP bit0=1 显式弹出一条，空 FIFO POP 成功无操作；空 FIFO HEAD 读 0。
+  acceptance_criteria:
+  - EVENT_POP bit0=1 显式弹出一条，空 FIFO POP 成功无操作；空 FIFO HEAD 读 0。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT004.003
+  category: FUNC
+  feature: evt004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-004
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-004 定义的场景下，非空期间新写入不改变队头，因此软件先读四字再 POP 可一致读取。多个消费者须软件互斥。
+  acceptance_criteria:
+  - 非空期间新写入不改变队头，因此软件先读四字再 POP 可一致读取。多个消费者须软件互斥。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT005.001
+  category: FUNC
+  feature: evt005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-005
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-005 定义的场景下，同拍 POP 与写入允许互换槽位；FIFO 满且成功 POP 时可接收一个新事件。
+  acceptance_criteria:
+  - 同拍 POP 与写入允许互换槽位；FIFO 满且成功 POP 时可接收一个新事件。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT005.002
+  category: FUNC
+  feature: evt005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-005
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-005 定义的场景下，FIFO 空且 POP 与新事件同拍，新事件留下，POP 不消费尚不存在的记录。
+  acceptance_criteria:
+  - FIFO 空且 POP 与新事件同拍，新事件留下，POP 不消费尚不存在的记录。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT005.003
+  category: FUNC
+  feature: evt005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-005
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-005 定义的场景下，FLUSH 清 FIFO/LEVEL，且当拍新事件丢弃计入 LOST_COUNT。CLEAR_LOST 与丢失同拍时从 0 加本拍丢失数，OVERFLOW 置位优先。
+  acceptance_criteria:
+  - FLUSH 清 FIFO/LEVEL，且当拍新事件丢弃计入 LOST_COUNT。CLEAR_LOST 与丢失同拍时从 0 加本拍丢失数，OVERFLOW 置位优先。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT006.001
+  category: FUNC
+  feature: evt006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-006
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-006 定义的场景下，WATERMARK 合法范围 1～DEPTH，FIFO_CTRL.EN 控制记录，DMA_EN 控制 dma_req_o=DMA_EN && LEVEL!=0。
+  acceptance_criteria:
+  - WATERMARK 合法范围 1～DEPTH，FIFO_CTRL.EN 控制记录，DMA_EN 控制 dma_req_o=DMA_EN && LEVEL!=0。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT006.002
+  category: FUNC
+  feature: evt006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-006
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-006 定义的场景下，FAULT_IRQ 的 FIFO 水位源采用 LEVEL>=WATERMARK，溢出源采用粘滞 OVERFLOW。关闭记录不清存量。
+  acceptance_criteria:
+  - FAULT_IRQ 的 FIFO 水位源采用 LEVEL>=WATERMARK，溢出源采用粘滞 OVERFLOW。关闭记录不清存量。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT007.001
+  category: FUNC
+  feature: evt007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-007
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-007 定义的场景下，DMA 是外部 APB Master，经系统互联读 HEAD0～3 并写 POP；GPIO 无内存 Master 端口、无独立 DMA ACK、无自动 pop-on-read。
+  acceptance_criteria:
+  - DMA 是外部 APB Master，经系统互联读 HEAD0～3 并写 POP；GPIO 无内存 Master 端口、无独立 DMA ACK、无自动 pop-on-read。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT007.002
+  category: FUNC
+  feature: evt007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-007
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-007 定义的场景下，驱动/DMA 描述符必须支持读四字后显式写 POP 的事务序列。
+  acceptance_criteria:
+  - 驱动/DMA 描述符支持读四字后显式写 POP 的事务序列。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.EVT007.003
+  category: FUNC
+  feature: evt007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-EVT-007
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  verify_method:
+  - simulation
+  description: 在 GPIO-EVT-007 定义的场景下，普通仅固定源地址搬运的 DMA 不自动兼容本 FIFO。
+  acceptance_criteria:
+  - 普通仅固定源地址搬运的 DMA 不自动兼容本 FIFO。
+  - 检查多引脚同时事件、满/空 POP+PUSH、FLUSH 冲突、饱和丢失及四字读取后 POP；对照队列内容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT001.001
+  category: FUNC
+  feature: flt001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-001 定义的场景下，每引脚 PIN_CFG.FILTER_EN 独立开启滤波；K=FILTER_CFG+1，范围 1～256。滤波每主时钟采样一次同步输入。
+  acceptance_criteria:
+  - 每引脚 PIN_CFG.FILTER_EN 独立开启滤波；K=FILTER_CFG+1，范围 1～256。滤波每主时钟采样一次同步输入。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT001.002
+  category: FUNC
+  feature: flt001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-001 定义的场景下，连续 K 次同一候选值后更新输出；遇到另一值时该值成为候选、计数从 1 开始。输入与当前输出相等时不输出变化事件。初始化也要求 K 次一致样本。
+  acceptance_criteria:
+  - 连续 K 次同一候选值后更新输出；遇到另一值时该值成为候选、计数从 1 开始。输入与当前输出相等时不输出变化事件。初始化也要求 K 次一致样本。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT002.001
+  category: FUNC
+  feature: flt002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-002 定义的场景下，DEBOUNCE_EN 独立控制去抖；D=DEBOUNCE_CFG+1，范围 1～256。
+  acceptance_criteria:
+  - DEBOUNCE_EN 独立控制去抖；D=DEBOUNCE_CFG+1，范围 1～256。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT002.002
+  category: FUNC
+  feature: flt002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-002 定义的场景下，每 Bank 共享 DIV+1 主周期一个采样使能，DIV 为 16-bit。
+  acceptance_criteria:
+  - 每 Bank 共享 DIV+1 主周期一个采样使能，DIV 为 16-bit。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT002.003
+  category: FUNC
+  feature: flt002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-002 定义的场景下，去抖仅在采样使能时观察滤波输出，连续 D 次一致才更新。
+  acceptance_criteria:
+  - 去抖仅在采样使能时观察滤波输出，连续 D 次一致才更新。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT003.001
+  category: FUNC
+  feature: flt003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-003 定义的场景下，已启用滤波阶段尚无有效输出时，去抖不能计数。各引脚候选/计数独立；共享的只有采样节拍。
+  acceptance_criteria:
+  - 已启用滤波阶段尚无有效输出时，去抖不能计数。各引脚候选/计数独立；共享的只有采样节拍。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT004.001
+  category: FUNC
+  feature: flt004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-004 定义的场景下，关闭滤波时应采用已有效同步值；关闭去抖时应采用有效滤波值。
+  acceptance_criteria:
+  - 关闭滤波时采用已有效同步值；关闭去抖时采用有效滤波值。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT004.002
+  category: FUNC
+  feature: flt004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-004 定义的场景下，启用阶段的下游采样应使用前一主边沿后的上游状态，不得使用同沿刚更新的值。
+  acceptance_criteria:
+  - 启用阶段的下游采样使用前一主边沿后的上游状态，不得使用同沿刚更新的值。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT005.001
+  category: FUNC
+  feature: flt005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-005 定义的场景下，写入 FILTER_CFG、DEBOUNCE_CFG、PIN_CFG 的 FILTER_EN/DEBOUNCE_EN/IN_INV，重新初始化该引脚输入处理和边沿历史。写
+    BANK_DEBOUNCE_DIV 重新初始化该 Bank 的所有已开启去抖引脚，并重启共享分频计数。重新初始化不清已有 Pending。
+  acceptance_criteria:
+  - 写入 FILTER_CFG、DEBOUNCE_CFG、PIN_CFG 的 FILTER_EN/DEBOUNCE_EN/IN_INV，重新初始化该引脚输入处理和边沿历史。写 BANK_DEBOUNCE_DIV 重新初始化该 Bank 的所有已开启去抖引脚，并重启共享分频计数。重新初始化不清已有
+    Pending。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT006.001
+  category: FUNC
+  feature: flt006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-006 定义的场景下，在时钟正常且输入保持稳定的前提下，主输入更新延迟的保守设计上界为 (SYNC_STAGES+4+K_eff+D_eff×(DIV+1))×Tclk，其中关闭滤波取 K_eff=0，关闭去抖取
+    D_eff=0。具体 RTL 周期模型必须满足该上界并在架构文档给出精确拍数。用于保证边沿识别时，高低两种稳定时间均须满足处理链的稳定要求。
+  acceptance_criteria:
+  - 在时钟正常且输入保持稳定的前提下，主输入更新延迟的保守设计上界为 (SYNC_STAGES+4+K_eff+D_eff×(DIV+1))×Tclk，其中关闭滤波取 K_eff=0，关闭去抖取 D_eff=0。具体 RTL 周期模型满足该上界并在架构文档给出精确拍数。用于保证边沿识别时，高低两种稳定时间均须满足处理链的稳定要求。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.FLT007.001
+  category: FUNC
+  feature: flt007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-FLT-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-FLT-007 定义的场景下，GPIO 不保证捕获任意窄异步脉冲，也不提供异步脉冲捕获锁存器。软件时钟分频变化会改变实际去抖时间，驱动应按频率重算。
+  acceptance_criteria:
+  - GPIO 不保证捕获任意窄异步脉冲，也不提供异步脉冲捕获锁存器。软件时钟分频变化会改变实际去抖时间，驱动按频率重算。
+  - 扫描 K/D=1、256、DIV=0、65535 及阈值前后跳变，检查初始化、重配置和稳定输入延迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN001.001
+  category: FUNC
+  feature: in001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-001 定义的场景下，软件可见 IN_SYNC 应表示经过 SYNC_STAGES 输入同步后的物理值；IN_DATA 应依次应用毛刺滤波、去抖和输入反相。运行时配置不得绕过输入同步。
+  acceptance_criteria:
+  - 软件可见 IN_SYNC 表示经过 SYNC_STAGES 输入同步后的物理值；IN_DATA 依次用毛刺滤波、去抖和输入反相。运行时配置不得绕过输入同步。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN002.001
+  category: FUNC
+  feature: in002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-002 定义的场景下，输入有效前提为 INPUT_CAP_MASK && IN_ENABLE && input_available_i。
+  acceptance_criteria:
+  - 输入有效前提为 INPUT_CAP_MASK && IN_ENABLE && input_available_i。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN002.002
+  category: FUNC
+  feature: in002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-002 定义的场景下，前提失效当拍清 IN_VALID、IN_DATA=0、清处理历史和计数、抑制新检测；IN_SYNC 在前提失效时软件读 0。已记录 Pending/FIFO/快照不隐式清除。
+  acceptance_criteria:
+  - 前提失效当拍清 IN_VALID、IN_DATA=0、清处理历史和计数、抑制新检测；IN_SYNC 在前提失效时软件读 0。已记录 Pending/FIFO/快照不隐式清除。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN003.001
+  category: FUNC
+  feature: in003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-003 定义的场景下，前提重新成立后等待 SYNC_STAGES 个完整主域边沿填充同步路径，然后按启用的滤波/去抖阶段建立初值。最后一级首次给出有效值时设置 IN_VALID 并建立边沿基线，不产生边沿事件；有效电平模式可以立即置
+    Pending。
+  acceptance_criteria:
+  - 前提重新成立后等待 SYNC_STAGES 个完整主域边沿填充同步路径，然后按启用的滤波/去抖阶段建立初值。最后一级首次给出有效值时设置 IN_VALID 并建立边沿基线，不产生边沿事件；有效电平模式可以立即置 Pending。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN004.001
+  category: FUNC
+  feature: in004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-004 定义的场景下，输入反相只影响 IN_DATA、中断和主域事件；不影响 IN_SYNC、Strap、诊断物理比较以及 AON 唤醒定义。
+  acceptance_criteria:
+  - 输入反相只影响 IN_DATA、中断和主域事件；不影响 IN_SYNC、Strap、诊断物理比较以及 AON 唤醒定义。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IN005.001
+  category: FUNC
+  feature: in005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IN-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IN-005 定义的场景下，输出模式可同时采样输入。关闭 GPIO 输入处理不等同关闭 PAD 接收器；PAD 接收器由 Pad Controller 控制。
+  acceptance_criteria:
+  - 输出模式可同时采样输入。关闭 GPIO 输入处理不等同关闭 PAD 接收器；PAD 接收器由 Pad Controller 控制。
+  - 施加初始高低、available/enable 撤销恢复及首次有效，逐拍比较 IN_SYNC、IN_DATA、IN_VALID 与事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ001.001
+  category: FUNC
+  feature: irq001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-001 定义的场景下，每引脚 IRQ_MODE：0=禁用、1=上升沿、2=下降沿、3=双边沿、4=高电平、5=低电平；6/7 非法。检测基于有效 IN_DATA。
+  acceptance_criteria:
+  - 每引脚 IRQ_MODE：0=禁用、1=上升沿、2=下降沿、3=双边沿、4=高电平、5=低电平；6/7 非法。检测基于有效 IN_DATA。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ002.001
+  category: FUNC
+  feature: irq002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-002 定义的场景下，IRQ_DETECT_EN 控制新事件检测；IRQ_ENABLE 只控制 Pending 输出。关闭 DETECT 不清 Pending，关闭 ENABLE 不停止检测。
+  acceptance_criteria:
+  - IRQ_DETECT_EN 控制新事件检测；IRQ_ENABLE 只控制 Pending 输出。关闭 DETECT 不清 Pending，关闭 ENABLE 不停止检测。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ002.002
+  category: FUNC
+  feature: irq002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-002 定义的场景下，DETECT 从 0→1 时，用当前有效输入建立边沿基线，无历史边沿补发；电平模式可立即触发。
+  acceptance_criteria:
+  - DETECT 从 0→1 时，用当前有效输入建立边沿基线，无历史边沿补发；电平模式可立即触发。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ003.001
+  category: FUNC
+  feature: irq003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-003 定义的场景下，IRQ_PENDING 为 W1C 粘滞状态：next=(old & ~sw_clear)|hw_event|sw_test，置位优先。
+  acceptance_criteria:
+  - IRQ_PENDING 为 W1C 粘滞状态：next=(old & ~sw_clear)|hw_event|sw_test，置位优先。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ003.002
+  category: FUNC
+  feature: irq003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-003 定义的场景下，IRQ_STATUS=PENDING & ENABLE；irq_pin_o 等于 IRQ_STATUS；irq_summary_o 为 OR。
+  acceptance_criteria:
+  - IRQ_STATUS=PENDING & ENABLE；irq_pin_o 等于 IRQ_STATUS；irq_summary_o 为 OR。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ004.001
+  category: FUNC
+  feature: irq004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-004 定义的场景下，电平模式条件持续成立时 hw_event 持续为 1，清除不能压过有效电平；输入解除后由软件清 Pending。边沿模式未清期间新边沿可能合并，不表示计数。
+  acceptance_criteria:
+  - 电平模式条件持续成立时 hw_event 持续为 1，清除不能压过有效电平；输入解除后由软件清 Pending。边沿模式未清期间新边沿可能合并，不表示计数。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ005.001
+  category: FUNC
+  feature: irq005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-005 定义的场景下，IRQ_TEST 写 1 设置 Pending，不依赖输入有效、MODE、DETECT_EN；仍受访问权限约束；不产生 EVENT_FIFO 数据、RISING/FALLING_PENDING
+    或 event_o。
+  acceptance_criteria:
+  - IRQ_TEST 写 1 设置 Pending，不依赖输入有效、MODE、DETECT_EN；仍受访问权限约束；不产生 EVENT_FIFO 数据、RISING/FALLING_PENDING 或 event_o。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ006.001
+  category: FUNC
+  feature: irq006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-006 定义的场景下，RISING_PENDING/FALLING_PENDING 分别记录被当前边沿模式选中且 DETECT_EN 有效的上升/下降事件，独立 W1C，硬件置位优先。清 IRQ_PENDING
+    不清方向状态，反之亦然。
+  acceptance_criteria:
+  - RISING_PENDING/FALLING_PENDING 分别记录被当前边沿模式选中且 DETECT_EN 有效的上升/下降事件，独立 W1C，硬件置位优先。清 IRQ_PENDING 不清方向状态，反之亦然。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ007.001
+  category: FUNC
+  feature: irq007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-007 定义的场景下，改写 IRQ_MODE 后重建边沿基线，保留 Pending。IN_VALID 首次有效的边沿不作为事件。
+  acceptance_criteria:
+  - 改写 IRQ_MODE 后重建边沿基线，保留 Pending。IN_VALID 首次有效的边沿不作为事件。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ007.002
+  category: FUNC
+  feature: irq007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-007 定义的场景下，改写 IRQ_GROUP 仅改变现存 IRQ 的路由，不清状态。
+  acceptance_criteria:
+  - 改写 IRQ_GROUP 仅改变现存 IRQ 的路由，不清状态。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ008.001
+  category: FUNC
+  feature: irq008
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-008 定义的场景下，每引脚只选择一个 IRQ_GROUP，编码小于 N_IRQ_GROUPS。
+  acceptance_criteria:
+  - 每引脚只选择一个 IRQ_GROUP，编码小于 N_IRQ_GROUPS。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ008.002
+  category: FUNC
+  feature: irq008
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-008 定义的场景下，group[g]=OR(IRQ_STATUS[i] && route[i]==g)。
+  acceptance_criteria:
+  - group[g]=OR(IRQ_STATUS[i] && route[i]==g)。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ008.003
+  category: FUNC
+  feature: irq008
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-008 定义的场景下，IRQ 路由无独立消费者 Pending；共享消费者须由驱动协调清除。
+  acceptance_criteria:
+  - IRQ 路由无独立消费者 Pending；共享消费者须由驱动协调清除。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ009.001
+  category: FUNC
+  feature: irq009
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-009 定义的场景下，event_o 仅对合格物理输入处理后的边沿事件输出 1 拍，受 IRQ_MODE 和 DETECT_EN 约束，不受 IRQ_ENABLE 约束；电平中断不每拍写事件
+    FIFO。
+  acceptance_criteria:
+  - event_o 仅对合格物理输入处理后的边沿事件输出 1 拍，受 IRQ_MODE 和 DETECT_EN 约束，不受 IRQ_ENABLE 约束；电平中断不每拍写事件 FIFO。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.IRQ009.002
+  category: FUNC
+  feature: irq009
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-IRQ-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-IRQ-009 定义的场景下，跨域消费者必须采用额外握手/计数/FIFO，不能直接同步短脉冲。
+  acceptance_criteria:
+  - 跨域消费者采用额外握手/计数/FIFO，不能直接同步短脉冲。
+  - 覆盖各模式、DETECT/ENABLE 组合、有效性恢复、清除与事件同拍；比较 Pending、方向、分组和 event_o。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT001.001
+  category: FUNC
+  feature: out001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-001 定义的场景下，OUT_DATA 与 OUT_OE 应能独立配置。软件应可在 OE=0 时预装载输出数据，再使能 OE。
+  acceptance_criteria:
+  - OUT_DATA 与 OUT_OE 能独立配置。软件可在 OE=0 时预装载输出数据，再使能 OE。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT001.002
+  category: FUNC
+  feature: out001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-001 定义的场景下，OUT_DATA 应读回软件输出值，IN_SYNC/IN_DATA 应读回输入通路值。
+  acceptance_criteria:
+  - OUT_DATA 读回软件输出值，IN_SYNC/IN_DATA 读回输入通路值。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT002.001
+  category: FUNC
+  feature: out002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-002 定义的场景下，正常模式先令 D=OUT_DATA XOR OUT_INV，再执行开漏转换。
+  acceptance_criteria:
+  - 正常模式先令 D=OUT_DATA XOR OUT_INV，再执行开漏转换。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT002.002
+  category: FUNC
+  feature: out002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-002 定义的场景下，推挽：physical_out=D，physical_oe=OUT_OE；开漏：physical_out=0，physical_oe=OUT_OE && !D。
+  acceptance_criteria:
+  - 推挽：physical_out=D，physical_oe=OUT_OE；开漏：physical_out=0，physical_oe=OUT_OE && !D。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT002.003
+  category: FUNC
+  feature: out002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-002 定义的场景下，最终 OE 再与 OUTPUT_CAP_MASK、output_owned_i 相与。
+  acceptance_criteria:
+  - 最终 OE 再与 OUTPUT_CAP_MASK、output_owned_i 相与。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT003.001
+  category: FUNC
+  feature: out003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-003 定义的场景下，OUT_SET/CLR/TOGGLE 分别对写 1 且 PSTRB 有效位执行置位/清除/翻转。OE_SET/CLR 语义相同。每事务原子更新，不进行软件读改写。
+  acceptance_criteria:
+  - OUT_SET/CLR/TOGGLE 分别对写 1 且 PSTRB 有效位执行置位/清除/翻转。OE_SET/CLR 语义相同。每事务原子更新，不进行软件读改写。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT004.001
+  category: FUNC
+  feature: out004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-004 定义的场景下，MASKED_LO 操作引脚 [15:0]、MASKED_HI 操作 [31:16]；PWDATA[31:16] 为位 mask，PWDATA[15:0] 为新值。仅 mask=1
+    的存在位改变。
+  acceptance_criteria:
+  - MASKED_LO 操作引脚 [15:0]、MASKED_HI 操作 [31:16]；PWDATA[31:16] 为位 mask，PWDATA[15:0] 为新值。仅 mask=1 的存在位改变。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT004.002
+  category: FUNC
+  feature: out004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-004 定义的场景下，mask/value 必须同一完整 32-bit 事务提交；读这些 WO 别名返回 0。
+  acceptance_criteria:
+  - mask/value 同一完整 32-bit 事务提交；读这些 WO 别名返回 0。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT005.001
+  category: FUNC
+  feature: out005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-005 定义的场景下，单次事务原子性不扩展到多个 Bank。
+  acceptance_criteria:
+  - 单次事务原子性不扩展到多个 Bank。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT005.002
+  category: FUNC
+  feature: out005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-005 定义的场景下，V1.0 不提供 OUT/OE Shadow Commit；跨寄存器输出配置应按“关 OE→配置数据/模式→开 OE”执行。
+  acceptance_criteria:
+  - V1.0 不提供 OUT/OE Shadow Commit；跨寄存器输出配置按“关 OE→配置数据/模式→开 OE”执行。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT005.003
+  category: FUNC
+  feature: out005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-005 定义的场景下，需要多引脚相同周期数据切换可使用单 Bank OUT_DATA 写。
+  acceptance_criteria:
+  - 需要多引脚相同周期数据切换可使用单 Bank OUT_DATA 写。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT006.001
+  category: FUNC
+  feature: out006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-006 定义的场景下，修改 PIN_CFG.OUT_OD 或 OUT_INV 时，对应 OUT_OE 必须为 0，否则整笔写报错。
+  acceptance_criteria:
+  - 修改 PIN_CFG.OUT_OD 或 OUT_INV 时，对 OUT_OE 为 0，否则整笔写报错。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT006.002
+  category: FUNC
+  feature: out006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-006 定义的场景下，OUT_DATA 在开漏释放与拉低之间切换属于正常允许操作。
+  acceptance_criteria:
+  - OUT_DATA 在开漏释放与拉低之间切换属于正常允许操作。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.OUT007.001
+  category: FUNC
+  feature: out007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-OUT-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-OUT-007 定义的场景下，OUT/OE 应在一次 APB 完成边沿更新，数字输出响应不增加隐藏时钟周期。该周期承诺不包含工艺传播、PAD、Pinmux 切换或外部 RC 延迟。
+  acceptance_criteria:
+  - OUT/OE 在一次 APB 完成边沿更新，数字输出响不增加隐藏时钟周期。该周期承诺不包含工艺传播、PAD、Pinmux 切换或外部 RC 延迟。
+  - 比较写前/写后 OUT/OE、引脚物理 OUT/OE 与能力/拥有权，覆盖推挽、开漏、反相和错误写。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.001
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/主域复位 vs 主业务写/事件
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 主域复位 vs 主业务写/事件 发生竞争时，IP 应满足：复位优先，业务事务不计完成；APB上游与主域同步复位。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“复位优先，业务事务不计完成；APB上游与主域同步复位”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.002
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/W1C vs 新中断/诊断/唤醒
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: W1C vs 新中断/诊断/唤醒 发生竞争时，IP 应满足：新事件置位优先。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“新事件置位优先”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.003
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/FIFO POP vs PUSH
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FIFO POP vs PUSH 发生竞争时，IP 应满足：按13节处理，满可同拍换入。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“按13节处理，满可同拍换入”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.004
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/FIFO FLUSH vs PUSH
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FIFO FLUSH vs PUSH 发生竞争时，IP 应满足：清旧队列，新事件按丢失记录。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“清旧队列，新事件按丢失记录”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.005
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/清首访问错误 vs 新错误
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 清首访问错误 vs 新错误 发生竞争时，IP 应满足：记录新错误。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“记录新错误”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.006
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/软件写锁定位
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件写锁定位 发生竞争时，IP 应满足：整笔错误，无部分更新。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“整笔错误，无部分更新”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.007
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/sleep进入 vs OUT写
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: sleep进入 vs OUT写 发生竞争时，IP 应满足：捕获旧物理输出，正常锁存接收新写。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“捕获旧物理输出，正常锁存接收新写”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.008
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/safe请求 vs sleep
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: safe请求 vs sleep 发生竞争时，IP 应满足：safe覆盖优先，休眠状态机继续保持。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“safe覆盖优先，休眠状态机继续保持”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.009
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/IRQ配置变化 vs 边沿
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IRQ配置变化 vs 边沿 发生竞争时，IP 应满足：新配置生效边沿重建基线，不解释为输入边沿。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“新配置生效边沿重建基线，不解释为输入边沿”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.GPIO.RACE.010
+  category: FUNC
+  feature: race
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/软件快照 vs 硬件快照
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件快照 vs 硬件快照 发生竞争时，IP 应满足：合并一次。
+  acceptance_criteria:
+  - 将两类激励对齐到同一完成/采样边沿，结果为“合并一次”；错开一拍作为对照。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS001.001
+  category: REG
+  feature: bus001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-001 定义的场景下，本地 CSR 支持零等待 APB 传输：PREADY=1；错误同样在合法 APB Access 阶段返回。写副作用仅在 PSEL && PENABLE && PREADY
+    && !PSLVERR 的完成边沿发生，Setup 阶段无副作用。
+  acceptance_criteria:
+  - 本地 CSR 支持零等待 APB 传输：PREADY=1；错误同样在合法 APB Access 阶段返回。写副作用仅在 PSEL && PENABLE && PREADY && !PSLVERR 的完成边沿发生，Setup 阶段无副作用。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS002.001
+  category: REG
+  feature: bus002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-002 定义的场景下，所有地址按 4 字节对齐。
+  acceptance_criteria:
+  - 所有地址按 4 字节对齐。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS002.002
+  category: REG
+  feature: bus002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-002 定义的场景下，PADDR[1:0]!=0、未定义字地址、向 RO 写入、非法字段编码、锁定目标写入、权限错误，均返回 PSLVERR=1，PRDATA=0，整个事务无业务副作用。错误记录寄存器更新属于允许的诊断副作用。
+  acceptance_criteria:
+  - PADDR[1:0]!=0、未定义字地址、向 RO 写入、非法字段编码、锁定目标写入、权限错误，均返回 PSLVERR=1，PRDATA=0，整个事务无业务副作用。错误记录寄存器更新属于允许的诊断副作用。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS003.001
+  category: REG
+  feature: bus003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-003 定义的场景下，RW/W1C/W1S/SET/CLR/TOGGLE 均按 PSTRB 展开的 byte mask 生效。RW 写 PSTRB=0 为无操作成功。
+  acceptance_criteria:
+  - RW/W1C/W1S/SET/CLR/TOGGLE 均按 PSTRB 展开的 byte mask 生效。RW 写 PSTRB=0 为无操作成功。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS003.002
+  category: REG
+  feature: bus003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-003 定义的场景下，掩码组合写和命令寄存器只允许 PSTRB=1111；否则报错。WO 读取返回 0。
+  acceptance_criteria:
+  - 掩码组合写和命令寄存器只允许 PSTRB=1111；否则报错。WO 读取返回 0。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS004.001
+  category: REG
+  feature: bus004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-004 定义的场景下，保留位读 0、写忽略；字段非法编码仅检查真正被字节使能写到的字段。不存在引脚位写忽略，存在但不支持相关输入/输出能力的位尝试置 1 返回错误。
+  acceptance_criteria:
+  - 保留位读 0、写忽略；字段非法编码仅检查真正被字节使能写到的字段。不存在引脚位写忽略，存在但不支持相关输入/输出能力的位尝试置 1 返回错误。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005.001
+  category: REG
+  feature: bus005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005 定义的场景下，读数据为事务完成边沿前的状态。读无隐含清除；仅显式 EVENT_POP 命令消费 FIFO。
+  acceptance_criteria:
+  - 读数据为事务完成边沿前的状态。读无隐含清除；仅显式 EVENT_POP 命令消费 FIFO。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005.002
+  category: REG
+  feature: bus005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005 定义的场景下，APB4 PPROT[0] 为 privileged，PPROT[1] 为 non-secure，PPROT[2] 为 instruction 属性。本 IP 拒绝 PPROT[2]=1
+    的访问。
+  acceptance_criteria:
+  - APB4 PPROT[0] 为 privileged，PPROT[1] 为 non-secure，PPROT[2] 为 instruction 属性。本 IP 拒绝 PPROT[2]=1 的访问。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005A.001
+  category: REG
+  feature: bus005a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005A 定义的场景下，命令寄存器写 0 为成功无操作。
+  acceptance_criteria:
+  - 命令寄存器写 0 为成功无操作。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005A.002
+  category: REG
+  feature: bus005a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005A 定义的场景下，有效命令位与保留位同时写入时忽略保留位；AON_CMD 多个有效命令位置 1 报错。
+  acceptance_criteria:
+  - 有效命令位与保留位同时写入时忽略保留位；AON_CMD 多个有效命令位置 1 报错。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005A.003
+  category: REG
+  feature: bus005a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005A 定义的场景下，更新使能字段使其从 1→1 不重建边沿历史；IRQ_MODE 即使写相同值仍按重配置建立基线。
+  acceptance_criteria:
+  - 更新使能字段使其从 1→1 不重建边沿历史；IRQ_MODE 即使写相同值仍按重配置建立基线。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS005A.004
+  category: REG
+  feature: bus005a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-005A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-005A 定义的场景下，针对某个 PIN_CFG 的写入，若只改变 OUT/SLEEP/GROUP 字段，不重置输入滤波历史；仅 IRQ_MODE 写字段被有效字节覆盖时重建中断基线。
+  acceptance_criteria:
+  - 针对某个 PIN_CFG 的写入，若只改变 OUT/SLEEP/GROUP 字段，不重置输入滤波历史；仅 IRQ_MODE 写字段被有效字节覆盖时重建中断基线。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS006.001
+  category: REG
+  feature: bus006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-006 定义的场景下，AON 使用主域 staging/命令/结果窗口，不拉长 APB 等待。
+  acceptance_criteria:
+  - AON 使用主域 staging/命令/结果窗口，不拉长 APB 等待。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.BUS006.002
+  category: REG
+  feature: bus006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-BUS-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-BUS-006 定义的场景下，忙时冲突命令返回错误，软件读 BUSY/DONE/TIMEOUT。禁止等待停止的 AON 时钟而永久占用 APB。
+  acceptance_criteria:
+  - 忙时冲突命令返回错误，软件读 BUSY/DONE/TIMEOUT。禁止等待停止的 AON 时钟而永久占用 APB。
+  - 覆盖 Setup/Access、背靠背访问及合法/非法地址、PSTRB、PPROT；只在合法完成边沿产生业务副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.MAP.001
+  category: REG
+  feature: map
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/MAP
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应在固定 16 KiB APB 空间访问全局、Bank、逐引脚及 AON 窗口，地址与字段编码须兼容输入合同 §15；没有列出的字地址均非法。
+  acceptance_criteria:
+  - 逐项比对后续 SystemRDL 与来源 §15；所有地址空间空洞、范围外 Bank/引脚以及 RO 写返回错误。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.IDENTITY.002
+  category: REG
+  feature: identity
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/IDENTITY
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应可读取 IP_ID=0x4750494F、VERSION=0x00010000 和 FEATURE/GEOMETRY，用于识别产品、功能裁剪、引脚数、Bank 数、中断组数和同步级数。
+  acceptance_criteria:
+  - 在最小、默认、最大及功能裁剪配置读回身份/能力，且软件写不能改变常量。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.FAULT.003
+  category: REG
+  feature: fault
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/FAULT
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT_STATUS 应区分访问错误、FIFO 溢出、水位、AON 超时/错误、Strap 过早、parity 和诊断实时汇总；FAULT_IRQ_ENABLE 默认关闭报警输出。
+  acceptance_criteria:
+  - 逐一置故障并检查状态、使能前后的 fault_irq_o，互不混淆实时源与 sticky 源。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.FIRST.004
+  category: REG
+  feature: first
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/FIRST
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT_CLEAR.ACCESS 应同时释放 ACCESS_FIRST 首故障槽；与新错误同拍时应记录新错误并保持故障置位。
+  acceptance_criteria:
+  - 先产生错误占槽，再同拍清除和新错误；检查新地址、PPROT、读写属性与有效标志。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.LOST.005
+  category: REG
+  feature: lost
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/LOST
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT_CLEAR 的 FIFO_OVERFLOW 只应清溢出标志，不能清 LOST；FIFO_CMD.CLEAR_LOST 应清丢失计数和溢出标志，并服从新丢失置位优先。
+  acceptance_criteria:
+  - 预置非零 LOST/OVERFLOW，分别执行两种清除并与新丢失竞争，检查各自效果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.AONRESULT.006
+  category: REG
+  feature: aonresult
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/AONRESULT
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每个成功 AON 应答应更新整组 Pending、有效输入、锁、活动配置的主域读回窗口；DONE 保持至下一合法命令接受。
+  acceptance_criteria:
+  - 对每个 Bank 依次执行四种合法命令并核对完整读回；拒绝命令不得伪造成功读回或清 DONE。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.GPIO.DEFAULT.007
+  category: REG
+  feature: default
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§15/DEFAULT
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: RW/W1S 默认零，来源 §15 所列例外必须按各自默认值实现；RO 动态状态随硬件、RO 常量在暖复位保持。
+  acceptance_criteria:
+  - 由 SystemRDL 生成 RAL reset 检查，并单独验证动态状态、POR 保持寄存器及 BOOT 参数。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC002.001
+  category: PERF
+  feature: arc002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-002 定义的场景下，未使用通道和裁剪功能应允许综合移除。
+  acceptance_criteria:
+  - 未使用通道和裁剪功能允许综合移除。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC002.002
+  category: PERF
+  feature: arc002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-002 定义的场景下，输入可靠同步要求不可被运行时配置绕过；资源实现选择在 HLD/LLD 说明。
+  acceptance_criteria:
+  - 输入可靠同步要求不可被运行时配置绕过；资源实现选择在 HLD/LLD 说明。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC004.001
+  category: PERF
+  feature: arc004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-004 定义的场景下，V1.0 无 AXI/AHB 接口、无自动波形发生器、PWM、协议引擎或专用高速脉冲计数器。
+  acceptance_criteria:
+  - V1.0 无 AXI/AHB 接口、无自动波形发生器、PWM、协议引擎或专用高速脉冲计数器。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC004.002
+  category: PERF
+  feature: arc004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-004 定义的场景下，APB 持续零等待访问最短每两主时钟完成一次写；通过 TOGGLE 连续写实现完整输出方波最快每四主周期一周期，实际受上游限制。
+  acceptance_criteria:
+  - APB 持续零等待访问最短每两主时钟完成一次写；通过 TOGGLE 连续写实现完整输出方波最快每四主周期一周期，实际受上游限制。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC005.001
+  category: PERF
+  feature: arc005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-005 定义的场景下，综合报告至少覆盖 N_GPIO=8/32/128、最小裁剪和完整配置，分别报告面积、关键路径、动态功耗估计和 AON 成本。
+  acceptance_criteria:
+  - 综合报告至少覆盖 N_GPIO=8/32/128、最小裁剪和完整配置，分别报告面积、关键路径、动态功耗估计和 AON 成本。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.GPIO.ARC005.002
+  category: PERF
+  feature: arc005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-ARC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-ARC-005 定义的场景下，频率目标由目标库/工艺集成约束给出，本文不虚构 MHz/PPA 指标。
+  acceptance_criteria:
+  - 频率目标由目标库/工艺集成约束给出，本文不虚构 MHz/PPA 指标。
+  - 审查对应实现或综合/时序/功耗报告，保留配置和目标库约束，未测项目不得宣称通过。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.001
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/主功能 CSR、事件 FIFO、主 Pending、快照与 Strap
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 主功能 CSR、事件 FIFO、主 Pending、快照与 Strap，冷复位应恢复默认值；main 暖复位应恢复默认值。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 主功能 CSR、事件 FIFO、主 Pending、快照与 Strap 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.002
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/CFG_LOCK、DATA_LOCK、GLOBAL_LOCK 与 ACCESS_CFG
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 CFG_LOCK、DATA_LOCK、GLOBAL_LOCK 与 ACCESS_CFG，冷复位应锁清零、策略恢复 BOOT 参数默认；main 暖复位应保持原值。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 CFG_LOCK、DATA_LOCK、GLOBAL_LOCK 与 ACCESS_CFG 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.003
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/主 parity 故障安全请求
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 主 parity 故障安全请求，冷复位应清除；main 暖复位应保持。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 主 parity 故障安全请求 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.004
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/AON 活动配置、WAKE_LOCK 与 Pending
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 AON 活动配置、WAKE_LOCK 与 Pending，冷复位应恢复默认值；main 暖复位应保持。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 AON 活动配置、WAKE_LOCK 与 Pending 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.005
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/主域 AON staging 与读回缓存
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 主域 AON staging 与读回缓存，冷复位应清零并等待通道恢复 READY；main 暖复位应清零并等待通道恢复 READY。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 主域 AON staging 与读回缓存 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.STATE.006
+  category: RESET
+  feature: state
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§16/休眠覆盖保持值
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 对 休眠覆盖保持值，冷复位应清除并进入 RESET_OUT/OE 输出；main 暖复位应清除并进入 RESET_OUT/OE 输出。
+  acceptance_criteria:
+  - 分别在空闲、业务活动及已置锁/故障状态施加冷、暖复位，检查 休眠覆盖保持值 的结果。
+  - 复位期间业务事务不计完成，APB 上游应与主功能域同步复位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.GPIO.CLOCK.001
+  category: RESET
+  feature: clock
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  - simulation
+  description: POR 应在各域异步置位、同步释放；main_rst_ni 只复位主功能，aon_rst_ni 只能由冷复位树控制。
+  acceptance_criteria:
+  - 独立改变 pclk/aon_clk 相位、停止一个域时钟并施加复位，释放顺序及保持状态符合合同。
+  - 检查时钟/复位树、RDC 与恢复移除约束，不能以数字仿真代替物理复位签核。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP001.001
+  category: LP
+  feature: lp001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-001 定义的场景下，每引脚 SLEEP_MODE 为 0=保持、1=强制低、2=强制高、3=高阻。
+  acceptance_criteria:
+  - 每引脚 SLEEP_MODE 为 0=保持、1=强制低、2=强制高、3=高阻。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP001.002
+  category: LP
+  feature: lp001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-001 定义的场景下，强制低/高是物理推挽 OUT=0/1、OE=1；高阻 OE=0；均仍受输出能力/拥有权约束。
+  acceptance_criteria:
+  - 强制低/高是物理推挽 OUT=0/1、OE=1；高阻 OE=0；均仍受输出能力/拥有权约束。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP001.003
+  category: LP
+  feature: lp001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-001 定义的场景下，GPIO 对开漏线路通常应配置保持或高阻，由系统配置负责选择。
+  acceptance_criteria:
+  - GPIO 对开漏线路通常配置保持或高阻，由系统配置负责选择。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP002.001
+  category: LP
+  feature: lp002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-002 定义的场景下，sleep_req_i 拉高的下一主域边沿锁存当时正常模式有效 physical_out/oe 到 sleep_hold，应用休眠覆盖并拉高 sleep_ack_o。请求保持期间
+    ack 保持。请求拉低的下一边沿解除覆盖并拉低 ack。
+  acceptance_criteria:
+  - sleep_req_i 拉高的下一主域边沿锁存当时正常模式有效 physical_out/oe 到 sleep_hold，用休眠覆盖并拉高 sleep_ack_o。请求保持期间 ack 保持。请求拉低的下一边沿解除覆盖并拉低 ack。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP003.001
+  category: LP
+  feature: lp003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-003 定义的场景下，保持捕获使用进入边沿前的 OUT/OE。
+  acceptance_criteria:
+  - 保持捕获使用进入边沿前的 OUT/OE。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP003.002
+  category: LP
+  feature: lp003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-003 定义的场景下，若同拍完成 APB OUT 写，先前输出被保持，新数据进入正常锁存，在退出休眠后生效。
+  acceptance_criteria:
+  - 若同拍完成 APB OUT 写，先前输出被保持，新数据进入正常锁存，在退出休眠后生效。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP003.003
+  category: LP
+  feature: lp003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-003 定义的场景下，休眠有效期间允许写 OUT/OE，但 PIN_CFG.SLEEP_MODE 写入报错；CFG_LOCK 仍生效。
+  acceptance_criteria:
+  - 休眠有效期间允许写 OUT/OE，但 PIN_CFG.SLEEP_MODE 写入报错；CFG_LOCK 仍生效。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP004.001
+  category: LP
+  feature: lp004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-004 定义的场景下，主域内输出选择优先级：复位默认值 > safe_req_i 或内部 parity 安全请求 > 休眠覆盖 > 正常输出；最终始终应用 capability/ownership
+    门控。
+  acceptance_criteria:
+  - 主域内输出选择优先级：复位默认值 > safe_req_i 或内部 parity 安全请求 > 休眠覆盖 > 正常输出；最终始终用 capability/ownership 门控。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP004.002
+  category: LP
+  feature: lp004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-004 定义的场景下，safe 覆盖用 HW_SAFE_OUT/OE 物理值，旁路反相/开漏。safe_req 解除后回到仍有效的休眠或正常状态。
+  acceptance_criteria:
+  - safe 覆盖用 HW_SAFE_OUT/OE 物理值，旁路反相/开漏。safe_req 解除后回到仍有效的休眠或正常状态。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP005.001
+  category: LP
+  feature: lp005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-005 定义的场景下，主域断钟但不断电时已锁存输出继续保持。
+  acceptance_criteria:
+  - 主域断钟但不断电时已锁存输出继续保持。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP005.002
+  category: LP
+  feature: lp005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-005 定义的场景下，主域掉电时，本 IP 主域 RTL 不保证保持；SoC 必须在断电前通过 AON PAD 控制/retention/isolation 接管，且退出时先恢复值和路由再解除接管。
+  acceptance_criteria:
+  - 主域掉电时，本 IP 主域 RTL 不保证保持；SoC 在断电前通过 AON PAD 控制/retention/isolation 接管，且退出时先恢复值和路由再解除接管。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP006.001
+  category: LP
+  feature: lp006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-006 定义的场景下，V1.0 休眠覆盖仅控制 GPIO 输出，不自动关闭输入/中断。
+  acceptance_criteria:
+  - V1.0 休眠覆盖仅控制 GPIO 输出，不自动关闭输入/中断。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.LP006.002
+  category: LP
+  feature: lp006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-LP-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-LP-006 定义的场景下，软件需要降低输入处理功耗时显式配置 IN_ENABLE；若依赖主域中断唤醒则不能停其时钟。
+  acceptance_criteria:
+  - 软件需要降低输入处理功耗时显式配置 IN_ENABLE；若依赖主域中断唤醒则不能停其时钟。
+  - 逐拍检查 sleep 请求建立/解除、同拍 APB 写、safe 抢占、停钟及恢复，比较最终 OUT/OE 与 ack。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK001.001
+  category: LP
+  feature: wak001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-001
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-001 定义的场景下，AON_WAKE_EN=1 时，IP 应提供独立于主功能时钟运行的常开唤醒能力。
+  acceptance_criteria:
+  - AON_WAKE_EN=1 时，IP 提供独立于主功能时钟运行的常开唤醒能力。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK001.002
+  category: LP
+  feature: wak001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-001
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-001 定义的场景下，AON 应采样独立输入，不依赖主域 IN_ENABLE、IRQ_ENABLE、反相和滤波。
+  acceptance_criteria:
+  - AON 采样独立输入，不依赖主域 IN_ENABLE、IRQ_ENABLE、反相和滤波。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK001.003
+  category: LP
+  feature: wak001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-001
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-001 定义的场景下，WAKE_MODE 编码同 IRQ_MODE，以物理同步输入为依据。
+  acceptance_criteria:
+  - WAKE_MODE 编码同 IRQ_MODE，以物理同步输入为依据。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK002.001
+  category: LP
+  feature: wak002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-002
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-002 定义的场景下，AON 每引脚固定 2 级同步器；Bank 共享 WAKE_DIV+1 周期采样节拍；连续 WAKE_COUNT+1 次一致样本后更新检测值，WAKE_COUNT 为 8-bit。
+  acceptance_criteria:
+  - AON 每引脚固定 2 级同步器；Bank 共享 WAKE_DIV+1 周期采样节拍；连续 WAKE_COUNT+1 次一致样本后更新检测值，WAKE_COUNT 为 8-bit。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK002.002
+  category: LP
+  feature: wak002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-002
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-002 定义的场景下，WAKE_MODE=0 或 WAKE_ENABLE=0 停止新增事件。首次有效值只建立边沿基线，电平可立即触发。
+  acceptance_criteria:
+  - WAKE_MODE=0 或 WAKE_ENABLE=0 停止新增事件。首次有效值只建立边沿基线，电平可立即触发。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK003.001
+  category: LP
+  feature: wak003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-003
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-003 定义的场景下，WAKE_PENDING 为 AON W1C，事件置位优先，wake_req_o=OR(WAKE_PENDING)，不因关闭 WAKE_ENABLE 自动撤销已记录请求。软件必须显式清除；持续电平仍可立即重置位。
+  acceptance_criteria:
+  - WAKE_PENDING 为 AON W1C，事件置位优先，wake_req_o=OR(WAKE_PENDING)，不因关闭 WAKE_ENABLE 自动撤销已记录请求。软件显式清除；持续电平仍可立即重置位。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK004.001
+  category: LP
+  feature: wak004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-004
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-004 定义的场景下，每 Bank 主域窗口维护 staging：ENABLE、MODE_LO/MID/HI（三个位平面）、DIV、COUNT、CLEAR_MASK。模式由三个平面组成 3-bit
+    编码。
+  acceptance_criteria:
+  - 每 Bank 主域窗口维护 staging：ENABLE、MODE_LO/MID/HI（三个位平面）、DIV、COUNT、CLEAR_MASK。模式由三个平面组成 3-bit 编码。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK004.002
+  category: LP
+  feature: wak004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-004
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-004 定义的场景下，提交前检查存在且启用引脚的模式、输入能力和 WAKE_LOCK。
+  acceptance_criteria:
+  - 提交前检查存在且启用引脚的模式、输入能力和 WAKE_LOCK。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK005.001
+  category: LP
+  feature: wak005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-005
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-005 定义的场景下，AON_CMD 一次只接受一个 Bank 的一个命令：bit0 COMMIT、bit1 SNAPSHOT、bit2 CLEAR、bit3 LOCK；必须 one-hot。
+  acceptance_criteria:
+  - AON_CMD 一次只接受一个 Bank 的一个命令：bit0 COMMIT、bit1 SNAPSHOT、bit2 CLEAR、bit3 LOCK； one-hot。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK005.002
+  category: LP
+  feature: wak005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-005
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-005 定义的场景下，全 IP 仅一个 outstanding AON 命令。
+  acceptance_criteria:
+  - 全 IP 仅一个 outstanding AON 命令。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK005.003
+  category: LP
+  feature: wak005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-005
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-005 定义的场景下，COMMIT 原子传输该 Bank 整组配置，AON 生效后返回 ACK；重建该 Bank 唤醒历史但不清 Pending。
+  acceptance_criteria:
+  - COMMIT 原子传输该 Bank 整组配置，AON 生效后返回 ACK；重建该 Bank 唤醒历史但不清 Pending。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK006.001
+  category: LP
+  feature: wak006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-006
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-006 定义的场景下，SNAPSHOT 在 AON 单个边沿捕获 Pending 和有效位，经 mailbox 返回主域缓存。CLEAR 在 AON 按 CLEAR_MASK 清除 Pending，然后返回清除后（含同拍新事件）状态。LOCK
+    使用 CLEAR_MASK 作为置锁 mask，在 AON 域置 WAKE_LOCK，软件 SNAPSHOT 同时返回锁状态。
+  acceptance_criteria:
+  - SNAPSHOT 在 AON 单个边沿捕获 Pending 和有效位，经 mailbox 返回主域缓存。CLEAR 在 AON 按 CLEAR_MASK 清除 Pending，然后返回清除后（含同拍新事件）状态。LOCK 使用 CLEAR_MASK
+    作为置锁 mask，在 AON 域置 WAKE_LOCK，软件 SNAPSHOT 同时返回锁状态。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK007.001
+  category: LP
+  feature: wak007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-007
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-007 定义的场景下，staging 可在 BUSY=0 时写，BUSY=1 时所有 staging/命令写入报错。
+  acceptance_criteria:
+  - staging 可在 BUSY=0 时写，BUSY=1 时所有 staging/命令写入报错。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK007.002
+  category: LP
+  feature: wak007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-007
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-007 定义的场景下，COMMIT 对包含已锁引脚的配置不得改变锁定字段；锁定位的值与当前 AON 活动配置不一致则整个 Bank COMMIT 失败。
+  acceptance_criteria:
+  - COMMIT 对包含已锁引脚的配置不得改变锁定字段；锁定位的值与当前 AON 活动配置不一致则整个 Bank COMMIT 失败。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK007.003
+  category: LP
+  feature: wak007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-007
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-007 定义的场景下，WAKE_DIV/COUNT 在该 Bank 任一 WAKE_LOCK=1 时不得改变。
+  acceptance_criteria:
+  - WAKE_DIV/COUNT 在该 Bank 任一 WAKE_LOCK=1 时不得改变。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK008.001
+  category: LP
+  feature: wak008
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-008
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-008 定义的场景下，main_rst_ni 不影响 AON 活动配置、WAKE_LOCK、Pending。
+  acceptance_criteria:
+  - main_rst_ni 不影响 AON 活动配置、WAKE_LOCK、Pending。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK008.002
+  category: LP
+  feature: wak008
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-008
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-008 定义的场景下，主域 staging 复位为 0；暖复位后要修改含锁引脚 Bank，先执行 SNAPSHOT，返回的活动配置填充 AON_READBACK 窗口，软件据此重建 staging。未完成同步前不得自动重放旧请求。
+  acceptance_criteria:
+  - 主域 staging 复位为 0；暖复位后要修改含锁引脚 Bank，先执行 SNAPSHOT，返回的活动配置填充 AON_READBACK 窗口，软件据此重建 staging。未完成同步前不得自动重放旧请求。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK009.001
+  category: LP
+  feature: wak009
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-009
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-009 定义的场景下，AON 命令应通过跨域请求/应答机制传递，传输数据在请求到应答期间保持稳定且一致。
+  acceptance_criteria:
+  - AON 命令通过跨域请求/答机制传递，传输数据在请求到答期间保持稳定且一致。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK009.002
+  category: LP
+  feature: wak009
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-009
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-009 定义的场景下，主复位后应先恢复通道空闲一致性，完成后 READY=1；READY=0 时命令返回错误。
+  acceptance_criteria:
+  - 主复位后先恢复通道空闲一致性，完成后 READY=1；READY=0 时命令返回错误。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK010.001
+  category: LP
+  feature: wak010
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-010
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-010 定义的场景下，AON_TIMEOUT 为 24-bit 主时钟周期数，默认 65535，最小 16。
+  acceptance_criteria:
+  - AON_TIMEOUT 为 24-bit 主时钟周期数，默认 65535，最小 16。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK010.002
+  category: LP
+  feature: wak010
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-010
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-010 定义的场景下，到期设置 TIMEOUT 和全局故障，但 BUSY 保持，禁止复用 mailbox；迟到 ACK 仍完成原操作。超时不保证操作未生效，也不提供命令撤销。软件应查询/恢复
+    AON 后确认实际状态，不能直接重发。
+  acceptance_criteria:
+  - 到期设置 TIMEOUT 和全局故障，但 BUSY 保持，禁止复用 mailbox；迟到 ACK 仍完成原操作。超时不保证操作未生效，也不提供命令撤销。软件查询/恢复 AON 后确认实际状态，不能直接重发。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK010A.001
+  category: LP
+  feature: wak010a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-010A
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-010A 定义的场景下，AON_STATUS.TIMEOUT 为命令局部状态，下一合法命令接受时清除；FAULT_STATUS.AON_TIMEOUT 为独立 sticky 诊断，仅 FAULT_CLEAR
+    或主复位清除。ERROR 与 AON_ERROR 同理。超时之后 BUSY 未解除时，下一命令不可能被接受。
+  acceptance_criteria:
+  - AON_STATUS.TIMEOUT 为命令局部状态，下一合法命令接受时清除；FAULT_STATUS.AON_TIMEOUT 为独立 sticky 诊断，仅 FAULT_CLEAR 或主复位清除。ERROR 与 AON_ERROR 同理。超时之后
+    BUSY 未解除时，下一命令不可能被接受。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK010A.002
+  category: LP
+  feature: wak010a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-010A
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-010A 定义的场景下，AON硬件运行错误不能仅以APB错误代替，必须通过应答ERROR和FAULT_STATUS报告。
+  acceptance_criteria:
+  - AON硬件运行错误不能仅以APB错误代替，通过答ERROR和FAULT_STATUS报告。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK011.001
+  category: LP
+  feature: wak011
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-011
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-011 定义的场景下，暖复位中断已发送命令时，IP 应保证旧命令不重复执行，即使 AON 已执行。主域 READY 返回前应排空旧应答。冷复位应清除两域初始状态；应交付满足这些语义的 CDC/RDC
+    分析。
+  acceptance_criteria:
+  - 暖复位中断已发送命令时，IP 保证旧命令不重复执行，即使 AON 已执行。主域 READY 返回前排空旧答。冷复位清除两域初始状态；交付满足这些语义的 CDC/RDC 分析。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK012.001
+  category: LP
+  feature: wak012
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-012
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-012 定义的场景下，PMU 仅在 COMMIT DONE、wake_req_o=0、主域 sleep_ack_o=1 及系统 PAD 接管完成后允许关电。
+  acceptance_criteria:
+  - PMU 仅在 COMMIT DONE、wake_req_o=0、主域 sleep_ack_o=1 及系统 PAD 接管完成后允许关电。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.GPIO.WAK012.002
+  category: LP
+  feature: wak012
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-WAK-012
+  applicability:
+    expr: AON_WAKE_EN == 1
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-WAK-012 定义的场景下，AON 检测全程运行，入睡边界发生事件应阻止关电或触发立即恢复；该最终仲裁属于 PMU。
+  acceptance_criteria:
+  - AON 检测全程运行，入睡边界发生事件阻止关电或触发立即恢复；该最终仲裁属于 PMU。
+  - 以异步时钟比、AON 停钟、每握手阶段暖复位、超时和迟到 ACK 检查命令次数、状态与活动配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG001.001
+  category: SAFE
+  feature: diag001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-001
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-001 定义的场景下，DIAG_EN 启用逐引脚物理回读比较，使用 IN_SYNC 而非 IN_DATA。
+  acceptance_criteria:
+  - DIAG_EN 启用逐引脚物理回读比较，使用 IN_SYNC 而非 IN_DATA。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG001.002
+  category: SAFE
+  feature: diag001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-001
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-001 定义的场景下，只有输入有效、输出拥有权成立，且当前最终 OE=1 时检查；高阻、开漏释放不检查。
+  acceptance_criteria:
+  - 只有输入有效、输出拥有权成立，且当前最终 OE=1 时检查；高阻、开漏释放不检查。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG002.001
+  category: SAFE
+  feature: diag002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-002
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-002 定义的场景下，最终 OUT/OE、输出拥有权、输入 available、休眠/安全状态变化时重启消隐计数；BLANK=DIAG_CFG.BLANK，合法值至少 SYNC_STAGES+2。
+  acceptance_criteria:
+  - 最终 OUT/OE、输出拥有权、输入 available、休眠/安全状态变化时重启消隐计数；BLANK=DIAG_CFG.BLANK，合法值至少 SYNC_STAGES+2。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG002.002
+  category: SAFE
+  feature: diag002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-002
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-002 定义的场景下，消隐 BLANK 个完整周期后比较物理回读与期望 OUT。
+  acceptance_criteria:
+  - 消隐 BLANK 个完整周期后比较物理回读与期望 OUT。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG002.003
+  category: SAFE
+  feature: diag002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-002
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-002 定义的场景下，持续 M=DIAG_CFG.M_MINUS_ONE+1 次失配后置 DIAG_PENDING[i]；匹配时失配计数清零。
+  acceptance_criteria:
+  - 持续 M=DIAG_CFG.M_MINUS_ONE+1 次失配后置 DIAG_PENDING[i]；匹配时失配计数清零。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG002.004
+  category: SAFE
+  feature: diag002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-002
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-002 定义的场景下，复位默认 BLANK=SYNC_STAGES+2，M=1。
+  acceptance_criteria:
+  - 复位默认 BLANK=SYNC_STAGES+2，M=1。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG003.001
+  category: SAFE
+  feature: diag003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-003
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-003 定义的场景下，DIAG_PENDING 为 W1C，持续故障到阈值后每拍保持置位优先，软件清除不能隐藏未恢复失配。
+  acceptance_criteria:
+  - DIAG_PENDING 为 W1C，持续故障到阈值后每拍保持置位优先，软件清除不能隐藏未恢复失配。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG003.002
+  category: SAFE
+  feature: diag003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-003
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-003 定义的场景下，DIAG_PENDING & DIAG_ENABLE 的 OR 进入 FAULT_STATUS 的实时汇总，不自动控制主安全覆盖。
+  acceptance_criteria:
+  - DIAG_PENDING & DIAG_ENABLE 的 OR 进入 FAULT_STATUS 的实时汇总，不自动控制主安全覆盖。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG004.001
+  category: SAFE
+  feature: diag004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-004
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-004 定义的场景下，DIAG_TEST 为 WO，写 1 对应引脚置 DIAG_PENDING，测试后应软件清除。它验证记录/报警路径，不验证 PAD、电气驱动或完整输入路径。
+  acceptance_criteria:
+  - DIAG_TEST 为 WO，写 1 对引脚置 DIAG_PENDING，测试后软件清除。它验证记录/报警路径，不验证 PAD、电气驱动或完整输入路径。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG004.002
+  category: SAFE
+  feature: diag004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-004
+  applicability:
+    expr: DIAG_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-004 定义的场景下，V1.0 不提供输入软件强制回环，避免与正常输入有效性混淆。
+  acceptance_criteria:
+  - V1.0 不提供输入软件强制回环，避免与正常输入有效性混淆。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG005.001
+  category: SAFE
+  feature: diag005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-005
+  applicability:
+    expr: CFG_PARITY_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-005 定义的场景下，CFG_PARITY_EN=1 时，对 OUT_DATA、OUT_OE、PIN_CFG、IRQ_ENABLE、IRQ_DETECT_EN、ACCESS_CFG 的存储值提供每
+    32-bit 字偶 parity。每拍检查；部分写根据合并后的完整字重算 parity。
+  acceptance_criteria:
+  - CFG_PARITY_EN=1 时，对 OUT_DATA、OUT_OE、PIN_CFG、IRQ_ENABLE、IRQ_DETECT_EN、ACCESS_CFG 的存储值提供每 32-bit 字偶 parity。每拍检查；部分写根据合并后的完整字重算
+    parity。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG005.002
+  category: SAFE
+  feature: diag005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-005
+  applicability:
+    expr: CFG_PARITY_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-005 定义的场景下，故障置 FAULT_STATUS.PARITY，内部安全请求保持到冷复位；软件不能通过 W1C解除安全请求。暖复位不清该锁存故障。parity 检测延迟上界为 1 个运行的主时钟周期。
+  acceptance_criteria:
+  - 故障置 FAULT_STATUS.PARITY，内部安全请求保持到冷复位；软件不能通过 W1C解除安全请求。暖复位不清该锁存故障。parity 检测延迟上界为 1 个运行的主时钟周期。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG006.001
+  category: SAFE
+  feature: diag006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-006
+  applicability:
+    expr: CFG_PARITY_EN == 1
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-006 定义的场景下，parity 故障注入寄存器只在 CFG_PARITY_EN=1 且 secure/privileged 访问时支持：选择现有 Bank OUT_DATA parity
+    bit 翻转一次，不更改数据；GLOBAL_LOCK=1 时禁止注入。用于验证检测和 HW_SAFE 输出。其余冗余/TMR/锁步不属于本 V1.0 实现承诺。
+  acceptance_criteria:
+  - parity 故障注入寄存器只在 CFG_PARITY_EN=1 且 secure/privileged 访问时支持：选择现有 Bank OUT_DATA parity bit 翻转一次，不更改数据；GLOBAL_LOCK=1 时禁止注入。用于验证检测和
+    HW_SAFE 输出。其余冗余/TMR/锁步不属于本 V1.0 实现承诺。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG007.001
+  category: SAFE
+  feature: diag007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-007 定义的场景下，安全交付不得以本功能列表声明 ASIL 或诊断覆盖率。
+  acceptance_criteria:
+  - 安全交付不得以本功能列表声明 ASIL 或诊断覆盖率。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.GPIO.DIAG007.002
+  category: SAFE
+  feature: diag007
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在 GPIO-DIAG-007 定义的场景下，必须结合 FMEDA、故障模型、PAD 与外部电路、时钟和电源假设单独评估；输出回读不能保证覆盖所有开路/短路。
+  acceptance_criteria:
+  - 结合 FMEDA、故障模型、PAD 与外部电路、时钟和电源假设单独评估；输出回读不能保证覆盖所有开路/短路。
+  - 检查消隐/失配阈值前后、开漏释放、W1C 竞争和 parity 注入，核对故障与安全输出及复位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC001.001
+  category: SEC
+  feature: sec001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-001 定义的场景下，CFG_LOCK、DATA_LOCK、WAKE_LOCK 均为每引脚 W1S；GLOBAL_LOCK 为全局 W1S。锁仅冷复位清除，main_rst_ni 不清锁。暖复位仍可将被锁寄存器恢复默认值，锁阻止后续软件写，非防复位机制。
+  acceptance_criteria:
+  - CFG_LOCK、DATA_LOCK、WAKE_LOCK 均为每引脚 W1S；GLOBAL_LOCK 为全局 W1S。锁仅冷复位清除，main_rst_ni 不清锁。暖复位仍可将被锁寄存器恢复默认值，锁阻止后续软件写，非防复位机制。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC002.001
+  category: SEC
+  feature: sec002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-002 定义的场景下，CFG_LOCK 保护 PIN_CFG、FILTER_CFG、DEBOUNCE_CFG、DIAG_CFG、IRQ_DETECT_EN、IRQ_ENABLE；DATA_LOCK
+    保护 OUT/OE 所有写入口。
+  acceptance_criteria:
+  - CFG_LOCK 保护 PIN_CFG、FILTER_CFG、DEBOUNCE_CFG、DIAG_CFG、IRQ_DETECT_EN、IRQ_ENABLE；DATA_LOCK 保护 OUT/OE 所有写入口。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC002.002
+  category: SEC
+  feature: sec002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-002 定义的场景下，GLOBAL_LOCK 阻止新增配置、共享分频/FIFO 控制/访问策略修改和清故障命令以外的诊断配置；不阻止正常 OUT/OE、Pending 清除、FIFO POP、快照触发。DATA_LOCK
+    才锁正常数据通路。
+  acceptance_criteria:
+  - GLOBAL_LOCK 阻止新增配置、共享分频/FIFO 控制/访问策略修改和清故障命令以外的诊断配置；不阻止正常 OUT/OE、Pending 清除、FIFO POP、快照触发。DATA_LOCK 才锁正常数据通路。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC002A.001
+  category: SEC
+  feature: sec002a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-002A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-002A 定义的场景下，GLOBAL_LOCK 同时禁止 IN_ENABLE、IRQ_DETECT_EN、IRQ_ENABLE、EVENT_ENABLE、DIAG_ENABLE、所有逐引脚配置，以及
+    FAULT_IRQ_ENABLE 的写入；允许设置更多 CFG_LOCK/DATA_LOCK。
+  acceptance_criteria:
+  - GLOBAL_LOCK 同时禁止 IN_ENABLE、IRQ_DETECT_EN、IRQ_ENABLE、EVENT_ENABLE、DIAG_ENABLE、所有逐引脚配置，以及 FAULT_IRQ_ENABLE 的写入；允许设置更多 CFG_LOCK/DATA_LOCK。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC002A.002
+  category: SEC
+  feature: sec002a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-002A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-002A 定义的场景下，WAKE_LOCK 只能通过 AON LOCK 命令更新，该命令固定要求 secure/privileged（ACCESS_CTRL_EN=1 时），且受 GLOBAL_LOCK
+    限制。
+  acceptance_criteria:
+  - WAKE_LOCK 只能通过 AON LOCK 命令更新，该命令固定要求 secure/privileged（ACCESS_CTRL_EN=1 时），且受 GLOBAL_LOCK 限制。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC002A.003
+  category: SEC
+  feature: sec002a
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-002A
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-002A 定义的场景下，IRQ_TEST/DIAG_TEST 在 GLOBAL_LOCK=1 时禁止。
+  acceptance_criteria:
+  - IRQ_TEST/DIAG_TEST 在 GLOBAL_LOCK=1 时禁止。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC003.001
+  category: SEC
+  feature: sec003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-003 定义的场景下，写一个锁定的 RW 字段，即使新值相同也报错；位操作 mask=0 不视为尝试修改。
+  acceptance_criteria:
+  - 写一个锁定的 RW 字段，即使新值相同也报错；位操作 mask=0 不视为尝试修改。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC003.002
+  category: SEC
+  feature: sec003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-003 定义的场景下，共享 Bank 分频在该 Bank 任一 CFG_LOCK=1 时禁止修改。锁定同样覆盖可用引脚的所有别名入口。
+  acceptance_criteria:
+  - 共享 Bank 分频在该 Bank 任一 CFG_LOCK=1 时禁止修改。锁定同样覆盖可用引脚的所有别名入口。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC004.001
+  category: SEC
+  feature: sec004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-004 定义的场景下，ACCESS_CTRL_EN=1 时，ACCESS_CFG.SECURE_ONLY 和 PRIV_ONLY 对所有业务访问生效；ACCESS_CFG 与所有锁寄存器的写入固定要求
+    secure 且 privileged，不能通过放宽 ACCESS_CFG 绕过。安全属性来自可信 APB 上游。
+  acceptance_criteria:
+  - ACCESS_CTRL_EN=1 时，ACCESS_CFG.SECURE_ONLY 和 PRIV_ONLY 对所有业务访问生效；ACCESS_CFG 与所有锁寄存器的写入固定要求 secure 且 privileged，不能通过放宽 ACCESS_CFG
+    绕过。安全属性来自可信 APB 上游。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC005.001
+  category: SEC
+  feature: sec005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-005 定义的场景下，ACCESS_CFG 为全局 Bank 以外策略，不实现 per-pin Master ID ACL。
+  acceptance_criteria:
+  - ACCESS_CFG 为全局 Bank 以外策略，不实现 per-pin Master ID ACL。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC005.002
+  category: SEC
+  feature: sec005
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-005 定义的场景下，PPROT 不包含 Master ID；多核身份隔离应由上游防火墙负责。关闭访问控制参数时忽略 PPROT[1:0]，PPROT[2] 的数据访问限制仍有效。
+  acceptance_criteria:
+  - PPROT 不包含 Master ID；多核身份隔离由上游防火墙负责。关闭访问控制参数时忽略 PPROT[1:0]，PPROT[2] 的数据访问限制仍有效。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC006.001
+  category: SEC
+  feature: sec006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-006 定义的场景下，同笔事务只要存在一个有效写目标被锁/无能力/无权限，整个事务不更新业务寄存器。
+  acceptance_criteria:
+  - 同笔事务只要存在一个有效写目标被锁/无能力/无权限，整个事务不更新业务寄存器。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.GPIO.SEC006.002
+  category: SEC
+  feature: sec006
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-SEC-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 在 GPIO-SEC-006 定义的场景下，违规设置 FAULT_STATUS.ACCESS 并在空闲的首故障槽记录地址和 PPROT，不记录写数据。FAULT_IRQ_ENABLE 控制其是否输出中断。
+  acceptance_criteria:
+  - 违规设置 FAULT_STATUS.ACCESS 并在空闲的首故障槽记录地址和 PPROT，不记录写数据。FAULT_IRQ_ENABLE 控制其是否输出中断。
+  - 对正文保护对象执行直接/别名、同值/混合位写及暖/冷复位；非法事务所有业务目标均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.GPIO.OBSERVE.001
+  category: DFX
+  feature: observe
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-DIAG-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能通过 IRQ_TEST、DIAG_TEST 以及启用时的 PARITY_INJECT 检查记录/报警/安全响应路径。
+  acceptance_criteria:
+  - 各测试入口保持其独立权限、锁和功能裁剪规则；不得将数字注入结果宣称为完整 PAD 电气路径验证。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.001
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/设计说明
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付规范需求、架构与微设计说明，以及寄存器机器可读定义及生成结果。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.002
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/RTL
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付参数化 RTL、FuseSoC core、编译/仿真/综合入口。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.003
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/验证
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付APB/GPIO 验证环境、RAL、独立参考模型、SVA、测试及覆盖报告。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.004
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/软件
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付C 寄存器头文件和输出、中断、AON 唤醒、事件 FIFO 示例驱动。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.005
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/约束
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付CDC/RDC/STA 约束、复位/电源域接口说明及低功耗集成例。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.006
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/配置
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付功能裁剪/能力查询说明、PPA 报告及已知限制。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.DELIVERY.007
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.1/安全
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 产品应交付启用安全增强时的故障模型、注入测试和使用假设。
+  acceptance_criteria:
+  - 检查实际文件及其输入/输出哈希、内容和可复现入口；未执行的测试或分析必须保持未完成状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEPAD.001
+  category: CONS
+  feature: instancepad
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/PAD
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供 GPIO 编号/PAD/Pinmux 映射、输入/输出能力以及可用性与拥有权来源。
+  acceptance_criteria:
+  - 逐引脚检查不存在多驱动、无能力 OE 和错误绑常量。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEDEFAULTS.002
+  category: CONS
+  feature: instancedefaults
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/DEFAULTS
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应确定 RESET_OUT/OE、HW_SAFE_OUT/OE 以及相应板级影响。
+  acceptance_criteria:
+  - 核对默认和安全输出均为系统允许状态，不能以全零默认替代板级签核。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCECLOCK.003
+  category: CONS
+  feature: instanceclock
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/CLOCK
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供 pclk/aon_clk 范围、停钟条件、同步器 MTBF 目标。
+  acceptance_criteria:
+  - 目标频率与停止条件完整，CDC 约束能追踪到实际实例。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCERESET.004
+  category: CONS
+  feature: instancereset
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/RESET
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供 POR/main/AON 复位树及释放顺序。
+  acceptance_criteria:
+  - 确认主暖复位不清除 AON、锁、策略和 parity 安全请求。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEPOWER.005
+  category: CONS
+  feature: instancepower
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/POWER
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应明确 PAD/AON/主域电源、隔离保持位置与 PMU 握手。
+  acceptance_criteria:
+  - 入睡边界事件可阻止关电或触发恢复，断电前完成 PAD 接管。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEELECTRIC.006
+  category: CONS
+  feature: instanceelectric
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/ELECTRIC
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供开漏上拉、负载、驱动能力和诊断消隐所需外部延迟上界。
+  acceptance_criteria:
+  - BLANK 时间覆盖输入同步及外部传播，未满足时不得宣称诊断可靠。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEBUS.007
+  category: CONS
+  feature: instancebus
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/BUS
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供基地址、APB HWIF 和可信 PPROT 来源。
+  acceptance_criteria:
+  - 检查地址窗口不重叠，安全属性不能由非可信软件伪造。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCEIRQDMA.008
+  category: CONS
+  feature: instanceirqdma
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/IRQDMA
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应提供 IRQ 路由，并确认 DMA 支持四字 HEAD 读取后显式 POP。
+  acceptance_criteria:
+  - DMA 实测完整事务序列；不支持该序列的 DMA 不得声称兼容。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.INSTANCESAFETY.009
+  category: CONS
+  feature: instancesafety
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#§20.2/SAFETY
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: SoC 应指定故障输出接收者、系统安全态和诊断覆盖评估责任。
+  acceptance_criteria:
+  - 交付假设与 FMEDA/故障模型有明确责任，未经评估不声明 ASIL/DC。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER001.001
+  category: CONS
+  feature: ver001
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-001 定义的场景下，使用独立功能参考模型检查输入处理、中断、FIFO和AON命令；不能仅复制 RTL 分支形成自证。功能覆盖包含上述边界交叉；不可达覆盖项需有配置依据。
+  acceptance_criteria:
+  - 使用独立功能参考模型检查输入处理、中断、FIFO和AON命令；不能仅复制 RTL 分支形成自证。功能覆盖包含上述边界交叉；不可达覆盖项需有配置依据。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER002.001
+  category: CONS
+  feature: ver002
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-002 定义的场景下，SVA 至少断言：非法APB事务无业务更新；OE不得越过能力/所有权；开漏不会主动驱动高；置位优先；锁不被软件清；AON BUSY数据稳定；FIFO容量边界；首次有效无伪边沿。
+  acceptance_criteria:
+  - SVA 至少断言：非法APB事务无业务更新；OE不得越过能力/所有权；开漏不会主动驱动高；置位优先；锁不被软件清；AON BUSY数据稳定；FIFO容量边界；首次有效无伪边沿。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER003.001
+  category: CONS
+  feature: ver003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-003 定义的场景下，完成 lint、CDC、RDC、综合检查；所有未解决高风险问题阻止验收。
+  acceptance_criteria:
+  - 完成 lint、CDC、RDC、综合检查；所有未解决高风险问题阻止验收。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER003.002
+  category: CONS
+  feature: ver003
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-003 定义的场景下，数字仿真不能证明亚稳态MTBF或PAD电气波形；须交付同步器约束与PAD集成假设。
+  acceptance_criteria:
+  - 数字仿真不能证明亚稳态MTBF或PAD电气波形；须交付同步器约束与PAD集成假设。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER004.001
+  category: CONS
+  feature: ver004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-004 定义的场景下，每项需求关联至少一项检查/测试/分析证据；验证计划在RTL完成前形成，并与架构同步更新。
+  acceptance_criteria:
+  - 每项需求关联至少一项检查/测试/分析证据；验证计划在RTL完成前形成，并与架构同步更新。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.GPIO.VER004.002
+  category: CONS
+  feature: ver004
+  priority: P0
+  status: active
+  source_ref:
+  - gpio_contract.md#GPIO-VER-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 在 GPIO-VER-004 定义的场景下，验收要求全部必备及所启用增强功能通过，不允许以未实现而静默读0替代已声明功能。
+  acceptance_criteria:
+  - 验收要求全部必备及所启用增强功能通过，不允许以未实现而静默读0替代已声明功能。
+  - 检查交付证据清单、来源与逐需求追踪；仅有计划或工具 PASS 摘要不视为完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: pass
+  requirement_freeze: true
+  approval_basis: 用户明确授权自动审批 LRS；见 00_document_control.md
+  approval_type: user_delegated_automatic

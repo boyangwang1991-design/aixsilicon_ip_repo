@@ -1,0 +1,610 @@
+[
+  {
+    "config": "CFG_TYPICAL_DIRECT",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_TYPICAL_DIRECT",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_DIRECT_0.log",
+    "log_sha256": "e5560143f9229468ee8a7c5ba4411279e6aa402535f38cca7a88073c90263686"
+  },
+  {
+    "config": "CFG_TYPICAL_DIRECT",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_TYPICAL_DIRECT_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_DIRECT_1.log",
+    "log_sha256": "5fd2c13f387ded6c3922a01999283950bf63aa803b6211646078bad7023c9962"
+  },
+  {
+    "config": "CFG_TYPICAL_DIRECT",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_DIRECT_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_TYPICAL_DIRECT",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_DIRECT/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_DIRECT_3.log",
+    "log_sha256": "8c2f94305a8d1ed13496db9715fafcd663a7fcb176357f3a8e041ff95330dbda"
+  },
+  {
+    "config": "CFG_TYPICAL_REGISTER",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_TYPICAL_REGISTER",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_REGISTER_0.log",
+    "log_sha256": "7c4b9d9da5bd592fe5ab2412c85f76feafb086e7c49a19430a061b4b6efb8150"
+  },
+  {
+    "config": "CFG_TYPICAL_REGISTER",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_TYPICAL_REGISTER_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_REGISTER_1.log",
+    "log_sha256": "9bf3ca75b40000b569364fd6bbabe5c7b76b98f1454baf19740da30af35aea93"
+  },
+  {
+    "config": "CFG_TYPICAL_REGISTER",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_REGISTER_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_TYPICAL_REGISTER",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TYPICAL_REGISTER/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TYPICAL_REGISTER_3.log",
+    "log_sha256": "99b47bc7f640d2e1df9c454f677086c6d3734f0d813687ede6a402d35a424467"
+  },
+  {
+    "config": "CFG_MAX_DIRECT",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_MAX_DIRECT",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_DIRECT_0.log",
+    "log_sha256": "e0c824374281d6f575410b82e17208ee21aa7a84b396b5728e26d911d6b4061b"
+  },
+  {
+    "config": "CFG_MAX_DIRECT",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_MAX_DIRECT_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_DIRECT_1.log",
+    "log_sha256": "ecfd5e7652c7bf0a340845afa5b84d7cc4c73a0b602efd00231ecd587bc432a5"
+  },
+  {
+    "config": "CFG_MAX_DIRECT",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_DIRECT_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_MAX_DIRECT",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_DIRECT/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_DIRECT_3.log",
+    "log_sha256": "7eea7a3f037a1a0467c8969af50805c588cd913fca2ebcd098a3b5f99f1209d3"
+  },
+  {
+    "config": "CFG_MAX_REGISTER",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_MAX_REGISTER",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_REGISTER_0.log",
+    "log_sha256": "e6afa0d6ec0f9d4c2e22c234a03a7453e299b0b2894c9337ac0c3d6f262543a6"
+  },
+  {
+    "config": "CFG_MAX_REGISTER",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_MAX_REGISTER_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_REGISTER_1.log",
+    "log_sha256": "1431c290c9b63662acbc36d87ccae76a97f5f2e9217d7abb3e5c3c000a5b1804"
+  },
+  {
+    "config": "CFG_MAX_REGISTER",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_REGISTER_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_MAX_REGISTER",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MAX_REGISTER/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MAX_REGISTER_3.log",
+    "log_sha256": "66eda1702fd50be1d77f00371923ffc46b9810999711b94a882fab3921801080"
+  },
+  {
+    "config": "CFG_MIN_NOFIFO",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_MIN_NOFIFO",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_NOFIFO_0.log",
+    "log_sha256": "e740a1caeca0127468527dd8588acdd05af07dd6dba32a186475b82bc7fc8f64"
+  },
+  {
+    "config": "CFG_MIN_NOFIFO",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_MIN_NOFIFO_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_NOFIFO_1.log",
+    "log_sha256": "c8ebf09cf43e6699dea69395f94a7edd463577b69c4af4dc0875bd4b8dcacf7f"
+  },
+  {
+    "config": "CFG_MIN_NOFIFO",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_NOFIFO_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_MIN_NOFIFO",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_NOFIFO/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_NOFIFO_3.log",
+    "log_sha256": "f56a20594c59db638e5c4baf0ea4eedff50ccbb46eefdc0b2f69d16ce7a36db6"
+  },
+  {
+    "config": "CFG_MIN_FIFO1",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_MIN_FIFO1",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_FIFO1_0.log",
+    "log_sha256": "a1c6e20a4054f83e1b3f6d4e8cce40d9b63d4915a18f2efba2e27291a358dc37"
+  },
+  {
+    "config": "CFG_MIN_FIFO1",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_MIN_FIFO1_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_FIFO1_1.log",
+    "log_sha256": "01cd211d384760939b8f92a3301ca09affaf967732db87f1162d199bede631f3"
+  },
+  {
+    "config": "CFG_MIN_FIFO1",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_FIFO1_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_MIN_FIFO1",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_MIN_FIFO1/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_MIN_FIFO1_3.log",
+    "log_sha256": "309f46649e1f67acbd5cb43513470de8c78adc848bcd1e05c4844c1554e0daa8"
+  },
+  {
+    "config": "CFG_NONPOWER",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_NONPOWER",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_NONPOWER_0.log",
+    "log_sha256": "02d425d6c79500a20ed92739636c14dee02413de3e489b26fbb87036785a4807"
+  },
+  {
+    "config": "CFG_NONPOWER",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_NONPOWER_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_NONPOWER_1.log",
+    "log_sha256": "4c52b37f1e8b609de2473eeebf7d960f700d4271c8b84e4380ac4395be848cc9"
+  },
+  {
+    "config": "CFG_NONPOWER",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_NONPOWER_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_NONPOWER",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_NONPOWER/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_NONPOWER_3.log",
+    "log_sha256": "c4c71685f6809cb099e51723b84a1c64b4c0e4b92f897f0d7408859dc5990332"
+  },
+  {
+    "config": "CFG_TRIMMED",
+    "step": 0,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/render_registers.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--configuration",
+      "CFG_TRIMMED",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/apb_secure_demux.rdl"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TRIMMED_0.log",
+    "log_sha256": "875921ad0bae1b20a73595af08a6b32c0995572226fe13fbca8a067f14048d21"
+  },
+  {
+    "config": "CFG_TRIMMED",
+    "step": 1,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/CFG_TRIMMED_structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TRIMMED_1.log",
+    "log_sha256": "2632935b3c3dd6866cd353d16d103d801e57418a32e43f579d074450b703e16f"
+  },
+  {
+    "config": "CFG_TRIMMED",
+    "step": 2,
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TRIMMED_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "config": "CFG_TRIMMED",
+    "step": 3,
+    "command": [
+      "vlogan",
+      "-full64",
+      "-sverilog",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/generated/apb_secure_demux_csr_pkg.sv",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/CFG_TRIMMED/generated/apb_secure_demux_csr.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/CFG_TRIMMED_3.log",
+    "log_sha256": "a6e4084209290f2265247fd4a8446fd9646570b24c82d94b37d37aa2ece7408a"
+  }
+]

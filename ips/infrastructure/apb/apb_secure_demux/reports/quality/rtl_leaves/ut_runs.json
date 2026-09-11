@@ -1,0 +1,104 @@
+{
+  "scope": "Three leaf modules only; not full Module UT or G3 signoff",
+  "runs": [
+    {
+      "module": "decode",
+      "inputs": [
+        {
+          "path": "rtl/apb_secure_demux_decode.sv",
+          "sha256": "fcbc71bdc33803cb08619d295093f7d406bf4a9081d83cb7bdfd79a1fcc3e0c8"
+        },
+        {
+          "path": "verification/unit_test/ut_apb_secure_demux_decode.sv",
+          "sha256": "a1f834d9353c3e2dc7cc353ce83422dd8ead893304119435fb995a9a056986e9"
+        }
+      ],
+      "command": [
+        "vcs",
+        "-full64",
+        "-sverilog",
+        "-timescale=1ns/1ps",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_decode.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_decode.sv",
+        "-top",
+        "ut_apb_secure_demux_decode",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_decode_1789112684552441520/simv"
+      ],
+      "compile_exit": 0,
+      "compile_log": "build/sim/run/ut/ut_apb_secure_demux_decode_1789112684552441520/compile.log",
+      "compile_log_sha256": "07ddd4fd6380d469833e45c5b6085cb9d36d3663aa02195dcedfdcb45b8c688e",
+      "run_exit": 0,
+      "run_log": "build/sim/run/ut/ut_apb_secure_demux_decode_1789112684552441520/run.log",
+      "run_log_sha256": "b19010c47c72245c2a0abc5128ecd67a521e9c9c8a2605eb0526aef33c8e452f",
+      "binary_sha256": "3dcf01049431875b27e2bf6e0d422838686bc6af84d7bdcd2d127d66e1334f0a",
+      "passed": true
+    },
+    {
+      "module": "access",
+      "inputs": [
+        {
+          "path": "rtl/apb_secure_demux_access.sv",
+          "sha256": "649338ece7ed180a7b9ddc8f3b8f00b61714cfe65e4474a7ea0191fe37ca7980"
+        },
+        {
+          "path": "verification/unit_test/ut_apb_secure_demux_access.sv",
+          "sha256": "135505be875e00bf9c2480e899478b0902ec7ca867a8d0138db6a2fabe35c9ba"
+        }
+      ],
+      "command": [
+        "vcs",
+        "-full64",
+        "-sverilog",
+        "-timescale=1ns/1ps",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_access.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_access.sv",
+        "-top",
+        "ut_apb_secure_demux_access",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_access_1789112715562180509/simv"
+      ],
+      "compile_exit": 0,
+      "compile_log": "build/sim/run/ut/ut_apb_secure_demux_access_1789112715562180509/compile.log",
+      "compile_log_sha256": "55febca189eaa7210144972a5c8112ff283258db77fb8f4e7f46cfebc40c9055",
+      "run_exit": 0,
+      "run_log": "build/sim/run/ut/ut_apb_secure_demux_access_1789112715562180509/run.log",
+      "run_log_sha256": "c1c06e7b3c63da0a8c49c6e4b51a323293a148d343d377a955c441d19dd67361",
+      "binary_sha256": "80aaefd1a21509fb48a39f70c1fc296186ea3562e5a0b756fafbfa71bdd03862",
+      "passed": true
+    },
+    {
+      "module": "irq",
+      "inputs": [
+        {
+          "path": "rtl/apb_secure_demux_irq.sv",
+          "sha256": "4016b70f4fad6e18d950768f450408bce4ce314e7658ea7195828bef77792ecf"
+        },
+        {
+          "path": "verification/unit_test/ut_apb_secure_demux_irq.sv",
+          "sha256": "0bc43269f48432f64089de5bb628cba44683021cfa3cb46cd53707a8a9edeb77"
+        }
+      ],
+      "command": [
+        "vcs",
+        "-full64",
+        "-sverilog",
+        "-timescale=1ns/1ps",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_irq.sv",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux_irq.sv",
+        "-top",
+        "ut_apb_secure_demux_irq",
+        "-o",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/sim/run/ut/ut_apb_secure_demux_irq_1789112735006874806/simv"
+      ],
+      "compile_exit": 0,
+      "compile_log": "build/sim/run/ut/ut_apb_secure_demux_irq_1789112735006874806/compile.log",
+      "compile_log_sha256": "bc079d4eefede5c87e57b053b92e596ae33b013888626d6800970d5971d7f05e",
+      "run_exit": 0,
+      "run_log": "build/sim/run/ut/ut_apb_secure_demux_irq_1789112735006874806/run.log",
+      "run_log_sha256": "8620003f3db27bee96ade442b684c41988453814834b5da0c6b92fac45ba49cc",
+      "binary_sha256": "49d294cac4f4fd0e8c0cff37569b539d1fe34cac99d16042fcfbf9d29798bf38",
+      "passed": true
+    }
+  ]
+}

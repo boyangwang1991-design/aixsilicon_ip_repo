@@ -1,0 +1,381 @@
+// GPIO register structure: contract 15; maximum address map, instance geometry checked by GPIO.
+addrmap gpio_regs {
+    desc = "GPIO V1 register map; instance capabilities are queried at runtime";
+    external reg {
+        desc = "IP_ID";
+        field { sw=r; hw=w; reset=1196443983; } value[31:0];
+    } IP_ID @ 0x0;
+    external reg {
+        desc = "VERSION";
+        field { sw=r; hw=w; reset=65536; } value[31:0];
+    } VERSION @ 0x4;
+    external reg {
+        desc = "FEATURE";
+        field { sw=r; hw=w; reset=0; } features[7:0];
+    } FEATURE @ 0x8;
+    external reg {
+        desc = "GEOMETRY";
+        field { sw=r; hw=w; reset=128; } n_gpio[7:0];
+        field { sw=r; hw=w; reset=4; } n_bank[15:8];
+        field { sw=r; hw=w; reset=1; } n_irq_groups[23:16];
+        field { sw=r; hw=w; reset=2; } sync_stages[31:24];
+    } GEOMETRY @ 0xc;
+    external reg {
+        desc = "GLOBAL_LOCK";
+        field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0];
+    } GLOBAL_LOCK @ 0x10;
+    external reg {
+        desc = "ACCESS_CFG";
+        field { sw=rw; hw=rw; reset=1; } secure_only[0:0];
+        field { sw=rw; hw=rw; reset=1; } priv_only[1:1];
+    } ACCESS_CFG @ 0x14;
+    external reg {
+        desc = "FAULT_STATUS";
+        field { sw=r; hw=w; reset=0; } sources[7:0];
+    } FAULT_STATUS @ 0x18;
+    external reg {
+        desc = "FAULT_CLEAR";
+        field { sw=w; hw=r; reset=0; } clear[7:0];
+    } FAULT_CLEAR @ 0x1c;
+    external reg {
+        desc = "FAULT_IRQ_ENABLE";
+        field { sw=rw; hw=rw; reset=0; } enable[7:0];
+    } FAULT_IRQ_ENABLE @ 0x20;
+    external reg {
+        desc = "ACCESS_FIRST";
+        field { sw=r; hw=w; reset=0; } address[13:0];
+        field { sw=r; hw=w; reset=0; } pprot[18:16];
+        field { sw=r; hw=w; reset=0; } write[19:19];
+        field { sw=r; hw=w; reset=0; } valid[31:31];
+    } ACCESS_FIRST @ 0x24;
+    external reg {
+        desc = "SNAPSHOT_CMD";
+        field { sw=w; hw=r; reset=0; } trigger[0:0];
+    } SNAPSHOT_CMD @ 0x28;
+    external reg {
+        desc = "SNAP_SEQ";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } SNAP_SEQ @ 0x2c;
+    external reg {
+        desc = "STRAP_VALID";
+        field { sw=r; hw=w; reset=0; } valid[0:0];
+    } STRAP_VALID @ 0x30;
+    external reg {
+        desc = "LP_STATUS";
+        field { sw=r; hw=w; reset=0; } sleep_active[0:0];
+        field { sw=r; hw=w; reset=0; } safe_active[1:1];
+    } LP_STATUS @ 0x34;
+    external reg {
+        desc = "TS_LO";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } TS_LO @ 0x38;
+    external reg {
+        desc = "TS_HI";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } TS_HI @ 0x3c;
+    external reg {
+        desc = "FIFO_CTRL";
+        field { sw=rw; hw=rw; reset=0; } enable[0:0];
+        field { sw=rw; hw=rw; reset=0; } dma_enable[1:1];
+    } FIFO_CTRL @ 0x40;
+    external reg {
+        desc = "FIFO_WATERMARK";
+        field { sw=rw; hw=rw; reset=1; } threshold[6:0];
+    } FIFO_WATERMARK @ 0x44;
+    external reg {
+        desc = "FIFO_LEVEL";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } FIFO_LEVEL @ 0x48;
+    external reg {
+        desc = "FIFO_LOST";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } FIFO_LOST @ 0x4c;
+    external reg {
+        desc = "EVENT_HEAD0";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } EVENT_HEAD0 @ 0x50;
+    external reg {
+        desc = "EVENT_HEAD1";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } EVENT_HEAD1 @ 0x54;
+    external reg {
+        desc = "EVENT_HEAD2";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } EVENT_HEAD2 @ 0x58;
+    external reg {
+        desc = "EVENT_HEAD3";
+        field { sw=r; hw=w; reset=0; } value[31:0];
+    } EVENT_HEAD3 @ 0x5c;
+    external reg {
+        desc = "EVENT_POP";
+        field { sw=w; hw=r; reset=0; } pop[0:0];
+    } EVENT_POP @ 0x60;
+    external reg {
+        desc = "FIFO_CMD";
+        field { sw=w; hw=r; reset=0; } flush[0:0];
+        field { sw=w; hw=r; reset=0; } clear_lost[1:1];
+    } FIFO_CMD @ 0x64;
+    external reg {
+        desc = "AON_STATUS";
+        field { sw=r; hw=w; reset=0; } ready[0:0];
+        field { sw=r; hw=w; reset=0; } busy[1:1];
+        field { sw=r; hw=w; reset=0; } done[2:2];
+        field { sw=r; hw=w; reset=0; } timeout[3:3];
+        field { sw=r; hw=w; reset=0; } error[4:4];
+        field { sw=r; hw=w; reset=0; } bank[9:8];
+    } AON_STATUS @ 0x68;
+    external reg {
+        desc = "AON_TIMEOUT";
+        field { sw=rw; hw=rw; reset=65535; } cycles[23:0];
+    } AON_TIMEOUT @ 0x6c;
+    external reg {
+        desc = "PARITY_INJECT";
+        field { sw=w; hw=r; reset=0; } trigger[0:0];
+        field { sw=w; hw=r; reset=0; } bank[9:8];
+    } PARITY_INJECT @ 0x70;
+    regfile bank_type {
+        external reg {
+            desc = "INPUT_CAP";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } INPUT_CAP @ 0x0;
+        external reg {
+            desc = "OUTPUT_CAP";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } OUTPUT_CAP @ 0x4;
+        external reg {
+            desc = "IN_SYNC";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } IN_SYNC @ 0x8;
+        external reg {
+            desc = "IN_DATA";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } IN_DATA @ 0xc;
+        external reg {
+            desc = "IN_VALID";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } IN_VALID @ 0x10;
+        external reg {
+            desc = "IN_ENABLE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } IN_ENABLE @ 0x14;
+        external reg {
+            desc = "OUT_DATA";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } OUT_DATA @ 0x18;
+        external reg {
+            desc = "OUT_SET";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OUT_SET @ 0x1c;
+        external reg {
+            desc = "OUT_CLR";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OUT_CLR @ 0x20;
+        external reg {
+            desc = "OUT_TOGGLE";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OUT_TOGGLE @ 0x24;
+        external reg {
+            desc = "OUT_MASKED_LO";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OUT_MASKED_LO @ 0x28;
+        external reg {
+            desc = "OUT_MASKED_HI";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OUT_MASKED_HI @ 0x2c;
+        external reg {
+            desc = "OUT_OE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } OUT_OE @ 0x30;
+        external reg {
+            desc = "OE_SET";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OE_SET @ 0x34;
+        external reg {
+            desc = "OE_CLR";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OE_CLR @ 0x38;
+        external reg {
+            desc = "OE_MASKED_LO";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OE_MASKED_LO @ 0x3c;
+        external reg {
+            desc = "OE_MASKED_HI";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } OE_MASKED_HI @ 0x40;
+        external reg {
+            desc = "IRQ_DETECT_EN";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } IRQ_DETECT_EN @ 0x44;
+        external reg {
+            desc = "IRQ_ENABLE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } IRQ_ENABLE @ 0x48;
+        external reg {
+            desc = "IRQ_PENDING";
+            field { sw=rw; hw=rw; reset=0; onwrite=woclr; } value[31:0];
+        } IRQ_PENDING @ 0x4c;
+        external reg {
+            desc = "IRQ_STATUS";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } IRQ_STATUS @ 0x50;
+        external reg {
+            desc = "IRQ_TEST";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } IRQ_TEST @ 0x54;
+        external reg {
+            desc = "RISING_PENDING";
+            field { sw=rw; hw=rw; reset=0; onwrite=woclr; } value[31:0];
+        } RISING_PENDING @ 0x58;
+        external reg {
+            desc = "FALLING_PENDING";
+            field { sw=rw; hw=rw; reset=0; onwrite=woclr; } value[31:0];
+        } FALLING_PENDING @ 0x5c;
+        external reg {
+            desc = "CFG_LOCK";
+            field { sw=rw; hw=rw; reset=0; onwrite=woset; } value[31:0];
+        } CFG_LOCK @ 0x60;
+        external reg {
+            desc = "DATA_LOCK";
+            field { sw=rw; hw=rw; reset=0; onwrite=woset; } value[31:0];
+        } DATA_LOCK @ 0x64;
+        external reg {
+            desc = "BANK_DEBOUNCE_DIV";
+            field { sw=rw; hw=rw; reset=0; } value[15:0];
+        } BANK_DEBOUNCE_DIV @ 0x68;
+        external reg {
+            desc = "EVENT_ENABLE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } EVENT_ENABLE @ 0x6c;
+        external reg {
+            desc = "SNAP_DATA";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } SNAP_DATA @ 0x70;
+        external reg {
+            desc = "SNAP_VALID";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } SNAP_VALID @ 0x74;
+        external reg {
+            desc = "STRAP_DATA";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } STRAP_DATA @ 0x78;
+        external reg {
+            desc = "DIAG_ENABLE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } DIAG_ENABLE @ 0x7c;
+        external reg {
+            desc = "DIAG_PENDING";
+            field { sw=rw; hw=rw; reset=0; onwrite=woclr; } value[31:0];
+        } DIAG_PENDING @ 0x80;
+        external reg {
+            desc = "DIAG_TEST";
+            field { sw=w; hw=r; reset=0; } value[31:0];
+        } DIAG_TEST @ 0x84;
+        external reg {
+            desc = "OUTPUT_OWNED";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } OUTPUT_OWNED @ 0x88;
+        external reg {
+            desc = "INPUT_AVAILABLE";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } INPUT_AVAILABLE @ 0x8c;
+    };
+    bank_type bank[4] @ 0x100 += 0x100;
+    regfile pin_type {
+        external reg {
+            desc = "PIN_CFG";
+            field { sw=rw; hw=rw; reset=0; } filter_en[0:0];
+            field { sw=rw; hw=rw; reset=0; } debounce_en[1:1];
+            field { sw=rw; hw=rw; reset=0; } in_inv[2:2];
+            field { sw=rw; hw=rw; reset=0; } out_od[3:3];
+            field { sw=rw; hw=rw; reset=0; } out_inv[4:4];
+            field { sw=rw; hw=rw; reset=0; } irq_mode[7:5];
+            field { sw=rw; hw=rw; reset=0; } irq_group[9:8];
+            field { sw=rw; hw=rw; reset=0; } sleep_mode[11:10];
+        } PIN_CFG @ 0x0;
+        external reg {
+            desc = "FILTER_CFG";
+            field { sw=rw; hw=rw; reset=0; } k_minus_one[7:0];
+        } FILTER_CFG @ 0x4;
+        external reg {
+            desc = "DEBOUNCE_CFG";
+            field { sw=rw; hw=rw; reset=0; } d_minus_one[7:0];
+        } DEBOUNCE_CFG @ 0x8;
+        external reg {
+            desc = "DIAG_CFG";
+            field { sw=rw; hw=rw; reset=4; } blank[15:0];
+            field { sw=rw; hw=rw; reset=0; } m_minus_one[23:16];
+        } DIAG_CFG @ 0xc;
+    };
+    pin_type pin[128] @ 0x1000 += 0x20;
+    regfile aon_type {
+        external reg {
+            desc = "WAKE_ENABLE_STAGE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } WAKE_ENABLE_STAGE @ 0x0;
+        external reg {
+            desc = "WAKE_MODE_STAGE0";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } WAKE_MODE_STAGE0 @ 0x4;
+        external reg {
+            desc = "WAKE_MODE_STAGE1";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } WAKE_MODE_STAGE1 @ 0x8;
+        external reg {
+            desc = "WAKE_MODE_STAGE2";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } WAKE_MODE_STAGE2 @ 0xc;
+        external reg {
+            desc = "WAKE_DIV_STAGE";
+            field { sw=rw; hw=rw; reset=0; } value[15:0];
+        } WAKE_DIV_STAGE @ 0x10;
+        external reg {
+            desc = "WAKE_COUNT_STAGE";
+            field { sw=rw; hw=rw; reset=0; } value[7:0];
+        } WAKE_COUNT_STAGE @ 0x14;
+        external reg {
+            desc = "WAKE_MASK_STAGE";
+            field { sw=rw; hw=rw; reset=0; } value[31:0];
+        } WAKE_MASK_STAGE @ 0x18;
+        external reg {
+            desc = "AON_CMD";
+            field { sw=w; hw=r; reset=0; } commands[3:0];
+        } AON_CMD @ 0x1c;
+        external reg {
+            desc = "WAKE_PENDING_READ";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_PENDING_READ @ 0x20;
+        external reg {
+            desc = "WAKE_VALID_READ";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_VALID_READ @ 0x24;
+        external reg {
+            desc = "WAKE_LOCK_READ";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_LOCK_READ @ 0x28;
+        external reg {
+            desc = "WAKE_ENABLE_READ";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_ENABLE_READ @ 0x2c;
+        external reg {
+            desc = "WAKE_MODE_READ0";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_MODE_READ0 @ 0x30;
+        external reg {
+            desc = "WAKE_MODE_READ1";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_MODE_READ1 @ 0x34;
+        external reg {
+            desc = "WAKE_MODE_READ2";
+            field { sw=r; hw=w; reset=0; } value[31:0];
+        } WAKE_MODE_READ2 @ 0x38;
+        external reg {
+            desc = "WAKE_DIV_READ";
+            field { sw=r; hw=w; reset=0; } value[15:0];
+        } WAKE_DIV_READ @ 0x3c;
+        external reg {
+            desc = "WAKE_COUNT_READ";
+            field { sw=r; hw=w; reset=0; } value[7:0];
+        } WAKE_COUNT_READ @ 0x40;
+    };
+    aon_type aon[4] @ 0x3000 += 0x100;
+};

@@ -1,0 +1,238 @@
+[
+  {
+    "name": "g1_pc_extract",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/19-param-space-verification/scripts/extract_parameters.py",
+      "--lrs-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/lrs",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/parameter_space.yaml",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_pc_generate",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py",
+      "--config",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/parameter_space.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/reports/quality/param_matrix.md",
+      "--model-output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/parameter_space.yaml",
+      "--seed",
+      "42"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_pc_validate",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/19-param-space-verification/scripts/validate_params.py",
+      "--config",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/parameter_space.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/reports/quality/param_check.md"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_pc_semantic",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/scripts/check_parameter_plan.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_pc_tool_tests",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests/test_param_config.py",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests/test_structured_parameters.py",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests/test_extractors.py",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests/test_spi_findings.py",
+      "-q",
+      "-o",
+      "addopts="
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_suite_validation",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/validate_suite.py"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_hld_extract",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/03-hld-architect/scripts/extract_hld.py",
+      "--hld-dir",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/docs/hld",
+      "--requirements",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/requirements.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model",
+      "--ip-name",
+      "watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_hld_check",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/scripts/check_hld.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_machine_gates",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog",
+      "--ip-name",
+      "watchdog",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/quality.yaml",
+      "--gate-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/reports/quality/gate_report.md",
+      "--fail-on-gate"
+    ],
+    "exit_code": 2,
+    "expected": 2
+  },
+  {
+    "name": "g1_repo_status_workflow",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "workflow"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_repo_status_ip",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "ip"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_repo_status_skills",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "skills"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  },
+  {
+    "name": "g1_repo_diff_skills",
+    "command": [
+      "uv",
+      "run",
+      "--locked",
+      "--no-sync",
+      "python",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "diff",
+      "skills"
+    ],
+    "exit_code": 0,
+    "expected": 0
+  }
+]

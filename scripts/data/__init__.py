@@ -31,6 +31,10 @@ PRIORITY_LISTS = [
 # hac_aes / lowrisc_* 目录未落盘（gitignore 或未同步），暂标记 planned，
 # 待目录落盘后再置为 implemented/released。
 IMPLEMENTED_OVERRIDES = {
+    "apb_secure_demux": {
+        "version": "1.0.0", "status": "planned", "maturity": "experimental",
+        "path": "ips/infrastructure/apb/apb_secure_demux",
+    },
     "spi_master": {
         "vendor": "aixsilicon", "version": "1.0.0", "status": "implemented",
         "maturity": "experimental", "interfaces": ["apb4", "spi"],

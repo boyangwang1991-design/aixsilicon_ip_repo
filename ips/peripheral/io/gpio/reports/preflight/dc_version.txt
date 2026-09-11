@@ -1,0 +1,6 @@
+
+dc_shell version    -  V-2023.12-SP3
+dc_shell build date -  Apr 17, 2024
+Site Identification Number: 000
+Local Administrator: eda
+Contact: eda@(none)

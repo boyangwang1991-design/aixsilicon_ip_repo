@@ -1,0 +1,4 @@
+workflow: branch=main head=be762c098255 dirty=False
+  staged=0 unstaged=0 untracked=0
+  ahead=0 behind=0 upstream=origin/main
+  remote=git@github.com:boyangwang1991-design/aixsilicon_workflow.git

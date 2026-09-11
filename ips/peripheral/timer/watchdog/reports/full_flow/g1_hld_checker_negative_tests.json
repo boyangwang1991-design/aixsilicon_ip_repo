@@ -1,0 +1,26 @@
+[
+  {
+    "test": "unknown requirement and stale projection",
+    "passed": true,
+    "diagnostics": [
+      "HLD.MOD.WATCHDOG.INTEGRATION.req_ref: unknown LRS.CFG.WATCHDOG.UNKNOWN.001",
+      "HLD_MODULE: source/model mismatch"
+    ]
+  },
+  {
+    "test": "modified canonical endpoint",
+    "passed": true,
+    "diagnostics": [
+      "HLD.IF.INT.WATCHDOG.BUS_COMMAND: missing endpoint reference",
+      "HLD.MOD.WATCHDOG.UNKNOWN: missing interface HLD.IF.INT.WATCHDOG.BUS_COMMAND",
+      "HLD_INTERFACE: source/model mismatch"
+    ]
+  },
+  {
+    "test": "stale PC evidence",
+    "passed": true,
+    "diagnostics": [
+      "stale parameter report"
+    ]
+  }
+]

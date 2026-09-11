@@ -1,0 +1,45 @@
+# 授权及寄存器访问
+
+<!-- FEATURE_META
+id: FL.APB_SECURE_DEMUX.CSR
+name: 授权及寄存器访问
+description: 授权及寄存器访问
+priority: must
+req_ref:
+- LRS.REG.APB_SECURE_DEMUX.CSR.00101
+- LRS.REG.APB_SECURE_DEMUX.CSR.00102
+- LRS.REG.APB_SECURE_DEMUX.CSR.002
+- LRS.REG.APB_SECURE_DEMUX.CSR.00301
+- LRS.REG.APB_SECURE_DEMUX.CSR.00302
+- LRS.REG.APB_SECURE_DEMUX.CSR.00401
+- LRS.REG.APB_SECURE_DEMUX.CSR.00402
+- LRS.REG.APB_SECURE_DEMUX.CSR.005
+- LRS.REG.APB_SECURE_DEMUX.CSR.00601
+- LRS.REG.APB_SECURE_DEMUX.CSR.00602
+- LRS.REG.APB_SECURE_DEMUX.CSR.007
+- LRS.REG.APB_SECURE_DEMUX.CSR.008
+- LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005
+- LRS.REG.APB_SECURE_DEMUX.MAP.006
+design_ref:
+- LLD.MOD.APB_SECURE_DEMUX.CSR
+proof_methods:
+- simulation
+- assertion
+END_FEATURE_META -->
+
+## 逐需求验收范围
+
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00101`：所有配置、日志、中断、DFX 寄存器的读写必须通过管理授权。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00102`：PUBLIC_ID_EN=1 时仅 0x000～0x00C 的数据读取例外，但仍要求身份有效且在范围内。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.002`：管理权限不可通过本 IP CSR 修改；管理授权不等同于外设访问授权。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00301`：本地 CSR 仅支持 32 bit 对齐访问。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00302`：所有写要求 PSTRB=4'b1111，包括 W1C、命令和锁；否则返回 CSR_STROBE 错误，无写副作用。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00401`：写 RO、读 WO、访问未实现地址、访问已裁剪功能寄存器均返回错误。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00402`：已实现寄存器保留位 RAZ/WI。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.005`：未授权读返回零，未授权写不改变目标状态；允许产生一次违规日志/计数/中断，这是规定的审计副作用。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00601`：RW 不受影响位保留当前值；W1C 写 1 清除、写 0 不变；W1S 只允许置位。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.00602`：命令仅在完成边沿触发。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.007`：所有未另行指定的寄存器、状态、计数器、锁和中断复位为零。
+- `LRS.REG.APB_SECURE_DEMUX.CSR.008`：参数化表采用固定槽位地址，超出 NUM_PORTS/NUM_MASTERS 的槽位为未实现地址，不允许索引回绕。
+- `LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005`：管理授权必须同时满足完整身份有效、身份范围合法、固定 MGMT_MASTER_MASK 命中、PPROT 为 Secure 特权数据属性。
+- `LRS.REG.APB_SECURE_DEMUX.MAP.006`：软件 ABI 应保持输入契约第 7 节的全局、DFX 和每端口寄存器名称、地址、访问属性、复位值及裁剪语义。字段结构交由寄存器 owner 建模，本 LRS 不重复维护位表。

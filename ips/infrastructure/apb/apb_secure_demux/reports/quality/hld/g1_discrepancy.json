@@ -1,0 +1,15 @@
+{
+  "finding": "ASD-SK-015",
+  "observation": "evaluator G1 pass despite HLD_GATE_META open / architecture_freeze false",
+  "scope": "machine structure checks are not review approval",
+  "files": [
+    {
+      "path": "reports/quality/hld/structural_gate_snapshot.md",
+      "sha256": "eed16e60d6d88cec36023539fed14372ca9b2d76422273af89680aae76e3cf8b"
+    },
+    {
+      "path": "reports/quality/hld/hld_gate_source_snapshot.md",
+      "sha256": "0783d06571b377ae478a5698d4ad916dde49337886976708f18e1b4db142ef5a"
+    }
+  ]
+}

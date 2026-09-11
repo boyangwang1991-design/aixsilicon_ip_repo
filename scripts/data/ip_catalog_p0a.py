@@ -17,6 +17,8 @@ IP_LIST = [
      "interfaces": ["apb4"], "description": "APB Mux"},
     {"name": "apb_demux", "type": "ip", "domain": "infrastructure", "subdomain": "apb",
      "interfaces": ["apb3", "apb4"], "description": "APB Demux（1→N APB Router）"},
+    {"name": "apb_secure_demux", "type": "ip", "domain": "infrastructure", "subdomain": "apb",
+     "interfaces": ["apb4"], "description": "安全 APB Demux（可信主体权限、原子策略提交、日志与 DFX；需求草案）"},
     {"name": "apb_error_slave", "type": "ip", "domain": "infrastructure", "subdomain": "apb",
      "interfaces": ["apb4"], "description": "APB 错误默认 Slave"},
     {"name": "apb_timeout", "type": "ip", "domain": "infrastructure", "subdomain": "apb",

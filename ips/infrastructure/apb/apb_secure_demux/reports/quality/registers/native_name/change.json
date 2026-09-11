@@ -1,0 +1,37 @@
+{
+  "reason": "Native exporter module name disambiguated from approved LLD wrapper; RDL and behavior unchanged",
+  "module": "apb_secure_demux_csr_regblock",
+  "source_sha256": "321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4",
+  "outputs": [
+    {
+      "path": "rtl/generated/apb_secure_demux_csr_pkg.sv",
+      "sha256": "3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893"
+    },
+    {
+      "path": "rtl/generated/apb_secure_demux_csr_regblock.sv",
+      "sha256": "171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8"
+    }
+  ],
+  "command": [
+    "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+    "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/02-reg-model/scripts/publish_csr.py",
+    "--rdl-source",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+    "--generated",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_pkg.sv",
+    "--generated",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_regblock.sv",
+    "--lint-command",
+    "vlogan -full64 -sverilog {files}",
+    "--manifest",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr.manifest.yaml",
+    "--report",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/register_check.md",
+    "--lint-log",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/native_name/native_compile.log",
+    "--tool-version",
+    "VCS W-2024.09-SP1",
+    "--ip-name",
+    "apb_secure_demux"
+  ]
+}

@@ -1,0 +1,81 @@
+// Configuration-specialized SystemRDL. Structure source: this template.
+// State and runtime access policy belong to the approved LLD behavior owners.
+{% macro f(name,hi,lo,sw='r',reset=0,ow='') -%}
+field { sw={{sw}}; hw={{'r' if sw=='w' else 'rw'}}; reset={{reset}}; {% if ow %}onwrite={{ow}}; {% endif %}} {{name}}[{{hi}}:{{lo}}];
+{%- endmacro %}
+{% macro word(name,addr,sw='r',reset=0,hi=31,field='value',ow='') -%}
+external reg { {{f(field,hi,0,sw,reset,ow)}} } {{name}} @ {{addr}};
+{%- endmacro %}
+{% set irq=['access_denied','cfg_access_error','addr_miss','multi_hit','integrity_error','event_lost','downstream_error','wait_exceeded','dfx_test'] %}
+// Security regions remain present as structural metadata when registers are cropped.
+property asd_dfx_windows { type = string; component = addrmap; };
+property asd_public_windows { type = string; component = addrmap; };
+addrmap apb_secure_demux {
+    asd_public_windows = "[[0,16]]";
+    asd_dfx_windows = "[[64,68],[256,4096]{% for p in range(NUM_PORTS) %},[{{4096+p*1024+20}},{{4096+p*1024+44}}]{% endfor %}]";
+    default regwidth=32;
+    desc="APB secure demux configuration {{config_id}}; external state requires functional owners.";
+    {{word('IP_ID','0x000',reset=1095976024)}}
+    external reg { {{f('major',23,16,reset=1)}} {{f('minor',15,8)}} {{f('patch',7,0)}} } VERSION @ 0x004;
+    external reg {
+        {{f('num_ports',5,0,reset=NUM_PORTS)}} {{f('num_masters',14,8,reset=NUM_MASTERS)}}
+        {{f('addr_width',21,16,reset=ADDR_WIDTH)}} {{f('master_id_width',28,24,reset=MASTER_ID_WIDTH)}}
+    } CAP0 @ 0x008;
+    external reg {
+        {{f('register_mode',0,0,reset=REGISTER_MODE|int)}} {{f('isolation',1,1,reset=OUTPUT_ISOLATION_EN|int)}}
+        {{f('parity',2,2,reset=POLICY_PARITY_EN|int)}} {{f('dfx',3,3,reset=DFX_EN|int)}}
+        {{f('public_id',4,4,reset=PUBLIC_ID_EN|int)}} {{f('fifo_depth',13,8,reset=EVENT_FIFO_DEPTH)}}
+    } CAP1 @ 0x00c;
+    external reg { {{f('integrity_fatal',0,0)}} {{f('global_lock',1,1)}} {{f('first_valid',2,2)}} {{f('last_valid',3,3)}} } STATUS @ 0x010;
+    {{word('POLICY_VERSION','0x014')}}
+    {{word('GLOBAL_LOCK','0x018','rw',hi=0,field='locked',ow='woset')}}
+    {{word('COMMIT_MASK','0x01c','w',field='ports')}}
+    external reg { {{f('last_ok',0,0)}} {{f('last_fail',1,1)}} {{f('fail_reason',7,4)}} {{f('fail_port',12,8)}} {{f('fail_port_valid',13,13)}} } COMMIT_STATUS @ 0x020;
+    {{word('SHADOW_RELOAD','0x024','w',field='ports')}}
+    {{word('MGMT_MASK_LO','0x028',reset=MGMT_MASTER_MASK % (2**32),field='mask')}}
+    {{word('MGMT_MASK_HI','0x02c',reset=MGMT_MASTER_MASK // (2**32),field='mask')}}
+    {% for name,addr,sw,ow in [('INTR_RAW','0x030','rw','woclr'),('INTR_ENABLE','0x034','rw',''),('INTR_MASKED','0x038','r',''),('ALERT_ENABLE','0x03c','rw','')] %}
+    external reg {
+        {% for field in irq %}{{f(field,loop.index0,loop.index0,sw,1 if name=='ALERT_ENABLE' and loop.index0 in [0,1,3,4,7] else 0,ow)}}
+        {% endfor %}
+    } {{name}} @ {{addr}};
+    {% endfor %}
+    {% if DFX_EN %}external reg { {{f('dfx_test',8,8,'w')}} } INTR_TEST @ 0x040;{% endif %}
+    external reg { {% for field in ['first','last','fifo','overflow'] %}{{f(field,loop.index0,loop.index0,'w')}} {% endfor %} } FAULT_CLEAR @ 0x044;
+    external reg { {{f('count',5,0)}} {{f('empty',8,8,reset=1)}} {{f('full',9,9)}} {{f('overflow',10,10)}} } FIFO_STATUS @ 0x048;
+    {% if EVENT_FIFO_DEPTH>0 %}{{word('FIFO_POP','0x04c','w',hi=0,field='pop')}}{% endif %}
+    {{word('ACCESS_DENY_COUNT','0x050')}} {{word('CFG_DENY_COUNT','0x054')}}
+    {{word('EVENT_LOST_COUNT','0x058')}} {{word('DOWNSTREAM_ERR_COUNT','0x05c')}}
+    external reg { {% for field in ['access_deny','cfg_deny','event_lost','downstream_error'] %}{{f(field,loop.index0,loop.index0,'w')}} {% endfor %} } COUNTER_CLEAR @ 0x060;
+    external reg { {{f('fatal',0,0)}} {{f('location_valid',1,1)}} {{f('port',6,2)}} {{f('master',12,7)}} {{f('location_type',15,13)}} } INTEGRITY_STATUS @ 0x064;
+    {% for name,base in [('FIRST_FAULT',160),('LAST_FAULT',192),('FIFO_HEAD',224)] %}
+      {% if name!='FIFO_HEAD' or EVENT_FIFO_DEPTH>0 %}
+      external reg { {{f('data',31,0)}} } {{name}}[8] @ {{base}} += 4;
+      {% endif %}
+    {% endfor %}
+    {% if DFX_EN %}
+    external reg { {{f('authorized',0,0)}} {{f('deny_armed',1,1)}} {{f('integrity_armed',2,2)}} {{f('wait_hit',3,3)}} } DFX_STATUS @ 0x100;
+    {{word('WAIT_THRESHOLD','0x104','rw')}}
+    external reg { {{f('wait_hit',0,0,'w')}} {{f('disarm',1,1,'w')}} } DFX_CLEAR @ 0x108;
+    external reg { {{f('port',4,0,'rw')}} {{f('master',13,8,'rw')}} } INJECT_TARGET @ 0x10c;
+    external reg { {{f('synthetic',0,0,'w')}} {{f('arm_deny',1,1,'w')}} {{f('arm_integrity',2,2,'w')}} } INJECT_CMD @ 0x110;
+    {% endif %}
+    {% for p in range(NUM_PORTS) %}
+    regfile {
+        {{word('MAP_BASE','0x000',reset=PORT_BASE[p])}}
+        {{word('MAP_LIMIT','0x004',reset=PORT_BASE[p]+PORT_SIZE[p]-1)}}
+        {{word('PORT_LOCK','0x008','rw',hi=0,field='locked',ow='woset')}}
+        external reg { {{f('enable',0,0,'rw',RESET_PORT_CFG[p]%2)}} {{f('instr_allow',1,1,'rw',RESET_PORT_CFG[p]//2)}} } CFG_SHADOW @ 0x00c;
+        external reg { {{f('enable',0,0,'r',RESET_PORT_CFG[p]%2)}} {{f('instr_allow',1,1,'r',RESET_PORT_CFG[p]//2)}} } CFG_ACTIVE @ 0x010;
+        {% if DFX_EN %}
+        {% for name,addr in [('SUCCESS_COUNT','0x014'),('DENY_COUNT','0x018'),('SLVERR_COUNT','0x01c'),('WAIT_TOTAL','0x020'),('WAIT_MAX','0x024')] %}{{word(name,addr)}}
+        {% endfor %}
+        external reg { {% for field in ['success','deny','slverr','wait_total','wait_max'] %}{{f(field,loop.index0,loop.index0,'w')}} {% endfor %} } DFX_COUNTER_CLEAR @ 0x028;
+        {% endif %}
+        {% for m in range(NUM_MASTERS) %}
+        {{word('PERM_SHADOW_'+m|string,256+4*m,'rw',RESET_PERM[p*NUM_MASTERS+m],7,'permission')}}
+        {{word('PERM_ACTIVE_'+m|string,512+4*m,'r',RESET_PERM[p*NUM_MASTERS+m],7,'permission')}}
+        {% endfor %}
+    } port_{{p}} @ {{4096+p*1024}};
+    {% endfor %}
+};

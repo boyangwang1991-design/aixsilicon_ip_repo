@@ -1,0 +1,97 @@
+{
+  "scope": "G1 architecture review, not RTL or release approval",
+  "files": [
+    {
+      "path": "docs/hld/00_overview.md",
+      "sha256": "5c63559961ea491cf07ec930b0035606243ec1432c4f78566a81c0a965a26cd5"
+    },
+    {
+      "path": "docs/hld/01_architecture.md",
+      "sha256": "50f14c3dfeab9f884f60ff24d07abf601e3bc0cb881d9bfcce150b03827dc2ef"
+    },
+    {
+      "path": "docs/hld/01_architecture_datapath.md",
+      "sha256": "481329dd9c2e65d99eb383d5b97add3f2a61d362e1402fce2facff41cdb75772"
+    },
+    {
+      "path": "docs/hld/01_architecture_management.md",
+      "sha256": "20909d1322d6ed0f881efbf94c1d2d00e8f525bc8e6bd912e13bc2698187f732"
+    },
+    {
+      "path": "docs/hld/01_configuration_01.md",
+      "sha256": "fb5d9620c38a21737a1ed2efc289d1b399077e272801253abe41b117b1fc8e57"
+    },
+    {
+      "path": "docs/hld/01_configuration_02.md",
+      "sha256": "01479b64ea1ccd58f78dba049749514c8b4e74bf3fb0b9425b28135856cb4cf6"
+    },
+    {
+      "path": "docs/hld/01_configuration_03.md",
+      "sha256": "c4259c7247fb84b669beb87640eb85e37b7ef49c95a5993008239a7b3bc99bfe"
+    },
+    {
+      "path": "docs/hld/02_functional.md",
+      "sha256": "7510af000d047a76e35abf37ff8db3d8feda170f91c3364e0ec55256272c6847"
+    },
+    {
+      "path": "docs/hld/02_functional_policies.md",
+      "sha256": "9985c6f20b7a265a30ddaabd03d097cfb5be5e176a68a34e7cf0a32611eb8ed5"
+    },
+    {
+      "path": "docs/hld/03_interface_external.md",
+      "sha256": "9d8476ae52d5f6e16ecba16c69fa70d716815a70e6f7732655eadedbfcea1e78"
+    },
+    {
+      "path": "docs/hld/03_interface_internal.md",
+      "sha256": "6851121bec541fe947a2de03ce1603a05e0b9462e236b0c3d4a480d2836d40f4"
+    },
+    {
+      "path": "docs/hld/03_interface_management.md",
+      "sha256": "65cd034e7b2ae931524170e85d12dff15439e557c4e705367d339b3c66b6c67d"
+    },
+    {
+      "path": "docs/hld/03_register_architecture.md",
+      "sha256": "95a23b51983564f34f1a6b77e918e83191a080b3c0db759b52ec88db06f71ce5"
+    },
+    {
+      "path": "docs/hld/04_clock_power.md",
+      "sha256": "179ba769897bd343826b8e3301784b695c457c476edc4d2ce698a4ade90c30d2"
+    },
+    {
+      "path": "docs/hld/05_safety.md",
+      "sha256": "a5cf0d1e09cec1df8ecae907225ac810dfaeed27022c98c56f86089ec11ea04f"
+    },
+    {
+      "path": "docs/hld/06_dfx.md",
+      "sha256": "7983995705aec494b74a304f665f429d19c44dcf4b671411288f502d1ce9e0fb"
+    },
+    {
+      "path": "docs/hld/07_decomposition.md",
+      "sha256": "33cd03ef79570907a7efa564b4fb62dbd40266f4a6fb8cca0bfcdd3be4884744"
+    },
+    {
+      "path": "docs/hld/08_risk_checklist.md",
+      "sha256": "0783d06571b377ae478a5698d4ad916dde49337886976708f18e1b4db142ef5a"
+    },
+    {
+      "path": "docs/hld/index.md",
+      "sha256": "b695d55b9e4a9e2e8923655dd287fd31c08b6757a82b6cc7ede43134c89b56b6"
+    },
+    {
+      "path": "docs/reuse_plan.md",
+      "sha256": "0d2a04723381fe6048075e8f115db4a1ed56150d9d633899a9aa19250081162e"
+    },
+    {
+      "path": "docs/reviews/g1_review.md",
+      "sha256": "a79f5370be46e4e1c1ea2f06fed6a532dc886f812633050038c3e3aaf2eb0ee8"
+    },
+    {
+      "path": "model/parameter_space.yaml",
+      "sha256": "bd35f3242190c2b5ef626dce6d4bc8f949b4c59e4fa8a20c7c010c67295ec8fa"
+    },
+    {
+      "path": "model/requirements.yaml",
+      "sha256": "694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16"
+    }
+  ]
+}

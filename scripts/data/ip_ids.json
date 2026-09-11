@@ -28,6 +28,7 @@
   "apb_isolation_bridge": "INF-021",
   "apb_mux": "INF-006",
   "apb_noc_bridge": "INF-037",
+  "apb_secure_demux": "INF-046",
   "apb_timeout": "INF-007",
   "apb_transaction_monitor": "DBG-006",
   "attention_accelerator": "AI-006",

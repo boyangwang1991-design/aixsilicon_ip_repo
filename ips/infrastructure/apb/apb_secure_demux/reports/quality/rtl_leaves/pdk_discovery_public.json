@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "scope": "local tool/process discovery only; product owner signoff is separate",
+  "status": "PDK_READY",
+  "model_sha256": "ec7a53b29ab3368ce47ab4d9b27c8671c2e4f30a86a52852c3ec4efb1be68bfe",
+  "render_exit": 0
+}

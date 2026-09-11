@@ -1,0 +1,45 @@
+[
+  {
+    "name": "configuration_lint",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "ruff",
+      "check",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_configuration.py",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/tests/test_configuration.py"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/configuration_lint.txt",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "name": "configuration_tests",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "pytest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/tests",
+      "-q",
+      "-o",
+      "cache_dir=/tmp/asd-config-pytest"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/configuration_tests.txt",
+    "sha256": "f44919a3367dc52929a8af8f8919d5f9536d2eb90b5c6c6d38b1e58904be21bc"
+  },
+  {
+    "name": "configuration_semantic",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_configuration.py",
+      "--model",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/param_semantic_check.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/hld/configuration_semantic.txt",
+    "sha256": "3416c58c794faba51399b9e0ecddbc0d57ba04aa700b84c112e89e4bae194a57"
+  }
+]

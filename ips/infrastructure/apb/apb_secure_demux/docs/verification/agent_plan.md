@@ -1,0 +1,13 @@
+# Agent、Harness 与复用接入
+
+本轮重新读取APB VIP实际core：aixsilicon:vip:apb:1.0.0，registry仍developing/M1，G4/G5 PARTIAL且G6 NOT_RUN。按本项目预集成依赖消费，不把候选当已发布资格；VIP源保持只读，不复制或patch到IP。正式包要保留该资格缺口或取得owner闭环证据。
+
+Harness创建一个上游请求通道、NUM_PORTS个下游响应通道，APB4模式、32bit数据，地址位宽为当前实例。VIP最大地址宽度32，窄配置由显式宽度适配并对高位清零/合法性检查，不截断非法地址以制造别名。APB5 USER/PWAKEUP/PNSE不参与本IP功能绑定，按APB4配置关闭；PPROT/PSTRB必须连接。
+
+上游使用APB master agent，目标侧使用slave agents提供可控wait/error及带副作用的目标模型，监视器为passive。APB item和MASTERID/valid由同一项目级虚拟sequence协调，在VIP接受请求前准备身份，直到实际完成才允许切换。实现接入时须核对driver请求接收和item_done语义，背靠背/预取不能让身份提前换到下一笔；若VIP没有可用协调hook，先提出owner接口问题并阻止该接入，不修改VIP源码猜测时序。
+
+项目专用sideband monitor捕获完整MASTERID及valid，独立检查等待稳定与未选输出无身份有效。授权/可信复位由专用控制agent驱动，带时间标签送入RM；故障注入agent仅存在verification路径，可访问保护位层次句柄，不新增功能RTL旁路。
+
+输出观察含每端口APB transaction monitor、side-effect模型、irq/alert monitor和DFX monitor。monitor记录SETUP和完成分别编号，避免只在完成时监测而遗漏非法SETUP。scoreboard对每个被拒绝请求断言下游事务计数和副作用计数均不增加。
+
+HWIF实际apb4 contract/profile为项目绑定参考，其ADDR_W32限制与本IP16..32扩展单独记录；外部系统信任条件由SYSTEM静态证据负责。普通下游reset驱动不能误接preset_ni；reset中断测试分别标明是模块可信reset还是外设reset。

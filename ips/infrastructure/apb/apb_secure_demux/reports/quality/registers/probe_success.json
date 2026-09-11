@@ -1,0 +1,37 @@
+{
+  "scope": "native CSR adapter only; external state is a probe model",
+  "compile_exit_code": 0,
+  "run_exit_code": 0,
+  "tool": "vcs",
+  "tool_version": "W-2024.09-SP1",
+  "network_context": "sandbox license access failed; approved network-enabled retry passed",
+  "inputs": [
+    {
+      "path": "regs/apb_secure_demux.rdl",
+      "sha256": "321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4"
+    },
+    {
+      "path": "rtl/generated/apb_secure_demux_csr_pkg.sv",
+      "sha256": "33b9fe0fb282bf7770a9a6caddb9c5a80cf057bb378585662cc8cd74e00823fb"
+    },
+    {
+      "path": "rtl/generated/apb_secure_demux_csr.sv",
+      "sha256": "89ba9f7929e1210375f057e74c7934911ee1f470e8436bf5c9911cebb95b0d7b"
+    },
+    {
+      "path": "verification/registers/csr_interface_probe.sv",
+      "sha256": "8bb21bff1ef92ca002f377119181b08238e02f0efe532914c16a28efc72db218"
+    }
+  ],
+  "binary_sha256": "cbbda8c5ce5957436e7a5137e283dae4d47f5234adbf26d34c362c04cc12fd7e",
+  "logs": [
+    {
+      "path": "reports/quality/registers/probe_compile_network_retry.log",
+      "sha256": "9c73368e485418308f324ac1f8b76450ae0dca3fef10971d4a212f798da4cf2b"
+    },
+    {
+      "path": "reports/quality/registers/probe_run_network_retry.log",
+      "sha256": "9c3d9396c6f722125f017da9390f1ef56aab86abf445264ee06a80ee43af86b0"
+    }
+  ]
+}

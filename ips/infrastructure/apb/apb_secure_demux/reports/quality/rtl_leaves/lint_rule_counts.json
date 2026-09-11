@@ -1,0 +1,16 @@
+{
+  "report_sha256": "89cf37a64d0fd484ad473eb1662eba9b16f82a5c0497dc314bf9215102722551",
+  "rules": {
+    "checkCMD_ignore01": 1,
+    "DetectTopDesignUnits": 1,
+    "SYNTH_5064": 2,
+    "ElabSummary": 1,
+    "STARC05-1.3.1.3": 1,
+    "STARC05-2.1.4.5": 1,
+    "STARC05-2.10.3.2a": 1,
+    "STARC05-2.2.3.3": 2,
+    "W240": 3,
+    "W415a": 1929,
+    "W528": 814
+  }
+}

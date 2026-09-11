@@ -1,0 +1,37 @@
+# GPIO 架构模块：gpio_event_fifo
+
+<!-- HLD_MODULE_META
+id: HLD.MOD.GPIO.FIFO
+name: gpio_event_fifo
+responsibility: 单写事件选择、128-bit队列、时间戳、丢失与DMA请求
+req_ref:
+- LRS.FUNC.GPIO.EVT001.001
+- LRS.FUNC.GPIO.EVT001.002
+- LRS.FUNC.GPIO.EVT002.001
+- LRS.FUNC.GPIO.EVT003.001
+- LRS.FUNC.GPIO.EVT003.002
+- LRS.FUNC.GPIO.EVT004.001
+- LRS.FUNC.GPIO.EVT004.002
+- LRS.FUNC.GPIO.EVT004.003
+- LRS.FUNC.GPIO.EVT005.001
+- LRS.FUNC.GPIO.EVT005.002
+- LRS.FUNC.GPIO.EVT005.003
+- LRS.FUNC.GPIO.EVT006.001
+- LRS.FUNC.GPIO.EVT006.002
+- LRS.FUNC.GPIO.EVT007.001
+- LRS.FUNC.GPIO.EVT007.002
+- LRS.FUNC.GPIO.EVT007.003
+applicability:
+  expr: EVENT_FIFO_DEPTH > 0
+clock_domains:
+- CLK_MAIN
+reset_domains:
+- RST_MAIN
+power_domain: PD_MAIN
+interfaces:
+- HLD.IF.INT.GPIO.EVENT
+END_HLD_MODULE_META -->
+
+## 职责与边界
+
+128-bit 队列只写一个最小 pin_id 边沿事件；其余事件和满队列丢失累加饱和计数。HEAD不消费，POP显式消费。FLUSH不能采用整片复位或拉低共享 reset；同拍交换与清空行为由同步队列控制实现。

@@ -1,0 +1,32 @@
+# 系统信任证据
+
+<!-- FEATURE_META
+id: FL.APB_SECURE_DEMUX.SYSTEM
+name: 系统信任证据
+description: 系统信任证据
+priority: must
+req_ref:
+- LRS.CONS.APB_SECURE_DEMUX.SYS.001
+- LRS.CONS.APB_SECURE_DEMUX.SYS.002
+- LRS.CONS.APB_SECURE_DEMUX.SYS.003
+- LRS.CONS.APB_SECURE_DEMUX.SYS.004
+- LRS.CONS.APB_SECURE_DEMUX.SYS.00501
+- LRS.CONS.APB_SECURE_DEMUX.SYS.00502
+- LRS.CONS.APB_SECURE_DEMUX.SYS.006
+- LRS.CONS.APB_SECURE_DEMUX.PROTOCOL.017
+design_ref:
+- LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+proof_methods:
+- static
+END_FEATURE_META -->
+
+## 逐需求验收范围
+
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.001`：MASTERID、PPROT 必须由可信系统路径产生；本 IP 检查属性而不认证其真实性。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.002`：上游 X2P 必须将读请求 ARPROT、写请求 AWPROT 以及主体身份绑定到对应 APB 事务，缓冲、仲裁和 CDC 后不得错配。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.003`：AXI AxID 不得在未经可信身份映射的情况下直接充当 MASTERID。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.004`：所有抵达被保护外设的访问路径和别名入口必须有等效保护；本 IP 无法阻止绕过自身的另一条访问路径。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.00501`：普通外设复位不得清除本 IP 权限或锁。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.00502`：模块复位和 DFX 授权必须由可信系统控制。
+- `LRS.CONS.APB_SECURE_DEMUX.SYS.006`：本 IP 不承诺抵抗任意物理故障注入、恶意时钟毛刺或篡改后的 scan 路径；完整性保护的覆盖边界见第 12 节。
+- `LRS.CONS.APB_SECURE_DEMUX.PROTOCOL.017`：APB4 应对照项目受控 Arm IHI 0024 版本核验；MASTERID、CSR、权限表和日志均为项目扩展，不宣称其他产品寄存器兼容。

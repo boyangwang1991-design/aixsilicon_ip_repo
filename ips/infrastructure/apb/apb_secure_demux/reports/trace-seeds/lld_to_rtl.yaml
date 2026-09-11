@@ -1,0 +1,21 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+links:
+- source_id: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  target_id: RTL.FILE.rtl/apb_secure_demux.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  target_id: RTL.FILE.rtl/apb_secure_demux_decode.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  target_id: RTL.FILE.rtl/apb_secure_demux_access.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  target_id: RTL.FILE.rtl/apb_secure_demux.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.CSR
+  target_id: RTL.FILE.rtl/apb_secure_demux_csr.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  target_id: RTL.FILE.rtl/apb_secure_demux_policy.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  target_id: RTL.FILE.rtl/apb_secure_demux_events.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  target_id: RTL.FILE.rtl/apb_secure_demux_irq.sv
+- source_id: LLD.MOD.APB_SECURE_DEMUX.DFX
+  target_id: RTL.FILE.rtl/apb_secure_demux_dfx.sv

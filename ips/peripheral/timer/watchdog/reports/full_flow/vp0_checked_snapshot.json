@@ -1,0 +1,469 @@
+{
+  "schema": "watchdog-vplan-check/1.0",
+  "passed": true,
+  "role": "plan_check_not_execution",
+  "counts": {
+    "requirements": 139,
+    "covered": 139,
+    "features": 20,
+    "testcases": 20,
+    "assertions": 12,
+    "configurations": 188,
+    "documents": 74
+  },
+  "errors": [],
+  "documents": [
+    {
+      "path": "docs/verification/99_quality_gate.md",
+      "lines": 16,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/agent_plan.md",
+      "lines": 27,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/checker_plan.md",
+      "lines": 38,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/checker_plan_assertions_1.md",
+      "lines": 104,
+      "meta": 4
+    },
+    {
+      "path": "docs/verification/checker_plan_assertions_2.md",
+      "lines": 105,
+      "meta": 4
+    },
+    {
+      "path": "docs/verification/checker_plan_assertions_3.md",
+      "lines": 98,
+      "meta": 4
+    },
+    {
+      "path": "docs/verification/checker_plan_static.md",
+      "lines": 14,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/coverage_plan.md",
+      "lines": 24,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/coverage_plan_alive.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_bus.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_cdc.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_commit.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_config.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_configurations.md",
+      "lines": 34,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_delivery.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_dfx.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_fault.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_flow.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_group.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_hw_event.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_lock.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_pause.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_recovery.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_reset.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_safety.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_service.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_snapshot.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_state.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/coverage_plan_timing.md",
+      "lines": 19,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list.md",
+      "lines": 24,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/feature_list_alive.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_bus.md",
+      "lines": 64,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_cdc.md",
+      "lines": 71,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_commit.md",
+      "lines": 92,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_config.md",
+      "lines": 169,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_delivery.md",
+      "lines": 71,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_dfx.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_fault.md",
+      "lines": 106,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_flow.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_group.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_hw_event.md",
+      "lines": 57,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_lock.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_pause.md",
+      "lines": 57,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_recovery.md",
+      "lines": 57,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_reset.md",
+      "lines": 64,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_safety.md",
+      "lines": 71,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_service.md",
+      "lines": 92,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_snapshot.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_state.md",
+      "lines": 57,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/feature_list_timing.md",
+      "lines": 99,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/index.md",
+      "lines": 77,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/test_matrix.md",
+      "lines": 24,
+      "meta": 0
+    },
+    {
+      "path": "docs/verification/test_matrix_alive.md",
+      "lines": 42,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_bus.md",
+      "lines": 45,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_cdc.md",
+      "lines": 46,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_commit.md",
+      "lines": 49,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_config.md",
+      "lines": 60,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_delivery.md",
+      "lines": 46,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_dfx.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_fault.md",
+      "lines": 51,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_flow.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_group.md",
+      "lines": 42,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_hw_event.md",
+      "lines": 44,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_lock.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_pause.md",
+      "lines": 44,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_recovery.md",
+      "lines": 44,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_reset.md",
+      "lines": 45,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_safety.md",
+      "lines": 46,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_service.md",
+      "lines": 49,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_snapshot.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_state.md",
+      "lines": 44,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/test_matrix_timing.md",
+      "lines": 50,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/verification_plan.md",
+      "lines": 47,
+      "meta": 1
+    },
+    {
+      "path": "docs/verification/verification_plan_configurations.md",
+      "lines": 259,
+      "meta": 4
+    }
+  ],
+  "source_sha256": {
+    "model/requirements.yaml": "a65e448c10140ca009ac320df2ce9e9be048967c55713853bf63f1ec43c13107",
+    "model/architecture.yaml": "bf17edbd072f26f72285bd1eb248b6387e1225dc5f1fbca9350791cee8699c64",
+    "model/micro_design.yaml": "f875e9c1e58e4d8451ac5fdf1ec5d4debaa2995ea05441736b16b61d790370b8",
+    "model/parameter_space.yaml": "02fd005bd41d771a821ac767927aa804432031637c4916bc5f87814c7b814763",
+    "model/verification.yaml": "5f00d24a84af98a57a9c3cca7f81861e50d1515447566568a2c4a7f671e9e6d9",
+    "docs/verification/99_quality_gate.md": "f0509892485e312d15c5f8db62803dc2d603066c31b1343b673427ad2912ad4d",
+    "docs/verification/agent_plan.md": "8525cebeaef0a8e8ec046e9a0a6a24562d08d65d8bb2c76111c0a36bb1aff61b",
+    "docs/verification/checker_plan.md": "a7ae1dd0ad0ce11d1d896ffb1cbcb2ff93edf82a0bb959e362626bf7e0729565",
+    "docs/verification/checker_plan_assertions_1.md": "d5eeb8ea832b73d48fe2bd81f77ded2d6661863bb73dde176eb857af49e4a612",
+    "docs/verification/checker_plan_assertions_2.md": "aed18beda4d3b491c7e9811abc12c3c6a2340e8140977a541cad46128e272fb0",
+    "docs/verification/checker_plan_assertions_3.md": "423763240e995ae58b82fac444ce7df1ff3a5fff1e3ba3a6634baa2298165505",
+    "docs/verification/checker_plan_static.md": "44420e8823dac1b07b79792972f42f1267829af0acbf3f38c7c9bda0b246f740",
+    "docs/verification/coverage_plan.md": "416cbf078f9bbcb7e1a1fc9f105962a6400b803c79e36256575572f714156556",
+    "docs/verification/coverage_plan_alive.md": "6765c25cf7754c54e81fa57b79367f96fe25e4d0e505125a567685d0636ae11b",
+    "docs/verification/coverage_plan_bus.md": "ac2529203d8cfcf3f391e559fac71af56a61f561e9679da4a4131a354af27d8b",
+    "docs/verification/coverage_plan_cdc.md": "1c60ad4e2b1ee5f6b4655693de1b67d62830dfef3d532e628dc9828e71eb1cf7",
+    "docs/verification/coverage_plan_commit.md": "47d9676f34ac428bcc44dab863a73766397d622837b61c52a2018b5201846967",
+    "docs/verification/coverage_plan_config.md": "1088c4bfaac5b45b40a81a2c0ba7e6ad444aa247d52fd8a384a9e30bfa5384cf",
+    "docs/verification/coverage_plan_configurations.md": "00ef8bf318b5e6c665b54af758f71921e04ca1ee8282f4a967ba93f3fcdedf12",
+    "docs/verification/coverage_plan_delivery.md": "1d11698d37dd4b0be4c583426d8b20bdf9779a3d692efd96f41de4ad940e71c2",
+    "docs/verification/coverage_plan_dfx.md": "5182e47ac68cccc7d6917d0dc9af535f57c3a20c52a5d5f9a85fdc854e76b6bc",
+    "docs/verification/coverage_plan_fault.md": "1695cc546b7fa48cabb92c266e607886722aae11dc6e9d3ed994c9b13913f2c3",
+    "docs/verification/coverage_plan_flow.md": "4e6649f7b037ed9be86e26a758006890b9b4d02760862b34e8d5527ae7beb28f",
+    "docs/verification/coverage_plan_group.md": "bc979adc05af82406cc0427abc59728222392c9ba8defd76705ef7d9c1f53bb0",
+    "docs/verification/coverage_plan_hw_event.md": "f1728a50a7a0dbfc07e055464bac7c6077be6b5a0669e13880eb73bd4f9c79f7",
+    "docs/verification/coverage_plan_lock.md": "0d7c292a214c6c26f72a0943295733ba019effa8af535cb4178b05786783c966",
+    "docs/verification/coverage_plan_pause.md": "fb0f4822007ad1149cc1b346d17fc697bfdd0dfaf06f505202eedbf1998575b1",
+    "docs/verification/coverage_plan_recovery.md": "81e227c958db10454cf782ad1b7cb7b528c13be8ded862818b98a31ea685a5ea",
+    "docs/verification/coverage_plan_reset.md": "086c2b7457f3d3097192e6b495877adac99635a66e5723f50b4fa3aaee074a75",
+    "docs/verification/coverage_plan_safety.md": "362f036cc270b5e23e3389f29b21e94579fefddc08e22543091e62a79a3b47a6",
+    "docs/verification/coverage_plan_service.md": "d3ec0f6b5a35b90c7f83f32add86a690c3dc6c2a0309f24ab5e17a6b4a0d8619",
+    "docs/verification/coverage_plan_snapshot.md": "80b7a8b02947a4f4e30dd3aa3b1dc2d7403b3de8c0127eedac38bae0cef16b6c",
+    "docs/verification/coverage_plan_state.md": "7ab76741c35f262c71ea62517a384aa573025e9f390545c3180ae5b76615bb1d",
+    "docs/verification/coverage_plan_timing.md": "58a4ed69b3112fc217d9e1f99d1a029921ebf27db8a459b81c1e9a2011676708",
+    "docs/verification/feature_list.md": "3431d770d7509f5b9f1c51fe955d0df39dc25c70fe3dd22177f28b0194245f40",
+    "docs/verification/feature_list_alive.md": "4a460060baf6950c1546dc780ae08f598b3b5f0fd97a132363152a9cd6f2c0c3",
+    "docs/verification/feature_list_bus.md": "28097214aeec5b438758e15a415ec9dd063da4ae4d9f0c551da1e693138e725b",
+    "docs/verification/feature_list_cdc.md": "4a333ed8e2d0f0a10cad6c43f35899b7773cc259632198d89a364abde4885323",
+    "docs/verification/feature_list_commit.md": "4cbb9985e4bba17f64cf0f5f949a998777a273a514f0e9a4f6ee7e64e0fffa6d",
+    "docs/verification/feature_list_config.md": "468dbc7c75e1769cab680ed56ee645b6b404415daae39e69d62bafbc2974e528",
+    "docs/verification/feature_list_delivery.md": "6934b1309554cbe7caf16ac6b776d6c0a8c61fa8295620eb990fd7a3c4a0858c",
+    "docs/verification/feature_list_dfx.md": "6a3112d37f25577d63a4fbd2c29cee0b77102954e73aab817bcd1157280a15d2",
+    "docs/verification/feature_list_fault.md": "9e573ec1a6a51560958fbba253afcfd42b55e6e8fc5e917f24caf83930b3ead6",
+    "docs/verification/feature_list_flow.md": "84aa7d8a4f5d9e628f22f8fe7312e5593aba2c469a2690e9a4b9520d2be7e4b9",
+    "docs/verification/feature_list_group.md": "7f7d68b57f6faa9f5fbc96f414069410dd7b0b28d0a31cc15204ad109da1cf48",
+    "docs/verification/feature_list_hw_event.md": "a26d4e19e890fa5bb64512d63839fbd320e528df452e0bbfc98f381cc9972865",
+    "docs/verification/feature_list_lock.md": "80983f48c587f1cc49350cb0f14699e5336a3b81b4e3343352b146446762781b",
+    "docs/verification/feature_list_pause.md": "ae0034cd5d2d54cb78c8a299d85fead57407495746f583dc5025a162fc4da937",
+    "docs/verification/feature_list_recovery.md": "9e73c9d4fbff536787c7d1887ebbd59bee426fd12f66898353746b8d36a55391",
+    "docs/verification/feature_list_reset.md": "1d8e744c7c281b2dc922c8f0280387c7070452520d111e912b6b7a5e72582f0a",
+    "docs/verification/feature_list_safety.md": "e1837fe48e60cabec1c5413119669b84200356ac9a1eb3f7d0e8e0ddad272d06",
+    "docs/verification/feature_list_service.md": "ffda553da5ac5259ae6a48f9e42d6d30a2c4399233474f2bc96f0b67baedf388",
+    "docs/verification/feature_list_snapshot.md": "a9126497bb5be73255b3d5e92652a7145bbf28d6aff509b55bd830d8c27e25aa",
+    "docs/verification/feature_list_state.md": "287d52c773ca4a771799651d07c3da2f9114397c9067038bc5363bb70af51f4d",
+    "docs/verification/feature_list_timing.md": "5bd68d1842d4c5eaf1f8fd146aead524b53984b45bd6816a2038bf58c7d8a631",
+    "docs/verification/index.md": "7ac4afce6efd83fd23fe8b544ccaf96b304abaac6f9f6e436dc80c6e69f71e2e",
+    "docs/verification/test_matrix.md": "189b797d62d09ec4f7dfc6b88bae443aef5d93d2109dac7dc3d00eea26880d56",
+    "docs/verification/test_matrix_alive.md": "526a75f5cc202ab5969b2deac929d2a1523d603fb0f7f93c26d8a88a86490d17",
+    "docs/verification/test_matrix_bus.md": "0638a680e09a50c31f9e14d5950399edb5bd20cd6adc15fbfd20770590f5f5be",
+    "docs/verification/test_matrix_cdc.md": "57ce39d8e36dbf1a2300d13b3150d7317e8dcf330ec57c51954f716226ce0414",
+    "docs/verification/test_matrix_commit.md": "4d9251c84a5c0072a342d2ec80180db97d4f5b69756d0e7f1f587d74f141d941",
+    "docs/verification/test_matrix_config.md": "2808819699c0699d278ae86c92d214fe75fe63d512680c3647477f6562ff099f",
+    "docs/verification/test_matrix_delivery.md": "debe39bdb156799f1b3d8d1c1115bad87fc18f264d5843418a741c7196d08e01",
+    "docs/verification/test_matrix_dfx.md": "90c21a2b85854b39783eaf0935896e904508b30c45f52e8730d50aa95ad0f41c",
+    "docs/verification/test_matrix_fault.md": "31aa83d91194f73b449131d967c805c1036bd0c9c53f91cf446ac7463a135785",
+    "docs/verification/test_matrix_flow.md": "05f25f0f494e5464cff74a18e5b1b6ee825642f00cac07f05a63837d0c9f5982",
+    "docs/verification/test_matrix_group.md": "a0a5311301ba48bb7a07603a168d7592039e9b49246af5b820c03fddc4c8db85",
+    "docs/verification/test_matrix_hw_event.md": "262d24d288a7799030b58fc9f5dc8301cd543d5b176ac295547a2710480b6496",
+    "docs/verification/test_matrix_lock.md": "8f7930095d927870504b887f61ceb3578eb329832b5cb800d3e22a3373c62270",
+    "docs/verification/test_matrix_pause.md": "7263754158a0b15190d2f9d78e63d102541cfa87a7d4082144c0936703ec0d8d",
+    "docs/verification/test_matrix_recovery.md": "90aae9540d2c8b4066b7c7401b881a1840a44ba6ed425358eedae77306a2ed30",
+    "docs/verification/test_matrix_reset.md": "5fbcf75462eefb71219f684bea8918cb4a2fc3f9269d50319d99d3bf21601ce6",
+    "docs/verification/test_matrix_safety.md": "5f3b820d141a497b0b246c5318e8c4d197f3068509d0812fb5c18382a6f9d21e",
+    "docs/verification/test_matrix_service.md": "2506d07d82cffc382f4742dfb92a6978ec7bd55593c46d336974691d8857a902",
+    "docs/verification/test_matrix_snapshot.md": "ea2ee08e4829a2ff39b1b881fc9b71e32b6e13c5eb5728b75959b15c07d43505",
+    "docs/verification/test_matrix_state.md": "a666cdae92f604e2b4f6dd4335eb8a49925b3fc5ae947b948a144e33feb5c8c4",
+    "docs/verification/test_matrix_timing.md": "835b638539d6f59159fe6af41095248261031f6540ae3c797195f31fa0bcedd5",
+    "docs/verification/verification_plan.md": "bfd8ca6df9be0a8ccd38f70aab2a34bda8ed7f4d9c18b63f28712395b0b4a09f",
+    "docs/verification/verification_plan_configurations.md": "cb80f4886074fda65089c184a7285e63280f97b975dd51cc34a5853556ba7fb8",
+    "scripts/check_vplan.py": "bfe67a0c0c3daaaad53996ec342c5b6fc3b348f1fde0b66358055d4147be38a3"
+  }
+}

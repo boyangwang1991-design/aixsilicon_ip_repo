@@ -1,0 +1,3205 @@
+schema_version: '2.0'
+ip_name: gpio
+delivery_model: parameterized
+lrs_baseline: GPIO-CONTRACT-59597f3b2da6
+hld_baseline: GPIO-HLD-001
+document_version: 1.0.0-draft
+status: approved
+microarchitecture_baseline: GPIO-LLD-001
+modules:
+- id: LLD.MOD.GPIO.TOP
+  name: gpio
+  hld_ref:
+  - HLD.MOD.GPIO.TOP
+  req_ref:
+  - LRS.CFG.GPIO.PARAM.001
+  - LRS.CFG.GPIO.PARAM.002
+  - LRS.CFG.GPIO.PARAM.003
+  - LRS.CFG.GPIO.PARAM.004
+  - LRS.CFG.GPIO.PARAM.005
+  - LRS.CFG.GPIO.PARAM.006
+  - LRS.CFG.GPIO.PARAM.007
+  - LRS.CFG.GPIO.PARAM.008
+  - LRS.CFG.GPIO.PARAM.009
+  - LRS.CFG.GPIO.PARAM.010
+  - LRS.CFG.GPIO.PARAM.011
+  - LRS.CFG.GPIO.PARAM.012
+  - LRS.CFG.GPIO.PARAM.013
+  - LRS.CFG.GPIO.PARAM.014
+  - LRS.CFG.GPIO.PARAM.015
+  - LRS.CFG.GPIO.PARAM.016
+  - LRS.CFG.GPIO.PARAM.017
+  - LRS.CFG.GPIO.PARAM.018
+  - LRS.CFG.GPIO.PARAM.019
+  - LRS.CFG.GPIO.CFG001.001
+  - LRS.CFG.GPIO.CFG002.001
+  - LRS.CFG.GPIO.CFG003.001
+  - LRS.CONS.GPIO.SCP001.001
+  - LRS.CONS.GPIO.SCP002.001
+  - LRS.CONS.GPIO.SCP003.001
+  - LRS.CONS.GPIO.SCP003.002
+  - LRS.INTF.GPIO.PORT.001
+  - LRS.INTF.GPIO.PORT.002
+  - LRS.INTF.GPIO.PORT.003
+  - LRS.INTF.GPIO.PORT.004
+  - LRS.INTF.GPIO.PORT.005
+  - LRS.INTF.GPIO.PORT.006
+  - LRS.INTF.GPIO.PORT.007
+  - LRS.INTF.GPIO.PORT.008
+  - LRS.INTF.GPIO.PORT.009
+  - LRS.INTF.GPIO.PORT.010
+  - LRS.INTF.GPIO.PORT.011
+  - LRS.INTF.GPIO.PORT.012
+  - LRS.INTF.GPIO.PORT.013
+  - LRS.INTF.GPIO.PORT.014
+  - LRS.INTF.GPIO.PORT.015
+  - LRS.INTF.GPIO.PORT.016
+  - LRS.INTF.GPIO.PORT.017
+  - LRS.INTF.GPIO.PORT.018
+  - LRS.INTF.GPIO.PORT.019
+  - LRS.INTF.GPIO.PORT.020
+  - LRS.INTF.GPIO.PORT.021
+  - LRS.INTF.GPIO.PORT.022
+  - LRS.INTF.GPIO.IF001.001
+  - LRS.INTF.GPIO.IF001.002
+  - LRS.INTF.GPIO.IF002.001
+  - LRS.INTF.GPIO.IF002.002
+  - LRS.INTF.GPIO.IF003.001
+  - LRS.INTF.GPIO.IF003.002
+  - LRS.INTF.GPIO.IF004.001
+  - LRS.INTF.GPIO.IF004.002
+  - LRS.FUNC.GPIO.RACE.001
+  - LRS.FUNC.GPIO.RACE.002
+  - LRS.FUNC.GPIO.RACE.003
+  - LRS.FUNC.GPIO.RACE.004
+  - LRS.FUNC.GPIO.RACE.005
+  - LRS.FUNC.GPIO.RACE.006
+  - LRS.FUNC.GPIO.RACE.007
+  - LRS.FUNC.GPIO.RACE.008
+  - LRS.FUNC.GPIO.RACE.009
+  - LRS.FUNC.GPIO.RACE.010
+  - LRS.PERF.GPIO.ARC002.001
+  - LRS.PERF.GPIO.ARC002.002
+  - LRS.PERF.GPIO.ARC004.001
+  - LRS.PERF.GPIO.ARC004.002
+  - LRS.PERF.GPIO.ARC005.001
+  - LRS.PERF.GPIO.ARC005.002
+  - LRS.RESET.GPIO.STATE.001
+  - LRS.RESET.GPIO.STATE.002
+  - LRS.RESET.GPIO.STATE.003
+  - LRS.RESET.GPIO.STATE.004
+  - LRS.RESET.GPIO.STATE.005
+  - LRS.RESET.GPIO.STATE.006
+  - LRS.RESET.GPIO.CLOCK.001
+  - LRS.CONS.GPIO.DELIVERY.001
+  - LRS.CONS.GPIO.DELIVERY.002
+  - LRS.CONS.GPIO.DELIVERY.003
+  - LRS.CONS.GPIO.DELIVERY.004
+  - LRS.CONS.GPIO.DELIVERY.005
+  - LRS.CONS.GPIO.DELIVERY.006
+  - LRS.CONS.GPIO.DELIVERY.007
+  - LRS.CONS.GPIO.INSTANCEPAD.001
+  - LRS.CONS.GPIO.INSTANCEDEFAULTS.002
+  - LRS.CONS.GPIO.INSTANCECLOCK.003
+  - LRS.CONS.GPIO.INSTANCERESET.004
+  - LRS.CONS.GPIO.INSTANCEPOWER.005
+  - LRS.CONS.GPIO.INSTANCEELECTRIC.006
+  - LRS.CONS.GPIO.INSTANCEBUS.007
+  - LRS.CONS.GPIO.INSTANCEIRQDMA.008
+  - LRS.CONS.GPIO.INSTANCESAFETY.009
+  - LRS.CONS.GPIO.VER001.001
+  - LRS.CONS.GPIO.VER002.001
+  - LRS.CONS.GPIO.VER003.001
+  - LRS.CONS.GPIO.VER003.002
+  - LRS.CONS.GPIO.VER004.001
+  - LRS.CONS.GPIO.VER004.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+  - RST_POR_MAIN
+- id: LLD.MOD.GPIO.MAILBOX
+  name: gpio_aon_mailbox
+  hld_ref:
+  - HLD.MOD.GPIO.MAILBOX
+  req_ref:
+  - LRS.LP.GPIO.WAK004.001
+  - LRS.LP.GPIO.WAK004.002
+  - LRS.LP.GPIO.WAK005.001
+  - LRS.LP.GPIO.WAK005.002
+  - LRS.LP.GPIO.WAK005.003
+  - LRS.LP.GPIO.WAK006.001
+  - LRS.LP.GPIO.WAK007.001
+  - LRS.LP.GPIO.WAK007.002
+  - LRS.LP.GPIO.WAK007.003
+  - LRS.LP.GPIO.WAK008.001
+  - LRS.LP.GPIO.WAK008.002
+  - LRS.LP.GPIO.WAK009.001
+  - LRS.LP.GPIO.WAK009.002
+  - LRS.LP.GPIO.WAK010.001
+  - LRS.LP.GPIO.WAK010.002
+  - LRS.LP.GPIO.WAK010A.001
+  - LRS.LP.GPIO.WAK010A.002
+  - LRS.LP.GPIO.WAK011.001
+  - LRS.LP.GPIO.WAK012.001
+  - LRS.LP.GPIO.WAK012.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: AON_WAKE_EN == 1
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_aon_mailbox
+  clock_domains:
+  - CLK_MAIN
+  - CLK_AON
+  reset_domains:
+  - RST_MAIN
+  - RST_POR_MAIN
+  - RST_AON
+- id: LLD.MOD.GPIO.AON
+  name: gpio_aon_wake
+  hld_ref:
+  - HLD.MOD.GPIO.AON
+  req_ref:
+  - LRS.LP.GPIO.WAK001.001
+  - LRS.LP.GPIO.WAK001.002
+  - LRS.LP.GPIO.WAK001.003
+  - LRS.LP.GPIO.WAK002.001
+  - LRS.LP.GPIO.WAK002.002
+  - LRS.LP.GPIO.WAK003.001
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: AON_WAKE_EN == 1
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_aon_wake
+  clock_domains:
+  - CLK_AON
+  reset_domains:
+  - RST_AON
+- id: LLD.MOD.GPIO.APB
+  name: gpio_apb_if
+  hld_ref:
+  - HLD.MOD.GPIO.APB
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+  - LRS.REG.GPIO.BUS005.001
+  - LRS.REG.GPIO.BUS005.002
+  - LRS.REG.GPIO.BUS005A.001
+  - LRS.REG.GPIO.BUS005A.002
+  - LRS.REG.GPIO.BUS005A.003
+  - LRS.REG.GPIO.BUS005A.004
+  - LRS.REG.GPIO.BUS006.001
+  - LRS.REG.GPIO.BUS006.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_apb_if
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.CAPTURE
+  name: gpio_capture
+  hld_ref:
+  - HLD.MOD.GPIO.CAPTURE
+  req_ref:
+  - LRS.FUNC.GPIO.CAP001.001
+  - LRS.FUNC.GPIO.CAP001.002
+  - LRS.FUNC.GPIO.CAP002.001
+  - LRS.FUNC.GPIO.CAP002.002
+  - LRS.FUNC.GPIO.CAP003.001
+  - LRS.FUNC.GPIO.CAP003.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: SNAPSHOT_EN == 1 or STRAP_EN == 1
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_capture
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.DIAG
+  name: gpio_diag
+  hld_ref:
+  - HLD.MOD.GPIO.DIAG
+  req_ref:
+  - LRS.SAFE.GPIO.DIAG001.001
+  - LRS.SAFE.GPIO.DIAG001.002
+  - LRS.SAFE.GPIO.DIAG002.001
+  - LRS.SAFE.GPIO.DIAG002.002
+  - LRS.SAFE.GPIO.DIAG002.003
+  - LRS.SAFE.GPIO.DIAG002.004
+  - LRS.SAFE.GPIO.DIAG003.001
+  - LRS.SAFE.GPIO.DIAG003.002
+  - LRS.SAFE.GPIO.DIAG004.001
+  - LRS.SAFE.GPIO.DIAG004.002
+  - LRS.SAFE.GPIO.DIAG005.001
+  - LRS.SAFE.GPIO.DIAG005.002
+  - LRS.SAFE.GPIO.DIAG006.001
+  - LRS.SAFE.GPIO.DIAG007.001
+  - LRS.SAFE.GPIO.DIAG007.002
+  - LRS.DFX.GPIO.OBSERVE.001
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: DIAG_EN == 1 or CFG_PARITY_EN == 1
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_diag
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+  - RST_POR_MAIN
+- id: LLD.MOD.GPIO.FIFO
+  name: gpio_event_fifo
+  hld_ref:
+  - HLD.MOD.GPIO.FIFO
+  req_ref:
+  - LRS.FUNC.GPIO.EVT001.001
+  - LRS.FUNC.GPIO.EVT001.002
+  - LRS.FUNC.GPIO.EVT002.001
+  - LRS.FUNC.GPIO.EVT003.001
+  - LRS.FUNC.GPIO.EVT003.002
+  - LRS.FUNC.GPIO.EVT004.001
+  - LRS.FUNC.GPIO.EVT004.002
+  - LRS.FUNC.GPIO.EVT004.003
+  - LRS.FUNC.GPIO.EVT005.001
+  - LRS.FUNC.GPIO.EVT005.002
+  - LRS.FUNC.GPIO.EVT005.003
+  - LRS.FUNC.GPIO.EVT006.001
+  - LRS.FUNC.GPIO.EVT006.002
+  - LRS.FUNC.GPIO.EVT007.001
+  - LRS.FUNC.GPIO.EVT007.002
+  - LRS.FUNC.GPIO.EVT007.003
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_event_fifo
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.INPUT
+  name: gpio_input
+  hld_ref:
+  - HLD.MOD.GPIO.INPUT
+  req_ref:
+  - LRS.FUNC.GPIO.FLT001.001
+  - LRS.FUNC.GPIO.FLT001.002
+  - LRS.FUNC.GPIO.FLT002.001
+  - LRS.FUNC.GPIO.FLT002.002
+  - LRS.FUNC.GPIO.FLT002.003
+  - LRS.FUNC.GPIO.FLT003.001
+  - LRS.FUNC.GPIO.FLT004.001
+  - LRS.FUNC.GPIO.FLT004.002
+  - LRS.FUNC.GPIO.FLT005.001
+  - LRS.FUNC.GPIO.FLT006.001
+  - LRS.FUNC.GPIO.FLT007.001
+  - LRS.FUNC.GPIO.IN001.001
+  - LRS.FUNC.GPIO.IN002.001
+  - LRS.FUNC.GPIO.IN002.002
+  - LRS.FUNC.GPIO.IN003.001
+  - LRS.FUNC.GPIO.IN004.001
+  - LRS.FUNC.GPIO.IN005.001
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_input
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.IRQ
+  name: gpio_irq
+  hld_ref:
+  - HLD.MOD.GPIO.IRQ
+  req_ref:
+  - LRS.FUNC.GPIO.IRQ001.001
+  - LRS.FUNC.GPIO.IRQ002.001
+  - LRS.FUNC.GPIO.IRQ002.002
+  - LRS.FUNC.GPIO.IRQ003.001
+  - LRS.FUNC.GPIO.IRQ003.002
+  - LRS.FUNC.GPIO.IRQ004.001
+  - LRS.FUNC.GPIO.IRQ005.001
+  - LRS.FUNC.GPIO.IRQ006.001
+  - LRS.FUNC.GPIO.IRQ007.001
+  - LRS.FUNC.GPIO.IRQ007.002
+  - LRS.FUNC.GPIO.IRQ008.001
+  - LRS.FUNC.GPIO.IRQ008.002
+  - LRS.FUNC.GPIO.IRQ008.003
+  - LRS.FUNC.GPIO.IRQ009.001
+  - LRS.FUNC.GPIO.IRQ009.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_irq
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.OUTPUT
+  name: gpio_output
+  hld_ref:
+  - HLD.MOD.GPIO.OUTPUT
+  req_ref:
+  - LRS.FUNC.GPIO.OUT001.001
+  - LRS.FUNC.GPIO.OUT001.002
+  - LRS.FUNC.GPIO.OUT002.001
+  - LRS.FUNC.GPIO.OUT002.002
+  - LRS.FUNC.GPIO.OUT002.003
+  - LRS.FUNC.GPIO.OUT003.001
+  - LRS.FUNC.GPIO.OUT004.001
+  - LRS.FUNC.GPIO.OUT004.002
+  - LRS.FUNC.GPIO.OUT005.001
+  - LRS.FUNC.GPIO.OUT005.002
+  - LRS.FUNC.GPIO.OUT005.003
+  - LRS.FUNC.GPIO.OUT006.001
+  - LRS.FUNC.GPIO.OUT006.002
+  - LRS.FUNC.GPIO.OUT007.001
+  - LRS.LP.GPIO.LP001.001
+  - LRS.LP.GPIO.LP001.002
+  - LRS.LP.GPIO.LP001.003
+  - LRS.LP.GPIO.LP002.001
+  - LRS.LP.GPIO.LP003.001
+  - LRS.LP.GPIO.LP003.002
+  - LRS.LP.GPIO.LP003.003
+  - LRS.LP.GPIO.LP004.001
+  - LRS.LP.GPIO.LP004.002
+  - LRS.LP.GPIO.LP005.001
+  - LRS.LP.GPIO.LP005.002
+  - LRS.LP.GPIO.LP006.001
+  - LRS.LP.GPIO.LP006.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_output
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.REG
+  name: gpio_regfile
+  hld_ref:
+  - HLD.MOD.GPIO.REG
+  req_ref:
+  - LRS.REG.GPIO.MAP.001
+  - LRS.REG.GPIO.IDENTITY.002
+  - LRS.REG.GPIO.FAULT.003
+  - LRS.REG.GPIO.FIRST.004
+  - LRS.REG.GPIO.LOST.005
+  - LRS.REG.GPIO.AONRESULT.006
+  - LRS.REG.GPIO.DEFAULT.007
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_regfile
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+- id: LLD.MOD.GPIO.SECURITY
+  name: gpio_security
+  hld_ref:
+  - HLD.MOD.GPIO.SECURITY
+  req_ref:
+  - LRS.SEC.GPIO.SEC001.001
+  - LRS.SEC.GPIO.SEC002.001
+  - LRS.SEC.GPIO.SEC002.002
+  - LRS.SEC.GPIO.SEC002A.001
+  - LRS.SEC.GPIO.SEC002A.002
+  - LRS.SEC.GPIO.SEC002A.003
+  - LRS.SEC.GPIO.SEC003.001
+  - LRS.SEC.GPIO.SEC003.002
+  - LRS.SEC.GPIO.SEC004.001
+  - LRS.SEC.GPIO.SEC005.001
+  - LRS.SEC.GPIO.SEC005.002
+  - LRS.SEC.GPIO.SEC006.001
+  - LRS.SEC.GPIO.SEC006.002
+  parent_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: gpio_security
+  clock_domains:
+  - CLK_MAIN
+  reset_domains:
+  - RST_MAIN
+  - RST_POR_MAIN
+interfaces: []
+timing: []
+datapaths:
+- id: LLD.DP.GPIO.TOP
+  module_ref: LLD.MOD.GPIO.TOP
+  hld_ref:
+  - HLD.MOD.GPIO.TOP
+  req_ref:
+  - LRS.CFG.GPIO.PARAM.001
+  - LRS.CFG.GPIO.PARAM.002
+  - LRS.CFG.GPIO.PARAM.003
+  - LRS.CFG.GPIO.PARAM.004
+  - LRS.CFG.GPIO.PARAM.005
+  - LRS.CFG.GPIO.PARAM.006
+  - LRS.CFG.GPIO.PARAM.007
+  - LRS.CFG.GPIO.PARAM.008
+  - LRS.CFG.GPIO.PARAM.009
+  - LRS.CFG.GPIO.PARAM.010
+  - LRS.CFG.GPIO.PARAM.011
+  - LRS.CFG.GPIO.PARAM.012
+  - LRS.CFG.GPIO.PARAM.013
+  - LRS.CFG.GPIO.PARAM.014
+  - LRS.CFG.GPIO.PARAM.015
+  - LRS.CFG.GPIO.PARAM.016
+  - LRS.CFG.GPIO.PARAM.017
+  - LRS.CFG.GPIO.PARAM.018
+  - LRS.CFG.GPIO.PARAM.019
+  - LRS.CFG.GPIO.CFG001.001
+  - LRS.CFG.GPIO.CFG002.001
+  - LRS.CFG.GPIO.CFG003.001
+  - LRS.CONS.GPIO.SCP001.001
+  - LRS.CONS.GPIO.SCP002.001
+  - LRS.CONS.GPIO.SCP003.001
+  - LRS.CONS.GPIO.SCP003.002
+  - LRS.INTF.GPIO.PORT.001
+  - LRS.INTF.GPIO.PORT.002
+  - LRS.INTF.GPIO.PORT.003
+  - LRS.INTF.GPIO.PORT.004
+  - LRS.INTF.GPIO.PORT.005
+  - LRS.INTF.GPIO.PORT.006
+  - LRS.INTF.GPIO.PORT.007
+  - LRS.INTF.GPIO.PORT.008
+  - LRS.INTF.GPIO.PORT.009
+  - LRS.INTF.GPIO.PORT.010
+  - LRS.INTF.GPIO.PORT.011
+  - LRS.INTF.GPIO.PORT.012
+  - LRS.INTF.GPIO.PORT.013
+  - LRS.INTF.GPIO.PORT.014
+  - LRS.INTF.GPIO.PORT.015
+  - LRS.INTF.GPIO.PORT.016
+  - LRS.INTF.GPIO.PORT.017
+  - LRS.INTF.GPIO.PORT.018
+  - LRS.INTF.GPIO.PORT.019
+  - LRS.INTF.GPIO.PORT.020
+  - LRS.INTF.GPIO.PORT.021
+  - LRS.INTF.GPIO.PORT.022
+  - LRS.INTF.GPIO.IF001.001
+  - LRS.INTF.GPIO.IF001.002
+  - LRS.INTF.GPIO.IF002.001
+  - LRS.INTF.GPIO.IF002.002
+  - LRS.INTF.GPIO.IF003.001
+  - LRS.INTF.GPIO.IF003.002
+  - LRS.INTF.GPIO.IF004.001
+  - LRS.INTF.GPIO.IF004.002
+  - LRS.FUNC.GPIO.RACE.001
+  - LRS.FUNC.GPIO.RACE.002
+  - LRS.FUNC.GPIO.RACE.003
+  - LRS.FUNC.GPIO.RACE.004
+  - LRS.FUNC.GPIO.RACE.005
+  - LRS.FUNC.GPIO.RACE.006
+  - LRS.FUNC.GPIO.RACE.007
+  - LRS.FUNC.GPIO.RACE.008
+  - LRS.FUNC.GPIO.RACE.009
+  - LRS.FUNC.GPIO.RACE.010
+  - LRS.PERF.GPIO.ARC002.001
+  - LRS.PERF.GPIO.ARC002.002
+  - LRS.PERF.GPIO.ARC004.001
+  - LRS.PERF.GPIO.ARC004.002
+  - LRS.PERF.GPIO.ARC005.001
+  - LRS.PERF.GPIO.ARC005.002
+  - LRS.RESET.GPIO.STATE.001
+  - LRS.RESET.GPIO.STATE.002
+  - LRS.RESET.GPIO.STATE.003
+  - LRS.RESET.GPIO.STATE.004
+  - LRS.RESET.GPIO.STATE.005
+  - LRS.RESET.GPIO.STATE.006
+  - LRS.RESET.GPIO.CLOCK.001
+  - LRS.CONS.GPIO.DELIVERY.001
+  - LRS.CONS.GPIO.DELIVERY.002
+  - LRS.CONS.GPIO.DELIVERY.003
+  - LRS.CONS.GPIO.DELIVERY.004
+  - LRS.CONS.GPIO.DELIVERY.005
+  - LRS.CONS.GPIO.DELIVERY.006
+  - LRS.CONS.GPIO.DELIVERY.007
+  - LRS.CONS.GPIO.INSTANCEPAD.001
+  - LRS.CONS.GPIO.INSTANCEDEFAULTS.002
+  - LRS.CONS.GPIO.INSTANCECLOCK.003
+  - LRS.CONS.GPIO.INSTANCERESET.004
+  - LRS.CONS.GPIO.INSTANCEPOWER.005
+  - LRS.CONS.GPIO.INSTANCEELECTRIC.006
+  - LRS.CONS.GPIO.INSTANCEBUS.007
+  - LRS.CONS.GPIO.INSTANCEIRQDMA.008
+  - LRS.CONS.GPIO.INSTANCESAFETY.009
+  - LRS.CONS.GPIO.VER001.001
+  - LRS.CONS.GPIO.VER002.001
+  - LRS.CONS.GPIO.VER003.001
+  - LRS.CONS.GPIO.VER003.002
+  - LRS.CONS.GPIO.VER004.001
+  - LRS.CONS.GPIO.VER004.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.MAILBOX
+  module_ref: LLD.MOD.GPIO.MAILBOX
+  hld_ref:
+  - HLD.MOD.GPIO.MAILBOX
+  req_ref:
+  - LRS.LP.GPIO.WAK004.001
+  - LRS.LP.GPIO.WAK004.002
+  - LRS.LP.GPIO.WAK005.001
+  - LRS.LP.GPIO.WAK005.002
+  - LRS.LP.GPIO.WAK005.003
+  - LRS.LP.GPIO.WAK006.001
+  - LRS.LP.GPIO.WAK007.001
+  - LRS.LP.GPIO.WAK007.002
+  - LRS.LP.GPIO.WAK007.003
+  - LRS.LP.GPIO.WAK008.001
+  - LRS.LP.GPIO.WAK008.002
+  - LRS.LP.GPIO.WAK009.001
+  - LRS.LP.GPIO.WAK009.002
+  - LRS.LP.GPIO.WAK010.001
+  - LRS.LP.GPIO.WAK010.002
+  - LRS.LP.GPIO.WAK010A.001
+  - LRS.LP.GPIO.WAK010A.002
+  - LRS.LP.GPIO.WAK011.001
+  - LRS.LP.GPIO.WAK012.001
+  - LRS.LP.GPIO.WAK012.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: AON_WAKE_EN == 1
+- id: LLD.DP.GPIO.AON
+  module_ref: LLD.MOD.GPIO.AON
+  hld_ref:
+  - HLD.MOD.GPIO.AON
+  req_ref:
+  - LRS.LP.GPIO.WAK001.001
+  - LRS.LP.GPIO.WAK001.002
+  - LRS.LP.GPIO.WAK001.003
+  - LRS.LP.GPIO.WAK002.001
+  - LRS.LP.GPIO.WAK002.002
+  - LRS.LP.GPIO.WAK003.001
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: AON_WAKE_EN == 1
+- id: LLD.DP.GPIO.APB
+  module_ref: LLD.MOD.GPIO.APB
+  hld_ref:
+  - HLD.MOD.GPIO.APB
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+  - LRS.REG.GPIO.BUS005.001
+  - LRS.REG.GPIO.BUS005.002
+  - LRS.REG.GPIO.BUS005A.001
+  - LRS.REG.GPIO.BUS005A.002
+  - LRS.REG.GPIO.BUS005A.003
+  - LRS.REG.GPIO.BUS005A.004
+  - LRS.REG.GPIO.BUS006.001
+  - LRS.REG.GPIO.BUS006.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.CAPTURE
+  module_ref: LLD.MOD.GPIO.CAPTURE
+  hld_ref:
+  - HLD.MOD.GPIO.CAPTURE
+  req_ref:
+  - LRS.FUNC.GPIO.CAP001.001
+  - LRS.FUNC.GPIO.CAP001.002
+  - LRS.FUNC.GPIO.CAP002.001
+  - LRS.FUNC.GPIO.CAP002.002
+  - LRS.FUNC.GPIO.CAP003.001
+  - LRS.FUNC.GPIO.CAP003.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: SNAPSHOT_EN == 1 or STRAP_EN == 1
+- id: LLD.DP.GPIO.DIAG
+  module_ref: LLD.MOD.GPIO.DIAG
+  hld_ref:
+  - HLD.MOD.GPIO.DIAG
+  req_ref:
+  - LRS.SAFE.GPIO.DIAG001.001
+  - LRS.SAFE.GPIO.DIAG001.002
+  - LRS.SAFE.GPIO.DIAG002.001
+  - LRS.SAFE.GPIO.DIAG002.002
+  - LRS.SAFE.GPIO.DIAG002.003
+  - LRS.SAFE.GPIO.DIAG002.004
+  - LRS.SAFE.GPIO.DIAG003.001
+  - LRS.SAFE.GPIO.DIAG003.002
+  - LRS.SAFE.GPIO.DIAG004.001
+  - LRS.SAFE.GPIO.DIAG004.002
+  - LRS.SAFE.GPIO.DIAG005.001
+  - LRS.SAFE.GPIO.DIAG005.002
+  - LRS.SAFE.GPIO.DIAG006.001
+  - LRS.SAFE.GPIO.DIAG007.001
+  - LRS.SAFE.GPIO.DIAG007.002
+  - LRS.DFX.GPIO.OBSERVE.001
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: DIAG_EN == 1 or CFG_PARITY_EN == 1
+- id: LLD.DP.GPIO.FIFO
+  module_ref: LLD.MOD.GPIO.FIFO
+  hld_ref:
+  - HLD.MOD.GPIO.FIFO
+  req_ref:
+  - LRS.FUNC.GPIO.EVT001.001
+  - LRS.FUNC.GPIO.EVT001.002
+  - LRS.FUNC.GPIO.EVT002.001
+  - LRS.FUNC.GPIO.EVT003.001
+  - LRS.FUNC.GPIO.EVT003.002
+  - LRS.FUNC.GPIO.EVT004.001
+  - LRS.FUNC.GPIO.EVT004.002
+  - LRS.FUNC.GPIO.EVT004.003
+  - LRS.FUNC.GPIO.EVT005.001
+  - LRS.FUNC.GPIO.EVT005.002
+  - LRS.FUNC.GPIO.EVT005.003
+  - LRS.FUNC.GPIO.EVT006.001
+  - LRS.FUNC.GPIO.EVT006.002
+  - LRS.FUNC.GPIO.EVT007.001
+  - LRS.FUNC.GPIO.EVT007.002
+  - LRS.FUNC.GPIO.EVT007.003
+  input_width: 128
+  output_width: 128
+  latency: 按本册周期行为定义
+  applicability:
+    expr: EVENT_FIFO_DEPTH > 0
+- id: LLD.DP.GPIO.INPUT
+  module_ref: LLD.MOD.GPIO.INPUT
+  hld_ref:
+  - HLD.MOD.GPIO.INPUT
+  req_ref:
+  - LRS.FUNC.GPIO.FLT001.001
+  - LRS.FUNC.GPIO.FLT001.002
+  - LRS.FUNC.GPIO.FLT002.001
+  - LRS.FUNC.GPIO.FLT002.002
+  - LRS.FUNC.GPIO.FLT002.003
+  - LRS.FUNC.GPIO.FLT003.001
+  - LRS.FUNC.GPIO.FLT004.001
+  - LRS.FUNC.GPIO.FLT004.002
+  - LRS.FUNC.GPIO.FLT005.001
+  - LRS.FUNC.GPIO.FLT006.001
+  - LRS.FUNC.GPIO.FLT007.001
+  - LRS.FUNC.GPIO.IN001.001
+  - LRS.FUNC.GPIO.IN002.001
+  - LRS.FUNC.GPIO.IN002.002
+  - LRS.FUNC.GPIO.IN003.001
+  - LRS.FUNC.GPIO.IN004.001
+  - LRS.FUNC.GPIO.IN005.001
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.IRQ
+  module_ref: LLD.MOD.GPIO.IRQ
+  hld_ref:
+  - HLD.MOD.GPIO.IRQ
+  req_ref:
+  - LRS.FUNC.GPIO.IRQ001.001
+  - LRS.FUNC.GPIO.IRQ002.001
+  - LRS.FUNC.GPIO.IRQ002.002
+  - LRS.FUNC.GPIO.IRQ003.001
+  - LRS.FUNC.GPIO.IRQ003.002
+  - LRS.FUNC.GPIO.IRQ004.001
+  - LRS.FUNC.GPIO.IRQ005.001
+  - LRS.FUNC.GPIO.IRQ006.001
+  - LRS.FUNC.GPIO.IRQ007.001
+  - LRS.FUNC.GPIO.IRQ007.002
+  - LRS.FUNC.GPIO.IRQ008.001
+  - LRS.FUNC.GPIO.IRQ008.002
+  - LRS.FUNC.GPIO.IRQ008.003
+  - LRS.FUNC.GPIO.IRQ009.001
+  - LRS.FUNC.GPIO.IRQ009.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.OUTPUT
+  module_ref: LLD.MOD.GPIO.OUTPUT
+  hld_ref:
+  - HLD.MOD.GPIO.OUTPUT
+  req_ref:
+  - LRS.FUNC.GPIO.OUT001.001
+  - LRS.FUNC.GPIO.OUT001.002
+  - LRS.FUNC.GPIO.OUT002.001
+  - LRS.FUNC.GPIO.OUT002.002
+  - LRS.FUNC.GPIO.OUT002.003
+  - LRS.FUNC.GPIO.OUT003.001
+  - LRS.FUNC.GPIO.OUT004.001
+  - LRS.FUNC.GPIO.OUT004.002
+  - LRS.FUNC.GPIO.OUT005.001
+  - LRS.FUNC.GPIO.OUT005.002
+  - LRS.FUNC.GPIO.OUT005.003
+  - LRS.FUNC.GPIO.OUT006.001
+  - LRS.FUNC.GPIO.OUT006.002
+  - LRS.FUNC.GPIO.OUT007.001
+  - LRS.LP.GPIO.LP001.001
+  - LRS.LP.GPIO.LP001.002
+  - LRS.LP.GPIO.LP001.003
+  - LRS.LP.GPIO.LP002.001
+  - LRS.LP.GPIO.LP003.001
+  - LRS.LP.GPIO.LP003.002
+  - LRS.LP.GPIO.LP003.003
+  - LRS.LP.GPIO.LP004.001
+  - LRS.LP.GPIO.LP004.002
+  - LRS.LP.GPIO.LP005.001
+  - LRS.LP.GPIO.LP005.002
+  - LRS.LP.GPIO.LP006.001
+  - LRS.LP.GPIO.LP006.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.REG
+  module_ref: LLD.MOD.GPIO.REG
+  hld_ref:
+  - HLD.MOD.GPIO.REG
+  req_ref:
+  - LRS.REG.GPIO.MAP.001
+  - LRS.REG.GPIO.IDENTITY.002
+  - LRS.REG.GPIO.FAULT.003
+  - LRS.REG.GPIO.FIRST.004
+  - LRS.REG.GPIO.LOST.005
+  - LRS.REG.GPIO.AONRESULT.006
+  - LRS.REG.GPIO.DEFAULT.007
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+- id: LLD.DP.GPIO.SECURITY
+  module_ref: LLD.MOD.GPIO.SECURITY
+  hld_ref:
+  - HLD.MOD.GPIO.SECURITY
+  req_ref:
+  - LRS.SEC.GPIO.SEC001.001
+  - LRS.SEC.GPIO.SEC002.001
+  - LRS.SEC.GPIO.SEC002.002
+  - LRS.SEC.GPIO.SEC002A.001
+  - LRS.SEC.GPIO.SEC002A.002
+  - LRS.SEC.GPIO.SEC002A.003
+  - LRS.SEC.GPIO.SEC003.001
+  - LRS.SEC.GPIO.SEC003.002
+  - LRS.SEC.GPIO.SEC004.001
+  - LRS.SEC.GPIO.SEC005.001
+  - LRS.SEC.GPIO.SEC005.002
+  - LRS.SEC.GPIO.SEC006.001
+  - LRS.SEC.GPIO.SEC006.002
+  input_width: 32
+  output_width: 32
+  latency: 按本册周期行为定义
+  applicability:
+    expr: 'true'
+pipelines: []
+buffers: []
+fsms:
+- id: LLD.FSM.GPIO.MAILBOX
+  module_ref: LLD.MOD.GPIO.MAILBOX
+  hld_ref:
+  - HLD.MOD.GPIO.MAILBOX
+  encoding: binary
+  reset_state: RECOVER
+  illegal_state_handling: 回到RECOVER；保留传输token和载荷，排空旧应答后才允许新命令
+  states:
+  - RECOVER
+  - READY
+  - BUSY
+  transitions:
+  - from: RECOVER
+    to: READY
+    condition: 同步填充完成且inflight=0且ack=req
+  - from: READY
+    to: BUSY
+    condition: 合法命令接受
+  - from: BUSY
+    to: READY
+    condition: 匹配应答返回
+  - from: BUSY
+    to: BUSY
+    condition: 超时或AON停钟
+  - from: READY
+    to: RECOVER
+    condition: 主暖复位
+  - from: BUSY
+    to: RECOVER
+    condition: 主暖复位
+  req_ref:
+  - LRS.LP.GPIO.WAK001.001
+  - LRS.LP.GPIO.WAK001.002
+  - LRS.LP.GPIO.WAK001.003
+  - LRS.LP.GPIO.WAK002.001
+  - LRS.LP.GPIO.WAK002.002
+  - LRS.LP.GPIO.WAK003.001
+  - LRS.LP.GPIO.WAK004.001
+  - LRS.LP.GPIO.WAK004.002
+  - LRS.LP.GPIO.WAK005.001
+  - LRS.LP.GPIO.WAK005.002
+  - LRS.LP.GPIO.WAK005.003
+  - LRS.LP.GPIO.WAK006.001
+  - LRS.LP.GPIO.WAK007.001
+  - LRS.LP.GPIO.WAK007.002
+  - LRS.LP.GPIO.WAK007.003
+  - LRS.LP.GPIO.WAK008.001
+  - LRS.LP.GPIO.WAK008.002
+  - LRS.LP.GPIO.WAK009.001
+  - LRS.LP.GPIO.WAK009.002
+  - LRS.LP.GPIO.WAK010.001
+  - LRS.LP.GPIO.WAK010.002
+  - LRS.LP.GPIO.WAK010A.001
+  - LRS.LP.GPIO.WAK010A.002
+  - LRS.LP.GPIO.WAK011.001
+  - LRS.LP.GPIO.WAK012.001
+  - LRS.LP.GPIO.WAK012.002
+  applicability:
+    expr: AON_WAKE_EN == 1
+arbiters: []
+ordering: []
+registers:
+- id: LLD.REG.GPIO.GLOBAL.IP_ID.VALUE
+  register_ref: gpio_regs.IP_ID.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.VERSION.VALUE
+  register_ref: gpio_regs.VERSION.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FEATURE.FEATURES
+  register_ref: gpio_regs.FEATURE.features
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.GEOMETRY.N_GPIO
+  register_ref: gpio_regs.GEOMETRY.n_gpio
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.GEOMETRY.N_BANK
+  register_ref: gpio_regs.GEOMETRY.n_bank
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.GEOMETRY.N_IRQ_GROUPS
+  register_ref: gpio_regs.GEOMETRY.n_irq_groups
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.GEOMETRY.SYNC_STAGES
+  register_ref: gpio_regs.GEOMETRY.sync_stages
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.GLOBAL_LOCK.LOCKED
+  register_ref: gpio_regs.GLOBAL_LOCK.locked
+  behavior: lock
+  sw_behavior: W1S
+  hw_behavior: 接受授权软件写；锁一旦置位不可软件清除
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 仅POR清锁/恢复BOOT策略；main暖复位保持
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_CFG.SECURE_ONLY
+  register_ref: gpio_regs.ACCESS_CFG.secure_only
+  behavior: protection
+  sw_behavior: RW
+  hw_behavior: 接受授权软件写；锁一旦置位不可软件清除
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 仅POR清锁/恢复BOOT策略；main暖复位保持
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_CFG.PRIV_ONLY
+  register_ref: gpio_regs.ACCESS_CFG.priv_only
+  behavior: protection
+  sw_behavior: RW
+  hw_behavior: 接受授权软件写；锁一旦置位不可软件清除
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 仅POR清锁/恢复BOOT策略；main暖复位保持
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FAULT_STATUS.SOURCES
+  register_ref: gpio_regs.FAULT_STATUS.sources
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FAULT_CLEAR.CLEAR
+  register_ref: gpio_regs.FAULT_CLEAR.clear
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 仅清允许sticky源；ACCESS同时释放首槽；新错误占优；不得清parity安全请求/DIAG实时/水位
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FAULT_IRQ_ENABLE.ENABLE
+  register_ref: gpio_regs.FAULT_IRQ_ENABLE.enable
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.ADDRESS
+  register_ref: gpio_regs.ACCESS_FIRST.address
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.PPROT
+  register_ref: gpio_regs.ACCESS_FIRST.pprot
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.WRITE
+  register_ref: gpio_regs.ACCESS_FIRST.write
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.VALID
+  register_ref: gpio_regs.ACCESS_FIRST.valid
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.SNAPSHOT_CMD.TRIGGER
+  register_ref: gpio_regs.SNAPSHOT_CMD.trigger
+  behavior: capture
+  sw_behavior: write command, read zero
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.SNAP_SEQ.VALUE
+  register_ref: gpio_regs.SNAP_SEQ.value
+  behavior: capture
+  sw_behavior: RO
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.STRAP_VALID.VALID
+  register_ref: gpio_regs.STRAP_VALID.valid
+  behavior: capture
+  sw_behavior: RO
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.LP_STATUS.SLEEP_ACTIVE
+  register_ref: gpio_regs.LP_STATUS.sleep_active
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.LP_STATUS.SAFE_ACTIVE
+  register_ref: gpio_regs.LP_STATUS.safe_active
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.TS_LO.VALUE
+  register_ref: gpio_regs.TS_LO.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 读沿返回低位并锁存沿前高位；不消费FIFO
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.TS_HI.VALUE
+  register_ref: gpio_regs.TS_HI.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 返回最近TS_LO读所锁存高位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_CTRL.ENABLE
+  register_ref: gpio_regs.FIFO_CTRL.enable
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_CTRL.DMA_ENABLE
+  register_ref: gpio_regs.FIFO_CTRL.dma_enable
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_WATERMARK.LEVEL
+  register_ref: gpio_regs.FIFO_WATERMARK.threshold
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 合法范围1..EVENT_FIFO_DEPTH；裁剪FIFO时读0写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_LEVEL.VALUE
+  register_ref: gpio_regs.FIFO_LEVEL.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_LOST.VALUE
+  register_ref: gpio_regs.FIFO_LOST.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.EVENT_HEAD0.VALUE
+  register_ref: gpio_regs.EVENT_HEAD0.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.EVENT_HEAD1.VALUE
+  register_ref: gpio_regs.EVENT_HEAD1.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.EVENT_HEAD2.VALUE
+  register_ref: gpio_regs.EVENT_HEAD2.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.EVENT_HEAD3.VALUE
+  register_ref: gpio_regs.EVENT_HEAD3.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.EVENT_POP.POP
+  register_ref: gpio_regs.EVENT_POP.pop
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 沿前非空才弹出；满POP与push同拍允许交换，空POP不消费新事件
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_CMD.FLUSH
+  register_ref: gpio_regs.FIFO_CMD.flush
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: FLUSH优先清旧队列且本沿新事件计丢失；CLEAR_LOST从0加本拍新丢失
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.FIFO_CMD.CLEAR_LOST
+  register_ref: gpio_regs.FIFO_CMD.clear_lost
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: FLUSH优先清旧队列且本沿新事件计丢失；CLEAR_LOST从0加本拍新丢失
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.READY
+  register_ref: gpio_regs.AON_STATUS.ready
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.BUSY
+  register_ref: gpio_regs.AON_STATUS.busy
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.DONE
+  register_ref: gpio_regs.AON_STATUS.done
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.TIMEOUT
+  register_ref: gpio_regs.AON_STATUS.timeout
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.ERROR
+  register_ref: gpio_regs.AON_STATUS.error
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_STATUS.BANK
+  register_ref: gpio_regs.AON_STATUS.bank
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.AON_TIMEOUT.CYCLES
+  register_ref: gpio_regs.AON_TIMEOUT.cycles
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 合法范围16..16777215；只控制等待预算，超时不释放BUSY
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.PARITY_INJECT.TRIGGER
+  register_ref: gpio_regs.PARITY_INJECT.trigger
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: secure/privileged且未GLOBAL_LOCK时只翻OUT_DATA parity位；不改数据；安全请求锁存至POR
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.GLOBAL.PARITY_INJECT.BANK
+  register_ref: gpio_regs.PARITY_INJECT.bank
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: secure/privileged且未GLOBAL_LOCK时只翻OUT_DATA parity位；不改数据；安全请求锁存至POR
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.INPUT_CAP.VALUE
+  register_ref: gpio_regs.bank[].INPUT_CAP.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUTPUT_CAP.VALUE
+  register_ref: gpio_regs.bank[].OUTPUT_CAP.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IN_SYNC.VALUE
+  register_ref: gpio_regs.bank[].IN_SYNC.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IN_DATA.VALUE
+  register_ref: gpio_regs.bank[].IN_DATA.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IN_VALID.VALUE
+  register_ref: gpio_regs.bank[].IN_VALID.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IN_ENABLE.VALUE
+  register_ref: gpio_regs.bank[].IN_ENABLE.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_DATA.VALUE
+  register_ref: gpio_regs.bank[].OUT_DATA.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_SET.VALUE
+  register_ref: gpio_regs.bank[].OUT_SET.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_CLR.VALUE
+  register_ref: gpio_regs.bank[].OUT_CLR.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_TOGGLE.VALUE
+  register_ref: gpio_regs.bank[].OUT_TOGGLE.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_MASKED_LO.VALUE
+  register_ref: gpio_regs.bank[].OUT_MASKED_LO.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_MASKED_HI.VALUE
+  register_ref: gpio_regs.bank[].OUT_MASKED_HI.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUT_OE.VALUE
+  register_ref: gpio_regs.bank[].OUT_OE.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OE_SET.VALUE
+  register_ref: gpio_regs.bank[].OE_SET.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OE_CLR.VALUE
+  register_ref: gpio_regs.bank[].OE_CLR.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OE_MASKED_LO.VALUE
+  register_ref: gpio_regs.bank[].OE_MASKED_LO.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OE_MASKED_HI.VALUE
+  register_ref: gpio_regs.bank[].OE_MASKED_HI.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 对同一OUT_DATA或OUT_OE存储执行合并/SET/CLR/TOGGLE/半字掩码原子操作；DATA_LOCK与输出能力检查先行
+  collision: reset_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IRQ_DETECT_EN.VALUE
+  register_ref: gpio_regs.bank[].IRQ_DETECT_EN.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IRQ_ENABLE.VALUE
+  register_ref: gpio_regs.bank[].IRQ_ENABLE.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IRQ_PENDING.VALUE
+  register_ref: gpio_regs.bank[].IRQ_PENDING.value
+  behavior: w1c
+  sw_behavior: W1C
+  hw_behavior: 逐位硬件置位优先于W1C；测试注入仅作用对应Pending
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR或main复位清零
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IRQ_STATUS.VALUE
+  register_ref: gpio_regs.bank[].IRQ_STATUS.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.IRQ_TEST.VALUE
+  register_ref: gpio_regs.bank[].IRQ_TEST.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 成功写仅发出一次命令或原子操作，不保留软件可读值
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.RISING_PENDING.VALUE
+  register_ref: gpio_regs.bank[].RISING_PENDING.value
+  behavior: w1c
+  sw_behavior: W1C
+  hw_behavior: 逐位硬件置位优先于W1C；测试注入仅作用对应Pending
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR或main复位清零
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.FALLING_PENDING.VALUE
+  register_ref: gpio_regs.bank[].FALLING_PENDING.value
+  behavior: w1c
+  sw_behavior: W1C
+  hw_behavior: 逐位硬件置位优先于W1C；测试注入仅作用对应Pending
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR或main复位清零
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.CFG_LOCK.VALUE
+  register_ref: gpio_regs.bank[].CFG_LOCK.value
+  behavior: lock
+  sw_behavior: W1S
+  hw_behavior: 接受授权软件写；锁一旦置位不可软件清除
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 仅POR清锁/恢复BOOT策略；main暖复位保持
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.DATA_LOCK.VALUE
+  register_ref: gpio_regs.bank[].DATA_LOCK.value
+  behavior: lock
+  sw_behavior: W1S
+  hw_behavior: 接受授权软件写；锁一旦置位不可软件清除
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 仅POR清锁/恢复BOOT策略；main暖复位保持
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.BANK_DEBOUNCE_DIV.VALUE
+  register_ref: gpio_regs.bank[].BANK_DEBOUNCE_DIV.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 任何合法写都重建对应处理历史；BankDIV同时重启Bank采样节拍
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.EVENT_ENABLE.VALUE
+  register_ref: gpio_regs.bank[].EVENT_ENABLE.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.SNAP_DATA.VALUE
+  register_ref: gpio_regs.bank[].SNAP_DATA.value
+  behavior: capture
+  sw_behavior: RO
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.SNAP_VALID.VALUE
+  register_ref: gpio_regs.bank[].SNAP_VALID.value
+  behavior: capture
+  sw_behavior: RO
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.STRAP_DATA.VALUE
+  register_ref: gpio_regs.bank[].STRAP_DATA.value
+  behavior: capture
+  sw_behavior: RO
+  hw_behavior: 快照同沿捕获全部Bank并递增SEQ；Strap首次全部有效请求捕获至main复位
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.DIAG_ENABLE.VALUE
+  register_ref: gpio_regs.bank[].DIAG_ENABLE.value
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 软件成功提交后保持；硬件事件不改变该配置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.DIAG_PENDING.VALUE
+  register_ref: gpio_regs.bank[].DIAG_PENDING.value
+  behavior: w1c
+  sw_behavior: W1C
+  hw_behavior: 逐位硬件置位优先于W1C；测试注入仅作用对应Pending
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR或main复位清零
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.DIAG_TEST.VALUE
+  register_ref: gpio_regs.bank[].DIAG_TEST.value
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 成功写仅发出一次命令或原子操作，不保留软件可读值
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.OUTPUT_OWNED.VALUE
+  register_ref: gpio_regs.bank[].OUTPUT_OWNED.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.BANK.INPUT_AVAILABLE.VALUE
+  register_ref: gpio_regs.bank[].INPUT_AVAILABLE.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 所属功能模块提供沿前只读状态；软件写拒绝，裁剪功能写忽略
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.FILTER_EN
+  register_ref: gpio_regs.pin[].PIN_CFG.filter_en
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.DEBOUNCE_EN
+  register_ref: gpio_regs.pin[].PIN_CFG.debounce_en
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.IN_INV
+  register_ref: gpio_regs.pin[].PIN_CFG.in_inv
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.OUT_OD
+  register_ref: gpio_regs.pin[].PIN_CFG.out_od
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.OUT_INV
+  register_ref: gpio_regs.pin[].PIN_CFG.out_inv
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.IRQ_MODE
+  register_ref: gpio_regs.pin[].PIN_CFG.irq_mode
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.IRQ_GROUP
+  register_ref: gpio_regs.pin[].PIN_CFG.irq_group
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.PIN_CFG.SLEEP_MODE
+  register_ref: gpio_regs.pin[].PIN_CFG.sleep_mode
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 输入处理字段变化重建输入历史；IRQ_MODE有效字节写重建IRQ基线；OUT模式修改须OE=0；sleep期间SLEEP_MODE禁写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.FILTER_CFG.K_MINUS_ONE
+  register_ref: gpio_regs.pin[].FILTER_CFG.k_minus_one
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 任何合法写都重建对应处理历史；BankDIV同时重启Bank采样节拍
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.DEBOUNCE_CFG.D_MINUS_ONE
+  register_ref: gpio_regs.pin[].DEBOUNCE_CFG.d_minus_one
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: 任何合法写都重建对应处理历史；BankDIV同时重启Bank采样节拍
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.DIAG_CFG.BLANK
+  register_ref: gpio_regs.pin[].DIAG_CFG.blank
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: BLANK>=SYNC_STAGES+2；消隐BLANK完整周期后连续M次失配才置Pending
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.PIN.DIAG_CFG.M_MINUS_ONE
+  register_ref: gpio_regs.pin[].DIAG_CFG.m_minus_one
+  behavior: configuration
+  sw_behavior: RW
+  hw_behavior: BLANK>=SYNC_STAGES+2；消隐BLANK完整周期后连续M次失配才置Pending
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_ENABLE_STAGE.VALUE
+  register_ref: gpio_regs.aon[].WAKE_ENABLE_STAGE.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_STAGE0.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_STAGE0.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_STAGE1.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_STAGE1.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_STAGE2.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_STAGE2.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_DIV_STAGE.VALUE
+  register_ref: gpio_regs.aon[].WAKE_DIV_STAGE.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_COUNT_STAGE.VALUE
+  register_ref: gpio_regs.aon[].WAKE_COUNT_STAGE.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MASK_STAGE.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MASK_STAGE.value
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.AON_CMD.COMMANDS
+  register_ref: gpio_regs.aon[].AON_CMD.commands
+  behavior: command
+  sw_behavior: write command, read zero
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: commit
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_PENDING_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_PENDING_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_VALID_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_VALID_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_LOCK_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_LOCK_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_ENABLE_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_ENABLE_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_READ0.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_READ0.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_READ1.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_READ1.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_MODE_READ2.VALUE
+  register_ref: gpio_regs.aon[].WAKE_MODE_READ2.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_DIV_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_DIV_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+- id: LLD.REG.GPIO.AON.WAKE_COUNT_READ.VALUE
+  register_ref: gpio_regs.aon[].WAKE_COUNT_READ.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 主域暂存/缓存按main复位清；活动配置/锁/Pending在AON仅冷复位；staging仅BUSY=0可写
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: POR与main复位恢复结构默认；参数相关值按RESET/BOOT/SYNC参数
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+reset:
+- id: LLD.RST.GPIO.TOP
+  module_ref: LLD.MOD.GPIO.TOP
+  reset_domain: RST_MAIN/RST_POR_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.TOP
+  req_ref:
+  - LRS.CFG.GPIO.PARAM.001
+  - LRS.CFG.GPIO.PARAM.002
+  - LRS.CFG.GPIO.PARAM.003
+  - LRS.CFG.GPIO.PARAM.004
+  - LRS.CFG.GPIO.PARAM.005
+  - LRS.CFG.GPIO.PARAM.006
+  - LRS.CFG.GPIO.PARAM.007
+  - LRS.CFG.GPIO.PARAM.008
+  - LRS.CFG.GPIO.PARAM.009
+  - LRS.CFG.GPIO.PARAM.010
+  - LRS.CFG.GPIO.PARAM.011
+  - LRS.CFG.GPIO.PARAM.012
+  - LRS.CFG.GPIO.PARAM.013
+  - LRS.CFG.GPIO.PARAM.014
+  - LRS.CFG.GPIO.PARAM.015
+  - LRS.CFG.GPIO.PARAM.016
+  - LRS.CFG.GPIO.PARAM.017
+  - LRS.CFG.GPIO.PARAM.018
+  - LRS.CFG.GPIO.PARAM.019
+  - LRS.CFG.GPIO.CFG001.001
+  - LRS.CFG.GPIO.CFG002.001
+  - LRS.CFG.GPIO.CFG003.001
+  - LRS.CONS.GPIO.SCP001.001
+  - LRS.CONS.GPIO.SCP002.001
+  - LRS.CONS.GPIO.SCP003.001
+  - LRS.CONS.GPIO.SCP003.002
+  - LRS.INTF.GPIO.PORT.001
+  - LRS.INTF.GPIO.PORT.002
+  - LRS.INTF.GPIO.PORT.003
+  - LRS.INTF.GPIO.PORT.004
+  - LRS.INTF.GPIO.PORT.005
+  - LRS.INTF.GPIO.PORT.006
+  - LRS.INTF.GPIO.PORT.007
+  - LRS.INTF.GPIO.PORT.008
+  - LRS.INTF.GPIO.PORT.009
+  - LRS.INTF.GPIO.PORT.010
+  - LRS.INTF.GPIO.PORT.011
+  - LRS.INTF.GPIO.PORT.012
+  - LRS.INTF.GPIO.PORT.013
+  - LRS.INTF.GPIO.PORT.014
+  - LRS.INTF.GPIO.PORT.015
+  - LRS.INTF.GPIO.PORT.016
+  - LRS.INTF.GPIO.PORT.017
+  - LRS.INTF.GPIO.PORT.018
+  - LRS.INTF.GPIO.PORT.019
+  - LRS.INTF.GPIO.PORT.020
+  - LRS.INTF.GPIO.PORT.021
+  - LRS.INTF.GPIO.PORT.022
+  - LRS.INTF.GPIO.IF001.001
+  - LRS.INTF.GPIO.IF001.002
+  - LRS.INTF.GPIO.IF002.001
+  - LRS.INTF.GPIO.IF002.002
+  - LRS.INTF.GPIO.IF003.001
+  - LRS.INTF.GPIO.IF003.002
+  - LRS.INTF.GPIO.IF004.001
+  - LRS.INTF.GPIO.IF004.002
+  - LRS.FUNC.GPIO.RACE.001
+  - LRS.FUNC.GPIO.RACE.002
+  - LRS.FUNC.GPIO.RACE.003
+  - LRS.FUNC.GPIO.RACE.004
+  - LRS.FUNC.GPIO.RACE.005
+  - LRS.FUNC.GPIO.RACE.006
+  - LRS.FUNC.GPIO.RACE.007
+  - LRS.FUNC.GPIO.RACE.008
+  - LRS.FUNC.GPIO.RACE.009
+  - LRS.FUNC.GPIO.RACE.010
+  - LRS.PERF.GPIO.ARC002.001
+  - LRS.PERF.GPIO.ARC002.002
+  - LRS.PERF.GPIO.ARC004.001
+  - LRS.PERF.GPIO.ARC004.002
+  - LRS.PERF.GPIO.ARC005.001
+  - LRS.PERF.GPIO.ARC005.002
+  - LRS.RESET.GPIO.STATE.001
+  - LRS.RESET.GPIO.STATE.002
+  - LRS.RESET.GPIO.STATE.003
+  - LRS.RESET.GPIO.STATE.004
+  - LRS.RESET.GPIO.STATE.005
+  - LRS.RESET.GPIO.STATE.006
+  - LRS.RESET.GPIO.CLOCK.001
+  - LRS.CONS.GPIO.DELIVERY.001
+  - LRS.CONS.GPIO.DELIVERY.002
+  - LRS.CONS.GPIO.DELIVERY.003
+  - LRS.CONS.GPIO.DELIVERY.004
+  - LRS.CONS.GPIO.DELIVERY.005
+  - LRS.CONS.GPIO.DELIVERY.006
+  - LRS.CONS.GPIO.DELIVERY.007
+  - LRS.CONS.GPIO.INSTANCEPAD.001
+  - LRS.CONS.GPIO.INSTANCEDEFAULTS.002
+  - LRS.CONS.GPIO.INSTANCECLOCK.003
+  - LRS.CONS.GPIO.INSTANCERESET.004
+  - LRS.CONS.GPIO.INSTANCEPOWER.005
+  - LRS.CONS.GPIO.INSTANCEELECTRIC.006
+  - LRS.CONS.GPIO.INSTANCEBUS.007
+  - LRS.CONS.GPIO.INSTANCEIRQDMA.008
+  - LRS.CONS.GPIO.INSTANCESAFETY.009
+  - LRS.CONS.GPIO.VER001.001
+  - LRS.CONS.GPIO.VER002.001
+  - LRS.CONS.GPIO.VER003.001
+  - LRS.CONS.GPIO.VER003.002
+  - LRS.CONS.GPIO.VER004.001
+  - LRS.CONS.GPIO.VER004.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.MAILBOX
+  module_ref: LLD.MOD.GPIO.MAILBOX
+  reset_domain: RST_MAIN/RST_POR_MAIN/RST_AON
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.MAILBOX
+  req_ref:
+  - LRS.LP.GPIO.WAK004.001
+  - LRS.LP.GPIO.WAK004.002
+  - LRS.LP.GPIO.WAK005.001
+  - LRS.LP.GPIO.WAK005.002
+  - LRS.LP.GPIO.WAK005.003
+  - LRS.LP.GPIO.WAK006.001
+  - LRS.LP.GPIO.WAK007.001
+  - LRS.LP.GPIO.WAK007.002
+  - LRS.LP.GPIO.WAK007.003
+  - LRS.LP.GPIO.WAK008.001
+  - LRS.LP.GPIO.WAK008.002
+  - LRS.LP.GPIO.WAK009.001
+  - LRS.LP.GPIO.WAK009.002
+  - LRS.LP.GPIO.WAK010.001
+  - LRS.LP.GPIO.WAK010.002
+  - LRS.LP.GPIO.WAK010A.001
+  - LRS.LP.GPIO.WAK010A.002
+  - LRS.LP.GPIO.WAK011.001
+  - LRS.LP.GPIO.WAK012.001
+  - LRS.LP.GPIO.WAK012.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.AON
+  module_ref: LLD.MOD.GPIO.AON
+  reset_domain: RST_AON
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.AON
+  req_ref:
+  - LRS.LP.GPIO.WAK001.001
+  - LRS.LP.GPIO.WAK001.002
+  - LRS.LP.GPIO.WAK001.003
+  - LRS.LP.GPIO.WAK002.001
+  - LRS.LP.GPIO.WAK002.002
+  - LRS.LP.GPIO.WAK003.001
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.APB
+  module_ref: LLD.MOD.GPIO.APB
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.APB
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+  - LRS.REG.GPIO.BUS005.001
+  - LRS.REG.GPIO.BUS005.002
+  - LRS.REG.GPIO.BUS005A.001
+  - LRS.REG.GPIO.BUS005A.002
+  - LRS.REG.GPIO.BUS005A.003
+  - LRS.REG.GPIO.BUS005A.004
+  - LRS.REG.GPIO.BUS006.001
+  - LRS.REG.GPIO.BUS006.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.CAPTURE
+  module_ref: LLD.MOD.GPIO.CAPTURE
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.CAPTURE
+  req_ref:
+  - LRS.FUNC.GPIO.CAP001.001
+  - LRS.FUNC.GPIO.CAP001.002
+  - LRS.FUNC.GPIO.CAP002.001
+  - LRS.FUNC.GPIO.CAP002.002
+  - LRS.FUNC.GPIO.CAP003.001
+  - LRS.FUNC.GPIO.CAP003.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.DIAG
+  module_ref: LLD.MOD.GPIO.DIAG
+  reset_domain: RST_MAIN/RST_POR_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.DIAG
+  req_ref:
+  - LRS.SAFE.GPIO.DIAG001.001
+  - LRS.SAFE.GPIO.DIAG001.002
+  - LRS.SAFE.GPIO.DIAG002.001
+  - LRS.SAFE.GPIO.DIAG002.002
+  - LRS.SAFE.GPIO.DIAG002.003
+  - LRS.SAFE.GPIO.DIAG002.004
+  - LRS.SAFE.GPIO.DIAG003.001
+  - LRS.SAFE.GPIO.DIAG003.002
+  - LRS.SAFE.GPIO.DIAG004.001
+  - LRS.SAFE.GPIO.DIAG004.002
+  - LRS.SAFE.GPIO.DIAG005.001
+  - LRS.SAFE.GPIO.DIAG005.002
+  - LRS.SAFE.GPIO.DIAG006.001
+  - LRS.SAFE.GPIO.DIAG007.001
+  - LRS.SAFE.GPIO.DIAG007.002
+  - LRS.DFX.GPIO.OBSERVE.001
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.FIFO
+  module_ref: LLD.MOD.GPIO.FIFO
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.FIFO
+  req_ref:
+  - LRS.FUNC.GPIO.EVT001.001
+  - LRS.FUNC.GPIO.EVT001.002
+  - LRS.FUNC.GPIO.EVT002.001
+  - LRS.FUNC.GPIO.EVT003.001
+  - LRS.FUNC.GPIO.EVT003.002
+  - LRS.FUNC.GPIO.EVT004.001
+  - LRS.FUNC.GPIO.EVT004.002
+  - LRS.FUNC.GPIO.EVT004.003
+  - LRS.FUNC.GPIO.EVT005.001
+  - LRS.FUNC.GPIO.EVT005.002
+  - LRS.FUNC.GPIO.EVT005.003
+  - LRS.FUNC.GPIO.EVT006.001
+  - LRS.FUNC.GPIO.EVT006.002
+  - LRS.FUNC.GPIO.EVT007.001
+  - LRS.FUNC.GPIO.EVT007.002
+  - LRS.FUNC.GPIO.EVT007.003
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.INPUT
+  module_ref: LLD.MOD.GPIO.INPUT
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.INPUT
+  req_ref:
+  - LRS.FUNC.GPIO.FLT001.001
+  - LRS.FUNC.GPIO.FLT001.002
+  - LRS.FUNC.GPIO.FLT002.001
+  - LRS.FUNC.GPIO.FLT002.002
+  - LRS.FUNC.GPIO.FLT002.003
+  - LRS.FUNC.GPIO.FLT003.001
+  - LRS.FUNC.GPIO.FLT004.001
+  - LRS.FUNC.GPIO.FLT004.002
+  - LRS.FUNC.GPIO.FLT005.001
+  - LRS.FUNC.GPIO.FLT006.001
+  - LRS.FUNC.GPIO.FLT007.001
+  - LRS.FUNC.GPIO.IN001.001
+  - LRS.FUNC.GPIO.IN002.001
+  - LRS.FUNC.GPIO.IN002.002
+  - LRS.FUNC.GPIO.IN003.001
+  - LRS.FUNC.GPIO.IN004.001
+  - LRS.FUNC.GPIO.IN005.001
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.IRQ
+  module_ref: LLD.MOD.GPIO.IRQ
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.IRQ
+  req_ref:
+  - LRS.FUNC.GPIO.IRQ001.001
+  - LRS.FUNC.GPIO.IRQ002.001
+  - LRS.FUNC.GPIO.IRQ002.002
+  - LRS.FUNC.GPIO.IRQ003.001
+  - LRS.FUNC.GPIO.IRQ003.002
+  - LRS.FUNC.GPIO.IRQ004.001
+  - LRS.FUNC.GPIO.IRQ005.001
+  - LRS.FUNC.GPIO.IRQ006.001
+  - LRS.FUNC.GPIO.IRQ007.001
+  - LRS.FUNC.GPIO.IRQ007.002
+  - LRS.FUNC.GPIO.IRQ008.001
+  - LRS.FUNC.GPIO.IRQ008.002
+  - LRS.FUNC.GPIO.IRQ008.003
+  - LRS.FUNC.GPIO.IRQ009.001
+  - LRS.FUNC.GPIO.IRQ009.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.OUTPUT
+  module_ref: LLD.MOD.GPIO.OUTPUT
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.OUTPUT
+  req_ref:
+  - LRS.FUNC.GPIO.OUT001.001
+  - LRS.FUNC.GPIO.OUT001.002
+  - LRS.FUNC.GPIO.OUT002.001
+  - LRS.FUNC.GPIO.OUT002.002
+  - LRS.FUNC.GPIO.OUT002.003
+  - LRS.FUNC.GPIO.OUT003.001
+  - LRS.FUNC.GPIO.OUT004.001
+  - LRS.FUNC.GPIO.OUT004.002
+  - LRS.FUNC.GPIO.OUT005.001
+  - LRS.FUNC.GPIO.OUT005.002
+  - LRS.FUNC.GPIO.OUT005.003
+  - LRS.FUNC.GPIO.OUT006.001
+  - LRS.FUNC.GPIO.OUT006.002
+  - LRS.FUNC.GPIO.OUT007.001
+  - LRS.LP.GPIO.LP001.001
+  - LRS.LP.GPIO.LP001.002
+  - LRS.LP.GPIO.LP001.003
+  - LRS.LP.GPIO.LP002.001
+  - LRS.LP.GPIO.LP003.001
+  - LRS.LP.GPIO.LP003.002
+  - LRS.LP.GPIO.LP003.003
+  - LRS.LP.GPIO.LP004.001
+  - LRS.LP.GPIO.LP004.002
+  - LRS.LP.GPIO.LP005.001
+  - LRS.LP.GPIO.LP005.002
+  - LRS.LP.GPIO.LP006.001
+  - LRS.LP.GPIO.LP006.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.REG
+  module_ref: LLD.MOD.GPIO.REG
+  reset_domain: RST_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.REG
+  req_ref:
+  - LRS.REG.GPIO.MAP.001
+  - LRS.REG.GPIO.IDENTITY.002
+  - LRS.REG.GPIO.FAULT.003
+  - LRS.REG.GPIO.FIRST.004
+  - LRS.REG.GPIO.LOST.005
+  - LRS.REG.GPIO.AONRESULT.006
+  - LRS.REG.GPIO.DEFAULT.007
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+- id: LLD.RST.GPIO.SECURITY
+  module_ref: LLD.MOD.GPIO.SECURITY
+  reset_domain: RST_MAIN/RST_POR_MAIN
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.GPIO.SECURITY
+  req_ref:
+  - LRS.SEC.GPIO.SEC001.001
+  - LRS.SEC.GPIO.SEC002.001
+  - LRS.SEC.GPIO.SEC002.002
+  - LRS.SEC.GPIO.SEC002A.001
+  - LRS.SEC.GPIO.SEC002A.002
+  - LRS.SEC.GPIO.SEC002A.003
+  - LRS.SEC.GPIO.SEC003.001
+  - LRS.SEC.GPIO.SEC003.002
+  - LRS.SEC.GPIO.SEC004.001
+  - LRS.SEC.GPIO.SEC005.001
+  - LRS.SEC.GPIO.SEC005.002
+  - LRS.SEC.GPIO.SEC006.001
+  - LRS.SEC.GPIO.SEC006.002
+  reset_value: 本册及寄存器行为分册所列默认值
+  release: 本时钟域两拍同步释放
+cdc:
+- id: LLD.CDC.GPIO.MAIN_INPUT
+  module_ref: LLD.MOD.GPIO.INPUT
+  source_domain: PAD_ASYNC
+  destination_domain: CLK_MAIN
+  signal_type: level
+  implementation:
+    method: 2ff
+    depth: SYNC_STAGES
+  lossless: false
+  ordered: true
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.GPIO.AON_INPUT
+  module_ref: LLD.MOD.GPIO.AON
+  source_domain: PAD_AON_ASYNC
+  destination_domain: CLK_AON
+  signal_type: level
+  implementation:
+    method: 2ff
+    depth: 2
+  lossless: false
+  ordered: true
+  applicability:
+    expr: AON_WAKE_EN == 1
+- id: LLD.CDC.GPIO.REQ
+  module_ref: LLD.MOD.GPIO.MAILBOX
+  source_domain: CLK_MAIN
+  destination_domain: CLK_AON
+  signal_type: bus
+  implementation:
+    method: handshake
+    depth: 2
+  lossless: true
+  ordered: true
+  applicability:
+    expr: AON_WAKE_EN == 1
+- id: LLD.CDC.GPIO.ACK
+  module_ref: LLD.MOD.GPIO.MAILBOX
+  source_domain: CLK_AON
+  destination_domain: CLK_MAIN
+  signal_type: bus
+  implementation:
+    method: handshake
+    depth: 2
+  lossless: true
+  ordered: true
+  applicability:
+    expr: AON_WAKE_EN == 1
+interrupts: []
+errors: []
+safety: []
+ppa: []
+gen: []
+derived: []
+decisions: []
+verify_hooks: []
+rtl_map:
+- id: RTL.GPIO.TOP
+  rtl_file: rtl/gpio.sv
+  rtl_module: gpio
+  implements:
+  - LLD.MOD.GPIO.TOP
+  - LLD.DP.GPIO.TOP
+  - LLD.RST.GPIO.TOP
+  generated: false
+- id: RTL.GPIO.MAILBOX
+  rtl_file: rtl/gpio_aon_mailbox.sv
+  rtl_module: gpio_aon_mailbox
+  implements:
+  - LLD.MOD.GPIO.MAILBOX
+  - LLD.DP.GPIO.MAILBOX
+  - LLD.FSM.GPIO.MAILBOX
+  - LLD.RST.GPIO.MAILBOX
+  - LLD.CDC.GPIO.REQ
+  - LLD.CDC.GPIO.ACK
+  generated: false
+- id: RTL.GPIO.AON
+  rtl_file: rtl/gpio_aon_wake.sv
+  rtl_module: gpio_aon_wake
+  implements:
+  - LLD.MOD.GPIO.AON
+  - LLD.DP.GPIO.AON
+  - LLD.RST.GPIO.AON
+  - LLD.CDC.GPIO.AON_INPUT
+  generated: false
+- id: RTL.GPIO.APB
+  rtl_file: rtl/gpio_apb_if.sv
+  rtl_module: gpio_apb_if
+  implements:
+  - LLD.MOD.GPIO.APB
+  - LLD.DP.GPIO.APB
+  - LLD.RST.GPIO.APB
+  generated: false
+- id: RTL.GPIO.CAPTURE
+  rtl_file: rtl/gpio_capture.sv
+  rtl_module: gpio_capture
+  implements:
+  - LLD.MOD.GPIO.CAPTURE
+  - LLD.DP.GPIO.CAPTURE
+  - LLD.RST.GPIO.CAPTURE
+  generated: false
+- id: RTL.GPIO.DIAG
+  rtl_file: rtl/gpio_diag.sv
+  rtl_module: gpio_diag
+  implements:
+  - LLD.MOD.GPIO.DIAG
+  - LLD.DP.GPIO.DIAG
+  - LLD.RST.GPIO.DIAG
+  generated: false
+- id: RTL.GPIO.FIFO
+  rtl_file: rtl/gpio_event_fifo.sv
+  rtl_module: gpio_event_fifo
+  implements:
+  - LLD.MOD.GPIO.FIFO
+  - LLD.DP.GPIO.FIFO
+  - LLD.RST.GPIO.FIFO
+  generated: false
+- id: RTL.GPIO.INPUT
+  rtl_file: rtl/gpio_input.sv
+  rtl_module: gpio_input
+  implements:
+  - LLD.MOD.GPIO.INPUT
+  - LLD.DP.GPIO.INPUT
+  - LLD.RST.GPIO.INPUT
+  - LLD.CDC.GPIO.MAIN_INPUT
+  generated: false
+- id: RTL.GPIO.IRQ
+  rtl_file: rtl/gpio_irq.sv
+  rtl_module: gpio_irq
+  implements:
+  - LLD.MOD.GPIO.IRQ
+  - LLD.DP.GPIO.IRQ
+  - LLD.RST.GPIO.IRQ
+  generated: false
+- id: RTL.GPIO.OUTPUT
+  rtl_file: rtl/gpio_output.sv
+  rtl_module: gpio_output
+  implements:
+  - LLD.MOD.GPIO.OUTPUT
+  - LLD.DP.GPIO.OUTPUT
+  - LLD.RST.GPIO.OUTPUT
+  generated: false
+- id: RTL.GPIO.REG
+  rtl_file: rtl/gpio_regfile.sv
+  rtl_module: gpio_regfile
+  implements:
+  - LLD.MOD.GPIO.REG
+  - LLD.DP.GPIO.REG
+  - LLD.RST.GPIO.REG
+  - LLD.REG.GPIO.GLOBAL.IP_ID.VALUE
+  - LLD.REG.GPIO.GLOBAL.VERSION.VALUE
+  - LLD.REG.GPIO.GLOBAL.FEATURE.FEATURES
+  - LLD.REG.GPIO.GLOBAL.GEOMETRY.N_GPIO
+  - LLD.REG.GPIO.GLOBAL.GEOMETRY.N_BANK
+  - LLD.REG.GPIO.GLOBAL.GEOMETRY.N_IRQ_GROUPS
+  - LLD.REG.GPIO.GLOBAL.GEOMETRY.SYNC_STAGES
+  - LLD.REG.GPIO.GLOBAL.GLOBAL_LOCK.LOCKED
+  - LLD.REG.GPIO.GLOBAL.ACCESS_CFG.SECURE_ONLY
+  - LLD.REG.GPIO.GLOBAL.ACCESS_CFG.PRIV_ONLY
+  - LLD.REG.GPIO.GLOBAL.FAULT_STATUS.SOURCES
+  - LLD.REG.GPIO.GLOBAL.FAULT_CLEAR.CLEAR
+  - LLD.REG.GPIO.GLOBAL.FAULT_IRQ_ENABLE.ENABLE
+  - LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.ADDRESS
+  - LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.PPROT
+  - LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.WRITE
+  - LLD.REG.GPIO.GLOBAL.ACCESS_FIRST.VALID
+  - LLD.REG.GPIO.GLOBAL.SNAPSHOT_CMD.TRIGGER
+  - LLD.REG.GPIO.GLOBAL.SNAP_SEQ.VALUE
+  - LLD.REG.GPIO.GLOBAL.STRAP_VALID.VALID
+  - LLD.REG.GPIO.GLOBAL.LP_STATUS.SLEEP_ACTIVE
+  - LLD.REG.GPIO.GLOBAL.LP_STATUS.SAFE_ACTIVE
+  - LLD.REG.GPIO.GLOBAL.TS_LO.VALUE
+  - LLD.REG.GPIO.GLOBAL.TS_HI.VALUE
+  - LLD.REG.GPIO.GLOBAL.FIFO_CTRL.ENABLE
+  - LLD.REG.GPIO.GLOBAL.FIFO_CTRL.DMA_ENABLE
+  - LLD.REG.GPIO.GLOBAL.FIFO_WATERMARK.LEVEL
+  - LLD.REG.GPIO.GLOBAL.FIFO_LEVEL.VALUE
+  - LLD.REG.GPIO.GLOBAL.FIFO_LOST.VALUE
+  - LLD.REG.GPIO.GLOBAL.EVENT_HEAD0.VALUE
+  - LLD.REG.GPIO.GLOBAL.EVENT_HEAD1.VALUE
+  - LLD.REG.GPIO.GLOBAL.EVENT_HEAD2.VALUE
+  - LLD.REG.GPIO.GLOBAL.EVENT_HEAD3.VALUE
+  - LLD.REG.GPIO.GLOBAL.EVENT_POP.POP
+  - LLD.REG.GPIO.GLOBAL.FIFO_CMD.FLUSH
+  - LLD.REG.GPIO.GLOBAL.FIFO_CMD.CLEAR_LOST
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.READY
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.BUSY
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.DONE
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.TIMEOUT
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.ERROR
+  - LLD.REG.GPIO.GLOBAL.AON_STATUS.BANK
+  - LLD.REG.GPIO.GLOBAL.AON_TIMEOUT.CYCLES
+  - LLD.REG.GPIO.GLOBAL.PARITY_INJECT.TRIGGER
+  - LLD.REG.GPIO.GLOBAL.PARITY_INJECT.BANK
+  - LLD.REG.GPIO.BANK.INPUT_CAP.VALUE
+  - LLD.REG.GPIO.BANK.OUTPUT_CAP.VALUE
+  - LLD.REG.GPIO.BANK.IN_SYNC.VALUE
+  - LLD.REG.GPIO.BANK.IN_DATA.VALUE
+  - LLD.REG.GPIO.BANK.IN_VALID.VALUE
+  - LLD.REG.GPIO.BANK.IN_ENABLE.VALUE
+  - LLD.REG.GPIO.BANK.OUT_DATA.VALUE
+  - LLD.REG.GPIO.BANK.OUT_SET.VALUE
+  - LLD.REG.GPIO.BANK.OUT_CLR.VALUE
+  - LLD.REG.GPIO.BANK.OUT_TOGGLE.VALUE
+  - LLD.REG.GPIO.BANK.OUT_MASKED_LO.VALUE
+  - LLD.REG.GPIO.BANK.OUT_MASKED_HI.VALUE
+  - LLD.REG.GPIO.BANK.OUT_OE.VALUE
+  - LLD.REG.GPIO.BANK.OE_SET.VALUE
+  - LLD.REG.GPIO.BANK.OE_CLR.VALUE
+  - LLD.REG.GPIO.BANK.OE_MASKED_LO.VALUE
+  - LLD.REG.GPIO.BANK.OE_MASKED_HI.VALUE
+  - LLD.REG.GPIO.BANK.IRQ_DETECT_EN.VALUE
+  - LLD.REG.GPIO.BANK.IRQ_ENABLE.VALUE
+  - LLD.REG.GPIO.BANK.IRQ_PENDING.VALUE
+  - LLD.REG.GPIO.BANK.IRQ_STATUS.VALUE
+  - LLD.REG.GPIO.BANK.IRQ_TEST.VALUE
+  - LLD.REG.GPIO.BANK.RISING_PENDING.VALUE
+  - LLD.REG.GPIO.BANK.FALLING_PENDING.VALUE
+  - LLD.REG.GPIO.BANK.CFG_LOCK.VALUE
+  - LLD.REG.GPIO.BANK.DATA_LOCK.VALUE
+  - LLD.REG.GPIO.BANK.BANK_DEBOUNCE_DIV.VALUE
+  - LLD.REG.GPIO.BANK.EVENT_ENABLE.VALUE
+  - LLD.REG.GPIO.BANK.SNAP_DATA.VALUE
+  - LLD.REG.GPIO.BANK.SNAP_VALID.VALUE
+  - LLD.REG.GPIO.BANK.STRAP_DATA.VALUE
+  - LLD.REG.GPIO.BANK.DIAG_ENABLE.VALUE
+  - LLD.REG.GPIO.BANK.DIAG_PENDING.VALUE
+  - LLD.REG.GPIO.BANK.DIAG_TEST.VALUE
+  - LLD.REG.GPIO.BANK.OUTPUT_OWNED.VALUE
+  - LLD.REG.GPIO.BANK.INPUT_AVAILABLE.VALUE
+  - LLD.REG.GPIO.PIN.PIN_CFG.FILTER_EN
+  - LLD.REG.GPIO.PIN.PIN_CFG.DEBOUNCE_EN
+  - LLD.REG.GPIO.PIN.PIN_CFG.IN_INV
+  - LLD.REG.GPIO.PIN.PIN_CFG.OUT_OD
+  - LLD.REG.GPIO.PIN.PIN_CFG.OUT_INV
+  - LLD.REG.GPIO.PIN.PIN_CFG.IRQ_MODE
+  - LLD.REG.GPIO.PIN.PIN_CFG.IRQ_GROUP
+  - LLD.REG.GPIO.PIN.PIN_CFG.SLEEP_MODE
+  - LLD.REG.GPIO.PIN.FILTER_CFG.K_MINUS_ONE
+  - LLD.REG.GPIO.PIN.DEBOUNCE_CFG.D_MINUS_ONE
+  - LLD.REG.GPIO.PIN.DIAG_CFG.BLANK
+  - LLD.REG.GPIO.PIN.DIAG_CFG.M_MINUS_ONE
+  - LLD.REG.GPIO.AON.WAKE_ENABLE_STAGE.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_STAGE0.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_STAGE1.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_STAGE2.VALUE
+  - LLD.REG.GPIO.AON.WAKE_DIV_STAGE.VALUE
+  - LLD.REG.GPIO.AON.WAKE_COUNT_STAGE.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MASK_STAGE.VALUE
+  - LLD.REG.GPIO.AON.AON_CMD.COMMANDS
+  - LLD.REG.GPIO.AON.WAKE_PENDING_READ.VALUE
+  - LLD.REG.GPIO.AON.WAKE_VALID_READ.VALUE
+  - LLD.REG.GPIO.AON.WAKE_LOCK_READ.VALUE
+  - LLD.REG.GPIO.AON.WAKE_ENABLE_READ.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_READ0.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_READ1.VALUE
+  - LLD.REG.GPIO.AON.WAKE_MODE_READ2.VALUE
+  - LLD.REG.GPIO.AON.WAKE_DIV_READ.VALUE
+  - LLD.REG.GPIO.AON.WAKE_COUNT_READ.VALUE
+  generated: false
+- id: RTL.GPIO.SECURITY
+  rtl_file: rtl/gpio_security.sv
+  rtl_module: gpio_security
+  implements:
+  - LLD.MOD.GPIO.SECURITY
+  - LLD.DP.GPIO.SECURITY
+  - LLD.RST.GPIO.SECURITY
+  generated: false
+gates:
+- gate: G2
+  status: pass
+  microarchitecture_freeze: true
+  register_definition_freeze: true
+  approvals:
+    basis: 'user delegated continuation: approve, complete the rest'
+    status: user_delegated_design_approval

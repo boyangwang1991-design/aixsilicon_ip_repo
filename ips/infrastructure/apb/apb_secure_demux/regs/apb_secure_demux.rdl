@@ -1,0 +1,643 @@
+// Configuration-specialized SystemRDL. Structure source: this template.
+// State and runtime access policy belong to the approved LLD behavior owners.
+
+
+
+// Security regions remain present as structural metadata when registers are cropped.
+property asd_dfx_windows { type = string; component = addrmap; };
+property asd_public_windows { type = string; component = addrmap; };
+addrmap apb_secure_demux {
+    asd_public_windows = "[[0,16]]";
+    asd_dfx_windows = "[[64,68],[256,4096],[4116,4140],[5140,5164],[6164,6188],[7188,7212],[8212,8236],[9236,9260],[10260,10284],[11284,11308]]";
+    default regwidth=32;
+    desc="APB secure demux configuration CFG_TYPICAL_DIRECT; external state requires functional owners.";
+    external reg { field { sw=r; hw=rw; reset=1095976024; } value[31:0]; } IP_ID @ 0x000;
+    external reg { field { sw=r; hw=rw; reset=1; } major[23:16]; field { sw=r; hw=rw; reset=0; } minor[15:8]; field { sw=r; hw=rw; reset=0; } patch[7:0]; } VERSION @ 0x004;
+    external reg {
+        field { sw=r; hw=rw; reset=8; } num_ports[5:0]; field { sw=r; hw=rw; reset=16; } num_masters[14:8];
+        field { sw=r; hw=rw; reset=32; } addr_width[21:16]; field { sw=r; hw=rw; reset=4; } master_id_width[28:24];
+    } CAP0 @ 0x008;
+    external reg {
+        field { sw=r; hw=rw; reset=0; } register_mode[0:0]; field { sw=r; hw=rw; reset=1; } isolation[1:1];
+        field { sw=r; hw=rw; reset=1; } parity[2:2]; field { sw=r; hw=rw; reset=1; } dfx[3:3];
+        field { sw=r; hw=rw; reset=1; } public_id[4:4]; field { sw=r; hw=rw; reset=8; } fifo_depth[13:8];
+    } CAP1 @ 0x00c;
+    external reg { field { sw=r; hw=rw; reset=0; } integrity_fatal[0:0]; field { sw=r; hw=rw; reset=0; } global_lock[1:1]; field { sw=r; hw=rw; reset=0; } first_valid[2:2]; field { sw=r; hw=rw; reset=0; } last_valid[3:3]; } STATUS @ 0x010;
+    external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } POLICY_VERSION @ 0x014;
+    external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } GLOBAL_LOCK @ 0x018;
+    external reg { field { sw=w; hw=r; reset=0; } ports[31:0]; } COMMIT_MASK @ 0x01c;
+    external reg { field { sw=r; hw=rw; reset=0; } last_ok[0:0]; field { sw=r; hw=rw; reset=0; } last_fail[1:1]; field { sw=r; hw=rw; reset=0; } fail_reason[7:4]; field { sw=r; hw=rw; reset=0; } fail_port[12:8]; field { sw=r; hw=rw; reset=0; } fail_port_valid[13:13]; } COMMIT_STATUS @ 0x020;
+    external reg { field { sw=w; hw=r; reset=0; } ports[31:0]; } SHADOW_RELOAD @ 0x024;
+    external reg { field { sw=r; hw=rw; reset=1; } mask[31:0]; } MGMT_MASK_LO @ 0x028;
+    external reg { field { sw=r; hw=rw; reset=0; } mask[31:0]; } MGMT_MASK_HI @ 0x02c;
+    
+    external reg {
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } access_denied[0:0];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } cfg_access_error[1:1];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } addr_miss[2:2];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } multi_hit[3:3];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } integrity_error[4:4];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } event_lost[5:5];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } downstream_error[6:6];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } wait_exceeded[7:7];
+        field { sw=rw; hw=rw; reset=0; onwrite=woclr; } dfx_test[8:8];
+        
+    } INTR_RAW @ 0x030;
+    
+    external reg {
+        field { sw=rw; hw=rw; reset=0; } access_denied[0:0];
+        field { sw=rw; hw=rw; reset=0; } cfg_access_error[1:1];
+        field { sw=rw; hw=rw; reset=0; } addr_miss[2:2];
+        field { sw=rw; hw=rw; reset=0; } multi_hit[3:3];
+        field { sw=rw; hw=rw; reset=0; } integrity_error[4:4];
+        field { sw=rw; hw=rw; reset=0; } event_lost[5:5];
+        field { sw=rw; hw=rw; reset=0; } downstream_error[6:6];
+        field { sw=rw; hw=rw; reset=0; } wait_exceeded[7:7];
+        field { sw=rw; hw=rw; reset=0; } dfx_test[8:8];
+        
+    } INTR_ENABLE @ 0x034;
+    
+    external reg {
+        field { sw=r; hw=rw; reset=0; } access_denied[0:0];
+        field { sw=r; hw=rw; reset=0; } cfg_access_error[1:1];
+        field { sw=r; hw=rw; reset=0; } addr_miss[2:2];
+        field { sw=r; hw=rw; reset=0; } multi_hit[3:3];
+        field { sw=r; hw=rw; reset=0; } integrity_error[4:4];
+        field { sw=r; hw=rw; reset=0; } event_lost[5:5];
+        field { sw=r; hw=rw; reset=0; } downstream_error[6:6];
+        field { sw=r; hw=rw; reset=0; } wait_exceeded[7:7];
+        field { sw=r; hw=rw; reset=0; } dfx_test[8:8];
+        
+    } INTR_MASKED @ 0x038;
+    
+    external reg {
+        field { sw=rw; hw=rw; reset=1; } access_denied[0:0];
+        field { sw=rw; hw=rw; reset=1; } cfg_access_error[1:1];
+        field { sw=rw; hw=rw; reset=0; } addr_miss[2:2];
+        field { sw=rw; hw=rw; reset=1; } multi_hit[3:3];
+        field { sw=rw; hw=rw; reset=1; } integrity_error[4:4];
+        field { sw=rw; hw=rw; reset=0; } event_lost[5:5];
+        field { sw=rw; hw=rw; reset=0; } downstream_error[6:6];
+        field { sw=rw; hw=rw; reset=1; } wait_exceeded[7:7];
+        field { sw=rw; hw=rw; reset=0; } dfx_test[8:8];
+        
+    } ALERT_ENABLE @ 0x03c;
+    
+    external reg { field { sw=w; hw=r; reset=0; } dfx_test[8:8]; } INTR_TEST @ 0x040;
+    external reg { field { sw=w; hw=r; reset=0; } first[0:0]; field { sw=w; hw=r; reset=0; } last[1:1]; field { sw=w; hw=r; reset=0; } fifo[2:2]; field { sw=w; hw=r; reset=0; } overflow[3:3];  } FAULT_CLEAR @ 0x044;
+    external reg { field { sw=r; hw=rw; reset=0; } count[5:0]; field { sw=r; hw=rw; reset=1; } empty[8:8]; field { sw=r; hw=rw; reset=0; } full[9:9]; field { sw=r; hw=rw; reset=0; } overflow[10:10]; } FIFO_STATUS @ 0x048;
+    external reg { field { sw=w; hw=r; reset=0; } pop[0:0]; } FIFO_POP @ 0x04c;
+    external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } ACCESS_DENY_COUNT @ 0x050; external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } CFG_DENY_COUNT @ 0x054;
+    external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } EVENT_LOST_COUNT @ 0x058; external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DOWNSTREAM_ERR_COUNT @ 0x05c;
+    external reg { field { sw=w; hw=r; reset=0; } access_deny[0:0]; field { sw=w; hw=r; reset=0; } cfg_deny[1:1]; field { sw=w; hw=r; reset=0; } event_lost[2:2]; field { sw=w; hw=r; reset=0; } downstream_error[3:3];  } COUNTER_CLEAR @ 0x060;
+    external reg { field { sw=r; hw=rw; reset=0; } fatal[0:0]; field { sw=r; hw=rw; reset=0; } location_valid[1:1]; field { sw=r; hw=rw; reset=0; } port[6:2]; field { sw=r; hw=rw; reset=0; } master[12:7]; field { sw=r; hw=rw; reset=0; } location_type[15:13]; } INTEGRITY_STATUS @ 0x064;
+    
+      
+      external reg { field { sw=r; hw=rw; reset=0; } data[31:0]; } FIRST_FAULT[8] @ 160 += 4;
+      
+    
+      
+      external reg { field { sw=r; hw=rw; reset=0; } data[31:0]; } LAST_FAULT[8] @ 192 += 4;
+      
+    
+      
+      external reg { field { sw=r; hw=rw; reset=0; } data[31:0]; } FIFO_HEAD[8] @ 224 += 4;
+      
+    
+    
+    external reg { field { sw=r; hw=rw; reset=0; } authorized[0:0]; field { sw=r; hw=rw; reset=0; } deny_armed[1:1]; field { sw=r; hw=rw; reset=0; } integrity_armed[2:2]; field { sw=r; hw=rw; reset=0; } wait_hit[3:3]; } DFX_STATUS @ 0x100;
+    external reg { field { sw=rw; hw=rw; reset=0; } value[31:0]; } WAIT_THRESHOLD @ 0x104;
+    external reg { field { sw=w; hw=r; reset=0; } wait_hit[0:0]; field { sw=w; hw=r; reset=0; } disarm[1:1]; } DFX_CLEAR @ 0x108;
+    external reg { field { sw=rw; hw=rw; reset=0; } port[4:0]; field { sw=rw; hw=rw; reset=0; } master[13:8]; } INJECT_TARGET @ 0x10c;
+    external reg { field { sw=w; hw=r; reset=0; } synthetic[0:0]; field { sw=w; hw=r; reset=0; } arm_deny[1:1]; field { sw=w; hw=r; reset=0; } arm_integrity[2:2]; } INJECT_CMD @ 0x110;
+    
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=256; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=511; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_0 @ 4096;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=512; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=767; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_1 @ 5120;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=768; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=1023; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_2 @ 6144;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=1024; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=1279; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_3 @ 7168;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=1280; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=1535; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_4 @ 8192;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=1536; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=1791; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_5 @ 9216;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=1792; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=2047; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_6 @ 10240;
+    
+    regfile {
+        external reg { field { sw=r; hw=rw; reset=2048; } value[31:0]; } MAP_BASE @ 0x000;
+        external reg { field { sw=r; hw=rw; reset=2303; } value[31:0]; } MAP_LIMIT @ 0x004;
+        external reg { field { sw=rw; hw=rw; reset=0; onwrite=woset; } locked[0:0]; } PORT_LOCK @ 0x008;
+        external reg { field { sw=rw; hw=rw; reset=0; } enable[0:0]; field { sw=rw; hw=rw; reset=0; } instr_allow[1:1]; } CFG_SHADOW @ 0x00c;
+        external reg { field { sw=r; hw=rw; reset=0; } enable[0:0]; field { sw=r; hw=rw; reset=0; } instr_allow[1:1]; } CFG_ACTIVE @ 0x010;
+        
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SUCCESS_COUNT @ 0x014;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } DENY_COUNT @ 0x018;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } SLVERR_COUNT @ 0x01c;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_TOTAL @ 0x020;
+        external reg { field { sw=r; hw=rw; reset=0; } value[31:0]; } WAIT_MAX @ 0x024;
+        
+        external reg { field { sw=w; hw=r; reset=0; } success[0:0]; field { sw=w; hw=r; reset=0; } deny[1:1]; field { sw=w; hw=r; reset=0; } slverr[2:2]; field { sw=w; hw=r; reset=0; } wait_total[3:3]; field { sw=w; hw=r; reset=0; } wait_max[4:4];  } DFX_COUNTER_CLEAR @ 0x028;
+        
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_0 @ 256;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_0 @ 512;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_1 @ 260;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_1 @ 516;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_2 @ 264;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_2 @ 520;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_3 @ 268;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_3 @ 524;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_4 @ 272;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_4 @ 528;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_5 @ 276;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_5 @ 532;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_6 @ 280;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_6 @ 536;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_7 @ 284;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_7 @ 540;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_8 @ 288;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_8 @ 544;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_9 @ 292;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_9 @ 548;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_10 @ 296;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_10 @ 552;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_11 @ 300;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_11 @ 556;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_12 @ 304;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_12 @ 560;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_13 @ 308;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_13 @ 564;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_14 @ 312;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_14 @ 568;
+        
+        external reg { field { sw=rw; hw=rw; reset=0; } permission[7:0]; } PERM_SHADOW_15 @ 316;
+        external reg { field { sw=r; hw=rw; reset=0; } permission[7:0]; } PERM_ACTIVE_15 @ 572;
+        
+    } port_7 @ 11264;
+    
+};

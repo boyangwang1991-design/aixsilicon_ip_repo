@@ -1,0 +1,105 @@
+# GPIO 微设计：gpio_diag
+
+<!-- LLD_MODULE_META
+id: LLD.MOD.GPIO.DIAG
+name: gpio_diag
+hld_ref:
+- HLD.MOD.GPIO.DIAG
+req_ref:
+- LRS.SAFE.GPIO.DIAG001.001
+- LRS.SAFE.GPIO.DIAG001.002
+- LRS.SAFE.GPIO.DIAG002.001
+- LRS.SAFE.GPIO.DIAG002.002
+- LRS.SAFE.GPIO.DIAG002.003
+- LRS.SAFE.GPIO.DIAG002.004
+- LRS.SAFE.GPIO.DIAG003.001
+- LRS.SAFE.GPIO.DIAG003.002
+- LRS.SAFE.GPIO.DIAG004.001
+- LRS.SAFE.GPIO.DIAG004.002
+- LRS.SAFE.GPIO.DIAG005.001
+- LRS.SAFE.GPIO.DIAG005.002
+- LRS.SAFE.GPIO.DIAG006.001
+- LRS.SAFE.GPIO.DIAG007.001
+- LRS.SAFE.GPIO.DIAG007.002
+- LRS.DFX.GPIO.OBSERVE.001
+parent_ref:
+- HLD.MOD.GPIO.TOP
+applicability:
+  expr: DIAG_EN == 1 or CFG_PARITY_EN == 1
+rtl_intent:
+  separate_module: true
+  suggested_name: gpio_diag
+clock_domains:
+- CLK_MAIN
+reset_domains:
+- RST_MAIN
+- RST_POR_MAIN
+END_LLD_MODULE_META -->
+
+## 周期行为与状态
+
+每脚保留最终OUT/OE、owner、available、sleep/safe状态快照。任一变化重新启动BLANK完整周期消隐；在变化沿不比较，倒数至零后的下一合格沿开始比较。BLANK>=SYNC_STAGES+2。
+仅输入有效且owner且最终OE=1时比较IN_SYNC与期望OUT；高阻/开漏释放禁止比较。连续M次失配置DIAG_PENDING；匹配或条件失效清失配计数。持续故障到阈值后每拍置位，W1C不能压过。DIAG_TEST只注入Pending。
+受保护OUT_DATA/OE、PIN_CFG、IRQ_ENABLE/DETECT、ACCESS_CFG每32-bit字保存偶parity；部分写按合并后的完整字重算。复位状态与parity同步建立，main复位期间不采样瞬态比较；POR保持故障一旦锁存只冷复位清。
+PARITY_INJECT只翻现有Bank OUT_DATA parity位，不改数据；secure/privileged及GLOBAL_LOCK检查先于注入。组合校验选复用parity_gen_check(DATA_WIDTH=32, PARITY_TYPE=0, PC_IMPL=0)，不额外寄存延迟。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.GPIO.DIAG
+module_ref: LLD.MOD.GPIO.DIAG
+hld_ref:
+- HLD.MOD.GPIO.DIAG
+req_ref:
+- LRS.SAFE.GPIO.DIAG001.001
+- LRS.SAFE.GPIO.DIAG001.002
+- LRS.SAFE.GPIO.DIAG002.001
+- LRS.SAFE.GPIO.DIAG002.002
+- LRS.SAFE.GPIO.DIAG002.003
+- LRS.SAFE.GPIO.DIAG002.004
+- LRS.SAFE.GPIO.DIAG003.001
+- LRS.SAFE.GPIO.DIAG003.002
+- LRS.SAFE.GPIO.DIAG004.001
+- LRS.SAFE.GPIO.DIAG004.002
+- LRS.SAFE.GPIO.DIAG005.001
+- LRS.SAFE.GPIO.DIAG005.002
+- LRS.SAFE.GPIO.DIAG006.001
+- LRS.SAFE.GPIO.DIAG007.001
+- LRS.SAFE.GPIO.DIAG007.002
+- LRS.DFX.GPIO.OBSERVE.001
+input_width: 32
+output_width: 32
+latency: 按本册周期行为定义
+applicability:
+  expr: DIAG_EN == 1 or CFG_PARITY_EN == 1
+END_LLD_DATAPATH_META -->
+
+<!-- LLD_RESET_META
+id: LLD.RST.GPIO.DIAG
+module_ref: LLD.MOD.GPIO.DIAG
+reset_domain: RST_MAIN/RST_POR_MAIN
+type: async_assert_sync_release
+affected_objects:
+- LLD.MOD.GPIO.DIAG
+req_ref:
+- LRS.SAFE.GPIO.DIAG001.001
+- LRS.SAFE.GPIO.DIAG001.002
+- LRS.SAFE.GPIO.DIAG002.001
+- LRS.SAFE.GPIO.DIAG002.002
+- LRS.SAFE.GPIO.DIAG002.003
+- LRS.SAFE.GPIO.DIAG002.004
+- LRS.SAFE.GPIO.DIAG003.001
+- LRS.SAFE.GPIO.DIAG003.002
+- LRS.SAFE.GPIO.DIAG004.001
+- LRS.SAFE.GPIO.DIAG004.002
+- LRS.SAFE.GPIO.DIAG005.001
+- LRS.SAFE.GPIO.DIAG005.002
+- LRS.SAFE.GPIO.DIAG006.001
+- LRS.SAFE.GPIO.DIAG007.001
+- LRS.SAFE.GPIO.DIAG007.002
+- LRS.DFX.GPIO.OBSERVE.001
+reset_value: 本册及寄存器行为分册所列默认值
+release: 本时钟域两拍同步释放
+END_LLD_RESET_META -->
+
+## PPA决策
+
+Bank共享采样节拍与分层译码；每脚保留必需状态。参数裁剪使用静态generate，避免关闭功能仍切换。IRQ/readback采用平衡归约；FIFO只单写端口。不同配置分别综合，不从默认配置推断最大配置。

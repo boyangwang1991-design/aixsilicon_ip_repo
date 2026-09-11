@@ -1,0 +1,52 @@
+# GPIO 参数契约：产品配置与约束
+
+<!-- CONSTRAINT_META
+- (RESET_OE & OUTPUT_CAP_MASK) == RESET_OE
+- (HW_SAFE_OE & OUTPUT_CAP_MASK) == HW_SAFE_OE
+- (RESET_IN_EN & INPUT_CAP_MASK) == RESET_IN_EN
+END_CONSTRAINT_META -->
+
+## CFG_BASE
+
+默认完整功能；parity 默认关闭。
+
+<!-- CONFIG_META
+id: CFG_BASE
+values: {}
+purpose: 默认完整功能；parity 默认关闭
+END_CONFIG_META -->
+
+## CFG_MIN8
+
+8 路最小裁剪。
+
+<!-- CONFIG_META
+id: CFG_MIN8
+values:
+  N_GPIO: 8
+  OUT_INV_EN: 0
+  AON_WAKE_EN: 0
+  SNAPSHOT_EN: 0
+  STRAP_EN: 0
+  EVENT_FIFO_DEPTH: 0
+  DIAG_EN: 0
+  ACCESS_CTRL_EN: 0
+  CFG_PARITY_EN: 0
+purpose: 8 路最小裁剪
+END_CONFIG_META -->
+
+## CFG_FULL128
+
+128 路完整增强配置。
+
+<!-- CONFIG_META
+id: CFG_FULL128
+values:
+  N_GPIO: 128
+  N_IRQ_GROUPS: 4
+  SYNC_STAGES: 4
+  EVENT_FIFO_DEPTH: 64
+  CFG_PARITY_EN: 1
+purpose: 128 路完整增强配置
+END_CONFIG_META -->
+

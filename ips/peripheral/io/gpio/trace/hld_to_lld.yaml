@@ -1,0 +1,55 @@
+schema_version: '2.0'
+ip_name: gpio
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.GPIO.AON
+  target_id: LLD.MOD.GPIO.AON
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.APB
+  target_id: LLD.MOD.GPIO.APB
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.CAPTURE
+  target_id: LLD.MOD.GPIO.CAPTURE
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.DIAG
+  target_id: LLD.MOD.GPIO.DIAG
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.FIFO
+  target_id: LLD.MOD.GPIO.FIFO
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.INPUT
+  target_id: LLD.MOD.GPIO.INPUT
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.IRQ
+  target_id: LLD.MOD.GPIO.IRQ
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.MAILBOX
+  target_id: LLD.MOD.GPIO.MAILBOX
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.OUTPUT
+  target_id: LLD.MOD.GPIO.OUTPUT
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.REG
+  target_id: LLD.MOD.GPIO.REG
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.SECURITY
+  target_id: LLD.MOD.GPIO.SECURITY
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.GPIO.TOP
+  target_id: LLD.MOD.GPIO.TOP
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

@@ -1,0 +1,1124 @@
+schema_version: '2.0'
+ip_name: gpio
+verification_level: full
+status: approved
+delivery_model: parameterized
+lrs_baseline: GPIO-CONTRACT-59597f3b2da6
+hld_baseline: GPIO-HLD-001
+lld_baseline: GPIO-LLD-001
+features:
+- id: FL.GPIO.AON
+  name: 常开唤醒与命令
+  description: 常开唤醒与命令的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.REG.GPIO.AONRESULT.006
+  - LRS.LP.GPIO.WAK001.001
+  - LRS.LP.GPIO.WAK001.002
+  - LRS.LP.GPIO.WAK001.003
+  - LRS.LP.GPIO.WAK002.001
+  - LRS.LP.GPIO.WAK002.002
+  - LRS.LP.GPIO.WAK003.001
+  - LRS.LP.GPIO.WAK004.001
+  - LRS.LP.GPIO.WAK004.002
+  - LRS.LP.GPIO.WAK005.001
+  - LRS.LP.GPIO.WAK005.002
+  - LRS.LP.GPIO.WAK005.003
+  - LRS.LP.GPIO.WAK006.001
+  - LRS.LP.GPIO.WAK007.001
+  - LRS.LP.GPIO.WAK007.002
+  - LRS.LP.GPIO.WAK007.003
+  - LRS.LP.GPIO.WAK008.001
+  - LRS.LP.GPIO.WAK008.002
+  - LRS.LP.GPIO.WAK009.001
+  - LRS.LP.GPIO.WAK009.002
+  - LRS.LP.GPIO.WAK010.001
+  - LRS.LP.GPIO.WAK010.002
+  - LRS.LP.GPIO.WAK010A.001
+  - LRS.LP.GPIO.WAK010A.002
+  - LRS.LP.GPIO.WAK011.001
+  - LRS.LP.GPIO.WAK012.001
+  - LRS.LP.GPIO.WAK012.002
+  design_ref:
+  - HLD.MOD.GPIO.AON
+  - HLD.MOD.GPIO.MAILBOX
+  - HLD.MOD.GPIO.REG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.AON.001
+    name: gpio_aon
+    type: stress
+    description: 常开唤醒与命令
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_aon.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.AON
+    design_ref:
+    - LLD.MOD.GPIO.AON
+    - LLD.MOD.GPIO.MAILBOX
+    - LLD.MOD.GPIO.REG
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 异步时钟比2:3/3:7/7:2，相位偏移、停AON，COMMIT/SNAPSHOT/CLEAR/LOCK、锁定字段相同和改变、非法one-hot、超时迟到ACK；每握手阶段暖复位
+    expected_result:
+    - 独立AON域RM以接收命令编号记录执行次数，比较完整应答及活动配置；旧命令不重放，超时不释放槽；CLEAR置位优先
+    oracle: 独立AON域RM以接收命令编号记录执行次数，比较完整应答及活动配置；旧命令不重放，超时不释放槽；CLEAR置位优先
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.AON.001
+    name: 常开唤醒与命令
+    type: functional
+    description: 命令×时钟比×停钟×复位阶段×锁×超时
+    feature_ref:
+    - FL.GPIO.AON
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.PAYLOAD_STABLE.001
+    name: PAYLOAD_STABLE
+    feature_ref:
+    - FL.GPIO.AON
+    property: 从request发送到匹配ack期间载荷稳定，暖复位不破坏
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.APB
+  name: APB事务与错误
+  description: APB事务与错误的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.REG.GPIO.BUS001.001
+  - LRS.REG.GPIO.BUS002.001
+  - LRS.REG.GPIO.BUS002.002
+  - LRS.REG.GPIO.BUS003.001
+  - LRS.REG.GPIO.BUS003.002
+  - LRS.REG.GPIO.BUS004.001
+  - LRS.REG.GPIO.BUS005.001
+  - LRS.REG.GPIO.BUS005.002
+  - LRS.REG.GPIO.BUS005A.001
+  - LRS.REG.GPIO.BUS005A.002
+  - LRS.REG.GPIO.BUS005A.003
+  - LRS.REG.GPIO.BUS005A.004
+  - LRS.REG.GPIO.BUS006.001
+  - LRS.REG.GPIO.BUS006.002
+  - LRS.REG.GPIO.MAP.001
+  - LRS.REG.GPIO.IDENTITY.002
+  - LRS.REG.GPIO.FAULT.003
+  - LRS.REG.GPIO.FIRST.004
+  design_ref:
+  - HLD.MOD.GPIO.APB
+  - HLD.MOD.GPIO.REG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.APB.001
+    name: gpio_apb
+    type: register
+    description: APB事务与错误
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_gpio_apb.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.APB
+    design_ref:
+    - LLD.MOD.GPIO.APB
+    - LLD.MOD.GPIO.REG
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 遍历16种PSTRB、8种PPROT、Setup停留、背靠背、未对齐、RO写、WO读、保留位、非法字段、命令零写
+    expected_result:
+    - 独立事务规则表判定错误；完成沿前读值、错误业务状态快照不变；首错误记录符合清除/新错误竞争
+    oracle: 独立事务规则表判定错误；完成沿前读值、错误业务状态快照不变；首错误记录符合清除/新错误竞争
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.APB.001
+    name: APB事务与错误
+    type: functional
+    description: 方向×PSTRB×权限×地址类别×错误原因
+    feature_ref:
+    - FL.GPIO.APB
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.ERROR_ATOMIC.001
+    name: ERROR_ATOMIC
+    feature_ref:
+    - FL.GPIO.APB
+    property: 非法APB事务不得更新业务状态，允许错误诊断状态更新
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.CAPTURE
+  name: 快照与Strap
+  description: 快照与Strap的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.CAP001.001
+  - LRS.FUNC.GPIO.CAP001.002
+  - LRS.FUNC.GPIO.CAP002.001
+  - LRS.FUNC.GPIO.CAP002.002
+  - LRS.FUNC.GPIO.CAP003.001
+  - LRS.FUNC.GPIO.CAP003.002
+  design_ref:
+  - HLD.MOD.GPIO.CAPTURE
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.CAPTURE.001
+    name: gpio_capture
+    type: boundary
+    description: 快照与Strap
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_capture.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.CAPTURE
+    design_ref:
+    - LLD.MOD.GPIO.CAPTURE
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 同拍软硬快照、跨Bank更新、连续覆盖、SEQ回绕；Strap过早、首次、重复、零输入能力和暖复位
+    expected_result:
+    - RM从沿前输入快照捕获全向量，SEQ单增；Strap使用物理同步值且只接受第一次全部就绪请求
+    oracle: RM从沿前输入快照捕获全向量，SEQ单增；Strap使用物理同步值且只接受第一次全部就绪请求
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.CAPTURE.001
+    name: 快照与Strap
+    type: functional
+    description: 触发源×有效向量×序号边界×Strap时机
+    feature_ref:
+    - FL.GPIO.CAPTURE
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.CONFIG
+  name: 配置与裁剪
+  description: 配置与裁剪的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.CFG.GPIO.PARAM.001
+  - LRS.CFG.GPIO.PARAM.002
+  - LRS.CFG.GPIO.PARAM.003
+  - LRS.CFG.GPIO.PARAM.004
+  - LRS.CFG.GPIO.PARAM.005
+  - LRS.CFG.GPIO.PARAM.006
+  - LRS.CFG.GPIO.PARAM.007
+  - LRS.CFG.GPIO.PARAM.008
+  - LRS.CFG.GPIO.PARAM.009
+  - LRS.CFG.GPIO.PARAM.010
+  - LRS.CFG.GPIO.PARAM.011
+  - LRS.CFG.GPIO.PARAM.012
+  - LRS.CFG.GPIO.PARAM.013
+  - LRS.CFG.GPIO.PARAM.014
+  - LRS.CFG.GPIO.PARAM.015
+  - LRS.CFG.GPIO.PARAM.016
+  - LRS.CFG.GPIO.PARAM.017
+  - LRS.CFG.GPIO.PARAM.018
+  - LRS.CFG.GPIO.PARAM.019
+  - LRS.CFG.GPIO.CFG001.001
+  - LRS.CFG.GPIO.CFG002.001
+  - LRS.CFG.GPIO.CFG003.001
+  design_ref:
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.CONFIG.001
+    name: gpio_config
+    type: boundary
+    description: 配置与裁剪
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_config.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.CONFIG
+    design_ref:
+    - LLD.MOD.GPIO.TOP
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 覆盖1/8/31/32/33/64/128引脚、能力混合、参数开关；遍历FEATURE/GEOMETRY、尾Bank与非法范围地址
+    expected_result:
+    - 由测试配置计算几何/能力和合法地址集合，裁剪地址保留且读0写忽略，非法实例拒绝
+    oracle: 由测试配置计算几何/能力和合法地址集合，裁剪地址保留且读0写忽略，非法实例拒绝
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.CONFIG.001
+    name: 配置与裁剪
+    type: functional
+    description: 宽度×能力×可选功能×越界地址
+    feature_ref:
+    - FL.GPIO.CONFIG
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.DELIVERY
+  name: 集成与工程签核
+  description: 集成与工程签核的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.CONS.GPIO.SCP001.001
+  - LRS.CONS.GPIO.SCP002.001
+  - LRS.CONS.GPIO.SCP003.001
+  - LRS.CONS.GPIO.SCP003.002
+  - LRS.INTF.GPIO.PORT.001
+  - LRS.INTF.GPIO.PORT.002
+  - LRS.INTF.GPIO.PORT.003
+  - LRS.INTF.GPIO.PORT.004
+  - LRS.INTF.GPIO.PORT.005
+  - LRS.INTF.GPIO.PORT.006
+  - LRS.INTF.GPIO.PORT.007
+  - LRS.INTF.GPIO.PORT.008
+  - LRS.INTF.GPIO.PORT.009
+  - LRS.INTF.GPIO.PORT.010
+  - LRS.INTF.GPIO.PORT.011
+  - LRS.INTF.GPIO.PORT.012
+  - LRS.INTF.GPIO.PORT.013
+  - LRS.INTF.GPIO.PORT.014
+  - LRS.INTF.GPIO.PORT.015
+  - LRS.INTF.GPIO.PORT.016
+  - LRS.INTF.GPIO.PORT.017
+  - LRS.INTF.GPIO.PORT.018
+  - LRS.INTF.GPIO.PORT.019
+  - LRS.INTF.GPIO.PORT.020
+  - LRS.INTF.GPIO.PORT.021
+  - LRS.INTF.GPIO.PORT.022
+  - LRS.INTF.GPIO.IF001.001
+  - LRS.INTF.GPIO.IF001.002
+  - LRS.INTF.GPIO.IF002.001
+  - LRS.INTF.GPIO.IF002.002
+  - LRS.INTF.GPIO.IF003.001
+  - LRS.INTF.GPIO.IF003.002
+  - LRS.INTF.GPIO.IF004.001
+  - LRS.INTF.GPIO.IF004.002
+  - LRS.PERF.GPIO.ARC002.001
+  - LRS.PERF.GPIO.ARC002.002
+  - LRS.PERF.GPIO.ARC004.001
+  - LRS.PERF.GPIO.ARC004.002
+  - LRS.PERF.GPIO.ARC005.001
+  - LRS.PERF.GPIO.ARC005.002
+  - LRS.RESET.GPIO.CLOCK.001
+  - LRS.DFX.GPIO.OBSERVE.001
+  - LRS.CONS.GPIO.DELIVERY.001
+  - LRS.CONS.GPIO.DELIVERY.002
+  - LRS.CONS.GPIO.DELIVERY.003
+  - LRS.CONS.GPIO.DELIVERY.004
+  - LRS.CONS.GPIO.DELIVERY.005
+  - LRS.CONS.GPIO.DELIVERY.006
+  - LRS.CONS.GPIO.DELIVERY.007
+  - LRS.CONS.GPIO.INSTANCEPAD.001
+  - LRS.CONS.GPIO.INSTANCEDEFAULTS.002
+  - LRS.CONS.GPIO.INSTANCECLOCK.003
+  - LRS.CONS.GPIO.INSTANCERESET.004
+  - LRS.CONS.GPIO.INSTANCEPOWER.005
+  - LRS.CONS.GPIO.INSTANCEELECTRIC.006
+  - LRS.CONS.GPIO.INSTANCEBUS.007
+  - LRS.CONS.GPIO.INSTANCEIRQDMA.008
+  - LRS.CONS.GPIO.INSTANCESAFETY.009
+  - LRS.CONS.GPIO.VER001.001
+  - LRS.CONS.GPIO.VER002.001
+  - LRS.CONS.GPIO.VER003.001
+  - LRS.CONS.GPIO.VER003.002
+  - LRS.CONS.GPIO.VER004.001
+  - LRS.CONS.GPIO.VER004.002
+  design_ref:
+  - HLD.MOD.GPIO.DIAG
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  testcases:
+  - id: TC.GPIO.DELIVERY.001
+    name: gpio_delivery
+    type: static
+    description: 集成与工程签核
+    priority: must
+    tier: regression
+    implementation: scripts/check_delivery.py
+    proof_kind: static
+    feature_ref:
+    - FL.GPIO.DELIVERY
+    design_ref:
+    - LLD.MOD.GPIO.DIAG
+    - LLD.MOD.GPIO.TOP
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 校验交付清单、约束端口、同步器属性、CDC/RDC未解决项、综合多配置报告及用户集成假设
+    expected_result:
+    - 独立文件/报告schema与来源哈希检查；缺失报告或未解决高风险、目标工艺未提供均失败
+    oracle: 独立文件/报告schema与来源哈希检查；缺失报告或未解决高风险、目标工艺未提供均失败
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.DELIVERY.001
+    name: 集成与工程签核
+    type: configuration
+    description: 文档×配置×EDA阶段×来源哈希
+    feature_ref:
+    - FL.GPIO.DELIVERY
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.DIAG
+  name: 物理回读诊断
+  description: 物理回读诊断的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.SAFE.GPIO.DIAG001.001
+  - LRS.SAFE.GPIO.DIAG001.002
+  - LRS.SAFE.GPIO.DIAG002.001
+  - LRS.SAFE.GPIO.DIAG002.002
+  - LRS.SAFE.GPIO.DIAG002.003
+  - LRS.SAFE.GPIO.DIAG002.004
+  - LRS.SAFE.GPIO.DIAG003.001
+  - LRS.SAFE.GPIO.DIAG003.002
+  - LRS.SAFE.GPIO.DIAG004.001
+  - LRS.SAFE.GPIO.DIAG004.002
+  - LRS.SAFE.GPIO.DIAG007.001
+  - LRS.SAFE.GPIO.DIAG007.002
+  design_ref:
+  - HLD.MOD.GPIO.DIAG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.DIAG.001
+    name: gpio_diag
+    type: error_injection
+    description: 物理回读诊断
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_diag.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.DIAG
+    design_ref:
+    - LLD.MOD.GPIO.DIAG
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 消隐阈值前后引入持续失配/恢复；safe/sleep/owned/available变化；开漏释放；TEST及清除同拍
+    expected_result:
+    - RM以输出变化时间与连续失配样本数计算诊断；无驱动不查；实时汇总不自动触发safe
+    oracle: RM以输出变化时间与连续失配样本数计算诊断；无驱动不查；实时汇总不自动触发safe
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.DIAG.001
+    name: 物理回读诊断
+    type: functional
+    description: 驱动状态×消隐边界×失配长度×W1C
+    feature_ref:
+    - FL.GPIO.DIAG
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.FIFO
+  name: 事件队列与时间戳
+  description: 事件队列与时间戳的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.EVT001.001
+  - LRS.FUNC.GPIO.EVT001.002
+  - LRS.FUNC.GPIO.EVT002.001
+  - LRS.FUNC.GPIO.EVT003.001
+  - LRS.FUNC.GPIO.EVT003.002
+  - LRS.FUNC.GPIO.EVT004.001
+  - LRS.FUNC.GPIO.EVT004.002
+  - LRS.FUNC.GPIO.EVT004.003
+  - LRS.FUNC.GPIO.EVT005.001
+  - LRS.FUNC.GPIO.EVT005.002
+  - LRS.FUNC.GPIO.EVT005.003
+  - LRS.FUNC.GPIO.EVT006.001
+  - LRS.FUNC.GPIO.EVT006.002
+  - LRS.FUNC.GPIO.EVT007.001
+  - LRS.FUNC.GPIO.EVT007.002
+  - LRS.FUNC.GPIO.EVT007.003
+  - LRS.REG.GPIO.LOST.005
+  design_ref:
+  - HLD.MOD.GPIO.FIFO
+  - HLD.MOD.GPIO.REG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.FIFO.001
+    name: gpio_fifo
+    type: stress
+    description: 事件队列与时间戳
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_fifo.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.FIFO
+    design_ref:
+    - LLD.MOD.GPIO.FIFO
+    - LLD.MOD.GPIO.REG
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 同拍多引脚事件，空/满POP+PUSH，FLUSH冲突，CLEAR_LOST竞争，LOST饱和，分离HEAD读取与DMA显式POP
+    expected_result:
+    - RM用无界事件列表加容量规则计算队列；排序选择最小pin，按未入队数量计丢失；四字HEAD不消费，时间戳匹配event周期
+    oracle: RM用无界事件列表加容量规则计算队列；排序选择最小pin，按未入队数量计丢失；四字HEAD不消费，时间戳匹配event周期
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.FIFO.001
+    name: 事件队列与时间戳
+    type: functional
+    description: 占用×POP×事件数×FLUSH×CLEAR_LOST×水位
+    feature_ref:
+    - FL.GPIO.FIFO
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.CAPACITY.001
+    name: CAPACITY
+    feature_ref:
+    - FL.GPIO.FIFO
+    property: FIFO占用始终在0..DEPTH，空读HEAD为0
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.FILTER
+  name: 滤波与去抖
+  description: 滤波与去抖的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.FLT001.001
+  - LRS.FUNC.GPIO.FLT001.002
+  - LRS.FUNC.GPIO.FLT002.001
+  - LRS.FUNC.GPIO.FLT002.002
+  - LRS.FUNC.GPIO.FLT002.003
+  - LRS.FUNC.GPIO.FLT003.001
+  - LRS.FUNC.GPIO.FLT004.001
+  - LRS.FUNC.GPIO.FLT004.002
+  - LRS.FUNC.GPIO.FLT005.001
+  - LRS.FUNC.GPIO.FLT006.001
+  - LRS.FUNC.GPIO.FLT007.001
+  design_ref:
+  - HLD.MOD.GPIO.INPUT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.FILTER.001
+    name: gpio_filter
+    type: boundary
+    description: 滤波与去抖
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_filter.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.FILTER
+    design_ref:
+    - LLD.MOD.GPIO.INPUT
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - K/D取1/2/255/256，DIV取0/1/65535，阈值前后翻转，处理中重配置并混合使能
+    expected_result:
+    - RM以连续样本段长度及Bank采样时间表计算有效输出；下游使用沿前上游样本，检查延迟上界
+    oracle: RM以连续样本段长度及Bank采样时间表计算有效输出；下游使用沿前上游样本，检查延迟上界
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.FILTER.001
+    name: 滤波与去抖
+    type: functional
+    description: K×D×DIV边界×短脉冲×重配置时刻
+    feature_ref:
+    - FL.GPIO.FILTER
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.INPUT
+  name: 输入有效性
+  description: 输入有效性的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.IN001.001
+  - LRS.FUNC.GPIO.IN002.001
+  - LRS.FUNC.GPIO.IN002.002
+  - LRS.FUNC.GPIO.IN003.001
+  - LRS.FUNC.GPIO.IN004.001
+  - LRS.FUNC.GPIO.IN005.001
+  design_ref:
+  - HLD.MOD.GPIO.INPUT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.INPUT.001
+    name: gpio_input
+    type: directed
+    description: 输入有效性
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_input.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.INPUT
+    design_ref:
+    - LLD.MOD.GPIO.INPUT
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 输入在时钟不同相位翻转，初始高低，撤销并恢复available/IN_ENABLE，输入反相及输出同时采样
+    expected_result:
+    - RM按样本队列计算同步填充；前提失效即无效/读0，首次有效建立基线且无伪边沿
+    oracle: RM按样本队列计算同步填充；前提失效即无效/读0，首次有效建立基线且无伪边沿
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.INPUT.001
+    name: 输入有效性
+    type: functional
+    description: 初始值×相位×同步深度×有效性原因
+    feature_ref:
+    - FL.GPIO.INPUT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.FIRST_VALID.001
+    name: FIRST_VALID
+    feature_ref:
+    - FL.GPIO.INPUT
+    property: 首次输入有效或重建基线不会产生边沿event
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.IRQ
+  name: 中断与方向事件
+  description: 中断与方向事件的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.IRQ001.001
+  - LRS.FUNC.GPIO.IRQ002.001
+  - LRS.FUNC.GPIO.IRQ002.002
+  - LRS.FUNC.GPIO.IRQ003.001
+  - LRS.FUNC.GPIO.IRQ003.002
+  - LRS.FUNC.GPIO.IRQ004.001
+  - LRS.FUNC.GPIO.IRQ005.001
+  - LRS.FUNC.GPIO.IRQ006.001
+  - LRS.FUNC.GPIO.IRQ007.001
+  - LRS.FUNC.GPIO.IRQ007.002
+  - LRS.FUNC.GPIO.IRQ008.001
+  - LRS.FUNC.GPIO.IRQ008.002
+  - LRS.FUNC.GPIO.IRQ008.003
+  - LRS.FUNC.GPIO.IRQ009.001
+  - LRS.FUNC.GPIO.IRQ009.002
+  design_ref:
+  - HLD.MOD.GPIO.IRQ
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.IRQ.001
+    name: gpio_irq
+    type: directed
+    description: 中断与方向事件
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_irq.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.IRQ
+    design_ref:
+    - LLD.MOD.GPIO.IRQ
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 所有模式/分组/DETECT/ENABLE组合；持续电平清除、边沿同拍W1C、TEST、重配相同MODE、仅GROUP变化
+    expected_result:
+    - RM基于可观察有效输入的历史事件集合计算Pending/方向/路由；TEST及电平不产生FIFO事件
+    oracle: RM基于可观察有效输入的历史事件集合计算Pending/方向/路由；TEST及电平不产生FIFO事件
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.IRQ.001
+    name: 中断与方向事件
+    type: functional
+    description: 模式×有效性×DETECT×ENABLE×清除竞争×分组
+    feature_ref:
+    - FL.GPIO.IRQ
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.SET_WINS.001
+    name: SET_WINS
+    feature_ref:
+    - FL.GPIO.IRQ
+    property: W1C与新事件同拍Pending仍置位
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.LOWPOWER
+  name: 休眠和安全覆盖
+  description: 休眠和安全覆盖的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.LP.GPIO.LP001.001
+  - LRS.LP.GPIO.LP001.002
+  - LRS.LP.GPIO.LP001.003
+  - LRS.LP.GPIO.LP002.001
+  - LRS.LP.GPIO.LP003.001
+  - LRS.LP.GPIO.LP003.002
+  - LRS.LP.GPIO.LP003.003
+  - LRS.LP.GPIO.LP004.001
+  - LRS.LP.GPIO.LP004.002
+  - LRS.LP.GPIO.LP005.001
+  - LRS.LP.GPIO.LP005.002
+  - LRS.LP.GPIO.LP006.001
+  - LRS.LP.GPIO.LP006.002
+  design_ref:
+  - HLD.MOD.GPIO.OUTPUT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.LOWPOWER.001
+    name: gpio_lowpower
+    type: low_power
+    description: 休眠和安全覆盖
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_lowpower.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.LOWPOWER
+    design_ref:
+    - LLD.MOD.GPIO.OUTPUT
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - sleep进入同拍OUT写，保持/强低/强高/高阻，期间更新OUT，safe进入解除，短暂停主时钟
+    expected_result:
+    - RM捕获进入前物理输出；优先级reset/safe/sleep/normal；拥有权始终门控；断钟已锁存值保持
+    oracle: RM捕获进入前物理输出；优先级reset/safe/sleep/normal；拥有权始终门控；断钟已锁存值保持
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.LOWPOWER.001
+    name: 休眠和安全覆盖
+    type: functional
+    description: 模式×同拍写×safe×owned×停钟
+    feature_ref:
+    - FL.GPIO.LOWPOWER
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.OUTPUT
+  name: 输出原子更新
+  description: 输出原子更新的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.OUT001.001
+  - LRS.FUNC.GPIO.OUT001.002
+  - LRS.FUNC.GPIO.OUT002.001
+  - LRS.FUNC.GPIO.OUT002.002
+  - LRS.FUNC.GPIO.OUT002.003
+  - LRS.FUNC.GPIO.OUT003.001
+  - LRS.FUNC.GPIO.OUT004.001
+  - LRS.FUNC.GPIO.OUT004.002
+  - LRS.FUNC.GPIO.OUT005.001
+  - LRS.FUNC.GPIO.OUT005.002
+  - LRS.FUNC.GPIO.OUT005.003
+  - LRS.FUNC.GPIO.OUT006.001
+  - LRS.FUNC.GPIO.OUT006.002
+  - LRS.FUNC.GPIO.OUT007.001
+  design_ref:
+  - HLD.MOD.GPIO.OUTPUT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.OUTPUT.001
+    name: gpio_output
+    type: random
+    description: 输出原子更新
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_output.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.OUTPUT
+    design_ref:
+    - LLD.MOD.GPIO.OUTPUT
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 随机数据/字节/半字掩码，全部OUT/OE别名，尾Bank，开漏/反相，OE开关时修改模式
+    expected_result:
+    - 位集合操作参考模型计算正常锁存与物理输出，错误不改变状态；单次Access沿更新
+    oracle: 位集合操作参考模型计算正常锁存与物理输出，错误不改变状态；单次Access沿更新
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.OUTPUT.001
+    name: 输出原子更新
+    type: functional
+    description: 原子操作×mask边界×能力×拥有权×开漏×反相
+    feature_ref:
+    - FL.GPIO.OUTPUT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.OE_GUARD.001
+    name: OE_GUARD
+    feature_ref:
+    - FL.GPIO.OUTPUT
+    property: 所有周期OE不得越过OUTPUT_CAP_MASK和output_owned_i
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.GPIO.OPEN_DRAIN.001
+    name: OPEN_DRAIN
+    feature_ref:
+    - FL.GPIO.OUTPUT
+    property: 正常开漏模式不会以OE=1主动驱动高
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.GPIO.PARITY
+  name: Parity与安全锁存
+  description: Parity与安全锁存的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.SAFE.GPIO.DIAG005.001
+  - LRS.SAFE.GPIO.DIAG005.002
+  - LRS.SAFE.GPIO.DIAG006.001
+  design_ref:
+  - HLD.MOD.GPIO.DIAG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.PARITY.001
+    name: gpio_parity
+    type: error_injection
+    description: Parity与安全锁存
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_parity.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.PARITY
+    design_ref:
+    - LLD.MOD.GPIO.DIAG
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - CFG_FULL128下部分写后注入每Bank OUT_DATA校验位；检测前后暖复位、非法权限和GLOBAL_LOCK注入
+    expected_result:
+    - 独立偶校验函数核对受保护完整字；注入不改数据，一主周期内安全请求锁存至POR
+    oracle: 独立偶校验函数核对受保护完整字；注入不改数据，一主周期内安全请求锁存至POR
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_FULL128
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.PARITY.001
+    name: Parity与安全锁存
+    type: functional
+    description: Bank×部分写×注入权限×暖复位×安全输出
+    feature_ref:
+    - FL.GPIO.PARITY
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.RESET
+  name: 复位矩阵
+  description: 复位矩阵的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.FUNC.GPIO.RACE.001
+  - LRS.FUNC.GPIO.RACE.002
+  - LRS.FUNC.GPIO.RACE.003
+  - LRS.FUNC.GPIO.RACE.004
+  - LRS.FUNC.GPIO.RACE.005
+  - LRS.FUNC.GPIO.RACE.006
+  - LRS.FUNC.GPIO.RACE.007
+  - LRS.FUNC.GPIO.RACE.008
+  - LRS.FUNC.GPIO.RACE.009
+  - LRS.FUNC.GPIO.RACE.010
+  - LRS.REG.GPIO.DEFAULT.007
+  - LRS.RESET.GPIO.STATE.001
+  - LRS.RESET.GPIO.STATE.002
+  - LRS.RESET.GPIO.STATE.003
+  - LRS.RESET.GPIO.STATE.004
+  - LRS.RESET.GPIO.STATE.005
+  - LRS.RESET.GPIO.STATE.006
+  design_ref:
+  - HLD.MOD.GPIO.REG
+  - HLD.MOD.GPIO.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.RESET.001
+    name: gpio_reset
+    type: reset
+    description: 复位矩阵
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_reset.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.RESET
+    design_ref:
+    - LLD.MOD.GPIO.REG
+    - LLD.MOD.GPIO.TOP
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - POR/主暖复位穿插非零配置、Pending、FIFO、Strap、sleep、锁和AON outstanding；同步复位APB上游
+    expected_result:
+    - 按合同状态复位表检查每个状态，主状态恢复默认，锁/策略/parity/AON保持；复位内无业务完成
+    oracle: 按合同状态复位表检查每个状态，主状态恢复默认，锁/策略/parity/AON保持；复位内无业务完成
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.RESET.001
+    name: 复位矩阵
+    type: functional
+    description: 复位种类×状态类别×事务阶段
+    feature_ref:
+    - FL.GPIO.RESET
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.GPIO.SECURITY
+  name: 锁与访问策略
+  description: 锁与访问策略的可观察行为与验收证据
+  priority: must
+  req_ref:
+  - LRS.SEC.GPIO.SEC001.001
+  - LRS.SEC.GPIO.SEC002.001
+  - LRS.SEC.GPIO.SEC002.002
+  - LRS.SEC.GPIO.SEC002A.001
+  - LRS.SEC.GPIO.SEC002A.002
+  - LRS.SEC.GPIO.SEC002A.003
+  - LRS.SEC.GPIO.SEC003.001
+  - LRS.SEC.GPIO.SEC003.002
+  - LRS.SEC.GPIO.SEC004.001
+  - LRS.SEC.GPIO.SEC005.001
+  - LRS.SEC.GPIO.SEC005.002
+  - LRS.SEC.GPIO.SEC006.001
+  - LRS.SEC.GPIO.SEC006.002
+  design_ref:
+  - HLD.MOD.GPIO.SECURITY
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.GPIO.SECURITY.001
+    name: gpio_security
+    type: negative
+    description: 锁与访问策略
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_gpio_security.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.GPIO.SECURITY
+    design_ref:
+    - LLD.MOD.GPIO.SECURITY
+    preconditions:
+    - 冷复位及同步释放完成；按本用例建立初始状态
+    stimulus:
+    - 遍历每个被保护写入口，混合锁定位、相同值写、空mask，降低策略后再写锁，暖复位再访问
+    expected_result:
+    - 表驱动权限/目标集合判断整笔接受或拒绝；POR前锁单调，暖复位策略保持，GLOBAL豁免符合合同
+    oracle: 表驱动权限/目标集合判断整笔接受或拒绝；POR前锁单调，暖复位策略保持，GLOBAL豁免符合合同
+    timeout_policy: 40000000主周期及120秒独立watchdog，超时失败
+    seeds:
+    - 1
+    - 17
+    - 101
+    param_config: CFG_BASE
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.GPIO.SECURITY.001
+    name: 锁与访问策略
+    type: functional
+    description: 锁种类×别名×mask×权限×暖复位
+    feature_ref:
+    - FL.GPIO.SECURITY
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.GPIO.LOCK_MONOTONIC.001
+    name: LOCK_MONOTONIC
+    feature_ref:
+    - FL.GPIO.SECURITY
+    property: 无POR时锁位不得由1变0
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+config_sets: []
+config_coverage: []
+gates:
+- gate: VP0
+  status: pass
+  verification_plan_freeze: true
+  approvals:
+    basis: 'user delegated continuation: approve, complete the rest'
+    status: user_delegated_design_approval

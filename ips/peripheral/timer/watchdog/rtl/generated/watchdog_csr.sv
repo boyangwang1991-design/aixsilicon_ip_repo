@@ -5,18 +5,16 @@ module watchdog_csr (
         input wire clk,
         input wire arst_n,
 
-        input wire s_cpuif_req,
-        input wire s_cpuif_req_is_wr,
-        input wire [14:0] s_cpuif_addr,
-        input wire [31:0] s_cpuif_wr_data,
-        input wire [31:0] s_cpuif_wr_biten,
-        output wire s_cpuif_req_stall_wr,
-        output wire s_cpuif_req_stall_rd,
-        output wire s_cpuif_rd_ack,
-        output wire s_cpuif_rd_err,
-        output wire [31:0] s_cpuif_rd_data,
-        output wire s_cpuif_wr_ack,
-        output wire s_cpuif_wr_err,
+        input wire s_apb_psel,
+        input wire s_apb_penable,
+        input wire s_apb_pwrite,
+        input wire [2:0] s_apb_pprot,
+        input wire [14:0] s_apb_paddr,
+        input wire [31:0] s_apb_pwdata,
+        input wire [3:0] s_apb_pstrb,
+        output logic s_apb_pready,
+        output logic [31:0] s_apb_prdata,
+        output logic s_apb_pslverr,
 
         input watchdog_csr_pkg::watchdog_regs__in_t hwif_in,
         output watchdog_csr_pkg::watchdog_regs__out_t hwif_out
@@ -40,18 +38,41 @@ module watchdog_csr (
     logic cpuif_wr_ack;
     logic cpuif_wr_err;
 
-    assign cpuif_req = s_cpuif_req;
-    assign cpuif_req_is_wr = s_cpuif_req_is_wr;
-    assign cpuif_addr = s_cpuif_addr;
-    assign cpuif_wr_data = s_cpuif_wr_data;
-    assign cpuif_wr_biten = s_cpuif_wr_biten;
-    assign s_cpuif_req_stall_wr = cpuif_req_stall_wr;
-    assign s_cpuif_req_stall_rd = cpuif_req_stall_rd;
-    assign s_cpuif_rd_ack = cpuif_rd_ack;
-    assign s_cpuif_rd_err = cpuif_rd_err;
-    assign s_cpuif_rd_data = cpuif_rd_data;
-    assign s_cpuif_wr_ack = cpuif_wr_ack;
-    assign s_cpuif_wr_err = cpuif_wr_err;
+    // Request
+    logic is_active;
+    always_ff @(posedge clk or negedge arst_n) begin
+        if(~arst_n) begin
+            is_active <= '0;
+            cpuif_req <= '0;
+            cpuif_req_is_wr <= '0;
+            cpuif_addr <= '0;
+            cpuif_wr_data <= '0;
+            cpuif_wr_biten <= '0;
+        end else begin
+            if(~is_active) begin
+                if(s_apb_psel) begin
+                    is_active <= '1;
+                    cpuif_req <= '1;
+                    cpuif_req_is_wr <= s_apb_pwrite;
+                    cpuif_addr <= {s_apb_paddr[14:2], 2'b0};
+                    cpuif_wr_data <= s_apb_pwdata;
+                    for(int i=0; i<4; i++) begin
+                        cpuif_wr_biten[i*8 +: 8] <= {8{s_apb_pstrb[i]}};
+                    end
+                end
+            end else begin
+                cpuif_req <= '0;
+                if(cpuif_rd_ack || cpuif_wr_ack) begin
+                    is_active <= '0;
+                end
+            end
+        end
+    end
+
+    // Response
+    assign s_apb_pready = cpuif_rd_ack | cpuif_wr_ack;
+    assign s_apb_prdata = cpuif_rd_data;
+    assign s_apb_pslverr = cpuif_rd_err | cpuif_wr_err;
 
     logic cpuif_req_masked;
     logic external_pending;

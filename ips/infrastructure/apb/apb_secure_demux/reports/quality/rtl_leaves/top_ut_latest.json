@@ -1,0 +1,94 @@
+{
+  "inputs": [
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux.sv",
+      "sha256": "18302cb1746b675327502bd3cca523c649cd17f66829886406ce42420fc7329b"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_access.sv",
+      "sha256": "649338ece7ed180a7b9ddc8f3b8f00b61714cfe65e4474a7ea0191fe37ca7980"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_csr.sv",
+      "sha256": "83586012803af2dfe0103839a40cdb4af4fbd47b007209e0f0e724316cbb6894"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_decode.sv",
+      "sha256": "fcbc71bdc33803cb08619d295093f7d406bf4a9081d83cb7bdfd79a1fcc3e0c8"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_dfx.sv",
+      "sha256": "d020477c6cca4c817adf43b18c73a54bd86d6eeb51257361edfc925452b803eb"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_events.sv",
+      "sha256": "238e949a5fd4f18126af4a8afa470a1d272403e5c32502b02b22a0bc51fb4136"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_irq.sv",
+      "sha256": "4016b70f4fad6e18d950768f450408bce4ce314e7658ea7195828bef77792ecf"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/apb_secure_demux_policy.sv",
+      "sha256": "ce77751b58d430e48b6d7be7321ed14055467e2cc2428c982141761c7e3821b1"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_pkg.sv",
+      "sha256": "3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_regblock.sv",
+      "sha256": "171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/instance/apb_secure_demux_instance_pkg.sv",
+      "sha256": "b85ac05b8455ac02332d6413521cdc541e4388ec48df5f41526f2f4ba41dea0e"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/instance/apb_secure_demux_register_bridge.sv",
+      "sha256": "713acd0529be3daa1ccb6811c0b713fd1a60ef3db63da8a6a53f30a953a4e54d"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/unit_test/ut_apb_secure_demux.sv",
+      "sha256": "61f69b57c3489759aa927777d78620167168d9ec317a9b1e711ff1b745674254"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/aixsilicon_ip_apb_secure_demux.core",
+      "sha256": "ad30af441c2ad62dae6fa4b2f45344282411562e491734635c04e2e09109ba9a"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "sha256": "4573e2d0dce7ac1eb295ad4901ad4b4b86e33e871e43f431456b5035c5b38950"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.config.json",
+      "sha256": "6d3c76c04e71c87e908b2e535aa5e08fd2352cd4ba8fe5cc5b8317b3fed927b8"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/compat/parity_gen_check.core",
+      "sha256": "dcf2df985d43207b254d3a046eebb04f00f632707447b2c785536f6f77ad38b7"
+    },
+    {
+      "path": "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/coding_integrity/parity_gen_check/rtl/parity_gen_check.sv",
+      "sha256": "b5d3f097bbfffce66c4d35a3a206352237fcaac702113479d99f04749f605c6c"
+    }
+  ],
+  "command": [
+    "fusesoc",
+    "--config",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/fusesoc.conf",
+    "--cores-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "run",
+    "--target=ut_top",
+    "--build",
+    "--run",
+    "--build-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/top",
+    "aixsilicon:ip:apb_secure_demux:1.0.0"
+  ],
+  "exit_code": 0,
+  "passed": true,
+  "log": "reports/quality/rtl_leaves/top_ut_1789115625332996371.log",
+  "log_sha256": "27376ba6b8a39b0635eced36123ace89f362b558acab4d1f18c30709492b0bc9"
+}

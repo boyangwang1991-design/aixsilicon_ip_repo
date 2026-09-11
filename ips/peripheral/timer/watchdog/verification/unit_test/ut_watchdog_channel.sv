@@ -124,9 +124,23 @@ module ut_watchdog_channel;
 
     for(int target=0;target<6;target++) begin
       reset_dut();configure();unlock();issue(INJECT,32'(target));cycle();
+      ck(final_req && alert,$sformatf("injection %d request within one edge",target));
+      // Complete qualification drives the independent request immediately; its
+      // retained diagnostic record is sampled on the second edge (LRS <= 2).
+      if(target==5) cycle();
       ck(final_req && alert && dut.q.first_test,$sformatf("injection %d real checker",target));
     end
     mark("six safety injections");
+    reset_dut();configure();cycle(3);
+    force dut.do_refresh=1'b1;
+    cycle();
+    ck(final_req && alert,"unqualified refresh reaches independent final hold");
+    release dut.do_refresh;
+    cycle();ck(dut.q.raw[14],"complete refresh mismatch retained");
+    force dut.q.final_req=1'b0;
+    #1;ck(final_req && safe,"independent hold survives ordinary request corruption");
+    release dut.q.final_req;
+    mark("independent refresh qualification and final hold");
     // Independent exact-cycle reference: varied timeout, prescale, and service edge.
     for(int trial=0;trial<80;trial++) begin
       int timeout_ticks,prescale,span,service_edge;

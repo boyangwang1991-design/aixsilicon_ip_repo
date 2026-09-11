@@ -1,0 +1,29 @@
+{
+  "role": "scaffold_only_not_implemented",
+  "method": "instantiate_template.py --flat in isolated build staging; promote new trees preserving existing UT/RAL",
+  "reused_vip": "APB source VCS compile and 242-check project loopback passed; no local utils clone",
+  "files": [
+    "verification/env/watchdog_checker.sv",
+    "verification/env/watchdog_checker_cfg.sv",
+    "verification/env/watchdog_dut_cfg.sv",
+    "verification/env/watchdog_env.list",
+    "verification/env/watchdog_env.sv",
+    "verification/env/watchdog_env_cfg.sv",
+    "verification/env/watchdog_env_dec.sv",
+    "verification/env/watchdog_fcov.sv",
+    "verification/env/watchdog_rm.sv",
+    "verification/env/watchdog_rm_cfg.sv",
+    "verification/env/watchdog_virtual_sequence.sv",
+    "verification/env/watchdog_virtual_sequencer.sv",
+    "verification/tc/tc.list",
+    "verification/tc/tc_base.sv",
+    "verification/tc/tc_define.sv",
+    "verification/tc/tc_sanity.sv",
+    "verification/tc/tc_undef.sv",
+    "verification/th/harness.sv",
+    "verification/sim/Makefile",
+    "verification/sim/README.md",
+    "verification/verification.list",
+    "verification/check_uvm.f"
+  ]
+}

@@ -62,6 +62,14 @@ parameters:
     datatype: int
     paramtype: vlogparam
     default: 5
+  PCLK_HALF:
+    datatype: int
+    paramtype: vlogparam
+    default: 5
+  WDT_HALF:
+    datatype: int
+    paramtype: vlogparam
+    default: 7
 filesets:
   pkg:
     files:
@@ -87,6 +95,140 @@ filesets:
   ut_top:
     files:
     - verification/unit_test/ut_watchdog_top.sv
+    file_type: systemVerilogSource
+  uvm:
+    depend:
+    - aixsilicon:vip:apb:1.0.0
+    files:
+    - verification/ral/watchdog_ral.sv
+    - verification/ral/watchdog_reg_views_pkg.sv
+    - verification/env/watchdog_control_if.sv
+    - verification/env/watchdog_checker.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_checker_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_control_agent.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_control_driver.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_dut_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_env.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_env_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_env_dec.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_fcov.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_model_channel.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_monitor.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_observation.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_reference_model.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_rm.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_rm_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_virtual_sequence.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/watchdog_virtual_sequencer.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/tc/tc_alive.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_base.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_bus.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_cdc.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_commit.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_define.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_dfx.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_fault.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_flow.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_group.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_hw_event.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_lock.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_pause.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_recovery.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_reset.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_safety.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_sanity.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_service.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_snapshot.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_state.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_timing.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_undef.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/assertions/watchdog_assertions.sv:
+        is_include_file: true
+        include_path: verification/assertions
+    - verification/env/watchdog_env_pkg.sv
+    - verification/th/watchdog_harness.sv
+    file_type: systemVerilogSource
+  formal:
+    files:
+    - verification/formal/watchdog_formal_harness.sv
     file_type: systemVerilogSource
 targets:
   default:
@@ -151,7 +293,7 @@ targets:
         - enableSV09 yes
         - mthresh 1048576
         - define SYNTHESIS
-  ut_channel: &id002
+  ut_channel:
     default_tool: vcs
     filesets:
     - pkg
@@ -175,7 +317,7 @@ targets:
         - line+cond+branch+fsm+tgl
     parameters:
     - W
-  ut_top: &id001
+  ut_top:
     default_tool: vcs
     filesets:
     - pkg
@@ -200,8 +342,84 @@ targets:
     parameters:
     - PS
     - WS
-  sim: *id001
-  smoke: *id002
+  sim:
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - uvm
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    - PCLK_HALF
+    - WDT_HALF
+    toplevel: watchdog_harness
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        - -debug_access+all
+        - -cm
+        - line+cond+branch+fsm+tgl
+        run_options:
+        - +UVM_TESTNAME=tc_bus
+        - +ntb_random_seed=1
+        - -cm
+        - line+cond+branch+fsm+tgl
+  smoke:
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - uvm
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    - PCLK_HALF
+    - WDT_HALF
+    toplevel: watchdog_harness
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        - -debug_access+all
+        - -cm
+        - line+cond+branch+fsm+tgl
+        run_options:
+        - +UVM_TESTNAME=tc_bus
+        - +ntb_random_seed=1
+        - -cm
+        - line+cond+branch+fsm+tgl
   synth:
     default_tool: design_compiler
     filesets:
@@ -214,3 +432,27 @@ targets:
       design_compiler:
         script_dir: $::env(WATCHDOG_IP_ROOT)/scripts/ppa
         dc_script: synth.tcl
+  formal:
+    default_tool: vcs
+    filesets:
+    - pkg
+    - rtl
+    - formal
+    toplevel: watchdog_formal_harness
+    hooks:
+      pre_build:
+      - vcformal_prove
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+scripts:
+  vcformal_prove:
+    cmd:
+    - bash
+    - -c
+    - uv run --locked --no-sync python "$WATCHDOG_IP_ROOT/scripts/run_formal.py"

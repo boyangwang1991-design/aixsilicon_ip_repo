@@ -1,0 +1,599 @@
+{
+  "scope": "Configuration-only PC validation; no RTL elaboration or simulation executed",
+  "model_sha256": "bd35f3242190c2b5ef626dce6d4bc8f949b4c59e4fa8a20c7c010c67295ec8fa",
+  "checker_sha256": "72bb8c273f143e97d97ed716271ceed9f7a6dd4d018133ef718ca45fa77bee12",
+  "cases": [
+    {
+      "config_id": "CFG_TYPICAL_DIRECT",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_TYPICAL_REGISTER",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_MAX_DIRECT",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_MAX_REGISTER",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_MIN_NOFIFO",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_MIN_FIFO1",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_NONPOWER",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_TRIMMED",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_DEFAULT",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_INVALID_PORTS_ZERO",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "NUM_PORTS: expected integer in [1, 32]"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_WIDTH_BAD",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "DATA_WIDTH: expected integer in [32, 32]"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_ID_SPACE",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "NUM_MASTERS exceeds the complete identity encoding space",
+        "RESET_PERM: expected 256 entries"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_MASK_ZERO",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "MGMT_MASTER_MASK: required, nonzero, within master count"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_BASE_LENGTH",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "PORT_BASE: expected 8 entries"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_BASE_OVERLAP",
+      "expected_failure_stage": "Elaboration",
+      "observed_failure_stage": "Elaboration",
+      "passed": true,
+      "errors": [
+        "overlap: PORT0, PORT1",
+        "overlap: PORT0, PORT2",
+        "overlap: PORT0, PORT3",
+        "overlap: PORT0, PORT4",
+        "overlap: PORT0, PORT5",
+        "overlap: PORT0, PORT6",
+        "overlap: PORT0, PORT7",
+        "overlap: PORT1, PORT2",
+        "overlap: PORT1, PORT3",
+        "overlap: PORT1, PORT4",
+        "overlap: PORT1, PORT5",
+        "overlap: PORT1, PORT6",
+        "overlap: PORT1, PORT7",
+        "overlap: PORT2, PORT3",
+        "overlap: PORT2, PORT4",
+        "overlap: PORT2, PORT5",
+        "overlap: PORT2, PORT6",
+        "overlap: PORT2, PORT7",
+        "overlap: PORT3, PORT4",
+        "overlap: PORT3, PORT5",
+        "overlap: PORT3, PORT6",
+        "overlap: PORT3, PORT7",
+        "overlap: PORT4, PORT5",
+        "overlap: PORT4, PORT6",
+        "overlap: PORT4, PORT7",
+        "overlap: PORT5, PORT6",
+        "overlap: PORT5, PORT7",
+        "overlap: PORT6, PORT7"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_CSR_OVERLAP",
+      "expected_failure_stage": "Elaboration",
+      "observed_failure_stage": "Elaboration",
+      "passed": true,
+      "errors": [
+        "overlap: CSR, PORT0",
+        "overlap: CSR, PORT1",
+        "overlap: CSR, PORT2",
+        "overlap: CSR, PORT3",
+        "overlap: CSR, PORT4",
+        "overlap: CSR, PORT5",
+        "overlap: CSR, PORT6",
+        "overlap: CSR, PORT7"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_PORT_WRAP",
+      "expected_failure_stage": "Elaboration",
+      "observed_failure_stage": "Elaboration",
+      "passed": true,
+      "errors": [
+        "PORT0: interval overflows ADDR_WIDTH"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_SIZE_ZERO",
+      "expected_failure_stage": "Elaboration",
+      "observed_failure_stage": "Elaboration",
+      "passed": true,
+      "errors": [
+        "PORT0: zero size or alignment violation",
+        "PORT1: zero size or alignment violation",
+        "PORT2: zero size or alignment violation",
+        "PORT3: zero size or alignment violation",
+        "PORT4: zero size or alignment violation",
+        "PORT5: zero size or alignment violation",
+        "PORT6: zero size or alignment violation",
+        "PORT7: zero size or alignment violation"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_BASE_ALIGN",
+      "expected_failure_stage": "Elaboration",
+      "observed_failure_stage": "Elaboration",
+      "passed": true,
+      "errors": [
+        "PORT0: zero size or alignment violation",
+        "overlap: PORT0, PORT1"
+      ]
+    },
+    {
+      "config_id": "CFG_INVALID_PERM_RANGE",
+      "expected_failure_stage": "Schema",
+      "observed_failure_stage": "Schema",
+      "passed": true,
+      "errors": [
+        "RESET_PERM: invalid element",
+        "RESET_PERM: 256 is greater than the maximum of 255"
+      ]
+    },
+    {
+      "config_id": "CFG_NONPOWER_PORT_SIZE",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_ADDR_WIDTH_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_MASTER_ID_WIDTH_1",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_POLICY_PARITY_EN_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_DFX_EN_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_PUBLIC_ID_EN_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_0",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_1",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_3",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_BOUNDARY_MGMT_MASTER_MASK_1",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_7996c6441ffe",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_3327a5808b45",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_1b3aec0b9750",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_c3b79578ea4d",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_a8f64c277c8c",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_b00f67347f3e",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_bbd2e95abdfb",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_e8f6a66dbae9",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_252c03f4a7fd",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_70f2606c16a7",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_ad3a0b19cc05",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_9729ed550908",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_62fb328cbd1a",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_eb185612288b",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_cffb34888a1a",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_10641b20172d",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_3c842abd6658",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_7f5f4a937716",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_93e677694b2a",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_555b2df72e6b",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_8dccb71ed674",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_c1b1e474fc36",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_3f414c06dcb1",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_80102a649576",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_f760e709762d",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_5c4f99ff861c",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_28acbf2ed606",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_f2a062205bf6",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_6fad8be7532f",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_94c42473ca59",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_549d7ff42b8c",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_2b2a2b98eb8e",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_9646975e565b",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_94547ad0252f",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_18f0ed75a295",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_179073e689eb",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_79b2f91647a3",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_97eca3f099d5",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_6926b6de0028",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_132a33275b98",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_a21ddae7034e",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_e5911183e694",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_55156ff5465c",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "config_id": "CFG_PW_6e532e43314e",
+      "expected_failure_stage": null,
+      "observed_failure_stage": null,
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "failures": 0
+}

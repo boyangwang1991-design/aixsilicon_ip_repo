@@ -1,0 +1,45 @@
+{
+  "source": "repos/aixsilicon_cbb_repo/registry.yaml",
+  "sha256": "5876c2d4a583ead68965b1d1fa9c0c1d212a7dac02c23ac70185e9a91ebc24b3",
+  "selected": [
+    {
+      "id": "BUS-004",
+      "name": "apb_decoder",
+      "family": "APB Decoder",
+      "group": "components/apb_ahb_register",
+      "abstraction": "A3",
+      "priority": "P0",
+      "implementation": "one-to-N、hierarchical",
+      "description": "地址译码与PREADY Mux",
+      "status": "planned",
+      "version": "0.1.0",
+      "path": "components/apb_ahb_register/apb_decoder"
+    },
+    {
+      "id": "COD-001",
+      "name": "parity_gen_check",
+      "family": "Parity Generator/Checker",
+      "group": "components/coding_integrity",
+      "abstraction": "A1",
+      "priority": "P0",
+      "implementation": "even/odd、tree、pipelined",
+      "description": "XOR树平衡",
+      "status": "implemented",
+      "version": "0.1.0",
+      "path": "components/coding_integrity/parity_gen_check"
+    },
+    {
+      "id": "QUE-001",
+      "name": "sync_fifo",
+      "family": "Synchronous FIFO",
+      "group": "components/fifo_queue_buffer",
+      "abstraction": "A2",
+      "priority": "P0",
+      "implementation": "register、shift",
+      "description": "深宽自动映射（register/shift 已物化；SRAM 依赖 A0 wrapper 未实现，登记 non_goals）",
+      "status": "implemented",
+      "version": "0.1.0",
+      "path": "components/fifo_queue_buffer/sync_fifo"
+    }
+  ]
+}

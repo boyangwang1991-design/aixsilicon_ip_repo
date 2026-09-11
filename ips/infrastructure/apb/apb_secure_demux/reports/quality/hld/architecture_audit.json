@@ -1,0 +1,23 @@
+{
+  "requirements": 169,
+  "modules": 9,
+  "mapped": 169,
+  "missing": [],
+  "unknown_refs": [],
+  "layout_findings": [],
+  "g1_source_gate": [
+    {
+      "gate": "G1",
+      "status": "open",
+      "architecture_freeze": false,
+      "approvals": {
+        "architecture": "pending independent review"
+      }
+    }
+  ],
+  "input_hashes": {
+    "model/requirements.yaml": "694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16",
+    "model/parameter_space.yaml": "bd35f3242190c2b5ef626dce6d4bc8f949b4c59e4fa8a20c7c010c67295ec8fa",
+    "model/architecture.yaml": "9fa44754d10cfb53a5d05a14ca0bb5275c6c7834f883e1eac41c3cf67fb45b63"
+  }
+}

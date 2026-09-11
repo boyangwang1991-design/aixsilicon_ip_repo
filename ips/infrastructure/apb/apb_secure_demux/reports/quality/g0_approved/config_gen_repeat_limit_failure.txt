@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 277, in <module>
+    main()
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 260, in main
+    configs = generate_configs(data, args.seed)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 187, in generate_configs
+    add(c["id"], c["values"], "mandatory", dict(methods, synth=True), named=True)
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/config_gen.py", line 161, in add
+    combo = resolve(params, overrides)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/19-param-space-verification/scripts/parameter_contract.py", line 73, in resolve
+    raise ValueError(f"unresolved default expressions: {[p['name'] for p in pending]}")
+ValueError: unresolved default expressions: ['RESET_PERM']

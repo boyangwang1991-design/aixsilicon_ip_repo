@@ -1,0 +1,175 @@
+{
+  "schema_version": "watchdog-hld-author-check/1.0",
+  "passed": true,
+  "role": "author_check_only",
+  "human_gate": "G1 pass",
+  "errors": [],
+  "counts": {
+    "requirements": 139,
+    "covered_by_modules": 139,
+    "modules": 6,
+    "external_interfaces": 11,
+    "internal_interfaces": 11,
+    "domains": 6,
+    "cdc_paths": 6,
+    "parameters": 16
+  },
+  "documents": [
+    {
+      "file": "00_overview.md",
+      "lines": 43,
+      "meta": 1
+    },
+    {
+      "file": "01_architecture.md",
+      "lines": 219,
+      "meta": 3
+    },
+    {
+      "file": "01_architecture_channels.md",
+      "lines": 225,
+      "meta": 3
+    },
+    {
+      "file": "01_configuration_impact_1.md",
+      "lines": 112,
+      "meta": 6
+    },
+    {
+      "file": "01_configuration_impact_2.md",
+      "lines": 111,
+      "meta": 6
+    },
+    {
+      "file": "01_configuration_impact_3.md",
+      "lines": 76,
+      "meta": 4
+    },
+    {
+      "file": "02_functional.md",
+      "lines": 126,
+      "meta": 3
+    },
+    {
+      "file": "02_functional_fault.md",
+      "lines": 73,
+      "meta": 2
+    },
+    {
+      "file": "02_functional_policy.md",
+      "lines": 146,
+      "meta": 5
+    },
+    {
+      "file": "03_interface.md",
+      "lines": 168,
+      "meta": 6
+    },
+    {
+      "file": "03_interface_internal.md",
+      "lines": 222,
+      "meta": 6
+    },
+    {
+      "file": "03_interface_internal_status.md",
+      "lines": 185,
+      "meta": 5
+    },
+    {
+      "file": "03_interface_system.md",
+      "lines": 157,
+      "meta": 5
+    },
+    {
+      "file": "03_register_architecture.md",
+      "lines": 79,
+      "meta": 1
+    },
+    {
+      "file": "04_clock_cdc.md",
+      "lines": 183,
+      "meta": 6
+    },
+    {
+      "file": "04_clock_power.md",
+      "lines": 208,
+      "meta": 6
+    },
+    {
+      "file": "04_performance.md",
+      "lines": 187,
+      "meta": 7
+    },
+    {
+      "file": "05_safety.md",
+      "lines": 172,
+      "meta": 5
+    },
+    {
+      "file": "06_dfx.md",
+      "lines": 153,
+      "meta": 6
+    },
+    {
+      "file": "07_decomposition.md",
+      "lines": 136,
+      "meta": 4
+    },
+    {
+      "file": "08_decisions.md",
+      "lines": 147,
+      "meta": 4
+    },
+    {
+      "file": "08_risk_checklist.md",
+      "lines": 34,
+      "meta": 1
+    },
+    {
+      "file": "architecture.md",
+      "lines": 5,
+      "meta": 0
+    },
+    {
+      "file": "index.md",
+      "lines": 29,
+      "meta": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/hld/00_overview.md": "0d8c30388fd6437b84ea0e5c4f1763a81a7ddf39cd939499680ef5a9456dec3d",
+    "docs/hld/01_architecture.md": "14a4249b73d178d7c499883875f4d529ef386df5955a220f0bc2fc7f7da2d477",
+    "docs/hld/01_architecture_channels.md": "563990dc6109945eb1cd1427b8b18c6fa72cec24532006974109509540e3d5e6",
+    "docs/hld/01_configuration_impact_1.md": "ca749cd8db833c149ae8a0f3de9e84f4482bf6aa393084d5f483c86c84a85983",
+    "docs/hld/01_configuration_impact_2.md": "b38a6259bf7f4c7e141d07c0727ea209bf658670492d6466876f2c6d4c387cde",
+    "docs/hld/01_configuration_impact_3.md": "f9f239e81420b55bb0173d99571638a77635d586deca286789964c9d62aa42e9",
+    "docs/hld/02_functional.md": "48fe8e8b872c88eb2d436ba0846760afc8ac40c8b9c29790f1fc91e4a675bd4a",
+    "docs/hld/02_functional_fault.md": "cb5822f538f6b8e91b4d7717a21aac863a7aef583c4d65d2c8f1358322e61541",
+    "docs/hld/02_functional_policy.md": "342ff1c291f7d875df9624a32e832a10e6de69ff79ba6685ecf4877fbbfb821a",
+    "docs/hld/03_interface.md": "f7232d05cec8ce8cc8f380ca92e70122357395c2bf05b2c2e892d3437a2d1390",
+    "docs/hld/03_interface_internal.md": "2b010a4b16ff1744deebc21a58b10a44534f27ee986ffff1abae74863bc10927",
+    "docs/hld/03_interface_internal_status.md": "1ddb440207dfd1a3c56d4eacd603fc50c95ef649d983f790a91927d640322a32",
+    "docs/hld/03_interface_system.md": "11a82939532d7fd5c55db1ecc5e4d853319fae264b2bd49fa979c1586be8a23e",
+    "docs/hld/03_register_architecture.md": "74985a70519633faf7b47362da60c7991f10381ece481e5c04c7efb2c09cbe05",
+    "docs/hld/04_clock_cdc.md": "218497b154fa70624a2da63fe320333d66bc300698972e635684dcefc165f2ca",
+    "docs/hld/04_clock_power.md": "e70cf4d9e6d364875e88869cf5f3acd4cad1f45d0c25f1272dcddf272fd6e3e0",
+    "docs/hld/04_performance.md": "ee133d0b9af737636f9d5aec70d9e5648c4ea12deb8984ac8625a41be4027a61",
+    "docs/hld/05_safety.md": "dcad7b44496316dcbfef0b17554cc9367a8bbf044d157c69bd20d22ec4ae28e3",
+    "docs/hld/06_dfx.md": "19b63582d1b8ec28bb9b77c3fc04bfa6d68d551c1461a6b62e9c2eb881e961ac",
+    "docs/hld/07_decomposition.md": "7897dbace4dab70e5a1ccc7c98d2c12912fac603a341c9433a52fb665f29684b",
+    "docs/hld/08_decisions.md": "0c36f52065a5c798207134dac5edc4ad3aad1fe90a7dfaf5e5ea3b3893c82451",
+    "docs/hld/08_risk_checklist.md": "0dac2aeff7f4d48e3b4b52de6ffb9d7f876faa20e3ace28e7afa36ec66281842",
+    "docs/hld/architecture.md": "2a3d5c4e542581c0578d5c205dff58d090a41b48fba209cea98c3db85521c020",
+    "docs/hld/index.md": "365cc6b63012e026e130e12712eee8d645292f731ed1e131d64754f6ff93044f",
+    "model/requirements.yaml": "a65e448c10140ca009ac320df2ce9e9be048967c55713853bf63f1ec43c13107",
+    "model/parameter_space.yaml": "02fd005bd41d771a821ac767927aa804432031637c4916bc5f87814c7b814763",
+    "model/architecture.yaml": "bf17edbd072f26f72285bd1eb248b6387e1225dc5f1fbca9350791cee8699c64",
+    "model/external_interface.yaml": "073f982fdd08fc33ffe8823b711e3e463dcb2efb3fcbd70cabdcc0cd646ceffc",
+    "model/internal_interface.yaml": "1b23e9d701e6970c6f3f64bf9fce47d8b70698828cfc95180beb896b1679ef66",
+    "model/clock_domains.yaml": "e51e3632e7d38e152eedd428504c75c2e0b4c69c4f933e4211e461a73054a3ce",
+    "model/cdc_paths.yaml": "7c908390e33dcbb89b8fbd5245caed1546ec157db1f7a560001351b83dafde53",
+    "reports/full_flow/g1_approval.md": "3decf2fcd09bda1430a43e788b22f1e66e618b9dade349482d3aadf4a07d6bab",
+    "reports/quality/param_semantic_check.json": "69352db81e28af5738aa93e16f0859989d932c57a8340d4229d408c3c57474bd",
+    "scripts/check_hld.py": "e63d9df853bc48b29afa79af9b404dbbc51f108ef7635e82bfbabe54d5a0ed05"
+  }
+}

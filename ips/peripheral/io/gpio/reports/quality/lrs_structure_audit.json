@@ -1,0 +1,285 @@
+{
+  "requirements": 258,
+  "source_ids": 97,
+  "source_ids_mapped": 95,
+  "routed": {
+    "GPIO-ARC-001": "HLD module decomposition proposal",
+    "GPIO-ARC-003": "HLD/LLD balanced IRQ/read/priority topology constraint"
+  },
+  "issues": [],
+  "layout": [
+    {
+      "path": "docs/lrs/00_document_control.md",
+      "lines": 54,
+      "meta_count": 1
+    },
+    {
+      "path": "docs/lrs/01_configuration_cases_1.md",
+      "lines": 142,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/01_configuration_cases_2.md",
+      "lines": 152,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/01_configuration_meta_1.md",
+      "lines": 165,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/01_configuration_meta_2.md",
+      "lines": 161,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/01_configuration_parameters_1.md",
+      "lines": 262,
+      "meta_count": 10
+    },
+    {
+      "path": "docs/lrs/01_configuration_parameters_2.md",
+      "lines": 236,
+      "meta_count": 9
+    },
+    {
+      "path": "docs/lrs/01_configuration_products.md",
+      "lines": 52,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/01_configuration_rules.md",
+      "lines": 79,
+      "meta_count": 3
+    },
+    {
+      "path": "docs/lrs/01_scope.md",
+      "lines": 108,
+      "meta_count": 4
+    },
+    {
+      "path": "docs/lrs/02_interface_ports_1.md",
+      "lines": 262,
+      "meta_count": 10
+    },
+    {
+      "path": "docs/lrs/02_interface_ports_2.md",
+      "lines": 262,
+      "meta_count": 10
+    },
+    {
+      "path": "docs/lrs/02_interface_ports_3.md",
+      "lines": 54,
+      "meta_count": 2
+    },
+    {
+      "path": "docs/lrs/02_interface_rules.md",
+      "lines": 204,
+      "meta_count": 8
+    },
+    {
+      "path": "docs/lrs/03_functional_capture.md",
+      "lines": 154,
+      "meta_count": 6
+    },
+    {
+      "path": "docs/lrs/03_functional_event_1.md",
+      "lines": 304,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/03_functional_event_2.md",
+      "lines": 104,
+      "meta_count": 4
+    },
+    {
+      "path": "docs/lrs/03_functional_filter.md",
+      "lines": 279,
+      "meta_count": 11
+    },
+    {
+      "path": "docs/lrs/03_functional_input.md",
+      "lines": 154,
+      "meta_count": 6
+    },
+    {
+      "path": "docs/lrs/03_functional_irq_1.md",
+      "lines": 304,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/03_functional_irq_2.md",
+      "lines": 79,
+      "meta_count": 3
+    },
+    {
+      "path": "docs/lrs/03_functional_output_1.md",
+      "lines": 304,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/03_functional_output_2.md",
+      "lines": 54,
+      "meta_count": 2
+    },
+    {
+      "path": "docs/lrs/03_functional_priorities.md",
+      "lines": 242,
+      "meta_count": 10
+    },
+    {
+      "path": "docs/lrs/04_register_access_1.md",
+      "lines": 316,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/04_register_access_2.md",
+      "lines": 56,
+      "meta_count": 2
+    },
+    {
+      "path": "docs/lrs/04_register_capabilities.md",
+      "lines": 170,
+      "meta_count": 7
+    },
+    {
+      "path": "docs/lrs/05_performance.md",
+      "lines": 160,
+      "meta_count": 6
+    },
+    {
+      "path": "docs/lrs/06_clock_reset.md",
+      "lines": 185,
+      "meta_count": 7
+    },
+    {
+      "path": "docs/lrs/07_low_power_1.md",
+      "lines": 304,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/07_low_power_2.md",
+      "lines": 29,
+      "meta_count": 1
+    },
+    {
+      "path": "docs/lrs/07_low_power_aon_1.md",
+      "lines": 316,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/07_low_power_aon_2.md",
+      "lines": 316,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/07_low_power_aon_3.md",
+      "lines": 56,
+      "meta_count": 2
+    },
+    {
+      "path": "docs/lrs/08_functional_safety_1.md",
+      "lines": 304,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/08_functional_safety_2.md",
+      "lines": 79,
+      "meta_count": 3
+    },
+    {
+      "path": "docs/lrs/09_security_1.md",
+      "lines": 316,
+      "meta_count": 12
+    },
+    {
+      "path": "docs/lrs/09_security_2.md",
+      "lines": 30,
+      "meta_count": 1
+    },
+    {
+      "path": "docs/lrs/10_dfx.md",
+      "lines": 29,
+      "meta_count": 1
+    },
+    {
+      "path": "docs/lrs/11_generator.md",
+      "lines": 3,
+      "meta_count": 0
+    },
+    {
+      "path": "docs/lrs/12_constraints_delivery.md",
+      "lines": 177,
+      "meta_count": 7
+    },
+    {
+      "path": "docs/lrs/12_constraints_integration.md",
+      "lines": 218,
+      "meta_count": 9
+    },
+    {
+      "path": "docs/lrs/12_constraints_verification.md",
+      "lines": 160,
+      "meta_count": 6
+    },
+    {
+      "path": "docs/lrs/99_quality_gate.md",
+      "lines": 11,
+      "meta_count": 1
+    },
+    {
+      "path": "docs/lrs/index.md",
+      "lines": 48,
+      "meta_count": 0
+    }
+  ],
+  "contract_sha256": "59597f3b2da6408c3f95c95a4aadc05749b8ea9e0712c16d3a63edf577dff705",
+  "inputs": {
+    "docs/lrs/00_document_control.md": "9d400a2fac2ea6a83cc56fccce2a24c300e743d48b4b43c4dd48879216f81273",
+    "docs/lrs/01_configuration_cases_1.md": "adfb23740eef1ae55eb864821c03fd334f147137434d99a33c9c139bc5b9c4df",
+    "docs/lrs/01_configuration_cases_2.md": "928d4978f89f701dca0a56b598c467c2af8679bf2d2995c0748971590ac37753",
+    "docs/lrs/01_configuration_meta_1.md": "1f7dc58c1e62843e4be9df45c3b2ebda1eb1ad37208270a7aa22a6af836470bd",
+    "docs/lrs/01_configuration_meta_2.md": "8a8c61e7def3631b34eca7a53e51412adebb30aedd9c8ac580f146e78890ad05",
+    "docs/lrs/01_configuration_parameters_1.md": "15d38e44e87e6f4494aa686da31a540af26913e0325768cb07a73fa136fb017a",
+    "docs/lrs/01_configuration_parameters_2.md": "c596462930974c00370b3c2b47eb51091c583cd191b52bb1d8bab8608803a91b",
+    "docs/lrs/01_configuration_products.md": "2b6e01a1197e8555f5639054b517e77f9f4954b822c80175ede48e4a3784ef7b",
+    "docs/lrs/01_configuration_rules.md": "87d9935c60ba4e7a5f6d3ca382966a599cbc25b0c0be3203001c219cddbbe43c",
+    "docs/lrs/01_scope.md": "e825cb49aba8cda355bf9b82c23369bfc6a3eababb2a79ec4eef179727299bc0",
+    "docs/lrs/02_interface_ports_1.md": "9ca274de13f629e15cd1e571e8388ac8304838385df875f99f4bf2984b37d521",
+    "docs/lrs/02_interface_ports_2.md": "a8eee8b068fdcba21d71edaf0864550b654eaf4a124d34eeac207f5f382ecc6d",
+    "docs/lrs/02_interface_ports_3.md": "a36476eaad3a6a4f8453d0c76f0f17db493e7cfd8aa6fad1113c3a374b0b292e",
+    "docs/lrs/02_interface_rules.md": "94a59d54f9b7d742a8bf354177a00ff68d51c2e976e86e306aa93ec738b7437e",
+    "docs/lrs/03_functional_capture.md": "f39a0dba1026827c07fc6ae353e9854b2faf2a0c55791d99c3b92adb12669037",
+    "docs/lrs/03_functional_event_1.md": "662b3fd80b6ea7f4cd0fc72f37a8e5a18f7c75dba16520d4069fb71972db73ef",
+    "docs/lrs/03_functional_event_2.md": "8dbbb80e4ca6a4113525f464737059b0ad2a287c55d799916b9e46d11af1c993",
+    "docs/lrs/03_functional_filter.md": "48f36eac83a799d5868ec61c500631184cc01096ebf03b4d1f02299494bb80d3",
+    "docs/lrs/03_functional_input.md": "926f28cc81eec46f4861f1f067a425914cd6d47a3a80ca14deb488e03712f393",
+    "docs/lrs/03_functional_irq_1.md": "0b953a904d5a36588adb88b192580c8c46bed2a6ebd6841cca58fb9b2fe2c638",
+    "docs/lrs/03_functional_irq_2.md": "fe2546d18993e908f0d84c5da89d15eea05328f9d5ea01a9fa53f66b404b68ef",
+    "docs/lrs/03_functional_output_1.md": "2f18fb7a8cf9854fd4e6674abe3571f05d87df7cf1c8a010c381beb79fec64b4",
+    "docs/lrs/03_functional_output_2.md": "e539a0370f101a8e39defbb2098f3b6b8f8b5de7a77ed873afbfca63a9a7e219",
+    "docs/lrs/03_functional_priorities.md": "435371bf1c90c91e1923d173893dfb034c3c8f7a94cbbf21a8e28b4396cf54ac",
+    "docs/lrs/04_register_access_1.md": "a51a05c7f453206462199b0340dd5f271c71c1fdacc278965e771a54aef4691c",
+    "docs/lrs/04_register_access_2.md": "61f27f5be3cb71f6b8d9c325bb83a80fb552b71a5fb711696e717acec4c9287e",
+    "docs/lrs/04_register_capabilities.md": "77fd78147f356637c331602134deb7f66dec3c617ba4e20ceb0b02c3b76d86dc",
+    "docs/lrs/05_performance.md": "8eb3ecb1099b0075e788d4c2bca5a756e3a6ebb134680037d505a9f32473d104",
+    "docs/lrs/06_clock_reset.md": "7cdd0e9b004e0757eb8980c024c09548febdd02432837015af7e437caaff6d4a",
+    "docs/lrs/07_low_power_1.md": "6ab923ef3173c14422ed0890b2669d476536e5dec9c63ca1e7f9538fa39e41f5",
+    "docs/lrs/07_low_power_2.md": "5761d9b9c3fdcd2099b27267696818819f15cb3e317dbf150f091651f11715f2",
+    "docs/lrs/07_low_power_aon_1.md": "5e0a69262a912a91265ad3b22b579211930aeb5d3e71bc82b009514beb3d507d",
+    "docs/lrs/07_low_power_aon_2.md": "1d7ffaaa98ed589044adc2f2f89797832f82f95a086b520e2c6d17f98804003f",
+    "docs/lrs/07_low_power_aon_3.md": "08b0865993180a7f49d3702a10da8670598a1ae325a8fd161e027dc1cf49b74e",
+    "docs/lrs/08_functional_safety_1.md": "ca767f00729aadc05da3a44227cdbb84063ee221ebc550e7b5d0936e8f0b8e0b",
+    "docs/lrs/08_functional_safety_2.md": "150d393258142a44df8774ff4d8356974dd010ac91d0010303db7bf61957f04a",
+    "docs/lrs/09_security_1.md": "f031ce2aa050cdb7fa8b1021e50180951af8da943efcb09fc0faf866d16a4ddc",
+    "docs/lrs/09_security_2.md": "529388ddb9d24a062b2f74d8a6ccd745f949bd334603d9b5813f59a58dcf60ec",
+    "docs/lrs/10_dfx.md": "acb4c299b272f444b0ac5e288d4ff5091eee5589fc6ec8722a924ee5bbd49309",
+    "docs/lrs/11_generator.md": "94365a3d289e397c6fe043e1e6241298f5daa175afc8f0fc9abb94fa8e525b37",
+    "docs/lrs/12_constraints_delivery.md": "2f8029385164dd7bdb10fdf1bd5146a34c53e2e4c6f71e1710a734a5b51df748",
+    "docs/lrs/12_constraints_integration.md": "37f5dc981f8dd2f7b84f861b1d13c0ddd556f800efdd4e927b98ab806277b49d",
+    "docs/lrs/12_constraints_verification.md": "e8fe71dd38c002b66ea0baea2dd760e9094ec984d7db36959a309cafcee64edf",
+    "docs/lrs/99_quality_gate.md": "ec1f784b3cfa529fd5e54262fdc167d55ab734b920c992f3adb253261ef63387",
+    "docs/lrs/index.md": "a16bd46b842a01afc6c8caa3fcbe1a091495b880b544a8ff5569ed2a1ed9a7c3"
+  }
+}

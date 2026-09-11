@@ -1,0 +1,17 @@
+[
+  {
+    "module": "apb_secure_demux_decode",
+    "exit_code": 0,
+    "source_sha256": "fcbc71bdc33803cb08619d295093f7d406bf4a9081d83cb7bdfd79a1fcc3e0c8"
+  },
+  {
+    "module": "apb_secure_demux_access",
+    "exit_code": 0,
+    "source_sha256": "649338ece7ed180a7b9ddc8f3b8f00b61714cfe65e4474a7ea0191fe37ca7980"
+  },
+  {
+    "module": "apb_secure_demux_irq",
+    "exit_code": 0,
+    "source_sha256": "4016b70f4fad6e18d950768f450408bce4ce314e7658ea7195828bef77792ecf"
+  }
+]

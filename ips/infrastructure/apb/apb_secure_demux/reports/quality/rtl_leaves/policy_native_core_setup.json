@@ -1,0 +1,18 @@
+{
+  "command": [
+    "fusesoc",
+    "--config",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/fusesoc.conf",
+    "--cores-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "--cores-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/coding_integrity/parity_gen_check/fusesoc",
+    "run",
+    "--target=ut_policy",
+    "--setup",
+    "--build-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/policy_native",
+    "aixsilicon:ip:apb_secure_demux:1.0.0"
+  ],
+  "exit_code": 1
+}

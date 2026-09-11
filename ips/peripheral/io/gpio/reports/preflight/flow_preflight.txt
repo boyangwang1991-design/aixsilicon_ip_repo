@@ -1,0 +1,7 @@
+[blocked]: preflight failed for required stages: ip-design
+flow=ip-development  stages=4
+  resolve                workspace.resolve              available              builtin          0.1.0
+  workspace-prepare      workspace.resolve              available              builtin          0.1.0
+  ip-design              skill.ip.design                unimplemented                           
+  evidence               evidence.index                 available              builtin          0.1.0
+BLOCKED required stages: ip-design

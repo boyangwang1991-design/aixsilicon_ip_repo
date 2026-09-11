@@ -1,0 +1,1953 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+delivery_model: parameterized
+lrs_baseline: null
+hld_baseline: ASD-HLD-1.0.0-USER-APPROVED
+document_version: 1.0.0
+status: approved
+microarchitecture_baseline: null
+modules:
+- id: LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  name: access
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  req_ref:
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00101
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00102
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00201
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00202
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00301
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00302
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00401
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00402
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.005
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.006
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.007
+  - LRS.SEC.APB_SECURE_DEMUX.ATTRIBUTES.004
+  - LRS.FUNC.APB_SECURE_DEMUX.ERRORPRIORITY.008
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.ACCESS
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_access
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.CSR
+  name: csr
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.CSR
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00101
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00102
+  - LRS.REG.APB_SECURE_DEMUX.CSR.002
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00301
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00302
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00401
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00402
+  - LRS.REG.APB_SECURE_DEMUX.CSR.005
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00601
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00602
+  - LRS.REG.APB_SECURE_DEMUX.CSR.007
+  - LRS.REG.APB_SECURE_DEMUX.CSR.008
+  - LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005
+  - LRS.REG.APB_SECURE_DEMUX.MAP.006
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.CSR
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_csr
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  name: decode
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.DECODE
+  req_ref:
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.001
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.002
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.00302
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.004
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.005
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.006
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+  - LRS.CFG.APB_SECURE_DEMUX.PARAMETERS.001
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.DECODE
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_decode
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.DFX
+  name: dfx
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.DFX
+  req_ref:
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00201
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00202
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.003
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.004
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00501
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00502
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.006
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00701
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00702
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.008
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00901
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00902
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01001
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01002
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01103
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.012
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.013
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01401
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01402
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01501
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01502
+  - LRS.DFX.APB_SECURE_DEMUX.REVOKE.011
+  - LRS.DFX.APB_SECURE_DEMUX.MUTEX.012
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.DFX
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_dfx
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  name: events
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.EVENTS
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.001
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00201
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00202
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00203
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00301
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00302
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.004
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.005
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.006
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00701
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00702
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00801
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00802
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00901
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00902
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.010
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.01101
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.01102
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.012
+  - LRS.FUNC.APB_SECURE_DEMUX.LOGFORMAT.009
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.EVENTS
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_events
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  name: frontend
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  - LRS.RESET.APB_SECURE_DEMUX.RST.001
+  - LRS.RESET.APB_SECURE_DEMUX.RST.00201
+  - LRS.RESET.APB_SECURE_DEMUX.RST.00202
+  - LRS.RESET.APB_SECURE_DEMUX.RST.003
+  - LRS.RESET.APB_SECURE_DEMUX.RST.004
+  - LRS.RESET.APB_SECURE_DEMUX.RST.005
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.001
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.002
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.003
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.004
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.00501
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.00502
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.006
+  - LRS.CFG.APB_SECURE_DEMUX.OPTIONS.002
+  - LRS.INTF.APB_SECURE_DEMUX.SIGNALS.003
+  - LRS.CONS.APB_SECURE_DEMUX.VERIFICATION.015
+  - LRS.CONS.APB_SECURE_DEMUX.DELIVERY.016
+  - LRS.CONS.APB_SECURE_DEMUX.PROTOCOL.017
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.FRONTEND
+  rtl_intent:
+    separate_module: false
+    suggested_name: apb_secure_demux
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  name: irq
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.IRQ
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.001
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.002
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.003
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.004
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00601
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00602
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.007
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQMAP.010
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.IRQ
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_irq
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  name: policy
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.POLICY
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.UPD.001
+  - LRS.REG.APB_SECURE_DEMUX.UPD.002
+  - LRS.REG.APB_SECURE_DEMUX.UPD.003
+  - LRS.REG.APB_SECURE_DEMUX.UPD.004
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00501
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00502
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00601
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00602
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00701
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00702
+  - LRS.REG.APB_SECURE_DEMUX.UPD.008
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00901
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00902
+  - LRS.REG.APB_SECURE_DEMUX.UPD.010
+  - LRS.REG.APB_SECURE_DEMUX.UPD.011
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.001
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.002
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00301
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00302
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.004
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.005
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.006
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00701
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00702
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.008
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.009
+  - LRS.REG.APB_SECURE_DEMUX.COMMITSTATUS.007
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.POLICY
+  rtl_intent:
+    separate_module: true
+    suggested_name: apb_secure_demux_policy
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+- id: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  name: route
+  hld_ref:
+  - HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.APB.001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.002
+  - LRS.INTF.APB_SECURE_DEMUX.APB.003
+  - LRS.INTF.APB_SECURE_DEMUX.APB.004
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00501
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00502
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00601
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00602
+  - LRS.INTF.APB_SECURE_DEMUX.APB.007
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00801
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00802
+  - LRS.INTF.APB_SECURE_DEMUX.APB.009
+  - LRS.INTF.APB_SECURE_DEMUX.APB.01001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.01002
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.001
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.002
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.003
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.004
+  - LRS.PERF.APB_SECURE_DEMUX.MODES.013
+  - LRS.CONS.APB_SECURE_DEMUX.PPA.014
+  objects:
+  - LLD.DP.APB_SECURE_DEMUX.ROUTE
+  rtl_intent:
+    separate_module: false
+    suggested_name: apb_secure_demux
+  clock_domains:
+  - CLK_PCLK
+  reset_domains:
+  - RST_PRESET_N
+interfaces:
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_UPSTREAM
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.UPSTREAM
+  protocol: APB4
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_DOWNSTREAM
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.DOWNSTREAM
+  protocol: APB4
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_MASTERID_IN
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.MASTERID_IN
+  protocol: project_masterid
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_MASTERID_OUT
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.MASTERID_OUT
+  protocol: project_masterid
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_NOTIFY
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.NOTIFY
+  protocol: level_signals
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_DIAGNOSTIC
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.DFX
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.DIAGNOSTIC
+  protocol: project_dfx
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.EXT_CLOCK_RESET
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  hld_ref:
+  - HLD.IF.EXT.APB_SECURE_DEMUX.CLOCK_RESET
+  protocol: clock_reset
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+- id: LLD.IF.APB_SECURE_DEMUX.CLASSIFY
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.CLASSIFY
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: setup_valid
+    width: '1'
+    meaning: 上游合法SETUP
+  - name: address
+    width: ADDR_WIDTH
+    meaning: 全部原始地址
+  - name: request
+    width: ADDR_WIDTH+40+MASTER_ID_WIDTH
+    meaning: 完整请求；数据32、strb4、prot3、write1及身份；valid独立1
+- id: LLD.IF.APB_SECURE_DEMUX.TARGET
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.TARGET
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: port_hits
+    width: NUM_PORTS
+    meaning: 全部端口命中
+  - name: csr_hit
+    width: '1'
+    meaning: 本地CSR命中
+  - name: port
+    width: max(1,$clog2(NUM_PORTS))
+    meaning: 仅唯一外设时有效
+  - name: port_valid
+    width: '1'
+    meaning: 唯一外设
+  - name: reason
+    width: '8'
+    meaning: 总译码原因
+- id: LLD.IF.APB_SECURE_DEMUX.POLICY_LOOKUP
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.POLICY_LOOKUP
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: active_cfg
+    width: 2*NUM_PORTS
+    meaning: 端口使能与指令许可
+  - name: active_perm
+    width: 8*NUM_PORTS*NUM_MASTERS
+    meaning: 完整active表
+  - name: policy_version
+    width: '32'
+    meaning: 判权版本
+  - name: raw_bad/fatal
+    width: 各1
+    meaning: 新SETUP准入门控
+- id: LLD.IF.APB_SECURE_DEMUX.ADMISSION
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.ADMISSION
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: allow
+    width: '1'
+    meaning: 完整自然判权及DFX叠加后的准入
+  - name: reason
+    width: '8'
+    meaning: 互斥主原因
+  - name: port_valid/test
+    width: 各1
+    meaning: 诊断标记
+  - name: port
+    width: max(1,$clog2(NUM_PORTS))
+    meaning: 捕获目标
+  - name: version
+    width: '32'
+    meaning: SETUP版本
+- id: LLD.IF.APB_SECURE_DEMUX.CSR_COMMAND
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.CSR
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.CSR_COMMAND
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: commit_attempt/accept
+    width: 各1
+    meaning: 诊断尝试与成功修改分开
+  - name: port_mask
+    width: NUM_PORTS
+    meaning: 全量更新目标，越界检查使用原32位命令
+  - name: write_data
+    width: '32'
+    meaning: 原数据保留至完成
+  - name: register_select
+    width: 生成器决定
+    meaning: 命名的生成译码选中，非另写地址译码
+- id: LLD.IF.APB_SECURE_DEMUX.EVENT_CANDIDATES
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.EVENT_CANDIDATES
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: candidate_valid
+    width: '4'
+    meaning: 全部事件，不止获胜项
+  - name: candidate_data
+    width: 4*256
+    meaning: 每候选完整记录，时间戳与序列在EVENTS填充
+  - name: lost_count
+    width: '3'
+    meaning: 同周期候选仲裁和满FIFO丢失总数
+- id: LLD.IF.APB_SECURE_DEMUX.DFX_INJECTION
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.DFX
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.DFX_INJECTION
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: armed_mode
+    width: '2'
+    meaning: 00未武装/01拒绝/10完整性；11非法并拒绝武装
+  - name: armed_port
+    width: '5'
+    meaning: 完整目标端口
+  - name: armed_master
+    width: '6'
+    meaning: 完整目标主体
+  - name: authorized
+    width: '1'
+    meaning: 当前可信授权
+  - name: consume
+    width: '1'
+    meaning: 自然允许匹配SETUP末沿消费
+- id: LLD.IF.APB_SECURE_DEMUX.ACTIVITY
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.ACTIVITY
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: port_valid
+    width: '1'
+    meaning: 正在向外设发起或保持事务
+  - name: port
+    width: '5'
+    meaning: 零扩展后的有效目标
+  - name: downstream_wait
+    width: '1'
+    meaning: PSEL&&PENABLE&&!PREADY
+  - name: complete/error
+    width: 各1
+    meaning: 下游真实完成信息
+  - name: context
+    width: 完整锁存请求
+    meaning: 带SETUP版本和TEST
+- id: LLD.IF.APB_SECURE_DEMUX.AUDIT_CONTROL
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.CSR
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.AUDIT_CONTROL
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: accepted_clear
+    width: '4'
+    meaning: FIRST/LAST/FIFO/OVF清除
+  - name: accepted_pop
+    width: '1'
+    meaning: 合法POP完成
+  - name: accepted_counter_clear
+    width: '4'
+    meaning: 全局计数清除
+  - name: read_first0/read_last0
+    width: 各1
+    meaning: 成功读字0刷新快照
+  - name: read_word
+    width: '3'
+    meaning: 当前32位字索引
+- id: LLD.IF.APB_SECURE_DEMUX.LOCAL_REQUEST
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.LOCAL_REQUEST
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: csr_valid
+    width: '1'
+    meaning: 唯一CSR命中，不能由地址优先级放行
+  - name: offset
+    width: ADDR_WIDTH
+    meaning: 全宽减法后偏移，不截断别名
+  - name: request
+    width: 完整锁存请求
+    meaning: 权限身份和APB属性绑定
+  - name: ready/error
+    width: 各1
+    meaning: 首ACCESS响应
+  - name: read_data
+    width: '32'
+    meaning: 拒绝强制零
+- id: LLD.IF.APB_SECURE_DEMUX.IRQ_CONTROL
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.CSR
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.IRQ_CONTROL
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: clear_mask/enable/alert
+    width: 各9
+    meaning: 生成CSR有效字段
+  - name: write_enable/write_alert
+    width: 各1
+    meaning: 成功软件写完成脉冲
+  - name: test
+    width: '1'
+    meaning: 已授权通知测试
+  - name: raw/masked
+    width: 各9
+    meaning: 只读状态
+- id: LLD.IF.APB_SECURE_DEMUX.DFX_CONTROL
+  owner_module: LLD.MOD.APB_SECURE_DEMUX.CSR
+  hld_ref:
+  - HLD.IF.INT.APB_SECURE_DEMUX.DFX_CONTROL
+  protocol: synchronous_control
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  signals:
+  - name: command_accept
+    width: '1'
+    meaning: 当前硬件授权与完整CSR检查通过
+  - name: command
+    width: 生成器命名选中
+    meaning: 控制/清除/注入目标/命令选择
+  - name: write_data/read_data
+    width: 各32
+    meaning: 命令参数与读回
+  - name: dynamic_error
+    width: '8'
+    meaning: 锁/非法目标/武装/配置错误原因
+timing:
+- id: LLD.TIMING.APB_SECURE_DEMUX.DIRECT
+  interface_ref: LLD.IF.APB_SECURE_DEMUX.EXT_DOWNSTREAM
+  scenario: direct允许外设零等待
+  latency_extra: 0
+- id: LLD.TIMING.APB_SECURE_DEMUX.REGISTER
+  interface_ref: LLD.IF.APB_SECURE_DEMUX.EXT_DOWNSTREAM
+  scenario: register允许外设零等待
+  latency_extra: 1
+datapaths:
+- id: LLD.DP.APB_SECURE_DEMUX.ACCESS
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  operation: 使用 active 策略、完整身份、属性、指令限制及当前原始完整性结果，在下游 SETUP 之前决定准入。自然拒绝优先于 DFX 注入，管理身份无外设豁免。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00101
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00102
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00201
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00202
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00301
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00302
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00401
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.00402
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.005
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.006
+  - LRS.SEC.APB_SECURE_DEMUX.ACL.007
+  - LRS.SEC.APB_SECURE_DEMUX.ATTRIBUTES.004
+  - LRS.FUNC.APB_SECURE_DEMUX.ERRORPRIORITY.008
+- id: LLD.DP.APB_SECURE_DEMUX.CSR
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.CSR
+  operation: 管理授权先于地址存在性判断；公开身份读仅覆盖允许的信息窗口。检查选通、类型、锁和命令，分发唯一完成时生效的控制操作。寄存器结构由 SystemRDL 生成。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00101
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00102
+  - LRS.REG.APB_SECURE_DEMUX.CSR.002
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00301
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00302
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00401
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00402
+  - LRS.REG.APB_SECURE_DEMUX.CSR.005
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00601
+  - LRS.REG.APB_SECURE_DEMUX.CSR.00602
+  - LRS.REG.APB_SECURE_DEMUX.CSR.007
+  - LRS.REG.APB_SECURE_DEMUX.CSR.008
+  - LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005
+  - LRS.REG.APB_SECURE_DEMUX.MAP.006
+- id: LLD.DP.APB_SECURE_DEMUX.DECODE
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  operation: 对完整原始地址并行检测全部端口和 CSR 范围，产生零/唯一/多重命中分类。禁用端口仍保留地址命中；CSR 与外设相撞不予优先通行。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.001
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.002
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.00302
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.004
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.005
+  - LRS.CFG.APB_SECURE_DEMUX.PAR.006
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+  - LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+  - LRS.CFG.APB_SECURE_DEMUX.PARAMETERS.001
+- id: LLD.DP.APB_SECURE_DEMUX.DFX
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.DFX
+  operation: 在固定管理权限和硬件授权共同成立时提供统计、等待阈值、一次性拒绝/完整性注入及合成日志。撤销授权解除未消费武装并门控外部观测。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00201
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00202
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.003
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.004
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00501
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00502
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.006
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00701
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00702
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.008
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00901
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00902
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01001
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01002
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01103
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.012
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.013
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01401
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01402
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01501
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.01502
+  - LRS.DFX.APB_SECURE_DEMUX.REVOKE.011
+  - LRS.DFX.APB_SECURE_DEMUX.MUTEX.012
+- id: LLD.DP.APB_SECURE_DEMUX.EVENTS
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  operation: 仲裁完整性、事务失败、等待及合成候选，维护首错/最近快照、可裁剪 FIFO、时间戳、序号与全局计数。记录丢失不影响权限和总线进展。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.001
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00201
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00202
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00203
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00301
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00302
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.004
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.005
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.006
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00701
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00702
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00801
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00802
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00901
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.00902
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.010
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.01101
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.01102
+  - LRS.FUNC.APB_SECURE_DEMUX.LOG.012
+  - LRS.FUNC.APB_SECURE_DEMUX.LOGFORMAT.009
+- id: LLD.DP.APB_SECURE_DEMUX.FRONTEND
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  operation: 接受单个可信 APB4 请求，区分新 SETUP 与无先行 SETUP 的非法 ACCESS；把可信身份和属性作为一个请求上下文管理，并承担顶层复位、集成参数与交付约束。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  - LRS.RESET.APB_SECURE_DEMUX.RST.001
+  - LRS.RESET.APB_SECURE_DEMUX.RST.00201
+  - LRS.RESET.APB_SECURE_DEMUX.RST.00202
+  - LRS.RESET.APB_SECURE_DEMUX.RST.003
+  - LRS.RESET.APB_SECURE_DEMUX.RST.004
+  - LRS.RESET.APB_SECURE_DEMUX.RST.005
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.001
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.002
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.003
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.004
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.00501
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.00502
+  - LRS.CONS.APB_SECURE_DEMUX.SYS.006
+  - LRS.CFG.APB_SECURE_DEMUX.OPTIONS.002
+  - LRS.INTF.APB_SECURE_DEMUX.SIGNALS.003
+  - LRS.CONS.APB_SECURE_DEMUX.VERIFICATION.015
+  - LRS.CONS.APB_SECURE_DEMUX.DELIVERY.016
+  - LRS.CONS.APB_SECURE_DEMUX.PROTOCOL.017
+- id: LLD.DP.APB_SECURE_DEMUX.IRQ
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  operation: 捕获九类粘滞事件，分别通过 IRQ 和 ALERT 使能形成电平输出。清除与新事件竞争时保留事件，FATAL 存续时完整性状态持续置位。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.001
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.002
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.003
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.004
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00601
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00602
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.007
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQMAP.010
+- id: LLD.DP.APB_SECURE_DEMUX.POLICY
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  operation: 拥有 active/shadow 权限与端口配置、单向锁、版本及完整性 FATAL。按提交掩码全量预检后原子更新；所有配置存储持续完整性检查。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.REG.APB_SECURE_DEMUX.UPD.001
+  - LRS.REG.APB_SECURE_DEMUX.UPD.002
+  - LRS.REG.APB_SECURE_DEMUX.UPD.003
+  - LRS.REG.APB_SECURE_DEMUX.UPD.004
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00501
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00502
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00601
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00602
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00701
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00702
+  - LRS.REG.APB_SECURE_DEMUX.UPD.008
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00901
+  - LRS.REG.APB_SECURE_DEMUX.UPD.00902
+  - LRS.REG.APB_SECURE_DEMUX.UPD.010
+  - LRS.REG.APB_SECURE_DEMUX.UPD.011
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.001
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.002
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00301
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00302
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.004
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.005
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.006
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00701
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.00702
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.008
+  - LRS.SAFE.APB_SECURE_DEMUX.INT.009
+  - LRS.REG.APB_SECURE_DEMUX.COMMITSTATUS.007
+- id: LLD.DP.APB_SECURE_DEMUX.ROUTE
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  operation: 在两种 elaboration 时序模式下向唯一目标转发请求，维持等待期间的请求、目标与身份稳定。已发送事务必须完成；下游错误数据原样返回。
+  latency: 组合判定；状态仅在 pclk 完成/事件边沿更新
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.APB.001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.002
+  - LRS.INTF.APB_SECURE_DEMUX.APB.003
+  - LRS.INTF.APB_SECURE_DEMUX.APB.004
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00501
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00502
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00601
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00602
+  - LRS.INTF.APB_SECURE_DEMUX.APB.007
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00801
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00802
+  - LRS.INTF.APB_SECURE_DEMUX.APB.009
+  - LRS.INTF.APB_SECURE_DEMUX.APB.01001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.01002
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.001
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.002
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.003
+  - LRS.PERF.APB_SECURE_DEMUX.TIM.004
+  - LRS.PERF.APB_SECURE_DEMUX.MODES.013
+  - LRS.CONS.APB_SECURE_DEMUX.PPA.014
+pipelines: []
+buffers:
+- id: LLD.BUF.APB_SECURE_DEMUX.EVENT_FIFO
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  type: synchronous_fifo
+  width: 256
+  depth: EVENT_FIFO_DEPTH
+  overflow: drop_new
+  update_order:
+  - clear
+  - pop
+  - push
+fsms:
+- id: LLD.FSM.APB_SECURE_DEMUX.TRANSACTION
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  encoding: binary
+  states:
+  - IDLE
+  - LOCAL
+  - REG_SETUP
+  - ACCESS
+  reset_state: IDLE
+  illegal_state_policy: safe_state
+  illegal_state_handling: 隔离输出与状态修改，等待可信复位恢复
+  transitions:
+  - IDLE+setup -> LOCAL|REG_SETUP|ACCESS
+  - LOCAL+upstream_access -> IDLE
+  - REG_SETUP -> ACCESS
+  - ACCESS+downstream_ready -> IDLE
+  state_bits: 3
+arbiters:
+- id: LLD.ARB.APB_SECURE_DEMUX.EVENTS
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  policy: fixed_priority
+  priority:
+  - integrity
+  - bus_failure
+  - wait
+  - synthetic
+ordering:
+- id: LLD.ORDER.APB_SECURE_DEMUX.SINGLE
+  model: single_inflight_in_order_no_posted_write
+  completion: LOCAL首ACCESS或下游完成，不支持取消
+registers:
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_STATUS.AUTHORIZED
+  register_ref: apb_secure_demux.DFX_STATUS.authorized
+  behavior: status
+  sw_behavior: RO；管理及当前硬件授权
+  hw_behavior: 组合授权/武装/阈值状态；所有DFX关闭时未实现
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_STATUS.DENY_ARMED
+  register_ref: apb_secure_demux.DFX_STATUS.deny_armed
+  behavior: status
+  sw_behavior: RO；管理及当前硬件授权
+  hw_behavior: 组合授权/武装/阈值状态；所有DFX关闭时未实现
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_STATUS.INTEGRITY_ARMED
+  register_ref: apb_secure_demux.DFX_STATUS.integrity_armed
+  behavior: status
+  sw_behavior: RO；管理及当前硬件授权
+  hw_behavior: 组合授权/武装/阈值状态；所有DFX关闭时未实现
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_STATUS.WAIT_HIT
+  register_ref: apb_secure_demux.DFX_STATUS.wait_hit
+  behavior: status
+  sw_behavior: RO；管理及当前硬件授权
+  hw_behavior: 组合授权/武装/阈值状态；所有DFX关闭时未实现
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.WAIT_THRESHOLD.VALUE
+  register_ref: apb_secure_demux.WAIT_THRESHOLD.value
+  behavior: control
+  sw_behavior: RW；零禁用，其余为本笔等待周期阈值
+  hw_behavior: 与增加后的本笔wait_count比较，第一次达到触发；不终止事务
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_CLEAR.WAIT_HIT
+  register_ref: apb_secure_demux.DFX_CLEAR.wait_hit
+  behavior: command
+  sw_behavior: WO；写一清WAIT_HIT或解除武装
+  hw_behavior: 新阈值事件优先于清除；已捕获事务拒绝不撤销
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DFX_CLEAR.DISARM
+  register_ref: apb_secure_demux.DFX_CLEAR.disarm
+  behavior: command
+  sw_behavior: WO；写一清WAIT_HIT或解除武装
+  hw_behavior: 新阈值事件优先于清除；已捕获事务拒绝不撤销
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INJECT_TARGET.PORT
+  register_ref: apb_secure_demux.INJECT_TARGET.port
+  behavior: control
+  sw_behavior: RW；范围合法且无任何武装才可写
+  hw_behavior: 武装成功时另存armed_target；地址范围/主体检查均用完整数据字段
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INJECT_TARGET.MASTER
+  register_ref: apb_secure_demux.INJECT_TARGET.master
+  behavior: control
+  sw_behavior: RW；范围合法且无任何武装才可写
+  hw_behavior: 武装成功时另存armed_target；地址范围/主体检查均用完整数据字段
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INJECT_CMD.SYNTHETIC
+  register_ref: apb_secure_demux.INJECT_CMD.synthetic
+  behavior: command
+  sw_behavior: WO；忽略保留位后恰好一个有效位；arm需无现有武装；integrity需PARITY
+  hw_behavior: 合成事件在完成沿发出；武装只改变一次性注入状态；当前授权撤销优先返回未授权
+  collision: authorization_revoke_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INJECT_CMD.ARM_DENY
+  register_ref: apb_secure_demux.INJECT_CMD.arm_deny
+  behavior: command
+  sw_behavior: WO；忽略保留位后恰好一个有效位；arm需无现有武装；integrity需PARITY
+  hw_behavior: 合成事件在完成沿发出；武装只改变一次性注入状态；当前授权撤销优先返回未授权
+  collision: authorization_revoke_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INJECT_CMD.ARM_INTEGRITY
+  register_ref: apb_secure_demux.INJECT_CMD.arm_integrity
+  behavior: command
+  sw_behavior: WO；忽略保留位后恰好一个有效位；arm需无现有武装；integrity需PARITY
+  hw_behavior: 合成事件在完成沿发出；武装只改变一次性注入状态；当前授权撤销优先返回未授权
+  collision: authorization_revoke_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.IP_ID.VALUE
+  register_ref: apb_secure_demux.IP_ID.value
+  behavior: status
+  sw_behavior: RO；公开读取仅PUBLIC_ID_EN且数据读、身份有效并在域内
+  hw_behavior: 静态标识，只读返回合同常量
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 恒定IP标识，不受复位改变
+- id: LLD.REG.APB_SECURE_DEMUX.VERSION.MAJOR
+  register_ref: apb_secure_demux.VERSION.major
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 静态语义版本只读
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 恒定1.0.0，不受复位改变
+- id: LLD.REG.APB_SECURE_DEMUX.VERSION.MINOR
+  register_ref: apb_secure_demux.VERSION.minor
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 静态语义版本只读
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 恒定1.0.0，不受复位改变
+- id: LLD.REG.APB_SECURE_DEMUX.VERSION.PATCH
+  register_ref: apb_secure_demux.VERSION.patch
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 静态语义版本只读
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 恒定1.0.0，不受复位改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP0.NUM_PORTS
+  register_ref: apb_secure_demux.CAP0.num_ports
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration参数镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP0.NUM_MASTERS
+  register_ref: apb_secure_demux.CAP0.num_masters
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration参数镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP0.ADDR_WIDTH
+  register_ref: apb_secure_demux.CAP0.addr_width
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration参数镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP0.MASTER_ID_WIDTH
+  register_ref: apb_secure_demux.CAP0.master_id_width
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration参数镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.REGISTER_MODE
+  register_ref: apb_secure_demux.CAP1.register_mode
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.ISOLATION
+  register_ref: apb_secure_demux.CAP1.isolation
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.PARITY
+  register_ref: apb_secure_demux.CAP1.parity
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.DFX
+  register_ref: apb_secure_demux.CAP1.dfx
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.PUBLIC_ID
+  register_ref: apb_secure_demux.CAP1.public_id
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.CAP1.FIFO_DEPTH
+  register_ref: apb_secure_demux.CAP1.fifo_depth
+  behavior: status
+  sw_behavior: RO；同IP_ID授权
+  hw_behavior: 实际elaboration开关/容量镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由配置确定，复位不改变
+- id: LLD.REG.APB_SECURE_DEMUX.MGMT_MASK_LO.MASK
+  register_ref: apb_secure_demux.MGMT_MASK_LO.mask
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 固定掩码低字，未实现主体补零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由MGMT_MASTER_MASK决定
+- id: LLD.REG.APB_SECURE_DEMUX.MGMT_MASK_HI.MASK
+  register_ref: apb_secure_demux.MGMT_MASK_HI.mask
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 固定掩码高字，未实现主体补零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 由MGMT_MASTER_MASK决定
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.ACCESS_DENIED
+  register_ref: apb_secure_demux.INTR_RAW.access_denied
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.CFG_ACCESS_ERROR
+  register_ref: apb_secure_demux.INTR_RAW.cfg_access_error
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.ADDR_MISS
+  register_ref: apb_secure_demux.INTR_RAW.addr_miss
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.MULTI_HIT
+  register_ref: apb_secure_demux.INTR_RAW.multi_hit
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.INTEGRITY_ERROR
+  register_ref: apb_secure_demux.INTR_RAW.integrity_error
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.EVENT_LOST
+  register_ref: apb_secure_demux.INTR_RAW.event_lost
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.DOWNSTREAM_ERROR
+  register_ref: apb_secure_demux.INTR_RAW.downstream_error
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.WAIT_EXCEEDED
+  register_ref: apb_secure_demux.INTR_RAW.wait_exceeded
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_RAW.DFX_TEST
+  register_ref: apb_secure_demux.INTR_RAW.dfx_test
+  behavior: w1c
+  sw_behavior: RW1C；成功写一清对应粘滞位
+  hw_behavior: 捕获所有候选；FATAL持续强置integrity_error
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.ACCESS_DENIED
+  register_ref: apb_secure_demux.INTR_ENABLE.access_denied
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.CFG_ACCESS_ERROR
+  register_ref: apb_secure_demux.INTR_ENABLE.cfg_access_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.ADDR_MISS
+  register_ref: apb_secure_demux.INTR_ENABLE.addr_miss
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.MULTI_HIT
+  register_ref: apb_secure_demux.INTR_ENABLE.multi_hit
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.INTEGRITY_ERROR
+  register_ref: apb_secure_demux.INTR_ENABLE.integrity_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.EVENT_LOST
+  register_ref: apb_secure_demux.INTR_ENABLE.event_lost
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.DOWNSTREAM_ERROR
+  register_ref: apb_secure_demux.INTR_ENABLE.downstream_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.WAIT_EXCEEDED
+  register_ref: apb_secure_demux.INTR_ENABLE.wait_exceeded
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_ENABLE.DFX_TEST
+  register_ref: apb_secure_demux.INTR_ENABLE.dfx_test
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制irq归约，不影响事件捕获
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.ACCESS_DENIED
+  register_ref: apb_secure_demux.INTR_MASKED.access_denied
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.CFG_ACCESS_ERROR
+  register_ref: apb_secure_demux.INTR_MASKED.cfg_access_error
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.ADDR_MISS
+  register_ref: apb_secure_demux.INTR_MASKED.addr_miss
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.MULTI_HIT
+  register_ref: apb_secure_demux.INTR_MASKED.multi_hit
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.INTEGRITY_ERROR
+  register_ref: apb_secure_demux.INTR_MASKED.integrity_error
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.EVENT_LOST
+  register_ref: apb_secure_demux.INTR_MASKED.event_lost
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.DOWNSTREAM_ERROR
+  register_ref: apb_secure_demux.INTR_MASKED.downstream_error
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.WAIT_EXCEEDED
+  register_ref: apb_secure_demux.INTR_MASKED.wait_exceeded
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_MASKED.DFX_TEST
+  register_ref: apb_secure_demux.INTR_MASKED.dfx_test
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: raw和enable组合与
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.ACCESS_DENIED
+  register_ref: apb_secure_demux.ALERT_ENABLE.access_denied
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为1
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.CFG_ACCESS_ERROR
+  register_ref: apb_secure_demux.ALERT_ENABLE.cfg_access_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为1
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.ADDR_MISS
+  register_ref: apb_secure_demux.ALERT_ENABLE.addr_miss
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为0
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.MULTI_HIT
+  register_ref: apb_secure_demux.ALERT_ENABLE.multi_hit
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为1
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.INTEGRITY_ERROR
+  register_ref: apb_secure_demux.ALERT_ENABLE.integrity_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为1
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.EVENT_LOST
+  register_ref: apb_secure_demux.ALERT_ENABLE.event_lost
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为0
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.DOWNSTREAM_ERROR
+  register_ref: apb_secure_demux.ALERT_ENABLE.downstream_error
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为0
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.WAIT_EXCEEDED
+  register_ref: apb_secure_demux.ALERT_ENABLE.wait_exceeded
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为1
+- id: LLD.REG.APB_SECURE_DEMUX.ALERT_ENABLE.DFX_TEST
+  register_ref: apb_secure_demux.ALERT_ENABLE.dfx_test
+  behavior: mask
+  sw_behavior: RW；管理授权，不受策略锁影响
+  hw_behavior: 只控制security_alert归约，不能旁路FATAL
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位为0
+- id: LLD.REG.APB_SECURE_DEMUX.INTR_TEST.DFX_TEST
+  register_ref: apb_secure_demux.INTR_TEST.dfx_test
+  behavior: command
+  sw_behavior: WO；管理及当前硬件DFX授权
+  hw_behavior: 写有效测试位产生DFX_TEST通知，无日志/真实错误计数；写零无动作
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FAULT_CLEAR.FIRST
+  register_ref: apb_secure_demux.FAULT_CLEAR.first
+  behavior: command
+  sw_behavior: WO；写一执行对应清除，写零无作用
+  hw_behavior: 先清后处理本周期新事件；first/last清除同时清快照
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FAULT_CLEAR.LAST
+  register_ref: apb_secure_demux.FAULT_CLEAR.last
+  behavior: command
+  sw_behavior: WO；写一执行对应清除，写零无作用
+  hw_behavior: 先清后处理本周期新事件；first/last清除同时清快照
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FAULT_CLEAR.FIFO
+  register_ref: apb_secure_demux.FAULT_CLEAR.fifo
+  behavior: command
+  sw_behavior: WO；写一执行对应清除，写零无作用
+  hw_behavior: 先清后处理本周期新事件；first/last清除同时清快照
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FAULT_CLEAR.OVERFLOW
+  register_ref: apb_secure_demux.FAULT_CLEAR.overflow
+  behavior: command
+  sw_behavior: WO；写一执行对应清除，写零无作用
+  hw_behavior: 先清后处理本周期新事件；first/last清除同时清快照
+  collision: set_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_STATUS.COUNT
+  register_ref: apb_secure_demux.FIFO_STATUS.count
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 队列占用及粘滞溢出镜像；depth0时count0/empty1/full0
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: count0/empty1/full0/overflow0
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_STATUS.EMPTY
+  register_ref: apb_secure_demux.FIFO_STATUS.empty
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 队列占用及粘滞溢出镜像；depth0时count0/empty1/full0
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: count0/empty1/full0/overflow0
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_STATUS.FULL
+  register_ref: apb_secure_demux.FIFO_STATUS.full
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 队列占用及粘滞溢出镜像；depth0时count0/empty1/full0
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: count0/empty1/full0/overflow0
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_STATUS.OVERFLOW
+  register_ref: apb_secure_demux.FIFO_STATUS.overflow
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 队列占用及粘滞溢出镜像；depth0时count0/empty1/full0
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: count0/empty1/full0/overflow0
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_POP.POP
+  register_ref: apb_secure_demux.FIFO_POP.pop
+  behavior: command
+  sw_behavior: WO；深度0未实现；非空且有效POP位为一时弹出；空队列命令错误
+  hw_behavior: 先pop后push，满队列允许同沿补入；读HEAD不弹出
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.ACCESS_DENY_COUNT.VALUE
+  register_ref: apb_secure_demux.ACCESS_DENY_COUNT.value
+  behavior: counter
+  sw_behavior: RO
+  hw_behavior: 32位饱和累加对应事件；LOST累加全部仲裁和FIFO丢失数量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.CFG_DENY_COUNT.VALUE
+  register_ref: apb_secure_demux.CFG_DENY_COUNT.value
+  behavior: counter
+  sw_behavior: RO
+  hw_behavior: 32位饱和累加对应事件；LOST累加全部仲裁和FIFO丢失数量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.EVENT_LOST_COUNT.VALUE
+  register_ref: apb_secure_demux.EVENT_LOST_COUNT.value
+  behavior: counter
+  sw_behavior: RO
+  hw_behavior: 32位饱和累加对应事件；LOST累加全部仲裁和FIFO丢失数量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.DOWNSTREAM_ERR_COUNT.VALUE
+  register_ref: apb_secure_demux.DOWNSTREAM_ERR_COUNT.value
+  behavior: counter
+  sw_behavior: RO
+  hw_behavior: 32位饱和累加对应事件；LOST累加全部仲裁和FIFO丢失数量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COUNTER_CLEAR.ACCESS_DENY
+  register_ref: apb_secure_demux.COUNTER_CLEAR.access_deny
+  behavior: command
+  sw_behavior: WO；写一清对应计数
+  hw_behavior: 清零优先执行，随后加入本周期增量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COUNTER_CLEAR.CFG_DENY
+  register_ref: apb_secure_demux.COUNTER_CLEAR.cfg_deny
+  behavior: command
+  sw_behavior: WO；写一清对应计数
+  hw_behavior: 清零优先执行，随后加入本周期增量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COUNTER_CLEAR.EVENT_LOST
+  register_ref: apb_secure_demux.COUNTER_CLEAR.event_lost
+  behavior: command
+  sw_behavior: WO；写一清对应计数
+  hw_behavior: 清零优先执行，随后加入本周期增量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COUNTER_CLEAR.DOWNSTREAM_ERROR
+  register_ref: apb_secure_demux.COUNTER_CLEAR.downstream_error
+  behavior: command
+  sw_behavior: WO；写一清对应计数
+  hw_behavior: 清零优先执行，随后加入本周期增量
+  collision: clear_then_increment
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FIRST_FAULT.DATA
+  register_ref: apb_secure_demux.FIRST_FAULT[w].data
+  behavior: snapshot
+  sw_behavior: RO；w=0成功读刷新本记录整条快照，w=1..7读对应快照
+  hw_behavior: 读0取沿前当前记录并同沿捕获快照；新事件写本体不改变已有快照；清对应记录同时清快照
+  collision: snapshot_pre_edge_record_then_event
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.LAST_FAULT.DATA
+  register_ref: apb_secure_demux.LAST_FAULT[w].data
+  behavior: snapshot
+  sw_behavior: RO；w=0成功读刷新本记录整条快照，w=1..7读对应快照
+  hw_behavior: 读0取沿前当前记录并同沿捕获快照；新事件写本体不改变已有快照；清对应记录同时清快照
+  collision: snapshot_pre_edge_record_then_event
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.FIFO_HEAD.DATA
+  register_ref: apb_secure_demux.FIFO_HEAD[w].data
+  behavior: fifo
+  sw_behavior: RO；读取无副作用，depth0未实现
+  hw_behavior: 当前队头字，空队列返回零；仅POP/清空改变旧队头
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.STATUS.INTEGRITY_FATAL
+  register_ref: apb_secure_demux.STATUS.integrity_fatal
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 各owner状态组合镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位后均零
+- id: LLD.REG.APB_SECURE_DEMUX.STATUS.GLOBAL_LOCK
+  register_ref: apb_secure_demux.STATUS.global_lock
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 各owner状态组合镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位后均零
+- id: LLD.REG.APB_SECURE_DEMUX.STATUS.FIRST_VALID
+  register_ref: apb_secure_demux.STATUS.first_valid
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 各owner状态组合镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位后均零
+- id: LLD.REG.APB_SECURE_DEMUX.STATUS.LAST_VALID
+  register_ref: apb_secure_demux.STATUS.last_valid
+  behavior: status
+  sw_behavior: RO；管理授权
+  hw_behavior: 各owner状态组合镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信复位后均零
+- id: LLD.REG.APB_SECURE_DEMUX.POLICY_VERSION.VALUE
+  register_ref: apb_secure_demux.POLICY_VERSION.value
+  behavior: atomic
+  sw_behavior: RO
+  hw_behavior: 仅成功COMMIT递增，模32位自然回绕
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.GLOBAL_LOCK.LOCKED
+  register_ref: apb_secure_demux.GLOBAL_LOCK.locked
+  behavior: lock
+  sw_behavior: RW1S；写一收紧，写零不变
+  hw_behavior: POLICY更新互补编码，只能可信复位解锁
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 合法解锁编码01，对软件可见0
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_MASK.PORTS
+  register_ref: apb_secure_demux.COMMIT_MASK.ports
+  behavior: atomic
+  sw_behavior: WO；有效掩码非空且无越界，所有选中端口均未锁，GLOBAL未锁，无完整性错误才接受
+  hw_behavior: 同一完成沿复制所有选中shadow到active并更新校验；失败全保持
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_STATUS.LAST_OK
+  register_ref: apb_secure_demux.COMMIT_STATUS.last_ok
+  behavior: status
+  sw_behavior: RO；未通过管理授权/对齐/选通/存在性/访问类型的COMMIT不影响状态
+  hw_behavior: commit_attempt更新结果；诊断独立按掩码、全局锁、端口锁、完整性排序；失败端口只对端口锁有效，其余清零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_STATUS.LAST_FAIL
+  register_ref: apb_secure_demux.COMMIT_STATUS.last_fail
+  behavior: status
+  sw_behavior: RO；未通过管理授权/对齐/选通/存在性/访问类型的COMMIT不影响状态
+  hw_behavior: commit_attempt更新结果；诊断独立按掩码、全局锁、端口锁、完整性排序；失败端口只对端口锁有效，其余清零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_STATUS.FAIL_REASON
+  register_ref: apb_secure_demux.COMMIT_STATUS.fail_reason
+  behavior: status
+  sw_behavior: RO；未通过管理授权/对齐/选通/存在性/访问类型的COMMIT不影响状态
+  hw_behavior: commit_attempt更新结果；诊断独立按掩码、全局锁、端口锁、完整性排序；失败端口只对端口锁有效，其余清零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_STATUS.FAIL_PORT
+  register_ref: apb_secure_demux.COMMIT_STATUS.fail_port
+  behavior: status
+  sw_behavior: RO；未通过管理授权/对齐/选通/存在性/访问类型的COMMIT不影响状态
+  hw_behavior: commit_attempt更新结果；诊断独立按掩码、全局锁、端口锁、完整性排序；失败端口只对端口锁有效，其余清零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.COMMIT_STATUS.FAIL_PORT_VALID
+  register_ref: apb_secure_demux.COMMIT_STATUS.fail_port_valid
+  behavior: status
+  sw_behavior: RO；未通过管理授权/对齐/选通/存在性/访问类型的COMMIT不影响状态
+  hw_behavior: commit_attempt更新结果；诊断独立按掩码、全局锁、端口锁、完整性排序；失败端口只对端口锁有效，其余清零
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.SHADOW_RELOAD.PORTS
+  register_ref: apb_secure_demux.SHADOW_RELOAD.ports
+  behavior: atomic
+  sw_behavior: WO；同提交掩码/锁/完整性检查
+  hw_behavior: 同沿所选active复制到shadow和校验；不增加版本
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTEGRITY_STATUS.FATAL
+  register_ref: apb_secure_demux.INTEGRITY_STATUS.fatal
+  behavior: sticky
+  sw_behavior: RO；PARITY关闭时读零
+  hw_behavior: 首次检测锁存FATAL及优先位置；MASTER仅PERM位置有效；global位置PORT无效清零；不覆盖首个位置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTEGRITY_STATUS.LOCATION_VALID
+  register_ref: apb_secure_demux.INTEGRITY_STATUS.location_valid
+  behavior: sticky
+  sw_behavior: RO；PARITY关闭时读零
+  hw_behavior: 首次检测锁存FATAL及优先位置；MASTER仅PERM位置有效；global位置PORT无效清零；不覆盖首个位置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTEGRITY_STATUS.PORT
+  register_ref: apb_secure_demux.INTEGRITY_STATUS.port
+  behavior: sticky
+  sw_behavior: RO；PARITY关闭时读零
+  hw_behavior: 首次检测锁存FATAL及优先位置；MASTER仅PERM位置有效；global位置PORT无效清零；不覆盖首个位置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTEGRITY_STATUS.MASTER
+  register_ref: apb_secure_demux.INTEGRITY_STATUS.master
+  behavior: sticky
+  sw_behavior: RO；PARITY关闭时读零
+  hw_behavior: 首次检测锁存FATAL及优先位置；MASTER仅PERM位置有效；global位置PORT无效清零；不覆盖首个位置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.INTEGRITY_STATUS.LOCATION_TYPE
+  register_ref: apb_secure_demux.INTEGRITY_STATUS.location_type
+  behavior: sticky
+  sw_behavior: RO；PARITY关闭时读零
+  hw_behavior: 首次检测锁存FATAL及优先位置；MASTER仅PERM位置有效；global位置PORT无效清零；不覆盖首个位置
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.MAP_BASE.VALUE
+  register_ref: apb_secure_demux.port[p].MAP_BASE.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: PORT_BASE镜像、零扩展
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 对应实例参数不变
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.MAP_LIMIT.VALUE
+  register_ref: apb_secure_demux.port[p].MAP_LIMIT.value
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 扩展运算BASE+SIZE-1的包含端点镜像
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 对应实例参数不变
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.PORT_LOCK.LOCKED
+  register_ref: apb_secure_demux.port[p].PORT_LOCK.locked
+  behavior: lock
+  sw_behavior: RW1S；GLOBAL_LOCK后仍允许追加锁
+  hw_behavior: 成功置位不可逆；锁保护shadow、commit、reload
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: 合法解锁编码01，对软件可见0
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.CFG_SHADOW.ENABLE
+  register_ref: apb_secure_demux.port[p].CFG_SHADOW.enable
+  behavior: shadow
+  sw_behavior: RW；全局/端口锁及完整性检查
+  hw_behavior: shadow写不改变active；reload/commit分别整端口复制并同步校验
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PORT_CFG[p]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.CFG_SHADOW.INSTR_ALLOW
+  register_ref: apb_secure_demux.port[p].CFG_SHADOW.instr_allow
+  behavior: shadow
+  sw_behavior: RW；全局/端口锁及完整性检查
+  hw_behavior: shadow写不改变active；reload/commit分别整端口复制并同步校验
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PORT_CFG[p]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.CFG_ACTIVE.ENABLE
+  register_ref: apb_secure_demux.port[p].CFG_ACTIVE.enable
+  behavior: atomic
+  sw_behavior: RO
+  hw_behavior: shadow写不改变active；reload/commit分别整端口复制并同步校验
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PORT_CFG[p]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.CFG_ACTIVE.INSTR_ALLOW
+  register_ref: apb_secure_demux.port[p].CFG_ACTIVE.instr_allow
+  behavior: atomic
+  sw_behavior: RO
+  hw_behavior: shadow写不改变active；reload/commit分别整端口复制并同步校验
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PORT_CFG[p]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.PERM_SHADOW.PERMISSION
+  register_ref: apb_secure_demux.port[p].PERM_SHADOW[m].permission
+  behavior: shadow
+  sw_behavior: RW；全局/端口锁及完整性检查
+  hw_behavior: 每主体仅存8位；写高位忽略；复制时同步校验，索引p/m先检查配置域
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PERM[p][m]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.PERM_ACTIVE.PERMISSION
+  register_ref: apb_secure_demux.port[p].PERM_ACTIVE[m].permission
+  behavior: atomic
+  sw_behavior: RO
+  hw_behavior: 每主体仅存8位；写高位忽略；复制时同步校验，索引p/m先检查配置域
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: RESET_PERM[p][m]，active和shadow一致
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.SUCCESS_COUNT.VALUE
+  register_ref: apb_secure_demux.port[p].SUCCESS_COUNT.value
+  behavior: counter
+  sw_behavior: RO；仅DFX_EN及双重授权
+  hw_behavior: 计数语义见03_dfx；WAIT_MAX完成沿取max，其余对应事件饱和增量
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DENY_COUNT.VALUE
+  register_ref: apb_secure_demux.port[p].DENY_COUNT.value
+  behavior: counter
+  sw_behavior: RO；仅DFX_EN及双重授权
+  hw_behavior: 计数语义见03_dfx；WAIT_MAX完成沿取max，其余对应事件饱和增量
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.SLVERR_COUNT.VALUE
+  register_ref: apb_secure_demux.port[p].SLVERR_COUNT.value
+  behavior: counter
+  sw_behavior: RO；仅DFX_EN及双重授权
+  hw_behavior: 计数语义见03_dfx；WAIT_MAX完成沿取max，其余对应事件饱和增量
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.WAIT_TOTAL.VALUE
+  register_ref: apb_secure_demux.port[p].WAIT_TOTAL.value
+  behavior: counter
+  sw_behavior: RO；仅DFX_EN及双重授权
+  hw_behavior: 计数语义见03_dfx；WAIT_MAX完成沿取max，其余对应事件饱和增量
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.WAIT_MAX.VALUE
+  register_ref: apb_secure_demux.port[p].WAIT_MAX.value
+  behavior: counter
+  sw_behavior: RO；仅DFX_EN及双重授权
+  hw_behavior: 计数语义见03_dfx；WAIT_MAX完成沿取max，其余对应事件饱和增量
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DFX_COUNTER_CLEAR.SUCCESS
+  register_ref: apb_secure_demux.port[p].DFX_COUNTER_CLEAR.success
+  behavior: command
+  sw_behavior: WO；仅DFX_EN及双重授权
+  hw_behavior: 先清所选计数再处理本周期事件
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DFX_COUNTER_CLEAR.DENY
+  register_ref: apb_secure_demux.port[p].DFX_COUNTER_CLEAR.deny
+  behavior: command
+  sw_behavior: WO；仅DFX_EN及双重授权
+  hw_behavior: 先清所选计数再处理本周期事件
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DFX_COUNTER_CLEAR.SLVERR
+  register_ref: apb_secure_demux.port[p].DFX_COUNTER_CLEAR.slverr
+  behavior: command
+  sw_behavior: WO；仅DFX_EN及双重授权
+  hw_behavior: 先清所选计数再处理本周期事件
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DFX_COUNTER_CLEAR.WAIT_TOTAL
+  register_ref: apb_secure_demux.port[p].DFX_COUNTER_CLEAR.wait_total
+  behavior: command
+  sw_behavior: WO；仅DFX_EN及双重授权
+  hw_behavior: 先清所选计数再处理本周期事件
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+- id: LLD.REG.APB_SECURE_DEMUX.PORT.DFX_COUNTER_CLEAR.WAIT_MAX
+  register_ref: apb_secure_demux.port[p].DFX_COUNTER_CLEAR.wait_max
+  behavior: command
+  sw_behavior: WO；仅DFX_EN及双重授权
+  hw_behavior: 先清所选计数再处理本周期事件
+  collision: clear_then_increment_or_max
+  update_timing: transaction_boundary
+  reset_semantics: 可信 preset_ni 清零；不存在软件复位
+reset:
+- id: LLD.RESET.APB_SECURE_DEMUX.FUNCTIONAL
+  module_ref:
+  - LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  - LLD.MOD.APB_SECURE_DEMUX.DECODE
+  - LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  - LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  - LLD.MOD.APB_SECURE_DEMUX.CSR
+  - LLD.MOD.APB_SECURE_DEMUX.POLICY
+  - LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  - LLD.MOD.APB_SECURE_DEMUX.IRQ
+  - LLD.MOD.APB_SECURE_DEMUX.DFX
+  reset_domain: RST_PRESET_N
+  type: async_assert_sync_release
+  polarity: active_low
+  release_owner: trusted integration
+  reset_values: RESET policies; locks=01; ALERT_ENABLE=0x9b; all other mutable state=0
+cdc: []
+interrupts:
+- id: LLD.IRQ.APB_SECURE_DEMUX.RAW
+  source: 全部事件候选以及 persistent FATAL
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  clear: accepted W1C
+  collision: set_wins
+errors: []
+safety:
+- id: LLD.SAFETY.APB_SECURE_DEMUX.POLICY_INTEGRITY
+  mechanism: 全部active/shadow偶校验和互补锁持续检查
+  module_ref: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  latency: raw组合阻断新SETUP；下一边沿锁存FATAL
+  limitation: 不保护译码逻辑/日志/任意多位故障
+ppa:
+- id: LLD.PPA.APB_SECURE_DEMUX.CRITICAL_PATHS
+  decision: 层次化并行完整性归约；保持 SETUP 组合准入；不加 pipeline
+  tradeoff: 完整性归约扇出与组合面积换取即时阻断
+  constraints: 实际 PDK/corner/SDC 未提供；禁止虚构签核
+gen: []
+derived: []
+decisions: []
+verify_hooks: []
+rtl_map:
+- id: RTL.APB_SECURE_DEMUX.FRONTEND
+  rtl_file: rtl/apb_secure_demux.sv
+  rtl_module: apb_secure_demux
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.DECODE
+  rtl_file: rtl/apb_secure_demux_decode.sv
+  rtl_module: apb_secure_demux_decode
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.DECODE
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.ACCESS
+  rtl_file: rtl/apb_secure_demux_access.sv
+  rtl_module: apb_secure_demux_access
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.ROUTE
+  rtl_file: rtl/apb_secure_demux.sv
+  rtl_module: apb_secure_demux
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.CSR
+  rtl_file: rtl/apb_secure_demux_csr.sv
+  rtl_module: apb_secure_demux_csr
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.CSR
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.POLICY
+  rtl_file: rtl/apb_secure_demux_policy.sv
+  rtl_module: apb_secure_demux_policy
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.POLICY
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.EVENTS
+  rtl_file: rtl/apb_secure_demux_events.sv
+  rtl_module: apb_secure_demux_events
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.IRQ
+  rtl_file: rtl/apb_secure_demux_irq.sv
+  rtl_module: apb_secure_demux_irq
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.IRQ
+  generated: false
+- id: RTL.APB_SECURE_DEMUX.DFX
+  rtl_file: rtl/apb_secure_demux_dfx.sv
+  rtl_module: apb_secure_demux_dfx
+  implements:
+  - LLD.MOD.APB_SECURE_DEMUX.DFX
+  generated: false
+gates:
+- gate: G2
+  status: pass
+  microarchitecture_freeze: true
+  register_behavior_freeze: true
+  approvals:
+    architecture: user approval; docs/reviews/g2_behavior_approval.md
+    register_behavior: user approval; docs/reviews/g2_behavior_approval.md

@@ -1,0 +1,32 @@
+{
+  "scope": "G2 review candidate, not a gate approval or formal release",
+  "generation_command": [
+    "uv",
+    "run",
+    "--locked",
+    "--no-sync",
+    "peakrdl",
+    "regblock",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/regs/watchdog.rdl",
+    "-o",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/g2_csr_candidate",
+    "--cpuif",
+    "apb4-flat",
+    "--module-name",
+    "watchdog_csr",
+    "--package-name",
+    "watchdog_csr_pkg",
+    "--default-reset",
+    "arst_n",
+    "--err-if-bad-addr"
+  ],
+  "generation_exit_code": 0,
+  "compilation_evidence": "reports/quality/register_candidate_check.md",
+  "sha256": {
+    "regs/watchdog.rdl": "ef453feb551ecaa968feb76851094c6eb6e8458e2b5e857dcebd03b1f9cd751e",
+    "build/g2_csr_candidate/watchdog_csr_pkg.sv": "a20925d1227ed6701779f78a6c21d8746be91a4928b912dc64a3324d9e494650",
+    "build/g2_csr_candidate/watchdog_csr.sv": "277b9d5b34a1c03295dc1eb65a6ed9f1b18a122c96d67fe153df7cced39bce04",
+    "build/g2_csr_candidate/watchdog_csr.manifest.yaml": "41879d442bc61359c8d620a5f8e8d7ed060fe929216d4fe6d1ced9b2396cc0de",
+    "reports/quality/register_candidate_check.md": "1338df8f8fcc261e1ad89e9fffe7fb0b1a2328d05069834ca77e4d7e7604df0a"
+  }
+}

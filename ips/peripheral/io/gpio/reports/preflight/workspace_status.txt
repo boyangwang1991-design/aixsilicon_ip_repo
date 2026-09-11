@@ -1,0 +1,12 @@
+profile=all  manifest=manifests/default.yaml
+REPO             BRANCH                 HEAD          BASELINE   DIRTY  REMOTE   OVR   EN  
+hwif             main                   631135bf21d6  clean      no     sync     -     yes 
+cbb              main                   ac34181283d2  clean      no     sync     -     yes 
+ip               main                   2fd687b61943  clean      YES    sync     -     yes 
+dv-common        main                   357b41c09ace  clean      no     sync     -     yes 
+vip              main                   ac4bfad02ce2  clean      no     sync     -     yes 
+tools            main                   a8496b099691  clean      no     sync     -     yes 
+catalog          main                   a0e38caf5472  clean      no     sync     -     yes 
+soc-integration  main                   24d0ab737a7f  clean      no     sync     -     yes 
+skills           main                   768872ec6ab4  clean      YES    sync     -     yes 
+knowledge        main                   30c7d1456528  clean      no     sync     -     yes 

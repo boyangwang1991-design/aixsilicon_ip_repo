@@ -1,0 +1,157 @@
+# Watchdog：外部接口合同
+
+所有可信输入均有明确系统来源，异步信号在进入本合同前同步或完整握手。
+
+## RECOVERY
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.EXT.WATCHDOG.RECOVERY
+name: recovery
+scope: external
+protocol: four_phase_handshake
+role: consumer
+owner_module: HLD.MOD.WATCHDOG.CHANNEL
+clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+req_ref:
+- LRS.FUNC.WATCHDOG.REC.001
+- LRS.FUNC.WATCHDOG.REC.002
+- LRS.FUNC.WATCHDOG.REC.003
+- LRS.FUNC.WATCHDOG.REC.004
+- LRS.FUNC.WATCHDOG.REC.005
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+recovery_done_i/recovery_ack_o 均逐通道；只有合格局部恢复完成才可接受。双方回零后重新武装，旧 done 电平不授予新的恢复。
+
+## HW_EVENT
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.EXT.WATCHDOG.HW_EVENT
+name: hw_event
+scope: external
+protocol: ready_valid
+role: consumer
+owner_module: HLD.MOD.WATCHDOG.DISPATCH
+clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+req_ref:
+- LRS.FUNC.WATCHDOG.SRV.001
+- LRS.FUNC.WATCHDOG.SRV.002
+- LRS.FUNC.WATCHDOG.SRV.003
+- LRS.FUNC.WATCHDOG.SRV.004
+- LRS.FUNC.WATCHDOG.SRV.005
+- LRS.FUNC.WATCHDOG.SRV.006
+- LRS.FUNC.WATCHDOG.SRV.007
+- LRS.FUNC.WATCHDOG.SRV.008
+- LRS.FUNC.WATCHDOG.SRV.009
+- LRS.FUNC.WATCHDOG.SRV.010
+- LRS.FUNC.WATCHDOG.SRV.011
+- LRS.FUNC.WATCHDOG.SUP.001
+- LRS.FUNC.WATCHDOG.SUP.002
+- LRS.FUNC.WATCHDOG.SUP.003
+- LRS.FUNC.WATCHDOG.SUP.004
+- LRS.FUNC.WATCHDOG.SUP.005
+- LRS.FUNC.WATCHDOG.SUP.006
+- LRS.FUNC.WATCHDOG.SUP.007
+- LRS.FUNC.WATCHDOG.SUP.008
+- LRS.FUNC.WATCHDOG.SUP.009
+- LRS.FUNC.WATCHDOG.SUP.010
+applicability:
+  expr: SUPPORT_HW_EVENT == 1
+END_HLD_INTERFACE_META -->
+
+hw_evt_valid/ready/channel/client/type/data/source；channel4位、client5位、type按接口编码、data32位、source为SOURCE_WIDTH。valid&&ready 一次接收；等待期间负载稳定，合法性按实际执行边沿判断。
+
+## TEST_AUTH
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.EXT.WATCHDOG.TEST_AUTH
+name: test_auth
+scope: external
+protocol: trusted_level
+role: consumer
+owner_module: HLD.MOD.WATCHDOG.SAFETY
+clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+req_ref:
+- LRS.DFX.WATCHDOG.TST.001
+- LRS.DFX.WATCHDOG.TST.002
+- LRS.DFX.WATCHDOG.TST.003
+- LRS.DFX.WATCHDOG.TST.004
+- LRS.DFX.WATCHDOG.TST.005
+applicability:
+  expr: SAFETY_EN == 1
+END_HLD_INTERFACE_META -->
+
+test_auth_i 来自生命周期/测试控制。故障注入还须配置诊断授权、未锁和解锁额度；该输入不能强制屏蔽真实最终请求。
+
+## REQUESTS
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.EXT.WATCHDOG.REQUESTS
+name: requests
+scope: external
+protocol: sticky_request
+role: producer
+owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+req_ref:
+- LRS.INTF.WATCHDOG.IF.001
+- LRS.INTF.WATCHDOG.IF.002
+- LRS.INTF.WATCHDOG.IF.003
+- LRS.INTF.WATCHDOG.IF.004
+- LRS.FUNC.WATCHDOG.ESC.001
+- LRS.FUNC.WATCHDOG.ESC.002
+- LRS.FUNC.WATCHDOG.ESC.003
+- LRS.FUNC.WATCHDOG.REC.001
+- LRS.FUNC.WATCHDOG.REC.002
+- LRS.FUNC.WATCHDOG.REC.003
+- LRS.FUNC.WATCHDOG.REC.004
+- LRS.FUNC.WATCHDOG.REC.005
+- LRS.SAFE.WATCHDOG.SAF.001
+- LRS.SAFE.WATCHDOG.SAF.002
+- LRS.SAFE.WATCHDOG.SAF.003
+- LRS.SAFE.WATCHDOG.SAF.004
+- LRS.SAFE.WATCHDOG.SAF.005
+- LRS.SAFE.WATCHDOG.SAF.006
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+nmi_req_o/local_reset_req_o 为逐通道，system_reset_req_o/safety_alert_o/safe_state_req_o/wake_req_o 为汇总保持型请求；接收域负责同步与实际响应，不等待软件 IRQ。
+
+## IRQ
+
+<!-- HLD_INTERFACE_META
+id: HLD.IF.EXT.WATCHDOG.IRQ
+name: irq
+scope: external
+protocol: synchronized_level
+role: producer
+owner_module: HLD.MOD.WATCHDOG.INTEGRATION
+clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+req_ref:
+- LRS.INTF.WATCHDOG.IF.001
+- LRS.INTF.WATCHDOG.IF.002
+- LRS.INTF.WATCHDOG.IF.003
+- LRS.INTF.WATCHDOG.IF.004
+- LRS.RESET.WATCHDOG.RST.001
+- LRS.RESET.WATCHDOG.RST.002
+- LRS.RESET.WATCHDOG.RST.003
+- LRS.RESET.WATCHDOG.RST.004
+- LRS.DFX.WATCHDOG.DIA.001
+- LRS.DFX.WATCHDOG.DIA.002
+- LRS.DFX.WATCHDOG.DIA.003
+- LRS.DFX.WATCHDOG.DIA.004
+- LRS.DFX.WATCHDOG.DIA.005
+- LRS.DFX.WATCHDOG.DIA.006
+applicability:
+  expr: 'true'
+END_HLD_INTERFACE_META -->
+
+irq_o[NUM_CHANNELS] 为同步到 pclk 的粘滞中断电平；preset 可清接口输出，释放后由保留原始事件重现。pclk 停止时不承诺更新。
+

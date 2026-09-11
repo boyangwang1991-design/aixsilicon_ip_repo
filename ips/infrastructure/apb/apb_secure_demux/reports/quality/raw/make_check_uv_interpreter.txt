@@ -1,0 +1,28 @@
+/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3 bootstrap.py --agent-dir .roo --ensure
+materialize: aixsilicon-workspace-management -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/aixsilicon-workspace-management
+materialize: cbb-development-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/cbb-development-suite
+materialize: chipdraw-skill-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/chipdraw-skill-suite
+materialize: doc-to-markdown -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/doc-to-markdown
+materialize: hwif-development-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/hwif-development-suite
+materialize: ip-development-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite
+materialize: ip-fusa-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-fusa-suite
+materialize: markdown-to-docx -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/markdown-to-docx
+materialize: skill-creator -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/skill-creator
+materialize: soc-integration-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/soc-integration-suite
+materialize: vip-development-suite -> /home/eda/workspace/aixsilicon_workflow/.roo/skills/vip-development-suite
+materialize: OK  copied 11 skill(s) to /home/eda/workspace/aixsilicon_workflow/.roo/skills
+/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3 -m ruff check .roo/skills/aixsilicon-workspace-management/src .roo/skills/aixsilicon-workspace-management/tests .roo/skills/aixsilicon-workspace-management/scripts
+All checks passed!
+/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3 .roo/skills/aixsilicon-workspace-management/scripts/sync_schemas.py --check --schemas-dir schemas --pkg-dir .roo/skills/aixsilicon-workspace-management/src/aixworkflow/schemas
+ok       change-bundle.schema.json
+ok       evidence-index.schema.json
+ok       flow.schema.json
+ok       tool-profile.schema.json
+ok       workspace-lock.schema.json
+ok       workspace-manifest.schema.json
+
+schemas in sync (6 files)
+/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3 -m pytest .roo/skills/aixsilicon-workspace-management/tests -q --rootdir=.roo/skills/aixsilicon-workspace-management -o cache_dir=/home/eda/workspace/aixsilicon_workflow/cache/pytest
+........................................................................ [ 57%]
+.....................................................                    [100%]
+check: all passed

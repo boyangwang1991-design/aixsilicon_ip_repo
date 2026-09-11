@@ -1,0 +1,12 @@
+{
+  "scope": "local_workspace_read_only_no_remote_sync",
+  "source_sha256": {
+    "repos/aixsilicon_cbb_repo/registry.yaml": "5876c2d4a583ead68965b1d1fa9c0c1d212a7dac02c23ac70185e9a91ebc24b3",
+    "repos/aixsilicon_vip_repo/registry.yaml": "05ce19eac9c290beecbf4096a8d780da7c5da456ea52f55d783eced3bee8915e",
+    "repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/fusesoc/aixsilicon_cbb_round_robin_arbiter.core": "f8c6a705f515c7a49d7e4e44d55c32571d5907b6b17f1e9b1a6c723585b0a230",
+    "repos/aixsilicon_vip_repo/vip/amba/apb/reports/gate_status.md": "7922bc823e65eb69baad1bdec1e851a538289fa24600ee86525884e54d13b2db",
+    "repos/aixsilicon_hwif_repo/bus/apb/apb4/contract/apb.interface.yaml": "baa41a2a9f39e74e5d1a19b10779466311b30cbe172dffb02b9dbd9634a53a45",
+    "repos/aixsilicon_hwif_repo/bus/apb/apb4/contract/apb4_base.profile.yaml": "aa2fba76be0e02d90dbcf56f8f8571b058cbd3907ccb61e2ee81d319b4647fbb",
+    "repos/aixsilicon_hwif_repo/bus/apb/apb4/contract/apb_csr_v1.profile.yaml": "5667b412ab265a2a9e6c94b02809e985c907cf7a394f847870d9e6254385d7e6"
+  }
+}

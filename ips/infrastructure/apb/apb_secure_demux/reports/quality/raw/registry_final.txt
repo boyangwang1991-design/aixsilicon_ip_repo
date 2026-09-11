@@ -1,0 +1,5 @@
+registry.yaml: 共 355 条（implemented/released=2）
+  WARN: [PER-009] ip-package.yaml version 与 registry 不一致；完成身份对齐后才能交付
+  WARN: [SEC-015] ip-package.yaml name 与 registry 不一致；完成身份对齐后才能交付
+  WARN: [SEC-015] ip-package.yaml version 与 registry 不一致；完成身份对齐后才能交付
+==> 校验通过（只读，未写入）。

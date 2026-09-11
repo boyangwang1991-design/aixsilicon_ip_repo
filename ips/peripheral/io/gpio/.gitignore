@@ -1,0 +1,22 @@
+build/
+# PeakRDL HTML is local-only; never upload the site or its assets to GitHub.
+/docs/generated/*_regs.html
+# Design extraction console output is local-only; new runs belong in build/design/.
+/reports/**/extract_*.txt
+/reports/**/*_extract_*.txt
+/reports/**/*.extract.txt
+/reports/**/extract_*.exit
+/reports/**/*_extract_*.exit
+/reports/**/*.extract.exit
+*.daidir/
+csrc/
+simv*
+*.vcd
+*.fsdb
+*.shm
+*.log
+.Xil/
+edalize_work_root/
+.venv/
+__pycache__/
+*.py[cod]

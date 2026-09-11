@@ -1,0 +1,25 @@
+{
+  "python": "3.11.13",
+  "executable": "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+  "packages": {
+    "peakrdl": "1.5.0",
+    "systemrdl-compiler": "1.32.2",
+    "peakrdl-regblock": "1.3.1",
+    "peakrdl-cheader": "1.1.0",
+    "peakrdl-html": "2.12.2",
+    "peakrdl-ipxact": "3.5.0",
+    "peakrdl-uvm": "2.4.0",
+    "fusesoc": "2.4.7",
+    "pytest": "9.1.1",
+    "matplotlib": "3.11.1"
+  },
+  "tools": {
+    "vcs": "/home/eda/app/synopsys/vcs/W-2024.09-SP1/bin/vcs",
+    "vlogan": "/home/eda/app/synopsys/vcs/W-2024.09-SP1/bin/vlogan",
+    "urg": "/home/eda/app/synopsys/vcs/W-2024.09-SP1/bin/urg",
+    "spyglass": "/home/eda/app/synopsys/spyglass/X-2025.06/SPYGLASS_HOME/bin/spyglass",
+    "dc_shell": "/home/eda/app/synopsys/syn/V-2023.12-SP3/bin/dc_shell",
+    "vcformal": null
+  },
+  "missing_packages": []
+}

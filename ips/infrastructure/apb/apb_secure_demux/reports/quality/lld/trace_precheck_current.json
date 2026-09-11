@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/16-trace-manager/scripts/build_trace.py",
+    "--workspace",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "--ip-name",
+    "apb_secure_demux",
+    "--phase",
+    "precheck"
+  ],
+  "exit_code": 1
+}

@@ -1,0 +1,1869 @@
+schema_version: '2.0'
+ip_name: watchdog
+verification_level: full
+status: reviewed
+delivery_model: parameterized
+lrs_baseline: watchdog-contract-1.0.0-full-flow-r1
+hld_baseline: watchdog-hld-1.0.0-full-flow-r1
+lld_baseline: watchdog-lld-1.0.0-full-flow-r1
+features:
+- id: FL.WATCHDOG.ALIVE
+  name: 固定周期存活监督
+  description: 固定周期存活监督的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.ALIVE.001
+    name: alive
+    type: boundary
+    description: 固定周期存活监督
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_alive.sv
+    feature_ref:
+    - FL.WATCHDOG.ALIVE
+    req_ref:
+    - LRS.FUNC.WATCHDOG.SUP.004
+    - LRS.FUNC.WATCHDOG.SUP.005
+    - LRS.FUNC.WATCHDOG.SUP.006
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - MIN/MAX事件计数边界与溢出；TIMEOUT当拍服务；BOOT首周期；PRETIMEOUT时部分客户端欠报；持续高速报到。
+    expected_result:
+    - 按固定边沿窗口分桶，边界先评价旧桶；合格自动换周期；边界事件返回EPOCH_BOUNDARY且不计入；欠报/过报准确记录。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.ALIVE.001
+    name: alive_scenarios
+    type: functional
+    description: 计数MIN-1/MIN/MAX/MAX+1×边界事件×BOOT/RUN；饱和。
+    feature_ref:
+    - FL.WATCHDOG.ALIVE
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.BUS
+  name: APB4与寄存器访问
+  description: APB4与寄存器访问的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.PORTS.001
+  - LRS.REG.WATCHDOG.ACCESS.001
+  - LRS.REG.WATCHDOG.IDENTITY.001
+  design_ref:
+  - LLD.MOD.WATCHDOG.BUS
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.BUS.001
+    name: bus
+    type: register
+    description: APB4与寄存器访问
+    priority: must
+    tier: smoke
+    proof_kind: uvm
+    implementation: verification/tc/tc_bus.sv
+    feature_ref:
+    - FL.WATCHDOG.BUS
+    req_ref:
+    - LRS.INTF.WATCHDOG.BUS.001
+    - LRS.INTF.WATCHDOG.BUS.002
+    - LRS.INTF.WATCHDOG.BUS.003
+    - LRS.INTF.WATCHDOG.PORTS.001
+    - LRS.REG.WATCHDOG.ACCESS.001
+    - LRS.REG.WATCHDOG.IDENTITY.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.BUS
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - POR后读ID/能力；逐个实现地址执行访问属性检查；随机读PSTRB；写部分strobes、未对齐、RO、越界与保留位；保持ACCESS直到完成。
+    expected_result:
+    - 独立APB monitor计数每笔只接受一次；ACCESS最多2周期；拒绝返回PSLVERR且无状态修改；读WO及保留位为零。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.BUS.001
+    name: bus_scenarios
+    type: functional
+    description: 读写×地址类别×strobes×权限×等待周期；错误访问与邮箱忙同拍。
+    feature_ref:
+    - FL.WATCHDOG.BUS
+    design_ref:
+    - LLD.MOD.WATCHDOG.BUS
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.BUS.001
+    name: apb_accept
+    feature_ref:
+    - FL.WATCHDOG.BUS
+    req_ref:
+    - LRS.INTF.WATCHDOG.BUS.001
+    - LRS.INTF.WATCHDOG.BUS.002
+    - LRS.INTF.WATCHDOG.BUS.003
+    - LRS.INTF.WATCHDOG.PORTS.001
+    - LRS.REG.WATCHDOG.ACCESS.001
+    - LRS.REG.WATCHDOG.IDENTITY.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.BUS
+    property: APB接受仅PSEL/PENABLE/PREADY边沿，连续等待负载稳定且每事务一次；ACCESS两周期内完成。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.CDC
+  name: 单在途邮箱与跨域
+  description: 单在途邮箱与跨域的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.VER.004
+  design_ref:
+  - LLD.MOD.WATCHDOG.TRANSPORT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.CDC.001
+    name: cdc
+    type: stress
+    description: 单在途邮箱与跨域
+    priority: must
+    tier: extended
+    proof_kind: uvm
+    implementation: verification/tc/tc_cdc.sv
+    feature_ref:
+    - FL.WATCHDOG.CDC
+    req_ref:
+    - LRS.INTF.WATCHDOG.CDC.001
+    - LRS.INTF.WATCHDOG.CDC.002
+    - LRS.INTF.WATCHDOG.CDC.003
+    - LRS.INTF.WATCHDOG.CDC.004
+    - LRS.INTF.WATCHDOG.CDC.005
+    - LRS.CONS.WATCHDOG.NFR.002
+    - LRS.CONS.WATCHDOG.VER.004
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 两时钟相位扫描、源快/目的快、停WDT后读状态；邮箱忙时重复写；请求经过每一级同步时施加preset或warm；序号回卷。
+    expected_result:
+    - 事务队列以APB接受事件建账；EXEC或CANCEL恰一次且序号对应；preset不重发；warm取消未执行者；停WDT仍可读APB；负载全程稳定。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.CDC.001
+    name: cdc_scenarios
+    type: functional
+    description: 同步级数×时钟比×复位相位×忙/完成；取消边界前/当拍/后一拍。
+    feature_ref:
+    - FL.WATCHDOG.CDC
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.CDC.001
+    name: mailbox
+    feature_ref:
+    - FL.WATCHDOG.CDC
+    req_ref:
+    - LRS.INTF.WATCHDOG.CDC.001
+    - LRS.INTF.WATCHDOG.CDC.002
+    - LRS.INTF.WATCHDOG.CDC.003
+    - LRS.INTF.WATCHDOG.CDC.004
+    - LRS.INTF.WATCHDOG.CDC.005
+    - LRS.CONS.WATCHDOG.NFR.002
+    - LRS.CONS.WATCHDOG.VER.004
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    property: 从接受至ack负载稳定；每序号最多执行或取消一次；preset不清toggle，warm不重放。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.COMMIT
+  name: 配置原子提交与生效
+  description: 配置原子提交与生效的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  - LRS.CONS.WATCHDOG.VER.005
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.COMMIT.001
+    name: commit
+    type: negative
+    description: 配置原子提交与生效
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_commit.sv
+    feature_ref:
+    - FL.WATCHDOG.COMMIT
+    req_ref:
+    - LRS.REG.WATCHDOG.CFG.001
+    - LRS.REG.WATCHDOG.CFG.002
+    - LRS.REG.WATCHDOG.CFG.003
+    - LRS.REG.WATCHDOG.CFG.004
+    - LRS.REG.WATCHDOG.CFG.007
+    - LRS.REG.WATCHDOG.REG.001
+    - LRS.REG.WATCHDOG.REG.002
+    - LRS.REG.WATCHDOG.REG.003
+    - LRS.REG.WATCHDOG.REG.004
+    - LRS.CONS.WATCHDOG.VER.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 多字阈值分步staging写；完整客户端表；非法模式/高位/mask/策略；RUN只改四类计时字段；pending后二次提交；旧窗口服务与故障边界。
+    expected_result:
+    - 独立配置验证规则生成预期错误；失败整组不变；成功提交按状态立即或旧配置成功刷新时整体生效；无混合阈值；故障丢弃pending。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.COMMIT.001
+    name: commit_scenarios
+    type: functional
+    description: 配置状态×合法性×锁×pending×版本；UNSUPPORTED与BAD_CONFIG优先级。
+    feature_ref:
+    - FL.WATCHDOG.COMMIT
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.COMMIT.001
+    name: atomic_config
+    feature_ref:
+    - FL.WATCHDOG.COMMIT
+    req_ref:
+    - LRS.REG.WATCHDOG.CFG.001
+    - LRS.REG.WATCHDOG.CFG.002
+    - LRS.REG.WATCHDOG.CFG.003
+    - LRS.REG.WATCHDOG.CFG.004
+    - LRS.REG.WATCHDOG.CFG.007
+    - LRS.REG.WATCHDOG.REG.001
+    - LRS.REG.WATCHDOG.REG.002
+    - LRS.REG.WATCHDOG.REG.003
+    - LRS.REG.WATCHDOG.REG.004
+    - LRS.CONS.WATCHDOG.VER.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    property: 活动配置各字段始终来自同一个已验证版本；RUN只在旧配置成功刷新整体切换。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.CONFIG
+  name: 构建参数与能力
+  description: 构建参数与能力的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+  - LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+  - LRS.CFG.WATCHDOG.PRESCALE_WIDTH.001
+  - LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+  - LRS.CFG.WATCHDOG.SOURCE_WIDTH.001
+  - LRS.CFG.WATCHDOG.SYNC_STAGES.001
+  - LRS.CFG.WATCHDOG.SUPPORT_TOKEN_QA.001
+  - LRS.CFG.WATCHDOG.SUPPORT_SUPERVISION.001
+  - LRS.CFG.WATCHDOG.SUPPORT_HW_EVENT.001
+  - LRS.CFG.WATCHDOG.SAFETY_EN.001
+  - LRS.CFG.WATCHDOG.ALLOW_RUNTIME_UPDATE.001
+  - LRS.CFG.WATCHDOG.DIAG_INJECT_EN.001
+  - LRS.CFG.WATCHDOG.AUTO_START_MASK.001
+  - LRS.CFG.WATCHDOG.NO_STOP_MASK.001
+  - LRS.CFG.WATCHDOG.HARD_CFG_LOCK_MASK.001
+  - LRS.CFG.WATCHDOG.DEFAULT_CFG.001
+  - LRS.CFG.WATCHDOG.PROFILE.001
+  - LRS.CFG.WATCHDOG.PROFILE.002
+  - LRS.CFG.WATCHDOG.PROFILE.003
+  - LRS.CFG.WATCHDOG.PAR.001
+  - LRS.CFG.WATCHDOG.PAR.002
+  design_ref:
+  - LLD.MOD.WATCHDOG.INTEGRATION
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - simulation
+  testcases:
+  - id: TC.WATCHDOG.CONFIG.001
+    name: config
+    type: static
+    description: 构建参数与能力
+    priority: must
+    tier: extended
+    proof_kind: static
+    implementation: scripts/run_parameter_verification.py
+    feature_ref:
+    - FL.WATCHDOG.CONFIG
+    req_ref:
+    - LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+    - LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+    - LRS.CFG.WATCHDOG.PRESCALE_WIDTH.001
+    - LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+    - LRS.CFG.WATCHDOG.SOURCE_WIDTH.001
+    - LRS.CFG.WATCHDOG.SYNC_STAGES.001
+    - LRS.CFG.WATCHDOG.SUPPORT_TOKEN_QA.001
+    - LRS.CFG.WATCHDOG.SUPPORT_SUPERVISION.001
+    - LRS.CFG.WATCHDOG.SUPPORT_HW_EVENT.001
+    - LRS.CFG.WATCHDOG.SAFETY_EN.001
+    - LRS.CFG.WATCHDOG.ALLOW_RUNTIME_UPDATE.001
+    - LRS.CFG.WATCHDOG.DIAG_INJECT_EN.001
+    - LRS.CFG.WATCHDOG.AUTO_START_MASK.001
+    - LRS.CFG.WATCHDOG.NO_STOP_MASK.001
+    - LRS.CFG.WATCHDOG.HARD_CFG_LOCK_MASK.001
+    - LRS.CFG.WATCHDOG.DEFAULT_CFG.001
+    - LRS.CFG.WATCHDOG.PROFILE.001
+    - LRS.CFG.WATCHDOG.PROFILE.002
+    - LRS.CFG.WATCHDOG.PROFILE.003
+    - LRS.CFG.WATCHDOG.PAR.001
+    - LRS.CFG.WATCHDOG.PAR.002
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 遍历PC全部188配置；合法配置真实elaborate并读能力；非法配置以独立预期核对拒绝原因；三个产品档均做功能代表运行。
+    expected_result:
+    - 无静默截断；合法配置能力与实际实例一致；非法值或结构依赖错误必须在构建时失败。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.CONFIG.001
+    name: config_scenarios
+    type: functional
+    description: 参数×合法性×能力裁剪；通道1/16、客户端1/32、W32/48/64、同步2/3/4及16参数风险组合。
+    feature_ref:
+    - FL.WATCHDOG.CONFIG
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage:
+  - id: CCOV.WATCHDOG.PARAMETERS
+    dimensions: &id001
+    - DEFAULT_CFG
+    - AUTO_START_MASK
+    - NO_STOP_MASK
+    - HARD_CFG_LOCK_MASK
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    strategy: &id002
+      default: true
+      boundary: true
+      pairwise: true
+      risk_based: true
+    feature_ref: &id003
+    - FL.WATCHDOG.CONFIG
+- id: FL.WATCHDOG.DELIVERY
+  name: 软件集成与实现签核
+  description: 软件集成与实现签核的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.DFX.WATCHDOG.TST.005
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  - LRS.CONS.WATCHDOG.VER.006
+  - LRS.CONS.WATCHDOG.DELIVERY.001
+  - LRS.CONS.WATCHDOG.SOFTWARE.001
+  design_ref:
+  - LLD.MOD.WATCHDOG.INTEGRATION
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - simulation
+  testcases:
+  - id: TC.WATCHDOG.DELIVERY.001
+    name: delivery
+    type: static
+    description: 软件集成与实现签核
+    priority: must
+    tier: extended
+    proof_kind: static
+    implementation: scripts/check_delivery.py
+    feature_ref:
+    - FL.WATCHDOG.DELIVERY
+    req_ref:
+    - LRS.DFX.WATCHDOG.TST.005
+    - LRS.CONS.WATCHDOG.NFR.001
+    - LRS.CONS.WATCHDOG.NFR.005
+    - LRS.CONS.WATCHDOG.NFR.006
+    - LRS.CONS.WATCHDOG.VER.006
+    - LRS.CONS.WATCHDOG.DELIVERY.001
+    - LRS.CONS.WATCHDOG.SOFTWARE.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 编译并执行C驱动mock总线错误/序号/互斥测试；比对RDL派生视图；SpyGlass lint/CDC/RDC；28nm三档DC/PPA和冗余网表检查；逐项交付链接检查。
+    expected_result:
+    - 软件超时不盲重发且只接收匹配DONE_SEQ；派生一致；静态零未处置错误/锁存/环；真实库映射及时序报告；安全说明列明未覆盖项且无无据认证。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.DELIVERY.001
+    name: delivery_scenarios
+    type: functional
+    description: 三个产品档×交付视图；所有静态/软件子检查必须分别有命令与原始结果。
+    feature_ref:
+    - FL.WATCHDOG.DELIVERY
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.DFX
+  name: 诊断测试和中断路径
+  description: 诊断测试和中断路径的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.DFX.001
+    name: dfx
+    type: directed
+    description: 诊断测试和中断路径
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_dfx.sv
+    feature_ref:
+    - FL.WATCHDOG.DFX
+    req_ref:
+    - LRS.DFX.WATCHDOG.TST.001
+    - LRS.DFX.WATCHDOG.TST.002
+    - LRS.DFX.WATCHDOG.TST.003
+    - LRS.DFX.WATCHDOG.TST.004
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - IRQ_TEST与IRQ_ENABLE/W1C；短期限超时自检；注入使能/权限/锁/解锁条件；TEST_CONTEXT在同拍FIRST捕获；生产裁剪。
+    expected_result:
+    - IRQ_TEST仅置专用位，不喂狗也不证明超时比较；测试故障走真实请求；TEST_CONTEXT正确；生产未支持访问拒绝且无副作用。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.DFX.001
+    name: dfx_scenarios
+    type: functional
+    description: 测试类别×授权×实例×IRQ屏蔽；真实故障与测试并发。
+    feature_ref:
+    - FL.WATCHDOG.DFX
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.FAULT
+  name: 故障记录与升级
+  description: 故障记录与升级的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.FLT.001
+  - LRS.FUNC.WATCHDOG.FLT.002
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  - LRS.CONS.WATCHDOG.VER.003
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.FAULT.001
+    name: fault
+    type: error_injection
+    description: 故障记录与升级
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_fault.sv
+    feature_ref:
+    - FL.WATCHDOG.FAULT
+    req_ref:
+    - LRS.FUNC.WATCHDOG.ESC.001
+    - LRS.FUNC.WATCHDOG.ESC.002
+    - LRS.FUNC.WATCHDOG.ESC.003
+    - LRS.FUNC.WATCHDOG.FLT.001
+    - LRS.FUNC.WATCHDOG.FLT.002
+    - LRS.DFX.WATCHDOG.DIA.001
+    - LRS.DFX.WATCHDOG.DIA.002
+    - LRS.DFX.WATCHDOG.DIA.003
+    - LRS.DFX.WATCHDOG.DIA.004
+    - LRS.DFX.WATCHDOG.DIA.005
+    - LRS.DFX.WATCHDOG.DIA.006
+    - LRS.CONS.WATCHDOG.VER.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 触发每类非致命及致命原因、同拍多原因；LOCAL_DELAY=0及FINAL_DELAY边界；FAULT期间服务/清IRQ/重复错误；FIRST与COUNT选择清除。
+    expected_result:
+    - 故障边沿保存旧状态/配置及候选年龄；主原因独立优先表；E用未分频绝对周期；最终保持；W1C不能清活动请求；FIRST首次锁存与set优先。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.FAULT.001
+    name: fault_scenarios
+    type: functional
+    description: 故障位×策略×响应模式×清除；FIRST有效×多原因×计数饱和。
+    feature_ref:
+    - FL.WATCHDOG.FAULT
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.FAULT.001
+    name: final_hold
+    feature_ref:
+    - FL.WATCHDOG.FAULT
+    req_ref:
+    - LRS.FUNC.WATCHDOG.ESC.001
+    - LRS.FUNC.WATCHDOG.ESC.002
+    - LRS.FUNC.WATCHDOG.ESC.003
+    - LRS.FUNC.WATCHDOG.FLT.001
+    - LRS.FUNC.WATCHDOG.FLT.002
+    - LRS.DFX.WATCHDOG.DIA.001
+    - LRS.DFX.WATCHDOG.DIA.002
+    - LRS.DFX.WATCHDOG.DIA.003
+    - LRS.DFX.WATCHDOG.DIA.004
+    - LRS.DFX.WATCHDOG.DIA.005
+    - LRS.DFX.WATCHDOG.DIA.006
+    - LRS.CONS.WATCHDOG.VER.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.SAFETY
+    property: 最终请求一旦置位，在POR或合格warm且无同拍新故障之前持续为1；IRQ清除不影响。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.FLOW
+  name: 线性流程与独立期限
+  description: 线性流程与独立期限的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.FLOW.001
+    name: flow
+    type: boundary
+    description: 线性流程与独立期限
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_flow.sv
+    feature_ref:
+    - FL.WATCHDOG.FLOW
+    req_ref:
+    - LRS.FUNC.WATCHDOG.SUP.007
+    - LRS.FUNC.WATCHDOG.SUP.008
+    - LRS.FUNC.WATCHDOG.SUP.009
+    - LRS.FUNC.WATCHDOG.SUP.010
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - START/STEP/END完整流程，跳步倒序重复及未开始END；多客户端交错；DEADLINE_MIN/MAX边界、暂停和主TIMEOUT先后。
+    expected_result:
+    - 独立预期检查点列表与绝对WDT时间戳检查顺序；END满足MIN≤elapsed<MAX及主窗口才完成；先到期限优先且同拍原因全保留。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.FLOW.001
+    name: flow_scenarios
+    type: functional
+    description: step首/中/末×错误类别×deadline边界×主窗口。
+    feature_ref:
+    - FL.WATCHDOG.FLOW
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.GROUP
+  name: 多客户端组监督
+  description: 多客户端组监督的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.GROUP.001
+    name: group
+    type: boundary
+    description: 多客户端组监督
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_group.sv
+    feature_ref:
+    - FL.WATCHDOG.GROUP
+    req_ref:
+    - LRS.FUNC.WATCHDOG.SUP.001
+    - LRS.FUNC.WATCHDOG.SUP.002
+    - LRS.FUNC.WATCHDOG.SUP.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 不同source/client报到；未要求客户端、早到、重复、最后必需客户端；多个通道不同timeout并发。
+    expected_result:
+    - 集合oracle仅接受当前轮合法成员；最后成员才刷新；重复不换token；超时missing=REQUIRE_MASK减已见集合；其他通道独立计时。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.GROUP.001
+    name: group_scenarios
+    type: functional
+    description: 客户端首/末×重复×窗口；require稀疏/全置位。
+    feature_ref:
+    - FL.WATCHDOG.GROUP
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.HW_EVENT
+  name: 硬件服务与公平仲裁
+  description: 硬件服务与公平仲裁的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.PERF.WATCHDOG.COMMAND.001
+  - LRS.CONS.WATCHDOG.NFR.003
+  design_ref:
+  - LLD.MOD.WATCHDOG.DISPATCH
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.HW_EVENT.001
+    name: hw_event
+    type: stress
+    description: 硬件服务与公平仲裁
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_hw_event.sv
+    feature_ref:
+    - FL.WATCHDOG.HW_EVENT
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.003
+    - LRS.FUNC.WATCHDOG.SRV.010
+    - LRS.FUNC.WATCHDOG.SRV.011
+    - LRS.PERF.WATCHDOG.COMMAND.001
+    - LRS.CONS.WATCHDOG.NFR.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.DISPATCH
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 软件/硬件路径各运行；持续硬件valid与邮箱竞争；valid等待期间跨过窗口边界；warm取消时保持硬件事件；未支持配置访问。
+    expected_result:
+    - 轮询事务模型每WDT边沿最多消费一个；硬件ready前保持；以执行边沿判窗口；未消费不推进仲裁；可见命令无竞争≤2、有竞争≤3周期。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.HW_EVENT.001
+    name: hw_event_scenarios
+    type: functional
+    description: 请求组合×轮询顺序×取消窗口×通道；硬件能力开/关。
+    feature_ref:
+    - FL.WATCHDOG.HW_EVENT
+    design_ref:
+    - LLD.MOD.WATCHDOG.DISPATCH
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.HW_EVENT.001
+    name: arbitration
+    feature_ref:
+    - FL.WATCHDOG.HW_EVENT
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.003
+    - LRS.FUNC.WATCHDOG.SRV.010
+    - LRS.FUNC.WATCHDOG.SRV.011
+    - LRS.PERF.WATCHDOG.COMMAND.001
+    - LRS.CONS.WATCHDOG.NFR.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.DISPATCH
+    property: 每边沿最多消费一个状态修改请求；持续竞争的可见邮箱在3周期内被执行；取消窗口不消费HW。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.LOCK
+  name: 权限解锁和只置位锁
+  description: 权限解锁和只置位锁的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.SEC.WATCHDOG.AUTH.001
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.LOCK.001
+    name: lock
+    type: negative
+    description: 权限解锁和只置位锁
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_lock.sv
+    feature_ref:
+    - FL.WATCHDOG.LOCK
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.001
+    - LRS.REG.WATCHDOG.CFG.005
+    - LRS.REG.WATCHDOG.CFG.006
+    - LRS.SEC.WATCHDOG.AUTH.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 逐类权限拒绝；双解锁同源/异源；第二笔32周期边界与额度64周期；错误敏感命令消耗额度；四把锁及硬锁；warm/preset后查询。
+    expected_result:
+    - 可信侧带捕获后不随引脚变化；额度一次性；所有拒绝无喂狗；锁只能规定置位/POR清除；暂停与故障不能绕过。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.LOCK.001
+    name: lock_scenarios
+    type: functional
+    description: 权限×命令×状态×信用年龄；同拍锁与后续命令。
+    feature_ref:
+    - FL.WATCHDOG.LOCK
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.LOCK.001
+    name: monotonic_lock
+    feature_ref:
+    - FL.WATCHDOG.LOCK
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.001
+    - LRS.REG.WATCHDOG.CFG.005
+    - LRS.REG.WATCHDOG.CFG.006
+    - LRS.SEC.WATCHDOG.AUTH.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    property: 锁从0到1后只在POR清零；敏感操作消费一次额度，错误也不能复用。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.PAUSE
+  name: 暂停保持与安全连续性
+  description: 暂停保持与安全连续性的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.PAUSE.001
+    name: pause
+    type: low_power
+    description: 暂停保持与安全连续性
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_pause.sv
+    feature_ref:
+    - FL.WATCHDOG.PAUSE
+    req_ref:
+    - LRS.LP.WATCHDOG.PWR.001
+    - LRS.LP.WATCHDOG.PWR.002
+    - LRS.LP.WATCHDOG.PWR.003
+    - LRS.LP.WATCHDOG.PWR.004
+    - LRS.LP.WATCHDOG.PWR.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - sleep/debug权限组合、各D相位暂停；暂停中服务/配置、取消debug_auth；FLOW/双密钥暂停；暂停期间自身故障和升级。
+    expected_result:
+    - 暂停保留C/D/序列/期限/统计；恢复继续原相位；PAUSED服务不排队；故障升级与自身检测始终运行；无隐式期限重载。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.PAUSE.001
+    name: pause_scenarios
+    type: functional
+    description: 暂停来源×授权×通道状态×计时相位；安全/生产默认。
+    feature_ref:
+    - FL.WATCHDOG.PAUSE
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.PAUSE.001
+    name: frozen_phase
+    feature_ref:
+    - FL.WATCHDOG.PAUSE
+    req_ref:
+    - LRS.LP.WATCHDOG.PWR.001
+    - LRS.LP.WATCHDOG.PWR.002
+    - LRS.LP.WATCHDOG.PWR.003
+    - LRS.LP.WATCHDOG.PWR.004
+    - LRS.LP.WATCHDOG.PWR.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    property: PAUSED冻结普通计时及客户端期限，但不冻结升级和自身诊断；恢复原相位。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.RECOVERY
+  name: 局部恢复与暖复位
+  description: 局部恢复与暖复位的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.RECOVERY.001
+    name: recovery
+    type: reset
+    description: 局部恢复与暖复位
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_recovery.sv
+    feature_ref:
+    - FL.WATCHDOG.RECOVERY
+    req_ref:
+    - LRS.FUNC.WATCHDOG.REC.001
+    - LRS.FUNC.WATCHDOG.REC.002
+    - LRS.FUNC.WATCHDOG.REC.003
+    - LRS.FUNC.WATCHDOG.REC.004
+    - LRS.FUNC.WATCHDOG.REC.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - recovery_done在无请求/局部请求/最终边界，保持done跨下一次故障；预算0/1/255；warm在RUN/FAULT/RESET_PENDING/DISABLED。
+    expected_result:
+    - 只有合格实际恢复一次被接受；ack保持到done低；恢复清本轮、保留配置锁历史；预算超限立即最终；warm仅重启原活动通道。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.RECOVERY.001
+    name: recovery_scenarios
+    type: functional
+    description: done阶段×最终边界×预算×BOOT；warm与新致命故障同拍。
+    feature_ref:
+    - FL.WATCHDOG.RECOVERY
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.RECOVERY.001
+    name: recovery_once
+    feature_ref:
+    - FL.WATCHDOG.RECOVERY
+    req_ref:
+    - LRS.FUNC.WATCHDOG.REC.001
+    - LRS.FUNC.WATCHDOG.REC.002
+    - LRS.FUNC.WATCHDOG.REC.003
+    - LRS.FUNC.WATCHDOG.REC.004
+    - LRS.FUNC.WATCHDOG.REC.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    property: done/ack四阶段仅接受一次；旧done不能让下一故障获得恢复；最终期限不被延后。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.RESET
+  name: 复位分域与外部假设
+  description: 复位分域与外部假设的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  design_ref:
+  - LLD.MOD.WATCHDOG.INTEGRATION
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.RESET.001
+    name: reset
+    type: reset
+    description: 复位分域与外部假设
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_reset.sv
+    feature_ref:
+    - FL.WATCHDOG.RESET
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.002
+    - LRS.INTF.WATCHDOG.IF.004
+    - LRS.RESET.WATCHDOG.RST.001
+    - LRS.RESET.WATCHDOG.RST.002
+    - LRS.RESET.WATCHDOG.RST.003
+    - LRS.RESET.WATCHDOG.RST.004
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - POR异步断言不同相位释放；preset在各APB/mailbox阶段；pclk停止后故障/唤醒；同步释放2/3/4；初始化期注入及释放后注入。
+    expected_result:
+    - POR才清留痕；preset仅接口镜像复位并重同步IRQ；安全输出不依赖pclk；初始化诊断屏蔽不超过SYNC_STAGES+2；裸异步输入由集成规则拒绝。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.RESET.001
+    name: reset_scenarios
+    type: functional
+    description: 复位域×握手阶段×安全状态×时钟停止；外部停钟/失电责任单独审阅。
+    feature_ref:
+    - FL.WATCHDOG.RESET
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.RESET.001
+    name: reset_retention
+    feature_ref:
+    - FL.WATCHDOG.RESET
+    req_ref:
+    - LRS.INTF.WATCHDOG.IF.002
+    - LRS.INTF.WATCHDOG.IF.004
+    - LRS.RESET.WATCHDOG.RST.001
+    - LRS.RESET.WATCHDOG.RST.002
+    - LRS.RESET.WATCHDOG.RST.003
+    - LRS.RESET.WATCHDOG.RST.004
+    design_ref:
+    - LLD.MOD.WATCHDOG.INTEGRATION
+    property: preset不影响WDT域活动请求、配置锁及邮箱；POR同步释放级数符合配置。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.SAFETY
+  name: 独立数字诊断链
+  description: 独立数字诊断链的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.PERF.WATCHDOG.SAFETY.001
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  design_ref:
+  - LLD.MOD.WATCHDOG.SAFETY
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.SAFETY.001
+    name: safety
+    type: error_injection
+    description: 独立数字诊断链
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_safety.sv
+    feature_ref:
+    - FL.WATCHDOG.SAFETY
+    req_ref:
+    - LRS.PERF.WATCHDOG.SAFETY.001
+    - LRS.SAFE.WATCHDOG.SAF.001
+    - LRS.SAFE.WATCHDOG.SAF.002
+    - LRS.SAFE.WATCHDOG.SAF.003
+    - LRS.SAFE.WATCHDOG.SAF.004
+    - LRS.SAFE.WATCHDOG.SAF.005
+    - LRS.SAFE.WATCHDOG.SAF.006
+    design_ref:
+    - LLD.MOD.WATCHDOG.SAFETY
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 六种受控注入及独立故障活动：主/影子计数、分频/tick、阈值/锁/状态、完整服务资格、到期比较、final保持；覆盖RUN/PAUSED/恢复。
+    expected_result:
+    - 注入必须经过真实检测路径；从可观测边沿起≤2WDT周期告警/最终保持；共享错误不可使两路同时刷新；最终保持不依赖普通状态选择；另做综合网表独立性检查。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.SAFETY.001
+    name: safety_scenarios
+    type: functional
+    description: 故障位置×状态×诊断授权×锁×检测延迟；未激活/共因明确不计覆盖。
+    feature_ref:
+    - FL.WATCHDOG.SAFETY
+    design_ref:
+    - LLD.MOD.WATCHDOG.SAFETY
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.SAFETY.001
+    name: diagnostic_latency
+    feature_ref:
+    - FL.WATCHDOG.SAFETY
+    req_ref:
+    - LRS.PERF.WATCHDOG.SAFETY.001
+    - LRS.SAFE.WATCHDOG.SAF.001
+    - LRS.SAFE.WATCHDOG.SAF.002
+    - LRS.SAFE.WATCHDOG.SAF.003
+    - LRS.SAFE.WATCHDOG.SAF.004
+    - LRS.SAFE.WATCHDOG.SAF.005
+    - LRS.SAFE.WATCHDOG.SAF.006
+    design_ref:
+    - LLD.MOD.WATCHDOG.SAFETY
+    property: 激活的数字完整性异常可观测起最多2WDT周期提出并保持安全/最终请求，包括PAUSED。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.SERVICE
+  name: 软件密钥与令牌服务
+  description: 软件密钥与令牌服务的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.SEC.WATCHDOG.TOKEN.001
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.SERVICE.001
+    name: service
+    type: boundary
+    description: 软件密钥与令牌服务
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_service.sv
+    feature_ref:
+    - FL.WATCHDOG.SERVICE
+    req_ref:
+    - LRS.FUNC.WATCHDOG.SRV.001
+    - LRS.FUNC.WATCHDOG.SRV.002
+    - LRS.FUNC.WATCHDOG.SRV.003
+    - LRS.FUNC.WATCHDOG.SRV.004
+    - LRS.FUNC.WATCHDOG.SRV.005
+    - LRS.FUNC.WATCHDOG.SRV.006
+    - LRS.FUNC.WATCHDOG.SRV.007
+    - LRS.FUNC.WATCHDOG.SRV.008
+    - LRS.FUNC.WATCHDOG.SRV.009
+    - LRS.SEC.WATCHDOG.TOKEN.001
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 遍历SINGLE/DUAL/TOKEN/QA；密钥首笔、重复首笔、错第二笔、无首笔；SEQ_LIMIT前/当拍/后；旧token重放、错source、读取challenge。
+    expected_result:
+    - 独立常量/LFSR/QA算术与序列时间表判定；只有完整合法完成贡献；拒绝不刷新、不换token；首笔及无关读写不改变计时。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.SERVICE.001
+    name: service_scenarios
+    type: functional
+    description: 算法×结果×序列边界×窗口；令牌每客户端独立。
+    feature_ref:
+    - FL.WATCHDOG.SERVICE
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.SNAPSHOT
+  name: 全表原子快照
+  description: 全表原子快照的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  design_ref:
+  - LLD.MOD.WATCHDOG.TRANSPORT
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.SNAPSHOT.001
+    name: snapshot
+    type: register
+    description: 全表原子快照
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_snapshot.sv
+    feature_ref:
+    - FL.WATCHDOG.SNAPSHOT
+    req_ref:
+    - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+    - LRS.REG.WATCHDOG.SNP.001
+    - LRS.REG.WATCHDOG.SNP.002
+    - LRS.REG.WATCHDOG.SNP.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 随机更新各客户端后SNAPSHOT；W64跨低字回卷；计时/服务/故障同拍快照；改变客户端选择器；停WDT读取旧镜像；preset保留上次成功快照，仅复位选择器及接口输出镜像。
+    expected_result:
+    - 命令执行边沿之后的模型状态生成整表期望；高低字、token、版本、序号同一代；普通读不更新；SNAP_VALID=0全镜像零。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.SNAPSHOT.001
+    name: snapshot_scenarios
+    type: functional
+    description: 通道/客户端端点×快照并发事件×时钟比；保持到下一成功快照。
+    feature_ref:
+    - FL.WATCHDOG.SNAPSHOT
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.SNAPSHOT.001
+    name: held_image
+    feature_ref:
+    - FL.WATCHDOG.SNAPSHOT
+    req_ref:
+    - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+    - LRS.REG.WATCHDOG.SNP.001
+    - LRS.REG.WATCHDOG.SNP.002
+    - LRS.REG.WATCHDOG.SNP.003
+    design_ref:
+    - LLD.MOD.WATCHDOG.TRANSPORT
+    property: SNAP_VALID有效后镜像在下次成功快照或POR前保持，preset不清快照；高低字和全客户端同代。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.WATCHDOG.STATE
+  name: 启动停止与启动期
+  description: 启动停止与启动期的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.FUNC.WATCHDOG.STA.001
+  - LRS.FUNC.WATCHDOG.STA.002
+  - LRS.FUNC.WATCHDOG.STA.003
+  - LRS.FUNC.WATCHDOG.STA.004
+  - LRS.FUNC.WATCHDOG.STA.005
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.STATE.001
+    name: state
+    type: directed
+    description: 启动停止与启动期
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_state.sv
+    feature_ref:
+    - FL.WATCHDOG.STATE
+    req_ref:
+    - LRS.FUNC.WATCHDOG.STA.001
+    - LRS.FUNC.WATCHDOG.STA.002
+    - LRS.FUNC.WATCHDOG.STA.003
+    - LRS.FUNC.WATCHDOG.STA.004
+    - LRS.FUNC.WATCHDOG.STA.005
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - AUTO_START与手动START；BOOT开启/关闭；BOOT首次完整服务；重复START；STOP在各状态、NO_STOP/ENABLE_LOCK开关；pclk停止自动启动。
+    expected_result:
+    - 启动边沿年龄/相位置零；BOOT只有一次宽限；非法START/STOP不重置监督；STOP仅授权解锁且允许状态成功；保留历史与锁。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.STATE.001
+    name: state_scenarios
+    type: functional
+    description: 控制状态×命令×锁；POR与首个可用WDT边沿。
+    feature_ref:
+    - FL.WATCHDOG.STATE
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.WATCHDOG.TIMING
+  name: 计时窗口与周期优先级
+  description: 计时窗口与周期优先级的可执行正确性证明
+  priority: must
+  req_ref:
+  - LRS.CFG.WATCHDOG.PAR.003
+  - LRS.FUNC.WATCHDOG.TIM.001
+  - LRS.FUNC.WATCHDOG.TIM.002
+  - LRS.FUNC.WATCHDOG.TIM.003
+  - LRS.FUNC.WATCHDOG.TIM.004
+  - LRS.FUNC.WATCHDOG.TIM.005
+  - LRS.FUNC.WATCHDOG.TIM.006
+  - LRS.PERF.WATCHDOG.TIME.001
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.VER.001
+  - LRS.CONS.WATCHDOG.VER.002
+  design_ref:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.WATCHDOG.TIMING.001
+    name: timing
+    type: random
+    description: 计时窗口与周期优先级
+    priority: must
+    tier: regression
+    proof_kind: uvm
+    implementation: verification/tc/tc_timing.sv
+    feature_ref:
+    - FL.WATCHDOG.TIMING
+    req_ref:
+    - LRS.CFG.WATCHDOG.PAR.003
+    - LRS.FUNC.WATCHDOG.TIM.001
+    - LRS.FUNC.WATCHDOG.TIM.002
+    - LRS.FUNC.WATCHDOG.TIM.003
+    - LRS.FUNC.WATCHDOG.TIM.004
+    - LRS.FUNC.WATCHDOG.TIM.005
+    - LRS.FUNC.WATCHDOG.TIM.006
+    - LRS.PERF.WATCHDOG.TIME.001
+    - LRS.CONS.WATCHDOG.NFR.004
+    - LRS.CONS.WATCHDOG.VER.001
+    - LRS.CONS.WATCHDOG.VER.002
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    preconditions:
+    - POR完成；采用参数空间的合法配置；依据当前能力选择正向或UNSUPPORTED负向场景
+    stimulus:
+    - 选择P=0/1/最大代表，短TIMEOUT；服务落WIN_MIN-1/WIN_MIN/TIMEOUT-1/TIMEOUT；PRETIMEOUT同拍服务；C/D饱和与多通道并行。
+    expected_result:
+    - oracle以周期起点绝对时间推算floor(elapsed/(P+1))，不读取RTL计数作为期望；timeout精确TIMEOUT*(P+1)；成功服务抑制当拍新预警。
+    timeout_policy: 仿真10ms/1000000 WDT边沿，进程600秒；静态每配置1800秒，超时失败
+    config_ref:
+    - CFGSET.WATCHDOG.STANDARD
+    - CFGSET.WATCHDOG.SAFETY
+    - CFGSET.WATCHDOG.SUPERVISOR
+    - CFGSET.WATCHDOG.PC_MATRIX
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.WATCHDOG.TIMING.001
+    name: timing_scenarios
+    type: functional
+    description: tick×窗口边界×预警×服务；宽度与分频端点。
+    feature_ref:
+    - FL.WATCHDOG.TIMING
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.WATCHDOG.TIMING.001
+    name: no_illegal_refresh
+    feature_ref:
+    - FL.WATCHDOG.TIMING
+    req_ref:
+    - LRS.CFG.WATCHDOG.PAR.003
+    - LRS.FUNC.WATCHDOG.TIM.001
+    - LRS.FUNC.WATCHDOG.TIM.002
+    - LRS.FUNC.WATCHDOG.TIM.003
+    - LRS.FUNC.WATCHDOG.TIM.004
+    - LRS.FUNC.WATCHDOG.TIM.005
+    - LRS.FUNC.WATCHDOG.TIM.006
+    - LRS.PERF.WATCHDOG.TIME.001
+    - LRS.CONS.WATCHDOG.NFR.004
+    - LRS.CONS.WATCHDOG.VER.001
+    - LRS.CONS.WATCHDOG.VER.002
+    design_ref:
+    - LLD.MOD.WATCHDOG.CHANNEL
+    property: 除合法START/recovery/warm/完整服务及ALIVE健康边界外，周期起点不能重置；非法服务不得延后timeout。
+    severity: error
+    verification_method: assertion
+    implementation: verification/assertions/watchdog_assertions.sv
+    applicability:
+      expr: 'true'
+  config_coverage: []
+config_sets:
+- id: CFGSET.WATCHDOG.STANDARD
+  strategy: default
+  parameters:
+    NUM_CHANNELS: 1
+    COUNTER_WIDTH: 32
+    PRESCALE_WIDTH: 16
+    NUM_CLIENTS: 1
+    SOURCE_WIDTH: 4
+    SYNC_STAGES: 2
+    SUPPORT_TOKEN_QA: 0
+    SUPPORT_SUPERVISION: 0
+    SUPPORT_HW_EVENT: 0
+    SAFETY_EN: 0
+    ALLOW_RUNTIME_UPDATE: 0
+    DIAG_INJECT_EN: 0
+  config_ref: CFG_STANDARD
+  purpose: 默认普通/窗口单通道实例
+- id: CFGSET.WATCHDOG.SAFETY
+  strategy: risk_based
+  parameters:
+    NUM_CHANNELS: 1
+    COUNTER_WIDTH: 32
+    PRESCALE_WIDTH: 16
+    NUM_CLIENTS: 1
+    SOURCE_WIDTH: 4
+    SYNC_STAGES: 2
+    SUPPORT_TOKEN_QA: 0
+    SUPPORT_SUPERVISION: 0
+    SUPPORT_HW_EVENT: 0
+    SAFETY_EN: 1
+    ALLOW_RUNTIME_UPDATE: 0
+    DIAG_INJECT_EN: 0
+  config_ref: CFG_SAFETY
+  purpose: 单通道自身诊断增强实例
+- id: CFGSET.WATCHDOG.SUPERVISOR
+  strategy: risk_based
+  parameters:
+    NUM_CHANNELS: 2
+    COUNTER_WIDTH: 64
+    PRESCALE_WIDTH: 16
+    NUM_CLIENTS: 2
+    SOURCE_WIDTH: 4
+    SYNC_STAGES: 2
+    SUPPORT_TOKEN_QA: 1
+    SUPPORT_SUPERVISION: 1
+    SUPPORT_HW_EVENT: 1
+    SAFETY_EN: 1
+    ALLOW_RUNTIME_UPDATE: 1
+    DIAG_INJECT_EN: 0
+  config_ref: CFG_SUPERVISOR
+  purpose: 完整增强双通道、双客户端、64-bit 代表实例
+- id: CFGSET.WATCHDOG.PC_MATRIX
+  strategy: risk_based
+  parameter_model: model/parameter_space.yaml
+  configuration_ids:
+  - CFG_STANDARD
+  - CFG_SAFETY
+  - CFG_SUPERVISOR
+  - CFG_DEFAULT
+  - CFG_RISK_MAX
+  - CFG_RISK_AUTOSTART_ALL
+  - CFG_RISK_DIAG
+  - CFG_RISK_STOP_ALLOWED
+  - CFG_CONSUMER_DEFAULT
+  - CFG_NEG_NUM_CHANNELS_0
+  - CFG_NEG_NUM_CHANNELS_17
+  - CFG_NEG_COUNTER_WIDTH_31
+  - CFG_NEG_NUM_CLIENTS_33
+  - CFG_NEG_PRESCALE_WIDTH_17
+  - CFG_NEG_SOURCE_WIDTH_17
+  - CFG_NEG_SYNC_STAGES_1
+  - CFG_NEG_AUTO_START_MASK_2
+  - CFG_NEG_DEFAULT_CFG_EMPTY
+  - CFG_NEG_DEFAULT_TIMEOUT
+  - CFG_BOUNDARY_AUTO_START_MASK_1
+  - CFG_BOUNDARY_HARD_CFG_LOCK_MASK_1
+  - CFG_BOUNDARY_NUM_CHANNELS_1
+  - CFG_BOUNDARY_COUNTER_WIDTH_1
+  - CFG_BOUNDARY_COUNTER_WIDTH_2
+  - CFG_BOUNDARY_PRESCALE_WIDTH_0
+  - CFG_BOUNDARY_NUM_CLIENTS_1
+  - CFG_BOUNDARY_SOURCE_WIDTH_0
+  - CFG_BOUNDARY_SOURCE_WIDTH_1
+  - CFG_BOUNDARY_SYNC_STAGES_1
+  - CFG_BOUNDARY_SYNC_STAGES_2
+  - CFG_BOUNDARY_SUPPORT_TOKEN_QA_1
+  - CFG_BOUNDARY_SUPPORT_SUPERVISION_1
+  - CFG_BOUNDARY_SUPPORT_HW_EVENT_1
+  - CFG_BOUNDARY_ALLOW_RUNTIME_UPDATE_1
+  - CFG_BOUNDARY_DIAG_INJECT_EN_1
+  - CFG_PW_73cd1ad672d5
+  - CFG_PW_9ad59ffed5e7
+  - CFG_PW_50de12550c4f
+  - CFG_PW_596ba971774e
+  - CFG_PW_ac0bd2109f03
+  - CFG_PW_cb6cebeba21f
+  - CFG_PW_e832c67efecc
+  - CFG_PW_0306bf57154c
+  - CFG_PW_de29e4f334e9
+  - CFG_PW_bd0ae6ab9504
+  - CFG_PW_25e7df838011
+  - CFG_PW_c548f1faef3f
+  - CFG_PW_162a4936d6db
+  - CFG_PW_bd9fa60d9b29
+  - CFG_PW_dd294ae1bf28
+  - CFG_PW_d12c4aaaf1e5
+  - CFG_PW_d5a8c679cad2
+  - CFG_PW_e3e2348f3f82
+  - CFG_PW_c852562e78ef
+  - CFG_PW_7c07605b29be
+  - CFG_PW_a708fdaa248a
+  - CFG_PW_222365627967
+  - CFG_PW_1a9b01b825c7
+  - CFG_PW_53444b5768d4
+  - CFG_PW_b81b8fd5929e
+  - CFG_PW_affa50ecca51
+  - CFG_PW_d26022fef7f6
+  - CFG_PW_511f90a13f65
+  - CFG_PW_fe5caa71a8c4
+  - CFG_PW_174cde16d006
+  - CFG_PW_fa573ccec8cd
+  - CFG_PW_650d2e241f86
+  - CFG_PW_1d84dff8ffbb
+  - CFG_PW_2a0a92eac822
+  - CFG_PW_5294b95bbdba
+  - CFG_PW_a8c4906f9c8a
+  - CFG_PW_bf5e59217dd9
+  - CFG_PW_7c44cf3014f1
+  - CFG_PW_97266a0389e6
+  - CFG_PW_cbc9cb7e5016
+  - CFG_PW_01e0ede41dfa
+  - CFG_PW_2de79dca2a65
+  - CFG_PW_cd3a3e10884d
+  - CFG_PW_a4eb2b23623f
+  - CFG_PW_282ea6fcf16b
+  - CFG_PW_e9cfe2b100e1
+  - CFG_PW_c10d42f55ddd
+  - CFG_PW_60e61144a47e
+  - CFG_PW_48d78a20d6a4
+  - CFG_PW_9c12382636c6
+  - CFG_PW_64ca7cf4238a
+  - CFG_PW_6065661b9f4f
+  - CFG_PW_86408daa46c6
+  - CFG_PW_d52d3cb1c57f
+  - CFG_PW_a56547bcdca5
+  - CFG_PW_d1765c5dbdf7
+  - CFG_PW_52c387108927
+  - CFG_PW_4a9a9ce9ed0a
+  - CFG_PW_8dbcf7388e07
+  - CFG_PW_656c132840ec
+  - CFG_PW_d8a5511b2cf3
+  - CFG_PW_8682265e6d0a
+  - CFG_PW_8b7fd744ab89
+  - CFG_PW_1e4ac82da981
+  - CFG_PW_868b839fb0f0
+  - CFG_PW_c94e0f6c8d5e
+  - CFG_PW_2271fceedcea
+  - CFG_PW_fad5a5afe2a3
+  - CFG_PW_a52826d37633
+  - CFG_PW_55327f1f6af2
+  - CFG_PW_2e0d8d15ef1e
+  - CFG_PW_3ce89a4dbb48
+  - CFG_PW_ac6e2959f5d5
+  - CFG_PW_b57b3bc4fff8
+  - CFG_PW_a0b927d3791e
+  - CFG_PW_54e2bdbae91c
+  - CFG_PW_3baa5e7a6583
+  - CFG_PW_e1c2a32f602e
+  - CFG_PW_96fb1c9d45f7
+  - CFG_PW_79f872685b87
+  - CFG_PW_61c813d1ead3
+  - CFG_PW_5b1e01173392
+  - CFG_PW_f71593525a1a
+  - CFG_PW_31b9fc38341d
+  - CFG_PW_5022589a674e
+  - CFG_PW_ea628109fad7
+  - CFG_PW_ec98539b6440
+  - CFG_PW_905819d12629
+  - CFG_PW_b0a7914b2673
+  - CFG_PW_d40b0a1e9702
+  - CFG_PW_cf65717761dd
+  - CFG_PW_12fc7dade58d
+  - CFG_PW_577127eff535
+  - CFG_PW_8d96ed9eeb0f
+  - CFG_PW_e8c8f7481a68
+  - CFG_PW_4c4ec750c4ba
+  - CFG_PW_51bcdc97258d
+  - CFG_PW_5fe6502b521e
+  - CFG_PW_225ba3320ed1
+  - CFG_PW_04a6ebd14503
+  - CFG_PW_0f1f59e68a8c
+  - CFG_PW_d4e4d6519606
+  - CFG_PW_e83a6ba7e0ea
+  - CFG_PW_c760be9cf33a
+  - CFG_PW_711f29bfa35c
+  - CFG_PW_681f8fbf48ac
+  - CFG_PW_2c169764d1f2
+  - CFG_PW_f9e2564ef442
+  - CFG_PW_d36984c7f2d6
+  - CFG_PW_a4444e12480e
+  - CFG_PW_3345a5c2213d
+  - CFG_PW_a9e51f0dfd10
+  - CFG_PW_8602e861b035
+  - CFG_PW_e964544d4732
+  - CFG_PW_506605394870
+  - CFG_PW_4e2bee1597ac
+  - CFG_PW_b3cefef97a57
+  - CFG_PW_941d28d9418a
+  - CFG_PW_303bd10066fd
+  - CFG_PW_3ce0ec9cf86b
+  - CFG_PW_5601eead8201
+  - CFG_PW_8946c75fde17
+  - CFG_PW_2ae392f50305
+  - CFG_PW_685d71bddae5
+  - CFG_PW_76dc627bc476
+  - CFG_PW_bec58022fa34
+  - CFG_PW_62c13f7af352
+  - CFG_PW_8035e0cfed3a
+  - CFG_PW_c0a66d2343db
+  - CFG_PW_51ff6ec5a34d
+  - CFG_PW_c7d163a201db
+  - CFG_PW_09cef2ea0477
+  - CFG_PW_a21911b938d1
+  - CFG_PW_5c819c9cd509
+  - CFG_PW_72ba345afe44
+  - CFG_PW_72e66c1672bf
+  - CFG_PW_ef34059538f8
+  - CFG_PW_86fa4e8e0d11
+  - CFG_PW_9c8a601a22b0
+  - CFG_PW_47c0d1904198
+  - CFG_PW_6858af06b1e6
+  - CFG_PW_7711eb886c78
+  - CFG_PW_82e136149749
+  - CFG_PW_23e1fecc0aac
+  - CFG_PW_710dfc8e603c
+  - CFG_PW_758bf4d9512e
+  - CFG_PW_d062f26d836d
+  - CFG_PW_103114430a13
+  - CFG_PW_e4e9c2f024ae
+  - CFG_RAND_81ca1ba693f0
+  - CFG_RAND_5b889ccda692
+  - CFG_RAND_8354f7cf652b
+  - CFG_RAND_ac90c97c2fc5
+  purpose: PC全188个受限配置；合法真实构建，非法预期拒绝，功能与结构风险选代表
+config_coverage:
+- id: CCOV.WATCHDOG.PARAMETERS
+  dimensions: *id001
+  strategy: *id002
+  feature_ref: *id003
+gates:
+- gate: VP0
+  status: pass
+  verification_plan_freeze: true
+  approvals:
+    architecture: user_authorized
+    rtl: user_authorized
+    verification: user_authorized
+  approval_ref: reports/full_flow/continuation_authorization.md

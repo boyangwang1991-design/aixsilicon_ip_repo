@@ -1,0 +1,131 @@
+[
+  {
+    "name": "nonzero_current_provenance",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/tmp/asd_reg_close.py"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/nonzero_current_provenance.log",
+    "log_sha256": "aa787d4a180531375e1b391ba0a171b57fd91d5896501297af0360fb1ae80f74"
+  },
+  {
+    "name": "materialize",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--ensure"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/materialize.log",
+    "log_sha256": "ea5c155e4abbf50165471e944aed5a4ecb2a12a88b87160ec58e5af742d4ec8f"
+  },
+  {
+    "name": "suite_validator",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/scripts/validate_suite.py"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/suite_validator.log",
+    "log_sha256": "5422f8f7a8994abd79a4bc1eb459b5e7b14c60e09dd679a50ce2a83e479739d3"
+  },
+  {
+    "name": "canonical_suite",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "pytest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_skill_repo/skills/ip-development-suite/scripts/tests",
+      "-q",
+      "-o",
+      "addopts="
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/canonical_suite.log",
+    "log_sha256": "9d715b23e51d19c746674037efbebf81cbcead817628154517a19c6aa37ae008"
+  },
+  {
+    "name": "make_check_standard",
+    "command": [
+      "make",
+      "check"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/make_check_standard.log",
+    "log_sha256": "aac2301bccbc545730a8bd014a801fce75290aa1bb65748d1755d07b4fdc515d"
+  },
+  {
+    "name": "quality_final",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/15-regression-quality-review/scripts/evaluate_quality.py",
+      "--workspace",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+      "--ip-name",
+      "apb_secure_demux",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/quality.yaml",
+      "--gate-report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/gate_report.md",
+      "--fail-on-gate"
+    ],
+    "exit_code": 2,
+    "timeout": false,
+    "log": "reports/quality/vplan/quality_final.log",
+    "log_sha256": "c3d70b4d606ec6e2f4deedc8c4cfada21f5b7ac4739c84c501d49f541c22baf9"
+  },
+  {
+    "name": "status_workflow",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "workflow"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/status_workflow.log",
+    "log_sha256": "30ce79607180d5975a622c6711814943b957a7bc1fcd44f278b00894499010d5"
+  },
+  {
+    "name": "status_ip",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "ip"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/status_ip.log",
+    "log_sha256": "4c0c2dc423443d2306d4c6d85043f6a5c5462dca791d0c16f3ebfb316aa1ef78"
+  },
+  {
+    "name": "status_skills",
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/bootstrap.py",
+      "--skip-materialize",
+      "aix",
+      "repo",
+      "status",
+      "skills"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "log": "reports/quality/vplan/status_skills.log",
+    "log_sha256": "cb9e7872539e587b8a2e9146f5f6de288a8a1930dd84721ccf3a5c0470457654"
+  }
+]

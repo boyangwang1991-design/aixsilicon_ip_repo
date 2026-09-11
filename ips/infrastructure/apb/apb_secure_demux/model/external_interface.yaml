@@ -1,0 +1,122 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+interfaces:
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.UPSTREAM
+  name: upstream
+  scope: external
+  protocol: APB4
+  role: slave
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  - LRS.RESET.APB_SECURE_DEMUX.RST.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.DOWNSTREAM
+  name: downstream
+  scope: external
+  protocol: APB4
+  role: master
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.APB.001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.002
+  - LRS.INTF.APB_SECURE_DEMUX.APB.003
+  - LRS.INTF.APB_SECURE_DEMUX.APB.004
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00501
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00502
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.MASTERID_IN
+  name: masterid_in
+  scope: external
+  protocol: project_masterid
+  role: consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  - LRS.RESET.APB_SECURE_DEMUX.RST.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.MASTERID_OUT
+  name: masterid_out
+  scope: external
+  protocol: project_masterid
+  role: producer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.APB.001
+  - LRS.INTF.APB_SECURE_DEMUX.APB.002
+  - LRS.INTF.APB_SECURE_DEMUX.APB.003
+  - LRS.INTF.APB_SECURE_DEMUX.APB.004
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00501
+  - LRS.INTF.APB_SECURE_DEMUX.APB.00502
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.NOTIFY
+  name: notify
+  scope: external
+  protocol: level_signals
+  role: producer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.IRQ
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.001
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.002
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.003
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.004
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501
+  - LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.DIAGNOSTIC
+  name: diagnostic
+  scope: external
+  protocol: project_dfx
+  role: consumer_producer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.DFX
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00101
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00102
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00201
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.00202
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.003
+  - LRS.DFX.APB_SECURE_DEMUX.DFX.004
+  applicability:
+    expr: 'true'
+- id: HLD.IF.EXT.APB_SECURE_DEMUX.CLOCK_RESET
+  name: clock_reset
+  scope: external
+  protocol: clock_reset
+  role: consumer
+  owner_module: HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  clock_domain: CLK_PCLK
+  reset_domain: RST_PRESET_N
+  req_ref:
+  - LRS.INTF.APB_SECURE_DEMUX.IF.001
+  - LRS.INTF.APB_SECURE_DEMUX.IF.002
+  - LRS.INTF.APB_SECURE_DEMUX.IF.003
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  - LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  - LRS.RESET.APB_SECURE_DEMUX.RST.001
+  applicability:
+    expr: 'true'

@@ -1,0 +1,43 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+trace_type: hld_to_lld
+links:
+- source_id: HLD.MOD.APB_SECURE_DEMUX.ACCESS
+  target_id: LLD.MOD.APB_SECURE_DEMUX.ACCESS
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.CSR
+  target_id: LLD.MOD.APB_SECURE_DEMUX.CSR
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.DECODE
+  target_id: LLD.MOD.APB_SECURE_DEMUX.DECODE
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.DFX
+  target_id: LLD.MOD.APB_SECURE_DEMUX.DFX
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.EVENTS
+  target_id: LLD.MOD.APB_SECURE_DEMUX.EVENTS
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  target_id: LLD.MOD.APB_SECURE_DEMUX.FRONTEND
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.IRQ
+  target_id: LLD.MOD.APB_SECURE_DEMUX.IRQ
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.POLICY
+  target_id: LLD.MOD.APB_SECURE_DEMUX.POLICY
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.APB_SECURE_DEMUX.ROUTE
+  target_id: LLD.MOD.APB_SECURE_DEMUX.ROUTE
+  status: linked
+  confidence: high
+gap_analysis:
+  unlinked_sources: []
+  unlinked_targets: []

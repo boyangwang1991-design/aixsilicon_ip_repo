@@ -1,18 +1,17 @@
 // Generated from regs/watchdog.rdl. Do not edit.
 module watchdog_reg_adapter(
-input logic clk,rst_n,req,write, input logic [14:0] addr,
+input logic clk,rst_n,sel,enable,write, input logic [14:0] addr,
+input logic [2:0] prot, input logic [3:0] strb,
 input logic [31:0] wdata,rdata, output logic ready,error,
 output logic [31:0] read_data,write_mask, output logic writable,valid_addr);
 watchdog_csr_pkg::watchdog_regs__in_t hin;
 watchdog_csr_pkg::watchdog_regs__out_t hout;
-logic ra,wa,re,we;
 watchdog_csr u_csr(.clk(clk),.arst_n(rst_n),
-.s_cpuif_req(req),.s_cpuif_req_is_wr(write),.s_cpuif_addr(addr),
-.s_cpuif_wr_data(wdata),.s_cpuif_wr_biten(32'hffffffff),
-.s_cpuif_req_stall_wr(),.s_cpuif_req_stall_rd(),.s_cpuif_rd_ack(ra),
-.s_cpuif_rd_err(re),.s_cpuif_rd_data(read_data),.s_cpuif_wr_ack(wa),
-.s_cpuif_wr_err(we),.hwif_in(hin),.hwif_out(hout));
-assign ready=write ? wa : ra; assign error=write ? we : re;
+.s_apb_psel(sel),.s_apb_penable(enable),.s_apb_pwrite(write),
+.s_apb_paddr(addr),.s_apb_pprot(prot),.s_apb_pstrb(strb),
+.s_apb_pwdata(wdata),.s_apb_prdata(read_data),
+.s_apb_pready(ready),.s_apb_pslverr(error),
+.hwif_in(hin),.hwif_out(hout));
 assign hin.IP_ID.rd_ack=hout.IP_ID.req && !hout.IP_ID.req_is_wr;
 assign hin.IP_ID.rd_data=rdata & 32'hffffffff;
 assign hin.VERSION.rd_ack=hout.VERSION.req && !hout.VERSION.req_is_wr;

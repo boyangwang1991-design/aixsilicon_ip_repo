@@ -1,0 +1,11 @@
+{
+  "requirements": 258,
+  "source_ids": 97,
+  "source_ids_mapped": 95,
+  "routed": {
+    "GPIO-ARC-001": "HLD module decomposition proposal",
+    "GPIO-ARC-003": "HLD/LLD balanced IRQ/read/priority topology constraint"
+  },
+  "issues": [],
+  "contract_sha256": "59597f3b2da6408c3f95c95a4aadc05749b8ea9e0712c16d3a63edf577dff705"
+}

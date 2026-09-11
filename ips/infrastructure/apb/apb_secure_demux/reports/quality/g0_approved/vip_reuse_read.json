@@ -1,0 +1,23 @@
+{
+  "source": "repos/aixsilicon_vip_repo/registry.yaml",
+  "sha256": "05ce19eac9c290beecbf4096a8d780da7c5da456ea52f55d783eced3bee8915e",
+  "selected": [
+    {
+      "id": "VIP-004",
+      "name": "apb",
+      "family": "APB",
+      "group": "vip/amba",
+      "profile": "FULL_UVM",
+      "priority": "P0",
+      "hwif": "apb",
+      "description": "APB3/4/5 Master/Slave/Monitor/Checker/SVA、wait state、slave error、RME/PNSE、check_type、RAL",
+      "status": "developing",
+      "version": "-",
+      "path": "vip/amba/apb",
+      "quality": {
+        "maturity": "M1",
+        "qualification": "PARTIAL_DEVELOPING"
+      }
+    }
+  ]
+}

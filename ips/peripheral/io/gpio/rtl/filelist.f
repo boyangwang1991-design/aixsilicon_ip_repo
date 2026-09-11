@@ -1,0 +1,17 @@
+rtl/generated/gpio_csr_pkg.sv
+rtl/generated/gpio_reg_desc_pkg.sv
+rtl/generated/gpio_csr.sv
+rtl/generated/gpio_csr_adapter.sv
+rtl/gpio_pkg.sv
+rtl/gpio_aon_mailbox.sv
+rtl/gpio_aon_wake.sv
+rtl/gpio_apb_if.sv
+rtl/gpio_capture.sv
+rtl/gpio_diag.sv
+rtl/gpio_event_fifo.sv
+rtl/gpio_input.sv
+rtl/gpio_irq.sv
+rtl/gpio_output.sv
+rtl/gpio_regfile.sv
+rtl/gpio_security.sv
+rtl/gpio.sv

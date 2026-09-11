@@ -1,0 +1,9 @@
+{
+  "policy": "PeakRDL HTML and all site assets are local-only; no GitHub commits, Pages, release uploads or release archive inclusion.",
+  "previous_path": "docs/generated/apb_secure_demux_regs.html",
+  "local_path": "build/registers/html/apb_secure_demux",
+  "tracked_files": [],
+  "ignore_check": "ips/infrastructure/apb/apb_secure_demux/.gitignore:1:build/\tips/infrastructure/apb/apb_secure_demux/build/registers/html/apb_secure_demux/index.html",
+  "diagnostic_exception": "AGENT.md section 4: aix has no noninteractive ls-files/check-ignore capability; read-only diagnostics only.",
+  "local_file_count": 446
+}

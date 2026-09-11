@@ -1,0 +1,18 @@
+[
+  {
+    "path": "regs/apb_secure_demux.rdl",
+    "sha256": "321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4"
+  },
+  {
+    "path": "rtl/generated/apb_secure_demux_csr_pkg.sv",
+    "sha256": "33b9fe0fb282bf7770a9a6caddb9c5a80cf057bb378585662cc8cd74e00823fb"
+  },
+  {
+    "path": "rtl/generated/apb_secure_demux_csr.sv",
+    "sha256": "89ba9f7929e1210375f057e74c7934911ee1f470e8436bf5c9911cebb95b0d7b"
+  },
+  {
+    "path": "verification/registers/csr_interface_probe.sv",
+    "sha256": "8bb21bff1ef92ca002f377119181b08238e02f0efe532914c16a28efc72db218"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "finding": "ASD-SK-011",
+  "severity": "P0",
+  "document_status": "draft",
+  "source_gates": [
+    {
+      "gate": "G0",
+      "status": "open",
+      "requirement_freeze": false,
+      "approvals": {
+        "architecture": "pending",
+        "rtl": "pending",
+        "verification": "pending"
+      }
+    }
+  ],
+  "evaluator_observation": "G0 pass while source gate remains open/unfrozen; checks are structural only",
+  "execution_decision": "Do not enter dependent stages until actual review/freeze requirements are met",
+  "evidence": [
+    {
+      "path": "model/requirements.yaml",
+      "sha256": "6d8f967414dd96b12345dc8e22a903c22ecc3e1785020eb2d272e04f26b87466"
+    },
+    {
+      "path": "docs/lrs/99_quality_gate.md",
+      "sha256": "3e972fe8b4e635c13e98a0816c9da899b142c2bf5c1119a9317049df9009f13d"
+    },
+    {
+      "path": "reports/quality/gate_report.md",
+      "sha256": "f3b4998ccf2758d35cd59342680343aeb1daff174fc145761fbd1fe3710ee5b0"
+    }
+  ],
+  "historical_only": true,
+  "current_status": "G0 approved by user; see docs/reviews/g0_approval.md. Evidence hashes below refer to the prior draft, not current files."
+}

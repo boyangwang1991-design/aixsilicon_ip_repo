@@ -1,0 +1,2546 @@
+schema_version: '2.0'
+ip_name: watchdog
+delivery_model: parameterized
+register_model: required
+ppa_signoff: required
+document_version: 1.0.0
+status: reviewed
+requirement_baseline: watchdog-contract-1.0.0-full-flow-r1
+requirements:
+- id: LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+  category: CFG
+  feature: num_channels
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`NUM_CHANNELS` 应配置独立监督通道数，合法值为 `1～16`，默认 `1`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `NUM_CHANNELS=1`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+  category: CFG
+  feature: counter_width
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`COUNTER_WIDTH` 应配置计数及阈值的统一位宽，合法值为 `[32, 48, 64]`，默认 `32`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `COUNTER_WIDTH=32`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PRESCALE_WIDTH.001
+  category: CFG
+  feature: prescale_width
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`PRESCALE_WIDTH` 应配置分频配置有效位宽，合法值为 `1～16`，默认 `16`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `PRESCALE_WIDTH=16`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+  category: CFG
+  feature: num_clients
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`NUM_CLIENTS` 应配置每通道客户端数，合法值为 `1～32`，默认 `1`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `NUM_CLIENTS=1`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SOURCE_WIDTH.001
+  category: CFG
+  feature: source_width
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SOURCE_WIDTH` 应配置可信来源 ID 位宽，合法值为 `1～16`，默认 `4`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SOURCE_WIDTH=4`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SYNC_STAGES.001
+  category: CFG
+  feature: sync_stages
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SYNC_STAGES` 应配置同步释放及跨域单比特传递的配置级数，合法值为 `[2, 3, 4]`，默认 `2`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SYNC_STAGES=2`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SUPPORT_TOKEN_QA.001
+  category: CFG
+  feature: support_token_qa
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SUPPORT_TOKEN_QA` 应配置动态令牌/问答服务能力，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SUPPORT_TOKEN_QA=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SUPPORT_SUPERVISION.001
+  category: CFG
+  feature: support_supervision
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SUPPORT_SUPERVISION` 应配置GROUP/ALIVE/FLOW 增强监督能力，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SUPPORT_SUPERVISION=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SUPPORT_HW_EVENT.001
+  category: CFG
+  feature: support_hw_event
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SUPPORT_HW_EVENT` 应配置WDT 同域硬件事件接口能力，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SUPPORT_HW_EVENT=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.SAFETY_EN.001
+  category: CFG
+  feature: safety_en
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`SAFETY_EN` 应配置自身安全诊断增强能力，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `SAFETY_EN=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.ALLOW_RUNTIME_UPDATE.001
+  category: CFG
+  feature: allow_runtime_update
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`ALLOW_RUNTIME_UPDATE` 应配置运行计时配置的原子边界切换能力，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `ALLOW_RUNTIME_UPDATE=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.DIAG_INJECT_EN.001
+  category: CFG
+  feature: diag_inject_en
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`DIAG_INJECT_EN` 应配置受控诊断注入入口，生产默认关闭，合法值为 `[0, 1]`，默认 `0`。非法输入应拒绝，不能通过截断或静默降级改变配置语义。'
+  acceptance_criteria:
+  - 默认实例读回/体现 `DIAG_INJECT_EN=0`；合法值域端点及代表中间点可构建。
+  - 越界或非枚举值在生成/编译阶段报错；功能关闭时仍检查未支持访问的拒绝行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.AUTO_START_MASK.001
+  category: CFG
+  feature: auto_start_mask
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`AUTO_START_MASK` 应为 NUM_CHANNELS 位通道位图，用于选择POR 后自动启动的通道，默认0。位图不得引用未实现通道。'
+  acceptance_criteria:
+  - 分别选中首/末/全部/无通道核对行为。
+  - NUM_CHANNELS 变化后默认位图仍符合上述语义；超范围输入拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.NO_STOP_MASK.001
+  category: CFG
+  feature: no_stop_mask
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`NO_STOP_MASK` 应为 NUM_CHANNELS 位通道位图，用于选择启动后禁止软件停止的通道，默认全部已实现通道为 1。位图不得引用未实现通道。'
+  acceptance_criteria:
+  - 分别选中首/末/全部/无通道核对行为。
+  - NUM_CHANNELS 变化后默认位图仍符合上述语义；超范围输入拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.HARD_CFG_LOCK_MASK.001
+  category: CFG
+  feature: hard_cfg_lock_mask
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: '`HARD_CFG_LOCK_MASK` 应为 NUM_CHANNELS 位通道位图，用于选择POR 后即配置锁定的通道，默认0。位图不得引用未实现通道。'
+  acceptance_criteria:
+  - 分别选中首/末/全部/无通道核对行为。
+  - NUM_CHANNELS 变化后默认位图仍符合上述语义；超范围输入拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.DEFAULT_CFG.001
+  category: CFG
+  feature: default_cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.2、§6、§16.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 每个通道应具有完整合法静态 DEFAULT_CFG。自动启动通道的默认配置必须在构建阶段校验，包含服务/监督模式、阈值、策略及全部必需客户端条件。默认 BOOT_EN=1，默认服务算法为双密钥；具体时间由实例声明，不能假定一个固定时长适用于所有时钟。
+  acceptance_criteria:
+  - 逐通道检查 DEFAULT_CFG 满足原契约 §16.5 全部适用约束。
+  - 自动启动选中但默认配置不合法必须构建失败，不得静默关闭通道。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PROFILE.001
+  category: CFG
+  feature: profile
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.1、§18
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: STANDARD 应提供默认普通/窗口单通道实例；生产默认关闭诊断注入。
+  acceptance_criteria:
+  - 构建参数、能力寄存器及产品档要求一致。
+  - 分别完成适用需求追踪、配置回归与真实 PPA 条件报告。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PROFILE.002
+  category: CFG
+  feature: profile
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.1、§18
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: SAFETY 应提供单通道自身诊断增强实例；生产默认关闭诊断注入。
+  acceptance_criteria:
+  - 构建参数、能力寄存器及产品档要求一致。
+  - 分别完成适用需求追踪、配置回归与真实 PPA 条件报告。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PROFILE.003
+  category: CFG
+  feature: profile
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§3.1、§18
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: SUPERVISOR 应提供完整增强双通道、双客户端、64-bit 代表实例；生产默认关闭诊断注入。
+  acceptance_criteria:
+  - 构建参数、能力寄存器及产品档要求一致。
+  - 分别完成适用需求追踪、配置回归与真实 PPA 条件报告。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PAR.001
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PAR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 非法参数组合必须在生成/编译检查阶段报错。自动启动且默认配置非法时不得静默关闭 WDT。
+  acceptance_criteria:
+  - 非法参数和非法自动启动默认配置均在生成或编译阶段失败；不得退化成关闭监督。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PAR.002
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PAR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 能力寄存器必须反映实际 elaboration 结果；软件写入未实现模式返回 `UNSUPPORTED`，不改变运行状态。
+  acceptance_criteria:
+  - 逐配置读能力与编译参数一致；选择裁剪模式得到 UNSUPPORTED，运行状态及计时不变。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.WATCHDOG.PAR.003
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PAR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每通道计数、分频相位、服务状态、故障和升级期限独立。允许共享 APB/CDC 和诊断汇总，但不得因其他通道等待或故障而停止本通道计时。
+  acceptance_criteria:
+  - 制造其他通道忙、故障与恢复，本通道的到期边沿和升级期限均不变化。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.BUS.001
+  category: INTF
+  feature: bus
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-BUS-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 仅支持 32-bit 对齐访问；读取 PSTRB 不参与判断。所有有效寄存器写要求 PSTRB=4'b1111；非完整写、越界/未实现地址、写 RO、权限拒绝、保留位非零应在该笔完成时 PSLVERR=1 且不产生状态副作用。读
+    WO 返回 0。
+  acceptance_criteria:
+  - 不对齐、部分写、越界、RO 写、权限拒绝、保留位非零均 PSLVERR 且无请求副作用；WO 读零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.BUS.002
+  category: INTF
+  feature: bus
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-BUS-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: APB 访问仅在 PSEL && PENABLE && PREADY 边沿接受一次。常规访问采用固定有限延迟，最多进入 ACCESS 后 2 个 pclk 周期完成；不得等待停住的 wdt_clk 无限拉低 PREADY。
+  acceptance_criteria:
+  - 持续 ACCESS 只完成一次，wdt_clk 停止时也在最多 2 个 pclk ACCESS 周期内响应。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.BUS.003
+  category: INTF
+  feature: bus
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-BUS-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 能定位到有效通道的权限/格式拒绝，通过独立合并型事件握手将 ACCESS_ERROR 送达该通道，不占用命令邮箱、不推进服务协议；连续错误允许合并为一个粘滞事件，不承诺逐次计数。该事件发送状态由 POR 复位，preset_n
+    不丢弃已经捕获的事件。无有效通道的全局/越界访问只返回 PSLVERR，不伪造通道故障。忙拒绝属于流控，不产生 ACCESS_ERROR。该诊断路径不改变“返回错误的写不能执行其请求操作”的要求。
+  acceptance_criteria:
+  - 有效通道错误最终留下 ACCESS_ERROR，preset 不丢已捕获错误；全局越界/忙拒绝不伪造通道事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.PORTS.001
+  category: INTF
+  feature: ports
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: IP 应提供下表所列接口及方向/时钟域语义。APB 为 32-bit little-endian、至少 15-bit 地址；每通道输出宽度随 NUM_CHANNELS，可信来源宽度随 SOURCE_WIDTH。
+  acceptance_criteria:
+  - 连接逐项覆盖全部接口；有效通道/客户端/来源索引不得被截断。
+  - 未使用输入按对应系统假设固定，不能用普通软件信号替代可信复位/授权来源。
+  - '| 接口 | 方向/域 | 语义 |'
+  - '|---|---|---|'
+  - '| `pclk`, `preset_n` | 输入/APB | 配置总线时钟与接口复位 |'
+  - '| `wdt_clk`, `por_n` | 输入/WDT | 独立计时时钟；POR 异步置位、各域同步释放 |'
+  - '| APB4 `PSEL/PENABLE/PADDR/PWRITE/PWDATA/PSTRB/PPROT` | 输入/APB | 32-bit、little-endian，地址至少 15 bit |'
+  - '| APB4 `PRDATA/PREADY/PSLVERR` | 输出/APB | 仅在完成传输时采样响应 |'
+  - '| `access_source_i` | 输入/APB | 可信发起者 ID；与 APB 请求稳定 |'
+  - '| `cfg_auth_i`, `service_auth_i`, `diag_auth_i` | 输入/APB | 外部授权结果；随该事务锁存 |'
+  - '| `sleep_req_i`, `debug_req_i`, `debug_auth_i` | 输入/WDT | 电源/调试授权请求，进入 IP 前完成同步 |'
+  - '| `pause_ack_o[ch]` | 输出/WDT | 通道已进入允许的暂停状态 |'
+  - '| `warm_reset_evt_i` | 输入/WDT | 可信系统暖复位事件；不是直接清零 WDT 的复位脚 |'
+  - '| `recovery_done_i[ch]` | 输入/WDT | 可信复位管理器完成恢复的保持型握手请求 |'
+  - '| `recovery_ack_o[ch]` | 输出/WDT | 接受恢复完成握手；双方回零后才允许下一次握手 |'
+  - '| `irq_o[ch]` | 输出/APB | 同步到 APB 域的粘滞中断电平 |'
+  - '| `nmi_req_o[ch]` | 输出/WDT | 粘滞故障请求，接收方负责跨域 |'
+  - '| `local_reset_req_o[ch]` | 输出/WDT | 通道局部复位保持型请求 |'
+  - '| `system_reset_req_o` | 输出/WDT | 各通道最终请求及全局致命故障 OR 汇总 |'
+  - '| `safety_alert_o`, `safe_state_req_o` | 输出/WDT | 安全告警/安全状态保持型请求 |'
+  - '| `wake_req_o` | 输出/WDT | 预警或故障产生的唤醒请求汇总 |'
+  - '| `hw_evt_valid/ready/channel/client/type/data/source` | 可选/WDT | 握手事件；valid && ready 仅接收一次 |'
+  - '| `test_auth_i` | 输入/WDT | 生命周期和测试控制提供的诊断授权 |'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.IF.001
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-IF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 未使用可信来源功能的系统必须将来源固定为 0，并在外部限制服务访问者；不得宣称任务身份隔离。权限拒绝不得转化为喂狗。
+  acceptance_criteria:
+  - 无可信来源时固定来源 0，并记录外部访问控制；拒绝事务不刷新任何通道。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.IF.002
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-IF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IRQ 依赖 pclk 同步；pclk 停止时，安全告警、唤醒和复位请求仍必须工作。复位请求不得依赖 IRQ 被软件处理。
+  acceptance_criteria:
+  - 停止 pclk 后触发预警/故障，WDT 域唤醒及复位请求照常产生并保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.IF.003
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-IF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 任意异步输入必须由集成层同步或握手，禁止异步脉冲直接接入。硬件事件基础接口仅接受 wdt_clk 同域输入；其他域使用外部无丢失事件桥，不直接接裸脉冲。
+  acceptance_criteria:
+  - 接口连接审查确认异步输入有同步或完整握手，跨域硬件事件不使用裸脉冲。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.IF.004
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-IF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 不检测自身时钟整体停振；系统必须用独立参考时基或外部看门狗覆盖。若 IP 失电，输出也不能保证有效，系统安全分析必须覆盖电源故障。
+  acceptance_criteria:
+  - 集成假设明确独立停钟和电源故障检测者；不把本 IP 标成可自检整体停振。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.CDC.001
+  category: INTF
+  feature: cdc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CDC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 所有跨域状态修改通过单个单在途命令邮箱执行。APB 写成功只表示命令被邮箱接收；CMD_STATUS.EXEC_DONE 和 DONE_SEQ 表示 WDT 域执行完成。忙时新状态修改命令返回 PSLVERR/BUSY，不排队、不覆盖。
+  acceptance_criteria:
+  - APB 接收与域内执行分离；忙时拒绝新命令，DONE_SEQ/RESULT 只反映实际完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.CDC.002
+  category: INTF
+  feature: cdc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CDC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 单在途命令的 channel/client/op/data/source/auth 与完整配置快照应从接收到执行保持一致，跨域传递不得撕裂。每条命令最多执行一次，执行序号为 32-bit 自然回卷数，相邻命令可区分。
+  acceptance_criteria:
+  - 任意时钟比下请求负载一致且最多执行一次；序号跨 0xffffffff 回卷仍可区分相邻命令。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.CDC.003
+  category: INTF
+  feature: cdc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CDC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 命令邮箱、请求序号及完成记录应在 preset_n 和 warm_reset_evt 下保留。preset_n 只复位 APB 接口事务、staging、选择器及接口输出镜像；已接收命令继续完成且不重发。重启软件先查询
+    BUSY/DONE_SEQ/RESULT 再发下一命令。
+  acceptance_criteria:
+  - 在请求/接收/执行/应答各相位施加 preset，已接收命令不丢失不重放，完成记录可查询。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.CDC.004
+  category: INTF
+  feature: cdc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CDC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: warm_reset_evt 到达 WDT 域时取消尚未执行的命令，结果 CANCELED_RESET；已经执行命令不回滚。该边沿服务不得在恢复启动后被重放。POR 同时初始化两个域邮箱；任何单域功能复位不得清握手
+    toggle 造成伪命令。
+  acceptance_criteria:
+  - warm 前已执行结果不回滚；未执行命令完成为 CANCELED_RESET，同拍服务不在重启后重放。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.WATCHDOG.CDC.005
+  category: INTF
+  feature: cdc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CDC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: wdt_clk 停止后邮箱可能一直 BUSY；APB 状态读仍可完成，软件不可假定完成并重发。独立时钟监视器负责该失效。邮箱握手非法状态在 SAFETY 实例置 CDC_PROTOCOL。
+  acceptance_criteria:
+  - 停 wdt_clk 时状态读可完成且 BUSY 保持；恢复后不重发；SAFETY 非法握手产生 CDC_PROTOCOL。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.ESC.001
+  category: FUNC
+  feature: esc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-ESC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 升级年龄 E 从故障边沿置零，以未分频 wdt_clk 计，每个后续边沿递增且不可暂停。要求 `0 <= LOCAL_DELAY < FINAL_DELAY`；LOCAL_DELAY=0 同故障边沿请求局部复位。到
+    FINAL_DELAY 同拍必最终升级，恢复事件不能覆盖。
+  acceptance_criteria:
+  - LOCAL_DELAY=0 同拍请求，FINAL_DELAY 精确到期升级；暂停和恢复边界不能推迟期限。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.ESC.002
+  category: FUNC
+  feature: esc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-ESC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT 状态服务、清 IRQ、重复错误、配置访问不能重新起算 E。致命自身故障不等待 LOCAL_DELAY/FINAL_DELAY，立即最终升级。最终输出为保持型请求，不用计数器回卷清除。
+  acceptance_criteria:
+  - FAULT 中反复访问/服务/故障不重算升级年龄；致命异常立即升级，最终请求持续保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.ESC.003
+  category: FUNC
+  feature: esc
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-ESC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: wake_req 为各通道 `(PREWARN_raw && WAKE_EN) || active_fault` 汇总。RAW PREWARN 由 W1C 清除；active_fault 仅由可信恢复流程清除。NMI/safety_alert
+    对活动故障保持，不由 W1C 解除。
+  acceptance_criteria:
+  - 预警 wake 受 WAKE_EN 控制；活动故障始终 wake，W1C 不能解除活动 NMI/safety_alert。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.FLT.001
+  category: FUNC
+  feature: flt
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-FLT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT_POLICY 以与上述位同位置的位图指定哪些非致命违规进入 FAULT；TIMEOUT、ALIVE_MISSING、ALIVE_OVERFLOW、FLOW_SEQUENCE、DEADLINE 必须使能。安全配置另强制
+    EARLY/BAD_KEY/SEQ_TIMEOUT 使能。位11～14、16、17为固定致命，不可降级或屏蔽其最终请求。PREWARN 不能配置成监督故障。
+  acceptance_criteria:
+  - 强制监督故障不可关闭；致命事件不可屏蔽或降级；PREWARN 不成为 FAULT 策略。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.FLT.002
+  category: FUNC
+  feature: flt
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-FLT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 记录型服务错误不能刷新计数、更新令牌或贡献客户端完成。重复错误不能覆盖 FIRST_FAULT。IRQ_ENABLE 只控制 IRQ，不能屏蔽原始记录、升级或安全请求。
+  acceptance_criteria:
+  - 记录型错误不刷新、不更新 token、不贡献完成；IRQ mask 不影响原始事件与复位请求。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.REC.001
+  category: FUNC
+  feature: rec
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: recovery_done 只在 LOCAL_THEN_SYSTEM、FAULT、局部请求已置位、未到最终期限、ALLOW_LOCAL_RECOVERY=1 时可接受；其他状态不得触发重启或获得宽限。它表示目标复位已经实际完成且恢复条件已满足，不是“请求收到”。
+  acceptance_criteria:
+  - 只在局部请求已置位、允许恢复且尚未最终到期时接受 done；其他情况不重新开始周期。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.REC.002
+  category: FUNC
+  feature: rec
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 接受后清活动局部请求/NMI，E 清零，保留历史诊断/锁/active 配置，清除旧服务序列及客户端状态，重新进入 BOOT（BOOT_EN=0 则 RUN）。握手 ack 拉高直到 done 拉低；仅接受一次。下一故障若旧
+    done 未回零，必须等待新的完整握手，不能自动恢复。
+  acceptance_criteria:
+  - 接受恢复后进入规定起始周期并保留配置/锁/历史；done 未回零不再次接受。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.REC.003
+  category: FUNC
+  feature: rec
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: LOCAL_RECOVERY_LIMIT 为 0～255；0 表示禁止局部恢复，非零为两次可信系统暖复位之间最大允许恢复次数。超出时置 RECOVERY_LIMIT 并最终升级；成功运行和喂狗不清此计数。
+  acceptance_criteria:
+  - LIMIT=0 禁止恢复，达到限额后下一次恢复尝试最终升级；正常服务不清次数。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.REC.004
+  category: FUNC
+  feature: rec
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: RESET_PENDING 仅由 POR 或可信 warm_reset_evt 解除；warm_reset_evt 表示已完成系统暖复位并进入启动阶段。活动通道自动重新启动，保持锁和 active 配置，恢复计数清零；不自动启动原本
+    DISABLED 通道。FIRST_FAULT 保留。
+  acceptance_criteria:
+  - warm 只重新启动原活动通道；锁、active 和 FIRST_FAULT 保留，恢复次数清零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.REC.005
+  category: FUNC
+  feature: rec
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 任意非看门狗发起的 warm_reset_evt 对运行通道同样重启监督，因此必须限制在可信复位管理器。系统不能允许软件无限伪造该事件规避监督；看门狗不独立承担整机重复复位次数管理。
+  acceptance_criteria:
+  - 非 WDT 触发的可信 warm 同样重启监督；系统连接证明普通软件不能无限伪造事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.001
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 所有软件服务通过 SERVICE 命令，运行计数只读。一次服务由 `client_id/op/source/data` 和硬件生成的完成序号关联。来源来自可信侧带，不使用软件可写寄存器替代。
+  acceptance_criteria:
+  - 运行计数不可软件写入；服务完成记录对应 client/op/可信 source 和硬件序号。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.002
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 只有完整合法服务才可刷新计数；读取状态、第一笔密钥、IRQ 清除、配置写入不得刷新。RUN/BOOT 之外服务返回 BAD_STATE，PAUSED 返回 PAUSED；不因此产生服务协议故障。
+  acceptance_criteria:
+  - 逐项施加非完整服务操作，周期起点均不变化；非运行态返回规定状态码且不虚构协议故障。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.003
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 服务来源不匹配、权限拒绝、错误写宽度属于访问错误，不推进服务序列也不自动停止计时。密钥错误、顺序错误、有效序列超时属于监督故障类别，按 FAULT_POLICY 处理。
+  acceptance_criteria:
+  - 来源/权限/写宽拒绝不推进序列；错密钥、乱序和序列超时按配置的故障策略响应。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.004
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 服务序列时间以未分频 wdt_clk 周期计，定义第一笔在边沿 e0 完成，第二笔允许在 `1 <= e-e0 <= SEQ_LIMIT`；在 `e-e0=SEQ_LIMIT` 无合法完成即置序列超时。暂停期间冻结序列年龄。SEQ_LIMIT
+    必须大于 0，主监督期限优先。
+  acceptance_criteria:
+  - 第二笔在 e0+1 和 e0+SEQ_LIMIT 接受；边界无合法完成即超时，暂停冻结年龄，主到期优先。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.005
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: SINGLE_KEY/DUAL_KEY 为必选。DUAL_KEY 第二笔没有第一笔、第一笔重复、第二笔值错误均置 BAD_KEY_SEQUENCE，并清空该客户端未完成序列。无关合法寄存器读写不打断序列，主计时继续。
+  acceptance_criteria:
+  - 正确单/双密钥完成；第二笔先到、重复第一笔、错误第二笔均触发 BAD_KEY_SEQUENCE。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.006
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: TOKEN/QA 为可裁剪功能；每客户端状态独立。启动时 `token = 0x1D872B41 XOR (channel_id<<8) XOR client_id`，channel/client 从 0 编号，运算按
+    32 bit；若结果为 0 则取 1。
+  acceptance_criteria:
+  - 逐通道/客户端核对 32-bit 初始种子和零值替换；裁剪配置拒绝 TOKEN/QA。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.007
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: '定义 `next(x) = (x >> 1) XOR ((x & 1) ? 0x80200003 : 0)`。TOKEN 模式期望值为 token；QA 模式 challenge=token，响应为 `ROL32(token,7)
+    XOR 0x6D2B79F5 XOR (channel_id<<8) XOR client_id`。每个被接受的完整客户端服务后更新 token=next(token)，错误服务不更新；暂停/读取不更新。该算法仅为确定性的执行/重放错误检测，不提供密码学认证。'
+  acceptance_criteria:
+  - 使用已知种子独立计算 next/ROL32 响应；成功更新一次，错误、暂停、读取均不更新。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.008
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: TOKEN/QA 的当前值通过 SNAPSHOT 的客户端表读取，读取不产生新挑战。跨轮旧值必须失败；系统重启后种子会重复，不宣称跨启动防重放。服务完成反馈提供该客户端新 token 的可读快照途径。
+  acceptance_criteria:
+  - 同一轮多次快照读取挑战不变化；跨轮旧响应拒绝，复位后种子重复不解释为安全认证。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.009
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件必须等待上一条服务结果后才发下一条。驱动不得因等待超时盲目重发；应读取最终执行序号和结果。窗口服务按 WDT 域完整服务完成边沿判断。
+  acceptance_criteria:
+  - 驱动等待超时后查询最终序号而不重复发送；服务判定以 WDT 域完成边沿为准。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.010
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每通道 SERVICE_PATH 为 SOFTWARE 或 HARDWARE，运行中锁定，避免两个来源互相替代。硬件事件采用同一客户端/来源校验和监督状态；在硬件路径下 `data` 提交服务密钥/响应，FLOW
+    的 START/STEP/END 使用 type/data。
+  acceptance_criteria:
+  - 硬件/软件路径不互相替代；硬件客户端、来源和 FLOW 事件遵循相同合法性检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SRV.011
+  category: FUNC
+  feature: srv
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: APB 命令与硬件事件同拍竞争时采用轮询仲裁，每 wdt_clk 最多执行一个状态修改命令；运行计时不受仲裁反压影响。硬件 valid 在 ready 前必须保持负载稳定。超过窗口的事件即使早先拉高 valid 也不能成功。
+  acceptance_criteria:
+  - 连续两来源竞争均获服务且单拍最多执行一项；ready 前负载稳定，过期排队事件仍失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.STA.001
+  category: FUNC
+  feature: sta
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-STA-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: START 仅在 DISABLED 有效，必须使用已生效合法配置。BOOT_EN=1 则进入 BOOT，否则 RUN；重复 START 返回 BAD_STATE，不重置时间。
+  acceptance_criteria:
+  - 禁用态合法 START 启动；其他状态重复 START 返回 BAD_STATE 且原期限不推迟。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.STA.002
+  category: FUNC
+  feature: sta
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-STA-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: BOOT 使用 BOOT_TIMEOUT、普通服务时间区间 `[0,BOOT_TIMEOUT)`；服务算法、来源、客户端完成要求仍适用。BOOT 不发普通 PRETIMEOUT 预警。第一次完整成功服务切入 RUN，并清零计数、分频、客户端本轮状态；不能反复
+    START 获取 BOOT 宽限。
+  acceptance_criteria:
+  - BOOT 首次完整服务进入 RUN 并开始新周期；BOOT 不产生普通预警，重复 START 无新宽限。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.STA.003
+  category: FUNC
+  feature: sta
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-STA-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: AUTO_START 通道在 POR 同步释放后的第一个可用 wdt_clk 边沿自动启动，不依赖 pclk 或软件。该时点即服务周期起点。
+  acceptance_criteria:
+  - pclk 停止时自动启动仍在 POR 同步释放后首个可用 WDT 边沿发生。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.STA.004
+  category: FUNC
+  feature: sta
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-STA-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: NO_STOP_MASK=1 或 ENABLE_LOCK=1 的通道一旦启动不可由软件停止。其他通道 STOP 要求配置授权和有效解锁；仅 RUN/BOOT 可停止，清除未完成服务序列，不清历史故障，不解除锁。
+  acceptance_criteria:
+  - 锁定通道 STOP 拒绝；可停止通道仅在 BOOT/RUN 接受，历史故障和锁保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.STA.005
+  category: FUNC
+  feature: sta
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-STA-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: START、STOP、配置提交不直接清除 IRQ 或 FIRST_FAULT。冷启动默认 BOOT_EN=1；各通道默认时间通过 DEFAULT_CFG 明确，不将任意固定时长假设为适用于所有时钟。
+  acceptance_criteria:
+  - START/STOP/COMMIT 前后历史 IRQ/FIRST_FAULT 保持；默认启动时间来自指定 DEFAULT_CFG。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.001
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 客户端 ID 只是选择索引，身份保护由 OWNER_SOURCE 与可信来源比较实现。同一个 OWNER_SOURCE 管理多个客户端时，不宣称这些任务彼此隔离。
+  acceptance_criteria:
+  - 匹配 OWNER_SOURCE 才接受；相同来源管理多个客户端的实例不宣称任务隔离。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.002
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: SINGLE 的完整服务在合法窗口直接刷新通道。GROUP 的各客户端完整服务在合法窗口置 SEEN_MASK 位；最后一个必需客户端服务使 mask 完整时，才刷新通道。同拍刷新后 SEEN_MASK 清零开始新轮。
+  acceptance_criteria:
+  - GROUP 非最后客户端服务不刷新；最后必需客户端完成后刷新并清 SEEN_MASK。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.003
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: GROUP 在窗口开启前的完整客户端服务属于 EARLY_SERVICE；重复报到属于 DUPLICATE_CLIENT，默认记录且不贡献第二次报到。重复报到不更新 token。主超时记录 `REQUIRE_MASK
+    & ~SEEN_MASK`。第一笔双密钥允许在窗口前开始，但完整服务仍需在窗口内完成。
+  acceptance_criteria:
+  - 过早、重复、缺失分别得到规定事件和位图；重复报到不更新 token；第一密钥可提前。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.004
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: ALIVE 使用固定观测周期 TIMEOUT，不接受由窗口大小决定的提前刷新；WIN_EN 必须为 0。每客户端每次完整服务增加 16-bit 饱和事件数，MIN_ALIVE/MAX_ALIVE 满足 `1 <=
+    MIN <= MAX <= 65535`。超过 MAX 当拍产生 ALIVE_OVERFLOW。
+  acceptance_criteria:
+  - ALIVE 配置禁止窗口；MIN/MAX 取 1 和 65535 边界，超过 MAX 当拍告警。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.005
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: '`A=TIMEOUT` 边沿先对刚结束的周期统计进行评估：全部必需客户端计数满足范围则自动刷新周期、清零统计；否则 ALIVE_MISSING 故障并记录不足客户端。该边沿新到来的服务拒绝为 EPOCH_BOUNDARY，不归前后任一周期、不形成额外故障，调用方需下一拍重试。该规则是
+    ALIVE 对普通“TIMEOUT 必故障”的唯一例外。'
+  acceptance_criteria:
+  - 周期边界先评价旧计数；健康时刷新、缺失时故障；边界新服务返回 EPOCH_BOUNDARY 且不计入任一周期。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.006
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: ALIVE 周期中 PRETIMEOUT 到期只在当时尚有客户端未达 MIN 时产生预警。BOOT 周期使用 BOOT_TIMEOUT 作为首个固定观测周期，成功后转 RUN。固定时间检查能够发现软件过快报到，不能被高频服务无限推迟检查。
+  acceptance_criteria:
+  - ALIVE 仅缺少 MIN 时预警；BOOT 首周期成功转 RUN；持续高频服务不能推迟周期评价。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.007
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FLOW 为每客户端定义线性检查点 `0..LAST_STEP`，LAST_STEP 为 1～255。START(data=0) 开启该客户端本轮流程；之后 STEP 必须严格递增至 LAST_STEP-1；END(data=LAST_STEP)
+    结束。LAST_STEP=1 时 START 后直接 END。该模式不使用密钥服务，SERVICE_MODE 必须设 0，采用来源授权和检查点检查。
+  acceptance_criteria:
+  - LAST_STEP=1 和 255 均符合 START/STEP/END 定义；FLOW 禁止非 SINGLE_KEY 编码配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.008
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每客户端 START 在本轮只允许一次；重复、跳步、倒序、未 START 的 END 均为 FLOW_SEQUENCE。START/STEP 可在主窗口前发生，但 END 必须满足主窗口，否则 EARLY_SERVICE。所有必需客户端
+    END 后刷新通道。
+  acceptance_criteria:
+  - 重复/跳步/倒序/未 START 的 END 触发 FLOW_SEQUENCE；早 END 失败；最后完成才刷新。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.009
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 独立未分频 W-bit deadline 计数从 START 边沿置零，下一个边沿起递增。END 必须满足 `DEADLINE_MIN <= elapsed < DEADLINE_MAX`，MAX>MIN；到达 MAX
+    边沿时，Deadline 超时优先于 END。PAUSED 冻结；其他客户端服务不延后该期限。
+  acceptance_criteria:
+  - END 在 MIN 接受、MAX 拒绝；暂停冻结 Deadline；其他客户端活动不能延期。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.SUP.010
+  category: FUNC
+  feature: sup
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SUP-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 完整完成前主 TIMEOUT 仍有约束；两类期限先到先故障。FLOW 仅覆盖配置的线性检查点顺序及时间，不声称完整控制流或数据正确性验证。
+  acceptance_criteria:
+  - 主超时与 Deadline 任一先到均故障；声明 FLOW 只保证指定线性检查点与时间条件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.001
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 通道包含 W-bit 饱和向上计数 `C` 和分频相位 `D`。启动/成功刷新边沿设 `C=0,D=0`。此后每个 wdt_clk 边沿：若 `D=P`，产生 tick 并置 `D=0`；否则 `D=D+1`。因此每
+    `P+1` 个边沿产生一次 tick。
+  acceptance_criteria:
+  - P=0、P 最大值及代表中间值时，连续 tick 间隔精确为 P+1；成功刷新重建周期相位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.002
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: '每个运行边沿先计算候选年龄 `A = tick ? sat(C+1) : C`，所有窗口、预警、超时及服务合法性均用 A。无成功刷新时 `C=A`；成功刷新则 `C=0,D=0`。启动边沿本身不执行年龄递增。'
+  acceptance_criteria:
+  - tick 和非 tick 边沿均以候选年龄决定服务结果；启动边沿年龄为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.003
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 正常周期：`A >= TIMEOUT` 必须判超时；窗口开启时，完整服务仅在 `WIN_MIN <= A < TIMEOUT` 合法；普通模式等效 `WIN_MIN=0`。TIMEOUT 边沿的服务必须失败。允许在
+    WIN_MIN 边沿成功。
+  acceptance_criteria:
+  - WIN_MIN-1 拒绝、WIN_MIN 接受、TIMEOUT-1 接受、TIMEOUT 拒绝；覆盖分频相位。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.004
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: PRETIMEOUT 使能且 `A >= PRETIMEOUT`、本周期尚未预警时，产生一次预警事件。该边沿若有成功刷新则不产生新的预警；已存在的历史预警不自动清除。计数饱和不能导致超时消失。
+  acceptance_criteria:
+  - 阈值触发每周期一次；同拍成功服务抑制新预警，历史预警保持，饱和不丢失故障。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.005
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 未暂停时，从刷新/启动边沿到超时故障边沿恰为 `TIMEOUT*(P+1)` 个 wdt_clk 周期。启动周期改用 BOOT_TIMEOUT。软件应按最坏时钟偏差、总线/CDC 延迟预留服务裕量。
+  acceptance_criteria:
+  - 无暂停时故障边沿与 TIMEOUT*(P+1) 完全一致；BOOT 使用 BOOT_TIMEOUT。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.WATCHDOG.TIM.006
+  category: FUNC
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 从高到低按以下顺序处理，互斥状态更新只能执行最高有效项： 1. POR 初始化。 2. 自身致命完整性/冗余故障；最终升级到期。 3. 当前监督超时、服务违规、检查点 Deadline 违规；同拍发生的各原因全部置位。
+    4. 可信恢复事件；不得覆盖第 2/3 项本拍新故障。 5. 完整合法服务/刷新；含已批准待提交配置的边界切换。 6. 合法 START/STOP；STOP 不得覆盖本拍超时。 7. 授权暂停进入/退出。 8. 普通计数、预警、诊断清除。
+    进入暂停的该边沿仍执行到期判断；退出暂停的边沿只恢复状态，下一边沿恢复递增。暂停前已锁存故障不得暂停升级。硬件置位与 W1C 同拍时硬件置位优先。
+  acceptance_criteria:
+  - 对每对竞争动作验证优先序；到期与暂停同拍仍故障，恢复边沿不递增，清置同拍保留新事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.ACCESS.001
+  category: REG
+  feature: access
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§1、§16.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: IP 应提供本地即时只读信息、staging 配置、保持快照和命令访问四类软件可见寄存器能力。未定义位读零、保留位非零写拒绝；裁剪功能保留地址空间，不挪动其他寄存器。
+  acceptance_criteria:
+  - 逐访问类别检查读写/复位/拒绝语义。
+  - 不同配置对同一已定义地址保持一致，未实现位置返回规定错误。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.IDENTITY.001
+  category: REG
+  feature: identity
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§16.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 软件应可查询 IP 标识、版本、实际能力、在途命令状态、已发/已完成序号、结果及通道中断/复位/故障汇总。读事务完成状态不得清除完成记录。
+  acceptance_criteria:
+  - 读回符合实例能力；命令接收清 EXEC_DONE，完成置位，读不清。
+  - APB 同步拒绝不覆盖上一条 DONE 记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  category: REG
+  feature: client_window
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§16.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 每通道应独立保存每客户端 staging 配置和快照客户端表，选择器只选择访问目标。提交应捕获全部客户端配置，快照应捕获整个客户端表，SERVICE 接收时应捕获当时选择器。
+  acceptance_criteria:
+  - 交错修改多个客户端后整组提交，每客户端值保持独立。
+  - 快照完成后切换选择器只读已有镜像，不重新访问运行域。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.001
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件可先修改 pclk 域 staging 配置；配置仅在 CFG_COMMIT 经 WDT 域校验后成为 active。active 不得从多笔 APB 写中间状态直接取值。
+  acceptance_criteria:
+  - 多笔 staging 写期间 active 保持；只在完整提交校验成功后切换为新配置。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.002
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: CFG_COMMIT 包含完整配置快照和递增配置版本。检查模式支持、阈值、mask、权限、分频位宽、策略及高位；失败整组拒绝，不修改 active。配置写/提交不清计数。
+  acceptance_criteria:
+  - 每类非法项分别使整组拒绝；active 版本及计数不变化，不能出现部分生效。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.003
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DISABLED 状态立即应用成功提交。RUN 且 ALLOW_RUNTIME_UPDATE=1、未锁定时仅允许 TIMEOUT/WIN_MIN/PRETIMEOUT/PRESCALE 更新，校验后置 PENDING；在下一次旧配置定义的成功刷新边沿整体应用，再将
+    C/D 置零。ALIVE 在成功周期边界应用；失败周期不应用。
+  acceptance_criteria:
+  - 禁用态提交立即生效；运行态合法计时更新等待旧周期成功刷新，ALIVE 只在健康边界应用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.004
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 运行中不得更新服务算法、监督模式、客户端、身份、BOOT、暂停、故障策略和恢复策略。BOOT/PAUSED/FAULT/RESET_PENDING 不接受运行提交。已有 PENDING 时拒绝第二次提交；故障发生时丢弃
+    PENDING 并记录 CANCELED。可用 CANCEL_CFG 取消尚未生效的更新。
+  acceptance_criteria:
+  - 禁止状态/字段提交拒绝；第二次 pending 拒绝；故障取消或 CANCEL_CFG 后旧配置保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.005
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: UNLOCK 两笔常量依次为 `0xC0DE1234`、`0x3F21EDCB`，来源必须相同，在 32 个 wdt_clk 周期内完成；窗口从第一笔执行边沿起算，规则同服务序列。成功后提供一次敏感命令额度，在 64
+    个 wdt_clk 周期后过期；不暂停。敏感命令为 CFG_COMMIT/START/STOP/LOCK/DIAG_CLEAR/FAULT_INJECT。额度在命令被 WDT 域处理时消耗，失败也消耗；staging 写不消耗额度。
+  acceptance_criteria:
+  - 密钥来源一致且边界 32 周期有效；额度 64 周期过期，失败敏感命令也消费一次额度。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.006
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: CFG_LOCK、ENABLE_LOCK、DEBUG_LOCK、DIAG_LOCK 为只置位锁，置位即时生效，只能 POR 清除。HARD_CFG_LOCK_MASK 对应 CFG_LOCK POR 值为 1。CFG_LOCK
+    禁止配置提交但允许对合法已有配置 START；ENABLE_LOCK 禁止 STOP；DEBUG_LOCK 强制禁止调试暂停；DIAG_LOCK 禁止注入。锁不阻止合法服务。
+  acceptance_criteria:
+  - 四种锁只能置位；preset/warm/局部恢复不清锁，POR 使用参数默认，合法服务不受锁影响。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.CFG.007
+  category: REG
+  feature: cfg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-CFG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 任一 active 锁/配置在 wdt_clk 域为权威值。APB staging 的读回不代表 active 生效；软件必须检查 CFG_VERSION_ACTIVE。锁定同拍不存在跨来源命令合并，按单命令执行次序决定。
+  acceptance_criteria:
+  - 以 active 版本确认生效；staging 读回不代表运行配置，跨来源命令按执行先后生效。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.SNP.001
+  category: REG
+  feature: snp
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SNP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: SNAPSHOT 命令在 WDT 域一个边沿捕获指定通道的计数、状态、SEEN/缺失、统计、token、故障信息、active 参数及版本；整个镜像保持到下一次快照成功。普通读只读 pclk 可用镜像，不等待 WDT
+    域。
+  acceptance_criteria:
+  - 改变运行状态时验证全部字段来自同一 WDT 边沿；下一次成功快照前整个镜像保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.SNP.002
+  category: REG
+  feature: snp
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SNP-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: SNAP_VALID=0 时镜像读零；完成时提供 SNAP_SEQ 与配置版本。64-bit 高低字来自同一镜像。快照捕获该边沿状态更新后的值；软件想判断故障瞬间应读 FIRST_FAULT 的专用故障快照。
+  acceptance_criteria:
+  - 无效镜像读零；高低字、版本、SNAP_SEQ 同源；快照为本边沿更新后状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.SNP.003
+  category: REG
+  feature: snp
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SNP-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: CMD 状态、能力、IRQ 镜像可直接读，其他运行值需 SNAPSHOT 后读。镜像值允许陈旧，寄存器名称/驱动接口必须区分 staging、active snapshot 和即时事务状态。
+  acceptance_criteria:
+  - 即时 CMD/能力/IRQ 与快照运行值区分；未发新快照时运行值允许陈旧且无读取副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.REG.001
+  category: REG
+  feature: reg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REG-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 在第3/5/7/8/10章约束外，提交必须满足： 1. WIN_EN=0 时 WIN_MIN=0；WIN_EN=1 时 WIN_MIN<TIMEOUT。 2. PREWARN_EN=1 时 `WIN_MIN<=PRETIMEOUT<TIMEOUT`；关闭时
+    PRETIMEOUT 必须0。 3. BOOT_EN=0 时 BOOT_TIMEOUT=0；BOOT_EN=1 时 BOOT_TIMEOUT>0。 4. SINGLE 的 REQUIRE_MASK=1；未参与客户端的配置可保留但不得生效。
+    5. ALIVE 的 WIN_EN=0；FLOW 的 SERVICE_MODE=0；未支持增强时 SUP_MODE 必须 SINGLE。 6. DIRECT_SYSTEM 时 LOCAL_DELAY=FINAL_DELAY=0，ALLOW_LOCAL_RECOVERY=0，RECOVERY_LIMIT=0。
+    7. LOCAL_THEN_SYSTEM 时 FINAL_DELAY>LOCAL_DELAY；ALLOW_LOCAL_RECOVERY=1 时 RECOVERY_LIMIT>0，否则 RECOVERY_LIMIT=0。 8. 每个已选客户端的
+    OWNER_SOURCE 位宽合法；ALIVE/FLOW 特定字段按模式校验；未使用的 ALIVE/FLOW 字段允许保留但不参与判定。 9. 活动配置中的锁定限制和 HARD_CFG_LOCK 优先于 staged 参数。 10. 高于实现位宽的计数/分频位为0；任何截断可能改变时间的配置必须拒绝，禁止自动裁低。
+  acceptance_criteria:
+  - 合法边界整组接受；逐项违反阈值、模式、来源位宽、策略、锁和高位约束均整组拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.REG.002
+  category: REG
+  feature: reg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 默认 IRQ_ENABLE=0，但默认 FAULT_POLICY 的强制位始终置1，不能因为中断关闭而关闭复位。安全档默认 PAUSE_DEBUG=0；NO_STOP_MASK 默认全1。
+  acceptance_criteria:
+  - 默认 IRQ 为零仍可复位；安全默认禁止调试暂停，默认启动后不可停止。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.REG.003
+  category: REG
+  feature: reg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 运行状态字段、LOCK 和配置值的普通读取均以指定快照为准。软件必须等待当前 SNAPSHOT 的 DONE_SEQ 才使用 SNAP_SEQ；不能用陈旧 BUSY=0 或早先 EXEC_DONE 推断新的写已执行。
+  acceptance_criteria:
+  - 当前 SNAPSHOT 完成序号确认后才使用镜像；旧 BUSY/EXEC_DONE 不被误认作当前命令完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.WATCHDOG.REG.004
+  category: REG
+  feature: reg
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-REG-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IRQ_ENABLE 允许位0～18；IRQ_TEST 置事件位15。FAULT_POLICY 仅接收非致命监督事件位1～10，且强制位必须保持1；位0及11～31必须写0，致命响应由硬件固定实现。CFG_COMMIT
+    校验失败置事件18；普通取消和忙返回不属于配置错误。CLIENT_DEADLINE 在非FLOW模式只读elapsed为0；服务模式不支持token时CLIENT_TOKEN读0。
+  acceptance_criteria:
+  - 非法 IRQ/POLICY 位拒绝；提交失败置 CFG_REJECTED，忙/取消不置；非适用 Deadline/token 读零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.WATCHDOG.TIME.001
+  category: PERF
+  feature: time
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TIM-005、WDT-SUP-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 连续 wdt_clk 且无暂停/恢复时，普通/窗口监督精确在 TIMEOUT*(P+1) 周期到期；ALIVE 以同一期限评价完整周期健康条件。
+  acceptance_criteria:
+  - 从周期开始逐拍比较精确边界，最后合法服务边沿与到期边沿严格区分。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.WATCHDOG.COMMAND.001
+  category: PERF
+  feature: command
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-BUS-002、WDT-NFR-002、WDT-NFR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: APB ACCESS 响应至多 2 个 pclk 周期；命令在 WDT 域可见后，无竞争至多 2 个、有持续硬件竞争至多 3 个 WDT 周期内执行。两域持续运行时的总服务延迟应包含 CDC 和仲裁。
+  acceptance_criteria:
+  - 检查总线与命令执行两个不同上界；停 wdt_clk 时仍满足 APB 响应界而不虚构执行完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.WATCHDOG.SAFETY.001
+  category: PERF
+  feature: safety
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 对已定义且已激活的数字比较/编码异常，安全配置应在可观测边沿起最多 2 个 WDT 周期产生安全/最终请求。
+  acceptance_criteria:
+  - 逐诊断路径测量最坏检测时间；系统请求后安全状态实际到达时间另行预算。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.WATCHDOG.RST.001
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-RST-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: warm_reset_evt 必须由复位管理器转换为 wdt_clk 单周期事件，或在外部使用完整握手形成一次事件；不得在系统复位电平持续期间每拍重启 WDT。por_n 释放同步链为 SYNC_STAGES 级；AUTO_START
+    在同步释放后首边沿启动。
+  acceptance_criteria:
+  - 保持系统复位电平不造成重复 warm；SYNC_STAGES 各值下 AUTO_START 均满足释放边界。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.WATCHDOG.RST.002
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-RST-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 冗余检查仅在主/影子状态均初始化后的第一个正常边沿起有效；允许的初始屏蔽不得超过 SYNC_STAGES+2 个 wdt_clk 周期。禁止使用可由软件无限保持的“初始化屏蔽”关闭安全诊断。
+  acceptance_criteria:
+  - 初始化诊断屏蔽不超过 SYNC_STAGES+2；之后故障必检测，软件不能延长屏蔽。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.WATCHDOG.RST.003
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-RST-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: preset_n 期间 IRQ 输出可复位为低，但释放后必须由保留原始状态重新同步产生；WDT 域复位/唤醒请求不受影响。
+  acceptance_criteria:
+  - preset 中 IRQ 可低；释放后由保留事件重新产生，WDT 请求全过程保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.WATCHDOG.RST.004
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-RST-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: POR 后留痕丢失属于设计行为。若整机要求断电保持，必须由外部 retention/NVM 记录；本 IP 不隐含非易失存储。
+  acceptance_criteria:
+  - POR 清历史；文档明确断电保持由外部 retention/NVM 提供。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.WATCHDOG.PWR.001
+  category: LP
+  feature: pwr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PWR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: PAUSE_SLEEP/PAUSE_DEBUG 为 active 配置位，默认均 0。sleep_req 且 PAUSE_SLEEP 可进入 PAUSED；debug_req 且 debug_auth 且 PAUSE_DEBUG
+    且 !DEBUG_LOCK 可暂停。任一有效暂停源存在则保持暂停，两者均解除后恢复原 BOOT/RUN 状态。
+  acceptance_criteria:
+  - 分别、同时施加两个暂停源；任一有效源维持暂停，两者解除才恢复原 BOOT/RUN。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.WATCHDOG.PWR.002
+  category: LP
+  feature: pwr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PWR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 暂停冻结 C、D、服务序列年龄、客户端 Deadline；不改变 active 配置、令牌及本轮 SEEN/ALIVE。进入/退出不授予新周期、不清故障。PAUSED 拒绝服务，不缓存待恢复执行的服务。
+  acceptance_criteria:
+  - 暂停前后周期相位、序列、客户端、token 保持；PAUSED 服务拒绝且恢复后不重放。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.WATCHDOG.PWR.003
+  category: LP
+  feature: pwr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PWR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 故障升级、自身完整性检查、锁和诊断逻辑不暂停。自身故障在 PAUSED 仍直接升级。由 debug_auth 失效导致暂停撤销时，下一个运行边沿恢复监督。
+  acceptance_criteria:
+  - 暂停期间注入自身异常仍升级；debug_auth 撤销后按规定边沿恢复监督。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.WATCHDOG.PWR.004
+  category: LP
+  feature: pwr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PWR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: sleep 参数切换不另设隐式模式：若需要睡眠专用期限，软件在允许更新的配置中提交新期限并确认其已生效后才能睡眠。禁止以睡眠请求直接重载计数或修改阈值。
+  acceptance_criteria:
+  - sleep 请求本身不重载阈值；睡眠专用期限只能经已生效的配置提交流程启用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.LP.WATCHDOG.PWR.005
+  category: LP
+  feature: pwr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-PWR-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 系统允许无限期暂停时，暂停期间没有时间监督覆盖；若需要暂停时长上限，应由不暂停的其他 WDT 通道或独立电源管理计时器监督。生产安全配置应禁用普通调试冻结。
+  acceptance_criteria:
+  - 安全说明披露无限暂停期间无时间覆盖，列明外部上限监督者及生产调试策略。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.001
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: SAFETY 配置应检测计数状态的单点错误；启动、服务、暂停、饱和、恢复均在诊断范围。诊断必须具备独立性，不能由同一失效数据派生两份相同结果后宣称冗余有效。
+  acceptance_criteria:
+  - 启动、服务、暂停、饱和、恢复各条件下注入计数单点错误均可检测；共源复制不能充当独立诊断证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.002
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: SAFETY 配置应检测分频/tick、阈值、故障策略、锁和使能的单点完整性错误，不能因公共 tick 失效而永久停止监督却无报告。独立保护表示由 HLD/LLD 选择。
+  acceptance_criteria:
+  - 对分频/tick 与阈值、策略、锁、使能保护逐项注入错误，不能因共享故障永久停止监督且无告警。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.003
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: SAFETY 配置应检测窗口、超时、最终升级判定错误和非法运行状态；任一独立有效到期判定均须提出故障，不一致不得静默恢复正常服务。
+  acceptance_criteria:
+  - 分别破坏窗口/超时/升级判断与非法状态，任一路到期能请求故障，不一致不能静默恢复。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.004
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 命令控制、关键状态以及服务通过判定需要完整性保护；任意单一受保护寄存器翻转不得导致永久关闭监督而无报告。最终请求的锁存路径不得只依赖已经失效的普通通道状态机。
+  acceptance_criteria:
+  - 受保护控制/状态/服务判定位单点翻转不能永久关断监督；普通状态损坏后最终请求仍能保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.005
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 对“已定义的数字比较/编码异常”从异常可观测边沿起到 safety_alert/system_reset_req 有效最多 2 个 wdt_clk 周期。该期限不涵盖尚未激活的潜伏故障、模拟问题或时钟整体停振；具体诊断覆盖由故障分析给出。
+  acceptance_criteria:
+  - 已激活数字异常至 safety_alert/system_reset_req 不超过 2 个 WDT 周期，潜伏/停钟/模拟故障另列范围。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.WATCHDOG.SAF.006
+  category: SAFE
+  feature: saf
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SAF-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 关键逻辑应避免综合将冗余路径合并，交付相应综合约束和门级检查方法；仅 RTL 上存在两份变量不能作为冗余有效性证据。面积/功耗增加必须按具体配置报告。
+  acceptance_criteria:
+  - 实际综合网表证明受保护冗余未合并；各配置报告面积功耗条件，不以 RTL 双变量代替检查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.WATCHDOG.AUTH.001
+  category: SEC
+  feature: auth
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§4、WDT-SRV-003、WDT-SUP-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 配置、服务、诊断和测试权限应来自可信外部控制，并随事务捕获。软件可写 client/source 索引不得充当身份授权；拒绝访问不得刷新监督。
+  acceptance_criteria:
+  - 逐类撤销授权确认拒绝且不改变运行周期。
+  - 集成说明列出可信侧带和外部访问控制责任，APB PPROT 不被宣称为通用 Master ID。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.WATCHDOG.TOKEN.001
+  category: SEC
+  feature: token
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-SRV-007、WDT-SRV-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: TOKEN/QA 仅用于确定性执行与重放错误检测，不提供密码学认证或跨启动防重放保证。
+  acceptance_criteria:
+  - 文档明确固定重启种子和威胁边界；跨轮旧 token 拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.TST.001
+  category: DFX
+  feature: tst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TST-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DIAG_INJECT_EN=1 且 test_auth、配置诊断授权、未 DIAG_LOCK、解锁额度有效时，允许注入：主计数位翻转、分频位翻转、阈值副本翻转、状态非法编码、单比较路径翻转、服务判定完整性错误。注入选择由
+    FAULT_INJECT 命令数据定义，单次消费，不能持续压制真实故障。
+  acceptance_criteria:
+  - 六类真实注入分别经过全部授权条件，逐一撤销条件时禁止；单次命令仅注入一次。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.TST.002
+  category: DFX
+  feature: tst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TST-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 注入后必须经过真实故障检测和真实告警锁存路径；默认不屏蔽最终复位请求。若测试平台需防止实际复位，旁路由外部测试环境实现，并记录这不等于已测试真实系统执行链。
+  acceptance_criteria:
+  - 注入经过真实检测/告警路径且默认最终请求不屏蔽；外部旁路须在结果中披露。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.TST.003
+  category: DFX
+  feature: tst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TST-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IRQ_TEST 仅测试中断通路，置单独测试状态，不推进监督计数、不证明超时比较器覆盖。超时自检通过专用未承担生产监督的通道配置短期限并停止服务完成，不提供运行中任意写 C 的后门。
+  acceptance_criteria:
+  - IRQ_TEST 仅产生测试事件；短期限不服务可触发真实超时；无运行计数写后门。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.TST.004
+  category: DFX
+  feature: tst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TST-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 诊断测试事件标记 TEST_CONTEXT；真实故障位仍置位，FIRST_FAULT 应记录当时测试上下文。生产配置可彻底裁剪注入入口；scan/test 模式及生命周期要求须在集成文档列出。
+  acceptance_criteria:
+  - 测试事件有 TEST_CONTEXT 且真实故障位照常置位；生产裁剪实例无法访问注入功能。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.TST.005
+  category: DFX
+  feature: tst
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-TST-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 交付安全说明应列出故障模型、检测路径、最大检测延迟、未覆盖故障、时钟/电源/复位共因、周期测试建议及系统假设。不得在没有分析和验证证据时标注 ASIL 达成或固定诊断覆盖百分比。
+  acceptance_criteria:
+  - 安全说明逐项覆盖故障模型、检测路径/延迟、盲区、共因和周期测试，不虚构 ASIL 或诊断比例。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.001
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每通道具有 EVENT_RAW、FIRST_FAULT、32-bit 饱和 FAULT_COUNT、LAST_SERVICE_SEQ、MISSING_MASK、RECOVERY_COUNT。EVENT_RAW 所有事件均可累积；FIRST_FAULT
+    只在进入 FAULT/最终升级时且 VALID=0 时捕获，不被普通 PREWARN/访问错误抢占。
+  acceptance_criteria:
+  - 非故障预警/访问错误不抢 FIRST_FAULT；故障后新原因不覆盖首次记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.002
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FIRST_FAULT 至少包含：原因位图、通道 ID、客户端 ID/有效位、可信来源/有效位、C 候选年龄、原通道状态、配置版本、缺失 mask、服务序号、TEST_CONTEXT。超时无唯一客户端时 client_valid=0；不得伪造某个客户端
+    ID。
+  acceptance_criteria:
+  - 首故障字段完整且时间一致；无唯一客户端时 valid=0，不能伪造来源身份。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.003
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 同拍多个原因全部记录为位图，主原因按位11～14/17、16、1/6、9、8、7、2、3、4、其余的顺序编码。多个通道同时故障分别保存，各通道不争用一个全局首次记录。
+  acceptance_criteria:
+  - 同时原因完整置位且主原因符合优先序；多通道同时故障分别保留。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.004
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: FAULT_COUNT 每次从正常/暂停状态进入 FAULT 或直接最终升级增加一次；同一次故障后升级不重复增加。饱和后保持最大值并置 SAT 标志；统计不可影响检测。
+  acceptance_criteria:
+  - 每次进入故障只加一次，后续升级不重复计数；最大值饱和并置 SAT，检测继续。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.005
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IRQ_CLEAR 仅 W1C 清 EVENT_RAW；活动 NMI/复位请求不随其消失。即使清除了 TIMEOUT 历史位，活动 FAULT 仍保持。清 FIRST_FAULT 使用 DIAG_CLEAR，要求授权/解锁且无活动故障；新故障和清除同拍时保留新故障。
+  acceptance_criteria:
+  - 清历史位不解除活动故障；活动故障禁止清首故障，清除与新故障同拍保留新故障。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.WATCHDOG.DIA.006
+  category: DFX
+  feature: dia
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-DIA-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DIAG_CLEAR 应允许独立选择清除 FIRST_FAULT 或 FAULT_COUNT；保留位非法写拒绝。不得清锁、恢复次数或活动请求，未选中诊断保持。字段编码由 SystemRDL 定义。
+  acceptance_criteria:
+  - DIAG_CLEAR 按选择只清首故障或次数；锁、恢复次数和活动请求均保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.001
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: IP 应兼容声明的同步时钟及复位集成方式，可综合且不得产生非预期锁存或未声明的新时钟；具体时钟使能和复位电路由 HLD/LLD 定义。
+  acceptance_criteria:
+  - 综合/静态检查无非预期锁存和组合生成时钟；时钟/复位使用范围可审查。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.002
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 从命令接收至执行的 CDC 固定延迟和最大仲裁延迟必须在架构文档中给出，以 pclk/wdt_clk 周期表达。只在两个时钟持续运行的假设下给出该上界；不得承诺停钟后仍有有限命令完成时间。
+  acceptance_criteria:
+  - 架构给出两个时钟持续时的 CDC/仲裁上界与计量单位；停止任一时钟不承诺有限完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.003
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 无硬件事件竞争时，合法 mailbox 命令进入 WDT 域可见后最多2个 wdt_clk 周期内执行；有持续硬件事件竞争时最多3个周期。快照与配置提交为一个原子操作，不可循环扫描数十拍后对外声称同拍快照/提交。
+  acceptance_criteria:
+  - 命令可见至执行在无竞争时至多 2 拍、有持续事件竞争时至多 3 拍，原子快照/提交无跨拍撕裂。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.004
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 通道计时和升级不得受 APB backpressure、长读操作、客户端数或诊断访问影响。配置及客户端存储可按参数裁剪；不以共享轮询计数方案牺牲检测时限。
+  acceptance_criteria:
+  - 改变通道/客户端规模及 APB 背压时，独立计时和升级到期边沿保持规定期限。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.005
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: PPA 无通用工艺无关数值门限。交付应报告 STANDARD单通道、SAFETY单通道、SUPERVISOR代表配置的面积/时序/功耗条件，包含工艺、库、时钟、活动假设及冗余开销；不虚构频率或门数达标。
+  acceptance_criteria:
+  - 三个产品配置分别有真实库/工艺/时钟/活动假设及面积时序功耗原报告；无资料则不得签核。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.NFR.006
+  category: CONS
+  feature: nfr
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-NFR-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: RTL、寄存器头文件、驱动常量、验证RAL和能力元数据必须使用同一配置定义生成/核对，防止模式、位宽与寄存器地图不一致。无需强制使用某一种RTL生成语言。
+  acceptance_criteria:
+  - RTL/CSR 头/驱动/RAL/能力对同一参数定义检查一致，不允许地址、宽度或模式漂移。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.001
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: RUN普通/窗口模式、wdt_clk持续、无授权暂停/恢复条件下，从周期开始 TIMEOUT*(P+1) 个周期内若无合法刷新，必须进入对应故障响应。
+  acceptance_criteria:
+  - 在持续时钟且无暂停恢复假设下，用断言或等强证据验证规定期限故障。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.002
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 不合法服务、IRQ清除、配置写、第一次密钥、其他通道服务不能重置本通道 C/D。ALIVE 固定周期刷新为明确列出的例外。
+  acceptance_criteria:
+  - 逐个非法/无关操作验证不会改变本通道周期；ALIVE 成功边界例外显式覆盖。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.003
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: FAULT 后未发生合格恢复/POR，FINAL_DELAY 不能被服务、访问、暂停或重复故障延后。请求置位后，在指定恢复事件前必须保持。
+  acceptance_criteria:
+  - 故障后持续施加服务/访问/暂停/重复故障，最终升级不延期，请求保持至合格恢复。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.004
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 一个被APB成功接收的邮箱命令最多执行一次；未接收/返回PSLVERR的写无对应状态副作用；执行、取消、错误结果与DONE_SEQ一一对应。
+  acceptance_criteria:
+  - 接收、执行、取消、拒绝与完成序号逐一对账，返回错误的请求没有对应操作副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.005
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 锁只能按规定复位清除；多字阈值更新只能旧配置或新配置整体生效，不能使用混合值。
+  acceptance_criteria:
+  - 全部复位类型验证锁保持/清除；多字参数观察结果只有完整旧值或完整新值。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.VER.006
+  category: CONS
+  feature: ver
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:WDT-VER-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  - review
+  description: 对每种配置档必须建立需求→feature→test/checker/assertion→coverage追踪。功能覆盖需包含边界和关键交叉，不能仅用代码覆盖率替代。安全机制另外提供故障注入结果和未覆盖项说明。
+  acceptance_criteria:
+  - 每个配置适用需求有 feature/test/checker/assertion/coverage 追踪；单列故障注入与未覆盖项。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.DELIVERY.001
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§20、§19.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 应交付规范 LRS、HLD、LLD、SystemRDL 及派生视图、参数化 RTL、软件驱动、完整验证环境/RAL/参考模型/断言/覆盖率、约束、安全说明、用户及集成手册、验证报告和 FuseSoC 入口。交付追踪必须区分计划、实现、实测、冻结和发布状态。
+  acceptance_criteria:
+  - 全流程交付映射表中每项均有真实文件、内容与对应证据；不使用目录存在或短摘要替代。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.WATCHDOG.SOFTWARE.001
+  category: CONS
+  feature: software
+  priority: P0
+  status: active
+  source_ref:
+  - watchdog_contract.md:§17、§19.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 驱动应按原契约 §17 实现初始化、服务、故障读取和恢复协作：命令逐笔核对序号/结果、服务超时不盲目重发、选择器和邮箱互斥、锁与解锁额度对应。喂狗应基于真实任务健康条件。
+  acceptance_criteria:
+  - 可执行示例覆盖服务成功、过早、超时、局部恢复、最终升级和暖复位留痕。
+  - 中断清除不刷新或撤销活动故障，重启先读首次诊断。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: pass
+  requirement_freeze: true
+  approval_ref: reports/full_flow/g0_review.md

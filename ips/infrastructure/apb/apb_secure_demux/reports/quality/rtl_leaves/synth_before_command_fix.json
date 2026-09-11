@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "mapping_complete": false,
+  "scope": "10 ns IP characterization; timing/coverage/system signoff assessed separately",
+  "log": "build/rtl/synth_1789115835573152295.log",
+  "log_sha256": "6e715b6e4f7acf6f8e22436b1c63da033a61dd24a78efd16e2d7cd848ad719b3",
+  "input_manifest_sha256": "b55c5b286a648e1b900a7efeec4411124d2d2871064633e5f5412d0e85047b6e",
+  "netlists": [
+    {
+      "path": "build/package/synth/aixsilicon_ip_apb_secure_demux_1.0.0/synth-design_compiler/outputs/apb_secure_demux_synth.v",
+      "sha256": "d084d91f0002a5cbf618ec3325458b22653682141c649e48af750a146f939636"
+    }
+  ]
+}

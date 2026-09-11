@@ -1,0 +1,7 @@
+WARNING: Parse error. Ignoring file /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_cbb_repo/components/coding_integrity/parity_gen_check/fusesoc/aixsilicon_cbb_parity_gen_check.core: 
+Error validating data.parameters.DATA_WIDTH must contain ['paramtype'] properties
+WARNING: No trustfile configured (ssh-trustfile in fusesoc.conf), signatures will not be checked.
+ERROR: No cores found in any library
+
+Available cores:
+

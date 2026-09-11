@@ -1,0 +1,52 @@
+[
+  {
+    "file": "checker_plan.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "agent_plan.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "verification_plan_configurations.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "coverage_plan_configurations.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "checker_plan_assertions_1.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "checker_plan_assertions_2.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "checker_plan_assertions_3.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "checker_plan_static.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "99_quality_gate.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  },
+  {
+    "file": "index.md",
+    "exit_code": 0,
+    "output": "Wrote /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/model/verification.yaml\n"
+  }
+]

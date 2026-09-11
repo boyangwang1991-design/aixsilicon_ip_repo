@@ -1,0 +1,81 @@
+{
+  "schema": "watchdog-dependency-binding/1.0",
+  "reason": {
+    "cbb": "Legacy core parameter metadata lacks CAPI2 paramtype",
+    "vip": "Package include files must not be separately compiled; include root must be exported"
+  },
+  "sources": [
+    {
+      "path": "repos/aixsilicon_cbb_repo/components/arbitration_scheduling/round_robin_arbiter/rtl/round_robin_arbiter.sv",
+      "sha256": "0c1248cae1ab2963f8e25f46b5d5e964e48fabf0b23b1bcd23550e00caf0d084"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/agent/apb_agent.sv",
+      "sha256": "33c6a6476fb1d284b0be4ed560b7444c8881095ee111984d313b2768193b6520"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/agent/apb_master_driver.sv",
+      "sha256": "f6e308ed4aabc824a9b748a60ac42fd80100dd1e9b6b03f24e6b7f8be1dc23cf"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/agent/apb_monitor.sv",
+      "sha256": "165fb8894bbaa445cc9d79512e01454a7237a97433fb7834049ded406c602a76"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/agent/apb_sequencer.sv",
+      "sha256": "8c7c54bb8004a2ea5650d9796d1af49755c9641cdf7a188d76c413a600811b6a"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/agent/apb_slave_driver.sv",
+      "sha256": "f17c78dd7cfe00f4262cbeda0f081a085237d2a04b8c1cf2186d6f3a778772d2"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/apb_config.sv",
+      "sha256": "7dc1387d3e880604a00af6bd92553d6831430a930b299073607d6a5e2323ec3e"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/apb_if.sv",
+      "sha256": "1c2ad1a97e1239af2b23538feb64ef6f66adce961482eacae60fbfe4ee0a48e0"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/apb_pkg.sv",
+      "sha256": "5bcb0b01b1a9df2e44b691503a90ebfba203d975ee9752723ca54a5b1c050266"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/apb_sva_bind.sv",
+      "sha256": "fb3f64afbd5c2192e6bf6b58131d4c6953070b4c8b2aad059df86a357cf365d8"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/apb_types_pkg.sv",
+      "sha256": "f6ce644fc864c40c0aeb23d20af7553bd210aabb6f279286f3d85d457fe7f0ac"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/checker/apb_protocol_sva.sv",
+      "sha256": "0b15fd1d0ae73e9ceb08b55638d85a6858ac6a28205caf6c71050cde39425184"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/checker/apb_violation.sv",
+      "sha256": "08d0ff78526c4831fcec210e8d329a43939e64cd0dc1f373a720d859a0e20aab"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/coverage/apb_coverage.sv",
+      "sha256": "0c029130702963f7b507b0a99e9a74e1c1ef312c6dcfaa28a8e5dbec77bdf07a"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/env/apb_env.sv",
+      "sha256": "5a2aa960a0e6eecd1cf3d108fec45e411e7b3c09941f21b699fb0e788f755f88"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/ral/apb_ral.sv",
+      "sha256": "2b1837e9095405df0fd4041c2420c3dd2ffe0de3cb38c8ab338f1145436cef92"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/sequences/apb_sequences.sv",
+      "sha256": "5f8fa167619fed534b76bf5e44e2f2d02732c47252892a6a11b489a5894d4e3f"
+    },
+    {
+      "path": "repos/aixsilicon_vip_repo/vip/amba/apb/src/transaction/apb_item.sv",
+      "sha256": "e241fe7802d84b2d38686f76822f5c53de774a979c872459c74d9c9223f2e223"
+    }
+  ]
+}

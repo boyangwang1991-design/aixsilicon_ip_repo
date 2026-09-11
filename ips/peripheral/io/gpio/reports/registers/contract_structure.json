@@ -1,0 +1,10 @@
+{
+  "scope": "contract address/name map and field behavior reference completeness; no RTL functional proof",
+  "register_instances": 753,
+  "field_templates": 110,
+  "errors": [],
+  "sources": {
+    "regs/gpio.rdl": "46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984",
+    "gpio_contract.md": "59597f3b2da6408c3f95c95a4aadc05749b8ea9e0712c16d3a63edf577dff705"
+  }
+}

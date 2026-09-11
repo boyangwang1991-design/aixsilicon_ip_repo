@@ -1,0 +1,126 @@
+[
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "regblock",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated",
+      "--cpuif",
+      "apb4-flat",
+      "--module-name",
+      "apb_secure_demux_csr_regblock",
+      "--package-name",
+      "apb_secure_demux_csr_pkg",
+      "--default-reset",
+      "arst_n",
+      "--err-if-bad-addr",
+      "--err-if-bad-rw"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_0.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "c-header",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/sw/include/apb_secure_demux_regs.h"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_1.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "html",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/registers/html/apb_secure_demux"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_2.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "ip-xact",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/ral/apb_secure_demux.xml"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_3.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "-m",
+      "peakrdl",
+      "uvm",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "-o",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/ral/apb_secure_demux_ral.sv"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_4.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/check_register_structure.py",
+      "--rdl",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "--config-manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.config.json",
+      "--micro-design",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/micro_design.yaml",
+      "--output",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/current_views/structure.json"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_5.log",
+    "log_sha256": "50d9f73e9634f4319e16474b6fb911a2c16deced43d274fb5fd8cbddb5de4943"
+  },
+  {
+    "command": [
+      "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+      "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/skills/02-reg-model/scripts/publish_csr.py",
+      "--rdl-source",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/regs/apb_secure_demux.rdl",
+      "--generated",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_pkg.sv",
+      "--generated",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr_regblock.sv",
+      "--lint-command",
+      "vlogan -full64 -sverilog {files}",
+      "--manifest",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/rtl/generated/apb_secure_demux_csr.manifest.yaml",
+      "--report",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/register_check.md",
+      "--lint-log",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/registers/current_views/native_compile.log",
+      "--tool-version",
+      "VCS W-2024.09-SP1",
+      "--ip-name",
+      "apb_secure_demux"
+    ],
+    "exit_code": 0,
+    "log": "reports/quality/registers/current_views/view_6.log",
+    "log_sha256": "a69a72692e9d16cb5a15feca5e8cfcd3db1d19cd78933b01f59a1f19992ed24f"
+  }
+]

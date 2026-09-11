@@ -1,0 +1,3214 @@
+schema_version: '2.0'
+ip_name: apb_secure_demux
+delivery_model: parameterized
+register_model: required
+ppa_signoff: required
+document_version: 1.0.0
+status: approved
+requirement_baseline: ASD-LRS-1.0.0-USER-APPROVED
+requirements:
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.001
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: CSR_SIZE 固定按 `0x1000 + NUM_PORTS × 0x400` 字节推导；所有区间使用扩展位宽计算结束地址，不允许截断或回绕。
+  acceptance_criteria:
+  - 应满足：CSR_SIZE 固定按 `0x1000 + NUM_PORTS × 0x400` 字节推导；所有区间使用扩展位宽计算结束地址，不允许截断或回绕。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.002
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: 任一 PORT 区间、本地 CSR 区间越出地址宽度，存在重叠、大小为零或未按 4 字节对齐，必须在 elaboration/配置检查阶段失败。
+  acceptance_criteria:
+  - 应满足：任一 PORT 区间、本地 CSR 区间越出地址宽度，存在重叠、大小为零或未按 4 字节对齐，必须在 elaboration/配置检查阶段失败。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.00301
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: 端口支持任意符合上述约束的大小，无须是 2 的幂。
+  acceptance_criteria:
+  - 应满足：端口支持任意符合上述约束的大小，无须是 2 的幂。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.00302
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: 结束地址为 BASE+SIZE-1。
+  acceptance_criteria:
+  - 应满足：结束地址为 BASE+SIZE-1。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.004
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: 1 个端口、1 个主体、FIFO 深度 0/1、非 2 的幂规模必须可编译且行为正确；内部索引宽度不得出现零宽向量。
+  acceptance_criteria:
+  - 应满足：1 个端口、1 个主体、FIFO 深度 0/1、非 2 的幂规模必须可编译且行为正确；内部索引宽度不得出现零宽向量。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.005
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: MASTERID 必须先检查完整输入值是否小于 NUM_MASTERS，再索引权限表；禁止截断高位导致身份混叠。
+  acceptance_criteria:
+  - 应满足：MASTERID 必须先检查完整输入值是否小于 NUM_MASTERS，再索引权限表；禁止截断高位导致身份混叠。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PAR.006
+  category: CFG
+  feature: par
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-PAR-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: CAPABILITY 和地址只读镜像必须反映实际 elaboration 参数。
+  acceptance_criteria:
+  - 应满足：CAPABILITY 和地址只读镜像必须反映实际 elaboration 参数。
+  - 对边界值、非 2 幂、零值与越界配置执行检查；合法配置接受，违反本条的配置必须失败。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.IF.001
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IF-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 请求和 MASTERID 在 SETUP 到事务完成期间必须稳定；该项作为输入协议假设并通过断言检查。
+  acceptance_criteria:
+  - 应满足：请求和 MASTERID 在 SETUP 到事务完成期间必须稳定；该项作为输入协议假设并通过断言检查。
+  - 逐周期检查接口输出；输入假设违规由断言报告，不能作为 DUT 通过的合法激励。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.IF.002
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IF-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: m_master_id_valid_o 仅在对应 m_psel 为 1 时有效；未选端口该信号固定为 0。
+  acceptance_criteria:
+  - 应满足：m_master_id_valid_o 仅在对应 m_psel 为 1 时有效；未选端口该信号固定为 0。
+  - 逐周期检查接口输出；输入假设违规由断言报告，不能作为 DUT 通过的合法激励。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.IF.003
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IF-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: APB3 下游可以通过外部适配连接；本 IP 的输入不能无说明地丢弃 PPROT 和 MASTERID。
+  acceptance_criteria:
+  - 应满足：APB3 下游可以通过外部适配连接；本 IP 的输入不能无说明地丢弃 PPROT 和 MASTERID。
+  - 逐周期检查接口输出；输入假设违规由断言报告，不能作为 DUT 通过的合法激励。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.IF.00401
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DFX_EN=0 或 dfx_authorized_i=0 时，DFX 观测输出全部为 0。
+  acceptance_criteria:
+  - 应满足：DFX_EN=0 或 dfx_authorized_i=0 时，DFX 观测输出全部为 0。
+  - 逐周期检查接口输出；输入假设违规由断言报告，不能作为 DUT 通过的合法激励。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.IF.00402
+  category: INTF
+  feature: if
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IF-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: irq_o/security_alert_o 不受 DFX 授权控制。
+  acceptance_criteria:
+  - 应满足：irq_o/security_alert_o 不受 DFX 授权控制。
+  - 逐周期检查接口输出；输入假设违规由断言报告，不能作为 DUT 通过的合法激励。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.001
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 非法访问从 SETUP 开始所有下游 PSEL 必须为 0，不得引发读清除、FIFO 弹出、写启动或其他副作用。
+  acceptance_criteria:
+  - 应满足：非法访问从 SETUP 开始所有下游 PSEL 必须为 0，不得引发读清除、FIFO 弹出、写启动或其他副作用。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.002
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有本地拒绝在第一个上游 ACCESS 周期响应 PREADY=1、PSLVERR=1、PRDATA=0；包括 REGISTER_MODE=1。
+  acceptance_criteria:
+  - 应满足：所有本地拒绝在第一个上游 ACCESS 周期响应 PREADY=1、PSLVERR=1、PRDATA=0；包括 REGISTER_MODE=1。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.003
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 成功 CSR 访问在第一个 ACCESS 周期 PREADY=1、PSLVERR=0；CSR 副作用仅在完成边沿发生一次。
+  acceptance_criteria:
+  - 应满足：成功 CSR 访问在第一个 ACCESS 周期 PREADY=1、PSLVERR=0；CSR 副作用仅在完成边沿发生一次。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.004
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 正常外设访问透传下游完成响应；下游 PSLVERR=1 时上游仍返回该错误，下游 PRDATA 原样透传，不按权限拒绝处理。
+  acceptance_criteria:
+  - 应满足：正常外设访问透传下游完成响应；下游 PSLVERR=1 时上游仍返回该错误，下游 PRDATA 原样透传，不按权限拒绝处理。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00501
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 无有效 ACCESS 时上游 PSLVERR=0；PRDATA=0，PREADY=1。
+  acceptance_criteria:
+  - 应满足：无有效 ACCESS 时上游 PSLVERR=0；PRDATA=0，PREADY=1。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00502
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 复位期间按第 13 节强制值。
+  acceptance_criteria:
+  - 应满足：复位期间按第 13 节强制值。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00601
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有周期 m_psel 满足 one-hot-or-zero。
+  acceptance_criteria:
+  - 应满足：所有周期 m_psel 满足 one-hot-or-zero。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00602
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 未选端口 m_penable=0，选中端口遵守完整 SETUP/ACCESS 时序。
+  acceptance_criteria:
+  - 应满足：未选端口 m_penable=0，选中端口遵守完整 SETUP/ACCESS 时序。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.007
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: OUTPUT_ISOLATION_EN=1 时，未选端口 PADDR/PWDATA/PSTRB/PWRITE/PPROT/MASTERID 均置零；=0 时可以广播当前请求，但 PSEL/PENABLE/身份有效不得广播。
+  acceptance_criteria:
+  - 应满足：OUTPUT_ISOLATION_EN=1 时，未选端口 PADDR/PWDATA/PSTRB/PWRITE/PPROT/MASTERID 均置零；=0 时可以广播当前请求，但 PSEL/PENABLE/身份有效不得广播。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00801
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 支持 PSEL 连续保持的背靠背事务、读写交替、切换目标、CSR 与外设交替。
+  acceptance_criteria:
+  - 应满足：支持 PSEL 连续保持的背靠背事务、读写交替、切换目标、CSR 与外设交替。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.00802
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 每个新 SETUP 必须重新译码和判权。
+  acceptance_criteria:
+  - 应满足：每个新 SETUP 必须重新译码和判权。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.009
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 不存在 posted write 或提前成功响应；外设事务完成前不得释放上游。
+  acceptance_criteria:
+  - 应满足：不存在 posted write 或提前成功响应；外设事务完成前不得释放上游。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.01001
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 不支持主动取消已发出的下游事务。
+  acceptance_criteria:
+  - 应满足：不支持主动取消已发出的下游事务。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.APB.01002
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-APB-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 等待告警、DFX 授权撤销或新完整性故障均不得中途撤销 PSEL。
+  acceptance_criteria:
+  - 应满足：等待告警、DFX 授权撤销或新完整性故障均不得中途撤销 PSEL。
+  - 在两种时序模式下覆盖零等待、长等待和背靠背；逐周期对照响应与下游副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: SETUP 阶段分别计算本地 CSR 命中和各端口命中；必须使用全部有效地址位。
+  acceptance_criteria:
+  - 应满足：SETUP 阶段分别计算本地 CSR 命中和各端口命中；必须使用全部有效地址位。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 总命中数为 0，产生 ADDR_MISS；大于 1，产生 MULTI_HIT；均不得访问 CSR 或下游。
+  acceptance_criteria:
+  - 应满足：总命中数为 0，产生 ADDR_MISS；大于 1，产生 MULTI_HIT；均不得访问 CSR 或下游。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 本地 CSR 与外设同时命中时不得采用 CSR 优先级放行，必须按多重命中拒绝。
+  acceptance_criteria:
+  - 应满足：本地 CSR 与外设同时命中时不得采用 CSR 优先级放行，必须按多重命中拒绝。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 端口关闭仍属于地址命中，错误原因为 PORT_DISABLED。
+  acceptance_criteria:
+  - 应满足：端口关闭仍属于地址命中，错误原因为 PORT_DISABLED。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 下游透传原始地址，不减去 BASE；不存在隐式地址别名或地址转换。
+  acceptance_criteria:
+  - 应满足：下游透传原始地址，不减去 BASE；不存在隐式地址别名或地址转换。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 下游数据访问的低地址位与 PSTRB 由目标外设解释，本 IP 不增加通用未对齐拒绝规则。
+  acceptance_criteria:
+  - 应满足：下游数据访问的低地址位与 PSTRB 由目标外设解释，本 IP 不增加通用未对齐拒绝规则。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+  category: FUNC
+  feature: dec
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DEC-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 本地 CSR 必须按 4 字节对齐访问。
+  acceptance_criteria:
+  - 应满足：本地 CSR 必须按 4 字节对齐访问。
+  - 覆盖 CSR/外设边界、空洞及多重命中；对比目标选择、错误原因和原始地址。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.001
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: '`irq_o = |(INTR_RAW & INTR_ENABLE)`；`security_alert_o = |(INTR_RAW & ALERT_ENABLE)`。'
+  acceptance_criteria:
+  - 应满足：`irq_o = |(INTR_RAW & INTR_ENABLE)`；`security_alert_o = |(INTR_RAW & ALERT_ENABLE)`。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.002
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: INTR_RAW 为 W1C 粘滞状态，新事件优先于同周期清除；bits31:9 RAZ/WI。
+  acceptance_criteria:
+  - 应满足：INTR_RAW 为 W1C 粘滞状态，新事件优先于同周期清除；bits31:9 RAZ/WI。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.003
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 屏蔽只控制输出，不影响事件捕获、拒绝、计数和日志。
+  acceptance_criteria:
+  - 应满足：屏蔽只控制输出，不影响事件捕获、拒绝、计数和日志。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.004
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 完整性故障未复位时 bit4 清除后仍保持置位；其他事件清除后需新事件才重置。
+  acceptance_criteria:
+  - 应满足：完整性故障未复位时 bit4 清除后仍保持置位；其他事件清除后需新事件才重置。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.00501
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: INTR_TEST 仅产生 bit8，不设置真实错误位、不改变权限、不增加真实拒绝计数、不写日志。
+  acceptance_criteria:
+  - 应满足：INTR_TEST 仅产生 bit8，不设置真实错误位、不改变权限、不增加真实拒绝计数、不写日志。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.00502
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 合成日志使用 INJECT_CMD。
+  acceptance_criteria:
+  - 应满足：合成日志使用 INJECT_CMD。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.00601
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: ALERT_ENABLE 的修改仅限管理授权，不受策略锁影响。
+  acceptance_criteria:
+  - 应满足：ALERT_ENABLE 的修改仅限管理授权，不受策略锁影响。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.00602
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FATAL 本身即使告警被屏蔽仍阻断外设。
+  acceptance_criteria:
+  - 应满足：FATAL 本身即使告警被屏蔽仍阻断外设。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQ.007
+  category: FUNC
+  feature: irq
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-IRQ-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: irq/alert 为 pclk 域电平，跨域送往中断/安全控制器由系统负责同步；本 IP 不直接复位系统。
+  acceptance_criteria:
+  - 应满足：irq/alert 为 pclk 域电平，跨域送往中断/安全控制器由系统负责同步；本 IP 不直接复位系统。
+  - 分别检查 RAW、使能和两个输出；覆盖清除与新事件同周期，屏蔽不得丢弃事件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.001
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 首错为空时保存第一条选中记录，保持至 FAULT_CLEAR[0]；最近错误每次记录更新。
+  acceptance_criteria:
+  - 应满足：首错为空时保存第一条选中记录，保持至 FAULT_CLEAR[0]；最近错误每次记录更新。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00201
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIRST/LAST 在读取字 0 时形成独立快照；读取字 1～7 返回该快照。
+  acceptance_criteria:
+  - 应满足：FIRST/LAST 在读取字 0 时形成独立快照；读取字 1～7 返回该快照。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00202
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 下次读字 0 刷新快照。
+  acceptance_criteria:
+  - 应满足：下次读字 0 刷新快照。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00203
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 清除相应记录时清除其快照。
+  acceptance_criteria:
+  - 应满足：清除相应记录时清除其快照。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00301
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO 入队后队头不自动变化；读任意 HEAD 字不弹出，FIFO_POP 显式弹出。
+  acceptance_criteria:
+  - 应满足：FIFO 入队后队头不自动变化；读任意 HEAD 字不弹出，FIFO_POP 显式弹出。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00302
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 单管理软件须串行完成多字读取，多个管理主体通过软件互斥避免相互 POP。
+  acceptance_criteria:
+  - 应满足：单管理软件须串行完成多字读取，多个管理主体通过软件互斥避免相互 POP。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.004
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 全局 64 bit 时间戳每功能周期加一、复位清零、自然回绕；DFX_EN=0 时仍保留日志时间戳。
+  acceptance_criteria:
+  - 应满足：全局 64 bit 时间戳每功能周期加一、复位清零、自然回绕；DFX_EN=0 时仍保留日志时间戳。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.005
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: EVENT_SEQUENCE 每个选中的记录事件加一，记录使用递增前值；自然回绕，复位为零。
+  acceptance_criteria:
+  - 应满足：EVENT_SEQUENCE 每个选中的记录事件加一，记录使用递增前值；自然回绕，复位为零。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.006
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 拒绝/下游错误在事务完成边沿产生一次记录；新完整性故障、等待阈值和合成命令按事件产生边沿记录。
+  acceptance_criteria:
+  - 应满足：拒绝/下游错误在事务完成边沿产生一次记录；新完整性故障、等待阈值和合成命令按事件产生边沿记录。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00701
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 同周期允许多个候选事件；记录写端口每周期接收一条，优先级为新完整性故障 > 总线事务失败 > 等待阈值 > 合成事件。
+  acceptance_criteria:
+  - 应满足：同周期允许多个候选事件；记录写端口每周期接收一条，优先级为新完整性故障 > 总线事务失败 > 等待阈值 > 合成事件。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00702
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 未选候选数累加至 EVENT_LOST_COUNT；各自中断状态仍置位。
+  acceptance_criteria:
+  - 应满足：未选候选数累加至 EVENT_LOST_COUNT；各自中断状态仍置位。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00801
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO 满不覆盖旧记录，丢弃新入队记录，置 OVF 并增加 LOST；FIRST/LAST 仍更新。
+  acceptance_criteria:
+  - 应满足：FIFO 满不覆盖旧记录，丢弃新入队记录，置 OVF 并增加 LOST；FIRST/LAST 仍更新。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00802
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO_POP 与入队同周期时先释放槽位再入队，满 FIFO 可以接收新记录。
+  acceptance_criteria:
+  - 应满足：FIFO_POP 与入队同周期时先释放槽位再入队，满 FIFO 可以接收新记录。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00901
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO_DEPTH=0 时跳过入队，不因“未实现 FIFO”增加 LOST；同周期候选仲裁丢失仍计 LOST。
+  acceptance_criteria:
+  - 应满足：FIFO_DEPTH=0 时跳过入队，不因“未实现 FIFO”增加 LOST；同周期候选仲裁丢失仍计 LOST。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.00902
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO 状态只读寄存器可读，POP/HEAD 地址返回未实现错误。
+  acceptance_criteria:
+  - 应满足：FIFO 状态只读寄存器可读，POP/HEAD 地址返回未实现错误。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.010
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 清除与新事件同周期时先清除再记录；FIRST 可被新事件重新置有效，LAST 更新；FIFO 清空后新事件可成为首条记录。
+  acceptance_criteria:
+  - 应满足：清除与新事件同周期时先清除再记录；FIRST 可被新事件重新置有效，LAST 更新；FIFO 清空后新事件可成为首条记录。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.01101
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FIFO 溢出、清除和事件丢失本身不再生成日志事件，防止递归日志。
+  acceptance_criteria:
+  - 应满足：FIFO 溢出、清除和事件丢失本身不再生成日志事件，防止递归日志。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.01102
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 日志记录不能对 APB 形成反压。
+  acceptance_criteria:
+  - 应满足：日志记录不能对 APB 形成反压。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOG.012
+  category: FUNC
+  feature: log
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-LOG-012
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 全局 ACCESS_DENY_COUNT 统计所有被拒绝的非 CSR 请求（含地址空洞/多重命中）；CFG_DENY_COUNT 统计唯一命中 CSR 的失败；下游错误不计权限拒绝。
+  acceptance_criteria:
+  - 应满足：全局 ACCESS_DENY_COUNT 统计所有被拒绝的非 CSR 请求（含地址空洞/多重命中）；CFG_DENY_COUNT 统计唯一命中 CSR 的失败；下游错误不计权限拒绝。
+  - 比对八字记录、有效位、快照与 FIFO 队列；同时覆盖清除/弹出/新事件竞争。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00101
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有配置、日志、中断、DFX 寄存器的读写必须通过管理授权。
+  acceptance_criteria:
+  - 应满足：所有配置、日志、中断、DFX 寄存器的读写必须通过管理授权。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00102
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: PUBLIC_ID_EN=1 时仅 0x000～0x00C 的数据读取例外，但仍要求身份有效且在范围内。
+  acceptance_criteria:
+  - 应满足：PUBLIC_ID_EN=1 时仅 0x000～0x00C 的数据读取例外，但仍要求身份有效且在范围内。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.002
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 管理权限不可通过本 IP CSR 修改；管理授权不等同于外设访问授权。
+  acceptance_criteria:
+  - 应满足：管理权限不可通过本 IP CSR 修改；管理授权不等同于外设访问授权。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00301
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 本地 CSR 仅支持 32 bit 对齐访问。
+  acceptance_criteria:
+  - 应满足：本地 CSR 仅支持 32 bit 对齐访问。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00302
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有写要求 PSTRB=4'b1111，包括 W1C、命令和锁；否则返回 CSR_STROBE 错误，无写副作用。
+  acceptance_criteria:
+  - 应满足：所有写要求 PSTRB=4'b1111，包括 W1C、命令和锁；否则返回 CSR_STROBE 错误，无写副作用。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00401
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 写 RO、读 WO、访问未实现地址、访问已裁剪功能寄存器均返回错误。
+  acceptance_criteria:
+  - 应满足：写 RO、读 WO、访问未实现地址、访问已裁剪功能寄存器均返回错误。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00402
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 已实现寄存器保留位 RAZ/WI。
+  acceptance_criteria:
+  - 应满足：已实现寄存器保留位 RAZ/WI。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.005
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 未授权读返回零，未授权写不改变目标状态；允许产生一次违规日志/计数/中断，这是规定的审计副作用。
+  acceptance_criteria:
+  - 应满足：未授权读返回零，未授权写不改变目标状态；允许产生一次违规日志/计数/中断，这是规定的审计副作用。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00601
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: RW 不受影响位保留当前值；W1C 写 1 清除、写 0 不变；W1S 只允许置位。
+  acceptance_criteria:
+  - 应满足：RW 不受影响位保留当前值；W1C 写 1 清除、写 0 不变；W1S 只允许置位。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.00602
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 命令仅在完成边沿触发。
+  acceptance_criteria:
+  - 应满足：命令仅在完成边沿触发。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.007
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有未另行指定的寄存器、状态、计数器、锁和中断复位为零。
+  acceptance_criteria:
+  - 应满足：所有未另行指定的寄存器、状态、计数器、锁和中断复位为零。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.CSR.008
+  category: REG
+  feature: csr
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-CSR-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 参数化表采用固定槽位地址，超出 NUM_PORTS/NUM_MASTERS 的槽位为未实现地址，不允许索引回绕。
+  acceptance_criteria:
+  - 应满足：参数化表采用固定槽位地址，超出 NUM_PORTS/NUM_MASTERS 的槽位为未实现地址，不允许索引回绕。
+  - 对合法/非法授权、地址、读写类型和选通执行访问；检查响应、目标状态及允许的审计副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.001
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: shadow 可单独读写；正常访问仅使用 active；禁止 shadow 更新直接作用于下游判权。
+  acceptance_criteria:
+  - 应满足：shadow 可单独读写；正常访问仅使用 active；禁止 shadow 更新直接作用于下游判权。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.002
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: COMMIT_MASK 指定端口的 CFG_SHADOW 和全部 PERM_SHADOW 在同一完成边沿复制至 active，任何失败全部不提交。
+  acceptance_criteria:
+  - 应满足：COMMIT_MASK 指定端口的 CFG_SHADOW 和全部 PERM_SHADOW 在同一完成边沿复制至 active，任何失败全部不提交。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.003
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 非零合法掩码、无相关锁且无完整性故障时提交成功；即使值未变化也增加 POLICY_VERSION。
+  acceptance_criteria:
+  - 应满足：非零合法掩码、无相关锁且无完整性故障时提交成功；即使值未变化也增加 POLICY_VERSION。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.004
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 提交为本地单周期 ACCESS，不等待“上游 PSEL 降低”；持续背靠背访问也必须正常提交。
+  acceptance_criteria:
+  - 应满足：提交为本地单周期 ACCESS，不等待“上游 PSEL 降低”；持续背靠背访问也必须正常提交。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00501
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 由于仅一个 APB 输入且无后台请求队列，处理 COMMIT 时不得有尚未完成的下游事务。
+  acceptance_criteria:
+  - 应满足：由于仅一个 APB 输入且无后台请求队列，处理 COMMIT 时不得有尚未完成的下游事务。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00502
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 实现若引入队列必须维持此串行契约。
+  acceptance_criteria:
+  - 应满足：实现若引入队列必须维持此串行契约。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00601
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: COMMIT 完成边沿之后的 SETUP 使用新版本；此前外设事务已完成，不发生跨版本事务。
+  acceptance_criteria:
+  - 应满足：COMMIT 完成边沿之后的 SETUP 使用新版本；此前外设事务已完成，不发生跨版本事务。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00602
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 上游桥内部尚未送入本 IP 的排队请求适用到达本 IP 时的策略。
+  acceptance_criteria:
+  - 应满足：上游桥内部尚未送入本 IP 的排队请求适用到达本 IP 时的策略。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00701
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 锁对 shadow 写、active 提交和 SHADOW_RELOAD 均生效；写锁只设锁，不隐式提交。
+  acceptance_criteria:
+  - 应满足：锁对 shadow 写、active 提交和 SHADOW_RELOAD 均生效；写锁只设锁，不隐式提交。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00702
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 软件必须先提交、读回，再设锁。
+  acceptance_criteria:
+  - 应满足：软件必须先提交、读回，再设锁。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.008
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: GLOBAL_LOCK=1 后不得修改任何权限/端口配置或执行 reload/commit；PORT_LOCK 的额外置位仍允许，属于收紧保护。
+  acceptance_criteria:
+  - 应满足：GLOBAL_LOCK=1 后不得修改任何权限/端口配置或执行 reload/commit；PORT_LOCK 的额外置位仍允许，属于收紧保护。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00901
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 锁写 0 无效果，读回保留；只有 preset_ni 解除锁。
+  acceptance_criteria:
+  - 应满足：锁写 0 无效果，读回保留；只有 preset_ni 解除锁。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.00902
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 无软件解锁口令或软复位绕过。
+  acceptance_criteria:
+  - 应满足：无软件解锁口令或软复位绕过。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.010
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 策略锁不阻止日志读取清除、中断处理和授权 DFX 诊断；完整性故障锁存只能可信模块复位恢复。
+  acceptance_criteria:
+  - 应满足：策略锁不阻止日志读取清除、中断处理和授权 DFX 诊断；完整性故障锁存只能可信模块复位恢复。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.UPD.011
+  category: REG
+  feature: upd
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-UPD-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 版本仅为诊断关联号，32 bit 自然回绕；不用于授权、不作为跨复位唯一编号。
+  acceptance_criteria:
+  - 应满足：版本仅为诊断关联号，32 bit 自然回绕；不用于授权、不作为跨复位唯一编号。
+  - 对比操作前后全部选中和未选中端口、版本与锁状态；失败必须全量保持原 active。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_SECURE_DEMUX.TIM.001
+  category: PERF
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-TIM-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: SETUP 的组合权限路径须纳入 STA，包括地址/身份/PPROT 到下游 PSEL 的路径；不承诺物理意义的无毛刺安全隔离。
+  acceptance_criteria:
+  - 应满足：SETUP 的组合权限路径须纳入 STA，包括地址/身份/PPROT 到下游 PSEL 的路径；不承诺物理意义的无毛刺安全隔离。
+  - 测量 SETUP 至完成的周期数并检查受控时序报告，分别报告直接和寄存模式。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_SECURE_DEMUX.TIM.002
+  category: PERF
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-TIM-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 零等待下游比直接模式多一个上游等待周期；该模式寄存请求路径，不保证切断下游响应到上游响应的组合路径。
+  acceptance_criteria:
+  - 应满足：零等待下游比直接模式多一个上游等待周期；该模式寄存请求路径，不保证切断下游响应到上游响应的组合路径。
+  - 测量 SETUP 至完成的周期数并检查受控时序报告，分别报告直接和寄存模式。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_SECURE_DEMUX.TIM.003
+  category: PERF
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-TIM-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 本地 CSR 和权限拒绝不走下游转发状态机，仍在第一个 ACCESS 周期完成。
+  acceptance_criteria:
+  - 应满足：本地 CSR 和权限拒绝不走下游转发状态机，仍在第一个 ACCESS 周期完成。
+  - 测量 SETUP 至完成的周期数并检查受控时序报告，分别报告直接和寄存模式。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_SECURE_DEMUX.TIM.004
+  category: PERF
+  feature: tim
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-TIM-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 寄存模式必须锁存 PADDR/PWDATA/PSTRB/PWRITE/PPROT/MASTERID 和版本，禁止仅锁存地址却使用下一笔数据。
+  acceptance_criteria:
+  - 应满足：寄存模式必须锁存 PADDR/PWDATA/PSTRB/PWRITE/PPROT/MASTERID 和版本，禁止仅锁存地址却使用下一笔数据。
+  - 测量 SETUP 至完成的周期数并检查受控时序报告，分别报告直接和寄存模式。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.001
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: preset_ni 有效时全部 m_psel/m_penable/m_master_id_valid=0，上游 PREADY=0、PSLVERR=0、PRDATA=0，irq/alert 和 DFX 观测为零。
+  acceptance_criteria:
+  - 应满足：preset_ni 有效时全部 m_psel/m_penable/m_master_id_valid=0，上游 PREADY=0、PSLVERR=0、PRDATA=0，irq/alert 和 DFX 观测为零。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.00201
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 复位释放必须同步；释放后接收合法的新 SETUP，不将无先行 SETUP 的 ACCESS 视为新事务。
+  acceptance_criteria:
+  - 应满足：复位释放必须同步；释放后接收合法的新 SETUP，不将无先行 SETUP 的 ACCESS 视为新事务。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.00202
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 输入违规只要求断言报告并保持下游不选中，不承诺正常 APB 完成。
+  acceptance_criteria:
+  - 应满足：输入违规只要求断言报告并保持下游不选中，不承诺正常 APB 完成。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.003
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 复位清除锁、FATAL、日志/快照/FIFO、计数、时间戳、版本、提交状态、注入武装；策略恢复 RESET 参数，INTR_ENABLE=0，ALERT_ENABLE=0x9B。
+  acceptance_criteria:
+  - 应满足：复位清除锁、FATAL、日志/快照/FIFO、计数、时间戳、版本、提交状态、注入武装；策略恢复 RESET 参数，INTR_ENABLE=0，ALERT_ENABLE=0x9B。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.004
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 复位中断在途事务属于系统复位行为，系统须协调上游、桥、下游的隔离与恢复；本 IP 不保证复位前写是否已发生。
+  acceptance_criteria:
+  - 应满足：复位中断在途事务属于系统复位行为，系统须协调上游、桥、下游的隔离与恢复；本 IP 不保证复位前写是否已发生。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.APB_SECURE_DEMUX.RST.005
+  category: RESET
+  feature: rst
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-RST-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 不存在软件 soft reset；功能门控只允许在无进行中事务且系统保证配置/状态保持时由外部实现，禁止在等待期间停止必要的响应时钟。
+  acceptance_criteria:
+  - 应满足：不存在软件 soft reset；功能门控只允许在无进行中事务且系统保证配置/状态保持时由外部实现，禁止在等待期间停止必要的响应时钟。
+  - 在空闲、SETUP、ACCESS 等待和日志有效时复位；逐项检查输出、策略、锁、状态及释放后的首笔事务。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.001
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: POLICY_PARITY_EN=1 时，对每个 active/shadow PERM[7:0] 配置偶校验位，对每个 active/shadow CFG[1:0] 配置偶校验位；正常写、复制、复位同步更新校验。
+  acceptance_criteria:
+  - 应满足：POLICY_PARITY_EN=1 时，对每个 active/shadow PERM[7:0] 配置偶校验位，对每个 active/shadow CFG[1:0] 配置偶校验位；正常写、复制、复位同步更新校验。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.002
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: PORT_LOCK 与 GLOBAL_LOCK 使用互补双位编码，合法解锁为 01、合法锁定为 10；00/11 为完整性错误，不得解码为解锁。
+  acceptance_criteria:
+  - 应满足：PORT_LOCK 与 GLOBAL_LOCK 使用互补双位编码，合法解锁为 01、合法锁定为 10；00/11 为完整性错误，不得解码为解锁。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.00301
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 必须持续检查上述全部存储，稳定单 bit 错误最迟在下一 pclk 边沿置 INTEGRITY_FATAL。
+  acceptance_criteria:
+  - 应满足：必须持续检查上述全部存储，稳定单 bit 错误最迟在下一 pclk 边沿置 INTEGRITY_FATAL。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.00302
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 用于当前 SETUP 的组合判权同时受当前原始完整性错误指示门控，不能仅等待粘滞位生效。
+  acceptance_criteria:
+  - 应满足：用于当前 SETUP 的组合判权同时受当前原始完整性错误指示门控，不能仅等待粘滞位生效。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.004
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 任一 active/shadow/lock 完整性错误触发全局 FATAL；新外设请求全部拒绝；现有已经发到下游的事务继续完成，不承诺撤销已有副作用。
+  acceptance_criteria:
+  - 应满足：任一 active/shadow/lock 完整性错误触发全局 FATAL；新外设请求全部拒绝；现有已经发到下游的事务继续完成，不承诺撤销已有副作用。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.005
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: FATAL 后管理诊断入口仍开放，允许读状态/日志/配置和清除普通事件；shadow 写、reload、commit 返回 CFG_INTEGRITY，不支持通过写新 parity 清除 FATAL。
+  acceptance_criteria:
+  - 应满足：FATAL 后管理诊断入口仍开放，允许读状态/日志/配置和清除普通事件；shadow 写、reload、commit 返回 CFG_INTEGRITY，不支持通过写新 parity 清除 FATAL。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.006
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 首个完整性位置记录在 INTEGRITY_STATUS；多处同时错误按 global lock、端口升序，每端口 lock→active CFG→shadow CFG→active PERM 主体升序→shadow
+    PERM 主体升序的优先级选择。
+  acceptance_criteria:
+  - 应满足：首个完整性位置记录在 INTEGRITY_STATUS；多处同时错误按 global lock、端口升序，每端口 lock→active CFG→shadow CFG→active PERM 主体升序→shadow PERM 主体升序的优先级选择。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.00701
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: LOCATION_TYPE：0=global lock，1=port lock，2=active CFG，3=shadow CFG，4=active PERM，5=shadow PERM，6=DFX synthetic。
+  acceptance_criteria:
+  - 应满足：LOCATION_TYPE：0=global lock，1=port lock，2=active CFG，3=shadow CFG，4=active PERM，5=shadow PERM，6=DFX synthetic。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.00702
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: MASTER 仅 PERM 类型有效，其余为零。
+  acceptance_criteria:
+  - 应满足：MASTER 仅 PERM 类型有效，其余为零。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.008
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: POLICY_PARITY_EN=0 时不实现上述存储保护和注入功能，完整性状态读零，普通安全权限仍完整实现。
+  acceptance_criteria:
+  - 应满足：POLICY_PARITY_EN=0 时不实现上述存储保护和注入功能，完整性状态读零，普通安全权限仍完整实现。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SAFE.APB_SECURE_DEMUX.INT.009
+  category: SAFE
+  feature: int
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-INT-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 本保护不覆盖任意多 bit 错误、组合译码/比较逻辑故障、日志存储完整性或外部总线传输完整性，不宣称满足特定 ASIL 或安全认证等级。
+  acceptance_criteria:
+  - 应满足：本保护不覆盖任意多 bit 错误、组合译码/比较逻辑故障、日志存储完整性或外部总线传输完整性，不宣称满足特定 ASIL 或安全认证等级。
+  - 注入真实存储单 bit 和锁非法编码，检查当前 SETUP 阻断、下一边沿 FATAL 及在途事务完成；DFX 合成不能替代真实翻转。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00101
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 每个端口、每个主体维护独立 8 bit PERM。
+  acceptance_criteria:
+  - 应满足：每个端口、每个主体维护独立 8 bit PERM。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00102
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 1 允许，0 拒绝；读写与四种属性均可独立配置。
+  acceptance_criteria:
+  - 应满足：1 允许，0 拒绝；读写与四种属性均可独立配置。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00201
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: Secure、特权和管理主体均无隐含外设访问豁免。
+  acceptance_criteria:
+  - 应满足：Secure、特权和管理主体均无隐含外设访问豁免。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00202
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 管理身份访问外设时仍查端口权限表。
+  acceptance_criteria:
+  - 应满足：管理身份访问外设时仍查端口权限表。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00301
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: PORT_CFG[0]=ENABLE；[1]=INSTR_ALLOW。
+  acceptance_criteria:
+  - 应满足：PORT_CFG[0]=ENABLE；[1]=INSTR_ALLOW。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00302
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 其余位保留为零。
+  acceptance_criteria:
+  - 应满足：其余位保留为零。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00401
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 数据访问检查相应读写位。
+  acceptance_criteria:
+  - 应满足：数据访问检查相应读写位。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.00402
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 指令读还必须 INSTR_ALLOW=1；指令写一律拒绝。
+  acceptance_criteria:
+  - 应满足：指令读还必须 INSTR_ALLOW=1；指令写一律拒绝。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.005
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 身份无效或越界必须拒绝，不映射为主体 0；PSTRB=0 仍执行正常写权限检查。
+  acceptance_criteria:
+  - 应满足：身份无效或越界必须拒绝，不映射为主体 0；PSTRB=0 仍执行正常写权限检查。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.006
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 判权结果与目标在事务边界锁定，等待期间不得重新按新策略改变当前事务。
+  acceptance_criteria:
+  - 应满足：判权结果与目标在事务边界锁定，等待期间不得重新按新策略改变当前事务。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ACL.007
+  category: SEC
+  feature: acl
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-ACL-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 默认 RESET_PORT_CFG 和 RESET_PERM 全零；硬件启动权限只能通过显式参数定义，active 与 shadow 复位内容一致。
+  acceptance_criteria:
+  - 应满足：默认 RESET_PORT_CFG 和 RESET_PERM 全零；硬件启动权限只能通过显式参数定义，active 与 shadow 复位内容一致。
+  - 交叉主体、四种属性、读写与指令属性，检查准入结果及被拒绝请求的下游选择为零。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00101
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DFX 控制只在 DFX_EN=1、管理授权和 dfx_authorized_i=1 时允许。
+  acceptance_criteria:
+  - 应满足：DFX 控制只在 DFX_EN=1、管理授权和 dfx_authorized_i=1 时允许。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00102
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DFX 硬件授权不能由本 IP 的 CSR 自行产生。
+  acceptance_criteria:
+  - 应满足：DFX 硬件授权不能由本 IP 的 CSR 自行产生。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00201
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 授权变低时，下一时钟边沿解除所有未触发注入武装；观测输出受授权门控。
+  acceptance_criteria:
+  - 应满足：授权变低时，下一时钟边沿解除所有未触发注入武装；观测输出受授权门控。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00202
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 已经完成的事件和计数不自动清除。
+  acceptance_criteria:
+  - 应满足：已经完成的事件和计数不自动清除。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.003
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: SUCCESS_COUNT 只统计下游 PREADY=1 且 PSLVERR=0 的完成事务；DENY_COUNT 只统计唯一命中该端口的拒绝；SLVERR_COUNT 统计下游错误。
+  acceptance_criteria:
+  - 应满足：SUCCESS_COUNT 只统计下游 PREADY=1 且 PSLVERR=0 的完成事务；DENY_COUNT 只统计唯一命中该端口的拒绝；SLVERR_COUNT 统计下游错误。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.004
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 所有 32 bit 计数饱和不回绕；同周期清除和递增时先清零再累加本周期事件。
+  acceptance_criteria:
+  - 应满足：所有 32 bit 计数饱和不回绕；同周期清除和递增时先清零再累加本周期事件。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00501
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: WAIT_TOTAL 只计算下游 PSEL && PENABLE && !PREADY 周期，不包括寄存模式额外 SETUP 周期。
+  acceptance_criteria:
+  - 应满足：WAIT_TOTAL 只计算下游 PSEL && PENABLE && !PREADY 周期，不包括寄存模式额外 SETUP 周期。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00502
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: WAIT_MAX 在完成时更新；未完成事务通过硬件阈值输出观测。
+  acceptance_criteria:
+  - 应满足：WAIT_MAX 在完成时更新；未完成事务通过硬件阈值输出观测。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.006
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: WAIT_THRESHOLD=0 禁用告警；T>0 时，在单笔第 T 个等待周期边沿触发一次 WAIT_EXCEEDED 并置 WAIT_HIT；同笔不重复触发，新事务重新计数。
+  acceptance_criteria:
+  - 应满足：WAIT_THRESHOLD=0 禁用告警；T>0 时，在单笔第 T 个等待周期边沿触发一次 WAIT_EXCEEDED 并置 WAIT_HIT；同笔不重复触发，新事务重新计数。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00701
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: busy_o 表示有外设事务正在 SETUP/ACCESS；active_port_valid_o 随有效目标，active_port_o 无效时为 0。
+  acceptance_criteria:
+  - 应满足：busy_o 表示有外设事务正在 SETUP/ACCESS；active_port_valid_o 随有效目标，active_port_o 无效时为 0。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00702
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-007
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 仅诊断信号，不作为授权凭据。
+  acceptance_criteria:
+  - 应满足：仅诊断信号，不作为授权凭据。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.008
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-008
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: wait_threshold_o 表示授权条件下的粘滞 WAIT_HIT，清除由 DFX_CLEAR[0]；不会终止下游事务。
+  acceptance_criteria:
+  - 应满足：wait_threshold_o 表示授权条件下的粘滞 WAIT_HIT，清除由 DFX_CLEAR[0]；不会终止下游事务。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00901
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: INJECT_TARGET 写入时检查端口和主体范围；武装时锁存目标。
+  acceptance_criteria:
+  - 应满足：INJECT_TARGET 写入时检查端口和主体范围；武装时锁存目标。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.00902
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-009
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 武装期间改目标或再次武装返回 CMD_INVALID，须先解除。
+  acceptance_criteria:
+  - 应满足：武装期间改目标或再次武装返回 CMD_INVALID，须先解除。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01001
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 强制拒绝为一次性；匹配 MASTERID/端口、原本合法的下一笔事务在 SETUP 被拒绝，产生 DFX_FORCED_DENY，完成时计拒绝、bit0 与 bit8。
+  acceptance_criteria:
+  - 应满足：强制拒绝为一次性；匹配 MASTERID/端口、原本合法的下一笔事务在 SETUP 被拒绝，产生 DFX_FORCED_DENY，完成时计拒绝、bit0 与 bit8。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01002
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-010
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 自然非法事务不消耗武装。
+  acceptance_criteria:
+  - 应满足：自然非法事务不消耗武装。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01101
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 完整性故障注入为一次性；匹配的下一笔原本合法事务在 SETUP 阻断，在 SETUP 结束边沿置全局 FATAL，产生带 TEST 的 INTEGRITY_DETECTED；该笔完成再产生 INTEGRITY_BLOCK，标记
+    TEST。
+  acceptance_criteria:
+  - 应满足：完整性故障注入为一次性；匹配的下一笔原本合法事务在 SETUP 阻断，在 SETUP 结束边沿置全局 FATAL，产生带 TEST 的 INTEGRITY_DETECTED；该笔完成再产生 INTEGRITY_BLOCK，标记
+    TEST。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01102
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 后续访问按普通 FATAL 拒绝。
+  acceptance_criteria:
+  - 应满足：后续访问按普通 FATAL 拒绝。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01103
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-011
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 该模式需 POLICY_PARITY_EN=1，否则命令错误。
+  acceptance_criteria:
+  - 应满足：该模式需 POLICY_PARITY_EN=1，否则命令错误。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.012
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-012
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DFX 完整性注入测试“检测结果至阻断/告警”路径，不翻转实际权限存储位，不能代替验证环境的真实 parity 位故障注入测试。
+  acceptance_criteria:
+  - 应满足：DFX 完整性注入测试“检测结果至阻断/告警”路径，不翻转实际权限存储位，不能代替验证环境的真实 parity 位故障注入测试。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.013
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-013
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 合成日志命令在完成边沿产生 DFX_SYNTHETIC，TEST=1、REQUEST_VALID=0；不访问任何外设，不增加访问拒绝计数。
+  acceptance_criteria:
+  - 应满足：合成日志命令在完成边沿产生 DFX_SYNTHETIC，TEST=1、REQUEST_VALID=0；不访问任何外设，不增加访问拒绝计数。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01401
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-014
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 无软件安全 bypass。
+  acceptance_criteria:
+  - 应满足：无软件安全 bypass。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01402
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-014
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: scan/test 信号的工艺接入由 DFT 架构约束，功能模式下不得改变权限；不得以 DFX_EN 为条件绕过正常访问检查。
+  acceptance_criteria:
+  - 应满足：scan/test 信号的工艺接入由 DFT 架构约束，功能模式下不得改变权限；不得以 DFX_EN 为条件绕过正常访问检查。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01501
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-015
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 单 APB 输入被下游等待占用时，软件无法通过同口读取 DFX CSR；这是接口边界。
+  acceptance_criteria:
+  - 应满足：单 APB 输入被下游等待占用时，软件无法通过同口读取 DFX CSR；这是接口边界。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.DFX.01502
+  category: DFX
+  feature: dfx
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-DFX-015
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 系统若需要独立救援访问，应在外围提供独立观测/复位通路，不能假定本 IP 可取消 APB。
+  acceptance_criteria:
+  - 应满足：系统若需要独立救援访问，应在外围提供独立观测/复位通路，不能假定本 IP 可取消 APB。
+  - 覆盖功能裁剪、硬件授权高低及撤销边沿；对比武装、计数、输出和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.001
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-001
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: MASTERID、PPROT 必须由可信系统路径产生；本 IP 检查属性而不认证其真实性。
+  acceptance_criteria:
+  - 应满足：MASTERID、PPROT 必须由可信系统路径产生；本 IP 检查属性而不认证其真实性。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.002
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-002
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 上游 X2P 必须将读请求 ARPROT、写请求 AWPROT 以及主体身份绑定到对应 APB 事务，缓冲、仲裁和 CDC 后不得错配。
+  acceptance_criteria:
+  - 应满足：上游 X2P 必须将读请求 ARPROT、写请求 AWPROT 以及主体身份绑定到对应 APB 事务，缓冲、仲裁和 CDC 后不得错配。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.003
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-003
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: AXI AxID 不得在未经可信身份映射的情况下直接充当 MASTERID。
+  acceptance_criteria:
+  - 应满足：AXI AxID 不得在未经可信身份映射的情况下直接充当 MASTERID。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.004
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-004
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 所有抵达被保护外设的访问路径和别名入口必须有等效保护；本 IP 无法阻止绕过自身的另一条访问路径。
+  acceptance_criteria:
+  - 应满足：所有抵达被保护外设的访问路径和别名入口必须有等效保护；本 IP 无法阻止绕过自身的另一条访问路径。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.00501
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 普通外设复位不得清除本 IP 权限或锁。
+  acceptance_criteria:
+  - 应满足：普通外设复位不得清除本 IP 权限或锁。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.00502
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-005
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 模块复位和 DFX 授权必须由可信系统控制。
+  acceptance_criteria:
+  - 应满足：模块复位和 DFX 授权必须由可信系统控制。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.SYS.006
+  category: CONS
+  feature: sys
+  priority: P0
+  status: active
+  source_ref:
+  - REQ-SYS-006
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 本 IP 不承诺抵抗任意物理故障注入、恶意时钟毛刺或篡改后的 scan 路径；完整性保护的覆盖边界见第 12 节。
+  acceptance_criteria:
+  - 应满足：本 IP 不承诺抵抗任意物理故障注入、恶意时钟毛刺或篡改后的 scan 路径；完整性保护的覆盖边界见第 12 节。
+  - 通过系统连接/复位/身份路径审查确认该约束；本 IP 局部仿真不能代替系统证据。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.PARAMETERS.001
+  category: CFG
+  feature: parameters
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§2 参数表
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: IP 应支持 NUM_PORTS=1..32、ADDR_WIDTH=16..32、DATA_WIDTH=32、MASTER_ID_WIDTH=1..16、NUM_MASTERS=1..64，且主体数量不超过身份编码空间。
+  acceptance_criteria:
+  - 逐参数检查上下界、相邻非法值和非 2 幂规模；DATA_WIDTH 不等于 32 必须拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.APB_SECURE_DEMUX.OPTIONS.002
+  category: CFG
+  feature: options
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§2 参数表
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: REGISTER_MODE、OUTPUT_ISOLATION_EN、POLICY_PARITY_EN、DFX_EN、PUBLIC_ID_EN 均为独立布尔参数；EVENT_FIFO_DEPTH 为 0..32。复位权限和端口使能默认全零；管理掩码非零且由集成提供。
+  acceptance_criteria:
+  - 检查各开关开启和关闭；组合配置不得出现身份绕过或意外开放权限。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.APB_SECURE_DEMUX.SIGNALS.003
+  category: INTF
+  feature: signals
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§3 接口表
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: IP 应提供本分册接口表中列出的全部方向和位宽，数据宽度固定 32 bit，输出身份按端口与请求绑定；不得新增 AXI 或 APB5 接口作为必需依赖。
+  acceptance_criteria:
+  - 在每个强制配置上检查 elaboration 顶层接口与受控接口契约一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.APB_SECURE_DEMUX.ATTRIBUTES.004
+  category: SEC
+  feature: attributes
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§4.2 属性编码
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: PPROT 的低两位以 {Non-secure, privileged} 编码四类属性，读权限分别使用 PERM 低四位，写权限使用高四位；指令属性不改变主体身份。
+  acceptance_criteria:
+  - 穷尽四类属性、读写和八个 one-hot 权限设置，预期仅对应授权组合允许。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.AUTHORIZATION.005
+  category: REG
+  feature: authorization
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§6 管理授权
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 管理授权必须同时满足完整身份有效、身份范围合法、固定 MGMT_MASTER_MASK 命中、PPROT 为 Secure 特权数据属性。
+  acceptance_criteria:
+  - 遍历管理掩码内外身份及全部 PPROT；仅满足全部条件的管理事务访问受保护 CSR。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.MAP.006
+  category: REG
+  feature: map
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§7 完整寄存器映射
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 软件 ABI 应保持输入契约第 7 节的全局、DFX 和每端口寄存器名称、地址、访问属性、复位值及裁剪语义。字段结构交由寄存器 owner 建模，本 LRS 不重复维护位表。
+  acceptance_criteria:
+  - 将寄存器 owner 生成的地址/字段/复位/访问清单逐项与受控契约第 7 节比较；任何差异必须评审。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.APB_SECURE_DEMUX.COMMITSTATUS.007
+  category: REG
+  feature: commitstatus
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§7.1 提交状态
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 通过管理与基本 CSR 检查后，提交状态分别记录最近成功或失败；失败原因按掩码、全局锁、端口锁、完整性排序，多个端口选择最低编号；基本检查失败不得改变提交状态。
+  acceptance_criteria:
+  - 交叉非法掩码、多个锁和完整性故障，检查 COMMIT_STATUS；总线日志错误码仍按第 9.1 节，两个字段不可混为同一优先级。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.ERRORPRIORITY.008
+  category: FUNC
+  feature: errorpriority
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§9.1 错误编码
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 外设主错误按 MULTI_HIT、ADDR_MISS、ID_INVALID、INTEGRITY_BLOCK、PORT_DISABLED、INSTR_DENIED、READ/WRITE_DENIED、DFX_FORCED_DENY
+    排序；CSR 按授权、对齐、选通、存在性、访问类型、锁、命令、完整性排序。
+  acceptance_criteria:
+  - 构造多条件并发故障，检查首原因；未授权请求不得通过错误原因泄漏敏感寄存器是否实现。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.LOGFORMAT.009
+  category: FUNC
+  feature: logformat
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§9.2 记录格式
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 每条记录包含固定八个 32 bit 字，记录原始地址、有效身份及保护属性、读写、原因和来源、端口有效性、SETUP 策略版本、时间戳、序号和选通；未关联事务和无效字段清零，不记录原始读写数据。
+  acceptance_criteria:
+  - 逐字对照第 9.2 节编码，覆盖无关联合成事件、端口 0 和主体 0 的有效值，确认有效零与无效字段可区分。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.APB_SECURE_DEMUX.IRQMAP.010
+  category: FUNC
+  feature: irqmap
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§10 中断位表
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: RAW 事件应按输入契约第 10 节位表映射访问拒绝、CSR 错误、空洞、多命中、完整性、丢失、下游错误、等待和 DFX；同一次失败可置多个相关位。
+  acceptance_criteria:
+  - 逐一触发九类事件及 ADDR_MISS+ACCESS_DENIED、MULTI_HIT+ACCESS_DENIED 组合；检查未相关位保持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.REVOKE.011
+  category: DFX
+  feature: revoke
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§11 注入边沿规则
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 注入匹配、武装消耗和事务 TEST 标记在 SETUP 结束边沿确定；该边沿硬件授权低时不得触发，已触发拒绝不因随后撤销而改变。授权撤销优先于同周期武装命令并返回 CFG_UNAUTHORIZED。
+  acceptance_criteria:
+  - 在 SETUP 前、采样边沿和 ACCESS 中撤销授权，核对消费次数、返回原因和 TEST 标记。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.APB_SECURE_DEMUX.MUTEX.012
+  category: DFX
+  feature: mutex
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§11 注入边沿规则
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 强制拒绝与完整性注入模式互斥；已有任一武装时再次武装返回命令错误；WAIT_HIT 清除与新阈值事件同周期时新事件保留。
+  acceptance_criteria:
+  - 交叉两种武装与重复命令；构造清除/新阈值同周期并检查 WAIT_HIT 为一。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.APB_SECURE_DEMUX.MODES.013
+  category: PERF
+  feature: modes
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§5.2/§5.3 模式时序
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 直接模式的合法零等待外设访问不得增加上游等待；寄存模式恰增加一个上游等待周期并完整保留请求；两模式的本地 CSR 和拒绝均在第一个 ACCESS 完成。
+  acceptance_criteria:
+  - 逐周期测量下游零等待及长等待，两模式完成延迟仅相差一个周期；本地访问延迟不受模式影响。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.PPA.014
+  category: CONS
+  feature: ppa
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§14/§15.3 综合验收
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 交付应报告直接与寄存两种模式、典型与最大配置的综合面积、关键路径和约束；禁止无工艺依据宣称 MHz、功耗或面积达标。
+  acceptance_criteria:
+  - 保存各配置综合与 STA 原始报告、工艺库/角和输入哈希；目标尚未提供时标明未签核。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.VERIFICATION.015
+  category: CONS
+  feature: verification
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§15.1/§15.2/§15.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 强制需求须建立 REQ→Feature→Test/Assertion 追踪，必需测试和强制功能 bins 应通过或有真实评审豁免；拒绝无副作用、锁不可绕过、原子提交及 onehot0 须具有形式或等效可审计穷尽证据。
+  acceptance_criteria:
+  - 比较需求集合与 trace；逐项核对日志、断言、覆盖和形式证明边界，有限随机仿真不得标为穷尽证明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.DELIVERY.016
+  category: CONS
+  feature: delivery
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§16 实现交付件
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 完整交付应包含参数化 RTL、HWIF 契约、寄存器描述及派生软件接口、初始化/更新/锁定/中断示例、UVM 验证、集成配置检查、FuseSoC、用户和集成文档及质量证据。
+  acceptance_criteria:
+  - 按 full_process_status.md 逐项检查文件、来源和有效门禁；缺失项明确记录为未完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.APB_SECURE_DEMUX.PROTOCOL.017
+  category: CONS
+  feature: protocol
+  priority: P0
+  status: active
+  source_ref:
+  - CONTRACT:§17 协议基线
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: APB4 应对照项目受控 Arm IHI 0024 版本核验；MASTERID、CSR、权限表和日志均为项目扩展，不宣称其他产品寄存器兼容。
+  acceptance_criteria:
+  - 协议评审记录实际受控版本与条款；未取得规范不得宣称已完成核验。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: pass
+  requirement_freeze: true
+  approvals:
+    user: 'approved; conversation reply: approve, continue; scope LRS + CR-001..003'
+  approval_ref: docs/reviews/g0_approval.md

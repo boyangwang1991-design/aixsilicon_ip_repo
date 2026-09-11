@@ -1,0 +1,16 @@
+{
+  "contract": {
+    "path": "gpio_contract.md",
+    "version": "1.0.0-draft",
+    "sha256": "59597f3b2da6408c3f95c95a4aadc05749b8ea9e0712c16d3a63edf577dff705"
+  },
+  "mode": "full-flow",
+  "package_version": "0.1.0",
+  "ip_name": "gpio",
+  "profile": "commercial-systemverilog",
+  "workflow_root": "/home/eda/workspace/aixsilicon_workflow",
+  "repo_id": "ip",
+  "initial_contents": [
+    "gpio_contract.md"
+  ]
+}

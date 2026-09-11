@@ -1,0 +1,4718 @@
+schema_version: '2.0'
+ip_name: watchdog
+delivery_model: parameterized
+lrs_baseline: watchdog-contract-1.0.0-full-flow-r1
+hld_baseline: watchdog-hld-1.0.0-full-flow-r1
+document_version: 1.0.0
+status: reviewed
+microarchitecture_baseline: watchdog-lld-1.0.0-full-flow-r1
+modules:
+- id: LLD.MOD.WATCHDOG.BUS
+  name: bus
+  parent_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.REG.WATCHDOG.ACCESS.001
+  - LRS.REG.WATCHDOG.IDENTITY.001
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  - LRS.PERF.WATCHDOG.COMMAND.001
+  - LRS.SEC.WATCHDOG.AUTH.001
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  - LRS.CONS.WATCHDOG.SOFTWARE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: false
+    suggested_name: watchdog_top
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.APB
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_APB
+  - HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+- id: LLD.MOD.WATCHDOG.CHANNEL
+  name: channel
+  parent_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+  - LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+  - LRS.CFG.WATCHDOG.PRESCALE_WIDTH.001
+  - LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+  - LRS.CFG.WATCHDOG.SOURCE_WIDTH.001
+  - LRS.CFG.WATCHDOG.SYNC_STAGES.001
+  - LRS.CFG.WATCHDOG.SUPPORT_TOKEN_QA.001
+  - LRS.CFG.WATCHDOG.SUPPORT_SUPERVISION.001
+  - LRS.CFG.WATCHDOG.SUPPORT_HW_EVENT.001
+  - LRS.CFG.WATCHDOG.SAFETY_EN.001
+  - LRS.CFG.WATCHDOG.ALLOW_RUNTIME_UPDATE.001
+  - LRS.CFG.WATCHDOG.DIAG_INJECT_EN.001
+  - LRS.CFG.WATCHDOG.AUTO_START_MASK.001
+  - LRS.CFG.WATCHDOG.NO_STOP_MASK.001
+  - LRS.CFG.WATCHDOG.HARD_CFG_LOCK_MASK.001
+  - LRS.CFG.WATCHDOG.DEFAULT_CFG.001
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.FLT.001
+  - LRS.FUNC.WATCHDOG.FLT.002
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.STA.001
+  - LRS.FUNC.WATCHDOG.STA.002
+  - LRS.FUNC.WATCHDOG.STA.003
+  - LRS.FUNC.WATCHDOG.STA.004
+  - LRS.FUNC.WATCHDOG.STA.005
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  - LRS.FUNC.WATCHDOG.TIM.001
+  - LRS.FUNC.WATCHDOG.TIM.002
+  - LRS.FUNC.WATCHDOG.TIM.003
+  - LRS.FUNC.WATCHDOG.TIM.004
+  - LRS.FUNC.WATCHDOG.TIM.005
+  - LRS.FUNC.WATCHDOG.TIM.006
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  - LRS.PERF.WATCHDOG.TIME.001
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  - LRS.SEC.WATCHDOG.TOKEN.001
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: watchdog_channel
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_WDT
+- id: LLD.MOD.WATCHDOG.DISPATCH
+  name: dispatch
+  parent_ref:
+  - HLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.MOD.WATCHDOG.DISPATCH
+  req_ref:
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.STA.001
+  - LRS.FUNC.WATCHDOG.STA.002
+  - LRS.FUNC.WATCHDOG.STA.003
+  - LRS.FUNC.WATCHDOG.STA.004
+  - LRS.FUNC.WATCHDOG.STA.005
+  - LRS.PERF.WATCHDOG.COMMAND.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: false
+    suggested_name: watchdog_top
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_WDT
+- id: LLD.MOD.WATCHDOG.INTEGRATION
+  name: integration
+  parent_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  req_ref:
+  - LRS.CFG.WATCHDOG.NUM_CHANNELS.001
+  - LRS.CFG.WATCHDOG.COUNTER_WIDTH.001
+  - LRS.CFG.WATCHDOG.PRESCALE_WIDTH.001
+  - LRS.CFG.WATCHDOG.NUM_CLIENTS.001
+  - LRS.CFG.WATCHDOG.SOURCE_WIDTH.001
+  - LRS.CFG.WATCHDOG.SYNC_STAGES.001
+  - LRS.CFG.WATCHDOG.SUPPORT_TOKEN_QA.001
+  - LRS.CFG.WATCHDOG.SUPPORT_SUPERVISION.001
+  - LRS.CFG.WATCHDOG.SUPPORT_HW_EVENT.001
+  - LRS.CFG.WATCHDOG.SAFETY_EN.001
+  - LRS.CFG.WATCHDOG.ALLOW_RUNTIME_UPDATE.001
+  - LRS.CFG.WATCHDOG.DIAG_INJECT_EN.001
+  - LRS.CFG.WATCHDOG.AUTO_START_MASK.001
+  - LRS.CFG.WATCHDOG.NO_STOP_MASK.001
+  - LRS.CFG.WATCHDOG.HARD_CFG_LOCK_MASK.001
+  - LRS.CFG.WATCHDOG.DEFAULT_CFG.001
+  - LRS.CFG.WATCHDOG.PROFILE.001
+  - LRS.CFG.WATCHDOG.PROFILE.002
+  - LRS.CFG.WATCHDOG.PROFILE.003
+  - LRS.CFG.WATCHDOG.PAR.001
+  - LRS.CFG.WATCHDOG.PAR.002
+  - LRS.CFG.WATCHDOG.PAR.003
+  - LRS.INTF.WATCHDOG.PORTS.001
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.PERF.WATCHDOG.SAFETY.001
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  - LRS.CONS.WATCHDOG.VER.001
+  - LRS.CONS.WATCHDOG.VER.002
+  - LRS.CONS.WATCHDOG.VER.003
+  - LRS.CONS.WATCHDOG.VER.004
+  - LRS.CONS.WATCHDOG.VER.005
+  - LRS.CONS.WATCHDOG.VER.006
+  - LRS.CONS.WATCHDOG.DELIVERY.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: false
+    suggested_name: watchdog_top
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.APB
+  - HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_APB
+  - HLD.DOM.RST.WATCHDOG.POR_WDT
+  - HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+- id: LLD.MOD.WATCHDOG.SAFETY
+  name: safety
+  parent_ref:
+  - HLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.MOD.WATCHDOG.SAFETY
+  req_ref:
+  - LRS.FUNC.WATCHDOG.FLT.001
+  - LRS.FUNC.WATCHDOG.FLT.002
+  - LRS.PERF.WATCHDOG.SAFETY.001
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+  rtl_intent:
+    separate_module: false
+    suggested_name: watchdog_channel
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_WDT
+- id: LLD.MOD.WATCHDOG.TRANSPORT
+  name: transport
+  parent_ref:
+  - HLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.TRANSPORT
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.ACCESS.001
+  - LRS.REG.WATCHDOG.IDENTITY.001
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  - LRS.PERF.WATCHDOG.COMMAND.001
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.SEC.WATCHDOG.AUTH.001
+  - LRS.CONS.WATCHDOG.SOFTWARE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: false
+    suggested_name: watchdog_top
+  clock_domains:
+  - HLD.DOM.CLK.WATCHDOG.APB
+  - HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domains:
+  - HLD.DOM.RST.WATCHDOG.POR_APB
+  - HLD.DOM.RST.WATCHDOG.POR_WDT
+interfaces:
+- id: LLD.IF.WATCHDOG.EXTERNAL.APB
+  owner_module: LLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.APB
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.PORTS.001
+  - LRS.REG.WATCHDOG.ACCESS.001
+  protocol: APB4
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  applicability:
+    expr: 'true'
+  signals:
+  - name: PSEL/PENABLE/PWRITE
+    width: 1 each
+    direction: in
+    stability: SETUP/ACCESS期间按APB保持
+  - name: PADDR
+    width: '15'
+    direction: in
+    stability: 字节地址，ACCESS完成前稳定
+  - name: PWDATA
+    width: '32'
+    direction: in
+    stability: 写负载稳定
+  - name: PSTRB
+    width: '4'
+    direction: in
+    stability: 写必须全1；读忽略
+  - name: PPROT
+    width: '3'
+    direction: in
+    stability: 属性稳定，不用于生成可信授权
+  - name: PRDATA
+    width: '32'
+    direction: out
+    stability: 成功读完成边沿有效，错误读0
+  - name: PREADY/PSLVERR
+    width: 1 each
+    direction: out
+    stability: ACCESS完成采样；最多2 pclk
+- id: LLD.IF.WATCHDOG.EXTERNAL.AUTH
+  owner_module: LLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.AUTH
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.SEC.WATCHDOG.AUTH.001
+  protocol: trusted_sideband
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  applicability:
+    expr: 'true'
+  signals:
+  - name: access_source_i
+    width: SOURCE_WIDTH
+    direction: in
+    stability: 随APB稳定并捕获
+  - name: cfg_auth_i/service_auth_i/diag_auth_i
+    width: 1 each
+    direction: in
+    stability: 独立可信授权，拒绝不执行
+- id: LLD.IF.WATCHDOG.EXTERNAL.APB_CLOCK_RESET
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.APB_CLOCK_RESET
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  protocol: clock_reset
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  applicability:
+    expr: 'true'
+  signals:
+  - name: pclk
+    width: '1'
+    direction: in
+    stability: APB上升沿时钟
+  - name: preset_n
+    width: '1'
+    direction: in
+    stability: 接口低有效，异步置位同步释放
+- id: LLD.IF.WATCHDOG.EXTERNAL.WDT_CLOCK_RESET
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.WDT_CLOCK_RESET
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  protocol: clock_reset
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: wdt_clk
+    width: '1'
+    direction: in
+    stability: 独立计时上升沿
+  - name: por_n
+    width: '1'
+    direction: in
+    stability: 两域共同异步初始化，同步独立释放
+- id: LLD.IF.WATCHDOG.EXTERNAL.POWER_DEBUG
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.POWER_DEBUG
+  req_ref:
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  protocol: trusted_level
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: sleep_req_i/debug_req_i/debug_auth_i
+    width: 1 each
+    direction: in
+    stability: 已同步WDT电平，暂停规则组合判定
+  - name: pause_ack_o
+    width: NUM_CHANNELS
+    direction: out
+    stability: 实际PAUSED状态电平
+- id: LLD.IF.WATCHDOG.EXTERNAL.WARM_EVENT
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.WARM_EVENT
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  protocol: trusted_event
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: warm_reset_evt_i
+    width: '1'
+    direction: in
+    stability: 已同步单周期可信事件，不能持续重启
+- id: LLD.IF.WATCHDOG.EXTERNAL.RECOVERY
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.RECOVERY
+  req_ref:
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  protocol: four_phase_handshake
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: recovery_done_i
+    width: NUM_CHANNELS
+    direction: in
+    stability: 保持直到ack，随后回0
+  - name: recovery_ack_o
+    width: NUM_CHANNELS
+    direction: out
+    stability: 合格恢复后保持到done回0
+- id: LLD.IF.WATCHDOG.EXTERNAL.HW_EVENT
+  owner_module: LLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.HW_EVENT
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  protocol: ready_valid
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: SUPPORT_HW_EVENT == 1
+  signals:
+  - name: hw_evt_valid/hw_evt_ready
+    width: 1 each
+    direction: in/out
+    stability: valid&&ready消费一次；stall时不撤销payload
+  - name: hw_evt_channel/client/type
+    width: 4/5/3
+    direction: in
+    stability: 同域目标与事件类型
+  - name: hw_evt_data
+    width: '32'
+    direction: in
+    stability: 密钥/响应/检查点
+  - name: hw_evt_source
+    width: SOURCE_WIDTH
+    direction: in
+    stability: 可信硬件事件身份
+- id: LLD.IF.WATCHDOG.EXTERNAL.TEST_AUTH
+  owner_module: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.TEST_AUTH
+  req_ref:
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  protocol: trusted_level
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: SAFETY_EN == 1
+  signals:
+  - name: test_auth_i
+    width: '1'
+    direction: in
+    stability: WDT已同步生命周期/测试授权
+- id: LLD.IF.WATCHDOG.EXTERNAL.REQUESTS
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.REQUESTS
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  protocol: sticky_request
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: nmi_req_o/local_reset_req_o
+    width: NUM_CHANNELS
+    direction: out
+    stability: WDT保持请求，接收方完成CDC
+  - name: system_reset_req_o/safety_alert_o/safe_state_req_o/wake_req_o
+    width: 1 each
+    direction: out
+    stability: WDT通道OR，不依赖pclk
+- id: LLD.IF.WATCHDOG.EXTERNAL.IRQ
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.EXT.WATCHDOG.IRQ
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  protocol: synchronized_level
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  applicability:
+    expr: 'true'
+  signals:
+  - name: irq_o
+    width: NUM_CHANNELS
+    direction: out
+    stability: WDT粘滞IRQ同步后APB电平
+- id: LLD.IF.WATCHDOG.INTERNAL.BUS_COMMAND
+  owner_module: LLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.BUS_COMMAND
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  protocol: bundled_request
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_APB
+  applicability:
+    expr: 'true'
+  signals:
+  - name: apb_fire/is_command/busy
+    width: 1 each
+    direction: local
+    stability: 成功完成且!busy才捕获
+  - name: mailbox_cmd
+    width: '104'
+    direction: local
+    stability: channel4+client5+type3+opcode8+data32+seq32+source16+auth3+hardware1
+  - name: mailbox_config
+    width: '7680'
+    direction: local
+    stability: 16主字+32*7客户端字，捕获后保持
+- id: LLD.IF.WATCHDOG.INTERNAL.WDT_MAILBOX
+  owner_module: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.WDT_MAILBOX
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  protocol: stable_request
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: req_sync/ack_toggle
+    width: S / 1
+    direction: local
+    stability: 末级req!=ack形成一次待执行
+  - name: mailbox_cmd/mailbox_config
+    width: 104/7680
+    direction: local
+    stability: 跨域稳定负载，不逐位同步
+- id: LLD.IF.WATCHDOG.INTERNAL.SELECTED_COMMAND
+  owner_module: LLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.SELECTED_COMMAND
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  protocol: command_event
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: cmd_v
+    width: NUM_CHANNELS
+    direction: local
+    stability: 至多onehot；仅执行边沿有效
+  - name: selected_cmd/cmd_config
+    width: 104/7680
+    direction: local
+    stability: 软件源邮箱、硬件源实时稳定握手；目的域采样
+- id: LLD.IF.WATCHDOG.INTERNAL.CHANNEL_REPLY
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.CHANNEL_REPLY
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  protocol: completion_record
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: channel_result
+    width: 8 per channel
+    direction: local
+    stability: 本拍命令结果
+  - name: channel_snap
+    width: 19968 per channel
+    direction: local
+    stability: 112主字+32*16客户端字的更新后快照
+- id: LLD.IF.WATCHDOG.INTERNAL.APB_REPLY
+  owner_module: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.APB_REPLY
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.IDENTITY.001
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  protocol: held_response
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_APB
+  applicability:
+    expr: 'true'
+  signals:
+  - name: ack_sync
+    width: S
+    direction: local
+    stability: POR保持应答同步链
+  - name: reply_result/reply_snapshot
+    width: 8/19968
+    direction: local
+    stability: 应答发布前稳定至下个命令执行
+- id: LLD.IF.WATCHDOG.INTERNAL.ACCESS_ERROR
+  owner_module: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.ACCESS_ERROR
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  protocol: coalesced_event
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: err_req/err_ack
+    width: NUM_CHANNELS each
+    direction: local
+    stability: 独立四相合并事件，不占命令邮箱
+- id: LLD.IF.WATCHDOG.INTERNAL.SAFETY_CONTEXT
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.SAFETY_CONTEXT
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  protocol: integrity_observation
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: SAFETY_EN == 1
+  signals:
+  - name: q/n protected state
+    width: parameter dependent
+    direction: local
+    stability: 旧状态/独立候选/原始请求分别观察
+  - name: raw_service_inputs/refresh_decisions
+    width: structured
+    direction: local
+    stability: 完整服务谓词须双路径核验
+- id: LLD.IF.WATCHDOG.INTERNAL.SAFETY_FAULT
+  owner_module: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.SAFETY_FAULT
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  protocol: fatal_request
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: SAFETY_EN == 1
+  signals:
+  - name: fatal_events
+    width: '19'
+    direction: local
+    stability: 实际检测原因OR
+  - name: independent_final_request
+    width: 1 per channel
+    direction: local
+    stability: 普通FSM失效仍保持并汇总
+- id: LLD.IF.WATCHDOG.INTERNAL.CHANNEL_OUTPUT
+  owner_module: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.CHANNEL_OUTPUT
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  protocol: status_request
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: irq/fault/local/final/alert/wake
+    width: 1 each per channel
+    direction: local
+    stability: 各自状态所有权，跨通道只OR不相互清除
+- id: LLD.IF.WATCHDOG.INTERNAL.RESET_APB
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.RESET_APB
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  protocol: reset_domain
+  clock_domain: HLD.DOM.CLK.WATCHDOG.APB
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_APB
+  applicability:
+    expr: 'true'
+  signals:
+  - name: prst_n/apb_rst_n
+    width: 1 each
+    direction: local
+    stability: POR保持域与接口域分别使用，不能混复位
+- id: LLD.IF.WATCHDOG.INTERNAL.RESET_WDT
+  owner_module: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.IF.INT.WATCHDOG.RESET_WDT
+  req_ref:
+  - LRS.FUNC.WATCHDOG.STA.001
+  - LRS.FUNC.WATCHDOG.STA.002
+  - LRS.FUNC.WATCHDOG.STA.003
+  - LRS.FUNC.WATCHDOG.STA.004
+  - LRS.FUNC.WATCHDOG.STA.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  protocol: reset_domain
+  clock_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  applicability:
+    expr: 'true'
+  signals:
+  - name: wrst_n
+    width: '1'
+    direction: local
+    stability: POR异步置低/S级释放，warm不是复位脚
+timing:
+- id: LLD.TIMING.WATCHDOG.APB
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  interface_ref: LLD.IF.WATCHDOG.EXTERNAL.APB
+  scenario: apb_access
+  latency:
+    min_cycles: 1
+    max_cycles: 2
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.TIMING.WATCHDOG.COMMAND
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  interface_ref: LLD.IF.WATCHDOG.INTERNAL.WDT_MAILBOX
+  scenario: mailbox_visible_to_execute
+  latency:
+    min_cycles: 1
+    max_cycles: 3
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.TIMING.WATCHDOG.RETURN
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  interface_ref: LLD.IF.WATCHDOG.INTERNAL.APB_REPLY
+  scenario: reply_return
+  latency:
+    min_cycles: SYNC_STAGES
+    max_cycles: SYNC_STAGES+1
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+datapaths:
+- id: LLD.DP.WATCHDOG.BUS.CSR
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+  input_width: 15 address + 32 data + 4 strobe + 3 protection
+  output_width: 32 read_data + ready + error
+  latency: 1..2 pclk ACCESS cycles
+  signed: false
+- id: LLD.DP.WATCHDOG.CHANNEL.SNAPSHOT
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+  input_width: complete post-update channel state
+  output_width: snapshot_t
+  latency: 0
+  signed: false
+  saturation: false
+- id: LLD.DP.WATCHDOG.CHANNEL.AGE
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.TIM.001
+  - LRS.FUNC.WATCHDOG.TIM.002
+  - LRS.FUNC.WATCHDOG.TIM.003
+  - LRS.FUNC.WATCHDOG.TIM.004
+  - LRS.FUNC.WATCHDOG.TIM.005
+  - LRS.FUNC.WATCHDOG.TIM.006
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  applicability:
+    expr: 'true'
+  input_width: COUNTER_WIDTH + PRESCALE_WIDTH
+  output_width: COUNTER_WIDTH
+  latency: 0
+  signed: false
+  saturation: true
+- id: LLD.DP.WATCHDOG.DISPATCH.SELECT
+  module_ref: LLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.MOD.WATCHDOG.DISPATCH
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  applicability:
+    expr: 'true'
+  input_width: two request bits and command payloads
+  output_width: onehot channel enable + command_t
+  latency: 0
+  signed: false
+- id: LLD.DP.WATCHDOG.SAFETY.FINAL
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.MOD.WATCHDOG.SAFETY
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  applicability:
+    expr: 'true'
+  input_width: 19-bit events + independent compare flags
+  output_width: fatal causes + final_hold
+  latency: 1
+  signed: false
+pipelines: []
+buffers:
+- id: LLD.BUF.WATCHDOG.CHANNEL.CLIENTS
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  applicability:
+    expr: 'true'
+  type: register_array
+  depth: NUM_CLIENTS
+  width: COUNTER_WIDTH + 107
+  implementation_intent: reg
+  full_behavior: error
+  empty_behavior: default
+- id: LLD.BUF.WATCHDOG.CHANNEL.CONFIG
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+  type: register_array
+  depth: 2
+  width: (16 + 32*7)*32
+  implementation_intent: reg
+  full_behavior: error
+  empty_behavior: default
+fsms:
+- id: LLD.FSM.WATCHDOG.CHANNEL.UNLOCK
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: CLOSED
+  illegal_state_policy: fatal
+  illegal_state_handling: detect illegal encoding/protection mismatch, block normal mutation and latch fatal request
+  states:
+  - CLOSED
+  - WAIT_KEY2
+  - CREDIT
+  transitions:
+  - source: ANY
+    condition: authorized UNLOCK1
+    target: WAIT_KEY2
+  - source: WAIT_KEY2
+    condition: same-source UNLOCK2 at age 1..32
+    target: CREDIT
+  - source: CREDIT
+    condition: sensitive command or expiry64
+    target: CLOSED
+  - source: ANY
+    condition: invalid unlock / warm / POR
+    target: CLOSED
+  - source: ANY
+    condition: otherwise
+    target: same
+- id: LLD.FSM.WATCHDOG.CHANNEL.RECOVERY
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: WAIT_LOW
+  illegal_state_policy: fatal
+  illegal_state_handling: detect illegal encoding/protection mismatch, block normal mutation and latch fatal request
+  states:
+  - WAIT_LOW
+  - ARMED
+  - ACK_HIGH
+  transitions:
+  - source: WAIT_LOW
+    condition: done=0
+    target: ARMED
+  - source: ARMED
+    condition: qualified done and no due/new fault
+    target: ACK_HIGH
+  - source: ACK_HIGH
+    condition: done=0
+    target: ARMED
+  - source: ANY
+    condition: otherwise
+    target: same
+- id: LLD.FSM.WATCHDOG.CHANNEL.FLOW
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: IDLE
+  illegal_state_policy: fatal
+  illegal_state_handling: invalid protected state produces fatal; protocol order violation records FLOW_SEQUENCE
+  states:
+  - IDLE
+  - ACTIVE
+  - COMPLETE
+  transitions:
+  - source: IDLE
+    condition: valid START with data0
+    target: ACTIVE
+    action: elapsed=0,last_step=0
+  - source: ACTIVE
+    condition: valid next STEP below LAST_STEP
+    target: ACTIVE
+    action: advance last_step only
+  - source: ACTIVE
+    condition: valid final END within both windows
+    target: COMPLETE
+    action: seen=1; close elapsed
+  - source:
+    - IDLE
+    - ACTIVE
+    - COMPLETE
+    condition: successful full round refresh or trusted restart
+    target: IDLE
+    action: clear round
+  - source:
+    - IDLE
+    - ACTIVE
+    - COMPLETE
+    condition: wrong sequence or deadline
+    target: IDLE
+    action: report fault; no healthy contribution
+  default_transition: hold logical state; elapsed increments only while ACTIVE and running
+- id: LLD.FSM.WATCHDOG.CHANNEL.SERVICE
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.FUNC.WATCHDOG.SUP.001
+  - LRS.FUNC.WATCHDOG.SUP.002
+  - LRS.FUNC.WATCHDOG.SUP.003
+  - LRS.FUNC.WATCHDOG.SUP.004
+  - LRS.FUNC.WATCHDOG.SUP.005
+  - LRS.FUNC.WATCHDOG.SUP.006
+  - LRS.FUNC.WATCHDOG.SUP.007
+  - LRS.FUNC.WATCHDOG.SUP.008
+  - LRS.FUNC.WATCHDOG.SUP.009
+  - LRS.FUNC.WATCHDOG.SUP.010
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: EMPTY
+  illegal_state_policy: fatal
+  illegal_state_handling: detect illegal encoding/protection mismatch, block normal mutation and latch fatal request
+  states:
+  - EMPTY
+  - WAIT_SECOND
+  transitions:
+  - source: EMPTY
+    condition: valid KEY1 in DUAL
+    target: WAIT_SECOND
+  - source: WAIT_SECOND
+    condition: same source KEY2 within inclusive limit
+    target: EMPTY
+  - source: WAIT_SECOND
+    condition: wrong/repeated key or expiry
+    target: EMPTY
+  - source: ANY
+    condition: restart/stop/fault
+    target: EMPTY
+  - source: ANY
+    condition: otherwise
+    target: same
+- id: LLD.FSM.WATCHDOG.CHANNEL.CONTROL
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.FUNC.WATCHDOG.STA.001
+  - LRS.FUNC.WATCHDOG.STA.002
+  - LRS.FUNC.WATCHDOG.STA.003
+  - LRS.FUNC.WATCHDOG.STA.004
+  - LRS.FUNC.WATCHDOG.STA.005
+  - LRS.FUNC.WATCHDOG.TIM.001
+  - LRS.FUNC.WATCHDOG.TIM.002
+  - LRS.FUNC.WATCHDOG.TIM.003
+  - LRS.FUNC.WATCHDOG.TIM.004
+  - LRS.FUNC.WATCHDOG.TIM.005
+  - LRS.FUNC.WATCHDOG.TIM.006
+  - LRS.LP.WATCHDOG.PWR.001
+  - LRS.LP.WATCHDOG.PWR.002
+  - LRS.LP.WATCHDOG.PWR.003
+  - LRS.LP.WATCHDOG.PWR.004
+  - LRS.LP.WATCHDOG.PWR.005
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: DISABLED
+  illegal_state_policy: fatal
+  illegal_state_handling: detect illegal encoding/protection mismatch, block normal mutation and latch fatal request
+  states:
+  - DISABLED
+  - BOOT
+  - RUN
+  - PAUSED
+  - FAULT
+  - RESET_PENDING
+  transitions:
+  - source:
+    - DISABLED
+    - BOOT
+    - RUN
+    - PAUSED
+    - FAULT
+    - RESET_PENDING
+    condition: fatal or final_due
+    target: RESET_PENDING
+    action: latch final request
+  - source:
+    - BOOT
+    - RUN
+    - PAUSED
+    condition: new supervision fault and DIRECT_SYSTEM
+    target: RESET_PENDING
+    action: capture first; discard pending
+  - source:
+    - BOOT
+    - RUN
+    - PAUSED
+    condition: new supervision fault and LOCAL_THEN_SYSTEM
+    target: FAULT
+    action: capture first; start escalation
+  - source: &id001
+    - BOOT
+    - RUN
+    - PAUSED
+    - FAULT
+    - RESET_PENDING
+    condition: trusted warm and BOOT_EN, no higher-priority event
+    target: BOOT
+    action: restart, clear recovery count, preserve history/locks
+  - source: *id001
+    condition: trusted warm and not BOOT_EN, no higher-priority event
+    target: RUN
+    action: restart, clear recovery count, preserve history/locks
+  - source: FAULT
+    condition: qualified local recovery below limit and BOOT_EN
+    target: BOOT
+    action: restart and acknowledge
+  - source: FAULT
+    condition: qualified local recovery below limit and not BOOT_EN
+    target: RUN
+    action: restart and acknowledge
+  - source: FAULT
+    condition: qualified recovery exceeds limit
+    target: RESET_PENDING
+    action: record RECOVERY_LIMIT and latch final
+  - source:
+    - BOOT
+    - RUN
+    condition: successful refresh
+    target: RUN
+    action: clear round, atomically apply approved pending
+  - source: DISABLED
+    condition: valid START and BOOT_EN
+    target: BOOT
+    action: restart
+  - source: DISABLED
+    condition: valid START and not BOOT_EN
+    target: RUN
+    action: restart
+  - source:
+    - BOOT
+    - RUN
+    condition: valid STOP
+    target: DISABLED
+    action: clear incomplete service
+  - source:
+    - BOOT
+    - RUN
+    condition: authorized pause
+    target: PAUSED
+    action: save resume state
+  - source: PAUSED
+    condition: pause removed and resume_state=BOOT
+    target: BOOT
+    action: resume counting on next edge
+  - source: PAUSED
+    condition: pause removed and resume_state=RUN
+    target: RUN
+    action: resume counting on next edge
+  reset_overrides:
+    AUTO_START and BOOT_EN: BOOT
+    AUTO_START and not BOOT_EN: RUN
+  default_transition: hold current state; evolve only permitted counters/records
+- id: LLD.FSM.WATCHDOG.TRANSPORT.SOURCE
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.TRANSPORT
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+  encoding: binary
+  reset_state: IDLE
+  illegal_state_policy: fatal
+  illegal_state_handling: protected busy/toggle/sequence mismatch raises CDC_PROTOCOL; never replay a command
+  states:
+  - IDLE
+  - WAIT_ACK
+  transitions:
+  - source: IDLE
+    condition: accepted legal APB command
+    target: WAIT_ACK
+    action: capture payload/seq; toggle req
+  - source: WAIT_ACK
+    condition: synchronized ack matches current req
+    target: IDLE
+    action: publish exact reply/seq then release slot
+  - source:
+    - IDLE
+    - WAIT_ACK
+    condition: POR
+    target: IDLE
+    action: initialize both ends together
+  default_transition: hold phase; reject new command while WAIT_ACK
+arbiters:
+- id: LLD.ARB.WATCHDOG.DISPATCH.RR
+  module_ref: LLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.MOD.WATCHDOG.DISPATCH
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+  policy: round_robin
+  requesters:
+  - mailbox
+  - hardware_event
+  fairness: true
+  starvation_bound: 2
+  cbb_ref: aixsilicon:cbb:round_robin_arbiter:0.1.0
+  parameters:
+    NUM_REQ: 2
+    PC_IMPL: 0
+ordering:
+- id: LLD.ORDER.WATCHDOG.MAILBOX
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.TRANSPORT
+  model: in_order
+  tracking_method: tag
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  applicability:
+    expr: 'true'
+registers:
+- id: LLD.REG.WATCHDOG.STATUS_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].STATUS_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CFG_VERSION_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CFG_VERSION_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.COUNT_LO_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].COUNT_LO_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.COUNT_HI_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].COUNT_HI_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.EVENT_RAW_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].EVENT_RAW_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IRQ_ENABLE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].IRQ_ENABLE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SEEN_MASK_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SEEN_MASK_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.MISSING_MASK_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].MISSING_MASK_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.LAST_SERVICE_SEQ_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].LAST_SERVICE_SEQ_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FAULT_COUNT_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FAULT_COUNT_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.RECOVERY_COUNT_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].RECOVERY_COUNT_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.ESC_AGE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].ESC_AGE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_FLAGS_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_FLAGS_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_CAUSE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_CAUSE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_COUNT_LO_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_COUNT_LO_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_COUNT_HI_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_COUNT_HI_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_SOURCE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_SOURCE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_CFG_VERSION_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_CFG_VERSION_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_MISSING_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_MISSING_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_SERVICE_SEQ_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_SERVICE_SEQ_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FIRST_STATE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FIRST_STATE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CTRL_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CTRL_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRESCALE_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRESCALE_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.WIN_MIN_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].WIN_MIN_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.WIN_MIN_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].WIN_MIN_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.TIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].TIMEOUT_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.TIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].TIMEOUT_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRETIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRETIMEOUT_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRETIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRETIMEOUT_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.BOOT_TIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].BOOT_TIMEOUT_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.BOOT_TIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].BOOT_TIMEOUT_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SEQ_LIMIT_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SEQ_LIMIT_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.REQUIRE_MASK_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].REQUIRE_MASK_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FAULT_POLICY_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FAULT_POLICY_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.LOCAL_DELAY_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].LOCAL_DELAY_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FINAL_DELAY_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FINAL_DELAY_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.RECOVERY_LIMIT_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].RECOVERY_LIMIT_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CTRL_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CTRL_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRESCALE_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRESCALE_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.WIN_MIN_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].WIN_MIN_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.WIN_MIN_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].WIN_MIN_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.TIMEOUT_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].TIMEOUT_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.TIMEOUT_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].TIMEOUT_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRETIMEOUT_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRETIMEOUT_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.PRETIMEOUT_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].PRETIMEOUT_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.BOOT_TIMEOUT_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].BOOT_TIMEOUT_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.BOOT_TIMEOUT_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].BOOT_TIMEOUT_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SEQ_LIMIT_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SEQ_LIMIT_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.REQUIRE_MASK_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].REQUIRE_MASK_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FAULT_POLICY_STAGE.VALUE_1
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FAULT_POLICY_STAGE.value_1
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.LOCAL_DELAY_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].LOCAL_DELAY_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FINAL_DELAY_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FINAL_DELAY_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.RECOVERY_LIMIT_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].RECOVERY_LIMIT_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_FLAGS_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_FLAGS_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_TOKEN_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_TOKEN_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_ALIVE_COUNT_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_ALIVE_COUNT_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_ELAPSED_LO_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_ELAPSED_LO_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_ELAPSED_HI_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_ELAPSED_HI_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_OWNER_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_OWNER_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_ALIVE_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_ALIVE_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_FLOW_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_FLOW_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP.value_0
+  behavior: snapshot
+  sw_behavior: RO
+  hw_behavior: publish held post-update snapshot only after successful response
+  collision: snapshot contains same-edge post-update state; first-fault fields retain historical capture
+  update_timing: transaction_boundary
+  reset_semantics: POR invalid/zero; preset/warm/local retain last successful mirror
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_OWNER_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_OWNER_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_ALIVE_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_ALIVE_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_FLOW_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_FLOW_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MIN_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MIN_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_LO_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MAX_LO_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_HI_STAGE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_DEADLINE_MAX_HI_STAGE.value_0
+  behavior: shadow
+  sw_behavior: RW
+  hw_behavior: No running-domain update of staging; full accepted APB write only
+  collision: interface reset wins; WDT never writes staging
+  update_timing: immediate
+  reset_semantics: POR/preset restore corresponding DEFAULT_CFG field; warm/local recovery preserve staging
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.UNLOCK.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].UNLOCK.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 推进来源绑定的两笔解锁；错误清旧序列/额度，不改监督年龄
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.COMMAND.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].COMMAND.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 按操作码执行COMMIT/START/STOP/CANCEL/SNAPSHOT；未知码BAD_CONFIG；状态/锁/期限冲突按模块规则拒绝
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.LOCK_SET.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].LOCK_SET.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 四锁仅OR置位，POR才清；失败也消耗额度
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SERVICE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SERVICE.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 按SERVICE_SELECT捕获值执行完整算法/检查点；只有最终完整合法贡献推进service_seq/token/健康状态
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IRQ_ENABLE.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].IRQ_ENABLE.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 替换允许的IRQ mask；不修改raw或活动故障/复位请求
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IRQ_CLEAR.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].IRQ_CLEAR.value_0
+  behavior: w1c
+  sw_behavior: WO; read returns zero
+  hw_behavior: 对raw做W1C，硬件新事件置位优先；不清active_fault/local/final
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IRQ_TEST.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].IRQ_TEST.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 数据使能时只置DIAG_TEST_EVENT并标记测试上下文；不刷新计时
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.DIAG_CLEAR.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].DIAG_CLEAR.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 只按数据选择清FIRST_FAULT有效记录与FAULT_COUNT；不清锁/恢复次数/活动请求；新故障同拍优先
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FAULT_INJECT.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].FAULT_INJECT.value_0
+  behavior: atomic
+  sw_behavior: WO; read returns zero
+  hw_behavior: 目标与索引合法才对一次真实状态/比较路径注错；不直接伪造故障结果；未实现检测对象UNSUPPORTED
+  collision: new fatal/supervision event wins; rejected operation has no requested side effect
+  update_timing: transaction_boundary
+  reset_semantics: POR clears mailbox/owned state per module reset; preset retains accepted command; warm cancels unexecuted
+    command and retains completed result
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.REG.001
+  - LRS.REG.WATCHDOG.REG.002
+  - LRS.REG.WATCHDOG.REG.003
+  - LRS.REG.WATCHDOG.REG.004
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IP_ID.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.IP_ID.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 只读固定IP身份
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.VERSION.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.VERSION.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 只读版本标识
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CAPABILITY0.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.CAPABILITY0.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 实际NUM_CHANNELS/NUM_CLIENTS/COUNTER_WIDTH/PRESCALE_WIDTH编码
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CAPABILITY1.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.CAPABILITY1.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 实际增强功能存在性与SYNC_STAGES编码，不报告不存在的硬件
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CMD_STATUS.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.CMD_STATUS.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: busy、exec_done、最近完成result；新接收清done，目的应答发布置done
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.ISSUED_SEQ.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ISSUED_SEQ.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 每个成功邮箱接收加一，自然回卷；同步拒绝不变
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.DONE_SEQ.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.DONE_SEQ.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 实际执行/取消应答发布时复制该命令seq
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.DONE_INFO.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.DONE_INFO.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: 最近完成的channel/client/opcode，来源是保持邮箱
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.IRQ_SUMMARY.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.IRQ_SUMMARY.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: APB域同步IRQ电平
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.FAULT_SUMMARY.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.FAULT_SUMMARY.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: APB域同步active_fault电平
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.RESET_SUMMARY.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.RESET_SUMMARY.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: APB域同步local/system/safe保持请求
+  collision: HW owns value; SW write rejected
+  update_timing: immediate
+  reset_semantics: POR initializes declared identity/capability or zero transaction state; preset retains transaction records,
+    clears only synchronized summary outputs; warm retains records
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SERVICE_SELECT.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SERVICE_SELECT.value_0
+  behavior: selection
+  sw_behavior: RW
+  hw_behavior: APB accepted write selects indirect window; no WDT update
+  collision: interface reset wins
+  update_timing: immediate
+  reset_semantics: POR/preset zero; warm/local retain
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SERVICE_SELECT.VALUE_8
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SERVICE_SELECT.value_8
+  behavior: selection
+  sw_behavior: RW
+  hw_behavior: APB accepted write selects indirect window; no WDT update
+  collision: interface reset wins
+  update_timing: immediate
+  reset_semantics: POR/preset zero; warm/local retain
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.CLIENT_SELECT.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].CLIENT_SELECT.value_0
+  behavior: selection
+  sw_behavior: RW
+  hw_behavior: APB accepted write selects indirect window; no WDT update
+  collision: interface reset wins
+  update_timing: immediate
+  reset_semantics: POR/preset zero; warm/local retain
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.FUNC.WATCHDOG.SRV.001
+  - LRS.FUNC.WATCHDOG.SRV.002
+  - LRS.FUNC.WATCHDOG.SRV.003
+  - LRS.FUNC.WATCHDOG.SRV.004
+  - LRS.FUNC.WATCHDOG.SRV.005
+  - LRS.FUNC.WATCHDOG.SRV.006
+  - LRS.FUNC.WATCHDOG.SRV.007
+  - LRS.FUNC.WATCHDOG.SRV.008
+  - LRS.FUNC.WATCHDOG.SRV.009
+  - LRS.FUNC.WATCHDOG.SRV.010
+  - LRS.FUNC.WATCHDOG.SRV.011
+  - LRS.REG.WATCHDOG.CLIENT_WINDOW.001
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SNAP_META.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SNAP_META.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: successful SNAPSHOT reply atomically publishes valid/sequence
+  collision: reply publication wins over stale mirror
+  update_timing: transaction_boundary
+  reset_semantics: POR zero; preset/warm/local retain held mirror metadata
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  applicability:
+    expr: 'true'
+- id: LLD.REG.WATCHDOG.SNAP_SEQ.VALUE_0
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  register_ref: watchdog_regs.ch[].SNAP_SEQ.value_0
+  behavior: status
+  sw_behavior: RO
+  hw_behavior: successful SNAPSHOT reply atomically publishes valid/sequence
+  collision: reply publication wins over stale mirror
+  update_timing: transaction_boundary
+  reset_semantics: POR zero; preset/warm/local retain held mirror metadata
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  applicability:
+    expr: 'true'
+reset:
+- id: LLD.RST.WATCHDOG.POR_APB
+  module_ref: LLD.MOD.WATCHDOG.INTEGRATION
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_APB
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.WATCHDOG.BUS
+  - LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+- id: LLD.RST.WATCHDOG.APB_INTERFACE
+  module_ref: LLD.MOD.WATCHDOG.INTEGRATION
+  reset_domain: HLD.DOM.RST.WATCHDOG.APB_INTERFACE
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.WATCHDOG.BUS
+  - LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+- id: LLD.RST.WATCHDOG.POR_WDT
+  module_ref: LLD.MOD.WATCHDOG.INTEGRATION
+  reset_domain: HLD.DOM.RST.WATCHDOG.POR_WDT
+  type: async_assert_sync_release
+  affected_objects:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  - LLD.MOD.WATCHDOG.SAFETY
+  - LLD.MOD.WATCHDOG.DISPATCH
+  - LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  applicability:
+    expr: 'true'
+cdc:
+- id: LLD.CDC.WATCHDOG.COMMAND
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.COMMAND
+  source_domain: HLD.DOM.CLK.WATCHDOG.APB
+  destination_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  signal_type: bus
+  implementation:
+    method: handshake
+    depth: SYNC_STAGES
+  lossless: true
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.CFG.001
+  - LRS.REG.WATCHDOG.CFG.002
+  - LRS.REG.WATCHDOG.CFG.003
+  - LRS.REG.WATCHDOG.CFG.004
+  - LRS.REG.WATCHDOG.CFG.005
+  - LRS.REG.WATCHDOG.CFG.006
+  - LRS.REG.WATCHDOG.CFG.007
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.WATCHDOG.REPLY
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.REPLY
+  source_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  destination_domain: HLD.DOM.CLK.WATCHDOG.APB
+  signal_type: bus
+  implementation:
+    method: handshake
+    depth: SYNC_STAGES
+  lossless: true
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.REG.WATCHDOG.SNP.001
+  - LRS.REG.WATCHDOG.SNP.002
+  - LRS.REG.WATCHDOG.SNP.003
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.WATCHDOG.ACCESS_ERROR
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.ACCESS_ERROR
+  source_domain: HLD.DOM.CLK.WATCHDOG.APB
+  destination_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  signal_type: event
+  implementation:
+    method: handshake
+    depth: SYNC_STAGES
+  lossless: true
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.BUS.001
+  - LRS.INTF.WATCHDOG.BUS.002
+  - LRS.INTF.WATCHDOG.BUS.003
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.WATCHDOG.IRQ_STATUS
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.IRQ_STATUS
+  source_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  destination_domain: HLD.DOM.CLK.WATCHDOG.APB
+  signal_type: level
+  implementation:
+    method: 2ff
+    depth: SYNC_STAGES
+  lossless: false
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.IF.001
+  - LRS.INTF.WATCHDOG.IF.002
+  - LRS.INTF.WATCHDOG.IF.003
+  - LRS.INTF.WATCHDOG.IF.004
+  - LRS.RESET.WATCHDOG.RST.001
+  - LRS.RESET.WATCHDOG.RST.002
+  - LRS.RESET.WATCHDOG.RST.003
+  - LRS.RESET.WATCHDOG.RST.004
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.WATCHDOG.WARM_CANCEL
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.WARM_CANCEL
+  source_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  destination_domain: HLD.DOM.CLK.WATCHDOG.APB
+  signal_type: event
+  implementation:
+    method: handshake
+    depth: SYNC_STAGES
+  lossless: true
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.WATCHDOG.INTEGRITY
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.CDC.WATCHDOG.INTEGRITY
+  source_domain: HLD.DOM.CLK.WATCHDOG.APB
+  destination_domain: HLD.DOM.CLK.WATCHDOG.WDT
+  signal_type: level
+  implementation:
+    method: 2ff
+    depth: SYNC_STAGES
+  lossless: true
+  ordered: true
+  req_ref:
+  - LRS.INTF.WATCHDOG.CDC.001
+  - LRS.INTF.WATCHDOG.CDC.002
+  - LRS.INTF.WATCHDOG.CDC.003
+  - LRS.INTF.WATCHDOG.CDC.004
+  - LRS.INTF.WATCHDOG.CDC.005
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  applicability:
+    expr: SAFETY_EN == 1
+interrupts:
+- id: LLD.IRQ.WATCHDOG.CHANNEL.RAW
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.FLT.001
+  - LRS.FUNC.WATCHDOG.FLT.002
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+  source: events[18:0]
+  trigger: level
+  status: EVENT_RAW
+  mask: IRQ_ENABLE
+  clear: w1c
+  output: irq_o[channel]
+  priority: 0
+errors:
+- id: LLD.ERR.WATCHDOG.CHANNEL.EVENTS
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  req_ref:
+  - LRS.FUNC.WATCHDOG.ESC.001
+  - LRS.FUNC.WATCHDOG.ESC.002
+  - LRS.FUNC.WATCHDOG.ESC.003
+  - LRS.FUNC.WATCHDOG.FLT.001
+  - LRS.FUNC.WATCHDOG.FLT.002
+  - LRS.FUNC.WATCHDOG.REC.001
+  - LRS.FUNC.WATCHDOG.REC.002
+  - LRS.FUNC.WATCHDOG.REC.003
+  - LRS.FUNC.WATCHDOG.REC.004
+  - LRS.FUNC.WATCHDOG.REC.005
+  - LRS.DFX.WATCHDOG.DIA.001
+  - LRS.DFX.WATCHDOG.DIA.002
+  - LRS.DFX.WATCHDOG.DIA.003
+  - LRS.DFX.WATCHDOG.DIA.004
+  - LRS.DFX.WATCHDOG.DIA.005
+  - LRS.DFX.WATCHDOG.DIA.006
+  applicability:
+    expr: 'true'
+  detection: all current-edge event predicates evaluated before state priority
+  severity: fatal
+  response:
+    transaction: CANCELED_FAULT when conflicting mutation
+    status: sticky cause bitmap and first record
+    interrupt: raw & irq_enable
+    recovery: trusted reset manager only
+safety:
+- id: LLD.SAFE.WATCHDOG.TIMEBASE
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.SAFE.WATCHDOG.TIMEBASE
+  protected_objects:
+  - LLD.DP.WATCHDOG.CHANNEL.AGE
+  mechanism: independent complemented counters
+  fault_detection_latency: 1
+  fault_reaction_latency: 1
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+- id: LLD.SAFE.WATCHDOG.CONFIG_CONTROL
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.SAFE.WATCHDOG.CONFIG_CONTROL
+  protected_objects:
+  - LLD.BUF.WATCHDOG.CHANNEL.CONFIG
+  - LLD.FSM.WATCHDOG.CHANNEL.UNLOCK
+  mechanism: complement and parity
+  fault_detection_latency: 1
+  fault_reaction_latency: 1
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+- id: LLD.SAFE.WATCHDOG.COMPARE_STATE
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.SAFE.WATCHDOG.COMPARE_STATE
+  protected_objects:
+  - LLD.FSM.WATCHDOG.CHANNEL.CONTROL
+  - LLD.DP.WATCHDOG.CHANNEL.AGE
+  mechanism: diverse comparators and encoded state
+  fault_detection_latency: 1
+  fault_reaction_latency: 1
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+- id: LLD.SAFE.WATCHDOG.SERVICE_PATH
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.SAFE.WATCHDOG.SERVICE_PATH
+  protected_objects:
+  - LLD.FSM.WATCHDOG.CHANNEL.SERVICE
+  - LLD.BUF.WATCHDOG.CHANNEL.CLIENTS
+  mechanism: independent complete acceptance qualification
+  fault_detection_latency: 1
+  fault_reaction_latency: 1
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+- id: LLD.SAFE.WATCHDOG.FINAL_REQUEST
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.SAFE.WATCHDOG.FINAL_REQUEST
+  protected_objects:
+  - LLD.ERR.WATCHDOG.CHANNEL.EVENTS
+  mechanism: independent set-dominant final latch
+  fault_detection_latency: 1
+  fault_reaction_latency: 1
+  req_ref:
+  - LRS.SAFE.WATCHDOG.SAF.001
+  - LRS.SAFE.WATCHDOG.SAF.002
+  - LRS.SAFE.WATCHDOG.SAF.003
+  - LRS.SAFE.WATCHDOG.SAF.004
+  - LRS.SAFE.WATCHDOG.SAF.005
+  - LRS.SAFE.WATCHDOG.SAF.006
+  - LRS.DFX.WATCHDOG.TST.001
+  - LRS.DFX.WATCHDOG.TST.002
+  - LRS.DFX.WATCHDOG.TST.003
+  - LRS.DFX.WATCHDOG.TST.004
+  - LRS.DFX.WATCHDOG.TST.005
+  applicability:
+    expr: SAFETY_EN == 1
+ppa:
+- id: LLD.PPA.WATCHDOG.INTEGRATION
+  module_ref: LLD.MOD.WATCHDOG.INTEGRATION
+  hld_ref:
+  - HLD.MOD.WATCHDOG.INTEGRATION
+  critical_path: 全通道最终请求OR扇入与reset高扇出
+  area_strategy:
+  - 平衡OR和复位树；不流水最终保持请求以破坏2拍上界
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.WATCHDOG.BUS
+  module_ref: LLD.MOD.WATCHDOG.BUS
+  hld_ref:
+  - HLD.MOD.WATCHDOG.BUS
+  critical_path: CSR译码、保留位/权限与读mux至PREADY/PRDATA
+  area_strategy:
+  - 外部寄存器组合应答，最多2拍预算内可寄存前端；禁止等WDT
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.WATCHDOG.TRANSPORT
+  module_ref: LLD.MOD.WATCHDOG.TRANSPORT
+  hld_ref:
+  - HLD.MOD.WATCHDOG.TRANSPORT
+  critical_path: 7680位配置和19968位快照稳定总线
+  area_strategy:
+  - 共享单槽，负载只接收/执行时更新；保持寄存器换无撕裂与固定时限
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.WATCHDOG.DISPATCH
+  module_ref: LLD.MOD.WATCHDOG.DISPATCH
+  hld_ref:
+  - HLD.MOD.WATCHDOG.DISPATCH
+  critical_path: 两源RR grant到命令mux及目的通道
+  area_strategy:
+  - 复用两请求组合arbiter，无长链，严格单命令/拍
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.WATCHDOG.CHANNEL
+  module_ref: LLD.MOD.WATCHDOG.CHANNEL
+  hld_ref:
+  - HLD.MOD.WATCHDOG.CHANNEL
+  critical_path: 并行客户端归约、配置全表校验与snapshot_next
+  area_strategy:
+  - 寄存器表按NUM_CLIENTS裁剪，比较并行树；不数十拍扫描伪装原子
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.WATCHDOG.SAFETY
+  module_ref: LLD.MOD.WATCHDOG.SAFETY
+  hld_ref:
+  - HLD.MOD.WATCHDOG.SAFETY
+  critical_path: 独立比较/原因OR到final_hold
+  area_strategy:
+  - 保留独立锥，时序不足先优化归约层次，不合并影子降低面积
+  power_strategy:
+  - 非活动数据使用同步更新使能；安全/升级逻辑持续工作
+  performance_strategy:
+  - 保持HLD固定时限和原子边界
+  req_ref:
+  - LRS.CONS.WATCHDOG.NFR.001
+  - LRS.CONS.WATCHDOG.NFR.002
+  - LRS.CONS.WATCHDOG.NFR.003
+  - LRS.CONS.WATCHDOG.NFR.004
+  - LRS.CONS.WATCHDOG.NFR.005
+  - LRS.CONS.WATCHDOG.NFR.006
+  applicability:
+    expr: 'true'
+gen: []
+derived: []
+decisions: []
+verify_hooks: []
+rtl_map:
+- id: RTL.WATCHDOG.TOP
+  rtl_file: rtl/watchdog_top.sv
+  rtl_module: watchdog_top
+  implements:
+  - LLD.MOD.WATCHDOG.BUS
+  - LLD.MOD.WATCHDOG.DISPATCH
+  - LLD.MOD.WATCHDOG.INTEGRATION
+  - LLD.MOD.WATCHDOG.TRANSPORT
+  - LLD.IF.WATCHDOG.EXTERNAL.APB
+  - LLD.IF.WATCHDOG.EXTERNAL.AUTH
+  - LLD.IF.WATCHDOG.EXTERNAL.APB_CLOCK_RESET
+  - LLD.IF.WATCHDOG.EXTERNAL.WDT_CLOCK_RESET
+  - LLD.IF.WATCHDOG.EXTERNAL.HW_EVENT
+  - LLD.IF.WATCHDOG.EXTERNAL.REQUESTS
+  - LLD.IF.WATCHDOG.EXTERNAL.IRQ
+  - LLD.IF.WATCHDOG.INTERNAL.BUS_COMMAND
+  - LLD.IF.WATCHDOG.INTERNAL.WDT_MAILBOX
+  - LLD.IF.WATCHDOG.INTERNAL.SELECTED_COMMAND
+  - LLD.IF.WATCHDOG.INTERNAL.APB_REPLY
+  - LLD.IF.WATCHDOG.INTERNAL.ACCESS_ERROR
+  - LLD.IF.WATCHDOG.INTERNAL.RESET_APB
+  - LLD.IF.WATCHDOG.INTERNAL.RESET_WDT
+  - LLD.TIMING.WATCHDOG.APB
+  - LLD.TIMING.WATCHDOG.COMMAND
+  - LLD.TIMING.WATCHDOG.RETURN
+  - LLD.DP.WATCHDOG.BUS.CSR
+  - LLD.DP.WATCHDOG.DISPATCH.SELECT
+  - LLD.FSM.WATCHDOG.TRANSPORT.SOURCE
+  - LLD.ARB.WATCHDOG.DISPATCH.RR
+  - LLD.ORDER.WATCHDOG.MAILBOX
+  - LLD.REG.WATCHDOG.STATUS_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CFG_VERSION_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.COUNT_LO_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.COUNT_HI_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.EVENT_RAW_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.IRQ_ENABLE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.SEEN_MASK_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.MISSING_MASK_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.LAST_SERVICE_SEQ_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FAULT_COUNT_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.RECOVERY_COUNT_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.ESC_AGE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_FLAGS_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_CAUSE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_COUNT_LO_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_COUNT_HI_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_SOURCE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_CFG_VERSION_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_MISSING_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_SERVICE_SEQ_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FIRST_STATE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CTRL_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.PRESCALE_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.WIN_MIN_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.WIN_MIN_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.TIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.TIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.PRETIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.PRETIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.BOOT_TIMEOUT_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.BOOT_TIMEOUT_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.SEQ_LIMIT_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.REQUIRE_MASK_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FAULT_POLICY_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.LOCAL_DELAY_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.FINAL_DELAY_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.RECOVERY_LIMIT_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CTRL_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.PRESCALE_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.WIN_MIN_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.WIN_MIN_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.TIMEOUT_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.TIMEOUT_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.PRETIMEOUT_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.PRETIMEOUT_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.BOOT_TIMEOUT_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.BOOT_TIMEOUT_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.SEQ_LIMIT_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.REQUIRE_MASK_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.FAULT_POLICY_STAGE.VALUE_1
+  - LLD.REG.WATCHDOG.LOCAL_DELAY_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.FINAL_DELAY_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.RECOVERY_LIMIT_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_FLAGS_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_TOKEN_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_ALIVE_COUNT_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_ELAPSED_LO_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_ELAPSED_HI_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_OWNER_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_ALIVE_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_FLOW_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_LO_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_HI_ACTIVE_SNAP.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_OWNER_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_ALIVE_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_FLOW_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MIN_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_LO_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.CLIENT_DEADLINE_MAX_HI_STAGE.VALUE_0
+  - LLD.REG.WATCHDOG.UNLOCK.VALUE_0
+  - LLD.REG.WATCHDOG.COMMAND.VALUE_0
+  - LLD.REG.WATCHDOG.LOCK_SET.VALUE_0
+  - LLD.REG.WATCHDOG.SERVICE.VALUE_0
+  - LLD.REG.WATCHDOG.IRQ_ENABLE.VALUE_0
+  - LLD.REG.WATCHDOG.IRQ_CLEAR.VALUE_0
+  - LLD.REG.WATCHDOG.IRQ_TEST.VALUE_0
+  - LLD.REG.WATCHDOG.DIAG_CLEAR.VALUE_0
+  - LLD.REG.WATCHDOG.FAULT_INJECT.VALUE_0
+  - LLD.REG.WATCHDOG.IP_ID.VALUE_0
+  - LLD.REG.WATCHDOG.VERSION.VALUE_0
+  - LLD.REG.WATCHDOG.CAPABILITY0.VALUE_0
+  - LLD.REG.WATCHDOG.CAPABILITY1.VALUE_0
+  - LLD.REG.WATCHDOG.CMD_STATUS.VALUE_0
+  - LLD.REG.WATCHDOG.ISSUED_SEQ.VALUE_0
+  - LLD.REG.WATCHDOG.DONE_SEQ.VALUE_0
+  - LLD.REG.WATCHDOG.DONE_INFO.VALUE_0
+  - LLD.REG.WATCHDOG.IRQ_SUMMARY.VALUE_0
+  - LLD.REG.WATCHDOG.FAULT_SUMMARY.VALUE_0
+  - LLD.REG.WATCHDOG.RESET_SUMMARY.VALUE_0
+  - LLD.REG.WATCHDOG.SERVICE_SELECT.VALUE_0
+  - LLD.REG.WATCHDOG.SERVICE_SELECT.VALUE_8
+  - LLD.REG.WATCHDOG.CLIENT_SELECT.VALUE_0
+  - LLD.REG.WATCHDOG.SNAP_META.VALUE_0
+  - LLD.REG.WATCHDOG.SNAP_SEQ.VALUE_0
+  - LLD.RST.WATCHDOG.POR_APB
+  - LLD.RST.WATCHDOG.APB_INTERFACE
+  - LLD.RST.WATCHDOG.POR_WDT
+  - LLD.CDC.WATCHDOG.COMMAND
+  - LLD.CDC.WATCHDOG.REPLY
+  - LLD.CDC.WATCHDOG.ACCESS_ERROR
+  - LLD.CDC.WATCHDOG.IRQ_STATUS
+  - LLD.CDC.WATCHDOG.WARM_CANCEL
+  - LLD.CDC.WATCHDOG.INTEGRITY
+  - LLD.PPA.WATCHDOG.INTEGRATION
+  - LLD.PPA.WATCHDOG.BUS
+  - LLD.PPA.WATCHDOG.TRANSPORT
+  - LLD.PPA.WATCHDOG.DISPATCH
+  generated: false
+- id: RTL.WATCHDOG.CHANNEL
+  rtl_file: rtl/watchdog_channel.sv
+  rtl_module: watchdog_channel
+  implements:
+  - LLD.MOD.WATCHDOG.CHANNEL
+  - LLD.MOD.WATCHDOG.SAFETY
+  - LLD.IF.WATCHDOG.EXTERNAL.POWER_DEBUG
+  - LLD.IF.WATCHDOG.EXTERNAL.WARM_EVENT
+  - LLD.IF.WATCHDOG.EXTERNAL.RECOVERY
+  - LLD.IF.WATCHDOG.EXTERNAL.TEST_AUTH
+  - LLD.IF.WATCHDOG.INTERNAL.CHANNEL_REPLY
+  - LLD.IF.WATCHDOG.INTERNAL.SAFETY_CONTEXT
+  - LLD.IF.WATCHDOG.INTERNAL.SAFETY_FAULT
+  - LLD.IF.WATCHDOG.INTERNAL.CHANNEL_OUTPUT
+  - LLD.DP.WATCHDOG.CHANNEL.SNAPSHOT
+  - LLD.DP.WATCHDOG.CHANNEL.AGE
+  - LLD.DP.WATCHDOG.SAFETY.FINAL
+  - LLD.BUF.WATCHDOG.CHANNEL.CLIENTS
+  - LLD.BUF.WATCHDOG.CHANNEL.CONFIG
+  - LLD.FSM.WATCHDOG.CHANNEL.UNLOCK
+  - LLD.FSM.WATCHDOG.CHANNEL.RECOVERY
+  - LLD.FSM.WATCHDOG.CHANNEL.FLOW
+  - LLD.FSM.WATCHDOG.CHANNEL.SERVICE
+  - LLD.FSM.WATCHDOG.CHANNEL.CONTROL
+  - LLD.IRQ.WATCHDOG.CHANNEL.RAW
+  - LLD.ERR.WATCHDOG.CHANNEL.EVENTS
+  - LLD.SAFE.WATCHDOG.TIMEBASE
+  - LLD.SAFE.WATCHDOG.CONFIG_CONTROL
+  - LLD.SAFE.WATCHDOG.COMPARE_STATE
+  - LLD.SAFE.WATCHDOG.SERVICE_PATH
+  - LLD.SAFE.WATCHDOG.FINAL_REQUEST
+  - LLD.PPA.WATCHDOG.CHANNEL
+  - LLD.PPA.WATCHDOG.SAFETY
+  generated: false
+gates:
+- gate: G2
+  status: pass
+  microarchitecture_freeze: true
+  register_freeze: true
+  approvals:
+    architecture: user_authorized
+    rtl: user_authorized
+    verification: user_authorized
+  approval_ref: reports/full_flow/continuation_authorization.md

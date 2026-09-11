@@ -1,0 +1,229 @@
+CAPI=2:
+name: aixsilicon:ip:apb_secure_demux:1.0.0
+description: APB secure demux RTL candidate with native SystemRDL CSR and module UT
+  targets; signoff pending
+filesets:
+  decode:
+    files:
+    - rtl/apb_secure_demux_decode.sv
+    file_type: systemVerilogSource
+  ut_decode:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_decode.sv
+    file_type: systemVerilogSource
+  access:
+    files:
+    - rtl/apb_secure_demux_access.sv
+    file_type: systemVerilogSource
+  ut_access:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_access.sv
+    file_type: systemVerilogSource
+  irq:
+    files:
+    - rtl/apb_secure_demux_irq.sv
+    file_type: systemVerilogSource
+  ut_irq:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_irq.sv
+    file_type: systemVerilogSource
+  events:
+    files:
+    - rtl/apb_secure_demux_events.sv
+    file_type: systemVerilogSource
+  ut_events:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_events.sv
+    file_type: systemVerilogSource
+  dfx:
+    files:
+    - rtl/apb_secure_demux_dfx.sv
+    file_type: systemVerilogSource
+  ut_dfx:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_dfx.sv
+    file_type: systemVerilogSource
+  policy:
+    files:
+    - rtl/apb_secure_demux_policy.sv
+    file_type: systemVerilogSource
+    depend:
+    - aixsilicon:cbb:parity_gen_check:0.1.0
+  ut_policy:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_policy.sv
+    file_type: systemVerilogSource
+  rtl:
+    files:
+    - rtl/generated/apb_secure_demux_csr_pkg.sv
+    - rtl/instance/apb_secure_demux_instance_pkg.sv
+    - rtl/generated/apb_secure_demux_csr_regblock.sv
+    - rtl/instance/apb_secure_demux_register_bridge.sv
+    - rtl/apb_secure_demux_decode.sv
+    - rtl/apb_secure_demux_access.sv
+    - rtl/apb_secure_demux_irq.sv
+    - rtl/apb_secure_demux_events.sv
+    - rtl/apb_secure_demux_dfx.sv
+    - rtl/apb_secure_demux_policy.sv
+    - rtl/apb_secure_demux_csr.sv
+    - rtl/apb_secure_demux.sv
+    file_type: systemVerilogSource
+    depend:
+    - aixsilicon:cbb:parity_gen_check:0.1.0
+  ut_top:
+    files:
+    - verification/unit_test/ut_apb_secure_demux.sv
+    file_type: systemVerilogSource
+  synthesis_scripts:
+    files:
+    - scripts/synth.tcl
+    - constraints/characterization.sdc
+    file_type: user
+  ut_csr:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_csr.sv
+    file_type: systemVerilogSource
+  ut_bridge:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_register_bridge.sv
+    file_type: systemVerilogSource
+  ut_native:
+    files:
+    - verification/unit_test/ut_apb_secure_demux_csr_regblock.sv
+    file_type: systemVerilogSource
+targets:
+  ut_decode:
+    default_tool: vcs
+    filesets:
+    - decode
+    - ut_decode
+    toplevel: ut_apb_secure_demux_decode
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_access:
+    default_tool: vcs
+    filesets:
+    - access
+    - ut_access
+    toplevel: ut_apb_secure_demux_access
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_irq:
+    default_tool: vcs
+    filesets:
+    - irq
+    - ut_irq
+    toplevel: ut_apb_secure_demux_irq
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_events:
+    default_tool: vcs
+    filesets:
+    - events
+    - ut_events
+    toplevel: ut_apb_secure_demux_events
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_dfx:
+    default_tool: vcs
+    filesets:
+    - dfx
+    - ut_dfx
+    toplevel: ut_apb_secure_demux_dfx
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_policy:
+    default_tool: vcs
+    filesets:
+    - policy
+    - ut_policy
+    toplevel: ut_apb_secure_demux_policy
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  default:
+    filesets:
+    - rtl
+    toplevel: apb_secure_demux
+  ut_top:
+    default_tool: vcs
+    filesets:
+    - rtl
+    - ut_top
+    toplevel: ut_apb_secure_demux
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  synth:
+    default_tool: design_compiler
+    filesets:
+    - rtl
+    - synthesis_scripts
+    toplevel: apb_secure_demux
+    tools:
+      design_compiler:
+        script_dir: src/aixsilicon_ip_apb_secure_demux_1.0.0/scripts
+        dc_script: synth.tcl
+        report_dir: reports
+  ut_csr:
+    default_tool: vcs
+    filesets:
+    - rtl
+    - ut_csr
+    toplevel: ut_apb_secure_demux_csr
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_bridge:
+    default_tool: vcs
+    filesets:
+    - rtl
+    - ut_bridge
+    toplevel: ut_apb_secure_demux_register_bridge
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+  ut_native:
+    default_tool: vcs
+    filesets:
+    - rtl
+    - ut_native
+    toplevel: ut_apb_secure_demux_csr_regblock
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps

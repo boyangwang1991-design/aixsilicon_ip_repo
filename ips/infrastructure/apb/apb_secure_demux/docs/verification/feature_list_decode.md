@@ -1,0 +1,31 @@
+# 完整地址译码
+
+<!-- FEATURE_META
+id: FL.APB_SECURE_DEMUX.DECODE
+name: 完整地址译码
+description: 完整地址译码
+priority: must
+req_ref:
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.001
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.002
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.003
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.004
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.005
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00601
+- LRS.FUNC.APB_SECURE_DEMUX.DEC.00602
+design_ref:
+- LLD.MOD.APB_SECURE_DEMUX.DECODE
+proof_methods:
+- simulation
+- assertion
+END_FEATURE_META -->
+
+## 逐需求验收范围
+
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.001`：SETUP 阶段分别计算本地 CSR 命中和各端口命中；必须使用全部有效地址位。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.002`：总命中数为 0，产生 ADDR_MISS；大于 1，产生 MULTI_HIT；均不得访问 CSR 或下游。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.003`：本地 CSR 与外设同时命中时不得采用 CSR 优先级放行，必须按多重命中拒绝。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.004`：端口关闭仍属于地址命中，错误原因为 PORT_DISABLED。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.005`：下游透传原始地址，不减去 BASE；不存在隐式地址别名或地址转换。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.00601`：下游数据访问的低地址位与 PSTRB 由目标外设解释，本 IP 不增加通用未对齐拒绝规则。
+- `LRS.FUNC.APB_SECURE_DEMUX.DEC.00602`：本地 CSR 必须按 4 字节对齐访问。

@@ -1,0 +1,18 @@
+schema_version: '2.0'
+name: apb_secure_demux
+version: 1.0.0
+vendor: aixsilicon
+library: ip
+description: 安全 APB Demux：1→N 地址路由、可信主体权限、原子配置提交与受控诊断；需求准备阶段。
+license: Apache-2.0
+path: ips/infrastructure/apb/apb_secure_demux
+domain: infrastructure
+subdomain: apb
+type: ip
+priority: P0
+status: planned
+maturity: experimental
+interfaces:
+- apb4
+register_model: required
+dependencies: []

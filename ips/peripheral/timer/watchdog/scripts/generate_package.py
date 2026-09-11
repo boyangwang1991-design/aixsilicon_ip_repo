@@ -15,9 +15,22 @@ for name in ['channel','top']:
 params.update({n:dict(datatype='int',paramtype='vlogparam',default=d) for n,d in dict(W=32,PS=7,WS=5).items()})
 targets['ut_channel']['parameters']=['W']
 targets['ut_top']['parameters']=['PS','WS']
-targets['sim']=targets['ut_top'];targets['smoke']=targets['ut_channel']
+filesets['uvm']={'depend':['aixsilicon:vip:apb:1.0.0'],
+ 'files':['verification/ral/watchdog_ral.sv','verification/ral/watchdog_reg_views_pkg.sv',
+ 'verification/env/watchdog_control_if.sv',
+ *[{str(f.relative_to(p)):{'is_include_file':True,'include_path':str(f.parent.relative_to(p))}} for folder in ['env','tc','assertions'] for f in sorted((p/'verification'/folder).glob('*.sv')) if f.name not in ['watchdog_control_if.sv','watchdog_env_pkg.sv']],
+ 'verification/env/watchdog_env_pkg.sv','verification/th/watchdog_harness.sv'],'file_type':'systemVerilogSource'}
+params.update({n:dict(datatype='int',paramtype='vlogparam',default=d) for n,d in dict(PCLK_HALF=5,WDT_HALF=7).items()})
+for target in ['sim','smoke']:
+ targets[target]={'default_tool':'vcs','filesets':['pkg','generated','rtl','uvm'],'parameters':[n for n in params if n not in ['W','PS','WS']],
+  'toplevel':'watchdog_harness','tools':{'vcs':{'vcs_options':['-full64','-sverilog','-ntb_opts','uvm-1.2','-timescale=1ns/1ps','-debug_access+all','-cm','line+cond+branch+fsm+tgl'],
+  'run_options':['+UVM_TESTNAME=tc_bus','+ntb_random_seed=1','-cm','line+cond+branch+fsm+tgl']}}}
 targets['synth']={'default_tool':'design_compiler','filesets':['pkg','generated','rtl'],'parameters':[],'toplevel':'watchdog_top','tools':{'design_compiler':{'script_dir':'$::env(WATCHDOG_IP_ROOT)/scripts/ppa','dc_script':'synth.tcl'}}}
-(p/'aixsilicon_ip_watchdog.core').write_text('CAPI=2:\n'+yaml.safe_dump(dict(name='aixsilicon:ip:watchdog:1.0.0',description='Candidate parameterized watchdog',parameters=params,filesets=filesets,targets=targets),sort_keys=False))
+filesets['formal']={'files':['verification/formal/watchdog_formal_harness.sv'],'file_type':'systemVerilogSource'}
+targets['formal']={'default_tool':'vcs','filesets':['pkg','rtl','formal'],'toplevel':'watchdog_formal_harness',
+ 'hooks':{'pre_build':['vcformal_prove']},'tools':{'vcs':{'vcs_options':['-full64','-sverilog','-ntb_opts','uvm-1.2','-timescale=1ns/1ps']}}}
+core_scripts={'vcformal_prove':{'cmd':['bash','-c','uv run --locked --no-sync python "$WATCHDOG_IP_ROOT/scripts/run_formal.py"']}}
+(p/'aixsilicon_ip_watchdog.core').write_text('CAPI=2:\n'+yaml.safe_dump(dict(name='aixsilicon:ip:watchdog:1.0.0',description='Candidate parameterized watchdog',parameters=params,filesets=filesets,targets=targets,scripts=core_scripts),sort_keys=False))
 (p/'rtl/filelist.f').write_text('\n'.join([rtl[0]]+generated+rtl[1:])+'\n')
 (p/'ip-package.yaml').write_text(yaml.safe_dump(dict(name='watchdog',version='1.0.0',vlnv='aixsilicon:ip:watchdog:1.0.0',status='candidate')))
 files=[p/'regs/watchdog.rdl']+[p/x for x in generated]

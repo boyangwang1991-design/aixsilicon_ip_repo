@@ -1,0 +1,25 @@
+[
+  {
+    "name": "wrong RDL field / stale canonical",
+    "passed": true,
+    "errors": [
+      "RDL behavior coverage missing=['watchdog_regs.IP_ID.value_0'], unknown=['watchdog_regs.IP_ID.missing_field']",
+      "LLD_REG: source/model mismatch"
+    ]
+  },
+  {
+    "name": "unfrozen upstream",
+    "passed": true,
+    "errors": [
+      "G1 not frozen"
+    ]
+  },
+  {
+    "name": "unknown architecture reference",
+    "passed": true,
+    "errors": [
+      "LLD.MOD.WATCHDOG.BUS.parent_ref: unknown HLD.MOD.WATCHDOG.UNKNOWN",
+      "LLD_MODULE: source/model mismatch"
+    ]
+  }
+]

@@ -68,6 +68,8 @@ module watchdog_channel #(
   (* keep = "true", dont_touch = "true" *) logic [2:0] state_bar;
   (* keep="true", dont_touch="true" *) logic [31:0] esc_bar,esc_bar_n;
   (* keep="true", dont_touch="true" *) logic fault_bar,final_bar,clients_parity;
+  (* keep="true", dont_touch="true" *) logic final_hold,final_hold_bar;
+  logic final_set,shadow_final_due;
   logic inject_compare, inject_service;
   logic inject_compare_n, inject_service_n;
   config_t cfg_bar_n;
@@ -84,6 +86,146 @@ module watchdog_channel #(
   config_t cmp_cfg;
   integer cl;
   logic [1:0] sup,mode;
+
+  typedef struct packed {
+    logic accepted, completed, refresh, restart;
+  } qualification_t;
+  (* keep="true", dont_touch="true" *) qualification_t protected_qualification;
+  logic qualification_mismatch, qualification_error;
+
+  // Reconstruct eligibility from protected OLD state and raw transaction inputs.
+  // This path never consumes accepted/do_refresh/do_restart or next client state.
+  function automatic qualification_t qualify_protected(
+    input state_t old, input config_t protected_cfg, input logic [2:0] protected_state,
+    input logic [W-1:0] candidate, input logic hard_fault,
+    input command_t transaction, input logic valid, warm, access_bad,
+    input logic recovery, ready_initialized, protected_fault, protected_final,
+    input logic [31:0] protected_escalation
+  );
+    qualification_t v;
+    client_t client_state;
+    logic [31:0] causes, missing_set, limit_mask, token_expected;
+    logic [63:0] limit, lower, elapsed;
+    logic active, end_of_epoch, eligible, clear_sequence, partial, all_seen;
+    logic deny, policy_fault, ending, sensitive_op;
+    logic [1:0] supervision, algorithm;
+    logic [31:0] control;
+    integer selected;
+    v='0; causes='0; missing_set='0;
+    control=protected_cfg.word[0]; supervision=control[6:5]; algorithm=control[4:3];
+    limit_mask=protected_cfg.word[11]; selected=int'(transaction.client);
+    active=ready_initialized && (protected_state==3'(RUN) || protected_state==3'(BOOT));
+    limit=protected_state==3'(BOOT) ? {protected_cfg.word[9],protected_cfg.word[8]} :
+      {protected_cfg.word[5],protected_cfg.word[4]};
+    lower=protected_state!=3'(BOOT) && control[0] ?
+      {protected_cfg.word[3],protected_cfg.word[2]} : 64'b0;
+    end_of_epoch=active && !(64'(candidate)<limit);
+    eligible=valid && !warm && transaction.opcode==SERVICE && transaction.service_auth && active &&
+      !(supervision==2 && end_of_epoch) && selected<NUM_CLIENTS;
+    if(selected<NUM_CLIENTS) eligible=eligible && limit_mask[selected] &&
+      !(transaction.hardware^control[12]) &&
+      !(|(32'(transaction.source)^protected_cfg.client[selected][0]));
+    clear_sequence=0; partial=0; all_seen=1;
+    for(int i=0;i<NUM_CLIENTS;i++) begin
+      client_state=client_t'(old.clients[i]);
+      if(limit_mask[i]) begin
+        missing_set[i]=supervision==2 ?
+          client_state.alive<protected_cfg.client[i][1][15:0] : !client_state.seen;
+        if(!client_state.seen && selected!=i) all_seen=0;
+        if(active && supervision==3 && client_state.flow_active) begin
+          elapsed=64'((&client_state.elapsed) ? client_state.elapsed : client_state.elapsed+1'b1);
+          if(!(elapsed<{protected_cfg.client[i][6],protected_cfg.client[i][5]})) causes[9]=1;
+        end
+      end
+    end
+    if(end_of_epoch) begin
+      if(supervision==2) begin
+        if(missing_set=='0) v.refresh=1;
+        else causes[6]=1;
+      end else causes[1]=1;
+    end
+    if(access_bad) causes[10]=1;
+    if(valid && !warm && transaction.opcode==SERVICE && !transaction.service_auth) causes[10]=1;
+    if(valid && !warm && transaction.opcode==SERVICE && transaction.service_auth && active &&
+       !(supervision==2 && end_of_epoch) && selected<NUM_CLIENTS && limit_mask[selected] &&
+       ((transaction.hardware^control[12]) ||
+        (|(32'(transaction.source)^protected_cfg.client[selected][0])))) causes[10]=1;
+    if(eligible) begin
+      client_state=client_t'(old.clients[selected]);
+      elapsed=64'((&client_state.elapsed) ? client_state.elapsed : client_state.elapsed+1'b1);
+      if(supervision==3) begin
+        partial=(transaction.event_type==1 && transaction.data==0 &&
+                 !client_state.flow_active && !client_state.seen) ||
+                (transaction.event_type==2 && client_state.flow_active &&
+                 transaction.data==32'(client_state.last_step)+32'd1 &&
+                 transaction.data<protected_cfg.client[selected][2]);
+        ending=transaction.event_type==3 && client_state.flow_active &&
+          transaction.data==protected_cfg.client[selected][2] &&
+          transaction.data==32'(client_state.last_step)+32'd1;
+        if(ending) begin
+          if(elapsed<{protected_cfg.client[selected][4],protected_cfg.client[selected][3]} ||
+             !(elapsed<{protected_cfg.client[selected][6],protected_cfg.client[selected][5]})) causes[9]=1;
+          else v.completed=1;
+        end else if(!partial) causes[8]=1;
+      end else if(transaction.event_type!=0) causes[3]=1;
+      else begin
+        case(algorithm)
+          0: begin v.completed=!(|(transaction.data^32'ha5c35a3c)); causes[3]=!v.completed; end
+          1: begin
+            partial=!client_state.pending && !(|(transaction.data^32'ha5c35a3c));
+            v.completed=client_state.pending && !(|(transaction.data^32'h5a3ca5c3)) &&
+              !(|(client_state.source^transaction.source)) &&
+              ((&client_state.seq_age) ? client_state.seq_age : client_state.seq_age+32'd1)<=protected_cfg.word[10];
+            clear_sequence=client_state.pending;
+            if(!partial && !v.completed) causes[3]=1;
+          end
+          2,3: begin
+            token_expected=algorithm==2 ? client_state.token :
+              ((client_state.token<<7)|(client_state.token>>25)) ^ 32'h6d2b79f5 ^
+              (32'(CHANNEL_ID)<<8) ^ 32'(selected);
+            v.completed=!(|(transaction.data^token_expected)); causes[3]=!v.completed;
+          end
+          default: causes[3]=1;
+        endcase
+      end
+      v.accepted=partial;
+      if(v.completed) begin
+        if(64'(candidate)<lower) causes[2]=1;
+        else if((supervision==1 || supervision==3) && client_state.seen) causes[5]=1;
+        else if(supervision==2 && client_state.alive>=protected_cfg.client[selected][1][31:16]) causes[7]=1;
+        else if(!end_of_epoch && !(|(causes & 32'h3fe)) && !hard_fault) begin
+          v.accepted=1;
+          if(supervision==0 || ((supervision==1 || supervision==3) && all_seen)) v.refresh=1;
+        end
+      end
+    end
+    // Inclusive sequence deadline; a consumed or rejected second word clears it.
+    for(int i=0;i<NUM_CLIENTS;i++) begin
+      client_state=client_t'(old.clients[i]);
+      if(active && client_state.pending && !(eligible && selected==i && clear_sequence) &&
+         ((&client_state.seq_age) ? client_state.seq_age : client_state.seq_age+32'd1)>=protected_cfg.word[10])
+        causes[4]=1;
+    end
+    sensitive_op=transaction.opcode==COMMIT || transaction.opcode==START ||
+      transaction.opcode==STOP || transaction.opcode==LOCK_SET ||
+      transaction.opcode==DIAG_CLEAR || transaction.opcode==INJECT;
+    deny=!transaction.cfg_auth;
+    if(transaction.opcode==IRQ_CLEAR || transaction.opcode==IRQ_TEST ||
+       transaction.opcode==DIAG_CLEAR || transaction.opcode==INJECT) deny=!transaction.diag_auth;
+    if(valid && !warm && transaction.opcode!=SERVICE && transaction.opcode!=SNAPSHOT && deny) causes[10]=1;
+    policy_fault=|(causes & protected_cfg.word[12]);
+    ending=protected_fault && !protected_final &&
+      ((&protected_escalation) || protected_escalation+32'd1>=protected_cfg.word[14]);
+    if(!hard_fault && !policy_fault && !ending) begin
+      v.restart=(warm && protected_state!=3'(DISABLED)) ||
+        (valid && !warm && transaction.opcode==START && !deny && sensitive_op &&
+         old.credit && old.credit_age<63 && transaction.source==old.unlock_source &&
+         protected_state==3'(DISABLED)) ||
+        (!warm && protected_state==3'(FAULT) && old.local_req && control[7] && control[8] &&
+         recovery && old.recovery_armed && !old.ack && old.recoveries<protected_cfg.word[15][7:0]);
+    end else begin v.refresh=0; v.restart=0; end
+    return v;
+  endfunction
 
   if(W!=32 && W!=48 && W!=64) begin : g_bad_w
     $error("COUNTER_WIDTH must be 32, 48 or 64");
@@ -159,14 +301,16 @@ module watchdog_channel #(
     if(SAFETY_EN) begin
       if(q.cfg!=~cfg_bar || q.locks!=~locks_bar ||
          (q.cfg_pending && q.pending_cfg!=~pending_cfg_bar)) events[11]=1;
-      if((^{q.cfg_pending,q.credit,q.unlock_pending,q.unlock_age,q.credit_age,q.unlock_source})!=control_parity)
+      if((^{q.cfg_pending,q.credit,q.unlock_pending,q.unlock_age,q.credit_age,q.unlock_source,
+            q.version,q.submitted_version,q.pending_version,q.resume_state,initialized,
+            q.recoveries,q.recovery_armed,q.ack})!=control_parity)
         events[14]=1;
       if(q.count!=~count_bar || q.divider!=~divider_bar || tick!=shadow_tick) events[12]=1;
       if(q.state!=~state_bar || q.state>RESET_PENDING) events[13]=1;
-      // Protected client/sequence state and the duplicated service comparator.
-      if((^q.clients)!=clients_parity ||
-         ((cmd.data==KEY1)^inject_service) != (!(|(cmd.data^KEY1)))) events[14]=1;
+      // The complete qualifier mismatch is retained; all client bits are protected.
+      if((^q.clients)!=clients_parity || qualification_error) events[14]=1;
       if(q.fault!=~fault_bar || q.final_req!=~final_bar || q.esc_age!=~esc_bar) events[13]=1;
+      if(final_hold==final_hold_bar) events[13]=1;
       if(running && (64'(age)<window_min) != (64'(shadow_age)<window_min)) events[12]=1;
       if(q.fault && !q.final_req &&
          ((sat32(q.esc_age)>=q.cfg.word[14]) !=
@@ -215,7 +359,7 @@ module watchdog_channel #(
           if(q.locks[0]) result=LOCKED;
           else if(q.cfg_pending) result=BUSY;
           else if(q.state!=DISABLED && !(q.state==RUN && ALLOW_RUNTIME_UPDATE)) result=BAD_STATE;
-          else if(q.state==RUN) begin
+          else if(q.state==RUN && result==OK) begin
             cmp_cfg.word[1]=q.cfg.word[1];
             for(int k=2;k<=7;k++) cmp_cfg.word[k]=q.cfg.word[k];
             if(cmp_cfg!=q.cfg) result=BAD_CONFIG;
@@ -391,7 +535,7 @@ module watchdog_channel #(
       end
     end
     if(do_restart || do_refresh) begin
-      n.count=0; n.divider=0; count_bar_n='1; divider_bar_n='1; n.prewarn=0;
+      n.count=0; n.divider=0; n.prewarn=0;
       n.state=(do_restart && n.cfg.word[0][2]) ? BOOT : RUN;
       if(do_refresh && q.cfg_pending) begin
         n.cfg=q.pending_cfg; cfg_bar_n=~q.pending_cfg;
@@ -414,6 +558,17 @@ module watchdog_channel #(
     end
     n.raw=n.raw | events;
     for(int i=0;i<NUM_CLIENTS;i++) n.clients[i]=cn[i];
+
+    protected_qualification=qualify_protected(q,~cfg_bar,~state_bar,shadow_age,
+      |(events & FATAL_MASK),cmd,cmd_valid,warm_reset_evt,access_error,recovery_done,
+      initialized,~fault_bar,~final_bar,~esc_bar);
+    // Each timebase clears from its own qualified intent, never from a common
+    // unverified refresh wire. A mismatch reaches independent final storage now
+    // and the sticky diagnostic event on the next edge (within the 2-cycle bound).
+    if(SAFETY_EN ? (protected_qualification.refresh || protected_qualification.restart) :
+                  (do_refresh || do_restart)) begin
+      count_bar_n='1; divider_bar_n='1;
+    end
 
     // Atomic post-update image; all reads in APB subsequently use the held copy.
     snapshot_next='0;
@@ -454,19 +609,38 @@ module watchdog_channel #(
 
   always_ff @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
-      q<=reset_state(); initialized<=0;
+      q<=reset_state(); initialized<=0; qualification_error<=0;
       count_bar<='1; divider_bar<='1; cfg_bar<=~DEFAULT_CFG;
       locks_bar<=~{3'b0,HARD_CFG_LOCK};
       state_bar<=~(3'(AUTO_START ? (DEFAULT_CFG.word[0][2] ? BOOT : RUN) : DISABLED));
       pending_cfg_bar<='1; control_parity<=0;
       inject_compare<=0; inject_service<=0; esc_bar<='1; fault_bar<=1; final_bar<=1; clients_parity<=0;
     end else begin
-      initialized<=1; q<=n; count_bar<=count_bar_n; divider_bar<=divider_bar_n;
+      initialized<=1; qualification_error<=qualification_mismatch; q<=n; count_bar<=count_bar_n; divider_bar<=divider_bar_n;
       cfg_bar<=cfg_bar_n; locks_bar<=~n.locks; state_bar<=~n.state;
       if(n.cfg_pending && !q.cfg_pending) pending_cfg_bar<=~cmd_config;
-      control_parity<=^{n.cfg_pending,n.credit,n.unlock_pending,n.unlock_age,n.credit_age,n.unlock_source};
+      control_parity<=^{n.cfg_pending,n.credit,n.unlock_pending,n.unlock_age,n.credit_age,n.unlock_source,
+        n.version,n.submitted_version,n.pending_version,n.resume_state,1'b1,
+        n.recoveries,n.recovery_armed,n.ack};
       esc_bar<=esc_bar_n; fault_bar<=~n.fault; final_bar<=~n.final_req; clients_parity<=^n.clients;
       inject_compare<=inject_compare_n; inject_service<=inject_service_n;
+    end
+  end
+  // Independent set-dominant request storage. Neither next-state mux nor q.final_req
+  // drives this latch. Complement storage evolves independently from its old value.
+  assign qualification_mismatch=SAFETY_EN &&
+    ((accepted ^ inject_service)!=protected_qualification.accepted ||
+     completed!=protected_qualification.completed ||
+     do_refresh!=protected_qualification.refresh || do_restart!=protected_qualification.restart);
+  assign shadow_final_due=SAFETY_EN && !fault_bar && final_bar &&
+    ((~esc_bar)==32'hffffffff || ((~esc_bar)+32'b1)>=(~cfg_bar.word[14]));
+  assign final_set=qualification_mismatch || |(events & FATAL_MASK) || final_due || shadow_final_due ||
+    (new_fault && !q.cfg.word[0][7]) || events[16];
+  always_ff @(posedge clk or negedge rst_n) begin
+    if(!rst_n) begin final_hold<=0; final_hold_bar<=1; end
+    else begin
+      final_hold<=final_set || (final_hold && !warm_reset_evt);
+      final_hold_bar<=!final_set && (final_hold_bar || warm_reset_evt);
     end
   end
   assign active_fault=q.fault;
@@ -475,8 +649,8 @@ module watchdog_channel #(
   assign recovery_ack=q.ack;
   assign nmi_req=q.fault;
   assign local_reset_req=q.local_req;
-  assign system_reset_req=q.final_req;
-  assign safe_state_req=q.final_req;
-  assign safety_alert=q.fault;
+  assign system_reset_req=q.final_req || final_hold;
+  assign safe_state_req=q.final_req || final_hold;
+  assign safety_alert=q.fault || final_hold;
   assign wake_req=(q.raw[0] && q.cfg.word[0][11]) || q.fault;
 endmodule

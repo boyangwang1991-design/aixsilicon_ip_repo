@@ -1,0 +1,18 @@
+{
+  "schema_version": "apb-input-identity/1.0",
+  "cwd": "/home/eda/workspace/aixsilicon_workflow",
+  "profile": "all",
+  "repo_id": "ip",
+  "mode": "full-flow",
+  "contract": {
+    "path": "../apb_secure_demux_contract.md",
+    "version": "1.0.0-reviewed",
+    "sha256": "3cdc8fcce41b02cda601a4589d0b65e6e340043c6c494b333d9d0656e95ad6a2"
+  },
+  "skill": {
+    "path": "/home/eda/workspace/aixsilicon_workflow/.roo/skills/ip-development-suite/SKILL.md",
+    "sha256": "2502f71041c38d5873df03213f0c0d926374ef70c257b4a7caa06af8c1d0b3dd"
+  },
+  "existing_changes": "IP and skills repositories dirty at entry; retained. See build/preflight/*.diff; aix repo diff emits stat only.",
+  "approval_ref": "docs/reviews/g0_approval.md"
+}

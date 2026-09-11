@@ -1,0 +1,5 @@
+Extracted 17 parameter(s) from /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/docs/lrs
+  configurations: 8 named config(s), constraints: 2
+  generation_profile: sv
+  support_matrix: 25 config(s)（mandatory=1）
+Output written to: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model/parameter_space.yaml
