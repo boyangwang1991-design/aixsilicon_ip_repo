@@ -1,14 +1,40 @@
 {
   "exit_code": 0,
-  "mapping_complete": false,
+  "mapping_complete": true,
+  "input_hashes_stable": true,
+  "error_count": 0,
+  "markers": [
+    "ASD_SYNTH_UNMAPPED=0",
+    "ASD_SYNTH_LATCHES=0",
+    "ASD_SYNTH_MAPPING_COMPLETE"
+  ],
   "scope": "10 ns IP characterization; timing/coverage/system signoff assessed separately",
-  "log": "build/rtl/synth_1789115835573152295.log",
-  "log_sha256": "6e715b6e4f7acf6f8e22436b1c63da033a61dd24a78efd16e2d7cd848ad719b3",
-  "input_manifest_sha256": "b55c5b286a648e1b900a7efeec4411124d2d2871064633e5f5412d0e85047b6e",
+  "command": [
+    "fusesoc",
+    "--config",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/fusesoc.conf",
+    "--cores-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux",
+    "run",
+    "--target=synth",
+    "--build",
+    "--build-root",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/package/synth_retry_1789120394221745981",
+    "aixsilicon:ip:apb_secure_demux:1.0.0"
+  ],
+  "log": "build/rtl/synth_retry_1789120394223416302.log",
+  "log_sha256": "57cb6e074a0128978246af9ec0871cbeb710924e95c7dbb909fcaf0913e50859",
+  "native_logs": [
+    {
+      "path": "build/package/synth_retry_1789120394221745981/aixsilicon_ip_apb_secure_demux_1.0.0/synth-design_compiler/reports/synth.log",
+      "sha256": "9e4143f710451817a78742f430fef66df84e8b9c5e1e332144c52fa655f20559"
+    }
+  ],
+  "input_manifest_sha256": "a448f17f493a844059e8c4c23525a45d0284d87b2d616f411ba5c983b4c0e4ce",
   "netlists": [
     {
-      "path": "build/package/synth/aixsilicon_ip_apb_secure_demux_1.0.0/synth-design_compiler/outputs/apb_secure_demux_synth.v",
-      "sha256": "d084d91f0002a5cbf618ec3325458b22653682141c649e48af750a146f939636"
+      "path": "build/package/synth_retry_1789120394221745981/aixsilicon_ip_apb_secure_demux_1.0.0/synth-design_compiler/outputs/apb_secure_demux_synth.v",
+      "sha256": "293f07403fb09ecc8b2be1fe82acc98beefcf0d5ee07e6be9822919fd19276dc"
     }
   ]
 }

@@ -1,0 +1,11 @@
+# Boundary assumptions from LLD clock/reset/interface contracts.
+current_design watchdog_top
+clock -name pclk -domain APB -period 10 -edge {0 5}
+clock -name wdt_clk -domain WDT -period 20 -edge {0 10}
+reset -name por_n -value 0 -async
+reset -name preset_n -value 0 -async
+abstract_port -module watchdog_top -ports {PSEL PENABLE PWRITE PADDR PWDATA PSTRB PPROT access_source_i cfg_auth_i service_auth_i diag_auth_i} -clock pclk -reset preset_n -combo no
+abstract_port -module watchdog_top -ports {sleep_req_i debug_req_i debug_auth_i warm_reset_evt_i test_auth_i recovery_done_i hw_evt_valid hw_evt_channel hw_evt_client hw_evt_type hw_evt_data hw_evt_source} -clock wdt_clk -reset por_n -combo no
+abstract_port -module watchdog_top -ports {PRDATA PREADY PSLVERR} -clock pclk -combo yes
+abstract_port -module watchdog_top -ports {irq_o} -clock pclk -reset preset_n -combo no
+abstract_port -module watchdog_top -ports {pause_ack_o recovery_ack_o nmi_req_o local_reset_req_o system_reset_req_o safety_alert_o safe_state_req_o wake_req_o hw_evt_ready} -clock wdt_clk -reset por_n -combo no

@@ -1,0 +1,9 @@
+current_design gpio
+clock -name gpio.pclk_i -domain MAIN -period 10 -edge {0 5}
+clock -name gpio.aon_clk_i -domain AON -period 100 -edge {0 50}
+reset -name gpio.por_ni -value 0
+reset -name gpio.main_rst_ni -value 0
+reset -name gpio.aon_rst_ni -value 0
+input -name {gpio.paddr_i gpio.pwdata_i gpio.pstrb_i gpio.pprot_i gpio.psel_i gpio.penable_i gpio.pwrite_i gpio.input_available_i gpio.output_owned_i gpio.sleep_req_i gpio.safe_req_i gpio.snapshot_req_i gpio.strap_sample_i} -clock gpio.pclk_i
+input -name gpio.aon_input_available_i -clock gpio.aon_clk_i
+# Physical pad buses are asynchronous and must terminate in their declared synchronizers.

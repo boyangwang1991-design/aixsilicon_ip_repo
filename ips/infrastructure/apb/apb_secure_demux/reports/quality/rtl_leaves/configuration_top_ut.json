@@ -1,0 +1,1012 @@
+{
+  "scope": "Current named-configuration top module UT precheck; not post-regression 19-PV or UVM signoff",
+  "results": [
+    {
+      "configuration": "CFG_TYPICAL_DIRECT",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_TYPICAL_DIRECT",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT_0.log",
+          "sha256": "8eea39ed7b9e187c6f492bb2f8fa1f17bd6a9722761aea8879d48c8f3892d22a"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TYPICAL_DIRECT_1.log",
+          "sha256": "e9120cac495d88c75853a88ad0fe5a505d6fdd216b104164d4806428bdcdef98"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_TYPICAL_REGISTER",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_TYPICAL_REGISTER",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER_0.log",
+          "sha256": "9f736468fc5873e04f5f44622951b4bca13d549b12b725ba4646d3ada6d09e60"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TYPICAL_REGISTER_1.log",
+          "sha256": "8e8874af3a708abc285e6048e233964e978d757b4c23199042b61c85f8bb3bd5"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_MAX_DIRECT",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_MAX_DIRECT",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_DIRECT"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MAX_DIRECT_0.log",
+          "sha256": "7cdea92543e3f02390c7b0f5bac9b41fc8bb82e5d00187ce534cd3793342ed70"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_DIRECT.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_DIRECT",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_DIRECT/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MAX_DIRECT_1.log",
+          "sha256": "02a3e033bd33f3faa30bc23d7fa4a8666e62976a6d1bd355a353baaae72ecf0b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_MAX_REGISTER",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_MAX_REGISTER",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_REGISTER"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MAX_REGISTER_0.log",
+          "sha256": "79ea0fe8e91e44d544555e8d65e24857163bd32dc298130c4e503eb4e6e74c0b"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_REGISTER.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_REGISTER",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MAX_REGISTER/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MAX_REGISTER_1.log",
+          "sha256": "6cb30b9b8684fc33ea428ca4ff4fca74b4019e2f7e574d44cb7027e9bd5a6e41"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_MIN_NOFIFO",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_MIN_NOFIFO",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO_0.log",
+          "sha256": "e81e33c69480b16690305c7309f9fa6580849600aeddd54f50edfd6016b6e5b1"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MIN_NOFIFO_1.log",
+          "sha256": "f7a821339bc10c7ded8fa840b626c87a56c48a96d621580530eda792ea42e535"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_MIN_FIFO1",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_MIN_FIFO1",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_FIFO1"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MIN_FIFO1_0.log",
+          "sha256": "510a7c8a4370bb13324ff87ffd0d16b4e2db162c48b2d6747b7e209b7efdf666"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_FIFO1.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_FIFO1",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_MIN_FIFO1/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_MIN_FIFO1_1.log",
+          "sha256": "683e3dbc6e471ca72c27023207677f6e08daed24eaf8f21cbb433e6079e50a26"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_NONPOWER",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_NONPOWER",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_NONPOWER_0.log",
+          "sha256": "cf9d8d423a1f730909527992b525c945c166a180d5a7de902839b15c01c9c2ca"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_NONPOWER_1.log",
+          "sha256": "896c8e920f2ac16f2b2f32f4380fae23f814e9e556356d74cabf1513eac3d0c1"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_TRIMMED",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_TRIMMED",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TRIMMED"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TRIMMED_0.log",
+          "sha256": "cbdc5f802595ae6688d57d51e30cb7327a8f38a06334aa7ea28fe28f279b79cf"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TRIMMED.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TRIMMED",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_TRIMMED/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_TRIMMED_1.log",
+          "sha256": "dc2d32d31c9cac028ec19ace4c5690852897137ca483150f3db27ce2335b640b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_DEFAULT",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_DEFAULT",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_DEFAULT"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_DEFAULT_0.log",
+          "sha256": "d6c1a9d98e7408bc47f027253f0b9abaf30289250a4c7117c9c5b669b9350b79"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_DEFAULT.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_DEFAULT",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_DEFAULT/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_DEFAULT_1.log",
+          "sha256": "3eb1d386997931d612dea669ca237a1e46b0245cce7efee7dd52b1bb109ffac8"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_PORTS_ZERO",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_PORTS_ZERO",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_PORTS_ZERO"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_PORTS_ZERO_0.log",
+          "sha256": "2fb388eb3270ebbbd9d4b0677875b9144cf78ae525cf663f41328d1759283b46"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_WIDTH_BAD",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_WIDTH_BAD",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_WIDTH_BAD"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_WIDTH_BAD_0.log",
+          "sha256": "ad31b02f420f0436fb63e528241f08c293963b8ca49efcb705b001f7a82b9a4b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_ID_SPACE",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_ID_SPACE",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_ID_SPACE"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_ID_SPACE_0.log",
+          "sha256": "a46bfcd9f7b8821efc9f9feacf75f332a7bb2092ce1341523d662975e3a83adb"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_MASK_ZERO",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_MASK_ZERO",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_MASK_ZERO"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_MASK_ZERO_0.log",
+          "sha256": "fbc5862f959ef35967b93349a8f9f50851f60edd2a433fe633e1512b2b6304f2"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_BASE_LENGTH",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_BASE_LENGTH",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_BASE_LENGTH"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_BASE_LENGTH_0.log",
+          "sha256": "d6f4496afc6d875a26dde5a8ccd7672783fa6ab8bd49edb26040342a8367d354"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_BASE_OVERLAP",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_BASE_OVERLAP",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_BASE_OVERLAP"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_BASE_OVERLAP_0.log",
+          "sha256": "59e45f07a275f5fb8af65bdf739b9566c12967c5cf04b683acc177ae0a65557d"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_CSR_OVERLAP",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_CSR_OVERLAP",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_CSR_OVERLAP"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_CSR_OVERLAP_0.log",
+          "sha256": "ae7c496e8db5cd8764d8e9662d9bc8f73f5a6a8692e9204e179afd99da096bce"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_PORT_WRAP",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_PORT_WRAP",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_PORT_WRAP"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_PORT_WRAP_0.log",
+          "sha256": "f3b6c14ca7abd0a226f0d693fbfd2a7768aee42abc9cb229acc61fc29aab551e"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_SIZE_ZERO",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_SIZE_ZERO",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_SIZE_ZERO"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_SIZE_ZERO_0.log",
+          "sha256": "c9e8842142e8aefe48f14ba17e088c4868b4b332b5ee622776eed3085499dd37"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_BASE_ALIGN",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_BASE_ALIGN",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_BASE_ALIGN"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_BASE_ALIGN_0.log",
+          "sha256": "c89a72b69e8441e4d7fda82ce6aa93dec3c9423470807978285876f7d7eaa8f8"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_INVALID_PERM_RANGE",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_INVALID_PERM_RANGE",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_INVALID_PERM_RANGE"
+          ],
+          "exit_code": 1,
+          "log": "build/configurations/current_1789120527424715385/CFG_INVALID_PERM_RANGE_0.log",
+          "sha256": "b949cdfa27eb4c5b1a853303698d2ce3a82631a7c834cd5eca7dd89a11e90bc2"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_NONPOWER_PORT_SIZE",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_NONPOWER_PORT_SIZE",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE_0.log",
+          "sha256": "abd13ca1111d317e3e200a047d2afe68f4ccc4dab1db972c3628f1c3ea659d1a"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_NONPOWER_PORT_SIZE_1.log",
+          "sha256": "bcefd2f712df16471d544e17ffee96050d740a2fcd99c8a704208085785fdb0d"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_ADDR_WIDTH_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_ADDR_WIDTH_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0_0.log",
+          "sha256": "4f8097ad956575f7638243e65ddb6525cfc04d8bd493bc4e45e85e434f30d057"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_ADDR_WIDTH_0_1.log",
+          "sha256": "b2d3dda1a08b41d9c606818dc4f5156447e5bc1a902810d7e692bc075e358651"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_MASTER_ID_WIDTH_1",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_MASTER_ID_WIDTH_1",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1_0.log",
+          "sha256": "5c01081865377909a1439a178c21da08972deb899aaf5646bb03ab0e007c1ce5"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_MASTER_ID_WIDTH_1_1.log",
+          "sha256": "e0b7f8a5ca54a58225672ba7ec2dfd21f7fef5a97ee3f6dd75fcec930e52212b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0_0.log",
+          "sha256": "f9d2601e76e5fc03d59020c3bd23acda4f81032d793a63baf25dd8bb7da61216"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_OUTPUT_ISOLATION_EN_0_1.log",
+          "sha256": "eea1cdd88e044afe4fe752d470dc0875a181d7a820767dfca44f60de0740c303"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_POLICY_PARITY_EN_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_POLICY_PARITY_EN_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0_0.log",
+          "sha256": "07f5a4c39befbc41a3162894ccc6a7e8fef9f0e48c74abff64237bb6471413b7"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_POLICY_PARITY_EN_0_1.log",
+          "sha256": "5b8cd7a0251f972cba5c69be59b80d940bf2e17443a3e73749fd1caae39f1edc"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_DFX_EN_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_DFX_EN_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0_0.log",
+          "sha256": "d1c06fb25b6c92d45791efb0b71bf889892c5acc03d31500b6dd1bdace029a29"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_DFX_EN_0_1.log",
+          "sha256": "423b367aeb8f6f664fd1fea616b5508f372a3b5f009eae188d63470636f1f847"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_PUBLIC_ID_EN_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_PUBLIC_ID_EN_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0_0.log",
+          "sha256": "cb9222f46b3b14a8f6d378dc72c924f3fb23c4e0b55d8e923611912a4f28720c"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_PUBLIC_ID_EN_0_1.log",
+          "sha256": "be31fcd5c741b7c9da05aac89ce309dd80cb116e100b57172dcdffc9277ab25b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_0",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_EVENT_FIFO_DEPTH_0",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0_0.log",
+          "sha256": "aa032c58f5807c4db437451aa9e8ca1b2a8d1b73307303c4b6d8b8f8b524cf0d"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_0_1.log",
+          "sha256": "5ce73d032a6e91480a03bd39c170631614b67c100f53ad77eb4cafb470fb83a2"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_1",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_EVENT_FIFO_DEPTH_1",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1_0.log",
+          "sha256": "3b9f7b2dbc32fde805960c863d8991652b6777388d9cf4f28bac4e8da531acd9"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_1_1.log",
+          "sha256": "f3d552e1ed3ad2077ffbc9dda9a91162b1a9adea3b7d5e5ef444b6423e871a2e"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_EVENT_FIFO_DEPTH_3",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_EVENT_FIFO_DEPTH_3",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3_0.log",
+          "sha256": "2dbb592ca1d3503c134377e3844548b882de298af7562a6c6bd00812d6c12fc6"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_EVENT_FIFO_DEPTH_3_1.log",
+          "sha256": "1b9bb52399c3a00ccadd53bcad65fc7ebcda31adb97abac7accb63c25cbdb7cc"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_BOUNDARY_MGMT_MASTER_MASK_1",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_BOUNDARY_MGMT_MASTER_MASK_1",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1_0.log",
+          "sha256": "beb932d89a22975ba48f5970b28f24ace1da9c18fae0c2c52f59bc43df71a74a"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_BOUNDARY_MGMT_MASTER_MASK_1_1.log",
+          "sha256": "4a2c66e2652d0962fb56f9c34a1a7cf22010e219a3cf8ef8da3ba1513433091b"
+        }
+      ],
+      "status": "fail"
+    },
+    {
+      "configuration": "CFG_PW_7996c6441ffe",
+      "commands": [
+        {
+          "command": [
+            "/home/eda/workspace/aixsilicon_workflow/.venv/bin/python3",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/scripts/materialize_configuration.py",
+            "--configuration",
+            "CFG_PW_7996c6441ffe",
+            "--output",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe_0.log",
+          "sha256": "a042ee5eb63162af816b06dd9007abb92c85c1eb91e04789673667666d6d8ab4"
+        },
+        {
+          "command": [
+            "fusesoc",
+            "--config",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe.conf",
+            "--cores-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe",
+            "run",
+            "--target=ut_top",
+            "--setup",
+            "--build",
+            "--build-root",
+            "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe/build",
+            "aixsilicon:ip:apb_secure_demux:1.0.0"
+          ],
+          "exit_code": 0,
+          "log": "build/configurations/current_1789120527424715385/CFG_PW_7996c6441ffe_1.log",
+          "sha256": "2ef65eabd015a42dfaebef82c71e3f689e72706f01277ba52e0fce7933a87598"
+        }
+      ],
+      "status": "fail"
+    }
+  ]
+}

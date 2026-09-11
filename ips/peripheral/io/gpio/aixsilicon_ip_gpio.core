@@ -129,7 +129,7 @@ filesets:
   lint_waivers:
     files:
     - constraints/lint_waivers.tcl
-    file_type: tclSource
+    file_type: waiver
   ut_gpio:
     files:
     - verification/unit_test/ut_gpio.sv
@@ -169,6 +169,10 @@ filesets:
   ut_gpio_output:
     files:
     - verification/unit_test/ut_gpio_output.sv
+    file_type: systemVerilogSource
+  ut_gpio_read_path:
+    files:
+    - verification/unit_test/ut_gpio_read_path.sv
     file_type: systemVerilogSource
   ut_gpio_regfile:
     files:
@@ -404,6 +408,23 @@ targets:
     - rtl
     - ut_gpio_output
     toplevel: ut_gpio_output
+    default_tool: vcs
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -l
+        - compile.log
+  ut_gpio_read_path:
+    filesets:
+    - generated
+    - rtl
+    - ut_gpio_read_path
+    toplevel: ut_gpio_read_path
     default_tool: vcs
     tools:
       vcs:

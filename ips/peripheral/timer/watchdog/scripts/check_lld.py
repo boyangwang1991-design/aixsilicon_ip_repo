@@ -133,7 +133,7 @@ def check(workspace):
         require(order(blocks[kind]) == order(lld[key]), f'{kind}: source/model mismatch')
     bind(workspace / 'scripts/check_lld.py')
     return dict(schema_version='watchdog-lld-author-check/1.0', role='author_check_only',
-                passed=not errors, gate='G2 open; no approval inferred', errors=errors,
+                passed=not errors, gate='See model/micro_design.yaml quality_gate; author checker does not grant approval', errors=errors,
                 counts=dict(requirements=len(req_ids),covered=len(covered & req_ids),modules=len(module_ids),
                             interfaces=len(lld['interfaces']),register_fields=len(fields),fsms=len(lld['fsms']),
                             cdc_paths=len(lld['cdc']),parameters=len(params['parameters']),objects=len(objects)),

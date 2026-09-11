@@ -1,0 +1,106 @@
+{
+  "command": [
+    "urg",
+    "-dir",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054622_437235/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054742_810837/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054755_344944/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054742_151344/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054806_049964/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054815_163287/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054826_929080/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054826_795005/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054837_868399/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054836_054941/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054855_129523/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054854_497983/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054907_869882/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054918_145735/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054929_768028/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054933_256400/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_054940_819444/coverage.vdb",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/20260911_055009_595997/coverage.vdb",
+    "-report",
+    "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/timer/watchdog/build/cov/full_features_malloc_retry",
+    "-format",
+    "both"
+  ],
+  "exit_code": 0,
+  "inputs": [
+    {
+      "path": "reports/uvm/20260911_054622_437235/manifest.json",
+      "sha256": "be10be390b08ab25fe2a274a44a73736b9861b54618a2f6a18e12e1916f19cad"
+    },
+    {
+      "path": "reports/uvm/20260911_054742_810837/manifest.json",
+      "sha256": "decbf611ab20858fdceb7565a0e621e9324208550fdbc5192ce19985ab67b0f3"
+    },
+    {
+      "path": "reports/uvm/20260911_054755_344944/manifest.json",
+      "sha256": "c0e6145e9cc0302f468780866c64626f79dd194b819e7bc7d10b6b1b372de9df"
+    },
+    {
+      "path": "reports/uvm/20260911_054742_151344/manifest.json",
+      "sha256": "9b066a9ae514c5bbe143df54a78e3bdc5d2a422b0506c332dbc98a229ccf26df"
+    },
+    {
+      "path": "reports/uvm/20260911_054806_049964/manifest.json",
+      "sha256": "b787a4ca45d87a00fd96cd3f2806e054668759f2e921f374e7101ddb11b025bf"
+    },
+    {
+      "path": "reports/uvm/20260911_054815_163287/manifest.json",
+      "sha256": "e1cad11fbb0a76d8e35d7bb019629813d176add42f40bf98e12917dae99742c3"
+    },
+    {
+      "path": "reports/uvm/20260911_054826_929080/manifest.json",
+      "sha256": "16bc93d24cfc81ea31061804fd72d4339ef5cbd0780edb61873295fb61223e45"
+    },
+    {
+      "path": "reports/uvm/20260911_054826_795005/manifest.json",
+      "sha256": "2cbaf0bac1631c347cc208de6a3b6b6eaeaed1dc1ba7a3483d9a4c60268e6f3d"
+    },
+    {
+      "path": "reports/uvm/20260911_054837_868399/manifest.json",
+      "sha256": "3308fb639c235188ccdaef74b90401ee1da26463d267ed7b2809e25af8b8807d"
+    },
+    {
+      "path": "reports/uvm/20260911_054836_054941/manifest.json",
+      "sha256": "59b7941ae13858d1a34232a7193160a42ea1a3415adfdfea10a617610be5ee2e"
+    },
+    {
+      "path": "reports/uvm/20260911_054855_129523/manifest.json",
+      "sha256": "c77b618f42cf66b53f38464334660cbf7549ba51425076344be13638d4454501"
+    },
+    {
+      "path": "reports/uvm/20260911_054854_497983/manifest.json",
+      "sha256": "a2dc131f74d36fed3d78e8a60881468c6a9ecf803bdf480709bc2c8bb3cb6618"
+    },
+    {
+      "path": "reports/uvm/20260911_054907_869882/manifest.json",
+      "sha256": "de782a3d5a75a88df9920566d03c2fdedcb96854674935ba9132019ee87a4030"
+    },
+    {
+      "path": "reports/uvm/20260911_054918_145735/manifest.json",
+      "sha256": "8da4a7f872bd3fe2f34ee1877a5548785f1cfc0b599a0dab6a13a513f1473f63"
+    },
+    {
+      "path": "reports/uvm/20260911_054929_768028/manifest.json",
+      "sha256": "2b12147b33b29274a64c281333995d29d956dee58eb21a7bb95e6d312561e19a"
+    },
+    {
+      "path": "reports/uvm/20260911_054933_256400/manifest.json",
+      "sha256": "8bb7c9b006612837dff76fa4b18cc6cea2df6f3632bd241ffb158d20027bb2a6"
+    },
+    {
+      "path": "reports/uvm/20260911_054940_819444/manifest.json",
+      "sha256": "f2026028f808de958c41f21e6fa324a813ccb2232f0a5dd240d3289d59ca03d1"
+    },
+    {
+      "path": "reports/uvm/20260911_055009_595997/manifest.json",
+      "sha256": "b4226330d3118b21cf043e47b9cc5a2c52ce65d81a228119771e2838f6cfcde8"
+    }
+  ],
+  "environment_override": {
+    "VCS_USE_MALLOC": "1"
+  }
+}

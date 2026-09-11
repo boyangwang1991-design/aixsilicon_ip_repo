@@ -226,6 +226,10 @@ filesets:
     - verification/env/watchdog_env_pkg.sv
     - verification/th/watchdog_harness.sv
     file_type: systemVerilogSource
+  cdc_constraints:
+    files:
+    - scripts/spyglass_constraints.tcl
+    file_type: tclSource
   formal:
     files:
     - verification/formal/watchdog_formal_harness.sv
@@ -432,6 +436,65 @@ targets:
       design_compiler:
         script_dir: $::env(WATCHDOG_IP_ROOT)/scripts/ppa
         dc_script: synth.tcl
+  cdc:
+    default_tool: spyglass
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - cdc_constraints
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    toplevel: watchdog_top
+    tools:
+      spyglass:
+        goals:
+        - cdc/cdc_setup_check
+        - cdc/cdc_verify_struct
+        spyglass_options:
+        - enableSV09 yes
+        - mthresh 1048576
+        - define SYNTHESIS
+  rdc:
+    default_tool: spyglass
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - cdc_constraints
+    parameters:
+    - NUM_CHANNELS
+    - COUNTER_WIDTH
+    - PRESCALE_WIDTH
+    - NUM_CLIENTS
+    - SOURCE_WIDTH
+    - SYNC_STAGES
+    - SUPPORT_TOKEN_QA
+    - SUPPORT_SUPERVISION
+    - SUPPORT_HW_EVENT
+    - SAFETY_EN
+    - ALLOW_RUNTIME_UPDATE
+    - DIAG_INJECT_EN
+    toplevel: watchdog_top
+    tools:
+      spyglass:
+        goals:
+        - rdc/rdc_verify_struct
+        spyglass_options:
+        - enableSV09 yes
+        - mthresh 1048576
+        - define SYNTHESIS
   formal:
     default_tool: vcs
     filesets:

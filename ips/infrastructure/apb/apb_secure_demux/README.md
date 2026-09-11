@@ -1,6 +1,6 @@
 # 安全 APB Demux
 
-APB4 1→N安全路由IP，目标版本1.0.0。G0/G1/G2已通过；原生CSR及多视图已生成，VPLAN草案待VP0评审。功能RTL、完整UVM和PPA尚未完成，资产仍为planned。
+APB4 1→N安全路由IP，目标版本1.0.0。G0/G1/G2已通过；VP0已批准；功能RTL与原生CSR多视图已实现，十个模块UT通过。G3检查进行中，完整UVM、形式与PPA尚未闭环，未发布。
 
 - [完整流程状态](docs/full_process_status.md)
 - [LRS](docs/lrs/index.md) / [HLD](docs/hld/index.md) / [LLD](docs/lld/index.md)

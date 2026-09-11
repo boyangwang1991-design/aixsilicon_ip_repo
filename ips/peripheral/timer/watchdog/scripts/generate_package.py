@@ -26,6 +26,11 @@ for target in ['sim','smoke']:
   'toplevel':'watchdog_harness','tools':{'vcs':{'vcs_options':['-full64','-sverilog','-ntb_opts','uvm-1.2','-timescale=1ns/1ps','-debug_access+all','-cm','line+cond+branch+fsm+tgl'],
   'run_options':['+UVM_TESTNAME=tc_bus','+ntb_random_seed=1','-cm','line+cond+branch+fsm+tgl']}}}
 targets['synth']={'default_tool':'design_compiler','filesets':['pkg','generated','rtl'],'parameters':[],'toplevel':'watchdog_top','tools':{'design_compiler':{'script_dir':'$::env(WATCHDOG_IP_ROOT)/scripts/ppa','dc_script':'synth.tcl'}}}
+filesets['cdc_constraints']={'files':['scripts/spyglass_constraints.tcl'],'file_type':'tclSource'}
+for static_target,goals in {'cdc':['cdc/cdc_setup_check','cdc/cdc_verify_struct'],'rdc':['rdc/rdc_verify_struct']}.items():
+ targets[static_target]={'default_tool':'spyglass','filesets':['pkg','generated','rtl','cdc_constraints'],
+ 'parameters':[n for n in params if n not in ['W','PS','WS','PCLK_HALF','WDT_HALF']], 'toplevel':'watchdog_top',
+ 'tools':{'spyglass':{'goals':goals,'spyglass_options':['enableSV09 yes','mthresh 1048576','define SYNTHESIS']}}}
 filesets['formal']={'files':['verification/formal/watchdog_formal_harness.sv'],'file_type':'systemVerilogSource'}
 targets['formal']={'default_tool':'vcs','filesets':['pkg','rtl','formal'],'toplevel':'watchdog_formal_harness',
  'hooks':{'pre_build':['vcformal_prove']},'tools':{'vcs':{'vcs_options':['-full64','-sverilog','-ntb_opts','uvm-1.2','-timescale=1ns/1ps']}}}
