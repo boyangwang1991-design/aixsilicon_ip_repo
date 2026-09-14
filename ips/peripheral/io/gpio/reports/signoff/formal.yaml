@@ -1,0 +1,23 @@
+schema: gpio-formal-attempt/1.0
+ip_name: gpio
+kind: formal
+status: blocked
+reason_code: license_unavailable
+missing_feature: VC-FORMAL-FPV
+tool: vcf
+tool_version: W-2024.09-SP1
+proofs_completed: 0
+properties_declared: 6
+covers_declared: 2
+model_built: true
+termination: 'User-authorized continuation: stopped license wait after exact missing
+  feature was observed'
+artifacts:
+- path: build/formal/output_02/console.log
+  sha256: b01471dcf267693330dbff27876592a307aa1508073b4f0977a01f872f8549f0
+- path: build/formal/output_02/run.tcl
+  sha256: c0fec4c35c986d0f5bce9683ab2e0a986955c13da54db01b7e6f741342193b38
+- path: verification/formal/gpio_output_properties.sv
+  sha256: 3c9880106ab56501a67e9a37a079051c074d49b7dff53acff857737955b07127
+retry_condition: Restore FPV license and run complete properties on current RTL; no
+  proof result inferred from simulation

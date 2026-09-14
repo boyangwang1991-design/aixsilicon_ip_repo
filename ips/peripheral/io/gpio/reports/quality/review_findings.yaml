@@ -4,31 +4,41 @@ findings:
 - id: GPIO.CDC.LICENSE
   gate: G3
   severity: blocker
-  status: open
+  status: waived
   owner: EDA environment
   description: 'cdc_adv_checker unavailable: Ar_syncrst_setupcheck01 and Ar_converge01
     not executed'
-  resolution: Provide licensed feature and rerun full target, then review all reported
-    crossings; no waiver or PASS inferred.
+  resolution: 仅豁免许可证缺失对继续流程的阻塞；专项状态 skipped，技术结果未验证。恢复许可证后重跑。
   artifacts:
   - path: build/rtl/resume_cdc_02.log
     sha256: 43181325614b754cba74094e0d8ce45c444b8e9af501fb1788bc359b660f4ba7
   - path: build/rtl/resume_cdc_02/aixsilicon_ip_gpio_0.1.0/cdc-spyglass/aixsilicon_ip_gpio_0.1.0/consolidated_reports/gpio_cdc_cdc_setup_check/moresimple.rpt
     sha256: 07c2f86d11edd895bee5cad47015e1f12161817b1253247e9345256b8ac23f36
+  authorization:
+    path: reports/signoff/license_skip_authorization.md
+    sha256: f2dde34581b6bd9127619ccc18e90c183cd061ba8a939ff90d17ca2ca6de0769
+  signoff:
+    path: reports/signoff/cdc.yaml
+    sha256: 7c0415ae6f0009e983382df1b50905a1b5bc42bf5d3c478e07502d5e35b732ee
 - id: GPIO.RDC.LICENSE
   gate: G3
   severity: blocker
-  status: open
+  status: waived
   owner: EDA environment
   description: 'cdc_adv_checker and rdc_adv_checker unavailable: Ar_resetcross01 and
     Ar_resetcross_matrix01 not executed'
-  resolution: Provide licensed feature and rerun full target, then review all reported
-    crossings; no waiver or PASS inferred.
+  resolution: 仅豁免许可证缺失对继续流程的阻塞；专项状态 skipped，技术结果未验证。恢复许可证后重跑。
   artifacts:
   - path: build/rtl/resume_rdc_01.log
     sha256: 93191d1388d746a0efe057dcc4f735420892f6d6efc830ded7561a101046a444
   - path: build/rtl/resume_rdc_01/aixsilicon_ip_gpio_0.1.0/rdc-spyglass/aixsilicon_ip_gpio_0.1.0/consolidated_reports/gpio_rdc_rdc_verify_struct/moresimple.rpt
     sha256: e7c5fc90f6507ec5342a5fa9bb315499f04668dbef13724d9af429ed6a922dd0
+  authorization:
+    path: reports/signoff/license_skip_authorization.md
+    sha256: f2dde34581b6bd9127619ccc18e90c183cd061ba8a939ff90d17ca2ca6de0769
+  signoff:
+    path: reports/signoff/rdc.yaml
+    sha256: fbf582adfaa6d389f28b26d2055940b52277950d159995f0c34b694a7a8ac1a9
 - id: GPIO.FORMAL.TOOL
   gate: G4
   severity: blocker
@@ -42,3 +52,73 @@ findings:
   artifacts:
   - path: build/formal/preflight/console02.log
     sha256: 3be3873062d68f6e6861381355128d0700ed81f32228ce463bf248d5358faec6
+- id: GPIO.FORMAL.LICENSE
+  gate: G4
+  severity: blocker
+  status: open
+  owner: GPIO verification
+  description: VC-FORMAL-FPV unavailable; model built, no property proved
+  artifacts:
+  - path: reports/signoff/formal.yaml
+    sha256: 2eade60e00292a2be0163a30adb423b848bb7569a9199229fadb89f3c0191f93
+  resolution: Preserve as conditional delivery limitation; no unconditional signoff
+    claimed
+- id: GPIO.COVERAGE.CLOSURE
+  gate: G4
+  severity: blocker
+  status: open
+  owner: GPIO verification
+  description: Code coverage below unchanged 100% targets; full feature covergroups
+    incomplete
+  artifacts:
+  - path: reports/coverage/coverage_summary.md
+    sha256: ef3fe26c7ce1dcd11e852deaadb515eefee7f33f229ce947169a46242858bb3d
+  resolution: Preserve as conditional delivery limitation; no unconditional signoff
+    claimed
+- id: GPIO.PARAM.CLOSURE
+  gate: G4
+  severity: blocker
+  status: open
+  owner: GPIO verification
+  description: Representative hardware matrix passed; remaining parameter branches
+    and combinations not closed
+  artifacts:
+  - path: reports/quality/param_execution.md
+    sha256: 78e06947eb0f2b467160251c00278883a55362e439ba3acd61e223ebdbc82b0f
+  resolution: Preserve as conditional delivery limitation; no unconditional signoff
+    claimed
+- id: GPIO.RAL.CLOSURE
+  gate: G4
+  severity: blocker
+  status: open
+  owner: GPIO verification
+  description: Basic frontdoor/mirror integration passed; full register race/side-effect
+    inventory incomplete
+  artifacts:
+  - path: reports/quality/ral_handoff.yaml
+    sha256: 848b62d5afbfedb986a2b50e7fe4069e2613acb55d779d049e953bbfb55acab7
+  resolution: Preserve as conditional delivery limitation; no unconditional signoff
+    claimed
+- id: GPIO.LINT.STALL
+  gate: G3
+  severity: minor
+  status: open
+  owner: GPIO RTL
+  description: 'W287b: native passthrough CSR stall outputs unconnected; zero-wait
+    wrapper does not consume them. Two warnings retained for review.'
+  artifacts:
+  - path: build/rtl/fullflow_lint_01.log
+    sha256: 20debbb88b97bb0a201b4be8990ed5c3312202f6ef816e45939eac998480b479
+- id: GPIO.PPA.LEVEL
+  gate: G5
+  severity: blocker
+  status: open
+  owner: GPIO signoff
+  description: Three real 28nm characterization points completed at E1; E2/E3 signoff
+    awaits functional/coverage/Formal closure
+  artifacts:
+  - path: reports/ppa-report.md
+    sha256: a70553261d1c4285f3f98cf7b519cf5d27ef0dd90a808a16fd511d2e069d64db
+  - path: reports/ppa/sweep_analysis.yaml
+    sha256: 55ed68f67fcc4e744c2be36161de545403a0bdf84cd56323a6700f9080091db9
+  resolution: Conditional candidate only; do not represent E1 as final signoff

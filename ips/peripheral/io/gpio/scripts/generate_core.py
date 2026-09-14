@@ -34,6 +34,17 @@ def main():
         filesets[test.stem]={'files':[str(test.relative_to(root))],'file_type':'systemVerilogSource'}
         targets[test.stem]={'filesets':['generated','rtl','csr_checks',test.stem],'toplevel':test.stem,'default_tool':'vcs',
                            'tools':{'vcs':{'vcs_options':['-full64','-sverilog','-timescale=1ns/1ps','-ntb_opts','uvm-1.2','-l','compile.log']}}}
+    if (root/'verification/tc/tc_package.sv').exists():
+        include_files = sorted((root/'verification/env').glob('*.sv')) + sorted((root/'verification/env/utils/apb_utils/src').glob('*.sv')) + sorted((root/'verification/tc').glob('*.sv'))
+        units = ['verification/env/utils/apb_utils/src/apb_interface.sv', 'verification/th/gpio_control_if.sv',
+                 'verification/ral/gpio_ral_pkg.sv', 'verification/env/utils/apb_utils/src/apb_package.sv',
+                 'verification/env/gpio_env_package.sv', 'verification/tc/tc_package.sv', 'verification/th/harness.sv']
+        filesets['uvm']={'files':[{str(p.relative_to(root)):{'is_include_file':True}} for p in include_files if str(p.relative_to(root)) not in units]+units,
+                         'file_type':'systemVerilogSource'}
+        targets['uvm']={'filesets':['generated','rtl','csr_checks','uvm'],'toplevel':'harness','default_tool':'vcs',
+                        'parameters':['N_GPIO','CFG_PARITY_EN'],
+                        'tools':{'vcs':{'vcs_options':['-full64','-sverilog','-timescale=1ns/1ps','-ntb_opts','uvm-1.2','-cm','line+cond+branch+tgl+fsm+assert','-l','compile.log'],
+                                        'run_options':['-cm','line+cond+branch+tgl+fsm+assert']}}}
     package=yaml.safe_load((root/'ip-package.yaml').read_text())
     core={'name':package['vlnv'],'description':'Parameterized GPIO with APB4 and retained AON wake mailbox',
           'parameters':parameters,'filesets':filesets,'targets':targets}

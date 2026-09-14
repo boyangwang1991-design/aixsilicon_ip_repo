@@ -1,0 +1,832 @@
+Group : gpio_env_package::gpio_fcov::apb_cg
+
+===============================================================================
+Group : gpio_env_package::gpio_fcov::apb_cg
+===============================================================================
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING 
+100.00 100.00    1      100    1        1            64           64            
+
+
+Source File(s) : 
+
+/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/src/aixsilicon_ip_gpio_0.1.0/verification/env/gpio_fcov.sv
+
+1 Instances:
+
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING NAME                  
+100.00 1      100    1        64           64            harness.me.obj.apb_cg 
+
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group   gpio_env_package::gpio_fcov::apb_cg
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 28       0         28      100.00  
+Crosses   256      0         256     100.00  
+
+
+Variables for Group  gpio_env_package::gpio_fcov::apb_cg
+
+
+VARIABLE    EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+direction   2        0         2       100.00  100  1      1        2                    
+byte_enable 16       0         16      100.00  100  1      1        0                    
+protection  8        0         8       100.00  100  1      1        0                    
+error       2        0         2       100.00  100  1      1        2                    
+
+
+Crosses for Group  gpio_env_package::gpio_fcov::apb_cg
+
+
+CROSS        EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+access_cross 256      0         256     100.00  100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable direction
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for direction
+
+
+Bins
+
+NAME    COUNT AT LEAST 
+auto[0] 1839  1        
+auto[1] 1260  1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable byte_enable
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 16       0         16      100.00  
+
+
+User Defined Bins for byte_enable
+
+
+Bins
+
+NAME     COUNT AT LEAST 
+values_0 77    1        
+values_1 77    1        
+values_2 84    1        
+values_3 78    1        
+values_4 82    1        
+values_5 82    1        
+values_6 84    1        
+values_7 81    1        
+values_8 74    1        
+values_9 82    1        
+values_a 61    1        
+values_b 74    1        
+values_c 82    1        
+values_d 74    1        
+values_e 83    1        
+values_f 1924  1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable protection
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 8        0         8       100.00  
+
+
+User Defined Bins for protection
+
+
+Bins
+
+NAME     COUNT AT LEAST 
+values_0 96    1        
+values_1 2427  1        
+values_2 96    1        
+values_3 96    1        
+values_4 96    1        
+values_5 96    1        
+values_6 96    1        
+values_7 96    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable error
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for error
+
+
+Bins
+
+NAME    COUNT AT LEAST 
+auto[0] 2382  1        
+auto[1] 717   1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross access_cross
+
+
+Samples crossed: direction byte_enable protection
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 256      0         256     100.00          
+
+
+Automatically Generated Cross Bins for access_cross
+
+
+Bins
+
+direction byte_enable protection COUNT AT LEAST 
+auto[0]   values_0    values_0   3     1        
+auto[0]   values_0    values_1   3     1        
+auto[0]   values_0    values_2   3     1        
+auto[0]   values_0    values_3   3     1        
+auto[0]   values_0    values_4   3     1        
+auto[0]   values_0    values_5   3     1        
+auto[0]   values_0    values_6   3     1        
+auto[0]   values_0    values_7   3     1        
+auto[0]   values_1    values_0   3     1        
+auto[0]   values_1    values_1   3     1        
+auto[0]   values_1    values_2   3     1        
+auto[0]   values_1    values_3   3     1        
+auto[0]   values_1    values_4   3     1        
+auto[0]   values_1    values_5   3     1        
+auto[0]   values_1    values_6   3     1        
+auto[0]   values_1    values_7   3     1        
+auto[0]   values_2    values_0   3     1        
+auto[0]   values_2    values_1   3     1        
+auto[0]   values_2    values_2   3     1        
+auto[0]   values_2    values_3   3     1        
+auto[0]   values_2    values_4   3     1        
+auto[0]   values_2    values_5   3     1        
+auto[0]   values_2    values_6   3     1        
+auto[0]   values_2    values_7   3     1        
+auto[0]   values_3    values_0   3     1        
+auto[0]   values_3    values_1   3     1        
+auto[0]   values_3    values_2   3     1        
+auto[0]   values_3    values_3   3     1        
+auto[0]   values_3    values_4   3     1        
+auto[0]   values_3    values_5   3     1        
+auto[0]   values_3    values_6   3     1        
+auto[0]   values_3    values_7   3     1        
+auto[0]   values_4    values_0   3     1        
+auto[0]   values_4    values_1   3     1        
+auto[0]   values_4    values_2   3     1        
+auto[0]   values_4    values_3   3     1        
+auto[0]   values_4    values_4   3     1        
+auto[0]   values_4    values_5   3     1        
+auto[0]   values_4    values_6   3     1        
+auto[0]   values_4    values_7   3     1        
+auto[0]   values_5    values_0   3     1        
+auto[0]   values_5    values_1   3     1        
+auto[0]   values_5    values_2   3     1        
+auto[0]   values_5    values_3   3     1        
+auto[0]   values_5    values_4   3     1        
+auto[0]   values_5    values_5   3     1        
+auto[0]   values_5    values_6   3     1        
+auto[0]   values_5    values_7   3     1        
+auto[0]   values_6    values_0   3     1        
+auto[0]   values_6    values_1   3     1        
+auto[0]   values_6    values_2   3     1        
+auto[0]   values_6    values_3   3     1        
+auto[0]   values_6    values_4   3     1        
+auto[0]   values_6    values_5   3     1        
+auto[0]   values_6    values_6   3     1        
+auto[0]   values_6    values_7   3     1        
+auto[0]   values_7    values_0   3     1        
+auto[0]   values_7    values_1   3     1        
+auto[0]   values_7    values_2   3     1        
+auto[0]   values_7    values_3   3     1        
+auto[0]   values_7    values_4   3     1        
+auto[0]   values_7    values_5   3     1        
+auto[0]   values_7    values_6   3     1        
+auto[0]   values_7    values_7   3     1        
+auto[0]   values_8    values_0   3     1        
+auto[0]   values_8    values_1   3     1        
+auto[0]   values_8    values_2   3     1        
+auto[0]   values_8    values_3   3     1        
+auto[0]   values_8    values_4   3     1        
+auto[0]   values_8    values_5   3     1        
+auto[0]   values_8    values_6   3     1        
+auto[0]   values_8    values_7   3     1        
+auto[0]   values_9    values_0   3     1        
+auto[0]   values_9    values_1   3     1        
+auto[0]   values_9    values_2   3     1        
+auto[0]   values_9    values_3   3     1        
+auto[0]   values_9    values_4   3     1        
+auto[0]   values_9    values_5   3     1        
+auto[0]   values_9    values_6   3     1        
+auto[0]   values_9    values_7   3     1        
+auto[0]   values_a    values_0   3     1        
+auto[0]   values_a    values_1   3     1        
+auto[0]   values_a    values_2   3     1        
+auto[0]   values_a    values_3   3     1        
+auto[0]   values_a    values_4   3     1        
+auto[0]   values_a    values_5   3     1        
+auto[0]   values_a    values_6   3     1        
+auto[0]   values_a    values_7   3     1        
+auto[0]   values_b    values_0   3     1        
+auto[0]   values_b    values_1   3     1        
+auto[0]   values_b    values_2   3     1        
+auto[0]   values_b    values_3   3     1        
+auto[0]   values_b    values_4   3     1        
+auto[0]   values_b    values_5   3     1        
+auto[0]   values_b    values_6   3     1        
+auto[0]   values_b    values_7   3     1        
+auto[0]   values_c    values_0   3     1        
+auto[0]   values_c    values_1   3     1        
+auto[0]   values_c    values_2   3     1        
+auto[0]   values_c    values_3   3     1        
+auto[0]   values_c    values_4   3     1        
+auto[0]   values_c    values_5   3     1        
+auto[0]   values_c    values_6   3     1        
+auto[0]   values_c    values_7   3     1        
+auto[0]   values_d    values_0   3     1        
+auto[0]   values_d    values_1   3     1        
+auto[0]   values_d    values_2   3     1        
+auto[0]   values_d    values_3   3     1        
+auto[0]   values_d    values_4   3     1        
+auto[0]   values_d    values_5   3     1        
+auto[0]   values_d    values_6   3     1        
+auto[0]   values_d    values_7   3     1        
+auto[0]   values_e    values_0   3     1        
+auto[0]   values_e    values_1   3     1        
+auto[0]   values_e    values_2   3     1        
+auto[0]   values_e    values_3   3     1        
+auto[0]   values_e    values_4   3     1        
+auto[0]   values_e    values_5   3     1        
+auto[0]   values_e    values_6   3     1        
+auto[0]   values_e    values_7   3     1        
+auto[0]   values_f    values_0   3     1        
+auto[0]   values_f    values_1   1458  1        
+auto[0]   values_f    values_2   3     1        
+auto[0]   values_f    values_3   3     1        
+auto[0]   values_f    values_4   3     1        
+auto[0]   values_f    values_5   3     1        
+auto[0]   values_f    values_6   3     1        
+auto[0]   values_f    values_7   3     1        
+auto[1]   values_0    values_0   3     1        
+auto[1]   values_0    values_1   32    1        
+auto[1]   values_0    values_2   3     1        
+auto[1]   values_0    values_3   3     1        
+auto[1]   values_0    values_4   3     1        
+auto[1]   values_0    values_5   3     1        
+auto[1]   values_0    values_6   3     1        
+auto[1]   values_0    values_7   3     1        
+auto[1]   values_1    values_0   3     1        
+auto[1]   values_1    values_1   32    1        
+auto[1]   values_1    values_2   3     1        
+auto[1]   values_1    values_3   3     1        
+auto[1]   values_1    values_4   3     1        
+auto[1]   values_1    values_5   3     1        
+auto[1]   values_1    values_6   3     1        
+auto[1]   values_1    values_7   3     1        
+auto[1]   values_2    values_0   3     1        
+auto[1]   values_2    values_1   39    1        
+auto[1]   values_2    values_2   3     1        
+auto[1]   values_2    values_3   3     1        
+auto[1]   values_2    values_4   3     1        
+auto[1]   values_2    values_5   3     1        
+auto[1]   values_2    values_6   3     1        
+auto[1]   values_2    values_7   3     1        
+auto[1]   values_3    values_0   3     1        
+auto[1]   values_3    values_1   33    1        
+auto[1]   values_3    values_2   3     1        
+auto[1]   values_3    values_3   3     1        
+auto[1]   values_3    values_4   3     1        
+auto[1]   values_3    values_5   3     1        
+auto[1]   values_3    values_6   3     1        
+auto[1]   values_3    values_7   3     1        
+auto[1]   values_4    values_0   3     1        
+auto[1]   values_4    values_1   37    1        
+auto[1]   values_4    values_2   3     1        
+auto[1]   values_4    values_3   3     1        
+auto[1]   values_4    values_4   3     1        
+auto[1]   values_4    values_5   3     1        
+auto[1]   values_4    values_6   3     1        
+auto[1]   values_4    values_7   3     1        
+auto[1]   values_5    values_0   3     1        
+auto[1]   values_5    values_1   37    1        
+auto[1]   values_5    values_2   3     1        
+auto[1]   values_5    values_3   3     1        
+auto[1]   values_5    values_4   3     1        
+auto[1]   values_5    values_5   3     1        
+auto[1]   values_5    values_6   3     1        
+auto[1]   values_5    values_7   3     1        
+auto[1]   values_6    values_0   3     1        
+auto[1]   values_6    values_1   39    1        
+auto[1]   values_6    values_2   3     1        
+auto[1]   values_6    values_3   3     1        
+auto[1]   values_6    values_4   3     1        
+auto[1]   values_6    values_5   3     1        
+auto[1]   values_6    values_6   3     1        
+auto[1]   values_6    values_7   3     1        
+auto[1]   values_7    values_0   3     1        
+auto[1]   values_7    values_1   36    1        
+auto[1]   values_7    values_2   3     1        
+auto[1]   values_7    values_3   3     1        
+auto[1]   values_7    values_4   3     1        
+auto[1]   values_7    values_5   3     1        
+auto[1]   values_7    values_6   3     1        
+auto[1]   values_7    values_7   3     1        
+auto[1]   values_8    values_0   3     1        
+auto[1]   values_8    values_1   29    1        
+auto[1]   values_8    values_2   3     1        
+auto[1]   values_8    values_3   3     1        
+auto[1]   values_8    values_4   3     1        
+auto[1]   values_8    values_5   3     1        
+auto[1]   values_8    values_6   3     1        
+auto[1]   values_8    values_7   3     1        
+auto[1]   values_9    values_0   3     1        
+auto[1]   values_9    values_1   37    1        
+auto[1]   values_9    values_2   3     1        
+auto[1]   values_9    values_3   3     1        
+auto[1]   values_9    values_4   3     1        
+auto[1]   values_9    values_5   3     1        
+auto[1]   values_9    values_6   3     1        
+auto[1]   values_9    values_7   3     1        
+auto[1]   values_a    values_0   3     1        
+auto[1]   values_a    values_1   16    1        
+auto[1]   values_a    values_2   3     1        
+auto[1]   values_a    values_3   3     1        
+auto[1]   values_a    values_4   3     1        
+auto[1]   values_a    values_5   3     1        
+auto[1]   values_a    values_6   3     1        
+auto[1]   values_a    values_7   3     1        
+auto[1]   values_b    values_0   3     1        
+auto[1]   values_b    values_1   29    1        
+auto[1]   values_b    values_2   3     1        
+auto[1]   values_b    values_3   3     1        
+auto[1]   values_b    values_4   3     1        
+auto[1]   values_b    values_5   3     1        
+auto[1]   values_b    values_6   3     1        
+auto[1]   values_b    values_7   3     1        
+auto[1]   values_c    values_0   3     1        
+auto[1]   values_c    values_1   37    1        
+auto[1]   values_c    values_2   3     1        
+auto[1]   values_c    values_3   3     1        
+auto[1]   values_c    values_4   3     1        
+auto[1]   values_c    values_5   3     1        
+auto[1]   values_c    values_6   3     1        
+auto[1]   values_c    values_7   3     1        
+auto[1]   values_d    values_0   3     1        
+auto[1]   values_d    values_1   29    1        
+auto[1]   values_d    values_2   3     1        
+auto[1]   values_d    values_3   3     1        
+auto[1]   values_d    values_4   3     1        
+auto[1]   values_d    values_5   3     1        
+auto[1]   values_d    values_6   3     1        
+auto[1]   values_d    values_7   3     1        
+auto[1]   values_e    values_0   3     1        
+auto[1]   values_e    values_1   38    1        
+auto[1]   values_e    values_2   3     1        
+auto[1]   values_e    values_3   3     1        
+auto[1]   values_e    values_4   3     1        
+auto[1]   values_e    values_5   3     1        
+auto[1]   values_e    values_6   3     1        
+auto[1]   values_e    values_7   3     1        
+auto[1]   values_f    values_0   3     1        
+auto[1]   values_f    values_1   424   1        
+auto[1]   values_f    values_2   3     1        
+auto[1]   values_f    values_3   3     1        
+auto[1]   values_f    values_4   3     1        
+auto[1]   values_f    values_5   3     1        
+auto[1]   values_f    values_6   3     1        
+auto[1]   values_f    values_7   3     1        
+
+
+-------------------------------------------------------------------------------
+===============================================================================
+Group Instance : harness.me.obj.apb_cg
+===============================================================================
+SCORE  WEIGHT GOAL   AT LEAST AUTO BIN MAX PRINT MISSING 
+100.00 1      100    1        64           64            
+
+
+Group:
+
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                                
+100.00 100.00    1      100    1        1            64           64                    gpio_env_package::gpio_fcov::apb_cg 
+
+
+
+-------------------------------------------------------------------------------
+
+Summary for Group Instance   harness.me.obj.apb_cg
+
+
+
+CATEGORY  EXPECTED UNCOVERED COVERED PERCENT 
+Variables 28       0         28      100.00  
+Crosses   256      0         256     100.00  
+
+
+Variables for Group Instance  harness.me.obj.apb_cg
+
+
+VARIABLE    EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST AUTO BIN MAX COMMENT 
+direction   2        0         2       100.00  100  1      1        2                    
+byte_enable 16       0         16      100.00  100  1      1        0                    
+protection  8        0         8       100.00  100  1      1        0                    
+error       2        0         2       100.00  100  1      1        2                    
+
+
+Crosses for Group Instance  harness.me.obj.apb_cg
+
+
+CROSS        EXPECTED UNCOVERED COVERED PERCENT GOAL WEIGHT AT LEAST PRINT MISSING COMMENT 
+access_cross 256      0         256     100.00  100  1      1        0                     
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable direction
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for direction
+
+
+Bins
+
+NAME    COUNT AT LEAST 
+auto[0] 1839  1        
+auto[1] 1260  1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable byte_enable
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 16       0         16      100.00  
+
+
+User Defined Bins for byte_enable
+
+
+Bins
+
+NAME     COUNT AT LEAST 
+values_0 77    1        
+values_1 77    1        
+values_2 84    1        
+values_3 78    1        
+values_4 82    1        
+values_5 82    1        
+values_6 84    1        
+values_7 81    1        
+values_8 74    1        
+values_9 82    1        
+values_a 61    1        
+values_b 74    1        
+values_c 82    1        
+values_d 74    1        
+values_e 83    1        
+values_f 1924  1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable protection
+
+
+CATEGORY          EXPECTED UNCOVERED COVERED PERCENT 
+User Defined Bins 8        0         8       100.00  
+
+
+User Defined Bins for protection
+
+
+Bins
+
+NAME     COUNT AT LEAST 
+values_0 96    1        
+values_1 2427  1        
+values_2 96    1        
+values_3 96    1        
+values_4 96    1        
+values_5 96    1        
+values_6 96    1        
+values_7 96    1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Variable error
+
+
+CATEGORY                     EXPECTED UNCOVERED COVERED PERCENT 
+Automatically Generated Bins 2        0         2       100.00  
+
+
+Automatically Generated Bins for error
+
+
+Bins
+
+NAME    COUNT AT LEAST 
+auto[0] 2382  1        
+auto[1] 717   1        
+
+
+-------------------------------------------------------------------------------
+
+Summary for Cross access_cross
+
+
+Samples crossed: direction byte_enable protection
+CATEGORY                           EXPECTED UNCOVERED COVERED PERCENT MISSING 
+Automatically Generated Cross Bins 256      0         256     100.00          
+
+
+Automatically Generated Cross Bins for access_cross
+
+
+Bins
+
+direction byte_enable protection COUNT AT LEAST 
+auto[0]   values_0    values_0   3     1        
+auto[0]   values_0    values_1   3     1        
+auto[0]   values_0    values_2   3     1        
+auto[0]   values_0    values_3   3     1        
+auto[0]   values_0    values_4   3     1        
+auto[0]   values_0    values_5   3     1        
+auto[0]   values_0    values_6   3     1        
+auto[0]   values_0    values_7   3     1        
+auto[0]   values_1    values_0   3     1        
+auto[0]   values_1    values_1   3     1        
+auto[0]   values_1    values_2   3     1        
+auto[0]   values_1    values_3   3     1        
+auto[0]   values_1    values_4   3     1        
+auto[0]   values_1    values_5   3     1        
+auto[0]   values_1    values_6   3     1        
+auto[0]   values_1    values_7   3     1        
+auto[0]   values_2    values_0   3     1        
+auto[0]   values_2    values_1   3     1        
+auto[0]   values_2    values_2   3     1        
+auto[0]   values_2    values_3   3     1        
+auto[0]   values_2    values_4   3     1        
+auto[0]   values_2    values_5   3     1        
+auto[0]   values_2    values_6   3     1        
+auto[0]   values_2    values_7   3     1        
+auto[0]   values_3    values_0   3     1        
+auto[0]   values_3    values_1   3     1        
+auto[0]   values_3    values_2   3     1        
+auto[0]   values_3    values_3   3     1        
+auto[0]   values_3    values_4   3     1        
+auto[0]   values_3    values_5   3     1        
+auto[0]   values_3    values_6   3     1        
+auto[0]   values_3    values_7   3     1        
+auto[0]   values_4    values_0   3     1        
+auto[0]   values_4    values_1   3     1        
+auto[0]   values_4    values_2   3     1        
+auto[0]   values_4    values_3   3     1        
+auto[0]   values_4    values_4   3     1        
+auto[0]   values_4    values_5   3     1        
+auto[0]   values_4    values_6   3     1        
+auto[0]   values_4    values_7   3     1        
+auto[0]   values_5    values_0   3     1        
+auto[0]   values_5    values_1   3     1        
+auto[0]   values_5    values_2   3     1        
+auto[0]   values_5    values_3   3     1        
+auto[0]   values_5    values_4   3     1        
+auto[0]   values_5    values_5   3     1        
+auto[0]   values_5    values_6   3     1        
+auto[0]   values_5    values_7   3     1        
+auto[0]   values_6    values_0   3     1        
+auto[0]   values_6    values_1   3     1        
+auto[0]   values_6    values_2   3     1        
+auto[0]   values_6    values_3   3     1        
+auto[0]   values_6    values_4   3     1        
+auto[0]   values_6    values_5   3     1        
+auto[0]   values_6    values_6   3     1        
+auto[0]   values_6    values_7   3     1        
+auto[0]   values_7    values_0   3     1        
+auto[0]   values_7    values_1   3     1        
+auto[0]   values_7    values_2   3     1        
+auto[0]   values_7    values_3   3     1        
+auto[0]   values_7    values_4   3     1        
+auto[0]   values_7    values_5   3     1        
+auto[0]   values_7    values_6   3     1        
+auto[0]   values_7    values_7   3     1        
+auto[0]   values_8    values_0   3     1        
+auto[0]   values_8    values_1   3     1        
+auto[0]   values_8    values_2   3     1        
+auto[0]   values_8    values_3   3     1        
+auto[0]   values_8    values_4   3     1        
+auto[0]   values_8    values_5   3     1        
+auto[0]   values_8    values_6   3     1        
+auto[0]   values_8    values_7   3     1        
+auto[0]   values_9    values_0   3     1        
+auto[0]   values_9    values_1   3     1        
+auto[0]   values_9    values_2   3     1        
+auto[0]   values_9    values_3   3     1        
+auto[0]   values_9    values_4   3     1        
+auto[0]   values_9    values_5   3     1        
+auto[0]   values_9    values_6   3     1        
+auto[0]   values_9    values_7   3     1        
+auto[0]   values_a    values_0   3     1        
+auto[0]   values_a    values_1   3     1        
+auto[0]   values_a    values_2   3     1        
+auto[0]   values_a    values_3   3     1        
+auto[0]   values_a    values_4   3     1        
+auto[0]   values_a    values_5   3     1        
+auto[0]   values_a    values_6   3     1        
+auto[0]   values_a    values_7   3     1        
+auto[0]   values_b    values_0   3     1        
+auto[0]   values_b    values_1   3     1        
+auto[0]   values_b    values_2   3     1        
+auto[0]   values_b    values_3   3     1        
+auto[0]   values_b    values_4   3     1        
+auto[0]   values_b    values_5   3     1        
+auto[0]   values_b    values_6   3     1        
+auto[0]   values_b    values_7   3     1        
+auto[0]   values_c    values_0   3     1        
+auto[0]   values_c    values_1   3     1        
+auto[0]   values_c    values_2   3     1        
+auto[0]   values_c    values_3   3     1        
+auto[0]   values_c    values_4   3     1        
+auto[0]   values_c    values_5   3     1        
+auto[0]   values_c    values_6   3     1        
+auto[0]   values_c    values_7   3     1        
+auto[0]   values_d    values_0   3     1        
+auto[0]   values_d    values_1   3     1        
+auto[0]   values_d    values_2   3     1        
+auto[0]   values_d    values_3   3     1        
+auto[0]   values_d    values_4   3     1        
+auto[0]   values_d    values_5   3     1        
+auto[0]   values_d    values_6   3     1        
+auto[0]   values_d    values_7   3     1        
+auto[0]   values_e    values_0   3     1        
+auto[0]   values_e    values_1   3     1        
+auto[0]   values_e    values_2   3     1        
+auto[0]   values_e    values_3   3     1        
+auto[0]   values_e    values_4   3     1        
+auto[0]   values_e    values_5   3     1        
+auto[0]   values_e    values_6   3     1        
+auto[0]   values_e    values_7   3     1        
+auto[0]   values_f    values_0   3     1        
+auto[0]   values_f    values_1   1458  1        
+auto[0]   values_f    values_2   3     1        
+auto[0]   values_f    values_3   3     1        
+auto[0]   values_f    values_4   3     1        
+auto[0]   values_f    values_5   3     1        
+auto[0]   values_f    values_6   3     1        
+auto[0]   values_f    values_7   3     1        
+auto[1]   values_0    values_0   3     1        
+auto[1]   values_0    values_1   32    1        
+auto[1]   values_0    values_2   3     1        
+auto[1]   values_0    values_3   3     1        
+auto[1]   values_0    values_4   3     1        
+auto[1]   values_0    values_5   3     1        
+auto[1]   values_0    values_6   3     1        
+auto[1]   values_0    values_7   3     1        
+auto[1]   values_1    values_0   3     1        
+auto[1]   values_1    values_1   32    1        
+auto[1]   values_1    values_2   3     1        
+auto[1]   values_1    values_3   3     1        
+auto[1]   values_1    values_4   3     1        
+auto[1]   values_1    values_5   3     1        
+auto[1]   values_1    values_6   3     1        
+auto[1]   values_1    values_7   3     1        
+auto[1]   values_2    values_0   3     1        
+auto[1]   values_2    values_1   39    1        
+auto[1]   values_2    values_2   3     1        
+auto[1]   values_2    values_3   3     1        
+auto[1]   values_2    values_4   3     1        
+auto[1]   values_2    values_5   3     1        
+auto[1]   values_2    values_6   3     1        
+auto[1]   values_2    values_7   3     1        
+auto[1]   values_3    values_0   3     1        
+auto[1]   values_3    values_1   33    1        
+auto[1]   values_3    values_2   3     1        
+auto[1]   values_3    values_3   3     1        
+auto[1]   values_3    values_4   3     1        
+auto[1]   values_3    values_5   3     1        
+auto[1]   values_3    values_6   3     1        
+auto[1]   values_3    values_7   3     1        
+auto[1]   values_4    values_0   3     1        
+auto[1]   values_4    values_1   37    1        
+auto[1]   values_4    values_2   3     1        
+auto[1]   values_4    values_3   3     1        
+auto[1]   values_4    values_4   3     1        
+auto[1]   values_4    values_5   3     1        
+auto[1]   values_4    values_6   3     1        
+auto[1]   values_4    values_7   3     1        
+auto[1]   values_5    values_0   3     1        
+auto[1]   values_5    values_1   37    1        
+auto[1]   values_5    values_2   3     1        
+auto[1]   values_5    values_3   3     1        
+auto[1]   values_5    values_4   3     1        
+auto[1]   values_5    values_5   3     1        
+auto[1]   values_5    values_6   3     1        
+auto[1]   values_5    values_7   3     1        
+auto[1]   values_6    values_0   3     1        
+auto[1]   values_6    values_1   39    1        
+auto[1]   values_6    values_2   3     1        
+auto[1]   values_6    values_3   3     1        
+auto[1]   values_6    values_4   3     1        
+auto[1]   values_6    values_5   3     1        
+auto[1]   values_6    values_6   3     1        
+auto[1]   values_6    values_7   3     1        
+auto[1]   values_7    values_0   3     1        
+auto[1]   values_7    values_1   36    1        
+auto[1]   values_7    values_2   3     1        
+auto[1]   values_7    values_3   3     1        
+auto[1]   values_7    values_4   3     1        
+auto[1]   values_7    values_5   3     1        
+auto[1]   values_7    values_6   3     1        
+auto[1]   values_7    values_7   3     1        
+auto[1]   values_8    values_0   3     1        
+auto[1]   values_8    values_1   29    1        
+auto[1]   values_8    values_2   3     1        
+auto[1]   values_8    values_3   3     1        
+auto[1]   values_8    values_4   3     1        
+auto[1]   values_8    values_5   3     1        
+auto[1]   values_8    values_6   3     1        
+auto[1]   values_8    values_7   3     1        
+auto[1]   values_9    values_0   3     1        
+auto[1]   values_9    values_1   37    1        
+auto[1]   values_9    values_2   3     1        
+auto[1]   values_9    values_3   3     1        
+auto[1]   values_9    values_4   3     1        
+auto[1]   values_9    values_5   3     1        
+auto[1]   values_9    values_6   3     1        
+auto[1]   values_9    values_7   3     1        
+auto[1]   values_a    values_0   3     1        
+auto[1]   values_a    values_1   16    1        
+auto[1]   values_a    values_2   3     1        
+auto[1]   values_a    values_3   3     1        
+auto[1]   values_a    values_4   3     1        
+auto[1]   values_a    values_5   3     1        
+auto[1]   values_a    values_6   3     1        
+auto[1]   values_a    values_7   3     1        
+auto[1]   values_b    values_0   3     1        
+auto[1]   values_b    values_1   29    1        
+auto[1]   values_b    values_2   3     1        
+auto[1]   values_b    values_3   3     1        
+auto[1]   values_b    values_4   3     1        
+auto[1]   values_b    values_5   3     1        
+auto[1]   values_b    values_6   3     1        
+auto[1]   values_b    values_7   3     1        
+auto[1]   values_c    values_0   3     1        
+auto[1]   values_c    values_1   37    1        
+auto[1]   values_c    values_2   3     1        
+auto[1]   values_c    values_3   3     1        
+auto[1]   values_c    values_4   3     1        
+auto[1]   values_c    values_5   3     1        
+auto[1]   values_c    values_6   3     1        
+auto[1]   values_c    values_7   3     1        
+auto[1]   values_d    values_0   3     1        
+auto[1]   values_d    values_1   29    1        
+auto[1]   values_d    values_2   3     1        
+auto[1]   values_d    values_3   3     1        
+auto[1]   values_d    values_4   3     1        
+auto[1]   values_d    values_5   3     1        
+auto[1]   values_d    values_6   3     1        
+auto[1]   values_d    values_7   3     1        
+auto[1]   values_e    values_0   3     1        
+auto[1]   values_e    values_1   38    1        
+auto[1]   values_e    values_2   3     1        
+auto[1]   values_e    values_3   3     1        
+auto[1]   values_e    values_4   3     1        
+auto[1]   values_e    values_5   3     1        
+auto[1]   values_e    values_6   3     1        
+auto[1]   values_e    values_7   3     1        
+auto[1]   values_f    values_0   3     1        
+auto[1]   values_f    values_1   424   1        
+auto[1]   values_f    values_2   3     1        
+auto[1]   values_f    values_3   3     1        
+auto[1]   values_f    values_4   3     1        
+auto[1]   values_f    values_5   3     1        
+auto[1]   values_f    values_6   3     1        
+auto[1]   values_f    values_7   3     1        
+
+

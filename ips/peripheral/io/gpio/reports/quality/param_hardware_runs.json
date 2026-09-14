@@ -1,0 +1,107 @@
+[
+  {
+    "width": 1,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=1",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n1_p0.log"
+  },
+  {
+    "width": 8,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=8",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n8_p0.log"
+  },
+  {
+    "width": 31,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=31",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n31_p0.log"
+  },
+  {
+    "width": 33,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=33",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n33_p0.log"
+  },
+  {
+    "width": 64,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=64",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n64_p0.log"
+  },
+  {
+    "width": 128,
+    "parity": 0,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=128",
+      "PARITY=0",
+      "TESTS=config"
+    ],
+    "log": "build/param_uvm_n128_p0.log"
+  },
+  {
+    "width": 32,
+    "parity": 1,
+    "exit_code": 0,
+    "command": [
+      "make",
+      "-C",
+      "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim",
+      "run",
+      "N_GPIO=32",
+      "PARITY=1",
+      "TESTS=config parity"
+    ],
+    "log": "build/param_uvm_n32_p1.log"
+  }
+]

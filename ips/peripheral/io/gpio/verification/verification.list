@@ -1,0 +1,10 @@
++incdir+./env
++incdir+./env/utils/apb_utils/src
++incdir+./tc
++incdir+./th
+
+-f ./env/utils/apb_utils/apb_interface_agent.list
+-f ./env/gpio_env.list
+-f ./tc/tc.list
+
+./th/harness.sv

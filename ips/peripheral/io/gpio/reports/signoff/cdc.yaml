@@ -1,0 +1,31 @@
+schema: ip-special-signoff/1.0
+ip_name: gpio
+kind: cdc
+status: skipped
+reason_code: license_unavailable
+reason: 真实 SpyGlass 运行因高级许可证缺失未完成，用户授权跳过并继续。
+limitations: CDC/RDC crossing checks remain unverified; this is not technical signoff
+  PASS. Existing warnings remain in the bound raw report.
+retry_condition: 许可证恢复后，对届时 GPIO 源码和约束重跑完整目标并处理全部结果。
+tool: SpyGlass
+tool_version: X-2025.06
+command:
+- sg_shell
+- -enable_pass_exit_codes
+- -tcl
+- spyglass-run-design_read.tcl
+missing_features:
+- cdc_adv_checker
+log:
+  path: build/rtl/resume_cdc_02.log
+  sha256: 43181325614b754cba74094e0d8ce45c444b8e9af501fb1788bc359b660f4ba7
+license_report:
+  path: build/rtl/resume_cdc_02/aixsilicon_ip_gpio_0.1.0/cdc-spyglass/aixsilicon_ip_gpio_0.1.0/consolidated_reports/gpio_cdc_cdc_setup_check/moresimple.rpt
+  sha256: 07c2f86d11edd895bee5cad47015e1f12161817b1253247e9345256b8ac23f36
+authorization:
+  authorized_by: user
+  quote: 由于缺失CDC ADV的LICENCE，约束SKILL，可以先跳过这个过程，如实记录即可，不要阻塞后续流程
+  allow_continue: true
+  evidence:
+    path: reports/signoff/license_skip_authorization.md
+    sha256: f2dde34581b6bd9127619ccc18e90c183cd061ba8a939ff90d17ca2ca6de0769

@@ -192,6 +192,100 @@ filesets:
     files:
     - verification/unit_test/ut_gpio_security.sv
     file_type: systemVerilogSource
+  uvm:
+    files:
+    - verification/env/gpio_checker.sv:
+        is_include_file: true
+    - verification/env/gpio_checker_cfg.sv:
+        is_include_file: true
+    - verification/env/gpio_dut_cfg.sv:
+        is_include_file: true
+    - verification/env/gpio_env.sv:
+        is_include_file: true
+    - verification/env/gpio_env_cfg.sv:
+        is_include_file: true
+    - verification/env/gpio_env_dec.sv:
+        is_include_file: true
+    - verification/env/gpio_fcov.sv:
+        is_include_file: true
+    - verification/env/gpio_ral_adapter.sv:
+        is_include_file: true
+    - verification/env/gpio_rm.sv:
+        is_include_file: true
+    - verification/env/gpio_rm_cfg.sv:
+        is_include_file: true
+    - verification/env/gpio_virtual_sequence.sv:
+        is_include_file: true
+    - verification/env/gpio_virtual_sequencer.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_dec.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_driver.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_driver_cfg.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_interface_agent.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_interface_agent_cfg.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_monitor.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_monitor_cfg.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_monitor_cov.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_sequencer.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_slave_driver.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_slave_driver_cfg.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_xaction.sv:
+        is_include_file: true
+    - verification/tc/tc_base.sv:
+        is_include_file: true
+    - verification/tc/tc_define.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_aon.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_apb.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_capture.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_config.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_diag.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_fifo.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_filter.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_input.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_irq.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_lowpower.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_output.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_parity.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_reset.sv:
+        is_include_file: true
+    - verification/tc/tc_gpio_security.sv:
+        is_include_file: true
+    - verification/tc/tc_sanity.sv:
+        is_include_file: true
+    - verification/tc/tc_undef.sv:
+        is_include_file: true
+    - verification/env/utils/apb_utils/src/apb_interface.sv
+    - verification/th/gpio_control_if.sv
+    - verification/ral/gpio_ral_pkg.sv
+    - verification/env/utils/apb_utils/src/apb_package.sv
+    - verification/env/gpio_env_package.sv
+    - verification/tc/tc_package.sv
+    - verification/th/harness.sv
+    file_type: systemVerilogSource
 targets:
   default:
     filesets: &id001
@@ -524,3 +618,29 @@ targets:
         - uvm-1.2
         - -l
         - compile.log
+  uvm:
+    filesets:
+    - generated
+    - rtl
+    - csr_checks
+    - uvm
+    toplevel: harness
+    default_tool: vcs
+    parameters:
+    - N_GPIO
+    - CFG_PARITY_EN
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -cm
+        - line+cond+branch+tgl+fsm+assert
+        - -l
+        - compile.log
+        run_options:
+        - -cm
+        - line+cond+branch+tgl+fsm+assert

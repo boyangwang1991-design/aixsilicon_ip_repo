@@ -1,0 +1,60 @@
+schema: ip-ral-handoff/1.0
+ip_name: gpio
+status: pass_with_condition
+reviewed_by: execution_agent_under_user_delegation
+review_evidence:
+  path: docs/reviews/ral_handoff_review.md
+  sha256: c4c6da3259f5a4fb9083a8290bb961a22fc447bca124a7b40343c50259d86e93
+artifacts:
+- path: verification/ral/gpio_ral.manifest.yaml
+  sha256: 4411ce920b3942c2666bc55fa31e776a75cec0ce17a95690f5c7478cd417494a
+- path: verification/ral/gpio_ral_pkg.sv
+  sha256: 306be8a7c79a5bd9411f2375cdb766d72c03a33b69f8898e9d2b9437f20b4e38
+- path: model/micro_design.yaml
+  sha256: 7ab0ff880283862fb9999415e0efff8fa657c621c1d74d6b89a70e0b9bae7ef9
+- path: model/external_interface.yaml
+  sha256: 2cdbb78ec40e57fbd649645227dc9277ca82b321bd56821b93d3c83d43a641cc
+- path: model/verification.yaml
+  sha256: ca81f72500b907d9027e1cdd4d0f92ea80f85210624ac0ec236df3d7912690b0
+- path: reports/regression/regression_summary.md
+  sha256: 2d05500b7d1faece5b8f482cb0d74e1c88a92082499e1960474b2d25587443c2
+adapter:
+  path: verification/env/gpio_ral_adapter.sv
+  sha256: 8a0cc7fe532a4f42a200206d6166047a6c8572df7225040d599a60270d673fde
+predictor:
+  path: verification/env/gpio_env.sv
+  sha256: 574a08ffc9b41353ec5e205e064ee4de6c6ea2609ec3baf55d9c9112e81e0306
+environment:
+  path: verification/env/gpio_env.sv
+  sha256: 574a08ffc9b41353ec5e205e064ee4de6c6ea2609ec3baf55d9c9112e81e0306
+address_map: byte-addressed 14-bit APB, default_map
+endianness: UVM_NO_ENDIAN generated map; APB PSTRB byte lanes [7:0],[15:8],[23:16],[31:24]
+prediction_mode: explicit uvm_reg_predictor fed by monitor; auto_predict off
+frontdoor: default_map uses active APB sequencer and gpio_ral_adapter
+backdoor: not_applicable
+backdoor_reason: External CSR state; no backdoor API delivered or claimed
+tests:
+  access:
+    testcase_ids:
+    - TC.GPIO.APB.001
+  reset:
+    testcase_ids:
+    - TC.GPIO.RESET.001
+  mirror:
+    testcase_ids:
+    - TC.GPIO.OUTPUT.001
+  byte_enable:
+    testcase_ids:
+    - TC.GPIO.APB.001
+  illegal_access:
+    testcase_ids:
+    - TC.GPIO.APB.001
+  side_effect:
+    testcase_ids:
+    - TC.GPIO.OUTPUT.001
+  race:
+    status: pending
+    reason: Full simultaneous hardware/software race inventory not completed
+conditions:
+- Full RAL mirror/side-effect coverage for all registers and simultaneous hardware/software
+  race scenarios remains incomplete

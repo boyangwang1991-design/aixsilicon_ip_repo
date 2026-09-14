@@ -16,7 +16,7 @@
 
 ## Execution closure
 
-static trace precheck; execution results not evaluated
+testcases=15; executed=15; missing=0; failed=0
 
 <!-- REPORT_META
 schema_version: '2.0'
@@ -26,8 +26,8 @@ status: pass
 eda_profile: commercial-systemverilog
 tool: build_trace.py
 tool_version: '2.0'
-command: build_trace.py --phase precheck
-phase: precheck
+command: build_trace.py --phase closure
+phase: closure
 artifacts:
 - path: trace/req_to_hld.yaml
   sha256: a4908902d9a48048aceaba6274b7f57516e6ad5b081506fd2ade341b0c112baa
@@ -37,4 +37,11 @@ artifacts:
   sha256: 875e1d30a363bae516825dc21b6b5a50f998a24ce449186e46dbc015ae04ecff
 - path: trace/req_to_test.yaml
   sha256: 05d11c861c8759bddc32de3769b1ebb43b0fe39a93920cad57a5154b31a866e7
+- path: reports/regression/junit.xml
+  sha256: 501b20565453565792a5fc20460936c0992178ac716d64cd040ce987b61d81f9
+dependencies:
+- path: reports/coverage/coverage_summary.md
+  sha256: ef3fe26c7ce1dcd11e852deaadb515eefee7f33f229ce947169a46242858bb3d
+- path: reports/regression/junit.xml
+  sha256: 501b20565453565792a5fc20460936c0992178ac716d64cd040ce987b61d81f9
 END_REPORT_META -->

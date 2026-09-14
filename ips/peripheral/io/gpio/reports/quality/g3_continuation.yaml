@@ -1,0 +1,8 @@
+schema: ip-g3-continuation/1.0
+ip_name: gpio
+status: pass_with_condition
+authorized_by: user
+quote: G3也标记为PASS with condition，毕竟CDC LICENCE 缺失也不是现在能搞定的，先完成完整流程
+evidence:
+  path: reports/quality/full_flow_authorization.md
+  sha256: 99db29e29f05b264ec5ee49e2fb80624dbc11457440e8bca57088305a7ec6649

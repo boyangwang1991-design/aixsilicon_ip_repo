@@ -1,0 +1,950 @@
+{
+  "schema": "gpio-regression-campaign/1.0",
+  "status": "pass",
+  "total": 42,
+  "seeds": [
+    1,
+    17,
+    101
+  ],
+  "build": {
+    "path": "build/sim/uvm/n32_p0_4j4rox4a/build.json",
+    "sha256": "31e0965d0eb09ae364e64b738b530de8cbdd849786db78623e7d185d932d643e"
+  },
+  "batches": [
+    {
+      "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/results.json",
+      "sha256": "02ee6235609e2812132993a7fc9a15f469fdb2c2fdc12865f7f3d6c3d2126220"
+    },
+    {
+      "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/results.json",
+      "sha256": "e41e643469770b80597938ca43141c8915f284f6453a55dcec3a3b0e7105b85e"
+    }
+  ],
+  "executions": [
+    {
+      "testcase_id": "TC.GPIO.CONFIG.001",
+      "class": "tc_gpio_config",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_config",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_1/coverage.vdb",
+        "-cm_name",
+        "config_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_1/run.log",
+        "sha256": "05c14c822b97183d58d07a1239076b382e6f9f6783505a6a060ae8b349d9dc64"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.CONFIG.001",
+      "class": "tc_gpio_config",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_config",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_17/coverage.vdb",
+        "-cm_name",
+        "config_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_17/run.log",
+        "sha256": "9f53a79140d74260be94332fd201596c0f6e7842ae5766836f4c080a2c874b6d"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.CONFIG.001",
+      "class": "tc_gpio_config",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_config",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_101/coverage.vdb",
+        "-cm_name",
+        "config_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/config_101/run.log",
+        "sha256": "4dbe8daf7c84ace94ce12be000b45719eb2ca604c4e0e2a000146990c3317b43"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.APB.001",
+      "class": "tc_gpio_apb",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_apb",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_1/coverage.vdb",
+        "-cm_name",
+        "apb_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_1/run.log",
+        "sha256": "9f18318db3efb734a9f05fdb26132350729120876d8d453d6651abeb9791033d"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.APB.001",
+      "class": "tc_gpio_apb",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_apb",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_17/coverage.vdb",
+        "-cm_name",
+        "apb_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_17/run.log",
+        "sha256": "aca0c1f983ec884a5fe24608994861a9b2a5d48824635e0549433ac072d070fd"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.APB.001",
+      "class": "tc_gpio_apb",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_apb",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_101/coverage.vdb",
+        "-cm_name",
+        "apb_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/apb_101/run.log",
+        "sha256": "d643bd22d93be8d755e63bce2b30c8a266a03928b95b796c81987984ca53827b"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.INPUT.001",
+      "class": "tc_gpio_input",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_input",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_1/coverage.vdb",
+        "-cm_name",
+        "input_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_1/run.log",
+        "sha256": "6b1628000ebbd0acc1b5253684b8ab485f9157170b35b229fb043483288aab19"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.INPUT.001",
+      "class": "tc_gpio_input",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_input",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_17/coverage.vdb",
+        "-cm_name",
+        "input_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_17/run.log",
+        "sha256": "4f59881253e9375b0eda514f3330b2848c2ef6227414327774c74b031e02f3e1"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.INPUT.001",
+      "class": "tc_gpio_input",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_input",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_101/coverage.vdb",
+        "-cm_name",
+        "input_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/input_101/run.log",
+        "sha256": "d56a334a30c8f07b6f5316e37aa7f2939a051c97872e0dbc5b08f91a9372fc00"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.OUTPUT.001",
+      "class": "tc_gpio_output",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_output",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_1/coverage.vdb",
+        "-cm_name",
+        "output_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_1/run.log",
+        "sha256": "4e96d40d43c53fc09a1bee870e0c815e49bd678460ca651b0c8d8a58acf4a5ba"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.OUTPUT.001",
+      "class": "tc_gpio_output",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_output",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_17/coverage.vdb",
+        "-cm_name",
+        "output_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_17/run.log",
+        "sha256": "47e43146d879c29023500b9a88a601eb7e43fcced1f870a13cf040c0ea6ca40f"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.OUTPUT.001",
+      "class": "tc_gpio_output",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_output",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_101/coverage.vdb",
+        "-cm_name",
+        "output_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/output_101/run.log",
+        "sha256": "26b4a3ac33d86f74a1f7e83076062ae7c907716abf0d30bbbced829824d4d031"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.IRQ.001",
+      "class": "tc_gpio_irq",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_irq",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_1/coverage.vdb",
+        "-cm_name",
+        "irq_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_1/run.log",
+        "sha256": "a4592f00fec54327f3cb6960d4671a6980747bcb5fe9f5a2e3c24c1ffee6af2a"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.IRQ.001",
+      "class": "tc_gpio_irq",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_irq",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_17/coverage.vdb",
+        "-cm_name",
+        "irq_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_17/run.log",
+        "sha256": "225d7153123d6608d7863604f859be48920275907ff2949d04bfaa71746e901e"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.IRQ.001",
+      "class": "tc_gpio_irq",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_irq",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_101/coverage.vdb",
+        "-cm_name",
+        "irq_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/irq_101/run.log",
+        "sha256": "717009c3c6cb43f7ed7b8307c3d47c435e6808850bc4ad7e85d52ede01992298"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.SECURITY.001",
+      "class": "tc_gpio_security",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_security",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_1/coverage.vdb",
+        "-cm_name",
+        "security_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_1/run.log",
+        "sha256": "884ae7cd0015d22da919c9a8bba8a4400d731909d163068c5916955e95378cca"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.SECURITY.001",
+      "class": "tc_gpio_security",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_security",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_17/coverage.vdb",
+        "-cm_name",
+        "security_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_17/run.log",
+        "sha256": "09e37ea74eee11c0e8c8b4c48f834a0f21ebefed60cd5e29726903a54e0a82b4"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.SECURITY.001",
+      "class": "tc_gpio_security",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_security",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_101/coverage.vdb",
+        "-cm_name",
+        "security_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/security_101/run.log",
+        "sha256": "1e4cafd46a48b7618824c39cd8c6d006ee0bfb321edf9fd9601f61610079b45d"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.LOWPOWER.001",
+      "class": "tc_gpio_lowpower",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_lowpower",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_1/coverage.vdb",
+        "-cm_name",
+        "lowpower_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_1/run.log",
+        "sha256": "ad3e6b1e33ee9c9f7f5369c570e9237372b201ae8438914c467b2cc251410b3c"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.LOWPOWER.001",
+      "class": "tc_gpio_lowpower",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_lowpower",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_17/coverage.vdb",
+        "-cm_name",
+        "lowpower_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_17/run.log",
+        "sha256": "d2bae5ecad27030253d4820aba82c7e04b6ca9d90268dfcb969bbcca7cdeb612"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.LOWPOWER.001",
+      "class": "tc_gpio_lowpower",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_lowpower",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_101/coverage.vdb",
+        "-cm_name",
+        "lowpower_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/lowpower_101/run.log",
+        "sha256": "392e1a3755cd940ebb390e1635038d08cc158204a1f6f8bb1c157af1d85471a6"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.AON.001",
+      "class": "tc_gpio_aon",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_aon",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_1/coverage.vdb",
+        "-cm_name",
+        "aon_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_1/run.log",
+        "sha256": "e5dd6081efccba6ff8a2119901b8cc563ae0b4b3556c4fbee69b9e723030ae7f"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.AON.001",
+      "class": "tc_gpio_aon",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_aon",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_17/coverage.vdb",
+        "-cm_name",
+        "aon_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_17/run.log",
+        "sha256": "677b3fe7da92e9ec93333b54650f3bcd07828994aba5b0a60c301a95ca075bd1"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.AON.001",
+      "class": "tc_gpio_aon",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_aon",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_101/coverage.vdb",
+        "-cm_name",
+        "aon_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/aon_101/run.log",
+        "sha256": "0702da7e8478c020a0f7787027a5daa28e999c1481517059af0d626650679db2"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.CAPTURE.001",
+      "class": "tc_gpio_capture",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_capture",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_1/coverage.vdb",
+        "-cm_name",
+        "capture_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_1/run.log",
+        "sha256": "5da9e5d8ea74c5daa821b7d97b228efc683d6c149ab4d7d8840d79a6288f7826"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.CAPTURE.001",
+      "class": "tc_gpio_capture",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_capture",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_17/coverage.vdb",
+        "-cm_name",
+        "capture_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_17/run.log",
+        "sha256": "79225ad7558c656dabb56e553ebba3d64640173f018f138e4fb5172f2ab02b21"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.CAPTURE.001",
+      "class": "tc_gpio_capture",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_capture",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_101/coverage.vdb",
+        "-cm_name",
+        "capture_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/capture_101/run.log",
+        "sha256": "08b020c459f47a1a1fc12c6d302a0360e7964dda63a46f86b7603c1a90b6ce8d"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FIFO.001",
+      "class": "tc_gpio_fifo",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_fifo",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_1/coverage.vdb",
+        "-cm_name",
+        "fifo_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_1/run.log",
+        "sha256": "dbf8e0b5c7353f86963cc2c26aa0932736747e4989628bef47b49abdff075e0a"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FIFO.001",
+      "class": "tc_gpio_fifo",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_fifo",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_17/coverage.vdb",
+        "-cm_name",
+        "fifo_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_17/run.log",
+        "sha256": "0f7b2358588d477e8a49f09b63c96fab9f14d521331dc20f4177b260d8b1fa61"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FIFO.001",
+      "class": "tc_gpio_fifo",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_fifo",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_101/coverage.vdb",
+        "-cm_name",
+        "fifo_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/fifo_101/run.log",
+        "sha256": "260452ec89ee4dc6c9acae802fef6a11fb9f26df805c59cd751caa4fe4d85aa7"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.DIAG.001",
+      "class": "tc_gpio_diag",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_diag",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_1/coverage.vdb",
+        "-cm_name",
+        "diag_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_1/run.log",
+        "sha256": "a9dff30f4173d6f76d71bf8193a8b4750f4dd80ad65db76c2c83f432d4f9d640"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.DIAG.001",
+      "class": "tc_gpio_diag",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_diag",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_17/coverage.vdb",
+        "-cm_name",
+        "diag_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_17/run.log",
+        "sha256": "bf04a9d3c863426af0595bf6e0c46e188fb076598ca42b24c8d78aab297f6f7a"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.DIAG.001",
+      "class": "tc_gpio_diag",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_diag",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_101/coverage.vdb",
+        "-cm_name",
+        "diag_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/diag_101/run.log",
+        "sha256": "7ac62c850fd17ff0d50a6a782543cc2e706c8f6ccb809f56f732481d73456dd3"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.PARITY.001",
+      "class": "tc_gpio_parity",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_parity",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_1/coverage.vdb",
+        "-cm_name",
+        "parity_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_1/run.log",
+        "sha256": "66a1514f1b558f476dcdeef611f9e5d38984ee6fae08c2222d9261e09d513c67"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.PARITY.001",
+      "class": "tc_gpio_parity",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_parity",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_17/coverage.vdb",
+        "-cm_name",
+        "parity_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_17/run.log",
+        "sha256": "39d289794368a4db20cce4f958f295e954f049ebef35c252deb2fed4151f5956"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.PARITY.001",
+      "class": "tc_gpio_parity",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_parity",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_101/coverage.vdb",
+        "-cm_name",
+        "parity_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/parity_101/run.log",
+        "sha256": "9162a56f2a0e470694d0944df2c06b09eb1d53e906a1578705755e6e42de24cc"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.RESET.001",
+      "class": "tc_gpio_reset",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_reset",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_1/coverage.vdb",
+        "-cm_name",
+        "reset_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_1/run.log",
+        "sha256": "0bfc919e23c9fa4ab040ad2f888b18d5f79efc0c7ef3b3d22ea773b18a135107"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.RESET.001",
+      "class": "tc_gpio_reset",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_reset",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_17/coverage.vdb",
+        "-cm_name",
+        "reset_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_17/run.log",
+        "sha256": "0588ccbac53474722e9a8052b347729a9f8e4dd942fc8c282b54d2e24aae54d4"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.RESET.001",
+      "class": "tc_gpio_reset",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_reset",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_101/coverage.vdb",
+        "-cm_name",
+        "reset_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_2h8vgfil/reset_101/run.log",
+        "sha256": "eaef9b49a74cbf70e22212f642c225f56988c103dd97af4cfc3109047fdfb2dd"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FILTER.001",
+      "class": "tc_gpio_filter",
+      "seed": 1,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_filter",
+        "+ntb_random_seed=1",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_1/coverage.vdb",
+        "-cm_name",
+        "filter_1"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_1/run.log",
+        "sha256": "6cd8a49fe2bea2290a8b035b09520ae03a83f124ff0fef370ba9c6736643ee6c"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FILTER.001",
+      "class": "tc_gpio_filter",
+      "seed": 17,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_filter",
+        "+ntb_random_seed=17",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_17/coverage.vdb",
+        "-cm_name",
+        "filter_17"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_17/run.log",
+        "sha256": "9393f381b2b8faa6440721f2369092914ad0dcd679d73ccf434dbfe092ebcc9a"
+      }
+    },
+    {
+      "testcase_id": "TC.GPIO.FILTER.001",
+      "class": "tc_gpio_filter",
+      "seed": 101,
+      "status": "pass",
+      "command": [
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/fusesoc/aixsilicon_ip_gpio_0.1.0/uvm-vcs/aixsilicon_ip_gpio_0.1.0",
+        "+UVM_TESTNAME=tc_gpio_filter",
+        "+ntb_random_seed=101",
+        "-cm",
+        "line+cond+branch+tgl+fsm+assert",
+        "-cm_dir",
+        "/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_101/coverage.vdb",
+        "-cm_name",
+        "filter_101"
+      ],
+      "exit_code": 0,
+      "log": {
+        "path": "build/sim/uvm/n32_p0_4j4rox4a/batch_d69mnooo/filter_101/run.log",
+        "sha256": "b24bae13bab6d15076952256282684cfabd194ea5c9f454f120f6dc4103dfadc"
+      }
+    }
+  ]
+}

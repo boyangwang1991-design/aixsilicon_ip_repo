@@ -1,0 +1,50 @@
+Assertions
+
+
+Assertions by Category
+           ASSERT PROPERTIES SEQUENCES
+Total           8          0         0
+Category 0      8          0         0
+
+-------------------------------------------------------------------------------
+
+Assertions by Severity
+           ASSERT PROPERTIES SEQUENCES
+Total           8          0         0
+Severity 0      8          0         0
+
+-------------------------------------------------------------------------------
+
+Summary for Assertions
+                 NUMBER PERCENT
+Total Number          8  100.00
+Uncovered             3   37.50
+Success               5   62.50
+Failure               0    0.00
+Incomplete            0    0.00
+Without Attempts      2   25.00
+
+-------------------------------------------------------------------------------
+
+Detail Report for Assertions
+
+Assertions Uncovered:
+                       ASSERTIONS                       CATEGORY SEVERITY ATTEMPTS REAL SUCCESSES FAILURES INCOMPLETE
+harness.apb.unnamed$$_1                                        0        0   415269              0        0          0
+uvm_pkg.\uvm_reg_map::do_read .unnamed$$_0.unnamed$$_1         0        0        0              0        0          0
+uvm_pkg.\uvm_reg_map::do_write .unnamed$$_0.unnamed$$_1        0        0        0              0        0          0
+
+Assertions Success:
+                          ASSERTIONS                          CATEGORY SEVERITY ATTEMPTS REAL SUCCESSES FAILURES INCOMPLETE
+harness.apb.unnamed$$_0                                              0        0   415269           3099        0          0
+harness.dut.u_csr.u_gpio_csr_checks.assert_bad_ext_rd_ack            0        0   414429         414429        0          0
+harness.dut.u_csr.u_gpio_csr_checks.assert_bad_ext_wr_ack            0        0   414429         414429        0          0
+harness.unnamed$$_2                                                  0        0   415269         415269        0          0
+uvm_pkg.\uvm_component_name_check_visitor::visit .unnamed$$_0        0        0     1260           1260        0          0
+
+Assertions Without Attempts:
+                       ASSERTIONS                       CATEGORY SEVERITY ATTEMPTS REAL SUCCESSES FAILURES INCOMPLETE
+uvm_pkg.\uvm_reg_map::do_read .unnamed$$_0.unnamed$$_1         0        0        0              0        0          0
+uvm_pkg.\uvm_reg_map::do_write .unnamed$$_0.unnamed$$_1        0        0        0              0        0          0
+
+

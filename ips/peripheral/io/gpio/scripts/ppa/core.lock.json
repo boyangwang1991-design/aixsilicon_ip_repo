@@ -1,0 +1,22 @@
+{
+  "schema": "ip-ppa-core/1.0",
+  "core_id": "22d920737e62374356b88f66e8042fc37246d75c0282a63f6359904f896da898",
+  "files": [
+    {
+      "path": "scripts/ppa/core/22d920737e62374356b88f66e8042fc37246d75c0282a63f6359904f896da898/gen_sweep_manifest.py",
+      "sha256": "19435aa6b9c2785d8de98ca20e138205da89d2179228605e8154c30a4cfea994"
+    },
+    {
+      "path": "scripts/ppa/core/22d920737e62374356b88f66e8042fc37246d75c0282a63f6359904f896da898/extract_ppa_summary.py",
+      "sha256": "ae1868d51445bf6144e5a78c01c97782a93190b95479dcda9804e81e6e6a8c7b"
+    },
+    {
+      "path": "scripts/ppa/core/22d920737e62374356b88f66e8042fc37246d75c0282a63f6359904f896da898/analyze_sweep.py",
+      "sha256": "c00ae68d1ef35585561afe023d21b224a7830ad0a1561766267906f5c0969833"
+    },
+    {
+      "path": "scripts/ppa/core/22d920737e62374356b88f66e8042fc37246d75c0282a63f6359904f896da898/plot_pareto.py",
+      "sha256": "8eec8d27a3c25c7c41c9d18e12056f8356d49e9ef783d823ad7e9809ad02374e"
+    }
+  ]
+}

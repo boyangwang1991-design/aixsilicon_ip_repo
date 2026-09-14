@@ -12,7 +12,7 @@ import re
 import jinja2
 import peakrdl_regblock
 from peakrdl_regblock import RegblockExporter
-from peakrdl_regblock.cpuif.apb4 import APB4_Cpuif_flattened
+from peakrdl_regblock.cpuif.passthrough import PassthroughCpuif
 from peakrdl_regblock.udps import ALL_UDPS
 from systemrdl import RDLCompiler
 
@@ -37,7 +37,7 @@ def main():
         compiler.register_udp(definition)
     compiler.compile_file(str(root/'regs/gpio.rdl'))
     design = compiler.elaborate()
-    exporter.export(design, str(root/'rtl/generated'), cpuif_cls=APB4_Cpuif_flattened,
+    exporter.export(design, str(root/'rtl/generated'), cpuif_cls=PassthroughCpuif,
                     module_name='gpio_csr', package_name='gpio_csr_pkg',
                     default_reset_activelow=True, default_reset_async=True,
                     err_if_bad_addr=True)
@@ -53,7 +53,8 @@ def main():
            root/'rtl/generated/gpio_csr.sv',root/'rtl/generated/gpio_csr_pkg.sv',target]
     record={'generator':'peakrdl-regblock','version':importlib.metadata.version('peakrdl-regblock'),
             'native_template_sha256':hashlib.sha256(original.encode()).hexdigest(),
-            'adaptation':'Move the two simulation-only external ACK assertions to a generated bind checker; no synthesized logic changes.',
+            'cpuif':'PassthroughCpuif; the GPIO APB wrapper issues requests only during Access, preserving arbitrary Setup duration.',
+            'adaptation':'Move the two simulation-only external ACK assertions to a generated bind checker; native register decode is unchanged.',
             'files':{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
     (root/'rtl/generated/gpio_native_generation.json').write_text(json.dumps(record,indent=2)+'\n')
     print('Generated native CSR and separate ACK assertions')

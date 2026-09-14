@@ -1,0 +1,5 @@
+make: Entering directory '/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim'
+cd /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio && uv run --locked --no-sync python scripts/run_uvm.py --tests config --seeds 1 --width 31 --parity 0 
+BUILD /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/build/sim/uvm/n31_p0_w20bx2rm exit 0
+config 1 pass build/sim/uvm/n31_p0_w20bx2rm/config_1_7hv75rp8/run.log
+make: Leaving directory '/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim'

@@ -1,0 +1,20 @@
+[
+  {
+    "width": 8,
+    "freq_mhz": 100,
+    "status": "fail",
+    "directory": "build/ppa/n8_100mhz_1789361240189884773"
+  },
+  {
+    "width": 32,
+    "freq_mhz": 100,
+    "status": "pass",
+    "directory": "build/ppa/n32_100mhz_1789361617083906904"
+  },
+  {
+    "width": 128,
+    "freq_mhz": 100,
+    "status": "pass",
+    "directory": "build/ppa/n128_100mhz_1789362141839934345"
+  }
+]

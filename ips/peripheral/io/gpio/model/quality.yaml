@@ -226,19 +226,19 @@ gates:
     evidence:
     - path: model/micro_design.yaml
       status: present
-      sha256: 5f13e20cbad30ce75e9e32ffe7648c8529b3b54045192655a33bef0e1e29831e
+      sha256: 7ab0ff880283862fb9999415e0efff8fa657c621c1d74d6b89a70e0b9bae7ef9
     - path: model/requirements.yaml
       status: present
       sha256: a9391fd36743b715198ace06e2dfef634c8c5db36ca51ab2acac79486210e620
     - path: reports/quality/register_check.md
       status: present
-      sha256: 846b1e1de907156a19c4995e70288d071a9c5f100aa51b4aa720de4c88ba77e1
+      sha256: beb7f4317f47e576f29155e9f947064032888a3e1aad2e4f7722f3c3c8d9bda4
     - path: regs/gpio.rdl
       status: present
       sha256: 46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984
     - path: rtl/generated/gpio_csr.sv
       status: present
-      sha256: 7fbf9fde2865aaa4810108bb5612c656e29995651b94c1bb494e3309799b3bab
+      sha256: 20a60ca882f8d77a0022b5098c85d47a27d03be0b180f3cbfa6b75155cd8a749
     - path: rtl/generated/gpio_csr_adapter.sv
       status: present
       sha256: b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936
@@ -247,10 +247,10 @@ gates:
       sha256: 2f03ee84f808170fc92a4ce3ba4ae9c18b96a4a1b7b29b190e9d2e63c0335656
     - path: rtl/generated/gpio_csr.manifest.yaml
       status: present
-      sha256: 9139333d4a667d48c213aa74ce2377def134413097b95fdafa691b826b685ecc
+      sha256: e0cb7124194560bbfe175de31e12ee318664edf9dc361503063c67b78271f5bc
   findings: []
 - id: G3
-  status: fail
+  status: pass_with_condition
   required_checks:
   - g3.rtl_and_core
   - g3.rtl_check_report
@@ -264,7 +264,7 @@ gates:
     evidence:
     - path: rtl/generated/gpio_csr.sv
       status: present
-      sha256: 7fbf9fde2865aaa4810108bb5612c656e29995651b94c1bb494e3309799b3bab
+      sha256: 20a60ca882f8d77a0022b5098c85d47a27d03be0b180f3cbfa6b75155cd8a749
     - path: rtl/generated/gpio_csr_adapter.sv
       status: present
       sha256: b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936
@@ -276,7 +276,7 @@ gates:
       sha256: f709bb8faecdf59f6206e77564f5e51c6599770c62b0c69797b39e65a304f507
     - path: rtl/gpio.sv
       status: present
-      sha256: 8995b0b9ab0850be86797585e841839fea4baad07dde2a91da08736019ded346
+      sha256: bfaaad7b7fbeec00e088e67132bc595fdd735eb21d00659ba8c7d01d5774a0d2
     - path: rtl/gpio_aon_mailbox.sv
       status: present
       sha256: cca9516e4ecf017b548c059407036feb71dc9ebfa46b655d440cd4bc02fd50b9
@@ -315,17 +315,17 @@ gates:
       sha256: 26b65cbfdb2ad13bb7acaf133e3005c27688c86ba819e4bc6bd47cf494f0e079
     - path: aixsilicon_ip_gpio.core
       status: present
-      sha256: 36d5048d5738b8539c5d41c1c849a8c9c64aebc1aaabda39ea06eb61003c590f
+      sha256: 38e3021515ceb47d781ab0f0dbee415fa345fcaae21964a569d648a4c8985601
     - path: ip-package.yaml
       status: present
       sha256: 03376fc562afd1839961be7ba6d6e4bdf60a4bc62585fe6895b223a0ea3c0a9f
   - id: g3.rtl_check_report
-    status: pass
-    detail: validated REPORT_META
+    status: fail
+    detail: report status is fail
     evidence:
     - path: reports/quality/rtl_check_summary.md
       status: present
-      sha256: c1510739015af00c548f778757614271ee2e0392dc16d5bce8236feafd373cda
+      sha256: 9fd29f6c10f5b3dd93074daba8ba2a95334e36c753d7825c4d23fd1ea9168586
   - id: g3.module_ut
     status: pass
     detail: module UT sources=13; module UT executions=13; compile/run evidence complete
@@ -371,7 +371,7 @@ gates:
       sha256: 141bd8e42356a78923bbd2cdf47ccc991433b5e9a14da7943297b3f75487bdb7
     - path: reports/quality/module_ut_summary.md
       status: present
-      sha256: ad5de9e2f9afda22e5565eb0ace02e4560c6d331b6ab42dbfab8aff4c45caae4
+      sha256: 96c957ced12dbff6b4f5c6d060d41f1d35cf694e3442640f0615b25120b38d76
   - id: g3.csr_consistency
     status: pass
     detail: CSR source and native SystemVerilog hashes match the manifest
@@ -381,7 +381,7 @@ gates:
       sha256: 46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984
     - path: rtl/generated/gpio_csr.sv
       status: present
-      sha256: 7fbf9fde2865aaa4810108bb5612c656e29995651b94c1bb494e3309799b3bab
+      sha256: 20a60ca882f8d77a0022b5098c85d47a27d03be0b180f3cbfa6b75155cd8a749
     - path: rtl/generated/gpio_csr_adapter.sv
       status: present
       sha256: b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936
@@ -390,16 +390,55 @@ gates:
       sha256: 2f03ee84f808170fc92a4ce3ba4ae9c18b96a4a1b7b29b190e9d2e63c0335656
     - path: rtl/generated/gpio_csr.manifest.yaml
       status: present
-      sha256: 9139333d4a667d48c213aa74ce2377def134413097b95fdafa691b826b685ecc
+      sha256: e0cb7124194560bbfe175de31e12ee318664edf9dc361503063c67b78271f5bc
   - id: g3.special_signoff
-    status: fail
-    detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/signoff/cdc.yaml'''
-    evidence: []
+    status: skipped
+    detail: 'cdc: skipped (user-authorized license skip; signoff remains unverified);
+      rdc: skipped (user-authorized license skip; signoff remains unverified); low_power:
+      pass (validated)'
+    evidence:
+    - path: reports/signoff/cdc.yaml
+      status: present
+      sha256: 7c0415ae6f0009e983382df1b50905a1b5bc42bf5d3c478e07502d5e35b732ee
+    - path: reports/signoff/formal.yaml
+      status: present
+      sha256: 2eade60e00292a2be0163a30adb423b848bb7569a9199229fadb89f3c0191f93
+    - path: reports/signoff/low_power.yaml
+      status: present
+      sha256: e2e5c4f471cb8e6b68a6da45a95ac2bb7017cd6685e8ecb4c62df99cc70d1b7b
+    - path: reports/signoff/rdc.yaml
+      status: present
+      sha256: fbf582adfaa6d389f28b26d2055940b52277950d159995f0c34b694a7a8ac1a9
+    outcomes:
+    - kind: cdc
+      status: skipped
+      detail: user-authorized license skip; signoff remains unverified
+    - kind: rdc
+      status: skipped
+      detail: user-authorized license skip; signoff remains unverified
+    - kind: low_power
+      status: pass
+      detail: validated
   findings:
-  - GPIO.CDC.LICENSE
-  - GPIO.RDC.LICENSE
+  - GPIO.LINT.STALL
+  conditions:
+  - id: g3.rtl_check_report
+    status: fail
+    detail: report status is fail
+  - id: g3.special_signoff
+    status: skipped
+    detail: 'cdc: skipped (user-authorized license skip; signoff remains unverified);
+      rdc: skipped (user-authorized license skip; signoff remains unverified); low_power:
+      pass (validated)'
+  - id: user_authorization
+    status: conditional
+    detail: G3也标记为PASS with condition，毕竟CDC LICENCE 缺失也不是现在能搞定的，先完成完整流程
+    evidence:
+      path: reports/quality/full_flow_authorization.md
+      sha256: 99db29e29f05b264ec5ee49e2fb80624dbc11457440e8bca57088305a7ec6649
+  technical_signoff_complete: false
 - id: G4
-  status: blocked
+  status: fail
   required_checks:
   - g4.verification_assets
   - g4.smoke_evidence
@@ -412,10 +451,11 @@ gates:
   - g4.ral_handoff
   checks:
   - id: g4.verification_assets
-    status: fail
-    detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/verification/sim/regression_list.yaml'';
-      distinct testcase implementations=0; valid lifecycle traces=4/4; testplans=25;
-      UVM testcases=0'
+    status: pass
+    detail: verification features=15; smoke testcase IDs=1; all-tier testcase IDs=15;
+      implementation mappings=15; invalid mappings=0; regression list match=True;
+      distinct testcase implementations=15; valid lifecycle traces=4/4; testplans=25;
+      UVM testcases=19
     evidence:
     - path: model/verification.yaml
       status: present
@@ -433,7 +473,8 @@ gates:
       status: present
       sha256: 05d11c861c8759bddc32de3769b1ebb43b0fe39a93920cad57a5154b31a866e7
     - path: verification/sim/regression_list.yaml
-      status: missing
+      status: present
+      sha256: 32ff8249bc18363622ba7dd713729758a7f484cf68d2da94fe86f583a019c370
     - path: docs/verification/99_quality_gate.md
       status: present
       sha256: 22f3a84dbaca5c3769d428c2c810851450b0f3a4d515f97db3fcd46d8b4d3cf7
@@ -509,38 +550,146 @@ gates:
     - path: docs/verification/verification_plan.md
       status: present
       sha256: 327f8d71b63e39268235c60fc4fd1898283c82c5523646aa6028a17a0bd8c644
+    - path: verification/tc/tc_base.sv
+      status: present
+      sha256: 49164ad84ed9ccabf7ca970943f4705cb64a9a89659b92d121586b4356ecdd2f
+    - path: verification/tc/tc_define.sv
+      status: present
+      sha256: 2f4b07a76b21efcdb5a861eac0ae81e1713cc01706cea470c306977bd289e85f
+    - path: verification/tc/tc_gpio_aon.sv
+      status: present
+      sha256: 1b8698819c624516d83d33ec2551b5d625a0c438765c3ae7f11f58dba57220f7
+    - path: verification/tc/tc_gpio_apb.sv
+      status: present
+      sha256: 98c97fee08812f461ed0eca852498486089a0ced6663c79bec9837ba4eb66a48
+    - path: verification/tc/tc_gpio_capture.sv
+      status: present
+      sha256: a0f2eae384e8d02444e8a1b3d82eff386e2405de3ce4b8902cc1f14bef9c1cec
+    - path: verification/tc/tc_gpio_config.sv
+      status: present
+      sha256: 6a680c80f5b809a97ac59ddbfc730a3c7c6e34d60e58a10662fc6e36951bc7fb
+    - path: verification/tc/tc_gpio_diag.sv
+      status: present
+      sha256: 039f6e1597c78b9fd78434529cda0fd1d478ed64e081c9f921c702e1344eec05
+    - path: verification/tc/tc_gpio_fifo.sv
+      status: present
+      sha256: 27b6813706d595aed98ffe7713d47eff83557d0e6cc3d79d805e4ae76c9fe8fa
+    - path: verification/tc/tc_gpio_filter.sv
+      status: present
+      sha256: 38591931c3baf8ebc83a542c3f715b3192558b317aec103391c317596ce3d937
+    - path: verification/tc/tc_gpio_input.sv
+      status: present
+      sha256: 7e781de9a1281922de4c3f95d0a363e4071f5b0f49c29a3a5117d9e3d8acd344
+    - path: verification/tc/tc_gpio_irq.sv
+      status: present
+      sha256: e4401c0821331529e89af489794fe2dad690c4f7677bb131921191a90d36567e
+    - path: verification/tc/tc_gpio_lowpower.sv
+      status: present
+      sha256: aa0d511027eae1886a658d7f571816ef2efa468976748cac8c5a0ae65af2c53b
+    - path: verification/tc/tc_gpio_output.sv
+      status: present
+      sha256: e3c50e512459ec4b67910d4c6c1c8ec6963144a0be06e1b8a5f6ffd323f95e49
+    - path: verification/tc/tc_gpio_parity.sv
+      status: present
+      sha256: 9e1d9f17f26fd76ea4917b96dc4f44d134e0271e81f1ff3be3dd06ab57eac565
+    - path: verification/tc/tc_gpio_reset.sv
+      status: present
+      sha256: b08aa4597b68639c22968f9de75e0e484aae5dd9b69dc2111053ccd548c4766c
+    - path: verification/tc/tc_gpio_security.sv
+      status: present
+      sha256: ac28d3e529a268792c27fc0c681f9b8f928fd37df5f56791094c64919ae1f51d
+    - path: verification/tc/tc_package.sv
+      status: present
+      sha256: fd4e8a722db0cc8aa48314c31e8c0fdfe8f75f3076cecc024a79e6e90a278768
+    - path: verification/tc/tc_sanity.sv
+      status: present
+      sha256: c1c65fce4cbed5e3a808f73975cea7eff5d9014f2781dd6fdfb98a46e471781d
+    - path: verification/tc/tc_undef.sv
+      status: present
+      sha256: c0eb2ceb6da8cfa8819278f4dee9aaecb40c080b9e4b8582ce70f31ee05cc8cd
+    - path: verification/tc/tc_gpio_aon.sv
+      status: present
+      sha256: 1b8698819c624516d83d33ec2551b5d625a0c438765c3ae7f11f58dba57220f7
+    - path: verification/tc/tc_gpio_apb.sv
+      status: present
+      sha256: 98c97fee08812f461ed0eca852498486089a0ced6663c79bec9837ba4eb66a48
+    - path: verification/tc/tc_gpio_capture.sv
+      status: present
+      sha256: a0f2eae384e8d02444e8a1b3d82eff386e2405de3ce4b8902cc1f14bef9c1cec
+    - path: verification/tc/tc_gpio_config.sv
+      status: present
+      sha256: 6a680c80f5b809a97ac59ddbfc730a3c7c6e34d60e58a10662fc6e36951bc7fb
+    - path: scripts/check_delivery.py
+      status: present
+      sha256: d9c6a23ade7ca0f3fbb999a41975a87073fc51a88b80cc67b3c75a9788cdd48f
+    - path: verification/tc/tc_gpio_diag.sv
+      status: present
+      sha256: 039f6e1597c78b9fd78434529cda0fd1d478ed64e081c9f921c702e1344eec05
+    - path: verification/tc/tc_gpio_fifo.sv
+      status: present
+      sha256: 27b6813706d595aed98ffe7713d47eff83557d0e6cc3d79d805e4ae76c9fe8fa
+    - path: verification/tc/tc_gpio_filter.sv
+      status: present
+      sha256: 38591931c3baf8ebc83a542c3f715b3192558b317aec103391c317596ce3d937
+    - path: verification/tc/tc_gpio_input.sv
+      status: present
+      sha256: 7e781de9a1281922de4c3f95d0a363e4071f5b0f49c29a3a5117d9e3d8acd344
+    - path: verification/tc/tc_gpio_irq.sv
+      status: present
+      sha256: e4401c0821331529e89af489794fe2dad690c4f7677bb131921191a90d36567e
+    - path: verification/tc/tc_gpio_lowpower.sv
+      status: present
+      sha256: aa0d511027eae1886a658d7f571816ef2efa468976748cac8c5a0ae65af2c53b
+    - path: verification/tc/tc_gpio_output.sv
+      status: present
+      sha256: e3c50e512459ec4b67910d4c6c1c8ec6963144a0be06e1b8a5f6ffd323f95e49
+    - path: verification/tc/tc_gpio_parity.sv
+      status: present
+      sha256: 9e1d9f17f26fd76ea4917b96dc4f44d134e0271e81f1ff3be3dd06ab57eac565
+    - path: verification/tc/tc_gpio_reset.sv
+      status: present
+      sha256: b08aa4597b68639c22968f9de75e0e484aae5dd9b69dc2111053ccd548c4766c
+    - path: verification/tc/tc_gpio_security.sv
+      status: present
+      sha256: ac28d3e529a268792c27fc0c681f9b8f928fd37df5f56791094c64919ae1f51d
   - id: g4.smoke_evidence
-    status: fail
-    detail: 'smoke: missing JUnit report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/smoke/smoke_junit.xml;
-      invalid smoke_executions contract: missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/regression/regression_summary.md'
+    status: pass
+    detail: 'smoke: tests=1; failures=0; errors=0; skipped=0; missing/non-passing
+      testcase IDs=0; smoke_executions=1; every testcase is bound to a passing raw
+      log'
     evidence:
     - path: reports/regression/regression_summary.md
-      status: missing
+      status: present
+      sha256: 2d05500b7d1faece5b8f482cb0d74e1c88a92082499e1960474b2d25587443c2
     - path: reports/smoke/smoke_junit.xml
-      status: missing
+      status: present
+      sha256: d4c5c860a48357db19363b7b2c6e582c4763284e9c3952e0ae2c72aa38e955f5
   - id: g4.full_regression_evidence
-    status: fail
-    detail: 'regression: missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/regression/regression_summary.md;
-      missing JUnit report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/regression/junit.xml;
-      invalid executions contract: missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/regression/regression_summary.md'
+    status: pass
+    detail: 'regression: validated REPORT_META; tests=15; failures=0; errors=0; skipped=0;
+      missing/non-passing testcase IDs=0; executions=15; every testcase is bound to
+      a passing raw log'
     evidence:
     - path: reports/regression/regression_summary.md
-      status: missing
+      status: present
+      sha256: 2d05500b7d1faece5b8f482cb0d74e1c88a92082499e1960474b2d25587443c2
     - path: reports/regression/junit.xml
-      status: missing
+      status: present
+      sha256: 501b20565453565792a5fc20460936c0992178ac716d64cd040ce987b61d81f9
   - id: g4.coverage_closure
     status: fail
-    detail: 'missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/coverage/coverage_summary.md'
+    detail: report status is fail
     evidence:
     - path: reports/coverage/coverage_summary.md
-      status: missing
+      status: present
+      sha256: ef3fe26c7ce1dcd11e852deaadb515eefee7f33f229ce947169a46242858bb3d
   - id: g4.rtm_closure
-    status: fail
-    detail: REPORT_META dependencies must be a list; valid lifecycle traces=4/4
+    status: pass
+    detail: validated REPORT_META; valid lifecycle traces=4/4
     evidence:
     - path: reports/quality/trace_matrix.md
       status: present
-      sha256: b2815a2a0223b6902bdeacb520c1911cd83ab233e704ddf09ef890bb252e77a2
+      sha256: 0c774495f8a1e5b6bd77c2ded159f55ff536a2533a8d73bfb9f007f1e2269990
     - path: trace/req_to_hld.yaml
       status: present
       sha256: a4908902d9a48048aceaba6274b7f57516e6ad5b081506fd2ade341b0c112baa
@@ -565,24 +714,46 @@ gates:
       sha256: f684cf6f06617d1303888c3699e00b4e88e5bb600b14aa067b36c417b5fc830f
   - id: g4.parameter_execution
     status: fail
-    detail: 'missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/quality/param_execution.md'
+    detail: report status is fail
     evidence:
     - path: model/requirements.yaml
       status: present
       sha256: a9391fd36743b715198ace06e2dfef634c8c5db36ca51ab2acac79486210e620
     - path: reports/quality/param_execution.md
-      status: missing
+      status: present
+      sha256: 78e06947eb0f2b467160251c00278883a55362e439ba3acd61e223ebdbc82b0f
   - id: g4.special_signoff
     status: fail
-    detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/signoff/formal.yaml'''
-    evidence: []
+    detail: 'formal: fail (formal: invalid signoff identity)'
+    evidence:
+    - path: reports/signoff/cdc.yaml
+      status: present
+      sha256: 7c0415ae6f0009e983382df1b50905a1b5bc42bf5d3c478e07502d5e35b732ee
+    - path: reports/signoff/formal.yaml
+      status: present
+      sha256: 2eade60e00292a2be0163a30adb423b848bb7569a9199229fadb89f3c0191f93
+    - path: reports/signoff/low_power.yaml
+      status: present
+      sha256: e2e5c4f471cb8e6b68a6da45a95ac2bb7017cd6685e8ecb4c62df99cc70d1b7b
+    - path: reports/signoff/rdc.yaml
+      status: present
+      sha256: fbf582adfaa6d389f28b26d2055940b52277950d159995f0c34b694a7a8ac1a9
+    outcomes:
+    - kind: formal
+      status: fail
+      detail: 'formal: invalid signoff identity'
   - id: g4.ral_handoff
     status: fail
-    detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/reports/quality/ral_handoff.yaml'''
+    detail: RAL handoff missing or not passed
     evidence:
     - path: reports/quality/ral_handoff.yaml
-      status: missing
-  findings: []
+      status: present
+      sha256: 848b62d5afbfedb986a2b50e7fe4069e2613acb55d779d049e953bbfb55acab7
+  findings:
+  - GPIO.FORMAL.LICENSE
+  - GPIO.COVERAGE.CLOSURE
+  - GPIO.PARAM.CLOSURE
+  - GPIO.RAL.CLOSURE
 - id: G5
   status: blocked
   required_checks:
@@ -590,9 +761,10 @@ gates:
   - g5.ppa_signoff
   checks:
   - id: g5.release_inputs
-    status: fail
-    detail: release inputs valid=1/3; missing integration Markdown; missing user_manual
-      Markdown
+    status: pass
+    detail: release inputs valid=3/3; current documents, applicable topics and review
+      evidence verified; current documents, applicable topics and review evidence
+      verified
     evidence:
     - path: docs/integration
       status: present
@@ -600,10 +772,10 @@ gates:
       status: present
     - path: reports/quality/review_findings.yaml
       status: present
-      sha256: cd443b874250af23a70117d5968592d02aadff0f30883c75de78420d528cac22
+      sha256: 117d673ed3bc81434015fd41697626bbb15552428387811f6884f700fca59a84
   - id: g5.ppa_signoff
     status: fail
-    detail: policy=required; required PPA evidence is missing
+    detail: policy=required; invalid PPA summary schema/level
     evidence:
     - path: model/requirements.yaml
       status: present
@@ -612,7 +784,25 @@ gates:
       status: present
       sha256: d1456b0eeb98f2d31258ef240b87b024d255502c3606484dc3ad6b8a1dd6f7a6
     - path: reports/ppa-report.md
-      status: missing
+      status: present
+      sha256: a70553261d1c4285f3f98cf7b519cf5d27ef0dd90a808a16fd511d2e069d64db
     - path: reports/ppa/sweep_analysis.yaml
-      status: missing
-  findings: []
+      status: present
+      sha256: 55ed68f67fcc4e744c2be36161de545403a0bdf84cd56323a6700f9080091db9
+    - path: reports/ppa/summary_n128.yaml
+      status: present
+      sha256: ed70f940c68a7e4f745ae43b05ac840ff981c7de06579cfe80555c5149aa1d20
+    - path: reports/ppa/summary_n32.yaml
+      status: present
+      sha256: c34619f74273eb11513dd7c9a151c646d3524d5b3aba3913b82a0200d28fcfc5
+    - path: reports/ppa/summary_n8.yaml
+      status: present
+      sha256: 771fc201fed47b816fa67778d41e44520e8b391a9b19295ed6f6ad7fd6ddbd70
+    - path: reports/ppa/area_power.png
+      status: present
+      sha256: 54c280af4ebedd62fe61b0973b8974a3ac17c757d33c5ebafb76e61612d3a017
+    - path: reports/ppa/area_slack.png
+      status: present
+      sha256: 5677c53982e5d4ab7fdb0b8034208e9a268dd8bc5dd60989048d05984b8ea87f
+  findings:
+  - GPIO.PPA.LEVEL

@@ -1,0 +1,29 @@
+schema_version: '2.0'
+schema: ip-ppa-sweep-analysis/1.0
+point_count: 3
+comparison_context:
+  pdk_sha256: d1456b0eeb98f2d31258ef240b87b024d255502c3606484dc3ad6b8a1dd6f7a6
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: GPIO_CHARACTERIZATION_100MHZ
+  evaluator_sha256: ed6665907c3348505e90adaa11d669b703f3906be0a8ad0204ab85241da17936
+  compile_options:
+  - compile_ultra
+  activity: default_probability_estimate
+metric_directions:
+  area_um2: min
+  slack_ns: max
+  dyn_power_uW: min
+  leak_power_nW: min
+pareto_run_ids:
+- 0432501030538ad4ca584c31063fd9fe8ec04a28de3535149267dd46342e11b1
+- d65962339c82933307b02966cdeb2dd0a02ba4bdf5a2f370dcfc8c98fad70d5f
+budgets:
+  max_area_um2: null
+  min_slack_ns: 0.0
+  max_dyn_power_uW: null
+objective: area
+recommended_run_id: d65962339c82933307b02966cdeb2dd0a02ba4bdf5a2f370dcfc8c98fad70d5f
+recommended_config_id: CFG_WIDTH_8

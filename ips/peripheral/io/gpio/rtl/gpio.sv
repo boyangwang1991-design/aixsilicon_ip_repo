@@ -59,6 +59,7 @@ module gpio #(
   logic [31:0] read_words[GPIO_REG_COUNT], byte_mask, csr_read_data;
   logic [GPIO_REG_COUNT-1:0] writes, reads;
   logic optional_disabled, semantic_error, commit, access_error, csr_ready, csr_error, parity_error;
+  logic csr_rd_ack, csr_wr_ack, csr_rd_err, csr_wr_err;
   logic [N_GPIO-1:0] sync_data, sync_valid, input_data, input_valid;
   logic [N_GPIO-1:0] irq_pending, rising_pending, falling_pending, edge_now, rise_now;
   logic [N_GPIO-1:0] cfg_lock, data_lock, snapshot_data, snapshot_valid, strap_data, diag_pending;
@@ -109,9 +110,12 @@ module gpio #(
     .rst_ni(main_n),.psel_i,.penable_i,.pwrite_i,.paddr_i,.pprot_i,.pstrb_i,.access_cfg_i(access_cfg),
     .optional_disabled_i(optional_disabled),.semantic_error_i(semantic_error),.csr_read_data_i(csr_read_data),
     .descriptor_o(desc),.byte_mask_o(byte_mask),.pready_o,.pslverr_o,.commit_o(commit),.access_error_o(access_error),.prdata_o);
-  gpio_csr u_csr (.clk(pclk_i),.arst_n(main_n),.s_apb_psel(psel_i),.s_apb_penable(penable_i),
-    .s_apb_pwrite(pwrite_i),.s_apb_pprot(pprot_i),.s_apb_paddr(paddr_i),.s_apb_pwdata(pwdata_i),.s_apb_pstrb(pstrb_i),
-    .s_apb_pready(csr_ready),.s_apb_prdata(csr_read_data),.s_apb_pslverr(csr_error),.hwif_in,.hwif_out);
+  assign csr_ready=csr_rd_ack | csr_wr_ack;
+  assign csr_error=csr_rd_err | csr_wr_err;
+  gpio_csr u_csr (.clk(pclk_i),.arst_n(main_n),.s_cpuif_req(main_n && psel_i && penable_i),
+    .s_cpuif_req_is_wr(pwrite_i),.s_cpuif_addr(paddr_i),.s_cpuif_wr_data(pwdata_i),.s_cpuif_wr_biten(byte_mask),
+    .s_cpuif_req_stall_wr(),.s_cpuif_req_stall_rd(),.s_cpuif_rd_ack(csr_rd_ack),.s_cpuif_wr_ack(csr_wr_ack),
+    .s_cpuif_rd_data(csr_read_data),.s_cpuif_rd_err(csr_rd_err),.s_cpuif_wr_err(csr_wr_err),.hwif_in,.hwif_out);
   gpio_csr_adapter u_adapter (.commit_i(commit),.write_i(pwrite_i),.read_words_i(read_words),.hwif_out_i(hwif_out),
     .hwif_in_o(hwif_in),.write_strobe_o(writes),.read_strobe_o(reads));
   gpio_regfile #(.N_GPIO(N_GPIO),.SYNC_STAGES(SYNC_STAGES),.N_IRQ_GROUPS(N_IRQ_GROUPS),.EVENT_FIFO_DEPTH(EVENT_FIFO_DEPTH),

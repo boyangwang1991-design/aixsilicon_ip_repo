@@ -7,17 +7,15 @@ outputs:
 - path: rtl/generated/gpio_csr_pkg.sv
   sha256: 2f03ee84f808170fc92a4ce3ba4ae9c18b96a4a1b7b29b190e9d2e63c0335656
 - path: rtl/generated/gpio_csr.sv
-  sha256: 7fbf9fde2865aaa4810108bb5612c656e29995651b94c1bb494e3309799b3bab
+  sha256: 20a60ca882f8d77a0022b5098c85d47a27d03be0b180f3cbfa6b75155cd8a749
 - path: rtl/generated/gpio_csr_adapter.sv
   sha256: b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936
 lint_command:
 - vlogan
 - -full64
 - -sverilog
-- -ntb_opts
-- uvm-1.2
 - /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_reg_desc_pkg.sv
 - '{files}'
-lint_work_dir: build/registers/compile
+lint_work_dir: build/registers/passthrough_compile
 verification_scope: native_systemverilog_compile_and_provenance
 timeout_seconds: 300

@@ -1,0 +1,46 @@
+schema_version: '2.0'
+schema: ip-ppa-summary/1.0
+analysis_evaluator:
+  path: reports/ppa/evaluator/extract_ppa_summary.py
+  sha256: ed6665907c3348505e90adaa11d669b703f3906be0a8ad0204ab85241da17936
+run_id: 0432501030538ad4ca584c31063fd9fe8ec04a28de3535149267dd46342e11b1
+manifest:
+  path: build/ppa/n32_100mhz_1789361617083906904/manifest.yaml
+  sha256: 05811a514492c5eaa211c6dac64f192a179eba65f496fdee77d5895ac112920d
+config_id: CFG_WIDTH_32
+clock_freq_mhz: 100.0
+params:
+  N_GPIO: '32'
+area_um2: 41078.699619
+slack_ns: 0.02
+timing_group: CLK_MAIN
+observed_period_ns: 10.0
+critical_delay_ns: 9.98
+data_arrival_ns: 9.82
+fmax_mhz: 100.20040080160321
+dyn_power_uW: 2941.8
+leak_power_nW: 4064.0
+activity: default_probability_estimate
+timing_constrained: true
+evidence_level: E1
+comparison_context:
+  pdk_sha256: d1456b0eeb98f2d31258ef240b87b024d255502c3606484dc3ad6b8a1dd6f7a6
+  target_library: /home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db
+  corner: tt_nominal_max_1p00v_25c
+  tool: dc_shell
+  tool_version: V-2023.12-SP3
+  constraint_profile: GPIO_CHARACTERIZATION_100MHZ
+  evaluator_sha256: ed6665907c3348505e90adaa11d669b703f3906be0a8ad0204ab85241da17936
+  compile_options:
+  - compile_ultra
+  activity: default_probability_estimate
+raw_reports:
+  area:
+    path: build/ppa/n32_100mhz_1789361617083906904/area.rpt
+    sha256: 7b196a2e0ed2c28195902a84722640c144d3dbdb86770ba921220bbd40e2979e
+  timing:
+    path: build/ppa/n32_100mhz_1789361617083906904/timing.rpt
+    sha256: 6f2df383afadb64bacaf89e7f574b63a1a04cf2d06a6957364e7bc1bb291a077
+  power:
+    path: build/ppa/n32_100mhz_1789361617083906904/power.rpt
+    sha256: 5deef2d0af39f2ee3c05629b3569075f675066c3e8199c929dc8b969e8924c62

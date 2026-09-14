@@ -1,7 +1,7 @@
 # GPIO
 
 参数化APB4 GPIO，输入合同为 [gpio_contract.md](gpio_contract.md)。
-当前仍在执行full process，尚未完成RTL验证或发布签核。
+已执行完整 testcase 回归、模块单测、覆盖率分析、RTM、文档和三点 PPA 表征，按用户授权进行条件候选交付。G3 为 PASS WITH CONDITION；CDC/RDC、Formal、覆盖率和参数空间等未关闭技术项见执行状态，不宣称无条件发布签核。
 
 - [需求](docs/lrs/index.md)
 - [架构](docs/hld/index.md)

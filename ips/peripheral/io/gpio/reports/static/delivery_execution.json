@@ -1,0 +1,93 @@
+{
+  "schema": "ip-command-proof/1.0",
+  "testcase_id": "TC.GPIO.DELIVERY.001",
+  "proof_kind": "static",
+  "implementation": "scripts/check_delivery.py",
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "--no-sync",
+    "python",
+    "scripts/check_delivery.py"
+  ],
+  "tool": "python+cc",
+  "tool_version": "3.11.13; cc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28)",
+  "inputs": [
+    {
+      "path": "aixsilicon_ip_gpio.core",
+      "sha256": "38e3021515ceb47d781ab0f0dbee415fa345fcaae21964a569d648a4c8985601"
+    },
+    {
+      "path": "constraints/gpio.sgdc",
+      "sha256": "aa7e067186dfa18f410b3d7b5f032481dd31d7bf0351b33d43b192160f64a3f3"
+    },
+    {
+      "path": "constraints/gpio_characterization.sdc",
+      "sha256": "dc77e3588b64a0f745275008136789fe6ea152f9ec2937755df6317123c190ac"
+    },
+    {
+      "path": "constraints/lint_waivers.tcl",
+      "sha256": "c697223455744636262fc201784eadb947e8988a348adbb09c5522d42963a8c8"
+    },
+    {
+      "path": "constraints/load_cdc.tcl",
+      "sha256": "5db960b9db0e75ca7f31a8c7471e3971b681a270f4aa38b636bc8b992a3e43fc"
+    },
+    {
+      "path": "docs/integration/gpio_integration_checklist.xlsx",
+      "sha256": "3a4cf8e19916d751b4db60ae9e8a9c7c6855bc62b626132e169a2d90cad575f4"
+    },
+    {
+      "path": "docs/integration/gpio_integration_guide.md",
+      "sha256": "99d1d17277af8c4a21ab10447ed8ab9999230079e6983be9db9657fbbc6e3bb0"
+    },
+    {
+      "path": "docs/user_manual/gpio_register_programming_guide.md",
+      "sha256": "cd8b94e17acc3e2033e3ffedf50e5265fc0e0f27cfe7fdde9113ee2823e227dc"
+    },
+    {
+      "path": "docs/user_manual/gpio_user_guide.md",
+      "sha256": "b55010af09c91429481e34b4d474b951334f66b818f1a0822c5c04ead72d3b26"
+    },
+    {
+      "path": "reports/signoff/cdc.yaml",
+      "sha256": "7c0415ae6f0009e983382df1b50905a1b5bc42bf5d3c478e07502d5e35b732ee"
+    },
+    {
+      "path": "reports/signoff/rdc.yaml",
+      "sha256": "fbf582adfaa6d389f28b26d2055940b52277950d159995f0c34b694a7a8ac1a9"
+    },
+    {
+      "path": "rtl/gpio.sv",
+      "sha256": "bfaaad7b7fbeec00e088e67132bc595fdd735eb21d00659ba8c7d01d5774a0d2"
+    },
+    {
+      "path": "rtl/gpio_aon_mailbox.sv",
+      "sha256": "cca9516e4ecf017b548c059407036feb71dc9ebfa46b655d440cd4bc02fd50b9"
+    },
+    {
+      "path": "rtl/gpio_aon_wake.sv",
+      "sha256": "f55c78309a898b23c4e9530a49c010d44c188128150808df8d88d5bbe145dbad"
+    },
+    {
+      "path": "rtl/gpio_input.sv",
+      "sha256": "16ba407e14681dbb68154f9a290e7e351ac07afb395325a918d8d4dbc3e99d6b"
+    },
+    {
+      "path": "scripts/check_delivery.py",
+      "sha256": "d9c6a23ade7ca0f3fbb999a41975a87073fc51a88b80cc67b3c75a9788cdd48f"
+    },
+    {
+      "path": "sw/include/gpio_regs.h",
+      "sha256": "bdb88593f3101ae2a9970852e543393e44601525518d3b0627ecfe5d259fbb4f"
+    }
+  ],
+  "exit_code": 0,
+  "status": "pass",
+  "pass_line": "GPIO_DELIVERY PASS",
+  "log": {
+    "path": "reports/static/delivery_execution.log",
+    "sha256": "454317bc58a60531dc26cdd984af8e3cc06eef2a7e0b30492201cc07590d87de"
+  }
+}

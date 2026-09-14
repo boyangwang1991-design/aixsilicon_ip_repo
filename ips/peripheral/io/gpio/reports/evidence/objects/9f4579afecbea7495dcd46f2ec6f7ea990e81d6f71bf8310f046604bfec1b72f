@@ -1,0 +1,25 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "--no-sync",
+    "fusesoc",
+    "--cores-root=.",
+    "--cores-root=build/cbb_adapter",
+    "run",
+    "--target=synth",
+    "--build-root=/tmp/gpio_ppa_n32_qmesv1d7",
+    "aixsilicon:ip:gpio:0.1.0"
+  ],
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "scratch": "/tmp/gpio_ppa_n32_qmesv1d7",
+  "reports": {
+    "area.rpt": "7b196a2e0ed2c28195902a84722640c144d3dbdb86770ba921220bbd40e2979e",
+    "timing.rpt": "6f2df383afadb64bacaf89e7f574b63a1a04cf2d06a6957364e7bc1bb291a077",
+    "power.rpt": "5deef2d0af39f2ee3c05629b3569075f675066c3e8199c929dc8b969e8924c62",
+    "design_check.rpt": "263dcab30ecaed4f28a381e3d7aec000bd5810073d72a21b71e4ef2f288dba40",
+    "constraints.rpt": "04d839e48c108ff9d9ce98b4372d9ba26f1378c940ac94cec948235235327638"
+  }
+}

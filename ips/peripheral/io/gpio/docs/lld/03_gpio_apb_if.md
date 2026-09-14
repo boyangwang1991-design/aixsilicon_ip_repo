@@ -37,6 +37,8 @@ END_LLD_MODULE_META -->
 
 将PSTRB展开为32-bit bitenable。RDL派生描述符返回命中、组、实例号、字段有效掩码、访问类；另计算地址对齐、实际N_GPIO/N_BANK边界、PPROT、锁、能力与编码错误。所有检查完成后生成commit = PSEL & PENABLE & PREADY & !PSLVERR。
 PREADY常1。PRDATA在错误、WO读和裁剪功能时为0，否则取PeakRDL读回。PPROT[2]总是拒绝；ACCESS_CTRL_EN关闭时忽略其余两位，但PARITY_INJECT仍按合同要求secure/privileged。
+
+PeakRDL 使用原生 PassthroughCpuif，GPIO 包装层仅在 main_n && PSEL && PENABLE 时发起内部请求，字节位使能由 PSTRB 展开。外部寄存器组合读回与 ACK 对应同一 Access，业务写入仍由合法 commit 限定。不能使用在 Setup 观察 PSEL 即启动并提前结束的原生 APB 前端，否则延长 Setup 时会丢失 Access 写入。APB 背靠背与任意 Setup 长度均不得增加或遗漏业务提交。
 命令和MASKED类必须full strobe，包括写零；有效命令位为零时为成功无操作，AON多有效命令位为错误。其他RW PSTRB=0不触发变化，但对锁定RW有效字段写仍按覆盖目标检查；位操作mask=0不视为修改。
 非法字段检查只覆盖实际写入的字节；合并新字后检查相关字段。不可用能力置1错误，不存在位忽略。锁定混合位写整笔拒绝。
 

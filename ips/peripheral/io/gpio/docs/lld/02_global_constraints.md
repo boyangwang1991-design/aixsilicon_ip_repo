@@ -3,7 +3,7 @@
 | 条件 | 本沿结果 |
 |---|---|
 | 主复位有效 | 主业务状态恢复默认；不接受APB事务；保持型状态按POR规则处理 |
-| APB Setup | 允许CSR前端锁存请求；业务状态不更新 |
+| APB Setup | 不向原生 CSR 发请求；允许任意长度 Setup，业务状态不更新 |
 | APB Access合法 | 只提交一次，按32-bit字节使能展开掩码；读取沿前状态 |
 | APB Access错误 | PREADY=1、PSLVERR=1、PRDATA=0；不更新任何业务目标，访问诊断可更新 |
 | W1C与事件同拍 | new=(old & ~clear) | event；新事件优先 |

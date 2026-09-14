@@ -3206,10 +3206,10 @@ gates:
   approval:
     kind: user_delegated
     approved_by: execution_agent_under_existing_user_delegation
-    reviewed_at: '2026-09-14T03:30:45.220648+00:00'
+    reviewed_at: '2026-09-14T04:42:47.513692+00:00'
     authorization_ref: docs/reviews/lld_authorization.md
     authorization_sha256: 8ae89bdce24d99ad38fcc89803ef6e1ca472df14885cd0ef8ae49b0d1848b382
-    input_sha256: 39c241f8e04e0f5aebe626744376369a6b37c6b17a8192cddedfe890ea170a46
+    input_sha256: 22e6c6398b8974d7cc296d39acef18b462e51fa789052b882dd6bb70bee41738
 provenance:
   schema: ip-design-projection/1.0
   stage: lld
@@ -3375,7 +3375,7 @@ provenance:
   - path: docs/lld/01_overview.md
     sha256: 2513257d8b2dccb09dc726e5211bdfc7cc422fe18f7f86680d6ba77f4ed29a53
   - path: docs/lld/02_global_constraints.md
-    sha256: d8b5e5ba66daf8cd6a86308cfc9101640a0a81f053f1c88a71bc12d3995f3685
+    sha256: 2a898f44252b75af20898372aa7c99a09016fe679212ac9c807e781495ce082a
   - path: docs/lld/03_gpio.md
     sha256: 775b138c7ea8d27874b62c22ba4c066d13c8b3d4c97177f7100d192801590385
   - path: docs/lld/03_gpio_aon_mailbox.md
@@ -3385,7 +3385,7 @@ provenance:
   - path: docs/lld/03_gpio_aon_wake.md
     sha256: 5a6ef9906f0cdb0311809c91873e954cc7984ed038f81b67aa270f4de2592e0a
   - path: docs/lld/03_gpio_apb_if.md
-    sha256: a75e7339ad9c03b3d4c58b3be5e5472ad8420259d67bebb38d19ab8662664bba
+    sha256: 77f47d0e2ce98b6ac55a25503c1cd1acd4c868c7ce9a06a3d959f1aed2882071
   - path: docs/lld/03_gpio_capture.md
     sha256: cce72978846359aa1d103fba318b0de4057f13d106c3210b109118ab98320c39
   - path: docs/lld/03_gpio_diag.md
@@ -3429,11 +3429,11 @@ provenance:
   - path: docs/lld/07_delivery_mapping.md
     sha256: 0b7bc28f35e26068d7c03ac80f618c755ef33f4f4ec5efee81a5c38ad5dc6869
   - path: docs/lld/99_quality_gate.md
-    sha256: b42166e331437655335d05e34f280a37422952502619f42895457a4051a71082
+    sha256: 34b130bf7ced6f2b45321dbbc51181e7c2f405222abfb742ff600035a4339f34
   - path: docs/lld/index.md
     sha256: 9f74f6cc3734433b48f13542607154529b439d0b48300b1936a8ac6db7d0951a
   extractor:
     skills/05-lld-microdesign/scripts/extract_lld.py: 238bb958c64afe79861bb48d3718a6fc81d89b2928c79abab58bb176c177a432
     scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
     scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
-  payload_sha256: 48c074781046ba21b628a7e3be148c5afab007fbbf3434e504366272f48dcf60
+  payload_sha256: efd7a78083d970559ff860373031d74a19557bb62fd6f4e21507636f9150bdb4

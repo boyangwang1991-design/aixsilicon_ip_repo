@@ -1,0 +1,313 @@
+{
+  "schema": "gpio-delivery-check/1.0",
+  "ip_name": "gpio",
+  "checks": [
+    {
+      "id": "FILE.docs/integration/gpio_integration_guide.md",
+      "status": "pass",
+      "detail": "docs/integration/gpio_integration_guide.md"
+    },
+    {
+      "id": "FILE.docs/integration/gpio_integration_checklist.xlsx",
+      "status": "pass",
+      "detail": "docs/integration/gpio_integration_checklist.xlsx"
+    },
+    {
+      "id": "FILE.docs/user_manual/gpio_user_guide.md",
+      "status": "pass",
+      "detail": "docs/user_manual/gpio_user_guide.md"
+    },
+    {
+      "id": "FILE.docs/user_manual/gpio_register_programming_guide.md",
+      "status": "pass",
+      "detail": "docs/user_manual/gpio_register_programming_guide.md"
+    },
+    {
+      "id": "FILE.sw/include/gpio_regs.h",
+      "status": "pass",
+      "detail": "sw/include/gpio_regs.h"
+    },
+    {
+      "id": "FILE.constraints/gpio_characterization.sdc",
+      "status": "pass",
+      "detail": "constraints/gpio_characterization.sdc"
+    },
+    {
+      "id": "FILE.constraints/gpio.sgdc",
+      "status": "pass",
+      "detail": "constraints/gpio.sgdc"
+    },
+    {
+      "id": "FILE.aixsilicon_ip_gpio.core",
+      "status": "pass",
+      "detail": "aixsilicon_ip_gpio.core"
+    },
+    {
+      "id": "FILE.reports/signoff/cdc.yaml",
+      "status": "pass",
+      "detail": "reports/signoff/cdc.yaml"
+    },
+    {
+      "id": "FILE.reports/signoff/rdc.yaml",
+      "status": "pass",
+      "detail": "reports/signoff/rdc.yaml"
+    },
+    {
+      "id": "PORT.aon_clk_i",
+      "status": "pass",
+      "detail": "aon_clk_i"
+    },
+    {
+      "id": "PORT.aon_gpio_in_i",
+      "status": "pass",
+      "detail": "aon_gpio_in_i"
+    },
+    {
+      "id": "PORT.aon_input_available_i",
+      "status": "pass",
+      "detail": "aon_input_available_i"
+    },
+    {
+      "id": "PORT.dma_req_o",
+      "status": "pass",
+      "detail": "dma_req_o"
+    },
+    {
+      "id": "PORT.event_o",
+      "status": "pass",
+      "detail": "event_o"
+    },
+    {
+      "id": "PORT.fault_irq_o",
+      "status": "pass",
+      "detail": "fault_irq_o"
+    },
+    {
+      "id": "PORT.gpio_in_i",
+      "status": "pass",
+      "detail": "gpio_in_i"
+    },
+    {
+      "id": "PORT.gpio_oe_o",
+      "status": "pass",
+      "detail": "gpio_oe_o"
+    },
+    {
+      "id": "PORT.gpio_out_o",
+      "status": "pass",
+      "detail": "gpio_out_o"
+    },
+    {
+      "id": "PORT.input_available_i",
+      "status": "pass",
+      "detail": "input_available_i"
+    },
+    {
+      "id": "PORT.irq_group_o",
+      "status": "pass",
+      "detail": "irq_group_o"
+    },
+    {
+      "id": "PORT.irq_pin_o",
+      "status": "pass",
+      "detail": "irq_pin_o"
+    },
+    {
+      "id": "PORT.irq_summary_o",
+      "status": "pass",
+      "detail": "irq_summary_o"
+    },
+    {
+      "id": "PORT.output_owned_i",
+      "status": "pass",
+      "detail": "output_owned_i"
+    },
+    {
+      "id": "PORT.paddr_i",
+      "status": "pass",
+      "detail": "paddr_i"
+    },
+    {
+      "id": "PORT.pclk_i",
+      "status": "pass",
+      "detail": "pclk_i"
+    },
+    {
+      "id": "PORT.penable_i",
+      "status": "pass",
+      "detail": "penable_i"
+    },
+    {
+      "id": "PORT.pprot_i",
+      "status": "pass",
+      "detail": "pprot_i"
+    },
+    {
+      "id": "PORT.prdata_o",
+      "status": "pass",
+      "detail": "prdata_o"
+    },
+    {
+      "id": "PORT.pready_o",
+      "status": "pass",
+      "detail": "pready_o"
+    },
+    {
+      "id": "PORT.psel_i",
+      "status": "pass",
+      "detail": "psel_i"
+    },
+    {
+      "id": "PORT.pslverr_o",
+      "status": "pass",
+      "detail": "pslverr_o"
+    },
+    {
+      "id": "PORT.pstrb_i",
+      "status": "pass",
+      "detail": "pstrb_i"
+    },
+    {
+      "id": "PORT.pwdata_i",
+      "status": "pass",
+      "detail": "pwdata_i"
+    },
+    {
+      "id": "PORT.pwrite_i",
+      "status": "pass",
+      "detail": "pwrite_i"
+    },
+    {
+      "id": "PORT.safe_active_o",
+      "status": "pass",
+      "detail": "safe_active_o"
+    },
+    {
+      "id": "PORT.safe_req_i",
+      "status": "pass",
+      "detail": "safe_req_i"
+    },
+    {
+      "id": "PORT.sleep_ack_o",
+      "status": "pass",
+      "detail": "sleep_ack_o"
+    },
+    {
+      "id": "PORT.sleep_req_i",
+      "status": "pass",
+      "detail": "sleep_req_i"
+    },
+    {
+      "id": "PORT.snapshot_req_i",
+      "status": "pass",
+      "detail": "snapshot_req_i"
+    },
+    {
+      "id": "PORT.strap_sample_i",
+      "status": "pass",
+      "detail": "strap_sample_i"
+    },
+    {
+      "id": "PORT.wake_req_o",
+      "status": "pass",
+      "detail": "wake_req_o"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../lrs/index.md",
+      "status": "pass",
+      "detail": "../lrs/index.md"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../hld/index.md",
+      "status": "pass",
+      "detail": "../hld/index.md"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../lld/index.md",
+      "status": "pass",
+      "detail": "../lld/index.md"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../../reports/quality/gate_report.md",
+      "status": "pass",
+      "detail": "../../reports/quality/gate_report.md"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../lrs/01_configuration_meta_1.md",
+      "status": "pass",
+      "detail": "../lrs/01_configuration_meta_1.md"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../../constraints/gpio.sgdc",
+      "status": "pass",
+      "detail": "../../constraints/gpio.sgdc"
+    },
+    {
+      "id": "LINK.gpio_integration_guide.md:../../constraints/gpio_characterization.sdc",
+      "status": "pass",
+      "detail": "../../constraints/gpio_characterization.sdc"
+    },
+    {
+      "id": "LINK.gpio_user_guide.md:../../regs/gpio.rdl",
+      "status": "pass",
+      "detail": "../../regs/gpio.rdl"
+    },
+    {
+      "id": "LINK.gpio_user_guide.md:gpio_register_programming_guide.md",
+      "status": "pass",
+      "detail": "gpio_register_programming_guide.md"
+    },
+    {
+      "id": "LINK.gpio_user_guide.md:../lrs/06_clock_reset.md",
+      "status": "pass",
+      "detail": "../lrs/06_clock_reset.md"
+    },
+    {
+      "id": "LINK.gpio_register_programming_guide.md:../../regs/gpio.rdl",
+      "status": "pass",
+      "detail": "../../regs/gpio.rdl"
+    },
+    {
+      "id": "SYNC.gpio_input.sv",
+      "status": "pass",
+      "detail": "gpio_input.sv"
+    },
+    {
+      "id": "SYNC.gpio_aon_wake.sv",
+      "status": "pass",
+      "detail": "gpio_aon_wake.sv"
+    },
+    {
+      "id": "SYNC.gpio_aon_mailbox.sv",
+      "status": "pass",
+      "detail": "gpio_aon_mailbox.sv"
+    },
+    {
+      "id": "SIGNOFF.cdc",
+      "status": "pass",
+      "detail": "Conditional exception remains disclosed; see signoff record"
+    },
+    {
+      "id": "SIGNOFF.rdc",
+      "status": "pass",
+      "detail": "Conditional exception remains disclosed; see signoff record"
+    },
+    {
+      "id": "C_HEADER",
+      "status": "pass",
+      "detail": ""
+    }
+  ],
+  "inputs": {
+    "docs/integration/gpio_integration_guide.md": "99d1d17277af8c4a21ab10447ed8ab9999230079e6983be9db9657fbbc6e3bb0",
+    "docs/integration/gpio_integration_checklist.xlsx": "3a4cf8e19916d751b4db60ae9e8a9c7c6855bc62b626132e169a2d90cad575f4",
+    "docs/user_manual/gpio_user_guide.md": "b55010af09c91429481e34b4d474b951334f66b818f1a0822c5c04ead72d3b26",
+    "docs/user_manual/gpio_register_programming_guide.md": "cd8b94e17acc3e2033e3ffedf50e5265fc0e0f27cfe7fdde9113ee2823e227dc",
+    "sw/include/gpio_regs.h": "bdb88593f3101ae2a9970852e543393e44601525518d3b0627ecfe5d259fbb4f",
+    "constraints/gpio_characterization.sdc": "dc77e3588b64a0f745275008136789fe6ea152f9ec2937755df6317123c190ac",
+    "constraints/gpio.sgdc": "aa7e067186dfa18f410b3d7b5f032481dd31d7bf0351b33d43b192160f64a3f3",
+    "aixsilicon_ip_gpio.core": "38e3021515ceb47d781ab0f0dbee415fa345fcaae21964a569d648a4c8985601",
+    "reports/signoff/cdc.yaml": "7c0415ae6f0009e983382df1b50905a1b5bc42bf5d3c478e07502d5e35b732ee",
+    "reports/signoff/rdc.yaml": "fbf582adfaa6d389f28b26d2055940b52277950d159995f0c34b694a7a8ac1a9"
+  }
+}

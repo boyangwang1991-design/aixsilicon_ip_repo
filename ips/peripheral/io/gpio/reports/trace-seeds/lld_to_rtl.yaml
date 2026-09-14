@@ -27,6 +27,6 @@ links:
   target_id: RTL.FILE.rtl/gpio.sv
 provenance:
 - path: model/micro_design.yaml
-  sha256: 5f13e20cbad30ce75e9e32ffe7648c8529b3b54045192655a33bef0e1e29831e
+  sha256: 7ab0ff880283862fb9999415e0efff8fa657c621c1d74d6b89a70e0b9bae7ef9
 - path: build/trace/record_rtl_seed.py
   sha256: 52b081f65eebae51fb41d98c295364de5f5b91d12606e60d2176d87beede9f1c

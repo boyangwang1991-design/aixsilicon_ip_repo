@@ -1,47 +1,115 @@
 {
-  "recorded_at": "2026-09-14T04:02:51.816941+00:00",
+  "recorded_at": "2026-09-14T05:29:31.863032+00:00",
   "mode": "full-flow",
-  "status": "blocked_on_cdc_rdc_licenses",
-  "authorization_quote": "请继续，本次运行不需要额外人工审核",
+  "status": "conditional_delivery_ready",
+  "authorization_quote": "G3也标记为PASS with condition，毕竟CDC LICENCE 缺失也不是现在能搞定的，先完成完整流程",
   "approval_kind": "user_delegated",
-  "gates": {
-    "G0": "pass",
-    "G1": "pass",
-    "G2": "pass",
-    "G3": "fail",
-    "G4": "blocked",
-    "G5": "blocked"
+  "action_results": {
+    "G0": "completed",
+    "G1": "completed",
+    "G2": "completed",
+    "G3": "pass_with_condition",
+    "G4": "regression, coverage analysis, parameter execution and RTM actions performed; technical closure conditions remain",
+    "G5": "Documentation, three-point PPA analysis and candidate delivery preparation completed"
   },
   "module_ut": {
     "passed": 13,
     "total": 13
   },
-  "rtl_checks": {
-    "lint": "pass",
-    "elab": "pass",
-    "synth": "pass"
+  "uvm_regression": {
+    "passed": 42,
+    "total": 42,
+    "testcases": 14,
+    "seeds": [
+      1,
+      17,
+      101
+    ]
   },
-  "static_trace": {
-    "req_to_hld": 258,
-    "hld_to_lld": 12,
-    "lld_to_rtl": 12,
-    "req_to_test": 382
+  "static_testcases": {
+    "passed": 1,
+    "total": 1
   },
-  "retained_evidence_files": 46,
-  "environment_blockers": [
-    "cdc_adv_checker",
-    "rdc_adv_checker"
+  "parameter_hardware": {
+    "configurations": 7,
+    "passed_executions": 8,
+    "full_space_closed": false
+  },
+  "trace": {
+    "testcases": 15,
+    "executed": 15,
+    "failed": 0,
+    "unlinked_sources": 0
+  },
+  "ppa": {
+    "points": 3,
+    "widths": [
+      8,
+      32,
+      128
+    ],
+    "evidence_level": "E1"
+  },
+  "conditions": [
+    "CDC/RDC advanced licenses missing; user-authorized skip, technically unverified",
+    "VC-FORMAL-FPV license missing; no property proof completed",
+    "Code coverage and full feature covergroup closure incomplete; original 100% targets unchanged",
+    "Remaining hardware parameter combinations not closed",
+    "Full RAL race and register side-effect inventory incomplete",
+    "Two SpyGlass unconnected CSR stall-output warnings retained",
+    "PPA E1 characterization; E2/E3 signoff not claimed"
   ],
-  "formal_environment": "FPV shell launches using VCS vcfca + matching Verdi Qt; GPIO property proofs not executed",
-  "not_completed": [
-    "CDC/RDC/low-power signoff",
-    "UVM implementation and smoke/full regression",
-    "Hardware parameter verification",
-    "Coverage and final RTM closure",
-    "GPIO formal property proofs",
-    "RAL runtime handoff",
-    "Integration/user documentation",
-    "PPA signoff and release"
+  "artifacts": [
+    {
+      "path": "reports/regression/campaign.json",
+      "sha256": "67cf2466b7b1b1641244e2952c1a68ceecee3b621ce6d6a3b777731f708899a1"
+    },
+    {
+      "path": "reports/regression/regression_summary.md",
+      "sha256": "2d05500b7d1faece5b8f482cb0d74e1c88a92082499e1960474b2d25587443c2"
+    },
+    {
+      "path": "reports/quality/trace_matrix.md",
+      "sha256": "0c774495f8a1e5b6bd77c2ded159f55ff536a2533a8d73bfb9f007f1e2269990"
+    },
+    {
+      "path": "reports/coverage/coverage_summary.md",
+      "sha256": "ef3fe26c7ce1dcd11e852deaadb515eefee7f33f229ce947169a46242858bb3d"
+    },
+    {
+      "path": "reports/quality/param_execution.md",
+      "sha256": "78e06947eb0f2b467160251c00278883a55362e439ba3acd61e223ebdbc82b0f"
+    },
+    {
+      "path": "reports/ppa-report.md",
+      "sha256": "a70553261d1c4285f3f98cf7b519cf5d27ef0dd90a808a16fd511d2e069d64db"
+    },
+    {
+      "path": "reports/quality/integration_review.md",
+      "sha256": "2d785cd23c1e29c48730a0dc65da2b34b449727e4246f6487e76748f9cfff025"
+    },
+    {
+      "path": "reports/quality/user_guide_review.md",
+      "sha256": "188b5d8af8fb646860b136f4a0e3825d94b84c61675bdab659a0cb292d9f70e9"
+    },
+    {
+      "path": "reports/signoff/low_power.yaml",
+      "sha256": "e2e5c4f471cb8e6b68a6da45a95ac2bb7017cd6685e8ecb4c62df99cc70d1b7b"
+    }
   ],
-  "published": false
+  "gates": {
+    "G0": "pass",
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "pass_with_condition",
+    "G4": "fail",
+    "G5": "blocked"
+  },
+  "package_target": "release/gpio_0.1.0_candidate.zip",
+  "package_validation_report": "release/gpio_0.1.0_candidate_package_report.md",
+  "workspace_checks": {
+    "make_check": "pass",
+    "pre_commit": "pass",
+    "suite_regression": "pass"
+  }
 }
