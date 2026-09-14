@@ -4,13 +4,12 @@
 build_ip_registry.py — AIXSILICON IP registry.yaml 生成 / 校验 / 规范化
 
 职责（对齐 cbb_repo 框架）：
-1. 生成 registry.yaml（SSOT）：消费 scripts/data/*.py 清单 + 已交付覆盖，
-   自动分配 ID（按 domain 顶层前缀 + 序号）并计算 path（ips/<domain>/<subdomain>/<name>）。
+1. registry.yaml 是唯一编辑入口；旧 Python 清单已归档。默认只读校验。
 2. 校验（--check）：复用 ip_lib.validate 做一致性检查。
 3. 规范化重写（--write）：稳定排序 + 更新 updated 时间戳。
 
 用法:
-  python3 scripts/build_ip_registry.py --generate   # 依据 data/*.py 生成 registry.yaml（默认）
+  python3 scripts/build_ip_registry.py --generate   # 兼容旧入口：仅规范化当前索引，不恢复旧清单
   python3 scripts/build_ip_registry.py --check      # 只读校验 registry.yaml
   python3 scripts/build_ip_registry.py --write      # 校验通过后规范化重写 registry.yaml
 
@@ -26,13 +25,6 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ip_lib import (ROOT, REGISTRY_PATH, ID_PREFIX, REQUIRED_FIELDS, validate)
 
-try:
-    from data import all_ip_entries
-except ImportError as exc:  # pragma: no cover
-    print("错误: 无法导入 scripts/data 清单数据：%s" % exc)
-    raise SystemExit(20)
-
-
 ID_MAP_PATH = Path(__file__).parent / "data/ip_ids.json"
 
 
@@ -42,7 +34,7 @@ def _assign_ids(entries, id_map=None):
         id_map = json.loads(ID_MAP_PATH.read_text(encoding="utf-8"))
     if len(set(id_map.values())) != len(id_map):
         raise ValueError("ip_ids.json 存在重复 ID")
-    if any(not re.fullmatch(r"[A-Z]+-\d{3,}", v) for v in id_map.values()):
+    if any(not re.fullmatch(r"(?:MIG-IP-)?[A-Z]+-\d{3,}", v) for v in id_map.values()):
         raise ValueError("ip_ids.json 存在非法 ID")
     used = set(id_map.values())
     for e in entries:
@@ -66,75 +58,36 @@ def _assign_paths(entries):
 
 
 def build_registry_dict():
-    entries = all_ip_entries()
-    entries = _assign_ids(entries)
-    entries = _assign_paths(entries)
-    entries.sort(key=lambda e: (e.get("priority", ""), e.get("id", "")))
-    return {"schema_version": "2.0", "vendor": "aixsilicon", "library": "ip",
-            "ips": entries}
+    """读取当前索引，包括扩展字段；历史规划不能作为生成输入。"""
+    import yaml
+    return yaml.safe_load(Path(REGISTRY_PATH).read_text(encoding="utf-8"))
 
 
 def write_registry(reg):
+    """规范化唯一事实源；保留所有扩展字段。"""
     import yaml
     from datetime import datetime, timezone
     reg["updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    lines = []
-    lines.append('schema_version: "%s"' % reg.get("schema_version", "2.0"))
-    lines.append('updated: "%s"' % reg["updated"])
-    lines.append("# 本文件是 AIXSILICON IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 治理）。")
-    lines.append("# 字段: id/name/domain/subdomain/type/priority/status/maturity/version/interfaces/description/path")
-    lines.append("# 修改入口: 编辑 scripts/data/*.py 清单后运行 'python3 scripts/build_ip_registry.py --generate' 重新生成。")
-    lines.append("# status=implemented/released 表示物理目录存在且已交付；planned 条目仅为规划候选。")
-    lines.append("# 边界: IP 必须对外提供独立集成合同（如 CSR/地址图、中断、系统策略或产品级接口）；通用构件归 CBB。")
-    lines.append("vendor: aixsilicon")
-    lines.append("library: ip")
-    lines.append("")
-    lines.append("ips:")
-    for e in reg["ips"]:
-        lines.append("  - id: %s" % e["id"])
-        lines.append("    name: %s" % e["name"])
-        lines.append("    domain: %s" % e["domain"])
-        lines.append("    subdomain: %s" % e["subdomain"])
-        lines.append("    type: %s" % e["type"])
-        lines.append("    priority: %s" % e["priority"])
-        lines.append("    status: %s" % e["status"])
-        lines.append("    maturity: %s" % e["maturity"])
-        lines.append('    version: "%s"' % e["version"])
-        ifs = e.get("interfaces") or []
-        if ifs:
-            lines.append("    interfaces: [%s]" % ", ".join(ifs))
-        lines.append("    description: '%s'" % str(e["description"]).replace("'", "''"))
-        lines.append("    path: %s" % e["path"])
-        if e.get("vendor") and e["vendor"] != "aixsilicon":
-            lines.append("    vendor: %s" % e["vendor"])
-        if e.get("core"):
-            lines.append("    core: %s" % e["core"])
-    with open(REGISTRY_PATH, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines) + "\n")
+    reg["ips"].sort(key=lambda e: (e.get("priority", ""), e["id"]))
+    Path(REGISTRY_PATH).write_text(yaml.safe_dump(reg, allow_unicode=True, sort_keys=False), encoding="utf-8")
 
 
 def main():
-    ap = argparse.ArgumentParser(description="AIXSILICON IP registry.yaml 生成/校验/规范化工具")
-    ap.add_argument("--generate", action="store_true",
-                    help="依据 scripts/data/*.py 生成 registry.yaml（默认行为）")
-    ap.add_argument("--check", action="store_true", help="只读校验 registry.yaml")
-    ap.add_argument("--check-source", action="store_true", help="只读检查 registry 与生成源一致")
-    ap.add_argument("--write", action="store_true", help="校验通过后规范化重写 registry.yaml")
+    ap = argparse.ArgumentParser(description="AIXSILICON IP registry.yaml 校验/规范化工具")
+    modes = ap.add_mutually_exclusive_group()
+    modes.add_argument("--generate", action="store_true",
+                    help="兼容入口：规范化当前 registry，不再从旧 Python 清单生成")
+    modes.add_argument("--check", action="store_true", help="只读校验 registry.yaml")
+    modes.add_argument("--check-source", action="store_true", help="兼容入口：只读校验 registry 与历史编号")
+    modes.add_argument("--write", action="store_true", help="校验通过后规范化重写 registry.yaml")
     args = ap.parse_args()
 
     import yaml  # noqa: F401  (确保依赖存在)
 
-    if args.check or args.write or args.check_source:
+    if not args.generate:
         with open(REGISTRY_PATH, encoding="utf-8") as f:
             reg = yaml.safe_load(f)
         errors, warnings = validate(reg)
-        if args.check_source:
-            def normalized(entries):
-                return sorted([{k: v for k, v in e.items() if not (k == "interfaces" and not v)
-                                and not (k == "vendor" and v == "aixsilicon")} for e in entries],
-                              key=lambda e: e["name"])
-            if normalized(reg["ips"]) != normalized(build_registry_dict()["ips"]):
-                errors.append("registry 与 scripts/data 生成源不一致，请 --generate 后刷新 README")
         ips = reg.get("ips", [])
         implemented = sum(1 for e in ips if e.get("status") in ("implemented", "released"))
         print("registry.yaml: 共 %d 条（implemented/released=%d）" % (len(ips), implemented))
@@ -152,7 +105,7 @@ def main():
             print("==> 校验通过（只读，未写入）。")
         return
 
-    # 默认：生成
+    # --generate 兼容旧调用：仅规范化当前 registry，不恢复已移出条目。
     reg = build_registry_dict()
     errors, _ = validate(reg)
     if errors:

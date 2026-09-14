@@ -1,4 +1,6 @@
 name: gpio
+vendor: aixsilicon
+library: ip
 status: draft
 version: 0.1.0
 vlnv: aixsilicon:ip:gpio:0.1.0

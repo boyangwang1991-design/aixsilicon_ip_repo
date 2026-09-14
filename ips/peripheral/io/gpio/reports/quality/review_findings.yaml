@@ -1,0 +1,44 @@
+schema_version: '2.0'
+ip_name: gpio
+findings:
+- id: GPIO.CDC.LICENSE
+  gate: G3
+  severity: blocker
+  status: open
+  owner: EDA environment
+  description: 'cdc_adv_checker unavailable: Ar_syncrst_setupcheck01 and Ar_converge01
+    not executed'
+  resolution: Provide licensed feature and rerun full target, then review all reported
+    crossings; no waiver or PASS inferred.
+  artifacts:
+  - path: build/rtl/resume_cdc_02.log
+    sha256: 43181325614b754cba74094e0d8ce45c444b8e9af501fb1788bc359b660f4ba7
+  - path: build/rtl/resume_cdc_02/aixsilicon_ip_gpio_0.1.0/cdc-spyglass/aixsilicon_ip_gpio_0.1.0/consolidated_reports/gpio_cdc_cdc_setup_check/moresimple.rpt
+    sha256: 07c2f86d11edd895bee5cad47015e1f12161817b1253247e9345256b8ac23f36
+- id: GPIO.RDC.LICENSE
+  gate: G3
+  severity: blocker
+  status: open
+  owner: EDA environment
+  description: 'cdc_adv_checker and rdc_adv_checker unavailable: Ar_resetcross01 and
+    Ar_resetcross_matrix01 not executed'
+  resolution: Provide licensed feature and rerun full target, then review all reported
+    crossings; no waiver or PASS inferred.
+  artifacts:
+  - path: build/rtl/resume_rdc_01.log
+    sha256: 93191d1388d746a0efe057dcc4f735420892f6d6efc830ded7561a101046a444
+  - path: build/rtl/resume_rdc_01/aixsilicon_ip_gpio_0.1.0/rdc-spyglass/aixsilicon_ip_gpio_0.1.0/consolidated_reports/gpio_rdc_rdc_verify_struct/moresimple.rpt
+    sha256: e7c5fc90f6507ec5342a5fa9bb315499f04668dbef13724d9af429ed6a922dd0
+- id: GPIO.FORMAL.TOOL
+  gate: G4
+  severity: blocker
+  status: resolved
+  owner: Formal environment
+  description: Located VCS W-2024.09-SP1/vcfca/bin/vcf; FPV startup and help check_fv
+    succeeded after setting VC_STATIC_HOME and matching installed Verdi Qt library
+    path.
+  resolution: Tool discovery/launch issue resolved. GPIO property proofs remain unexecuted
+    and are not waived.
+  artifacts:
+  - path: build/formal/preflight/console02.log
+    sha256: 3be3873062d68f6e6861381355128d0700ed81f32228ce463bf248d5358faec6

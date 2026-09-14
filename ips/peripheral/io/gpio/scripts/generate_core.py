@@ -20,6 +20,7 @@ def main():
         parameters[param['name']]=entry
     filesets={'generated':{'files':generated,'file_type':'systemVerilogSource'},
               'rtl':{'files':rtl,'file_type':'systemVerilogSource','depend':['aixsilicon:cbb:parity_gen_check:0.1.0']}}
+    filesets['csr_checks']={'files':['verification/assertions/gpio_csr_checks.sv'],'file_type':'systemVerilogSource'}
     base={'filesets':['generated','rtl'],'toplevel':'gpio','parameters':list(parameters)}
     filesets['lint_waivers']={'files':['constraints/lint_waivers.tcl'],'file_type':'waiver'}
     filesets['cdc_constraints']={'files':[{'constraints/gpio.sgdc':{'file_type':'user'}},{'constraints/load_cdc.tcl':{'file_type':'tclSource'}}]}
@@ -31,7 +32,7 @@ def main():
         targets[stage]=dict(base,filesets=['generated','rtl','cdc_constraints'],default_tool='spyglass',tools={'spyglass':{'goals':goals,'spyglass_options':['enableSV yes','handlememory yes']}})
     for test in sorted((root/'verification/unit_test').glob('ut_*.sv')):
         filesets[test.stem]={'files':[str(test.relative_to(root))],'file_type':'systemVerilogSource'}
-        targets[test.stem]={'filesets':['generated','rtl',test.stem],'toplevel':test.stem,'default_tool':'vcs',
+        targets[test.stem]={'filesets':['generated','rtl','csr_checks',test.stem],'toplevel':test.stem,'default_tool':'vcs',
                            'tools':{'vcs':{'vcs_options':['-full64','-sverilog','-timescale=1ns/1ps','-ntb_opts','uvm-1.2','-l','compile.log']}}}
     package=yaml.safe_load((root/'ip-package.yaml').read_text())
     core={'name':package['vlnv'],'description':'Parameterized GPIO with APB4 and retained AON wake mailbox',

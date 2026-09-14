@@ -1,0 +1,32 @@
+schema_version: '2.0'
+ip_name: gpio
+links:
+- source_id: LLD.MOD.GPIO.AON
+  target_id: RTL.FILE.rtl/gpio_aon_wake.sv
+- source_id: LLD.MOD.GPIO.APB
+  target_id: RTL.FILE.rtl/gpio_apb_if.sv
+- source_id: LLD.MOD.GPIO.CAPTURE
+  target_id: RTL.FILE.rtl/gpio_capture.sv
+- source_id: LLD.MOD.GPIO.DIAG
+  target_id: RTL.FILE.rtl/gpio_diag.sv
+- source_id: LLD.MOD.GPIO.FIFO
+  target_id: RTL.FILE.rtl/gpio_event_fifo.sv
+- source_id: LLD.MOD.GPIO.INPUT
+  target_id: RTL.FILE.rtl/gpio_input.sv
+- source_id: LLD.MOD.GPIO.IRQ
+  target_id: RTL.FILE.rtl/gpio_irq.sv
+- source_id: LLD.MOD.GPIO.MAILBOX
+  target_id: RTL.FILE.rtl/gpio_aon_mailbox.sv
+- source_id: LLD.MOD.GPIO.OUTPUT
+  target_id: RTL.FILE.rtl/gpio_output.sv
+- source_id: LLD.MOD.GPIO.REG
+  target_id: RTL.FILE.rtl/gpio_regfile.sv
+- source_id: LLD.MOD.GPIO.SECURITY
+  target_id: RTL.FILE.rtl/gpio_security.sv
+- source_id: LLD.MOD.GPIO.TOP
+  target_id: RTL.FILE.rtl/gpio.sv
+provenance:
+- path: model/micro_design.yaml
+  sha256: 5f13e20cbad30ce75e9e32ffe7648c8529b3b54045192655a33bef0e1e29831e
+- path: build/trace/record_rtl_seed.py
+  sha256: 52b081f65eebae51fb41d98c295364de5f5b91d12606e60d2176d87beede9f1c

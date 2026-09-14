@@ -1,0 +1,52 @@
+[
+  {
+    "action": "archive",
+    "from": "docs/cleanup-2026-09.md",
+    "to": "docs/archive/2026-09-ip-materials-review/cleanup-2026-09.md",
+    "sha256": "74266c0eca5cfb55a8af2d55f1520ded5c42b20d3bd163b0e19fedd020ada348"
+  },
+  {
+    "action": "archive",
+    "from": "docs/cleanup-validation.md",
+    "to": "docs/archive/2026-09-ip-materials-review/cleanup-validation.md",
+    "sha256": "58ba2f199e07874309ebad7895b2c11058ef23bf87500bdaf2fae3a9742a52af"
+  },
+  {
+    "action": "archive",
+    "from": "docs/stale-materials-audit.md",
+    "to": "docs/archive/2026-09-ip-materials-review/stale-materials-audit.md",
+    "sha256": "8a7b88e072ec66cd21cc24fb55f1b08518902616d20c298028f9b265f2c71e9b"
+  },
+  {
+    "action": "archive",
+    "from": "ipkg.yaml",
+    "to": "docs/archive/2026-09-ip-materials-review/ipkg.yaml",
+    "sha256": "680add59c70fc3df6c6fe45db216f1d149a2cc9109adb5fff44b6dd0e04b680a"
+  },
+  {
+    "action": "archive-full-planning-retain-runtime-index",
+    "from": "governance/retired-assets.yaml",
+    "to": "docs/archive/2026-09-ip-materials-review/retired-assets.full.yaml",
+    "sha256": "29e4ac9f205f365b16bc09cee7a63352614bb4d7f2d07c16082c8b6ba17d95a6"
+  },
+  {
+    "action": "delete-empty-simulation-log",
+    "from": "ips/infrastructure/bridge/apb_register_bridge/ucli.key"
+  },
+  {
+    "action": "delete-empty-simulation-log",
+    "from": "ips/infrastructure/cdc/apb_cdc_bridge/ucli.key"
+  },
+  {
+    "action": "delete-empty-simulation-log",
+    "from": "ips/infrastructure/cdc/apb_cdc_bridge/verification/sim/ucli.key"
+  },
+  {
+    "action": "delete-empty-simulation-log",
+    "from": "ips/security/firewall/memory_protection_controller/ucli.key"
+  },
+  {
+    "action": "delete-empty-simulation-log",
+    "from": "ips/security/firewall/memory_protection_controller/verification/ucli.key"
+  }
+]

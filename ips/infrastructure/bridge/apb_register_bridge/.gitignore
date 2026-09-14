@@ -1,0 +1,95 @@
+# 迁移时保留原仓库运行产物忽略规则；交付件不含本地 EDA 缓存。
+# ---------- 编译与仿真产物 ----------
+*.o
+*.obj
+*.elf
+*.out
+*.log
+*.vcd
+*.fsdb
+*.fst
+*.lxt
+*.wlf
+*.syn
+*.svf
+*.ddd
+sim_workspace/
+run/
+transcript
+*.wdb
+
+# ---------- 综合/后端产物 ----------
+results/
+synth_*/
+work/
+*.sdc_orig
+*.def
+*.gds
+*.lef
+*.lib.bak
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# ---------- 编辑器/系统 ----------
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# ---------- 大型数据产物（PPA 结果建议用版本库存储摘要，原始报告不入库） ----------
+*.gz
+*.zip
+*.tar
+
+# ---------- EDA 运行时缓存/工作目录（2026-08 popcount 运行实测新增） ----------
+# VCS 编译对象缓存与执行器产物
+csrc/
+csrc/*
+**/csrc/
+*.daidir/
+simv.daidir/
+simv_run/
+ucli.key
+.pcv.lock
+# Design Compiler 元数据与工作区（alib 缓存可达数 MB）
+alib-*/
+cksum_dir/
+fm_work/
+# Formality 会话机器信息快照（host/env/meminfo 等环境元数据，非设计证据）
+**/FM_INFO/
+# SpyGlass 批处理工程的工作生成物；保留 .prj 配置本体供复现
+lint_work/*
+!lint_work/*.prj
+**/lint_work/lint/
+**/.SG_SaveRestoreDB/
+**/consolidated_reports/
+
+# ---------- PPA 原始报告瘦身策略（2026-08 评审决定） ----------
+# 门级原始报告(*.rpt)体积大且可由 synth_sweep.tcl 一键重放再生；
+# 入库仅保留 summary.txt（Pareto 数据锚点）+ 正文报告 ppa-report.md + PNG 图。
+
+# ---------- evidence 生成物不入库（2026-08-28 用户指令：PPA/验证结果写 report） ----------
+# EDA 门级/仿真原始日志（*.rpt/*.txt）可由 verification/scripts + characterization
+# 脚本一键重放再生；evidence/ 目录本地保留作可复现证据，但生成物不进版本库，
+# 结论以各 report（ppa-report.md / wallace.md / lint_waivers.md）为正式载体。
+**/evidence/**/*.rpt
+**/evidence/**/*.txt
+# **/evidence/ppa/**/*.rpt
+
+# ---------- 内部路径敏感评估（若仓库转公开请取消下行注释） ----------
+# characterization/pdk.yaml   # 含本机绝对路径与内部 bundle 标识；
+                               # 该文件由 cbb_tool.py pdk-scan 一键再生，
+                               # 公开场景下忽略后须在 README 注明重建步骤。
+

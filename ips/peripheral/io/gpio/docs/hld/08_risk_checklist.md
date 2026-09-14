@@ -7,6 +7,13 @@ architecture_freeze: true
 approvals:
   basis: 'user approval: approve, complete the rest'
   mode: user_approved_current_HLD
+approval:
+  kind: user_delegated
+  approved_by: execution_agent_under_existing_user_delegation
+  reviewed_at: '2026-09-14T03:30:28.736350+00:00'
+  authorization_ref: docs/reviews/hld_authorization.md
+  authorization_sha256: b55a3fe33df868d506d89c63cb06193aad01a9768ffd2a3de33c6c0e1c7f9b11
+  input_sha256: f0f67510cffc344cd73816b69c380efa8f0151e386b0efca97a9f9e6840926db
 END_HLD_GATE_META -->
 
 

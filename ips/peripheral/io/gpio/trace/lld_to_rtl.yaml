@@ -1,31 +1,55 @@
 schema_version: '2.0'
 ip_name: gpio
 trace_type: lld_to_rtl
-links: []
+links:
+- source_id: LLD.MOD.GPIO.AON
+  target_id: RTL.FILE.rtl/gpio_aon_wake.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.APB
+  target_id: RTL.FILE.rtl/gpio_apb_if.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.CAPTURE
+  target_id: RTL.FILE.rtl/gpio_capture.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.DIAG
+  target_id: RTL.FILE.rtl/gpio_diag.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.FIFO
+  target_id: RTL.FILE.rtl/gpio_event_fifo.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.INPUT
+  target_id: RTL.FILE.rtl/gpio_input.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.IRQ
+  target_id: RTL.FILE.rtl/gpio_irq.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.MAILBOX
+  target_id: RTL.FILE.rtl/gpio_aon_mailbox.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.OUTPUT
+  target_id: RTL.FILE.rtl/gpio_output.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.REG
+  target_id: RTL.FILE.rtl/gpio_regfile.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.SECURITY
+  target_id: RTL.FILE.rtl/gpio_security.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.GPIO.TOP
+  target_id: RTL.FILE.rtl/gpio.sv
+  status: linked
+  confidence: high
 gap_analysis:
-  unlinked_sources:
-  - id: LLD.MOD.GPIO.AON
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.APB
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.CAPTURE
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.DIAG
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.FIFO
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.INPUT
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.IRQ
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.MAILBOX
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.OUTPUT
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.REG
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.SECURITY
-    reason: no current downstream mapping
-  - id: LLD.MOD.GPIO.TOP
-    reason: no current downstream mapping
+  unlinked_sources: []
   unlinked_targets: []

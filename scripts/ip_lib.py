@@ -6,10 +6,10 @@ ip_lib.py — AIXSILICON IP registry 公共库（供 build_ip_registry.py / upda
 约定（对齐 cbb_repo 框架）：
 - `registry.yaml` 为唯一 SSOT（schema_version 2.0），字段：
   id / name / domain / subdomain / type / priority / status / maturity / version / interfaces / description / path
-- type:  ip | generator | wrapper | subsystem   （plan.md 第四节 4 类对象）
+- type:  ip | generator | wrapper | subsystem   （实现/封装标签；责任分类由 library 决定）
 - status: planned | implemented | released | deprecated
 - maturity: experimental | alpha | beta | production | legacy
-- implemented/released 条目必须有物理目录（path 存在且包含 README.md / metadata.yaml）
+- implemented/released 条目必须有物理目录（目录存在；包身份按 ip-package.yaml 校验）
 """
 import os
 from pathlib import Path
@@ -24,7 +24,7 @@ VALID_MATURITY = {"experimental", "alpha", "beta", "production", "legacy"}
 
 REQUIRED_FIELDS = ["id", "name", "domain", "type", "priority", "status", "version", "path"]
 
-# 合法 domain 顶层（plan.md 推荐的 ips/<domain>/<subdomain>/<name>）
+# 合法 domain 顶层（当前 registry 使用的 ips/<domain>/<subdomain>/<name>）
 VALID_DOMAIN_TOPS = {
     "infrastructure", "system", "memory", "peripheral", "debug_trace", "safety",
     "security", "dft", "chip", "cache", "coherency", "mmu", "virtualization",
@@ -186,4 +186,28 @@ def validate(reg, root=None):
                             "[%s] ip-package.yaml %s 与 registry 不一致；完成身份对齐后才能交付" % (cid, field))
             except (AttributeError, OSError, yaml.YAMLError) as exc:
                 errors.append("[%s] 无效包元数据: %s" % (cid, exc))
+    # Preserve historical identity across migration, withdrawal and reordering.
+    history = root / "governance/reserved-ids.yaml"
+    if history.is_file():
+        import yaml
+        reserved = yaml.safe_load(history.read_text(encoding="utf-8"))["ids"]
+        owners = {value: name for name, value in reserved.items()}
+        if len(owners) != len(reserved):
+            errors.append("历史编号重复")
+        for entry in reg.get('ips', []):
+            name, cid = entry.get("name"), entry.get("id")
+            if name not in reserved:
+                errors.append("[%s] 新资产须追加历史编号预留表" % name)
+            if name in reserved and reserved[name] != cid:
+                errors.append("[%s] 不得改变历史编号" % name)
+            if cid in owners and owners[cid] != name:
+                errors.append("[%s] 不得复用历史编号 %s" % (name, cid))
+    retired = root / "governance/retired-assets.yaml"
+    if retired.is_file():
+        import yaml
+        inactive = {e["original"]["name"] for e in yaml.safe_load(retired.read_text(encoding="utf-8"))["records"]
+                    if e["disposition"] != "restored"}
+        for entry in reg.get('ips', []):
+            if entry.get("name") in inactive:
+                errors.append("[%s] 恢复前须更新退役记录为 restored" % entry["name"])
     return errors, warnings

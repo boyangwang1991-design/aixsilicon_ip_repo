@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-09-14T04:02:51.816941+00:00",
+  "mode": "full-flow",
+  "status": "blocked_on_cdc_rdc_licenses",
+  "authorization_quote": "请继续，本次运行不需要额外人工审核",
+  "approval_kind": "user_delegated",
+  "gates": {
+    "G0": "pass",
+    "G1": "pass",
+    "G2": "pass",
+    "G3": "fail",
+    "G4": "blocked",
+    "G5": "blocked"
+  },
+  "module_ut": {
+    "passed": 13,
+    "total": 13
+  },
+  "rtl_checks": {
+    "lint": "pass",
+    "elab": "pass",
+    "synth": "pass"
+  },
+  "static_trace": {
+    "req_to_hld": 258,
+    "hld_to_lld": 12,
+    "lld_to_rtl": 12,
+    "req_to_test": 382
+  },
+  "retained_evidence_files": 46,
+  "environment_blockers": [
+    "cdc_adv_checker",
+    "rdc_adv_checker"
+  ],
+  "formal_environment": "FPV shell launches using VCS vcfca + matching Verdi Qt; GPIO property proofs not executed",
+  "not_completed": [
+    "CDC/RDC/low-power signoff",
+    "UVM implementation and smoke/full regression",
+    "Hardware parameter verification",
+    "Coverage and final RTM closure",
+    "GPIO formal property proofs",
+    "RAL runtime handoff",
+    "Integration/user documentation",
+    "PPA signoff and release"
+  ],
+  "published": false
+}

@@ -1,0 +1,10 @@
+schema: ip-ral-generation/1.0
+ip_name: gpio
+inputs:
+- path: regs/gpio.rdl
+  sha256: 46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984
+generator: peakrdl-uvm
+generator_version: 2.4.0
+output:
+  path: verification/ral/gpio_ral_pkg.sv
+  sha256: 306be8a7c79a5bd9411f2375cdb766d72c03a33b69f8898e9d2b9437f20b4e38

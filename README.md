@@ -1,213 +1,110 @@
-# aixsilicon_ip_repo - IP Unified Repository
+# AIXSILICON IP 功能资产仓
 
-统一 IP 仓库（monorepo）。承载所有 IP 内容，按 `ips/<domain>/<subdomain>/<name>/`（规划）或
-`ips/<vendor>/<ip>/<version>/`（已交付）组织，内嵌 `registry.yaml` 索引（唯一 SSOT）。
-FuseSoC 只 add 这一个仓即可发现全部 IP。
+面向 SoC / 子系统集成，承担独立功能、完整接口和异常恢复责任。
 
-本仓命名空间：`aixsilicon:ip:<ip>:<version>`（ADR-0003 统一 VLNV vendor；组织名 `boyangwang1991-design` 仅作为 remote URL 归属）
+分类按责任与交付边界判定，详见 [IP/CBB 分类原则](docs/ip-cbb-classification.md) 和
+[统一资产管理策略](docs/asset-management.md)。完整 AXI Register Slice、APB Register Bridge、
+总线 CDC Bridge 属于 IP；FIFO、仲裁、同步和权限比较核心属于 CBB。
+按本项目明确归属，单通道 axi_channel_register_slice 也由 IP 仓管理。
+IP 不强制要求 CSR、中断或软件接口。
 
-## 与 CBB 的边界
+`registry.yaml` 是唯一规划与状态编辑入口；校验脚本不从历史清单恢复候选。
+`planned` 允许有开发目录；`implemented` 不等于正式发布或所有配置已验证。
+源码、规格、验证材料和证据随资产保存，通用研发方法由开发 Skill 管理。
 
-与 ip-development-suite 交接时，修改 `scripts/data/*.py` 的规划/已交付覆盖，再生成 registry
-并刷新本页总览；使用 `scripts/build_ip_registry.py --check-source` 检查生成源漂移。
-`scripts/data/ip_ids.json` 保留历史编号，新增自动分配，删除不会释放编号。
-新工程根 `.core` 与 `ip-package.yaml` 身份版本必须一致；恢复旧工程按 registry.path 定位。
-打包 candidate 不改变仓库状态，正式发布依赖当前质量证据和干净源码。
+## 目录与身份
 
-IP 是可独立集成、发布和演进的功能产品，通常至少包含一项产品级合同：软件可见 CSR/地址图、
-中断或异常语义、系统配置/安全策略、标准外设端点，或独立的生成与集成流程。IP 可以组合
-`aixsilicon:cbb:*` 构件，但不应在本仓重复登记同一个通用机制、数据通路或协议适配构件。
+- `ips/<domain>/<subdomain>/<name>/`：资产工程；已交付旧布局继续按 registry.path 定位。
+- `registry.yaml`：正式主清单；`governance/`：稳定编号、迁移与退出记录。
+- `docs/archive/`：历史清单与指导快照；保留的未入选工程不计入主清单。
+- `scripts/`：仓内索引检查与 README 派生视图生成。
 
-同名功能在 IP 层的契约必须明确体现在描述与规格中；若对象只是通用计时核、中断路由机制或巡检引擎，
-则以 `*_core` / `*_engine` 命名归属 CBB，IP 不再重复实现其 RTL。
+默认新资产 VLNV 为 `aixsilicon:ip:<name>:<version>`；兼容旧身份须显式登记。
+APB 工程迁移及历史构建身份例外见 [清理报告](docs/archive/2026-09-ip-materials-review/cleanup-2026-09.md)。
 
-> 迁移注记：历史发布的 `boyangwang1991-design:ip:*` 核心进入 deprecated 别名窗口，
-> 由 `ipkg` 下次发布时统一改写为 `aixsilicon:ip:*`；已锁定旧 VLNV 的 Lockfile 需同步更新。
-
-## 目录结构
-
-```text
-aixsilicon_ip_repo/
-├── README.md                     # 仓库说明 + IP 状态总览（脚本自动刷新）
-├── ipkg.yaml                     # ipkg 配置（统一仓）
-├── registry.yaml                 # IP 目录唯一 SSOT（由 scripts/build_ip_registry.py 生成/治理）
-├── ips/
-│   ├── <domain>/<subdomain>/<ip>/   # 规划条目（planned）与新建 IP 的工作目录
-│   └── <vendor>/<ip>/<version>/     # 已交付/已纳管 IP 的版本目录（含 ip-package.yaml / metadata.yaml）
-├── scripts/
-│   ├── build_ip_registry.py      # registry.yaml 生成/校验/规范化（消费 scripts/data/*.py 清单）
-│   ├── update_registry_readme.py # 将 registry.yaml 状态总览刷新到 README.md
-│   ├── ip_status.py              # 按优先级/类型/领域/状态查询 IP
-│   ├── ip_lib.py                 # 公共库（校验/表格）
-│   └── data/                     # IP 清单数据（P0/P1/P2/P3）
-└── .github/workflows/
-    └── ci.yml                    # 统一仓 CI
-```
-
-## 用法
-
-### 添加统一仓（消费者，一次性）
+## 使用与维护
 
 ```bash
 fusesoc library add aixsilicon_ip_repo https://github.com/boyangwang1991-design/aixsilicon_ip_repo.git
+python3 scripts/build_ip_registry.py --check
+python3 scripts/update_registry_readme.py
+python3 scripts/update_registry_readme.py --check
 ```
 
-### 搜索 IP
+本地在 workflow 根通过 `uv run --no-sync python repos/aixsilicon_ip_repo/scripts/<脚本>` 执行。
+资产工程 scaffold、stage 与领域 Gate 使用对应开发套件；仓内校验不代替仿真、综合或发布资格。
 
-```bash
-ipkg search gpio
-ipkg list
-ipkg info <ip> <version>
-```
-
-### IP 状态查询（registry.yaml SSOT）
-
-```bash
-python3 scripts/ip_status.py --priority P0            # P0 全部 IP
-python3 scripts/ip_status.py --status released        # 已发布 IP
-python3 scripts/ip_status.py --type generator         # Generator 类 IP
-python3 scripts/ip_status.py --domain infrastructure  # 基础互联领域
-python3 scripts/ip_status.py --name uart              # 按名称搜索
-python3 scripts/ip_status.py --stats                  # 状态/优先级/类型统计
-python3 scripts/ip_status.py --format csv             # CSV 输出
-```
-
-### 维护 registry.yaml（SSOT）
-
-```bash
-# 1. 修改 scripts/data/*.py 清单（新增/调整 IP）
-python3 scripts/build_ip_registry.py --generate        # 重新生成 registry.yaml
-python3 scripts/build_ip_registry.py --check           # 只读校验（implemented 目录实态）
-python3 scripts/build_ip_registry.py --write           # 规范化重写（更新时间戳）
-
-# 2. 刷新 README 状态总览（改 registry 后必须运行）
-python3 scripts/update_registry_readme.py              # 就地刷新 README.md
-python3 scripts/update_registry_readme.py --check      # 只读检查一致性
-```
-
-### 入库新 IP / 新版本（发布侧）
-
-```bash
-# 1. 从构建结果入库
-ipkg stage <ip-workspace> --unified . --then-index
-
-# 2. 提交推送（含 tag）
-ipkg publish .
-```
-
-索引与内容在同一提交中更新，无需独立 PR。
-
-## registry.yaml 条目格式
-
-```yaml
-schema_version: "2.0"
-vendor: aixsilicon
-library: ip
-
-ips:
-  - id: PER-008              # 自动分配（按领域前缀 + 序号）
-    name: uart
-    domain: peripheral
-    subdomain: serial
-    type: ip                 # ip | generator | wrapper | subsystem
-    priority: P0             # P0~P3
-    status: released         # planned | implemented | released | deprecated
-    maturity: beta           # experimental | alpha | beta | production | legacy
-    version: "0.1.0"
-    interfaces: [apb4]
-    description: "..."
-    path: ips/boyangwang1991-design/uart/0.1.0
-    vendor: boyangwang1991-design   # 非 aixsilicon 命名空间时出现
-    core: boyangwang1991-design:ip:uart:0.1.0
-```
-
-**规则**：
-- `registry.yaml` 是**唯一 SSOT**，由 `scripts/build_ip_registry.py` 生成；
-- `status=implemented/released` 必须有对应物理目录（校验强制）；
-- `planned` 条目为规划候选，无物理目录；
-- 已交付 IP 使用 `ips/<vendor>/<ip>/<version>/` 布局，规划 IP 使用 `ips/<domain>/<subdomain>/<name>/` 布局。
-
-## IP 状态总览
-
-> 以下状态总览由 [`scripts/update_registry_readme.py`](scripts/update_registry_readme.py) 依据
-> [`registry.yaml`](registry.yaml:1)（SSOT）自动生成；**修改 `registry.yaml` 后必须运行**
-> `python3 scripts/update_registry_readme.py` 刷新本节，勿手工编辑。
+## 资产状态总览
 
 <!-- IP-CATALOG-STATUS:BEGIN -->
 > 本节由 `scripts/update_registry_readme.py` 依据 `registry.yaml`（SSOT）自动生成。
 > 修改 `registry.yaml` 后必须运行 `python3 scripts/update_registry_readme.py` 刷新本节；勿手工编辑。
-> 最后更新：`2026-09-11T04:15:41Z`
+> 最后更新：`2026-09-13T00:00:00Z`
 
 ### 总览
 
 | 指标                         | 数量 |
 |------------------------------|------|
-| 总条目（ips）                | 355  |
+| 总条目（ips）                | 293  |
 | released（已发布）           | 0    |
-| implemented（已实现/已交付） | 2    |
-| planned（规划候选）          | 353  |
+| implemented（已实现/已交付） | 3    |
+| planned（规划候选）          | 290  |
 | deprecated（已废弃）         | 0    |
-| 实现率                       | 0.6% |
+| 实现率                       | 1.0% |
 
-### 已发布 / 已实现 / 已纳管 IP（2）
+### 已发布 / 已实现 / 已纳管 IP（3）
 
-| ID      | IP                                                       | 类型 | 优先级 | 状态        | 版本  | 领域           |
-|---------|----------------------------------------------------------|------|--------|-------------|-------|----------------|
-| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)  | ip   | P0     | implemented | 1.0.0 | infrastructure |
-| PER-005 | [spi_master](ips/peripheral/serial/spi_master/README.md) | ip   | P0     | implemented | 1.0.0 | peripheral     |
+| ID             | IP                                                                             | 类型 | 优先级 | 状态        | 版本  | 领域           |
+|----------------|--------------------------------------------------------------------------------|------|--------|-------------|-------|----------------|
+| INF-004        | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)                        | ip   | P0     | implemented | 1.0.0 | infrastructure |
+| MIG-IP-BUS-003 | [apb_register_bridge](ips/infrastructure/bridge/apb_register_bridge/README.md) | ip   | P1     | implemented | 0.1.0 | infrastructure |
+| PER-005        | [spi_master](ips/peripheral/serial/spi_master/README.md)                       | ip   | P0     | implemented | 1.0.0 | peripheral     |
 
 ### 按优先级分布（released+implemented / planned）
 
 | 优先级 | 已交付 | planned | 合计 |
 |--------|--------|---------|------|
-| P0     | 2      | 79      | 81   |
-| P1     | 0      | 94      | 94   |
-| P2     | 0      | 100     | 100  |
-| P3     | 0      | 80      | 80   |
+| P0     | 2      | 71      | 73   |
+| P1     | 1      | 109     | 110  |
+| P2     | 0      | 71      | 71   |
+| P3     | 0      | 39      | 39   |
 
 ### 按类型分布
 
 | 类型      | 数量 |
 |-----------|------|
 | generator | 16   |
-| ip        | 313  |
-| subsystem | 10   |
-| wrapper   | 16   |
+| ip        | 269  |
+| wrapper   | 8    |
 
 ### 按领域分布（顶层 domain）
 
 | 领域           | 数量 |
 |----------------|------|
-| accelerator    | 22   |
+| accelerator    | 19   |
 | analog         | 7    |
-| automotive     | 7    |
+| automotive     | 1    |
 | cache          | 7    |
 | chip           | 8    |
-| chiplet        | 10   |
-| coherency      | 10   |
 | compute        | 7    |
 | crypto         | 3    |
-| debug_trace    | 12   |
+| debug_trace    | 13   |
 | dft            | 8    |
-| high_speed_io  | 11   |
-| infrastructure | 46   |
-| memory         | 35   |
+| infrastructure | 73   |
+| memory         | 17   |
 | mmu            | 4    |
-| multimedia     | 14   |
+| multimedia     | 4    |
 | network        | 6    |
 | peripheral     | 25   |
-| phy            | 4    |
-| reliability    | 5    |
-| safety         | 21   |
+| reliability    | 4    |
+| safety         | 20   |
 | security       | 26   |
-| subsystem      | 10   |
-| system         | 41   |
-| test           | 3    |
-| virtualization | 3    |
+| system         | 39   |
+| test           | 2    |
 
-### 全部 IP 明细（355，按领域分组）
+### 全部 IP 明细（293，按领域分组）
 
-#### accelerator（22，已交付=0）
+#### accelerator（19，已交付=0）
 
 | ID     | IP                                                                                                       | 类型 | 状态    | 优先级 | 版本  | 功能/描述            |
 |--------|----------------------------------------------------------------------------------------------------------|------|---------|--------|-------|----------------------|
@@ -216,17 +113,14 @@ ips:
 | AI-003 | [accelerator_scheduler](ips/accelerator/scheduler/accelerator_scheduler/README.md)                       | ip   | planned | P3     | 0.1.0 | 加速器调度器         |
 | AI-004 | [activation_engine](ips/accelerator/activation/activation_engine/README.md)                              | ip   | planned | P3     | 0.1.0 | 激活函数引擎         |
 | AI-005 | [ai_scratchpad_controller](ips/accelerator/memory/ai_scratchpad_controller/README.md)                    | ip   | planned | P3     | 0.1.0 | AI Scratchpad 控制器 |
-| AI-006 | [attention_accelerator](ips/accelerator/attention/attention_accelerator/README.md)                       | ip   | planned | P3     | 0.1.0 | 注意力加速器         |
 | AI-007 | [convolution_accelerator](ips/accelerator/conv/convolution_accelerator/README.md)                        | ip   | planned | P3     | 0.1.0 | 卷积加速器           |
 | AI-008 | [crc_accelerator](ips/accelerator/dsp/crc_accelerator/README.md)                                         | ip   | planned | P3     | 0.1.0 | CRC 加速器           |
-| AI-009 | [dct_accelerator](ips/accelerator/dsp/dct_accelerator/README.md)                                         | ip   | planned | P3     | 0.1.0 | DCT 加速器           |
 | AI-010 | [dequantization_engine](ips/accelerator/quant/dequantization_engine/README.md)                           | ip   | planned | P3     | 0.1.0 | 反量化引擎           |
 | AI-011 | [fft_accelerator](ips/accelerator/dsp/fft_accelerator/README.md)                                         | ip   | planned | P3     | 0.1.0 | FFT 加速器           |
 | AI-012 | [fir_accelerator](ips/accelerator/dsp/fir_accelerator/README.md)                                         | ip   | planned | P3     | 0.1.0 | FIR 加速器           |
 | AI-013 | [iir_accelerator](ips/accelerator/dsp/iir_accelerator/README.md)                                         | ip   | planned | P3     | 0.1.0 | IIR 加速器           |
 | AI-014 | [matrix_multiply_accelerator](ips/accelerator/matmul/matrix_multiply_accelerator/README.md)              | ip   | planned | P3     | 0.1.0 | 矩阵乘加速器         |
 | AI-015 | [quantization_engine](ips/accelerator/quant/quantization_engine/README.md)                               | ip   | planned | P3     | 0.1.0 | 量化引擎             |
-| AI-016 | [sparse_accelerator](ips/accelerator/sparse/sparse_accelerator/README.md)                                | ip   | planned | P3     | 0.1.0 | 稀疏加速器           |
 | AI-017 | [stream_fabric](ips/accelerator/fabric/stream_fabric/README.md)                                          | ip   | planned | P3     | 0.1.0 | 流式互联 Fabric      |
 | AI-018 | [systolic_array](ips/accelerator/systolic/systolic_array/README.md)                                      | ip   | planned | P3     | 0.1.0 | 脉动阵列             |
 | AI-019 | [tensor_core](ips/accelerator/matmul/tensor_core/README.md)                                              | ip   | planned | P3     | 0.1.0 | 张量核               |
@@ -246,17 +140,11 @@ ips:
 | ANA-006 | [temp_sensor_wrapper](ips/analog/sensor/temp_sensor_wrapper/README.md)         | wrapper | planned | P2     | 0.1.0 | 温度传感器 Wrapper |
 | ANA-007 | [voltage_monitor_wrapper](ips/analog/sensor/voltage_monitor_wrapper/README.md) | wrapper | planned | P2     | 0.1.0 | 电压监控器 Wrapper |
 
-#### automotive（7，已交付=0）
+#### automotive（1，已交付=0）
 
-| ID      | IP                                                                                         | 类型 | 状态    | 优先级 | 版本  | 功能/描述              |
-|---------|--------------------------------------------------------------------------------------------|------|---------|--------|-------|------------------------|
-| AUT-001 | [automotive_ethernet](ips/automotive/ethernet/automotive_ethernet/README.md)               | ip   | planned | P2     | 0.1.0 | 车载以太网控制器       |
-| AUT-002 | [e2e_protection_engine](ips/automotive/safety/e2e_protection_engine/README.md)             | ip   | planned | P2     | 0.1.0 | E2E 保护引擎（端到端） |
-| AUT-003 | [flexray_controller](ips/automotive/flexray/flexray_controller/README.md)                  | ip   | planned | P2     | 0.1.0 | FlexRay 控制器         |
-| AUT-004 | [psi5_controller](ips/automotive/sensor/psi5_controller/README.md)                         | ip   | planned | P2     | 0.1.0 | PSI5 控制器            |
-| AUT-005 | [sensor_interface_controller](ips/automotive/sensor/sensor_interface_controller/README.md) | ip   | planned | P2     | 0.1.0 | 传感器接口控制器       |
-| AUT-006 | [sent_controller](ips/automotive/sensor/sent_controller/README.md)                         | ip   | planned | P2     | 0.1.0 | SENT 控制器            |
-| AUT-007 | [tsn_controller](ips/automotive/ethernet/tsn_controller/README.md)                         | ip   | planned | P2     | 0.1.0 | TSN 控制器             |
+| ID      | IP                                                                             | 类型 | 状态    | 优先级 | 版本  | 功能/描述              |
+|---------|--------------------------------------------------------------------------------|------|---------|--------|-------|------------------------|
+| AUT-002 | [e2e_protection_engine](ips/automotive/safety/e2e_protection_engine/README.md) | ip   | planned | P2     | 0.1.0 | E2E 保护引擎（端到端） |
 
 #### cache（7，已交付=0）
 
@@ -283,36 +171,6 @@ ips:
 | CHP-007 | [package_config_controller](ips/chip/strap/package_config_controller/README.md) | ip        | planned | P1     | 0.1.0 | 封装配置控制器  |
 | CHP-008 | [pad_ring_adapter](ips/chip/pad/pad_ring_adapter/README.md)                     | generator | planned | P1     | 0.1.0 | Pad Ring 适配器 |
 
-#### chiplet（10，已交付=0）
-
-| ID      | IP                                                                                          | 类型 | 状态    | 优先级 | 版本  | 功能/描述                                                   |
-|---------|---------------------------------------------------------------------------------------------|------|---------|--------|-------|-------------------------------------------------------------|
-| CHL-001 | [chiplet_discovery_controller](ips/chiplet/interdie/chiplet_discovery_controller/README.md) | ip   | planned | P3     | 0.1.0 | Chiplet 发现控制器                                          |
-| CHL-002 | [chiplet_mailbox](ips/chiplet/interdie/chiplet_mailbox/README.md)                           | ip   | planned | P3     | 0.1.0 | Chiplet 邮箱                                                |
-| CHL-003 | [die_id_controller](ips/chiplet/interdie/die_id_controller/README.md)                       | ip   | planned | P3     | 0.1.0 | Die ID 控制器                                               |
-| CHL-004 | [die_to_die_adapter](ips/chiplet/die2die/die_to_die_adapter/README.md)                      | ip   | planned | P3     | 0.1.0 | Die-to-Die 适配器                                           |
-| CHL-005 | [die_to_die_crc](ips/chiplet/die2die/die_to_die_crc/README.md)                              | ip   | planned | P3     | 0.1.0 | Die-to-Die CRC                                              |
-| CHL-006 | [interdie_cdc_adapter](ips/chiplet/interdie/interdie_cdc_adapter/README.md)                 | ip   | planned | P3     | 0.1.0 | Die 间 CDC 适配器                                           |
-| CHL-007 | [interdie_interrupt_bridge](ips/chiplet/interdie/interdie_interrupt_bridge/README.md)       | ip   | planned | P3     | 0.1.0 | Die 间中断桥                                                |
-| CHL-008 | [link_training_controller](ips/chiplet/die2die/link_training_controller/README.md)          | ip   | planned | P3     | 0.1.0 | 链路训练控制器                                              |
-| CHL-009 | [retry_controller](ips/chiplet/die2die/retry_controller/README.md)                          | ip   | planned | P3     | 0.1.0 | Die-to-Die 链路重试控制器（集成序列号、重放缓冲与链路策略） |
-| CHL-010 | [ucie_controller](ips/chiplet/ucie/ucie_controller/README.md)                               | ip   | planned | P3     | 0.1.0 | UCIe 控制器                                                 |
-
-#### coherency（10，已交付=0）
-
-| ID      | IP                                                                               | 类型 | 状态    | 优先级 | 版本  | 功能/描述           |
-|---------|----------------------------------------------------------------------------------|------|---------|--------|-------|---------------------|
-| COH-001 | [ace_bridge](ips/coherency/ace/ace_bridge/README.md)                             | ip   | planned | P2     | 0.1.0 | ACE 桥              |
-| COH-002 | [ace_lite_bridge](ips/coherency/ace/ace_lite_bridge/README.md)                   | ip   | planned | P2     | 0.1.0 | ACE-Lite 桥         |
-| COH-003 | [coherency_manager](ips/coherency/ace/coherency_manager/README.md)               | ip   | planned | P2     | 0.1.0 | 一致性管理器        |
-| COH-004 | [chi_home_node](ips/coherency/chi/chi_home_node/README.md)                       | ip   | planned | P3     | 0.1.0 | CHI Home Node       |
-| COH-005 | [chi_interface](ips/coherency/chi/chi_interface/README.md)                       | ip   | planned | P3     | 0.1.0 | CHI 接口            |
-| COH-006 | [chi_request_node](ips/coherency/chi/chi_request_node/README.md)                 | ip   | planned | P3     | 0.1.0 | CHI Request Node    |
-| COH-007 | [chi_router](ips/coherency/chi/chi_router/README.md)                             | ip   | planned | P3     | 0.1.0 | CHI 路由器          |
-| COH-008 | [chi_slave_node](ips/coherency/chi/chi_slave_node/README.md)                     | ip   | planned | P3     | 0.1.0 | CHI Slave Node      |
-| COH-009 | [coherent_noc](ips/coherency/chi/coherent_noc/README.md)                         | ip   | planned | P3     | 0.1.0 | 一致性 NoC          |
-| COH-010 | [distributed_snoop_filter](ips/coherency/chi/distributed_snoop_filter/README.md) | ip   | planned | P3     | 0.1.0 | 分布式 Snoop Filter |
-
 #### compute（7，已交付=0）
 
 | ID      | IP                                                                         | 类型 | 状态    | 优先级 | 版本  | 功能/描述               |
@@ -333,22 +191,23 @@ ips:
 | CRY-002 | [sm3](ips/crypto/sm/sm3/README.md) | ip   | planned | P2     | 0.1.0 | SM3 国密哈希引擎   |
 | CRY-003 | [sm4](ips/crypto/sm/sm4/README.md) | ip   | planned | P2     | 0.1.0 | SM4 国密加解密引擎 |
 
-#### debug_trace（12，已交付=0）
+#### debug_trace（13，已交付=0）
 
-| ID      | IP                                                                                   | 类型 | 状态    | 优先级 | 版本  | 功能/描述                                          |
-|---------|--------------------------------------------------------------------------------------|------|---------|--------|-------|----------------------------------------------------|
-| DBG-001 | [debug_register_block](ips/debug_trace/debug/debug_register_block/README.md)         | ip   | planned | P0     | 0.1.0 | 调试寄存器块                                       |
-| DBG-002 | [jtag_tap](ips/debug_trace/jtag/jtag_tap/README.md)                                  | ip   | planned | P0     | 0.1.0 | JTAG TAP 控制器                                    |
-| DBG-003 | [performance_monitor](ips/debug_trace/monitor/performance_monitor/README.md)         | ip   | planned | P0     | 0.1.0 | 性能监控器                                         |
-| DBG-004 | [riscv_debug_module](ips/debug_trace/debug/riscv_debug_module/README.md)             | ip   | planned | P0     | 0.1.0 | RISC-V Debug Module                                |
-| DBG-005 | [trace_buffer](ips/debug_trace/trace/trace_buffer/README.md)                         | ip   | planned | P0     | 0.1.0 | Trace 缓冲                                         |
-| DBG-006 | [apb_transaction_monitor](ips/debug_trace/monitor/apb_transaction_monitor/README.md) | ip   | planned | P1     | 0.1.0 | APB 事务监控器                                     |
-| DBG-007 | [axi_transaction_monitor](ips/debug_trace/monitor/axi_transaction_monitor/README.md) | ip   | planned | P1     | 0.1.0 | AXI 事务监控器                                     |
-| DBG-008 | [bus_monitor](ips/debug_trace/monitor/bus_monitor/README.md)                         | ip   | planned | P1     | 0.1.0 | 总线监控器                                         |
-| DBG-009 | [error_logger](ips/debug_trace/monitor/error_logger/README.md)                       | ip   | planned | P1     | 0.1.0 | 错误记录器                                         |
-| DBG-010 | [timestamp_unit](ips/debug_trace/trace/timestamp_unit/README.md)                     | ip   | planned | P1     | 0.1.0 | 时间戳单元                                         |
-| DBG-011 | [trace_funnel](ips/debug_trace/trace/trace_funnel/README.md)                         | ip   | planned | P1     | 0.1.0 | Trace 漏斗控制器（汇聚核 + 时间戳/过滤配置 + CSR） |
-| DBG-012 | [trace_replicator](ips/debug_trace/trace/trace_replicator/README.md)                 | ip   | planned | P1     | 0.1.0 | Trace 复制器                                       |
+| ID             | IP                                                                                       | 类型 | 状态    | 优先级 | 版本  | 功能/描述                                                                  |
+|----------------|------------------------------------------------------------------------------------------|------|---------|--------|-------|----------------------------------------------------------------------------|
+| DBG-001        | [debug_register_block](ips/debug_trace/debug/debug_register_block/README.md)             | ip   | planned | P0     | 0.1.0 | 调试寄存器块                                                               |
+| DBG-002        | [jtag_tap](ips/debug_trace/jtag/jtag_tap/README.md)                                      | ip   | planned | P0     | 0.1.0 | JTAG TAP 控制器                                                            |
+| DBG-003        | [performance_monitor](ips/debug_trace/monitor/performance_monitor/README.md)             | ip   | planned | P0     | 0.1.0 | 性能监控器                                                                 |
+| DBG-004        | [riscv_debug_module](ips/debug_trace/debug/riscv_debug_module/README.md)                 | ip   | planned | P0     | 0.1.0 | RISC-V Debug Module                                                        |
+| DBG-005        | [trace_buffer](ips/debug_trace/trace/trace_buffer/README.md)                             | ip   | planned | P0     | 0.1.0 | Trace 缓冲                                                                 |
+| DBG-006        | [apb_transaction_monitor](ips/debug_trace/monitor/apb_transaction_monitor/README.md)     | ip   | planned | P1     | 0.1.0 | APB 事务监控器                                                             |
+| DBG-007        | [axi_transaction_monitor](ips/debug_trace/monitor/axi_transaction_monitor/README.md)     | ip   | planned | P1     | 0.1.0 | AXI 事务监控器                                                             |
+| DBG-008        | [bus_monitor](ips/debug_trace/monitor/bus_monitor/README.md)                             | ip   | planned | P1     | 0.1.0 | 总线监控器                                                                 |
+| DBG-009        | [error_logger](ips/debug_trace/monitor/error_logger/README.md)                           | ip   | planned | P1     | 0.1.0 | 错误记录器                                                                 |
+| DBG-010        | [timestamp_unit](ips/debug_trace/trace/timestamp_unit/README.md)                         | ip   | planned | P1     | 0.1.0 | 时间戳单元                                                                 |
+| DBG-011        | [trace_funnel](ips/debug_trace/trace/trace_funnel/README.md)                             | ip   | planned | P1     | 0.1.0 | Trace 漏斗控制器（汇聚核 + 时间戳/过滤配置 + CSR）                         |
+| DBG-012        | [trace_replicator](ips/debug_trace/trace/trace_replicator/README.md)                     | ip   | planned | P1     | 0.1.0 | Trace 复制器                                                               |
+| MIG-IP-MON-016 | [lightweight_logic_analyzer](ips/debug_trace/debug/lightweight_logic_analyzer/README.md) | ip   | planned | P3     | 0.1.0 | Lightweight Logic Analyzer Shell；trigger+buffer+readout；调试配置按需裁剪 |
 
 #### dft（8，已交付=0）
 
@@ -363,140 +222,123 @@ ips:
 | DFT-007 | [fuse_repair_controller](ips/dft/mbist/fuse_repair_controller/README.md)         | ip   | planned | P2     | 0.1.0 | Fuse 修复控制器 |
 | DFT-008 | [memory_redundancy_analyzer](ips/dft/mbist/memory_redundancy_analyzer/README.md) | ip   | planned | P2     | 0.1.0 | 内存冗余分析器  |
 
-#### high_speed_io（11，已交付=0）
+#### infrastructure（73，已交付=2）
 
-| ID      | IP                                                                          | 类型 | 状态    | 优先级 | 版本  | 功能/描述       |
-|---------|-----------------------------------------------------------------------------|------|---------|--------|-------|-----------------|
-| HSI-001 | [10g_mac](ips/high_speed_io/ethernet/10g_mac/README.md)                     | ip   | planned | P2     | 0.1.0 | 10G 以太网 MAC  |
-| HSI-002 | [ethernet_mac](ips/high_speed_io/ethernet/ethernet_mac/README.md)           | ip   | planned | P2     | 0.1.0 | 以太网 MAC      |
-| HSI-003 | [gbe_mac](ips/high_speed_io/ethernet/gbe_mac/README.md)                     | ip   | planned | P2     | 0.1.0 | 1G 以太网 MAC   |
-| HSI-004 | [mipi_csi_controller](ips/high_speed_io/mipi/mipi_csi_controller/README.md) | ip   | planned | P2     | 0.1.0 | MIPI CSI 控制器 |
-| HSI-005 | [mipi_dsi_controller](ips/high_speed_io/mipi/mipi_dsi_controller/README.md) | ip   | planned | P2     | 0.1.0 | MIPI DSI 控制器 |
-| HSI-006 | [pcie_controller](ips/high_speed_io/pcie/pcie_controller/README.md)         | ip   | planned | P2     | 0.1.0 | PCIe 控制器     |
-| HSI-007 | [sata_controller](ips/high_speed_io/storage/sata_controller/README.md)      | ip   | planned | P2     | 0.1.0 | SATA 控制器     |
-| HSI-008 | [serdes_controller](ips/high_speed_io/serdes/serdes_controller/README.md)   | ip   | planned | P2     | 0.1.0 | SerDes 控制器   |
-| HSI-009 | [ufs_controller](ips/high_speed_io/storage/ufs_controller/README.md)        | ip   | planned | P2     | 0.1.0 | UFS 控制器      |
-| HSI-010 | [usb2_controller](ips/high_speed_io/usb/usb2_controller/README.md)          | ip   | planned | P2     | 0.1.0 | USB 2.0 控制器  |
-| HSI-011 | [usb3_controller](ips/high_speed_io/usb/usb3_controller/README.md)          | ip   | planned | P2     | 0.1.0 | USB 3.x 控制器  |
+| ID              | IP                                                                                        | 类型      | 状态        | 优先级 | 版本  | 功能/描述                                                                                                                                                                                             |
+|-----------------|-------------------------------------------------------------------------------------------|-----------|-------------|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INF-001         | [ahb2apb_bridge](ips/infrastructure/bridge/ahb2apb_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AHB→APB 桥（H2P）                                                                                                                                                                                     |
+| INF-002         | [ahb2axi_bridge](ips/infrastructure/bridge/ahb2axi_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AHB→AXI 桥（H2X）                                                                                                                                                                                     |
+| INF-003         | [ahb_cdc_bridge](ips/infrastructure/cdc/ahb_cdc_bridge/README.md)                         | ip        | planned     | P0     | 0.1.0 | AHB CDC 桥                                                                                                                                                                                            |
+| INF-004         | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)                                   | ip        | implemented | P0     | 1.0.0 | APB Demux（1→N APB Router）                                                                                                                                                                           |
+| INF-005         | [apb_error_slave](ips/infrastructure/apb/apb_error_slave/README.md)                       | ip        | planned     | P0     | 0.1.0 | APB 错误默认 Slave                                                                                                                                                                                    |
+| INF-006         | [apb_mux](ips/infrastructure/apb/apb_mux/README.md)                                       | ip        | planned     | P0     | 0.1.0 | APB Mux                                                                                                                                                                                               |
+| INF-007         | [apb_timeout](ips/infrastructure/apb/apb_timeout/README.md)                               | ip        | planned     | P0     | 0.1.0 | APB 超时监控                                                                                                                                                                                          |
+| INF-008         | [axi2ahb_bridge](ips/infrastructure/bridge/axi2ahb_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AXI→AHB 桥（X2H）                                                                                                                                                                                     |
+| INF-009         | [axi4_axi4lite_converter](ips/infrastructure/bridge/axi4_axi4lite_converter/README.md)    | ip        | planned     | P0     | 0.1.0 | AXI4→AXI4-Lite 协议转换                                                                                                                                                                               |
+| INF-010         | [axi_address_remapper](ips/infrastructure/axi/axi_address_remapper/README.md)             | ip        | planned     | P0     | 0.1.0 | AXI 地址重映射                                                                                                                                                                                        |
+| INF-011         | [axi_cdc_bridge](ips/infrastructure/cdc/axi_cdc_bridge/README.md)                         | ip        | planned     | P0     | 0.1.0 | AXI CDC 桥（异步时钟）                                                                                                                                                                                |
+| INF-012         | [axi_error_slave](ips/infrastructure/axi/axi_error_slave/README.md)                       | ip        | planned     | P0     | 0.1.0 | AXI 默认错误响应 Slave                                                                                                                                                                                |
+| INF-013         | [axi_interconnect](ips/infrastructure/axi/axi_interconnect/README.md)                     | generator | planned     | P0     | 0.1.0 | 多 Master/Slave AXI 互联（拓扑生成）                                                                                                                                                                  |
+| INF-015         | [axi_register_slice](ips/infrastructure/axi/axi_register_slice/README.md)                 | ip        | planned     | P0     | 0.1.0 | 完整 AXI 接口 Register Slice/TPI；按通道配置缓冲与流水，承担完整接口契约；底层复用通道 CBB。                                                                                                          |
+| INF-018         | [ahb_interconnect](ips/infrastructure/ahb/ahb_interconnect/README.md)                     | generator | planned     | P1     | 0.1.0 | AHB 互联                                                                                                                                                                                              |
+| INF-019         | [ahb_mux_demux](ips/infrastructure/ahb/ahb_mux_demux/README.md)                           | ip        | planned     | P1     | 0.1.0 | AHB Mux/Demux                                                                                                                                                                                         |
+| INF-020         | [apb_firewall](ips/infrastructure/apb/apb_firewall/README.md)                             | ip        | planned     | P1     | 0.1.0 | APB 防火墙                                                                                                                                                                                            |
+| INF-021         | [apb_isolation_bridge](ips/infrastructure/apb/apb_isolation_bridge/README.md)             | ip        | planned     | P1     | 0.1.0 | APB 隔离桥                                                                                                                                                                                            |
+| INF-022         | [axi_arbiter](ips/infrastructure/axi/axi_arbiter/README.md)                               | ip        | planned     | P1     | 0.1.0 | AXI 仲裁器                                                                                                                                                                                            |
+| INF-023         | [axi_bandwidth_limiter](ips/infrastructure/axi/axi_bandwidth_limiter/README.md)           | ip        | planned     | P1     | 0.1.0 | AXI 带宽限制器                                                                                                                                                                                        |
+| INF-024         | [axi_exclusive_monitor](ips/infrastructure/axi/axi_exclusive_monitor/README.md)           | ip        | planned     | P1     | 0.1.0 | AXI 独占访问监控                                                                                                                                                                                      |
+| INF-025         | [axi_isolation_bridge](ips/infrastructure/axi/axi_isolation_bridge/README.md)             | ip        | planned     | P1     | 0.1.0 | AXI 隔离桥                                                                                                                                                                                            |
+| INF-026         | [axi_ordering_controller](ips/infrastructure/axi/axi_ordering_controller/README.md)       | ip        | planned     | P1     | 0.1.0 | AXI 顺序控制器                                                                                                                                                                                        |
+| INF-027         | [axi_protocol_firewall](ips/infrastructure/axi/axi_protocol_firewall/README.md)           | ip        | planned     | P1     | 0.1.0 | AXI 协议防火墙                                                                                                                                                                                        |
+| INF-028         | [axi_qos_controller](ips/infrastructure/axi/axi_qos_controller/README.md)                 | ip        | planned     | P1     | 0.1.0 | AXI QoS 控制器                                                                                                                                                                                        |
+| INF-029         | [axi_traffic_shaper](ips/infrastructure/axi/axi_traffic_shaper/README.md)                 | ip        | planned     | P1     | 0.1.0 | AXI 流量整形器                                                                                                                                                                                        |
+| INF-030         | [axis_cdc](ips/infrastructure/cdc/axis_cdc/README.md)                                     | ip        | planned     | P1     | 0.1.0 | AXI-Stream CDC                                                                                                                                                                                        |
+| INF-031         | [axis_demux](ips/infrastructure/axi/axis_demux/README.md)                                 | ip        | planned     | P1     | 0.1.0 | AXI-Stream Demux                                                                                                                                                                                      |
+| INF-032         | [axis_mux](ips/infrastructure/axi/axis_mux/README.md)                                     | ip        | planned     | P1     | 0.1.0 | AXI-Stream Mux                                                                                                                                                                                        |
+| INF-034         | [reset_domain_bridge](ips/infrastructure/cdc/reset_domain_bridge/README.md)               | ip        | planned     | P1     | 0.1.0 | 复位域桥（RDC）                                                                                                                                                                                       |
+| INF-036         | [stream_interconnect](ips/infrastructure/axi/stream_interconnect/README.md)               | generator | planned     | P1     | 0.1.0 | AXI-Stream 互联                                                                                                                                                                                       |
+| INF-037         | [apb_noc_bridge](ips/infrastructure/noc/apb_noc_bridge/README.md)                         | ip        | planned     | P2     | 0.1.0 | APB↔NoC 桥                                                                                                                                                                                            |
+| INF-038         | [axi_noc_bridge](ips/infrastructure/noc/axi_noc_bridge/README.md)                         | ip        | planned     | P2     | 0.1.0 | AXI↔NoC 桥                                                                                                                                                                                            |
+| INF-039         | [noc_crossbar](ips/infrastructure/noc/noc_crossbar/README.md)                             | ip        | planned     | P2     | 0.1.0 | NoC Crossbar                                                                                                                                                                                          |
+| INF-040         | [noc_firewall](ips/infrastructure/noc/noc_firewall/README.md)                             | ip        | planned     | P2     | 0.1.0 | NoC 防火墙                                                                                                                                                                                            |
+| INF-041         | [noc_network_interface](ips/infrastructure/noc/noc_network_interface/README.md)           | ip        | planned     | P2     | 0.1.0 | NoC 网络接口（NI）                                                                                                                                                                                    |
+| INF-042         | [noc_performance_monitor](ips/infrastructure/noc/noc_performance_monitor/README.md)       | ip        | planned     | P2     | 0.1.0 | NoC 性能监控器                                                                                                                                                                                        |
+| INF-043         | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                       | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                                                                                                                                                                                        |
+| INF-044         | [noc_router](ips/infrastructure/noc/noc_router/README.md)                                 | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                                                                                                                                                                                  |
+| INF-045         | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)                 | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                                                                                                                                                                                        |
+| MIG-IP-AXI-001  | [axi_channel_register_slice](ips/infrastructure/axi/axi_channel_register_slice/README.md) | ip        | planned     | P0     | 0.1.0 | AXI 单通道缓冲与时序切片；按用户 2026-09-13 仓库归属要求迁入 IP，区别于完整五通道 axi_register_slice。                                                                                                |
+| MIG-IP-AXI-002  | [axi_lite_register_slice](ips/infrastructure/axi/axi_lite_register_slice/README.md)       | ip        | planned     | P0     | 0.1.0 | AXI-Lite Register Slice；combined/per-channel；小面积低延迟                                                                                                                                           |
+| MIG-IP-AXI-003  | [axi_buffer](ips/infrastructure/axi/axi_buffer/README.md)                                 | ip        | planned     | P1     | 0.1.0 | AXI Buffer；channel depth/transaction buffer；Outstanding与背压                                                                                                                                       |
+| MIG-IP-AXI-004  | [axi_width_converter](ips/infrastructure/axi/axi_width_converter/README.md)               | ip        | planned     | P1     | 0.1.0 | AXI Data Width Converter；upsize/downsize；Burst、strobe、unaligned                                                                                                                                   |
+| MIG-IP-AXI-005  | [axi_addr_width_adapter](ips/infrastructure/axi/axi_addr_width_adapter/README.md)         | ip        | planned     | P1     | 0.1.0 | AXI Address Width Adapter；extend/truncate/window；地址合法性                                                                                                                                         |
+| MIG-IP-AXI-006  | [axi_id_converter](ips/infrastructure/axi/axi_id_converter/README.md)                     | ip        | planned     | P1     | 0.1.0 | AXI ID Width Converter；remap/compress/expand；ID表面积和并发                                                                                                                                         |
+| MIG-IP-AXI-007  | [axi_user_signal_adapter](ips/infrastructure/axi/axi_user_signal_adapter/README.md)       | ip        | planned     | P2     | 0.1.0 | AXI User Signal Adapter；map/tie/filter；固定字段裁剪                                                                                                                                                 |
+| MIG-IP-AXI-008  | [axi_burst_splitter](ips/infrastructure/axi/axi_burst_splitter/README.md)                 | ip        | planned     | P1     | 0.1.0 | AXI Burst Splitter；boundary/max-length/4KB；状态与吞吐                                                                                                                                               |
+| MIG-IP-AXI-010  | [axi_burst_length_adapter](ips/infrastructure/axi/axi_burst_length_adapter/README.md)     | ip        | planned     | P2     | 0.1.0 | AXI Burst Length Adapter；fixed/max programmable；地址推进                                                                                                                                            |
+| MIG-IP-AXI-011  | [axi_outstanding_limiter](ips/infrastructure/axi/axi_outstanding_limiter/README.md)       | ip        | planned     | P1     | 0.1.0 | AXI Outstanding Limiter；global/per-ID/per-channel；计数器和阻塞                                                                                                                                      |
+| MIG-IP-AXI-013  | [axi_transaction_serializer](ips/infrastructure/axi/axi_transaction_serializer/README.md) | ip        | planned     | P1     | 0.1.0 | AXI Transaction Serializer；full/per-ID；面积换并发                                                                                                                                                   |
+| MIG-IP-AXI-016  | [axi_protocol_converter](ips/infrastructure/bridge/axi_protocol_converter/README.md)      | ip        | planned     | P1     | 0.1.0 | AXI Protocol Converter；AXI4↔AXI4-Lite subset；Burst拆分与错误                                                                                                                                        |
+| MIG-IP-AXI-017  | [axi2apb_bridge](ips/infrastructure/bridge/axi2apb_bridge/README.md)                      | ip        | planned     | P1     | 0.1.0 | AXI-to-APB Bridge；single/multi port；队列、译码、时钟                                                                                                                                                |
+| MIG-IP-AXI-020  | [axi_demux](ips/infrastructure/axi/axi_demux/README.md)                                   | ip        | planned     | P1     | 0.1.0 | AXI Demux；static/dynamic target；响应路由状态                                                                                                                                                        |
+| MIG-IP-AXI-021  | [axi_mux](ips/infrastructure/axi/axi_mux/README.md)                                       | ip        | planned     | P1     | 0.1.0 | AXI Mux；fixed/RR/QoS arbitration；五通道仲裁与锁定                                                                                                                                                   |
+| MIG-IP-AXI-024  | [axi_timeout_monitor](ips/infrastructure/axi/axi_timeout_monitor/README.md)               | ip        | planned     | P1     | 0.1.0 | AXI Timeout Monitor；per-channel/transaction；表项和恢复策略                                                                                                                                          |
+| MIG-IP-AXI-028  | [axi_qos_mapper](ips/infrastructure/axi/axi_qos_mapper/README.md)                         | ip        | planned     | P2     | 0.1.0 | AXI QoS Mapper；static/table/traffic class；配置和仲裁衔接                                                                                                                                            |
+| MIG-IP-AXI-030  | [axi_error_injector](ips/infrastructure/axi/axi_error_injector/README.md)                 | ip        | planned     | P2     | 0.1.0 | AXI Error Injector；channel/response/data；验证模式隔离                                                                                                                                               |
+| MIG-IP-AXIS-001 | [axis_register_slice](ips/infrastructure/axis/axis_register_slice/README.md)              | ip        | planned     | P0     | 0.1.0 | AXI-Stream Register Slice；F/B/full/skid；Ready路径                                                                                                                                                   |
+| MIG-IP-AXIS-002 | [axis_width_converter](ips/infrastructure/axis/axis_width_converter/README.md)            | ip        | planned     | P1     | 0.1.0 | AXI-Stream Width Converter；byte-aligned/general ratio；TKEEP/TLAST对齐                                                                                                                               |
+| MIG-IP-AXIS-003 | [axis_switch](ips/infrastructure/axis/axis_switch/README.md)                              | ip        | planned     | P2     | 0.1.0 | AXI-Stream Switch；mux/demux/crossbar；包锁定与路由                                                                                                                                                   |
+| MIG-IP-AXIS-004 | [axis_packet_fifo](ips/infrastructure/axis/axis_packet_fifo/README.md)                    | ip        | planned     | P1     | 0.1.0 | AXI-Stream Packet FIFO；store-forward/cut-through；包边界与容量                                                                                                                                       |
+| MIG-IP-AXIS-005 | [axis_broadcaster](ips/infrastructure/axis/axis_broadcaster/README.md)                    | ip        | planned     | P2     | 0.1.0 | AXI-Stream Broadcaster；all/subset outputs；Ready汇聚                                                                                                                                                 |
+| MIG-IP-AXIS-006 | [axis_combiner_subset](ips/infrastructure/axis/axis_combiner_subset/README.md)            | ip        | planned     | P2     | 0.1.0 | AXI-Stream Combiner/Subset；TDATA/TUSER composition；Lane映射                                                                                                                                         |
+| MIG-IP-AXIS-007 | [axis_frame_length_monitor](ips/infrastructure/axis/axis_frame_length_monitor/README.md)  | ip        | planned     | P2     | 0.1.0 | AXI-Stream Frame Length Monitor；min/max/count；低开销检查                                                                                                                                            |
+| MIG-IP-AXIS-008 | [axis_rate_limiter](ips/infrastructure/axis/axis_rate_limiter/README.md)                  | ip        | planned     | P2     | 0.1.0 | AXI-Stream Rate Limiter；token bucket/gap insert；吞吐整形                                                                                                                                            |
+| MIG-IP-BUS-002  | [apb_slave_adapter](ips/infrastructure/bridge/apb_slave_adapter/README.md)                | ip        | planned     | P0     | 0.1.0 | APB Slave Adapter；APB3/APB4、wait/error；低面积与时序                                                                                                                                                |
+| MIG-IP-BUS-003  | [apb_register_bridge](ips/infrastructure/bridge/apb_register_bridge/README.md)            | ip        | implemented | P1     | 0.1.0 | 同钟域 APB Slave→Master 寄存桥；协调 SETUP/ACCESS、等待与响应，避免重复下游访问；切断请求/响应时序路径，不是全部信号直接延迟一拍。 已迁入原 BUS-003 完整实现；保留旧构建标识，IP 发布资格待重新评估。 |
+| MIG-IP-BUS-006  | [apb_cdc_bridge](ips/infrastructure/bridge/apb_cdc_bridge/README.md)                      | ip        | planned     | P1     | 0.1.0 | APB CDC Bridge；handshake/async queue；低吞吐CDC优化                                                                                                                                                  |
+| MIG-IP-BUS-007  | [apb_width_adapter](ips/infrastructure/bridge/apb_width_adapter/README.md)                | ip        | planned     | P2     | 0.1.0 | APB Width Adapter；32/64/custom；Byte strobe与跨拍                                                                                                                                                    |
+| MIG-IP-BUS-009  | [ahb_lite_slave_adapter](ips/infrastructure/bridge/ahb_lite_slave_adapter/README.md)      | ip        | planned     | P1     | 0.1.0 | AHB-Lite Slave Adapter；pipelined address/data；地址/数据相位                                                                                                                                         |
+| MIG-IP-BUS-010  | [ahb_lite_register_slice](ips/infrastructure/bridge/ahb_lite_register_slice/README.md)    | ip        | planned     | P1     | 0.1.0 | AHB-Lite Register Slice；forward/full；HREADY路径                                                                                                                                                     |
+| MIG-IP-BUS-013  | [ahb_apb_bridge](ips/infrastructure/bridge/ahb_apb_bridge/README.md)                      | ip        | planned     | P1     | 0.1.0 | AHB↔APB Bridge；single/multi APB port；Buffer与时钟比                                                                                                                                                 |
 
-#### infrastructure（46，已交付=1）
+#### memory（17，已交付=0）
 
-| ID      | IP                                                                                     | 类型      | 状态        | 优先级 | 版本  | 功能/描述                                                          |
-|---------|----------------------------------------------------------------------------------------|-----------|-------------|--------|-------|--------------------------------------------------------------------|
-| INF-001 | [ahb2apb_bridge](ips/infrastructure/bridge/ahb2apb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→APB 桥（H2P）                                                  |
-| INF-002 | [ahb2axi_bridge](ips/infrastructure/bridge/ahb2axi_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AHB→AXI 桥（H2X）                                                  |
-| INF-003 | [ahb_cdc_bridge](ips/infrastructure/cdc/ahb_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AHB CDC 桥                                                         |
-| INF-004 | [apb_demux](ips/infrastructure/apb/apb_demux/README.md)                                | ip        | implemented | P0     | 1.0.0 | APB Demux（1→N APB Router）                                        |
-| INF-005 | [apb_error_slave](ips/infrastructure/apb/apb_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | APB 错误默认 Slave                                                 |
-| INF-006 | [apb_mux](ips/infrastructure/apb/apb_mux/README.md)                                    | ip        | planned     | P0     | 0.1.0 | APB Mux                                                            |
-| INF-007 | [apb_timeout](ips/infrastructure/apb/apb_timeout/README.md)                            | ip        | planned     | P0     | 0.1.0 | APB 超时监控                                                       |
-| INF-008 | [axi2ahb_bridge](ips/infrastructure/bridge/axi2ahb_bridge/README.md)                   | ip        | planned     | P0     | 0.1.0 | AXI→AHB 桥（X2H）                                                  |
-| INF-009 | [axi4_axi4lite_converter](ips/infrastructure/bridge/axi4_axi4lite_converter/README.md) | ip        | planned     | P0     | 0.1.0 | AXI4→AXI4-Lite 协议转换                                            |
-| INF-010 | [axi_address_remapper](ips/infrastructure/axi/axi_address_remapper/README.md)          | ip        | planned     | P0     | 0.1.0 | AXI 地址重映射                                                     |
-| INF-011 | [axi_cdc_bridge](ips/infrastructure/cdc/axi_cdc_bridge/README.md)                      | ip        | planned     | P0     | 0.1.0 | AXI CDC 桥（异步时钟）                                             |
-| INF-012 | [axi_error_slave](ips/infrastructure/axi/axi_error_slave/README.md)                    | ip        | planned     | P0     | 0.1.0 | AXI 默认错误响应 Slave                                             |
-| INF-013 | [axi_interconnect](ips/infrastructure/axi/axi_interconnect/README.md)                  | generator | planned     | P0     | 0.1.0 | 多 Master/Slave AXI 互联（拓扑生成）                               |
-| INF-014 | [axi_pipeline](ips/infrastructure/axi/axi_pipeline/README.md)                          | ip        | planned     | P0     | 0.1.0 | AXI 流水线（timing）                                               |
-| INF-015 | [axi_register_slice](ips/infrastructure/axi/axi_register_slice/README.md)              | ip        | planned     | P0     | 0.1.0 | AXI 寄存器切片（timing/PPA）                                       |
-| INF-016 | [interrupt_cdc_bridge](ips/infrastructure/cdc/interrupt_cdc_bridge/README.md)          | ip        | planned     | P0     | 0.1.0 | 中断 CDC 桥                                                        |
-| INF-017 | [register_cdc_bridge](ips/infrastructure/cdc/register_cdc_bridge/README.md)            | ip        | planned     | P0     | 0.1.0 | 寄存器 CDC 桥                                                      |
-| INF-018 | [ahb_interconnect](ips/infrastructure/ahb/ahb_interconnect/README.md)                  | generator | planned     | P1     | 0.1.0 | AHB 互联                                                           |
-| INF-019 | [ahb_mux_demux](ips/infrastructure/ahb/ahb_mux_demux/README.md)                        | ip        | planned     | P1     | 0.1.0 | AHB Mux/Demux                                                      |
-| INF-020 | [apb_firewall](ips/infrastructure/apb/apb_firewall/README.md)                          | ip        | planned     | P1     | 0.1.0 | APB 防火墙                                                         |
-| INF-021 | [apb_isolation_bridge](ips/infrastructure/apb/apb_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | APB 隔离桥                                                         |
-| INF-022 | [axi_arbiter](ips/infrastructure/axi/axi_arbiter/README.md)                            | ip        | planned     | P1     | 0.1.0 | AXI 仲裁器                                                         |
-| INF-023 | [axi_bandwidth_limiter](ips/infrastructure/axi/axi_bandwidth_limiter/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 带宽限制器                                                     |
-| INF-024 | [axi_exclusive_monitor](ips/infrastructure/axi/axi_exclusive_monitor/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 独占访问监控                                                   |
-| INF-025 | [axi_isolation_bridge](ips/infrastructure/axi/axi_isolation_bridge/README.md)          | ip        | planned     | P1     | 0.1.0 | AXI 隔离桥                                                         |
-| INF-026 | [axi_ordering_controller](ips/infrastructure/axi/axi_ordering_controller/README.md)    | ip        | planned     | P1     | 0.1.0 | AXI 顺序控制器                                                     |
-| INF-027 | [axi_protocol_firewall](ips/infrastructure/axi/axi_protocol_firewall/README.md)        | ip        | planned     | P1     | 0.1.0 | AXI 协议防火墙                                                     |
-| INF-028 | [axi_qos_controller](ips/infrastructure/axi/axi_qos_controller/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI QoS 控制器                                                     |
-| INF-029 | [axi_traffic_shaper](ips/infrastructure/axi/axi_traffic_shaper/README.md)              | ip        | planned     | P1     | 0.1.0 | AXI 流量整形器                                                     |
-| INF-030 | [axis_cdc](ips/infrastructure/cdc/axis_cdc/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream CDC                                                     |
-| INF-031 | [axis_demux](ips/infrastructure/axi/axis_demux/README.md)                              | ip        | planned     | P1     | 0.1.0 | AXI-Stream Demux                                                   |
-| INF-032 | [axis_mux](ips/infrastructure/axi/axis_mux/README.md)                                  | ip        | planned     | P1     | 0.1.0 | AXI-Stream Mux                                                     |
-| INF-033 | [event_cdc_bridge](ips/infrastructure/cdc/event_cdc_bridge/README.md)                  | ip        | planned     | P1     | 0.1.0 | 事件 CDC 桥                                                        |
-| INF-034 | [reset_domain_bridge](ips/infrastructure/cdc/reset_domain_bridge/README.md)            | ip        | planned     | P1     | 0.1.0 | 复位域桥（RDC）                                                    |
-| INF-035 | [stream_cdc_bridge](ips/infrastructure/cdc/stream_cdc_bridge/README.md)                | ip        | planned     | P1     | 0.1.0 | 流 CDC 桥                                                          |
-| INF-036 | [stream_interconnect](ips/infrastructure/axi/stream_interconnect/README.md)            | generator | planned     | P1     | 0.1.0 | AXI-Stream 互联                                                    |
-| INF-037 | [apb_noc_bridge](ips/infrastructure/noc/apb_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | APB↔NoC 桥                                                         |
-| INF-038 | [axi_noc_bridge](ips/infrastructure/noc/axi_noc_bridge/README.md)                      | ip        | planned     | P2     | 0.1.0 | AXI↔NoC 桥                                                         |
-| INF-039 | [noc_crossbar](ips/infrastructure/noc/noc_crossbar/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC Crossbar                                                       |
-| INF-040 | [noc_firewall](ips/infrastructure/noc/noc_firewall/README.md)                          | ip        | planned     | P2     | 0.1.0 | NoC 防火墙                                                         |
-| INF-041 | [noc_network_interface](ips/infrastructure/noc/noc_network_interface/README.md)        | ip        | planned     | P2     | 0.1.0 | NoC 网络接口（NI）                                                 |
-| INF-042 | [noc_performance_monitor](ips/infrastructure/noc/noc_performance_monitor/README.md)    | ip        | planned     | P2     | 0.1.0 | NoC 性能监控器                                                     |
-| INF-043 | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                    | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                                                     |
-| INF-044 | [noc_router](ips/infrastructure/noc/noc_router/README.md)                              | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                                               |
-| INF-045 | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)              | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                                                     |
-| INF-046 | [apb_secure_demux](ips/infrastructure/apb/apb_secure_demux/README.md)                  | ip        | planned     | P0     | 1.0.0 | 安全 APB Demux（可信主体权限、原子策略提交、日志与 DFX；需求草案） |
-
-#### memory（35，已交付=0）
-
-| ID      | IP                                                                                      | 类型      | 状态    | 优先级 | 版本  | 功能/描述                                                                |
-|---------|-----------------------------------------------------------------------------------------|-----------|---------|--------|-------|--------------------------------------------------------------------------|
-| MEM-001 | [lowrisc_prim](ips/lowrisc/prim/0.1.0/README.md)                                        | ip        | planned | P0     | 0.1.0 | OpenTitan primitives（secded ECC / ram / rom / cdc / sha2 / trivium 等） |
-| MEM-002 | [lowrisc_testlib](ips/lowrisc/testlib/1.0.0/README.md)                                  | ip        | planned | P0     | 1.0.0 | OpenTitan 测试库（dummy 仿真单元）                                       |
-| MEM-003 | [lowrisc_tlul](ips/lowrisc/tlul/0.1.0/README.md)                                        | ip        | planned | P0     | 0.1.0 | OpenTitan TileLink-UL 总线组件（socket / adapter / fifo / jtag_dtm 等）  |
-| MEM-004 | [memory_interleaver](ips/memory/sram/memory_interleaver/README.md)                      | ip        | planned | P0     | 0.1.0 | 内存交织器                                                               |
-| MEM-005 | [memory_scrubber](ips/memory/sram/memory_scrubber/README.md)                            | ip        | planned | P0     | 0.1.0 | 内存巡检控制器（集成 ECC、仲裁、告警与 CSR）                             |
-| MEM-006 | [multiport_sram_controller](ips/memory/sram/multiport_sram_controller/README.md)        | generator | planned | P0     | 0.1.0 | 多端口 SRAM 控制器                                                       |
-| MEM-007 | [register_file_wrapper](ips/memory/sram/register_file_wrapper/README.md)                | wrapper   | planned | P0     | 0.1.0 | 寄存器文件工艺抽象 Wrapper                                               |
-| MEM-008 | [rom_controller](ips/memory/rom/rom_controller/README.md)                               | ip        | planned | P0     | 0.1.0 | ROM 控制器                                                               |
-| MEM-009 | [rom_wrapper](ips/memory/rom/rom_wrapper/README.md)                                     | wrapper   | planned | P0     | 0.1.0 | ROM 工艺抽象 Wrapper                                                     |
-| MEM-010 | [sram_controller](ips/memory/sram/sram_controller/README.md)                            | generator | planned | P0     | 0.1.0 | SRAM 控制器                                                              |
-| MEM-011 | [sram_ecc_controller](ips/memory/sram/sram_ecc_controller/README.md)                    | ip        | planned | P0     | 0.1.0 | SRAM ECC 控制器                                                          |
-| MEM-012 | [sram_wrapper](ips/memory/sram/sram_wrapper/README.md)                                  | wrapper   | planned | P0     | 0.1.0 | SRAM 工艺抽象 Wrapper                                                    |
-| MEM-013 | [tcm_controller](ips/memory/tcm/tcm_controller/README.md)                               | ip        | planned | P0     | 0.1.0 | TCM 控制器                                                               |
-| MEM-014 | [memory_bist_wrapper](ips/memory/bist/memory_bist_wrapper/README.md)                    | ip        | planned | P1     | 0.1.0 | 内存 BIST Wrapper                                                        |
-| MEM-015 | [memory_firewall](ips/memory/security/memory_firewall/README.md)                        | ip        | planned | P1     | 0.1.0 | 内存防火墙                                                               |
-| MEM-016 | [memory_qos_controller](ips/memory/qos/memory_qos_controller/README.md)                 | ip        | planned | P1     | 0.1.0 | 内存 QoS 控制器                                                          |
-| MEM-017 | [memory_repair_controller](ips/memory/bist/memory_repair_controller/README.md)          | ip        | planned | P1     | 0.1.0 | 内存修复控制器                                                           |
-| MEM-018 | [multi_bank_sram_controller](ips/memory/sram/multi_bank_sram_controller/README.md)      | generator | planned | P1     | 0.1.0 | 多 Bank SRAM 控制器                                                      |
-| MEM-019 | [scratchpad_controller](ips/memory/sram/scratchpad_controller/README.md)                | ip        | planned | P1     | 0.1.0 | Scratchpad 控制器                                                        |
-| MEM-020 | [address_hash_interleave](ips/memory/interleave/address_hash_interleave/README.md)      | ip        | planned | P2     | 0.1.0 | 地址哈希/交织单元                                                        |
-| MEM-021 | [ddr4_controller](ips/memory/ddr/ddr4_controller/README.md)                             | ip        | planned | P2     | 0.1.0 | DDR4 控制器                                                              |
-| MEM-022 | [ddr5_controller](ips/memory/ddr/ddr5_controller/README.md)                             | ip        | planned | P2     | 0.1.0 | DDR5 控制器                                                              |
-| MEM-023 | [ddr_controller](ips/memory/ddr/ddr_controller/README.md)                               | ip        | planned | P2     | 0.1.0 | DDR 控制器                                                               |
-| MEM-024 | [ddr_ecc_controller](ips/memory/ddr/ddr_ecc_controller/README.md)                       | ip        | planned | P2     | 0.1.0 | DDR ECC 控制器                                                           |
-| MEM-025 | [ddr_phy_wrapper](ips/memory/ddr/ddr_phy_wrapper/README.md)                             | wrapper   | planned | P2     | 0.1.0 | DDR PHY Wrapper                                                          |
-| MEM-026 | [ddr_scheduler](ips/memory/ddr/ddr_scheduler/README.md)                                 | ip        | planned | P2     | 0.1.0 | DDR 调度器                                                               |
-| MEM-027 | [lpddr4_controller](ips/memory/ddr/lpddr4_controller/README.md)                         | ip        | planned | P2     | 0.1.0 | LPDDR4 控制器                                                            |
-| MEM-028 | [lpddr5_controller](ips/memory/ddr/lpddr5_controller/README.md)                         | ip        | planned | P2     | 0.1.0 | LPDDR5 控制器                                                            |
-| MEM-029 | [rowhammer_mitigation](ips/memory/ddr/rowhammer_mitigation/README.md)                   | ip        | planned | P2     | 0.1.0 | Rowhammer 缓解控制器                                                     |
-| MEM-030 | [cxl_memory_controller](ips/memory/cxl/cxl_memory_controller/README.md)                 | ip        | planned | P3     | 0.1.0 | CXL 内存控制器                                                           |
-| MEM-031 | [hbm_controller](ips/memory/hbm/hbm_controller/README.md)                               | ip        | planned | P3     | 0.1.0 | HBM 控制器                                                               |
-| MEM-032 | [hbm_phy_wrapper](ips/memory/hbm/hbm_phy_wrapper/README.md)                             | wrapper   | planned | P3     | 0.1.0 | HBM PHY Wrapper                                                          |
-| MEM-033 | [memory_compression_engine](ips/memory/compression/memory_compression_engine/README.md) | ip        | planned | P3     | 0.1.0 | 内存压缩引擎                                                             |
-| MEM-034 | [memory_encryption_engine](ips/memory/security/memory_encryption_engine/README.md)      | ip        | planned | P3     | 0.1.0 | 内存加密引擎                                                             |
-| MEM-035 | [persistent_memory_controller](ips/memory/cxl/persistent_memory_controller/README.md)   | ip        | planned | P3     | 0.1.0 | 持久内存控制器                                                           |
+| ID      | IP                                                                                 | 类型      | 状态    | 优先级 | 版本  | 功能/描述                                    |
+|---------|------------------------------------------------------------------------------------|-----------|---------|--------|-------|----------------------------------------------|
+| MEM-004 | [memory_interleaver](ips/memory/sram/memory_interleaver/README.md)                 | ip        | planned | P0     | 0.1.0 | 内存交织器                                   |
+| MEM-005 | [memory_scrubber](ips/memory/sram/memory_scrubber/README.md)                       | ip        | planned | P0     | 0.1.0 | 内存巡检控制器（集成 ECC、仲裁、告警与 CSR） |
+| MEM-006 | [multiport_sram_controller](ips/memory/sram/multiport_sram_controller/README.md)   | generator | planned | P0     | 0.1.0 | 多端口 SRAM 控制器                           |
+| MEM-008 | [rom_controller](ips/memory/rom/rom_controller/README.md)                          | ip        | planned | P0     | 0.1.0 | ROM 控制器                                   |
+| MEM-010 | [sram_controller](ips/memory/sram/sram_controller/README.md)                       | generator | planned | P0     | 0.1.0 | SRAM 控制器                                  |
+| MEM-011 | [sram_ecc_controller](ips/memory/sram/sram_ecc_controller/README.md)               | ip        | planned | P0     | 0.1.0 | SRAM ECC 控制器                              |
+| MEM-013 | [tcm_controller](ips/memory/tcm/tcm_controller/README.md)                          | ip        | planned | P0     | 0.1.0 | TCM 控制器                                   |
+| MEM-015 | [memory_firewall](ips/memory/security/memory_firewall/README.md)                   | ip        | planned | P1     | 0.1.0 | 内存防火墙                                   |
+| MEM-016 | [memory_qos_controller](ips/memory/qos/memory_qos_controller/README.md)            | ip        | planned | P1     | 0.1.0 | 内存 QoS 控制器                              |
+| MEM-017 | [memory_repair_controller](ips/memory/bist/memory_repair_controller/README.md)     | ip        | planned | P1     | 0.1.0 | 内存修复控制器                               |
+| MEM-018 | [multi_bank_sram_controller](ips/memory/sram/multi_bank_sram_controller/README.md) | generator | planned | P1     | 0.1.0 | 多 Bank SRAM 控制器                          |
+| MEM-019 | [scratchpad_controller](ips/memory/sram/scratchpad_controller/README.md)           | ip        | planned | P1     | 0.1.0 | Scratchpad 控制器                            |
+| MEM-023 | [ddr_controller](ips/memory/ddr/ddr_controller/README.md)                          | ip        | planned | P2     | 0.1.0 | DDR 控制器                                   |
+| MEM-024 | [ddr_ecc_controller](ips/memory/ddr/ddr_ecc_controller/README.md)                  | ip        | planned | P2     | 0.1.0 | DDR ECC 控制器                               |
+| MEM-025 | [ddr_phy_wrapper](ips/memory/ddr/ddr_phy_wrapper/README.md)                        | wrapper   | planned | P2     | 0.1.0 | DDR PHY Wrapper                              |
+| MEM-026 | [ddr_scheduler](ips/memory/ddr/ddr_scheduler/README.md)                            | ip        | planned | P2     | 0.1.0 | DDR 调度器                                   |
+| MEM-034 | [memory_encryption_engine](ips/memory/security/memory_encryption_engine/README.md) | ip        | planned | P3     | 0.1.0 | 内存加密引擎                                 |
 
 #### mmu（4，已交付=0）
 
-| ID      | IP                                               | 类型 | 状态    | 优先级 | 版本  | 功能/描述           |
-|---------|--------------------------------------------------|------|---------|--------|-------|---------------------|
-| MMU-001 | [iommu](ips/mmu/iommu/iommu/README.md)           | ip   | planned | P2     | 0.1.0 | IOMMU               |
-| MMU-002 | [mmu](ips/mmu/mmu/mmu/README.md)                 | ip   | planned | P2     | 0.1.0 | 内存管理单元（MMU） |
-| MMU-003 | [mpu](ips/mmu/mpu/mpu/README.md)                 | ip   | planned | P2     | 0.1.0 | 内存保护单元（MPU） |
-| MMU-004 | [pmp_manager](ips/mmu/pmp/pmp_manager/README.md) | ip   | planned | P2     | 0.1.0 | RISC-V PMP 管理器   |
+| ID      | IP                                               | 类型 | 状态    | 优先级 | 版本  | 功能/描述                                                                                                                     |
+|---------|--------------------------------------------------|------|---------|--------|-------|-------------------------------------------------------------------------------------------------------------------------------|
+| MMU-001 | [iommu](ips/mmu/iommu/iommu/README.md)           | ip   | planned | P2     | 0.1.0 | IOMMU                                                                                                                         |
+| MMU-002 | [mmu](ips/mmu/mmu/mmu/README.md)                 | ip   | planned | P2     | 0.1.0 | 内存管理单元（MMU）                                                                                                           |
+| MMU-003 | [mpu](ips/mmu/mpu/mpu/README.md)                 | ip   | planned | P2     | 0.1.0 | 内存保护单元；规划 AXI 集成剖面，支持地址窗口、可信 MASTERID 与 AxPROT 权限判断、拒绝响应及异常管理；核心权限比较可复用 CBB。 |
+| MMU-004 | [pmp_manager](ips/mmu/pmp/pmp_manager/README.md) | ip   | planned | P2     | 0.1.0 | RISC-V PMP 管理器                                                                                                             |
 
-#### multimedia（14，已交付=0）
+#### multimedia（4，已交付=0）
 
-| ID      | IP                                                                      | 类型 | 状态    | 优先级 | 版本  | 功能/描述             |
-|---------|-------------------------------------------------------------------------|------|---------|--------|-------|-----------------------|
-| MUL-001 | [audio_dma](ips/multimedia/audio/audio_dma/README.md)                   | ip   | planned | P2     | 0.1.0 | 音频 DMA              |
-| MUL-002 | [camera_interface](ips/multimedia/video/camera_interface/README.md)     | ip   | planned | P2     | 0.1.0 | 相机接口              |
-| MUL-003 | [display_controller](ips/multimedia/video/display_controller/README.md) | ip   | planned | P2     | 0.1.0 | 显示控制器            |
-| MUL-004 | [i2s_controller](ips/multimedia/audio/i2s_controller/README.md)         | ip   | planned | P2     | 0.1.0 | I2S 控制器            |
-| MUL-005 | [image_resizer](ips/multimedia/image/image_resizer/README.md)           | ip   | planned | P2     | 0.1.0 | 图像缩放器            |
-| MUL-006 | [isp](ips/multimedia/image/isp/README.md)                               | ip   | planned | P2     | 0.1.0 | 图像信号处理器（ISP） |
-| MUL-007 | [jpeg_codec](ips/multimedia/codec/jpeg_codec/README.md)                 | ip   | planned | P2     | 0.1.0 | JPEG 编解码器         |
-| MUL-008 | [pdm_controller](ips/multimedia/audio/pdm_controller/README.md)         | ip   | planned | P2     | 0.1.0 | PDM 控制器            |
-| MUL-009 | [tdm_controller](ips/multimedia/audio/tdm_controller/README.md)         | ip   | planned | P2     | 0.1.0 | TDM 控制器            |
-| MUL-010 | [av1_codec](ips/multimedia/codec/av1_codec/README.md)                   | ip   | planned | P3     | 0.1.0 | AV1 编解码器          |
-| MUL-011 | [gpu_interface](ips/multimedia/gpu/gpu_interface/README.md)             | ip   | planned | P3     | 0.1.0 | GPU 接口              |
-| MUL-012 | [h264_codec](ips/multimedia/codec/h264_codec/README.md)                 | ip   | planned | P3     | 0.1.0 | H.264 编解码器        |
-| MUL-013 | [h265_codec](ips/multimedia/codec/h265_codec/README.md)                 | ip   | planned | P3     | 0.1.0 | H.265 编解码器        |
-| MUL-014 | [video_scaler](ips/multimedia/video/video_scaler/README.md)             | ip   | planned | P3     | 0.1.0 | 视频缩放器            |
+| ID      | IP                                                              | 类型 | 状态    | 优先级 | 版本  | 功能/描述  |
+|---------|-----------------------------------------------------------------|------|---------|--------|-------|------------|
+| MUL-001 | [audio_dma](ips/multimedia/audio/audio_dma/README.md)           | ip   | planned | P2     | 0.1.0 | 音频 DMA   |
+| MUL-004 | [i2s_controller](ips/multimedia/audio/i2s_controller/README.md) | ip   | planned | P2     | 0.1.0 | I2S 控制器 |
+| MUL-008 | [pdm_controller](ips/multimedia/audio/pdm_controller/README.md) | ip   | planned | P2     | 0.1.0 | PDM 控制器 |
+| MUL-009 | [tdm_controller](ips/multimedia/audio/tdm_controller/README.md) | ip   | planned | P2     | 0.1.0 | TDM 控制器 |
 
 #### network（6，已交付=0）
 
@@ -539,26 +381,16 @@ ips:
 | PER-024 | [sd_host](ips/peripheral/storage/sd_host/README.md)                           | ip   | planned     | P1     | 0.1.0 | SD Host 控制器                                                                            |
 | PER-025 | [sdio](ips/peripheral/storage/sdio/README.md)                                 | ip   | planned     | P1     | 0.1.0 | SDIO 控制器                                                                               |
 
-#### phy（4，已交付=0）
-
-| ID      | IP                                                                      | 类型    | 状态    | 优先级 | 版本  | 功能/描述          |
-|---------|-------------------------------------------------------------------------|---------|---------|--------|-------|--------------------|
-| PHY-001 | [ethernet_phy_wrapper](ips/phy/ethernet/ethernet_phy_wrapper/README.md) | wrapper | planned | P2     | 0.1.0 | 以太网 PHY Wrapper |
-| PHY-002 | [mipi_phy_wrapper](ips/phy/mipi/mipi_phy_wrapper/README.md)             | wrapper | planned | P2     | 0.1.0 | MIPI PHY Wrapper   |
-| PHY-003 | [pcie_phy_wrapper](ips/phy/pcie/pcie_phy_wrapper/README.md)             | wrapper | planned | P2     | 0.1.0 | PCIe PHY Wrapper   |
-| PHY-004 | [usb_phy_wrapper](ips/phy/usb/usb_phy_wrapper/README.md)                | wrapper | planned | P2     | 0.1.0 | USB PHY Wrapper    |
-
-#### reliability（5，已交付=0）
+#### reliability（4，已交付=0）
 
 | ID      | IP                                                                                 | 类型 | 状态    | 优先级 | 版本  | 功能/描述          |
 |---------|------------------------------------------------------------------------------------|------|---------|--------|-------|--------------------|
-| REL-001 | [aging_monitor](ips/reliability/monitor/aging_monitor/README.md)                   | ip   | planned | P3     | 0.1.0 | 老化监控器         |
 | REL-002 | [ecc_telemetry_controller](ips/reliability/ecc/ecc_telemetry_controller/README.md) | ip   | planned | P3     | 0.1.0 | ECC 遥测控制器     |
 | REL-003 | [reliability_monitor](ips/reliability/monitor/reliability_monitor/README.md)       | ip   | planned | P3     | 0.1.0 | 可靠性监控器       |
 | REL-004 | [soft_error_counter](ips/reliability/monitor/soft_error_counter/README.md)         | ip   | planned | P3     | 0.1.0 | 软错误计数器       |
 | REL-005 | [sram_patrol_controller](ips/reliability/sram/sram_patrol_controller/README.md)    | ip   | planned | P3     | 0.1.0 | SRAM Patrol 控制器 |
 
-#### safety（21，已交付=0）
+#### safety（20，已交付=0）
 
 | ID      | IP                                                                                       | 类型 | 状态    | 优先级 | 版本  | 功能/描述                               |
 |---------|------------------------------------------------------------------------------------------|------|---------|--------|-------|-----------------------------------------|
@@ -576,7 +408,6 @@ ips:
 | SAF-012 | [reset_safety_monitor](ips/safety/monitor/reset_safety_monitor/README.md)                | ip   | planned | P1     | 0.1.0 | 复位安全监控                            |
 | SAF-013 | [safe_state_controller](ips/safety/state/safe_state_controller/README.md)                | ip   | planned | P1     | 0.1.0 | 安全状态控制器                          |
 | SAF-014 | [safety_manager](ips/safety/fault/safety_manager/README.md)                              | ip   | planned | P1     | 0.1.0 | 安全管理器                              |
-| SAF-015 | [diversity_comparator](ips/safety/lockstep/diversity_comparator/README.md)               | ip   | planned | P2     | 0.1.0 | 多样性比较器                            |
 | SAF-016 | [e2e_crc_engine](ips/safety/crc/e2e_crc_engine/README.md)                                | ip   | planned | P2     | 0.1.0 | 端到端 CRC 引擎                         |
 | SAF-017 | [fccu](ips/safety/fault/fccu/README.md)                                                  | ip   | planned | P2     | 0.1.0 | Fault Collection & Control Unit（FCCU） |
 | SAF-018 | [lbist_safety_manager](ips/safety/lbist/lbist_safety_manager/README.md)                  | ip   | planned | P2     | 0.1.0 | LBIST 安全管理器                        |
@@ -615,89 +446,56 @@ ips:
 | SEC-025 | [secure_counter](ips/security/counter/secure_counter/README.md)                              | ip        | planned | P2     | 0.1.0 | 安全计数器              |
 | SEC-026 | [tamper_detector](ips/security/tamper/tamper_detector/README.md)                             | ip        | planned | P2     | 0.1.0 | 篡改检测器              |
 
-#### subsystem（10，已交付=0）
+#### system（39，已交付=0）
 
-| ID      | IP                                                                              | 类型      | 状态    | 优先级 | 版本  | 功能/描述                          |
-|---------|---------------------------------------------------------------------------------|-----------|---------|--------|-------|------------------------------------|
-| SUB-001 | [ai_accelerator_subsystem](ips/subsystem/ai/ai_accelerator_subsystem/README.md) | subsystem | planned | P3     | 0.1.0 | AI 加速器子系统                    |
-| SUB-002 | [aon_subsystem](ips/subsystem/aon/aon_subsystem/README.md)                      | subsystem | planned | P3     | 0.1.0 | Always-On 子系统                   |
-| SUB-003 | [cpu_subsystem](ips/subsystem/cpu/cpu_subsystem/README.md)                      | subsystem | planned | P3     | 0.1.0 | CPU 子系统（Core+Cache+CLIC 组合） |
-| SUB-004 | [debug_subsystem](ips/subsystem/debug/debug_subsystem/README.md)                | subsystem | planned | P3     | 0.1.0 | 调试子系统                         |
-| SUB-005 | [io_subsystem](ips/subsystem/io/io_subsystem/README.md)                         | subsystem | planned | P3     | 0.1.0 | IO 子系统                          |
-| SUB-006 | [mcu_subsystem](ips/subsystem/mcu/mcu_subsystem/README.md)                      | subsystem | planned | P3     | 0.1.0 | MCU 子系统                         |
-| SUB-007 | [memory_subsystem](ips/subsystem/memory/memory_subsystem/README.md)             | subsystem | planned | P3     | 0.1.0 | 内存子系统                         |
-| SUB-008 | [safety_island](ips/subsystem/safety/safety_island/README.md)                   | subsystem | planned | P3     | 0.1.0 | 安全岛（Safety Island）            |
-| SUB-009 | [security_subsystem](ips/subsystem/security/security_subsystem/README.md)       | subsystem | planned | P3     | 0.1.0 | 安全子系统                         |
-| SUB-010 | [sensor_subsystem](ips/subsystem/sensor/sensor_subsystem/README.md)             | subsystem | planned | P3     | 0.1.0 | 传感器子系统                       |
+| ID      | IP                                                                                      | 类型      | 状态    | 优先级 | 版本  | 功能/描述                                                  |
+|---------|-----------------------------------------------------------------------------------------|-----------|---------|--------|-------|------------------------------------------------------------|
+| SYS-001 | [axi_dma](ips/system/dma/axi_dma/README.md)                                             | ip        | planned | P0     | 0.1.0 | AXI DMA                                                    |
+| SYS-002 | [boot_controller](ips/system/boot/boot_controller/README.md)                            | ip        | planned | P0     | 0.1.0 | 启动控制器                                                 |
+| SYS-003 | [chip_id_revision](ips/system/clock_reset/chip_id_revision/README.md)                   | ip        | planned | P0     | 0.1.0 | Chip ID / Revision ID                                      |
+| SYS-004 | [clint](ips/system/interrupt/clint/README.md)                                           | ip        | planned | P0     | 0.1.0 | RISC-V CLINT（核本地定时器中断）                           |
+| SYS-005 | [clock_controller](ips/system/clock_reset/clock_controller/README.md)                   | generator | planned | P0     | 0.1.0 | 时钟控制器                                                 |
+| SYS-006 | [clock_monitor](ips/system/clock_reset/clock_monitor/README.md)                         | ip        | planned | P0     | 0.1.0 | 时钟监控器                                                 |
+| SYS-007 | [crg](ips/system/clock_reset/crg/README.md)                                             | generator | planned | P0     | 0.1.0 | 时钟+复位生成器（CRG）                                     |
+| SYS-009 | [interrupt_aggregator](ips/system/interrupt/interrupt_aggregator/README.md)             | ip        | planned | P0     | 0.1.0 | 系统级中断聚合 IP（集成状态/屏蔽/告警与 CSR）              |
+| SYS-010 | [interrupt_gateway](ips/system/interrupt/interrupt_gateway/README.md)                   | ip        | planned | P0     | 0.1.0 | 中断网关                                                   |
+| SYS-011 | [interrupt_router](ips/system/interrupt/interrupt_router/README.md)                     | generator | planned | P0     | 0.1.0 | 系统级中断路由生成器（集成配置、目标接口与 CSR）           |
+| SYS-013 | [mem2mem_dma](ips/system/dma/mem2mem_dma/README.md)                                     | ip        | planned | P0     | 0.1.0 | 内存到内存 DMA                                             |
+| SYS-014 | [multi_channel_dma](ips/system/dma/multi_channel_dma/README.md)                         | generator | planned | P0     | 0.1.0 | 多通道 DMA                                                 |
+| SYS-015 | [plic](ips/system/interrupt/plic/README.md)                                             | ip        | planned | P0     | 0.1.0 | RISC-V PLIC（平台级中断控制器）                            |
+| SYS-016 | [reset_controller](ips/system/clock_reset/reset_controller/README.md)                   | generator | planned | P0     | 0.1.0 | 复位控制器                                                 |
+| SYS-017 | [reset_monitor](ips/system/clock_reset/reset_monitor/README.md)                         | ip        | planned | P0     | 0.1.0 | 系统级复位监督器（集成原因/顺序/持续时间监控、告警与 CSR） |
+| SYS-018 | [reset_reason_controller](ips/system/clock_reset/reset_reason_controller/README.md)     | ip        | planned | P0     | 0.1.0 | 复位原因控制器                                             |
+| SYS-019 | [simple_dma](ips/system/dma/simple_dma/README.md)                                       | ip        | planned | P0     | 0.1.0 | 简单 DMA                                                   |
+| SYS-020 | [system_controller](ips/system/clock_reset/system_controller/README.md)                 | ip        | planned | P0     | 0.1.0 | 系统控制器                                                 |
+| SYS-021 | [aia](ips/system/interrupt/aia/README.md)                                               | ip        | planned | P1     | 0.1.0 | RISC-V Advanced Interrupt Architecture（AIA）              |
+| SYS-022 | [data_mover](ips/system/dma/data_mover/README.md)                                       | ip        | planned | P1     | 0.1.0 | 数据搬运器                                                 |
+| SYS-023 | [descriptor_engine](ips/system/dma/descriptor_engine/README.md)                         | ip        | planned | P1     | 0.1.0 | 描述符引擎                                                 |
+| SYS-024 | [event_router](ips/system/interrupt/event_router/README.md)                             | generator | planned | P1     | 0.1.0 | 系统级事件路由生成器（集成映射配置、时钟域与 CSR）         |
+| SYS-025 | [isolation_controller](ips/system/power/isolation_controller/README.md)                 | ip        | planned | P1     | 0.1.0 | 隔离控制器                                                 |
+| SYS-026 | [peripheral_dma](ips/system/dma/peripheral_dma/README.md)                               | ip        | planned | P1     | 0.1.0 | 外设 DMA                                                   |
+| SYS-027 | [power_domain_controller](ips/system/power/power_domain_controller/README.md)           | ip        | planned | P1     | 0.1.0 | 电源域控制器                                               |
+| SYS-028 | [power_manager](ips/system/power/power_manager/README.md)                               | ip        | planned | P1     | 0.1.0 | 电源管理器                                                 |
+| SYS-029 | [power_sequencer](ips/system/power/power_sequencer/README.md)                           | ip        | planned | P1     | 0.1.0 | 电源时序控制器                                             |
+| SYS-030 | [retention_controller](ips/system/power/retention_controller/README.md)                 | ip        | planned | P1     | 0.1.0 | 保持控制器                                                 |
+| SYS-031 | [scatter_gather_dma](ips/system/dma/scatter_gather_dma/README.md)                       | ip        | planned | P1     | 0.1.0 | Scatter-Gather DMA                                         |
+| SYS-032 | [sleep_controller](ips/system/power/sleep_controller/README.md)                         | ip        | planned | P1     | 0.1.0 | 睡眠控制器                                                 |
+| SYS-033 | [stream_dma](ips/system/dma/stream_dma/README.md)                                       | ip        | planned | P1     | 0.1.0 | 流式 DMA                                                   |
+| SYS-034 | [wakeup_controller](ips/system/power/wakeup_controller/README.md)                       | ip        | planned | P1     | 0.1.0 | 唤醒控制器                                                 |
+| SYS-035 | [wakeup_event_controller](ips/system/interrupt/wakeup_event_controller/README.md)       | ip        | planned | P1     | 0.1.0 | 唤醒事件控制器                                             |
+| SYS-036 | [adaptive_clocking_controller](ips/system/power/adaptive_clocking_controller/README.md) | ip        | planned | P3     | 0.1.0 | 自适应时钟控制器                                           |
+| SYS-037 | [avs_controller](ips/system/power/avs_controller/README.md)                             | ip        | planned | P3     | 0.1.0 | AVS 控制器（自适应电压调节）                               |
+| SYS-038 | [droop_mitigation_controller](ips/system/power/droop_mitigation_controller/README.md)   | ip        | planned | P3     | 0.1.0 | 电压跌落缓解控制器                                         |
+| SYS-039 | [droop_monitor](ips/system/power/droop_monitor/README.md)                               | ip        | planned | P3     | 0.1.0 | 电压跌落监控器                                             |
+| SYS-040 | [dvfs_controller](ips/system/power/dvfs_controller/README.md)                           | ip        | planned | P3     | 0.1.0 | DVFS 控制器                                                |
+| SYS-041 | [thermal_manager](ips/system/power/thermal_manager/README.md)                           | ip        | planned | P3     | 0.1.0 | 热管理单元                                                 |
 
-#### system（41，已交付=0）
-
-| ID      | IP                                                                                      | 类型      | 状态    | 优先级 | 版本  | 功能/描述                                                              |
-|---------|-----------------------------------------------------------------------------------------|-----------|---------|--------|-------|------------------------------------------------------------------------|
-| SYS-001 | [axi_dma](ips/system/dma/axi_dma/README.md)                                             | ip        | planned | P0     | 0.1.0 | AXI DMA                                                                |
-| SYS-002 | [boot_controller](ips/system/boot/boot_controller/README.md)                            | ip        | planned | P0     | 0.1.0 | 启动控制器                                                             |
-| SYS-003 | [chip_id_revision](ips/system/clock_reset/chip_id_revision/README.md)                   | ip        | planned | P0     | 0.1.0 | Chip ID / Revision ID                                                  |
-| SYS-004 | [clint](ips/system/interrupt/clint/README.md)                                           | ip        | planned | P0     | 0.1.0 | RISC-V CLINT（核本地定时器中断）                                       |
-| SYS-005 | [clock_controller](ips/system/clock_reset/clock_controller/README.md)                   | generator | planned | P0     | 0.1.0 | 时钟控制器                                                             |
-| SYS-006 | [clock_monitor](ips/system/clock_reset/clock_monitor/README.md)                         | ip        | planned | P0     | 0.1.0 | 时钟监控器                                                             |
-| SYS-007 | [crg](ips/system/clock_reset/crg/README.md)                                             | generator | planned | P0     | 0.1.0 | 时钟+复位生成器（CRG）                                                 |
-| SYS-008 | [hac_aes](ips/aixsilicon/hac_aes/0.1.0/README.md)                                       | ip        | planned | P0     | 0.1.0 | HAC Golden Example A - 小型 AES/CRC 核（Profile HAC-P0, CTRL + EVENT） |
-| SYS-009 | [interrupt_aggregator](ips/system/interrupt/interrupt_aggregator/README.md)             | ip        | planned | P0     | 0.1.0 | 系统级中断聚合 IP（集成状态/屏蔽/告警与 CSR）                          |
-| SYS-010 | [interrupt_gateway](ips/system/interrupt/interrupt_gateway/README.md)                   | ip        | planned | P0     | 0.1.0 | 中断网关                                                               |
-| SYS-011 | [interrupt_router](ips/system/interrupt/interrupt_router/README.md)                     | generator | planned | P0     | 0.1.0 | 系统级中断路由生成器（集成配置、目标接口与 CSR）                       |
-| SYS-012 | [lowrisc_top](ips/lowrisc/top/0.1.0/README.md)                                          | ip        | planned | P0     | 0.1.0 | OpenTitan top 常量/包                                                  |
-| SYS-013 | [mem2mem_dma](ips/system/dma/mem2mem_dma/README.md)                                     | ip        | planned | P0     | 0.1.0 | 内存到内存 DMA                                                         |
-| SYS-014 | [multi_channel_dma](ips/system/dma/multi_channel_dma/README.md)                         | generator | planned | P0     | 0.1.0 | 多通道 DMA                                                             |
-| SYS-015 | [plic](ips/system/interrupt/plic/README.md)                                             | ip        | planned | P0     | 0.1.0 | RISC-V PLIC（平台级中断控制器）                                        |
-| SYS-016 | [reset_controller](ips/system/clock_reset/reset_controller/README.md)                   | generator | planned | P0     | 0.1.0 | 复位控制器                                                             |
-| SYS-017 | [reset_monitor](ips/system/clock_reset/reset_monitor/README.md)                         | ip        | planned | P0     | 0.1.0 | 系统级复位监督器（集成原因/顺序/持续时间监控、告警与 CSR）             |
-| SYS-018 | [reset_reason_controller](ips/system/clock_reset/reset_reason_controller/README.md)     | ip        | planned | P0     | 0.1.0 | 复位原因控制器                                                         |
-| SYS-019 | [simple_dma](ips/system/dma/simple_dma/README.md)                                       | ip        | planned | P0     | 0.1.0 | 简单 DMA                                                               |
-| SYS-020 | [system_controller](ips/system/clock_reset/system_controller/README.md)                 | ip        | planned | P0     | 0.1.0 | 系统控制器                                                             |
-| SYS-021 | [aia](ips/system/interrupt/aia/README.md)                                               | ip        | planned | P1     | 0.1.0 | RISC-V Advanced Interrupt Architecture（AIA）                          |
-| SYS-022 | [data_mover](ips/system/dma/data_mover/README.md)                                       | ip        | planned | P1     | 0.1.0 | 数据搬运器                                                             |
-| SYS-023 | [descriptor_engine](ips/system/dma/descriptor_engine/README.md)                         | ip        | planned | P1     | 0.1.0 | 描述符引擎                                                             |
-| SYS-024 | [event_router](ips/system/interrupt/event_router/README.md)                             | generator | planned | P1     | 0.1.0 | 系统级事件路由生成器（集成映射配置、时钟域与 CSR）                     |
-| SYS-025 | [isolation_controller](ips/system/power/isolation_controller/README.md)                 | ip        | planned | P1     | 0.1.0 | 隔离控制器                                                             |
-| SYS-026 | [peripheral_dma](ips/system/dma/peripheral_dma/README.md)                               | ip        | planned | P1     | 0.1.0 | 外设 DMA                                                               |
-| SYS-027 | [power_domain_controller](ips/system/power/power_domain_controller/README.md)           | ip        | planned | P1     | 0.1.0 | 电源域控制器                                                           |
-| SYS-028 | [power_manager](ips/system/power/power_manager/README.md)                               | ip        | planned | P1     | 0.1.0 | 电源管理器                                                             |
-| SYS-029 | [power_sequencer](ips/system/power/power_sequencer/README.md)                           | ip        | planned | P1     | 0.1.0 | 电源时序控制器                                                         |
-| SYS-030 | [retention_controller](ips/system/power/retention_controller/README.md)                 | ip        | planned | P1     | 0.1.0 | 保持控制器                                                             |
-| SYS-031 | [scatter_gather_dma](ips/system/dma/scatter_gather_dma/README.md)                       | ip        | planned | P1     | 0.1.0 | Scatter-Gather DMA                                                     |
-| SYS-032 | [sleep_controller](ips/system/power/sleep_controller/README.md)                         | ip        | planned | P1     | 0.1.0 | 睡眠控制器                                                             |
-| SYS-033 | [stream_dma](ips/system/dma/stream_dma/README.md)                                       | ip        | planned | P1     | 0.1.0 | 流式 DMA                                                               |
-| SYS-034 | [wakeup_controller](ips/system/power/wakeup_controller/README.md)                       | ip        | planned | P1     | 0.1.0 | 唤醒控制器                                                             |
-| SYS-035 | [wakeup_event_controller](ips/system/interrupt/wakeup_event_controller/README.md)       | ip        | planned | P1     | 0.1.0 | 唤醒事件控制器                                                         |
-| SYS-036 | [adaptive_clocking_controller](ips/system/power/adaptive_clocking_controller/README.md) | ip        | planned | P3     | 0.1.0 | 自适应时钟控制器                                                       |
-| SYS-037 | [avs_controller](ips/system/power/avs_controller/README.md)                             | ip        | planned | P3     | 0.1.0 | AVS 控制器（自适应电压调节）                                           |
-| SYS-038 | [droop_mitigation_controller](ips/system/power/droop_mitigation_controller/README.md)   | ip        | planned | P3     | 0.1.0 | 电压跌落缓解控制器                                                     |
-| SYS-039 | [droop_monitor](ips/system/power/droop_monitor/README.md)                               | ip        | planned | P3     | 0.1.0 | 电压跌落监控器                                                         |
-| SYS-040 | [dvfs_controller](ips/system/power/dvfs_controller/README.md)                           | ip        | planned | P3     | 0.1.0 | DVFS 控制器                                                            |
-| SYS-041 | [thermal_manager](ips/system/power/thermal_manager/README.md)                           | ip        | planned | P3     | 0.1.0 | 热管理单元                                                             |
-
-#### test（3，已交付=0）
+#### test（2，已交付=0）
 
 | ID      | IP                                                                                     | 类型 | 状态    | 优先级 | 版本  | 功能/描述      |
 |---------|----------------------------------------------------------------------------------------|------|---------|--------|-------|----------------|
 | TST-001 | [infield_test_controller](ips/test/infield/infield_test_controller/README.md)          | ip   | planned | P3     | 0.1.0 | 在线测试控制器 |
 | TST-002 | [production_test_controller](ips/test/production/production_test_controller/README.md) | ip   | planned | P3     | 0.1.0 | 量产测试控制器 |
-| TST-003 | [silicon_health_monitor](ips/test/monitor/silicon_health_monitor/README.md)            | ip   | planned | P3     | 0.1.0 | 硅片健康监控器 |
-
-#### virtualization（3，已交付=0）
-
-| ID      | IP                                                                                   | 类型 | 状态    | 优先级 | 版本  | 功能/描述      |
-|---------|--------------------------------------------------------------------------------------|------|---------|--------|-------|----------------|
-| VIR-001 | [guest_timer](ips/virtualization/vm/guest_timer/README.md)                           | ip   | planned | P2     | 0.1.0 | Guest 定时器   |
-| VIR-002 | [virtual_interrupt_router](ips/virtualization/vm/virtual_interrupt_router/README.md) | ip   | planned | P2     | 0.1.0 | 虚拟中断路由器 |
-| VIR-003 | [vm_interrupt_controller](ips/virtualization/vm/vm_interrupt_controller/README.md)   | ip   | planned | P2     | 0.1.0 | VM 中断控制器  |
 
 
 <!-- IP-CATALOG-STATUS:END -->
-
-## 与 FuseSoC 集成
-
-```bash
-fusesoc library add aixsilicon_ip_repo https://github.com/boyangwang1991-design/aixsilicon_ip_repo.git
-fusesoc run --target sim aixsilicon:ip:<ip>:<version>
-```

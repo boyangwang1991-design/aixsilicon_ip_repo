@@ -1,0 +1,1147 @@
+schema_version: '1.0'
+date: '2026-09-13'
+records:
+- original:
+    id: INF-014
+    name: axi_pipeline
+    status: planned
+    version: 0.1.0
+    path: ips/infrastructure/axi/axi_pipeline
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/infrastructure/axi/axi_pipeline
+- original:
+    id: INF-016
+    name: interrupt_cdc_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/infrastructure/cdc/interrupt_cdc_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/infrastructure/cdc/interrupt_cdc_bridge
+- original:
+    id: INF-017
+    name: register_cdc_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/infrastructure/cdc/register_cdc_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/infrastructure/cdc/register_cdc_bridge
+- original:
+    id: INF-046
+    name: apb_secure_demux
+    status: planned
+    version: 1.0.0
+    path: ips/infrastructure/apb/apb_secure_demux
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: retained
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: MEM-001
+    name: lowrisc_prim
+    status: planned
+    version: 0.1.0
+    path: ips/lowrisc/prim/0.1.0
+  disposition: dependency
+  reason: 第三方混合库按依赖管理，不作为单一硬件资产。
+  source_files: absent
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: MEM-002
+    name: lowrisc_testlib
+    status: planned
+    version: 1.0.0
+    path: ips/lowrisc/testlib/1.0.0
+  disposition: dependency
+  reason: 第三方混合库按依赖管理，不作为单一硬件资产。
+  source_files: absent
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: MEM-003
+    name: lowrisc_tlul
+    status: planned
+    version: 0.1.0
+    path: ips/lowrisc/tlul/0.1.0
+  disposition: dependency
+  reason: 第三方混合库按依赖管理，不作为单一硬件资产。
+  source_files: absent
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: MEM-007
+    name: register_file_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/memory/sram/register_file_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/sram/register_file_wrapper
+- original:
+    id: MEM-009
+    name: rom_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/memory/rom/rom_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/rom/rom_wrapper
+- original:
+    id: MEM-012
+    name: sram_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/memory/sram/sram_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/sram/sram_wrapper
+- original:
+    id: SYS-008
+    name: hac_aes
+    status: planned
+    version: 0.1.0
+    path: ips/aixsilicon/hac_aes/0.1.0
+  disposition: example
+  reason: 示例/模板/配方退出正式产品主清单。
+  source_files: absent
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: SYS-012
+    name: lowrisc_top
+    status: planned
+    version: 0.1.0
+    path: ips/lowrisc/top/0.1.0
+  disposition: dependency
+  reason: 第三方混合库按依赖管理，不作为单一硬件资产。
+  source_files: absent
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+- original:
+    id: INF-033
+    name: event_cdc_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/infrastructure/cdc/event_cdc_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/infrastructure/cdc/event_cdc_bridge
+- original:
+    id: INF-035
+    name: stream_cdc_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/infrastructure/cdc/stream_cdc_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/infrastructure/cdc/stream_cdc_bridge
+- original:
+    id: MEM-014
+    name: memory_bist_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/memory/bist/memory_bist_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/bist/memory_bist_wrapper
+- original:
+    id: AUT-001
+    name: automotive_ethernet
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/ethernet/automotive_ethernet
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/ethernet/automotive_ethernet
+- original:
+    id: AUT-003
+    name: flexray_controller
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/flexray/flexray_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/flexray/flexray_controller
+- original:
+    id: AUT-004
+    name: psi5_controller
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/sensor/psi5_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/sensor/psi5_controller
+- original:
+    id: AUT-005
+    name: sensor_interface_controller
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/sensor/sensor_interface_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/sensor/sensor_interface_controller
+- original:
+    id: AUT-006
+    name: sent_controller
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/sensor/sent_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/sensor/sent_controller
+- original:
+    id: AUT-007
+    name: tsn_controller
+    status: planned
+    version: 0.1.0
+    path: ips/automotive/ethernet/tsn_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/automotive/ethernet/tsn_controller
+- original:
+    id: COH-001
+    name: ace_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/ace/ace_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/ace/ace_bridge
+- original:
+    id: COH-002
+    name: ace_lite_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/ace/ace_lite_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/ace/ace_lite_bridge
+- original:
+    id: COH-003
+    name: coherency_manager
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/ace/coherency_manager
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/ace/coherency_manager
+- original:
+    id: HSI-001
+    name: 10g_mac
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/ethernet/10g_mac
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/ethernet/10g_mac
+- original:
+    id: HSI-002
+    name: ethernet_mac
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/ethernet/ethernet_mac
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/ethernet/ethernet_mac
+- original:
+    id: HSI-003
+    name: gbe_mac
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/ethernet/gbe_mac
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/ethernet/gbe_mac
+- original:
+    id: HSI-004
+    name: mipi_csi_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/mipi/mipi_csi_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/mipi/mipi_csi_controller
+- original:
+    id: HSI-005
+    name: mipi_dsi_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/mipi/mipi_dsi_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/mipi/mipi_dsi_controller
+- original:
+    id: HSI-006
+    name: pcie_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/pcie/pcie_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/pcie/pcie_controller
+- original:
+    id: HSI-007
+    name: sata_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/storage/sata_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/storage/sata_controller
+- original:
+    id: HSI-008
+    name: serdes_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/serdes/serdes_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/serdes/serdes_controller
+- original:
+    id: HSI-009
+    name: ufs_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/storage/ufs_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/storage/ufs_controller
+- original:
+    id: HSI-010
+    name: usb2_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/usb/usb2_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/usb/usb2_controller
+- original:
+    id: HSI-011
+    name: usb3_controller
+    status: planned
+    version: 0.1.0
+    path: ips/high_speed_io/usb/usb3_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/high_speed_io/usb/usb3_controller
+- original:
+    id: MEM-020
+    name: address_hash_interleave
+    status: planned
+    version: 0.1.0
+    path: ips/memory/interleave/address_hash_interleave
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/interleave/address_hash_interleave
+- original:
+    id: MEM-021
+    name: ddr4_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/ddr/ddr4_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/ddr/ddr4_controller
+- original:
+    id: MEM-022
+    name: ddr5_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/ddr/ddr5_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/ddr/ddr5_controller
+- original:
+    id: MEM-027
+    name: lpddr4_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/ddr/lpddr4_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/ddr/lpddr4_controller
+- original:
+    id: MEM-028
+    name: lpddr5_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/ddr/lpddr5_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/ddr/lpddr5_controller
+- original:
+    id: MEM-029
+    name: rowhammer_mitigation
+    status: planned
+    version: 0.1.0
+    path: ips/memory/ddr/rowhammer_mitigation
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/ddr/rowhammer_mitigation
+- original:
+    id: MUL-002
+    name: camera_interface
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/video/camera_interface
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/video/camera_interface
+- original:
+    id: MUL-003
+    name: display_controller
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/video/display_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/video/display_controller
+- original:
+    id: MUL-005
+    name: image_resizer
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/image/image_resizer
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/image/image_resizer
+- original:
+    id: MUL-006
+    name: isp
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/image/isp
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/image/isp
+- original:
+    id: MUL-007
+    name: jpeg_codec
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/codec/jpeg_codec
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/codec/jpeg_codec
+- original:
+    id: PHY-001
+    name: ethernet_phy_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/phy/ethernet/ethernet_phy_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/phy/ethernet/ethernet_phy_wrapper
+- original:
+    id: PHY-002
+    name: mipi_phy_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/phy/mipi/mipi_phy_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/phy/mipi/mipi_phy_wrapper
+- original:
+    id: PHY-003
+    name: pcie_phy_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/phy/pcie/pcie_phy_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/phy/pcie/pcie_phy_wrapper
+- original:
+    id: PHY-004
+    name: usb_phy_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/phy/usb/usb_phy_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/phy/usb/usb_phy_wrapper
+- original:
+    id: SAF-015
+    name: diversity_comparator
+    status: planned
+    version: 0.1.0
+    path: ips/safety/lockstep/diversity_comparator
+  disposition: migrated
+  reason: 按责任边界迁移至另一资产仓。
+  source_files: moved
+  restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+  target:
+    repo: cbb
+    id: MIG-CBB-SAF-015
+    name: diversity_comparator
+    path: components/safety_reliability/diversity_comparator
+- original:
+    id: VIR-001
+    name: guest_timer
+    status: planned
+    version: 0.1.0
+    path: ips/virtualization/vm/guest_timer
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/virtualization/vm/guest_timer
+- original:
+    id: VIR-002
+    name: virtual_interrupt_router
+    status: planned
+    version: 0.1.0
+    path: ips/virtualization/vm/virtual_interrupt_router
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/virtualization/vm/virtual_interrupt_router
+- original:
+    id: VIR-003
+    name: vm_interrupt_controller
+    status: planned
+    version: 0.1.0
+    path: ips/virtualization/vm/vm_interrupt_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/virtualization/vm/vm_interrupt_controller
+- original:
+    id: AI-006
+    name: attention_accelerator
+    status: planned
+    version: 0.1.0
+    path: ips/accelerator/attention/attention_accelerator
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/accelerator/attention/attention_accelerator
+- original:
+    id: AI-009
+    name: dct_accelerator
+    status: planned
+    version: 0.1.0
+    path: ips/accelerator/dsp/dct_accelerator
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/accelerator/dsp/dct_accelerator
+- original:
+    id: AI-016
+    name: sparse_accelerator
+    status: planned
+    version: 0.1.0
+    path: ips/accelerator/sparse/sparse_accelerator
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/accelerator/sparse/sparse_accelerator
+- original:
+    id: CHL-001
+    name: chiplet_discovery_controller
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/interdie/chiplet_discovery_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/interdie/chiplet_discovery_controller
+- original:
+    id: CHL-002
+    name: chiplet_mailbox
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/interdie/chiplet_mailbox
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/interdie/chiplet_mailbox
+- original:
+    id: CHL-003
+    name: die_id_controller
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/interdie/die_id_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/interdie/die_id_controller
+- original:
+    id: CHL-004
+    name: die_to_die_adapter
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/die2die/die_to_die_adapter
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/die2die/die_to_die_adapter
+- original:
+    id: CHL-005
+    name: die_to_die_crc
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/die2die/die_to_die_crc
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/die2die/die_to_die_crc
+- original:
+    id: CHL-006
+    name: interdie_cdc_adapter
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/interdie/interdie_cdc_adapter
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/interdie/interdie_cdc_adapter
+- original:
+    id: CHL-007
+    name: interdie_interrupt_bridge
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/interdie/interdie_interrupt_bridge
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/interdie/interdie_interrupt_bridge
+- original:
+    id: CHL-008
+    name: link_training_controller
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/die2die/link_training_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/die2die/link_training_controller
+- original:
+    id: CHL-009
+    name: retry_controller
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/die2die/retry_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/die2die/retry_controller
+- original:
+    id: CHL-010
+    name: ucie_controller
+    status: planned
+    version: 0.1.0
+    path: ips/chiplet/ucie/ucie_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/chiplet/ucie/ucie_controller
+- original:
+    id: COH-004
+    name: chi_home_node
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/chi_home_node
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/chi_home_node
+- original:
+    id: COH-005
+    name: chi_interface
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/chi_interface
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/chi_interface
+- original:
+    id: COH-006
+    name: chi_request_node
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/chi_request_node
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/chi_request_node
+- original:
+    id: COH-007
+    name: chi_router
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/chi_router
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/chi_router
+- original:
+    id: COH-008
+    name: chi_slave_node
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/chi_slave_node
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/chi_slave_node
+- original:
+    id: COH-009
+    name: coherent_noc
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/coherent_noc
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/coherent_noc
+- original:
+    id: COH-010
+    name: distributed_snoop_filter
+    status: planned
+    version: 0.1.0
+    path: ips/coherency/chi/distributed_snoop_filter
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/coherency/chi/distributed_snoop_filter
+- original:
+    id: MEM-030
+    name: cxl_memory_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/cxl/cxl_memory_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/cxl/cxl_memory_controller
+- original:
+    id: MEM-031
+    name: hbm_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/hbm/hbm_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/hbm/hbm_controller
+- original:
+    id: MEM-032
+    name: hbm_phy_wrapper
+    status: planned
+    version: 0.1.0
+    path: ips/memory/hbm/hbm_phy_wrapper
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/hbm/hbm_phy_wrapper
+- original:
+    id: MEM-033
+    name: memory_compression_engine
+    status: planned
+    version: 0.1.0
+    path: ips/memory/compression/memory_compression_engine
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/compression/memory_compression_engine
+- original:
+    id: MEM-035
+    name: persistent_memory_controller
+    status: planned
+    version: 0.1.0
+    path: ips/memory/cxl/persistent_memory_controller
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/memory/cxl/persistent_memory_controller
+- original:
+    id: MUL-010
+    name: av1_codec
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/codec/av1_codec
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/codec/av1_codec
+- original:
+    id: MUL-011
+    name: gpu_interface
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/gpu/gpu_interface
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/gpu/gpu_interface
+- original:
+    id: MUL-012
+    name: h264_codec
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/codec/h264_codec
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/codec/h264_codec
+- original:
+    id: MUL-013
+    name: h265_codec
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/codec/h265_codec
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/codec/h265_codec
+- original:
+    id: MUL-014
+    name: video_scaler
+    status: planned
+    version: 0.1.0
+    path: ips/multimedia/video/video_scaler
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/multimedia/video/video_scaler
+- original:
+    id: REL-001
+    name: aging_monitor
+    status: planned
+    version: 0.1.0
+    path: ips/reliability/monitor/aging_monitor
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/reliability/monitor/aging_monitor
+- original:
+    id: SUB-001
+    name: ai_accelerator_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/ai/ai_accelerator_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/ai/ai_accelerator_subsystem
+- original:
+    id: SUB-002
+    name: aon_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/aon/aon_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/aon/aon_subsystem
+- original:
+    id: SUB-003
+    name: cpu_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/cpu/cpu_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/cpu/cpu_subsystem
+- original:
+    id: SUB-004
+    name: debug_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/debug/debug_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/debug/debug_subsystem
+- original:
+    id: SUB-005
+    name: io_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/io/io_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/io/io_subsystem
+- original:
+    id: SUB-006
+    name: mcu_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/mcu/mcu_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/mcu/mcu_subsystem
+- original:
+    id: SUB-007
+    name: memory_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/memory/memory_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/memory/memory_subsystem
+- original:
+    id: SUB-008
+    name: safety_island
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/safety/safety_island
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/safety/safety_island
+- original:
+    id: SUB-009
+    name: security_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/security/security_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/security/security_subsystem
+- original:
+    id: SUB-010
+    name: sensor_subsystem
+    status: planned
+    version: 0.1.0
+    path: ips/subsystem/sensor/sensor_subsystem
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/subsystem/sensor/sensor_subsystem
+- original:
+    id: TST-003
+    name: silicon_health_monitor
+    status: planned
+    version: 0.1.0
+    path: ips/test/monitor/silicon_health_monitor
+  disposition: withdrawn
+  reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
+  source_files: archived
+  restore: 复核需求、边界和依赖；恢复原 ID，将 archive_path 的材料恢复到 original.path 并将 disposition 标记为
+    restored，校验后刷新 README。
+  archive_path: docs/archive/2026-09-ip-cbb-cleanup/retired-placeholders/ips/test/monitor/silicon_health_monitor
+historical_snapshot: docs/archive/2026-09-ip-materials-review/retired-assets.full.yaml

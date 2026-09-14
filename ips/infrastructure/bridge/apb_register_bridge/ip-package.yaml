@@ -1,0 +1,31 @@
+schema_version: '2.0'
+id: MIG-IP-BUS-003
+name: apb_register_bridge
+domain: infrastructure
+subdomain: bridge
+type: ip
+priority: P1
+status: implemented
+maturity: experimental
+version: 0.1.0
+description: 同钟域 APB Slave→Master 寄存桥；协调 SETUP/ACCESS、等待与响应，避免重复下游访问；切断请求/响应时序路径，不是全部信号直接延迟一拍。
+  已迁入原 BUS-003 完整实现；保留旧构建标识，IP 发布资格待重新评估。
+path: ips/infrastructure/bridge/apb_register_bridge
+interfaces:
+- apb3
+- apb4
+core: aixsilicon:cbb:apb_register_slice:0.1.0
+vendor: aixsilicon
+library: ip
+license: Apache-2.0
+dependencies: []
+fusesoc:
+  core: aixsilicon:cbb:apb_register_slice:0.1.0
+  cores: fusesoc
+migration:
+  source_repo: aixsilicon_cbb_repo
+  source_id: BUS-003
+  legacy_metadata: cbb.yaml
+  rtl_toplevel: apb_register_slice
+  qualification: needs_verification
+  note: 保留历史 CBB 元数据和证据用于追溯；不据此声明 IP 发布 Gate 通过。

@@ -8,6 +8,13 @@ register_definition_freeze: true
 approvals:
   basis: 'user delegated continuation: approve, complete the rest'
   status: user_delegated_design_approval
+approval:
+  kind: user_delegated
+  approved_by: execution_agent_under_existing_user_delegation
+  reviewed_at: '2026-09-14T03:30:45.220648+00:00'
+  authorization_ref: docs/reviews/lld_authorization.md
+  authorization_sha256: 8ae89bdce24d99ad38fcc89803ef6e1ca472df14885cd0ef8ae49b0d1848b382
+  input_sha256: 39c241f8e04e0f5aebe626744376369a6b37c6b17a8192cddedfe890ea170a46
 END_LLD_GATE_META -->
 
 依据用户 `approve, complete the rest` 的继续执行授权，记录委托设计批准。

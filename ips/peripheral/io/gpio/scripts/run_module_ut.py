@@ -17,13 +17,19 @@ def digest(path):
 
 def snapshot():
     files = set()
-    for directory in ('rtl', 'regs', 'verification/unit_test', 'scripts', 'constraints', 'docs/lld', 'docs/hld', 'docs/lrs'):
-        files.update(p.resolve() for p in (ROOT / directory).rglob('*') if p.is_file() and '__pycache__' not in p.parts)
+    for directory in ('rtl', 'regs', 'verification/unit_test', 'verification/assertions', 'scripts', 'constraints', 'docs', 'model', 'configs', 'generator', 'build/cbb_adapter'):
+        files.update(p.resolve() for p in (ROOT / directory).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.name != 'quality.yaml')
     files.update(ROOT.glob('*.core'))
     files.add(ROOT / 'ip-package.yaml')
     files.add(ROOT / 'build/cbb_adapter/provenance.json')
-    files.update(Path(p) for p in json.loads((ROOT / 'build/cbb_adapter/provenance.json').read_text())['files'])
-    return {str(p): digest(p) for p in sorted(files)}
+    provenance = json.loads((ROOT / 'build/cbb_adapter/provenance.json').read_text())
+    for path, expected in provenance['files'].items():
+        if digest(Path(path)) != expected:
+            raise RuntimeError('DEPENDENCY_CHANGED: regenerate local dependency before running')
+    local = provenance['materialized']
+    if digest(ROOT / local['path']) != local['sha256']:
+        raise RuntimeError('DEPENDENCY_CHANGED: materialized source differs')
+    return {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
 
 def main():
     tests = sorted((ROOT / 'verification/unit_test').glob('ut_*.sv'))
@@ -32,6 +38,8 @@ def main():
     run = Path(tempfile.mkdtemp(prefix='run.', dir=base))
     frozen = snapshot()
     (run / 'inputs.json').write_text(json.dumps(frozen, indent=2)+'\n')
+    before = run / 'inputs.before.sha256'
+    before.write_text(''.join(f'{value}  {path}\n' for path,value in frozen.items()))
     checks = {}
     artifacts = []
     evidence = ROOT / 'reports/module_ut' / run.name
@@ -73,10 +81,18 @@ def main():
         raise RuntimeError('SOURCE_CHANGED: module UT batch invalidated')
     # Keep dependency identities local; report binds their immutable manifest by digest.
     record(run/'inputs.json')
+    after = run / 'inputs.after.sha256'
+    after.write_text(''.join(f'{value}  {path}\n' for path,value in snapshot().items()))
+    record(before); record(after)
+    coverage = {test.stem.removeprefix('ut_'):[test.stem] for test in tests if test.stem != 'ut_gpio_read_path'}
+    coverage.update({'gpio_csr':['ut_gpio_read_path'], 'gpio_csr_adapter':['ut_gpio_read_path']})
     report = {'schema_version':'2.0','ip_name':'gpio','report_type':'module_ut',
               'status':'pass' if passed else 'fail','eda_profile':'commercial-systemverilog',
               'tool':'vcs','tool_version':'W-2024.09-SP1','test_count':len(tests),
-              'command':'bash verification/unit_test/run_ut.sh','artifacts':artifacts,'checks':checks}
+              'command':'bash verification/unit_test/run_ut.sh','artifacts':artifacts,'checks':checks,
+              'module_coverage':coverage,
+              'inputs_manifest':{'path':str(before.relative_to(ROOT)), 'sha256':digest(before)},
+              'inputs_after_manifest':{'path':str(after.relative_to(ROOT)), 'sha256':digest(after)}}
     text = '<!-- REPORT_META\n'+yaml.safe_dump(report,sort_keys=False)+'END_REPORT_META -->\n'
     (ROOT/'reports/quality/module_ut_summary.md').write_text(text)
     (run/'module_ut_summary.md').write_text(text)

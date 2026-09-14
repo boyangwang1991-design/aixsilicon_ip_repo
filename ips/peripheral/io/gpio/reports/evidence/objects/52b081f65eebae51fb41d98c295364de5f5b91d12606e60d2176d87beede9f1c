@@ -1,0 +1,30 @@
+"""Stage 07: project the approved RTL_MAP objects into the stage 16 seed."""
+import hashlib
+import re
+from pathlib import Path
+import yaml
+
+root = Path(__file__).resolve().parents[2]
+model_path = root / 'model/micro_design.yaml'
+model = yaml.safe_load(model_path.read_text())
+modules = {item['id'] for item in model['modules']}
+links = []
+for mapping in model['rtl_map']:
+    relative = mapping['rtl_file']
+    target = (root / relative).resolve()
+    if not target.is_relative_to(root / 'rtl') or target.suffix != '.sv':
+        raise ValueError(f'Invalid RTL path: {relative}')
+    if not re.search(r'\bmodule\s+' + re.escape(mapping['rtl_module']) + r'\b', target.read_text()):
+        raise ValueError(f'Module declaration missing: {relative}')
+    for source in mapping['implements']:
+        if source in modules:
+            links.append({'source_id': source, 'target_id': 'RTL.FILE.' + relative})
+if {link['source_id'] for link in links} != modules:
+    raise ValueError('Incomplete LLD module coverage')
+output = root / 'reports/trace-seeds/lld_to_rtl.yaml'
+output.parent.mkdir(parents=True, exist_ok=True)
+output.write_text(yaml.safe_dump({'schema_version':'2.0', 'ip_name':'gpio',
+    'links':sorted(links,key=lambda item:(item['source_id'],item['target_id'])),
+    'provenance':[{'path':str(p.relative_to(root)), 'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+                  for p in (model_path,Path(__file__))]},sort_keys=False))
+print(f'Projected {len(links)} existing RTL module mappings')

@@ -57,3 +57,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   VLNV 命名空间：boyangwang1991-design:ip）。
 - 统一仓 CI（扫描 `ips/` 全部 FuseSoC core 做 lint）。
 - 仓库级文档 `docs/opentitan-ip-build-list.md`（OpenTitan IP 构建清单）。
+
+## 2026-09-13 IP/CBB 分类清理
+
+统一 registry 管理入口、状态和编号纪律；按指导清单精简规划，保留退出记录与工程材料，迁移 APB 桥及 diversity comparator。历史记录见 docs/archive/2026-09-ip-materials-review/cleanup-2026-09.md。

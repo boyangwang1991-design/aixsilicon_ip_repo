@@ -1,16 +1,23 @@
 schema_version: '2.0'
 generator: peakrdl-regblock
 generator_version: 1.3.1
-rdl_source: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/regs/gpio.rdl
+rdl_source: regs/gpio.rdl
 rdl_source_sha256: 46bd1bab2da0f44f9bdff6c5bba6f4c7f7a93a9d09d7f6e6849cc3ea40571984
 outputs:
-- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_csr_pkg.sv
+- path: rtl/generated/gpio_csr_pkg.sv
   sha256: 2f03ee84f808170fc92a4ce3ba4ae9c18b96a4a1b7b29b190e9d2e63c0335656
-- path: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_csr.sv
-  sha256: 2eaf95e045f9394366dec9fa2b43ddbb908b403ff7ddf5b79cd5ebe324cca82c
+- path: rtl/generated/gpio_csr.sv
+  sha256: 7fbf9fde2865aaa4810108bb5612c656e29995651b94c1bb494e3309799b3bab
+- path: rtl/generated/gpio_csr_adapter.sv
+  sha256: b96118a36f888effa802eaca7aaf8cc610532f9c433592408d10724b08cc0936
 lint_command:
 - vlogan
 - -full64
 - -sverilog
+- -ntb_opts
+- uvm-1.2
+- /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/peripheral/io/gpio/rtl/generated/gpio_reg_desc_pkg.sv
 - '{files}'
+lint_work_dir: build/registers/compile
+verification_scope: native_systemverilog_compile_and_provenance
 timeout_seconds: 300

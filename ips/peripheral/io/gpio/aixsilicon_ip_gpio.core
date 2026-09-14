@@ -126,10 +126,20 @@ filesets:
     file_type: systemVerilogSource
     depend:
     - aixsilicon:cbb:parity_gen_check:0.1.0
+  csr_checks:
+    files:
+    - verification/assertions/gpio_csr_checks.sv
+    file_type: systemVerilogSource
   lint_waivers:
     files:
     - constraints/lint_waivers.tcl
     file_type: waiver
+  cdc_constraints:
+    files:
+    - constraints/gpio.sgdc:
+        file_type: user
+    - constraints/load_cdc.tcl:
+        file_type: tclSource
   ut_gpio:
     files:
     - verification/unit_test/ut_gpio.sv
@@ -249,10 +259,42 @@ targets:
         script_dir: $::env(IP_ROOT)/scripts/ppa
         dc_script: synth.tcl
         report_dir: reports
+  cdc:
+    filesets:
+    - generated
+    - rtl
+    - cdc_constraints
+    toplevel: gpio
+    parameters: *id002
+    default_tool: spyglass
+    tools:
+      spyglass:
+        goals:
+        - cdc/cdc_setup_check
+        - cdc/cdc_verify_struct
+        spyglass_options:
+        - enableSV yes
+        - handlememory yes
+  rdc:
+    filesets:
+    - generated
+    - rtl
+    - cdc_constraints
+    toplevel: gpio
+    parameters: *id002
+    default_tool: spyglass
+    tools:
+      spyglass:
+        goals:
+        - rdc/rdc_verify_struct
+        spyglass_options:
+        - enableSV yes
+        - handlememory yes
   ut_gpio:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio
     toplevel: ut_gpio
     default_tool: vcs
@@ -270,6 +312,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_aon_mailbox
     toplevel: ut_gpio_aon_mailbox
     default_tool: vcs
@@ -287,6 +330,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_aon_wake
     toplevel: ut_gpio_aon_wake
     default_tool: vcs
@@ -304,6 +348,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_apb_if
     toplevel: ut_gpio_apb_if
     default_tool: vcs
@@ -321,6 +366,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_capture
     toplevel: ut_gpio_capture
     default_tool: vcs
@@ -338,6 +384,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_diag
     toplevel: ut_gpio_diag
     default_tool: vcs
@@ -355,6 +402,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_event_fifo
     toplevel: ut_gpio_event_fifo
     default_tool: vcs
@@ -372,6 +420,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_input
     toplevel: ut_gpio_input
     default_tool: vcs
@@ -389,6 +438,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_irq
     toplevel: ut_gpio_irq
     default_tool: vcs
@@ -406,6 +456,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_output
     toplevel: ut_gpio_output
     default_tool: vcs
@@ -423,6 +474,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_read_path
     toplevel: ut_gpio_read_path
     default_tool: vcs
@@ -440,6 +492,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_regfile
     toplevel: ut_gpio_regfile
     default_tool: vcs
@@ -457,6 +510,7 @@ targets:
     filesets:
     - generated
     - rtl
+    - csr_checks
     - ut_gpio_security
     toplevel: ut_gpio_security
     default_tool: vcs
