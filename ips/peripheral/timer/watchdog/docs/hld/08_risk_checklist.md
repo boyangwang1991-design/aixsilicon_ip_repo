@@ -6,8 +6,15 @@ status: pass
 architecture_freeze: true
 approvals:
 - source: user
-  input: "approve, complete the rest"
+  input: approve, complete the rest
   evidence: reports/full_flow/g1_approval.md
+approval:
+  kind: user_delegated
+  approved_by: AI under recorded user delegation
+  reviewed_at: '2026-09-14T08:23:46.351329+00:00'
+  authorization_ref: docs/reviews/hld_recovery_review.md
+  authorization_sha256: 1e6e14274214a8bb81ddd87ca4b76d0e8fbfb4fa0467c2c27da78c640fd92a02
+  input_sha256: 574e776c9c0841a787c16b9a993b16ab2878119da811e08c9858cfc1a59b9a5c
 END_HLD_GATE_META -->
 
 本基线已获用户明确批准，G1 冻结记录见 reports/full_flow/g1_approval.md。

@@ -117,7 +117,7 @@ def check(workspace):
         normalize = lambda obj: {k: v for k, v in obj.items() if v is not None and v != []}
         ordered = lambda group: sorted((normalize(o) for o in group), key=lambda o: o.get('id', o.get('gate', '')))
         require(ordered(blocks[kind]) == ordered(actual), f'{kind}: source/model mismatch')
-    pc_path = workspace / 'reports/quality/param_semantic_check.json'
+    pc_path = workspace / 'build/reports/quality/param_semantic_check.json'
     bind(pc_path)
     pc = json.loads(pc_path.read_text())
     require(pc['model_sha256'] == sources['model/parameter_space.yaml'], 'stale parameter report')
@@ -137,7 +137,7 @@ def main():
     parser.add_argument('--workspace', type=Path, default=Path('.'))
     args = parser.parse_args()
     result = check(args.workspace.resolve())
-    report = args.workspace / 'reports/quality'
+    report = args.workspace / 'build/reports/quality'
     report.mkdir(parents=True, exist_ok=True)
     (report / 'hld_check.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     lines = ['# Watchdog HLD 作者检查', '', f'结果：{"PASS" if result["passed"] else "FAIL"}；记录阶段状态为 {result["human_gate"]}，本工具不产生评审批复。', '',

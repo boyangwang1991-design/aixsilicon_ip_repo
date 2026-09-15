@@ -51,3 +51,6 @@ jobs:
       - name: Check README status overview is in sync
         run: |
           python3 scripts/update_registry_readme.py --check
+
+      - name: Reject tracked raw execution evidence
+        run: python3 scripts/check_evidence_hygiene.py

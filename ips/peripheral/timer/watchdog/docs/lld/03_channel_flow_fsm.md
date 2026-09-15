@@ -22,7 +22,6 @@ applicability:
   expr: 'true'
 encoding: binary
 reset_state: IDLE
-illegal_state_policy: fatal
 illegal_state_handling: invalid protected state produces fatal; protocol order violation records FLOW_SEQUENCE
 states:
 - IDLE

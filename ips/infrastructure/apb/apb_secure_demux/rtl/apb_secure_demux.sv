@@ -149,7 +149,8 @@ module apb_secure_demux #(
                 m_psel[p]=1;m_penable[p]=route_enable;m_master_id_valid_o[p]=payload_master_valid;
             end
         end
-        s_pready=0;s_pslverr=0;s_prdata=0;
+        // REQ-APB-005: idle/SETUP response; reset remains isolated.
+        s_pready=preset_ni && !upstream_access;s_pslverr=0;s_prdata=0;
         if(preset_ni && upstream_access) begin
             if(state_q==LOCAL) begin
                 s_pready=1;s_pslverr=(completion_reason!=0);s_prdata=csr_q ? csr_data : 32'b0;

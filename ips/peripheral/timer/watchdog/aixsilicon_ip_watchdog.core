@@ -70,6 +70,18 @@ parameters:
     datatype: int
     paramtype: vlogparam
     default: 7
+  AUTO_START_MASK:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
+  NO_STOP_MASK:
+    datatype: int
+    paramtype: vlogparam
+    default: -1
+  HARD_CFG_LOCK_MASK:
+    datatype: int
+    paramtype: vlogparam
+    default: 0
 filesets:
   pkg:
     files:
@@ -226,6 +238,11 @@ filesets:
     - verification/env/watchdog_env_pkg.sv
     - verification/th/watchdog_harness.sv
     file_type: systemVerilogSource
+  pv:
+    files:
+    - build/parameter_adapter/watchdog_parameter_config.sv
+    - verification/parameters/ut_watchdog_parameters.sv
+    file_type: systemVerilogSource
   cdc_constraints:
     files:
     - scripts/spyglass_constraints.tcl
@@ -368,6 +385,9 @@ targets:
     - DIAG_INJECT_EN
     - PCLK_HALF
     - WDT_HALF
+    - AUTO_START_MASK
+    - NO_STOP_MASK
+    - HARD_CFG_LOCK_MASK
     toplevel: watchdog_harness
     tools:
       vcs:
@@ -407,6 +427,9 @@ targets:
     - DIAG_INJECT_EN
     - PCLK_HALF
     - WDT_HALF
+    - AUTO_START_MASK
+    - NO_STOP_MASK
+    - HARD_CFG_LOCK_MASK
     toplevel: watchdog_harness
     tools:
       vcs:
@@ -436,6 +459,24 @@ targets:
       design_compiler:
         script_dir: $::env(WATCHDOG_IP_ROOT)/scripts/ppa
         dc_script: synth.tcl
+  param_check:
+    default_tool: vcs
+    filesets:
+    - pkg
+    - generated
+    - rtl
+    - pv
+    toplevel: ut_watchdog_parameters
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        run_options:
+        - -no_save
   cdc:
     default_tool: spyglass
     filesets:
@@ -456,6 +497,9 @@ targets:
     - SAFETY_EN
     - ALLOW_RUNTIME_UPDATE
     - DIAG_INJECT_EN
+    - AUTO_START_MASK
+    - NO_STOP_MASK
+    - HARD_CFG_LOCK_MASK
     toplevel: watchdog_top
     tools:
       spyglass:
@@ -486,6 +530,9 @@ targets:
     - SAFETY_EN
     - ALLOW_RUNTIME_UPDATE
     - DIAG_INJECT_EN
+    - AUTO_START_MASK
+    - NO_STOP_MASK
+    - HARD_CFG_LOCK_MASK
     toplevel: watchdog_top
     tools:
       spyglass:

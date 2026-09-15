@@ -45,5 +45,12 @@ status: pass
 architecture_freeze: true
 approvals:
   architecture: user approval recorded in docs/reviews/g1_approval.md
+approval:
+  kind: human
+  approved_by: user (historical approval; see authorization record)
+  reviewed_at: '2026-09-14T07:14:06.640530+00:00'
+  authorization_ref: docs/reviews/hld_approval_migration.md
+  authorization_sha256: c8c6d4c126f940f934b4acf4539debb609da62eb837ac0479015a79e2666ad87
+  input_sha256: fa23ae84b6720c6902a401b57b6bf6754a998df6ee64392a471f0d215ced4145
 END_HLD_GATE_META -->
 

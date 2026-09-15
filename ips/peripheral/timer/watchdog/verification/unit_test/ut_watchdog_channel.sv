@@ -152,7 +152,8 @@ module ut_watchdog_channel;
       cycle(span-1);ck(!fault,"random no premature timeout");cycle();ck(final_req,"random exact timeout");
     end
     mark("80 randomized timing reference cases");
-    $display("UT_WATCHDOG_CHANNEL: PASS (errors=0 tests=%0d checks=%0d W=%0d)",tests,checks,W);$finish;
+    $display("WATCHDOG_CHANNEL_METRICS tests=%0d checks=%0d W=%0d",tests,checks,W);
+    $display("UT_WATCHDOG_CHANNEL: PASS (errors=0)");$finish;
   end
   initial begin #5000000;$fatal(1,"UT timeout");end
 endmodule

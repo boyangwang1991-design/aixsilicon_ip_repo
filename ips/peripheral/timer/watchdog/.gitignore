@@ -1,3 +1,12 @@
 build/
+release/
 __pycache__/
 *.pyc
+
+# Only AI-authored conclusions and final PPA figures belong in reports/.
+/reports/*
+!/reports/report.md
+!/reports/ppa/
+/reports/ppa/*
+!/reports/ppa/ppa_report.md
+!/reports/ppa/*.png

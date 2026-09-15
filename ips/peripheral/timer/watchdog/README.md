@@ -1,28 +1,25 @@
 # AIXSILICON Watchdog
 
-当前按 **ip-development-suite full-flow** 恢复完整过程交付。原
-[输入契约](watchdog_contract.md) 保留；既有 RTL/UT 是待与冻结设计核对的候选工程。
-本 IP 尚未完成全流程或正式发布。
+APB4 参数化看门狗，支持独立监督计时、窗口服务、故障升级与恢复，以及可选多客户端
+和安全增强能力。设计输入见 [watchdog_contract.md](watchdog_contract.md)。
 
-- [规范 LRS 索引](docs/lrs/index.md)：139 条需求，reviewed / G0 pass；[用户交接记录](reports/full_flow/g0_review.md)。
-- [参数支持矩阵](reports/quality/param_matrix.md)：16 项完整参数；[188 项输入检查](reports/quality/param_semantic_check.md)符合预期，尚非 RTL 多配置执行。
-- [重整 HLD 索引](docs/hld/index.md)：24 个文件、6 个 L1 模块；G1 已获用户批准冻结，见[批准记录](reports/full_flow/g1_approval.md)。
-- [完整 LLD 索引](docs/lld/index.md)：139 条需求、22 接口、97 寄存器字段均承接；G2 已按[持续授权](reports/full_flow/continuation_authorization.md)完成检查并冻结。
-- [完整 VPLAN 索引](docs/verification/index.md)：74 份分册、20 项 feature、20 个 TC、12 项断言，覆盖全部 139 条需求并关联 188 个参数配置；VP0 已检查冻结。
-- [全流程交付计划](reports/full_flow/plan.md)：包含 HLD、LLD、VPLAN 全面重整及验证/打包链。
-- [LRS 来源映射](reports/full_flow/source_mapping.md) / [作者检查](reports/full_flow/lrs_check.md)。
-- [既有 HLD/LLD/VPLAN 内容审查](reports/full_flow/document_review.md)：历史缺口记录；三阶段文档现已重整。
-- [当前执行进度与证据](reports/full_flow/current_progress.md) / [早期执行记录](reports/full_flow/execution_results.md) / [LLD 与寄存器冻结评审包](reports/full_flow/g2_review_package.md)。
-- [当前机器门禁报告](reports/quality/gate_report.md)：结构检查不代替真实需求/设计冻结。
-- [RTL top](rtl/watchdog_top.sv) / [channel core](rtl/watchdog_channel.sv)。
-- [SystemRDL](regs/watchdog.rdl) 及派生 CSR/Header/IP-XACT/RAL。
-- [原使用说明](docs/user_guide.md) / [安全说明](docs/safety_manual.md)。
-- [历史 partial-task 验证结果](reports/validation_report.md)：保留当时实际范围，不作为 full-flow 完成声明。
+**当前结论、门禁、未关闭问题及复现入口统一见 [reports/report.md](reports/report.md)。**
+该工程仍在完整设计验证流程中，不代表正式发布或功能安全认证。
 
-历史模块测试入口为 `bash verification/unit_test/run_ut.sh`，寄存器和封装再生成入口为
-`bash scripts/regenerate.sh`。均需使用 workflow 根 uv 环境及商业 EDA；中间产物进入
-`build/`。恢复执行前先检查阶段输入、模型和技术冻结，重新编译并绑定当前源码证据。
-真实 UVM 入口为 `verification/sim/Makefile`：设置 `UV_PROJECT` 为 workflow 根后执行
-`make TEST=tc_bus SEED=1`。运行器检查源码、依赖、参数和二进制身份，证据写入
-`reports/uvm/<run>/manifest.json`；失败和超时返回非零，不以仿真进程退出零替代通过。
-模块测试通过不能替代 CDC/RDC、UVM 集成、功能交叉覆盖、物理冗余、PPA 或发布门禁。
+- [LRS](docs/lrs/index.md)
+- [HLD](docs/hld/index.md)
+- [LLD](docs/lld/index.md)
+- [VPLAN](docs/verification/index.md)
+- [SystemRDL](regs/watchdog.rdl)
+- [RTL 顶层](rtl/watchdog_top.sv)
+- [使用说明](docs/user_guide.md)与[安全说明](docs/safety_manual.md)
+- [持续授权原文](docs/reviews/continuation_authorization.md)
+
+本地执行使用 workflow 根的唯一 uv 环境。设置 UV_PROJECT 为 workflow 根后，
+模块回归入口为 `bash verification/unit_test/run_ut.sh`，UVM 入口为
+`verification/sim/Makefile`，RTL 检查入口为 `scripts/run_rtl_checks.py`。
+恢复输入和追踪使用 `scripts/refresh_design.py`，不手改派生 model/trace。
+
+新运行的机器摘要、日志、数据库及临时产物全部写入被忽略的 `build/`，不上传 GitHub。
+历史阶段报告不作为当前完成证据；AI 读取本轮机器结果后更新统一报告。
+PPA 表征状态及限制见 [PPA 专报](reports/ppa/ppa_report.md)。

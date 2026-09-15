@@ -51,6 +51,8 @@ endfunction
 function void watchdog_reference_model::emit(string label,bit[63:0] value,bit[63:0] mask='1);
   watchdog_prediction p;p=watchdog_prediction::type_id::create("prediction");
   p.label=label;p.expected_value=value;p.mask=mask;p.feature=feature;p.scenario=scenario;
+  p.config_class=(parameters.channels>1 || parameters.supervision_support || parameters.hw_support ||
+    parameters.token_support || parameters.runtime_update) ? 2 : (parameters.safety ? 1 : 0);
   expected_ap.write(p);
 endfunction
 function void watchdog_reference_model::reset_bus(bit cold);
@@ -129,6 +131,7 @@ function void watchdog_reference_model::write_apb(apb_item item);
     error|=!authorization;
   end
   value=error ? 0 : (read_value(32'(item.addr)) & access_info.read_mask);
+  scenario=error ? 2 : 0;
   emit($sformatf("APB:%0d",apb_count),{31'b0,error,wr ? 32'b0 : value},33'h1ffffffff);
   apb_count++;
   if(item.observed_wait_cycles>1) `uvm_error("APB_LATENCY","ACCESS exceeded two pclk edges")
@@ -154,6 +157,19 @@ function void watchdog_reference_model::write_wdt(watchdog_observation observati
   command_t selected;
   config_t selected_config;
   bit[7:0] result;
+  bit[63:0] age,window_limit,timeout_limit;
+  // Classify observed events, never the testcase name or a requested scenario.
+  scenario=(!observation.por_n || !observation.preset_n || observation.warm) ? 3 : 0;
+  if(scenario==0 && observation.kind==WDT_EDGE) begin
+    if(observation.command_valid && observation.command.hardware && busy) scenario=4;
+    for(int i=0;i<parameters.channels;i++) begin
+      age=channels[i].age_at(observation.cycle);
+      window_limit={channels[i].active.word[3],channels[i].active.word[2]};
+      timeout_limit={channels[i].active.word[5],channels[i].active.word[4]};
+      if(channels[i].state==2 && ((channels[i].active.word[0][0] && age==window_limit) || age==timeout_limit))
+        scenario=1;
+    end
+  end
   irq_now=0;fault_now=0;local_now=0;pause_now=0;recovery_now=0;
   final_now=0;safe_now=0;alert_now=0;wake_now=0;
   for(int i=0;i<parameters.channels;i++) begin
@@ -214,6 +230,7 @@ function void watchdog_reference_model::write_wdt(watchdog_observation observati
     if(observation.command_valid) begin
       if(observation.command_canceled) result=9;
       else if(observation.command_integrity) result=10;
+      if(result!=0 && result!=11) scenario=2;
       emit($sformatf("WDT:%0d:result",observation.cycle),64'(result),64'hff);
       if(!observation.command.hardware) begin
         reply_pending=1;reply_time=observation.stamp;reply_age=0;reply_result=result;

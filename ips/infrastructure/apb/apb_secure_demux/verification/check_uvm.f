@@ -1,0 +1,6 @@
+-full64
+-sverilog
+-ntb_opts uvm-1.2
+-timescale=1ns/1ps
+-f verification.list
+-top harness

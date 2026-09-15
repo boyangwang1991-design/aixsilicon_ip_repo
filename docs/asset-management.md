@@ -26,6 +26,22 @@ python3 scripts/update_registry_readme.py --check
 
 仓库 CI 提供同样的索引和 README 门禁，保持手动触发策略。领域仿真/综合/发布 Gate 独立执行。
 
+## 执行证据仅本地
+
+本仓提交源码、约束、复现脚本/配置、最终质量摘要与签核结论及必要的输入/证据哈希。
+原始 evidence（含哈希对象和索引）、工具日志、覆盖率 HTML/数据库、编译产物、预检
+和逐次运行输出仅本地保留，不提交 Git、不上传 GitHub 或 Release 附件。根 `.gitignore`
+覆盖存量路径；新执行产物按 IP suite 写入 `build/`。提交前运行
+`python3 scripts/check_evidence_hygiene.py`，它检查 Git 索引而非仅检查忽略规则。
+
+新 clone 不包含原始证据。按各 IP 的脚本、FuseSoC target 和验证计划重跑 owning 阶段，
+生成本次报告与哈希后再验收；已提交的 PASS 是历史摘要，不能代替本次本地证据校验。
+详细流程与发布集合由 canonical `ip-development-suite` 的 gate-evidence-retention 约束。
+
+2026-09 清理取消跟踪原始证据并保留本地文件；GPIO 旧 candidate 的 manifest、说明和
+package report 同步取消跟踪，避免将包含原始证据的旧包继续作为当前交付。未改写历史
+技术结论或 Git 历史；需要新发布时按更新后的套件重建。
+
 历史清理记录见 [清理报告](archive/2026-09-ip-materials-review/cleanup-2026-09.md)；`docs/archive/2026-09-ip-cbb-cleanup/` 保存清理前清单及指导快照。
 
 ## 历史材料隔离

@@ -45,10 +45,10 @@ python3 scripts/update_registry_readme.py --check
 
 | 指标                         | 数量 |
 |------------------------------|------|
-| 总条目（ips）                | 293  |
+| 总条目（ips）                | 294  |
 | released（已发布）           | 0    |
 | implemented（已实现/已交付） | 3    |
-| planned（规划候选）          | 290  |
+| planned（规划候选）          | 291  |
 | deprecated（已废弃）         | 0    |
 | 实现率                       | 1.0% |
 
@@ -64,7 +64,7 @@ python3 scripts/update_registry_readme.py --check
 
 | 优先级 | 已交付 | planned | 合计 |
 |--------|--------|---------|------|
-| P0     | 2      | 71      | 73   |
+| P0     | 2      | 72      | 74   |
 | P1     | 1      | 109     | 110  |
 | P2     | 0      | 71      | 71   |
 | P3     | 0      | 39      | 39   |
@@ -74,7 +74,7 @@ python3 scripts/update_registry_readme.py --check
 | 类型      | 数量 |
 |-----------|------|
 | generator | 16   |
-| ip        | 269  |
+| ip        | 270  |
 | wrapper   | 8    |
 
 ### 按领域分布（顶层 domain）
@@ -90,7 +90,7 @@ python3 scripts/update_registry_readme.py --check
 | crypto         | 3    |
 | debug_trace    | 13   |
 | dft            | 8    |
-| infrastructure | 73   |
+| infrastructure | 74   |
 | memory         | 17   |
 | mmu            | 4    |
 | multimedia     | 4    |
@@ -102,7 +102,7 @@ python3 scripts/update_registry_readme.py --check
 | system         | 39   |
 | test           | 2    |
 
-### 全部 IP 明细（293，按领域分组）
+### 全部 IP 明细（294，按领域分组）
 
 #### accelerator（19，已交付=0）
 
@@ -222,7 +222,7 @@ python3 scripts/update_registry_readme.py --check
 | DFT-007 | [fuse_repair_controller](ips/dft/mbist/fuse_repair_controller/README.md)         | ip   | planned | P2     | 0.1.0 | Fuse 修复控制器 |
 | DFT-008 | [memory_redundancy_analyzer](ips/dft/mbist/memory_redundancy_analyzer/README.md) | ip   | planned | P2     | 0.1.0 | 内存冗余分析器  |
 
-#### infrastructure（73，已交付=2）
+#### infrastructure（74，已交付=2）
 
 | ID              | IP                                                                                        | 类型      | 状态        | 优先级 | 版本  | 功能/描述                                                                                                                                                                                             |
 |-----------------|-------------------------------------------------------------------------------------------|-----------|-------------|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -266,6 +266,7 @@ python3 scripts/update_registry_readme.py --check
 | INF-043         | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                       | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                                                                                                                                                                                        |
 | INF-044         | [noc_router](ips/infrastructure/noc/noc_router/README.md)                                 | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                                                                                                                                                                                  |
 | INF-045         | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)                 | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                                                                                                                                                                                        |
+| INF-046         | [apb_secure_demux](ips/infrastructure/apb/apb_secure_demux/README.md)                     | ip        | planned     | P0     | 1.0.0 | 安全 APB Demux；1→N 路由、可信主体权限、原子配置提交及审计                                                                                                                                            |
 | MIG-IP-AXI-001  | [axi_channel_register_slice](ips/infrastructure/axi/axi_channel_register_slice/README.md) | ip        | planned     | P0     | 0.1.0 | AXI 单通道缓冲与时序切片；按用户 2026-09-13 仓库归属要求迁入 IP，区别于完整五通道 axi_register_slice。                                                                                                |
 | MIG-IP-AXI-002  | [axi_lite_register_slice](ips/infrastructure/axi/axi_lite_register_slice/README.md)       | ip        | planned     | P0     | 0.1.0 | AXI-Lite Register Slice；combined/per-channel；小面积低延迟                                                                                                                                           |
 | MIG-IP-AXI-003  | [axi_buffer](ips/infrastructure/axi/axi_buffer/README.md)                                 | ip        | planned     | P1     | 0.1.0 | AXI Buffer；channel depth/transaction buffer；Outstanding与背压                                                                                                                                       |

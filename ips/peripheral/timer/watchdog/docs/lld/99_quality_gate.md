@@ -10,6 +10,13 @@ approvals:
   rtl: user_authorized
   verification: user_authorized
 approval_ref: reports/full_flow/continuation_authorization.md
+approval:
+  kind: user_delegated
+  approved_by: AI under recorded user delegation
+  reviewed_at: '2026-09-14T08:23:47.761783+00:00'
+  authorization_ref: docs/reviews/lld_recovery_review.md
+  authorization_sha256: fb96a9699d7cbfe31352ece09d3a759ea1187698f5786d020b3b1a62a256333a
+  input_sha256: 167412c8e112dde2fb5c5041d2460b4162e2012132708c1d5bd83d464922a20c
 END_LLD_GATE_META -->
 
 ## 设计与现有候选的差异清单

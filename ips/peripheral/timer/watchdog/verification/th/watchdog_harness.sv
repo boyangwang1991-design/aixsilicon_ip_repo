@@ -7,8 +7,8 @@ module watchdog_harness;
   parameter int PCLK_HALF=5,WDT_HALF=7;
   watchdog_control_if control();
   apb_if apb(control.pclk,control.por_n && control.preset_n,1'b0);
-  always begin #(PCLK_HALF);if(control.pclk_enable) control.pclk=~control.pclk;end
-  always begin #(WDT_HALF);if(control.wdt_enable) control.wdt_clk=~control.wdt_clk;end
+  always begin #(PCLK_HALF * 1ns);if(control.pclk_enable) control.pclk=~control.pclk;end
+  always begin #(WDT_HALF * 1ns);if(control.wdt_enable) control.wdt_clk=~control.wdt_clk;end
   watchdog_top #(.NUM_CHANNELS(NUM_CHANNELS),.NUM_CLIENTS(NUM_CLIENTS),.COUNTER_WIDTH(COUNTER_WIDTH),
     .PRESCALE_WIDTH(PRESCALE_WIDTH),.SOURCE_WIDTH(SOURCE_WIDTH),.SYNC_STAGES(SYNC_STAGES),
     .SUPPORT_TOKEN_QA(SUPPORT_TOKEN_QA),.SUPPORT_SUPERVISION(SUPPORT_SUPERVISION),.SUPPORT_HW_EVENT(SUPPORT_HW_EVENT),
@@ -51,7 +51,7 @@ module watchdog_harness;
     uvm_config_db#(virtual apb_if)::set(null,"*","vif",apb);
     run_test();
   end
-  initial begin #10000000;$fatal(1,"watchdog UVM global timeout");end
+  initial begin #10ms;$fatal(1,"watchdog UVM global timeout");end
   always @(posedge control.pclk) if(control.por_n && control.preset_n && apb.psel[0])
     assert(apb.paddr[31:15]==0) else $fatal(1,"APB VIP adapter address exceeds physical 15-bit aperture");
   `include "watchdog_assertions.sv"

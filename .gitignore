@@ -57,3 +57,16 @@ work/
 *.gz
 *.zip
 *.tar
+
+# Raw IP execution evidence is local-only, including extensionless hash objects.
+/ips/**/evidence/
+/ips/**/reports/preflight/
+/ips/**/reports/uvm/
+/ips/**/reports/**/raw/
+/ips/**/reports/**/*.txt
+/ips/**/reports/**/*.rpt
+/ips/**/reports/**/*.html
+/ips/**/reports/**/*.exit
+# Superseded GPIO candidate contains raw evidence; retain only locally.
+/ips/peripheral/io/gpio/release/gpio_0.1.0_candidate/
+/ips/peripheral/io/gpio/release/gpio_0.1.0_candidate_package_report.md

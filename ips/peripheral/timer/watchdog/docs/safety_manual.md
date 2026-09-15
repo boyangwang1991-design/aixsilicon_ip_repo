@@ -1,24 +1,21 @@
-# Safety integration notes — candidate, no ASIL claim
+# Watchdog 安全集成边界
 
-Implemented diagnostics compare independently evolving complemented counters and
-dividers, active/pending configuration copies, lock/state/request controls,
-escalation age, client/sequence parity and service comparison. Six injection
-commands exercise actual state/compare detection and sticky response. A test
-injection does not mask system reset. Fault outputs are independent of pclk.
+本工程为候选IP，不声明ASIL等级或功能安全认证。当前未闭合项见
+[统一报告](../reports/report.md)，连接要求见[集成指南](integration/watchdog_integration_guide.md)。
 
-Digital mismatches are observed on WDT edges. Simulation exercises single injected
-faults; it does not establish diagnostic coverage percentages. Shared oscillator,
-power, reset, combinational common causes, multiple errors, malicious software and
-analog failure remain outside this proof. Token/QA is deterministic replay/error
-detection, not cryptographic authentication. Client identity requires trustworthy
-source/auth signals and actual task isolation outside the IP.
+数字诊断比较互补计数/分频、活动/待生效配置、锁/状态/请求控制、升级年龄、客户端/
+序号奇偶及服务比较。六类注入作用于状态/比较路径并触发保持响应；测试注入不能屏蔽
+真实系统复位。最终故障输出独立于pclk，数字不一致在WDT边沿检查。
+RTL单次注入不等于已建立诊断覆盖百分比或物理独立性。
 
-The system must monitor WDT clock stoppage using an independent timebase, preserve
-requests through reset sequencing, and budget reset-manager/actuator latency.
-Pause can remove supervision indefinitely and therefore requires system-level
-policy. Synchronize power/debug/test/recovery/event inputs before the IP boundary.
+共享振荡器、电源、复位、组合共因、多重错误、恶意软件和模拟失效是外部责任。
+token/QA是确定性错误检测，不是密码认证；可信source/auth与任务隔离由系统提供。
+WDT停钟必须由另一独立时基监测，系统预算须包含复位管理器与执行器延迟。
+sleep/debug/test/recovery/hw_evt输入先同步到wdt_clk或完整握手。
+暂停可能无限停止监督，需要明确系统策略。局部恢复按done/ack四相握手回零；
+最终期限优先于同时到达的恢复。
 
-See constraints/README.md for mapped-netlist preservation and CDC/RDC obligations.
-FIRST_FAULT survives warm/interface reset, but not POR. Persist records externally
-if power-loss retention is needed. Do not deploy as a qualified safety component
-until the open verification and physical implementation evidence is closed.
+综合后验证互补状态及保护锥保留、独立扇入、门级注入响应，进一步审查布局和共因。
+keep/dont_touch意图不能证明上述性质。CDC、RDC、formal、网表审查和真实工艺PPA
+各自需要证据，不能由功能回归替代。FIRST_FAULT可跨暖复位/接口复位保留，但POR清除；
+断电留痕需系统外部持久化。在验证和物理实现条件闭合前不得标记安全资格完成。

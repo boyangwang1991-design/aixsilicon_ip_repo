@@ -1,0 +1,9 @@
+// Manual filelist entry from verification/. Prefer sim/Makefile and FuseSoC.
+// Dependency and RTL lists must be exported from the root .core for this instance.
+-f ${ASD_DEPENDENCY_FILELIST}
+-f ${ASD_RTL_FILELIST}
+./th/apb_secure_demux_control_if.sv
+-f ./env/apb_secure_demux_env.list
+-f ./tc/tc.list
+./th/apb_secure_demux_target_model.sv
+./th/harness.sv

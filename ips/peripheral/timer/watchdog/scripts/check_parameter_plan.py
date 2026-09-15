@@ -103,7 +103,7 @@ def main():
         if expected and expected.get('stage') != 'Schema':
             passed = False  # An elaboration negative needs the actual EDA stage.
         results.append(dict(id=case['id'], passed=passed, rejected=bool(errors), expected=expected, diagnostics=errors))
-    report = workspace / 'reports/quality'
+    report = workspace / 'build/reports/quality'
     report.mkdir(parents=True, exist_ok=True)
     identity = {'model_sha256': hashlib.sha256(source.read_bytes()).hexdigest(), 'checker_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     (report / 'param_semantic_check.json').write_text(json.dumps(dict(schema_version='watchdog-pc-check/1.0', **identity, results=results), ensure_ascii=False, indent=2)+'\n')

@@ -157,6 +157,19 @@ ips:
   - apb4
   description: APB Demux（1→N APB Router）
   path: ips/infrastructure/apb/apb_demux
+- id: INF-046
+  name: apb_secure_demux
+  domain: infrastructure
+  subdomain: apb
+  type: ip
+  priority: P0
+  status: planned
+  maturity: experimental
+  version: 1.0.0
+  interfaces:
+  - apb4
+  description: 安全 APB Demux；1→N 路由、可信主体权限、原子配置提交及审计
+  path: ips/infrastructure/apb/apb_secure_demux
 - id: INF-005
   name: apb_error_slave
   domain: infrastructure

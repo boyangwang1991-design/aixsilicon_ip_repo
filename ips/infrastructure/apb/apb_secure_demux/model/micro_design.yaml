@@ -850,7 +850,6 @@ fsms:
   - REG_SETUP
   - ACCESS
   reset_state: IDLE
-  illegal_state_policy: safe_state
   illegal_state_handling: 隔离输出与状态修改，等待可信复位恢复
   transitions:
   - IDLE+setup -> LOCAL|REG_SETUP|ACCESS
@@ -1951,3 +1950,201 @@ gates:
   approvals:
     architecture: user approval; docs/reviews/g2_behavior_approval.md
     register_behavior: user approval; docs/reviews/g2_behavior_approval.md
+  approval:
+    kind: human
+    approved_by: user (historical approval; see authorization record)
+    reviewed_at: '2026-09-14T07:14:06.640530+00:00'
+    authorization_ref: docs/reviews/lld_approval_migration.md
+    authorization_sha256: 01f57df9ab3da288580e5c5141d91ce39b09a8eaf92b82ea51d1f2bed1c14c92
+    input_sha256: 6dd8fe424a006796e5e8d5561f130d4d184def4b8c15bd001936c47d504afbbe
+provenance:
+  schema: ip-design-projection/1.0
+  stage: lld
+  sources:
+  - path: docs/lrs/00_overview.md
+    sha256: 0422c3f34bb471bea42befed536ada520ffd3dd59e2101717b38328b636eeb42
+  - path: docs/lrs/01_configuration_cases.md
+    sha256: 232eab64a54bd242d91c3d00b173c7f60988e9873c40ba56c29d8c87eaf4d23b
+  - path: docs/lrs/01_configuration_meta_01.md
+    sha256: 74d86a7f0c28f55c3b1a8d489536cc04dad62534abb3833cb583b0893c7a9bbc
+  - path: docs/lrs/01_configuration_meta_02.md
+    sha256: 4faa7cb0fcfbd07f1b10a4cbf96d29779139c7a8c00812b9cc41cd27c126744b
+  - path: docs/lrs/01_configuration_meta_03.md
+    sha256: e020affaaea57bd6df3049b87949010f47e2222b7527f024c0a4cd4656023688
+  - path: docs/lrs/01_configuration_negative.md
+    sha256: c89596f2a7be896d65e5d2dd68190dca90f71f0cf4ca4826e00f39c22f603f93
+  - path: docs/lrs/01_configuration_risk.md
+    sha256: a8359b0af0bd9f4435bdeee05012d61c5d9e3850253305edacc4de9116199bda
+  - path: docs/lrs/01_configuration_rules_01.md
+    sha256: 79293b49477869ef546a521ca0c8257a6348be28c4a827c0f02af20da5b66cdc
+  - path: docs/lrs/01_configuration_values.md
+    sha256: ae2e25443a58b806b43bde26c8617d06d8c2ec3ce1173586d6b2967bbfe9eb90
+  - path: docs/lrs/02_interface_protocol_01.md
+    sha256: 0b053307353afa00a501821c6571c07783836af8c16a351b62db361ae9e1cea1
+  - path: docs/lrs/02_interface_signals.md
+    sha256: 4d632328ae41fcd86c258cf4dd108c2952edb3aeee1d74135441de11f78e462f
+  - path: docs/lrs/02_interface_transfer_01.md
+    sha256: f48e516424e4f5ee85615e1ac234537fee3f3e434a9ec5654475260b1d7015f1
+  - path: docs/lrs/02_interface_transfer_02.md
+    sha256: 502bf4d976c0d742031817c611eae14e7ccc2afd86fb9adbbf29181d9acaac79
+  - path: docs/lrs/03_functional_decode_01.md
+    sha256: 69d7005e4fd8f48abb1b0697b7404c3103d80651fda47c769b32ed7d52751680
+  - path: docs/lrs/03_functional_interrupt_01.md
+    sha256: 1c1e6f4ccf843193f068c378846dbecb751e4ae23c20136cd1817ff6a5bea249
+  - path: docs/lrs/03_functional_logging_01.md
+    sha256: b148191c1b55f07ecdc115a9cbe256384dd396a1ba7c967fce24d31625733f1b
+  - path: docs/lrs/03_functional_logging_02.md
+    sha256: be460ea4b8817918b9dd597c7165a79c847965d73408ff286f4b115728ddf86a
+  - path: docs/lrs/04_register_access_01.md
+    sha256: 3a38689f75c1cf78f063b38f9440886317d07b6c64d8568445f2d861463d9210
+  - path: docs/lrs/04_register_access_02.md
+    sha256: 0ce1e418af8b728f6c3c54f56be5b466a9c0b98770e163ad2c1c45aa16d7f554
+  - path: docs/lrs/04_register_update_01.md
+    sha256: ece77ece22b74a591b534bd9cc2933e6e4210aee4997340dad857e5f8659a334
+  - path: docs/lrs/04_register_update_02.md
+    sha256: 3e6a81159e840505b115273726da961bcc8c89e555ef0fef0ac4ca097bc60bf9
+  - path: docs/lrs/05_performance_timing_01.md
+    sha256: da578f2e1538d1d4165c7d7319d84eeed46fd164f46ea37b2ad6a64fdd4ca9d5
+  - path: docs/lrs/06_clock_reset_01.md
+    sha256: c06f124575d0e79e3a32348a97f5b62939e53d237f2cc8654048bc91456788e8
+  - path: docs/lrs/08_safety_integrity_01.md
+    sha256: 95ea9f8ce23ae63aebb21d3b53cf532383dd22469cd55a5339c28a04672d0dcc
+  - path: docs/lrs/08_safety_integrity_02.md
+    sha256: 836e5b70d3d19284e27b4434c51f086d26c7b0839daa047d47773eb04c74d375
+  - path: docs/lrs/09_security_permissions_01.md
+    sha256: 0960b1b87c378d01562e4c33e4012c35f0919e9531998950b548ba48cbb08547
+  - path: docs/lrs/09_security_permissions_02.md
+    sha256: 9dad1aae88c2dc7aa1ca658fb3148475b9a67262a55cd42b4424ae9a7474a20a
+  - path: docs/lrs/10_dfx_01.md
+    sha256: 7a462506e09f95597a3e9f727ceb9b1c4a6a7a8863e91a0b873de11a78581756
+  - path: docs/lrs/10_dfx_02.md
+    sha256: 4badf7d5ff874741f8e49c8d88dae50ac07618f2e0424fac8149fdb8ed90bb47
+  - path: docs/lrs/10_dfx_03.md
+    sha256: 34e45654bb4a9d54a5c9e2c00d32c955a91c7d3295bb288c8d14706fd81a3a5d
+  - path: docs/lrs/12_constraints_system_01.md
+    sha256: 0337e2fb117b79f9fc8774c2d4215fd51723c4054350d26ffbffc6ecd00c6b36
+  - path: docs/lrs/13_contract_clauses_01.md
+    sha256: ebb7c922aa491a5c2437691a83d7741a20a6fd4871716fe6b8bb3f74c99c5105
+  - path: docs/lrs/13_contract_clauses_02.md
+    sha256: 4825c658e7d23c4aa5430fa0478c53b85bb93e3e07e918248851c936895db0aa
+  - path: docs/lrs/13_contract_clauses_03.md
+    sha256: 4b6f7cb941f0bcb00a8fb0285bdfc1f02b9fa3f0c8522f4b1d528f61cc920492
+  - path: docs/lrs/90_applicability_na.md
+    sha256: 140de566bfc3726101e20f1169efaafdfa4dcb128b0df11780fc860c2dd81ace
+  - path: docs/lrs/99_quality_gate.md
+    sha256: e963361e5db6b1c960c2dab8c404dd555f74290dcc653267b7fc88ce29c13583
+  - path: docs/lrs/index.md
+    sha256: 4503d36dac3cecaaebc5d78cf091186d484f0bf1918146dd02f9bc0e5a766ed2
+  - path: docs/hld/00_overview.md
+    sha256: bfa3229bd3a0ecda1c96cbdb943adfde3c1396e3556cdd8c8f8afd95248d57da
+  - path: docs/hld/01_architecture.md
+    sha256: 50f14c3dfeab9f884f60ff24d07abf601e3bc0cb881d9bfcce150b03827dc2ef
+  - path: docs/hld/01_architecture_datapath.md
+    sha256: 481329dd9c2e65d99eb383d5b97add3f2a61d362e1402fce2facff41cdb75772
+  - path: docs/hld/01_architecture_management.md
+    sha256: 20909d1322d6ed0f881efbf94c1d2d00e8f525bc8e6bd912e13bc2698187f732
+  - path: docs/hld/01_configuration_01.md
+    sha256: fb5d9620c38a21737a1ed2efc289d1b399077e272801253abe41b117b1fc8e57
+  - path: docs/hld/01_configuration_02.md
+    sha256: 01479b64ea1ccd58f78dba049749514c8b4e74bf3fb0b9425b28135856cb4cf6
+  - path: docs/hld/01_configuration_03.md
+    sha256: c4259c7247fb84b669beb87640eb85e37b7ef49c95a5993008239a7b3bc99bfe
+  - path: docs/hld/02_functional.md
+    sha256: 7510af000d047a76e35abf37ff8db3d8feda170f91c3364e0ec55256272c6847
+  - path: docs/hld/02_functional_policies.md
+    sha256: 9985c6f20b7a265a30ddaabd03d097cfb5be5e176a68a34e7cf0a32611eb8ed5
+  - path: docs/hld/03_interface_external.md
+    sha256: 9d8476ae52d5f6e16ecba16c69fa70d716815a70e6f7732655eadedbfcea1e78
+  - path: docs/hld/03_interface_internal.md
+    sha256: 6851121bec541fe947a2de03ce1603a05e0b9462e236b0c3d4a480d2836d40f4
+  - path: docs/hld/03_interface_management.md
+    sha256: 65cd034e7b2ae931524170e85d12dff15439e557c4e705367d339b3c66b6c67d
+  - path: docs/hld/03_register_architecture.md
+    sha256: 95a23b51983564f34f1a6b77e918e83191a080b3c0db759b52ec88db06f71ce5
+  - path: docs/hld/04_clock_power.md
+    sha256: 179ba769897bd343826b8e3301784b695c457c476edc4d2ce698a4ade90c30d2
+  - path: docs/hld/05_safety.md
+    sha256: a5cf0d1e09cec1df8ecae907225ac810dfaeed27022c98c56f86089ec11ea04f
+  - path: docs/hld/06_dfx.md
+    sha256: 7983995705aec494b74a304f665f429d19c44dcf4b671411288f502d1ce9e0fb
+  - path: docs/hld/07_decomposition.md
+    sha256: 33cd03ef79570907a7efa564b4fb62dbd40266f4a6fb8cca0bfcdd3be4884744
+  - path: docs/hld/08_risk_checklist.md
+    sha256: 93185a7e2858713e30f8e678f99ef7479afeefebdac049f15361a116d88269f8
+  - path: docs/hld/index.md
+    sha256: b695d55b9e4a9e2e8923655dd287fd31c08b6757a82b6cc7ede43134c89b56b6
+  - path: docs/lld/00_doc_control.md
+    sha256: 27d02a71d30a91e5f5e61fc1b4e806f0e1608cbca005a81c76a242e8e63f3239
+  - path: docs/lld/01_overview.md
+    sha256: e790e4185b675b87b085fa4aa0cf026f0db96aaee728756340a712f5cb6fca6f
+  - path: docs/lld/02_global_constraints.md
+    sha256: c0d2d372703bbf0b75fb093a4738579250fe420738ab4b348a20198ad093757b
+  - path: docs/lld/03_access.md
+    sha256: 14d2bcaff6221e90b7d2232435f1862b40c756ad399a655219dedff67afa184a
+  - path: docs/lld/03_csr.md
+    sha256: 80c2698ff617009c21524251235a186d4a29b7165b50b86a5bee9c51158d768a
+  - path: docs/lld/03_decode.md
+    sha256: 22681c6868f3c0e37d6ff7243dacfb6f8eae84d601a22ed41fed93c5b2c50dc7
+  - path: docs/lld/03_dfx.md
+    sha256: e8c12ace7d7ed785d1d0dcfe991e855428708e4ca586bae27da41fdf1a076172
+  - path: docs/lld/03_events.md
+    sha256: 589ccc1c442dee55a814d2fdd4e7c35c644e4f8ca334f29c648124f0ac39ea0b
+  - path: docs/lld/03_frontend.md
+    sha256: 4a0fb25189fba42c10c2012f9ce93b2514dcd786045201999017cc9baacd34f1
+  - path: docs/lld/03_irq.md
+    sha256: 139b93a35ef60a7cc92b2a30c946ffb40dd13c3a4e7b073125539f5f5a3248a5
+  - path: docs/lld/03_policy.md
+    sha256: 78321833ebbc2bc276a4169caf78f6e54d3baa3ba8bc8f3b5e5e39923eb164f5
+  - path: docs/lld/03_route.md
+    sha256: 4049654ff7d69fb90c4715d36bb288d61890f0d4b980c65bed5161c28f6f68c2
+  - path: docs/lld/04_register_dfx_01.md
+    sha256: fa713aab48922833a9416e833873b64b08b4c7a35f6bf839030acdc9404e453d
+  - path: docs/lld/04_register_dfx_02.md
+    sha256: be65775a2ce5e967aaab42f810c3e1fafcecf70dabc26e4ec4aa2150a32a2170
+  - path: docs/lld/04_register_identity_01.md
+    sha256: 34dd1ed28346d0018467c1260e28a4af507bcd5c2dd8793da335661ebbf6a1b0
+  - path: docs/lld/04_register_identity_02.md
+    sha256: 1893014d34ba9c967b21a8871c80fab4e55c98b833f24e29bebc21549d9cdadc
+  - path: docs/lld/04_register_interrupt_01.md
+    sha256: 487875ecdf70a021de3655002db4bbfae76f83d79e6ca5acba965600450eac17
+  - path: docs/lld/04_register_interrupt_02.md
+    sha256: 443f004189c863ea235d0638bed8a420c63fa0ee3c021289902929ef9b489166
+  - path: docs/lld/04_register_interrupt_03.md
+    sha256: 57ecd6502526aaba4ce38513f2cd41ea43e9892abc28a4d0599e4d90dcee05d1
+  - path: docs/lld/04_register_interrupt_04.md
+    sha256: e382235898512c8e8734ba459b46c2d05fd890dd9902f8a830da40bc1eb24557
+  - path: docs/lld/04_register_logging_01.md
+    sha256: 5f1b0f094812993af59fdb41c503741acc418a09db54498c295699554a363554
+  - path: docs/lld/04_register_logging_02.md
+    sha256: 5215d2afe6e68c9ff2e1ed08c12b12caa228125008d37de12c4ccef2b0af2d65
+  - path: docs/lld/04_register_policy_01.md
+    sha256: ee9af453db713925063cca4155c22ff5e36357ca3460f2097624a7b25153d954
+  - path: docs/lld/04_register_policy_02.md
+    sha256: c16215b7732359f3c014507422a675ca9d0e779d315c47a28efc0b3e081b3588
+  - path: docs/lld/04_register_port_01.md
+    sha256: 05d8b4e62d2adb00e58c0dae809034e68d0ed37626eb79b4fd53a281933b1d5e
+  - path: docs/lld/04_register_port_02.md
+    sha256: 2e5d642f2804aec9dbf9b56bfe6991aaf6f0949f8d6b868e6313be530a8bfe6d
+  - path: docs/lld/05_interfaces_external.md
+    sha256: 0dea4d946be897fc8907e55dee213251491787b2932a1f3cb0199892e6e368ad
+  - path: docs/lld/05_interfaces_internal_01.md
+    sha256: 8df72189a2e249161ea459538658af0d758c55ac149eb7f1081158c878d66a8d
+  - path: docs/lld/05_interfaces_internal_02.md
+    sha256: 283160df3c31796117608d8ba236126a7bf1238906670d663177c5445c22425e
+  - path: docs/lld/05_interfaces_internal_03.md
+    sha256: 7a2db51f147a3bade7cfeba1573224a15f54ba884efa542297f3721b38480df5
+  - path: docs/lld/06_register_generation_contract.md
+    sha256: dcddb1f05ec29c83b83767afa7c639e991bfe0c1006a0dc1872f16b7fd2ab08b
+  - path: docs/lld/06_timing_and_observation.md
+    sha256: 99f47d2e3726f12a3ff5bab99eee9ed50c69156d938b2caea278a8af1882b957
+  - path: docs/lld/07_delivery_mapping.md
+    sha256: 32c5c7db8113cef91b9b174c4f47f0e24b16ecc1098ae55637775c20748ad526
+  - path: docs/lld/99_quality_gate.md
+    sha256: d18619c961742785fc7fab2ca8318106546665b43d52a64b7ce0df2b21a73ed2
+  - path: docs/lld/index.md
+    sha256: 1cf2eb42af112924bfc7ecfc0c6c1a625cfbf8b328b0ce13d98f63ad0a76b5fb
+  extractor:
+    skills/05-lld-microdesign/scripts/extract_lld.py: 238bb958c64afe79861bb48d3718a6fc81d89b2928c79abab58bb176c177a432
+    scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
+    scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
+  payload_sha256: 9b86f82956f8225738a74b0e1209986ddd64db6c09acdbbdd91d40334d831f3c

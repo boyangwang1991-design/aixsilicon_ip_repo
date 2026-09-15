@@ -20,7 +20,6 @@ applicability:
   expr: 'true'
 encoding: binary
 reset_state: IDLE
-illegal_state_policy: fatal
 illegal_state_handling: protected busy/toggle/sequence mismatch raises CDC_PROTOCOL; never replay a command
 states:
 - IDLE

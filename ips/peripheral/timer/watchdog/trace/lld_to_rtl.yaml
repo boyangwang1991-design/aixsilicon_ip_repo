@@ -1,19 +1,31 @@
 schema_version: '2.0'
 ip_name: watchdog
 trace_type: lld_to_rtl
-links: []
+links:
+- source_id: LLD.MOD.WATCHDOG.BUS
+  target_id: RTL.FILE.rtl/watchdog_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.WATCHDOG.CHANNEL
+  target_id: RTL.FILE.rtl/watchdog_channel.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.WATCHDOG.DISPATCH
+  target_id: RTL.FILE.rtl/watchdog_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.WATCHDOG.INTEGRATION
+  target_id: RTL.FILE.rtl/watchdog_top.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.WATCHDOG.SAFETY
+  target_id: RTL.FILE.rtl/watchdog_channel.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.WATCHDOG.TRANSPORT
+  target_id: RTL.FILE.rtl/watchdog_top.sv
+  status: linked
+  confidence: high
 gap_analysis:
-  unlinked_sources:
-  - id: LLD.MOD.WATCHDOG.BUS
-    reason: no current downstream mapping
-  - id: LLD.MOD.WATCHDOG.CHANNEL
-    reason: no current downstream mapping
-  - id: LLD.MOD.WATCHDOG.DISPATCH
-    reason: no current downstream mapping
-  - id: LLD.MOD.WATCHDOG.INTEGRATION
-    reason: no current downstream mapping
-  - id: LLD.MOD.WATCHDOG.SAFETY
-    reason: no current downstream mapping
-  - id: LLD.MOD.WATCHDOG.TRANSPORT
-    reason: no current downstream mapping
+  unlinked_sources: []
   unlinked_targets: []

@@ -17,3 +17,14 @@ __pycache__/
 
 # Local commercial process context; never publish library paths.
 /model/pdk.yaml
+
+# Raw execution evidence is retained locally, never included in source delivery.
+/evidence/
+/reports/evidence/
+/reports/preflight/
+/reports/uvm/
+/reports/**/raw/
+/reports/**/*.txt
+/reports/**/*.rpt
+/reports/**/*.html
+/reports/**/*.exit

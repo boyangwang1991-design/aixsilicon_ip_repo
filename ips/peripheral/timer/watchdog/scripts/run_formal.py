@@ -4,7 +4,7 @@ import hashlib,json,os,re,signal,subprocess,sys,time
 P=Path(os.environ['WATCHDOG_IP_ROOT']).resolve()
 R=Path(os.environ['UV_PROJECT']).resolve()
 out=P/'build/formal'/time.strftime('%Y%m%d_%H%M%S');out.mkdir(parents=True)
-report=P/'reports/formal'/out.name;report.mkdir(parents=True)
+report=P/'build/reports/formal'/out.name;report.mkdir(parents=True)
 vc=Path(os.environ.get('VC_STATIC_HOME','/home/eda/app/synopsys/vcs/W-2024.09-SP1/vcfca'))
 qt=Path(os.environ.get('WATCHDOG_VCF_QT','/home/eda/app/synopsys/verdi/W-2024.09-SP1/platform/linux64/lib/Qt5/lib'))
 files=[P/'rtl/watchdog_pkg.sv',P/'rtl/watchdog_channel.sv',P/'verification/formal/watchdog_formal_harness.sv',Path(__file__).resolve()]

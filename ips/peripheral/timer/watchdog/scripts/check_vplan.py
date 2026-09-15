@@ -63,7 +63,7 @@ def check(p):
 
 def main():
  a=argparse.ArgumentParser();a.add_argument('--workspace',type=Path,default=Path('.'));p=a.parse_args().workspace.resolve();r=check(p)
- (p/'reports/quality/vplan_check.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n')
- (p/'reports/quality/vplan_check.md').write_text('# Watchdog VPLAN检查\n\n'+('PASS' if r['passed'] else 'FAIL')+'；此检查证明计划结构与追踪，不证明用例执行或覆盖率达标。\n\n'+json.dumps(r['counts'],ensure_ascii=False)+'\n\n'+'\n'.join('- '+e for e in r['errors'])+'\n')
+ (p/'build/reports/quality/vplan_check.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n')
+ (p/'build/reports/quality/vplan_check.md').write_text('# Watchdog VPLAN检查\n\n'+('PASS' if r['passed'] else 'FAIL')+'；此检查证明计划结构与追踪，不证明用例执行或覆盖率达标。\n\n'+json.dumps(r['counts'],ensure_ascii=False)+'\n\n'+'\n'.join('- '+e for e in r['errors'])+'\n')
  print(json.dumps({k:r[k] for k in ('passed','counts','errors')},ensure_ascii=False));return int(not r['passed'])
 if __name__=='__main__':raise SystemExit(main())

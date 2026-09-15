@@ -13,4 +13,11 @@ register_behavior_freeze: true
 approvals:
   architecture: user approval; docs/reviews/g2_behavior_approval.md
   register_behavior: user approval; docs/reviews/g2_behavior_approval.md
+approval:
+  kind: human
+  approved_by: user (historical approval; see authorization record)
+  reviewed_at: '2026-09-14T07:14:06.640530+00:00'
+  authorization_ref: docs/reviews/lld_approval_migration.md
+  authorization_sha256: 01f57df9ab3da288580e5c5141d91ce39b09a8eaf92b82ea51d1f2bed1c14c92
+  input_sha256: 6dd8fe424a006796e5e8d5561f130d4d184def4b8c15bd001936c47d504afbbe
 END_LLD_GATE_META -->

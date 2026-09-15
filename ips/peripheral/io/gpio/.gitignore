@@ -1,4 +1,13 @@
 build/
+/evidence/
+/reports/evidence/
+/reports/preflight/
+/reports/uvm/
+/reports/**/raw/
+/reports/**/*.txt
+/reports/**/*.rpt
+/reports/**/*.html
+/reports/**/*.exit
 # PeakRDL HTML is local-only; never upload the site or its assets to GitHub.
 /docs/generated/*_regs.html
 # Design extraction console output is local-only; new runs belong in build/design/.

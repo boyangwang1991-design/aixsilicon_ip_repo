@@ -3,7 +3,7 @@ from pathlib import Path
 import json,hashlib,re,shutil,gzip,xml.etree.ElementTree as ET
 p=Path(__file__).resolve().parents[1]
 def sha(f):return hashlib.sha256(f.read_bytes()).hexdigest()
-manifest=max((p/'reports').glob('20*/manifest.json'),key=lambda f:f.parent.name)
+manifest=max((p/'build/reports').glob('20*/manifest.json'),key=lambda f:f.parent.name)
 d=json.loads(manifest.read_text())
 if len(d['results'])!=5 or any(r['status']!='pass' for r in d['results']):raise SystemExit('Five complete passing configurations required')
 for name,digest in d['inputs'].items():
@@ -13,7 +13,7 @@ for r in d['results']:
  if sha(p/r['log'])!=r['log_sha256']:raise SystemExit('Changed log')
  for file,digest in r['binaries'].items():
   if sha(p/file)!=digest:raise SystemExit('Changed executable')
-static=p/'reports/static';static.mkdir(exist_ok=True)
+static=p/'build/reports/static';static.mkdir(exist_ok=True)
 source=next((p/'build/final_lint').glob('**/consolidated_reports/watchdog_top_lint_lint_rtl/moresimple.rpt'))
 with gzip.GzipFile(filename=str(static/'spyglass_moresimple.rpt.gz'),mode='wb',mtime=0) as f:f.write(source.read_bytes())
 sg=source.read_text();warning_lines=[x for x in sg.splitlines() if ' Warning ' in x]
@@ -30,9 +30,9 @@ suite=ET.Element('testsuite',name='watchdog_module_regression',tests=str(len(d['
 for r in d['results']:
  text=(p/r['log']).read_text();m=re.search(r'UT_WATCHDOG_\w+: PASS \(errors=0 (.*?)\)',text)
  count=re.search(r'checks=(\d+)',m.group(1));n=int(count.group(1));total+=n
- rows.append(f"| {r['configuration']} | PASS | {n} | [{Path(r['log']).name}]({Path(r['log']).relative_to('reports')}) |")
+ rows.append(f"| {r['configuration']} | PASS | {n} | [{Path(r['log']).name}]({Path(r['log']).relative_to('build/reports')}) |")
  ET.SubElement(suite,'testcase',name=r['configuration'],time=str(r['elapsed_s']))
-ET.ElementTree(suite).write(p/'reports/module_regression.xml',encoding='unicode')
+ET.ElementTree(suite).write(p/'build/reports/module_regression.xml',encoding='unicode')
 report=f'''# Watchdog 验证报告（候选实现）
 
 输入契约 SHA-256：`{sha(p/'watchdog_contract.md')}`。
@@ -49,7 +49,7 @@ report=f'''# Watchdog 验证报告（候选实现）
 preset、同步链内 warm 取消、来源拒绝、快照、独立自动启动及超时。
 
 - VCS `W-2024.09-SP1_Full64`；SV Module UT，使用 UVM 1.2 库，未宣称 UVM 环境闭合。
-- [执行 manifest]({manifest.relative_to(p/'reports')}) 绑定实际命令、源码、日志和二进制 SHA-256。
+- [执行 manifest]({manifest.relative_to(p/'build/reports')}) 绑定实际命令、源码、日志和二进制 SHA-256。
 - [JUnit](module_regression.xml) 仅由上述实际五项通过结果生成。
 - C11 驱动编译启用 `-Wall -Wextra -Werror`，超时不重发、陈旧序号、IO 错误、回卷测试通过。
 - 工作区 `make check` 与 pre-commit 全文件检查通过，原始日志已保留。
@@ -86,13 +86,13 @@ URG 初次在 libsnpsmalloc 崩溃，保留失败堆栈；仅重试子进程设�
 未修改资产登记状态、未生成发布签名，未提交或推送 Git。
 技能观察见 [优化记录](../docs/skill_improvements.md)。
 '''
-(p/'reports/validation_report.md').write_text(report)
+(p/'build/reports/validation_report.md').write_text(report)
 # Requirement inventory is a review checklist, not automatic PASS propagation.
 ids=sorted(set(re.findall(r'WDT-[A-Z]+-\d+', (p/'watchdog_contract.md').read_text())))
 families={'BUS':'top','CDC':'top','IF':'top','RST':'top','SNP':'top','REG':'channel/top','PAR':'channel/top','NFR':'static/manual','VER':'review pending'}
 trace=['# Contract requirement review inventory','','Family-level tests below are navigation, not individual requirement closure.','','| Requirement | Test/check entry | Closure |','|---|---|---|']
 for ident in ids:trace.append(f"| {ident} | {families.get(ident.split('-')[1],'channel')} | individual closure open |")
-(p/'reports/requirement_inventory.md').write_text('\n'.join(trace)+'\n')
-artifacts=[manifest,p/'reports/module_regression.xml',p/'reports/validation_report.md',p/'reports/requirement_inventory.md',*static.glob('*')]
-(p/'reports/evidence_index.json').write_text(json.dumps({str(f.relative_to(p)):sha(f) for f in artifacts},indent=2)+'\n')
+(p/'build/reports/requirement_inventory.md').write_text('\n'.join(trace)+'\n')
+artifacts=[manifest,p/'build/reports/module_regression.xml',p/'build/reports/validation_report.md',p/'build/reports/requirement_inventory.md',*static.glob('*')]
+(p/'build/reports/evidence_index.json').write_text(json.dumps({str(f.relative_to(p)):sha(f) for f in artifacts},indent=2)+'\n')
 print(f'VALIDATION_REPORT PASS: {total} checks; candidate, qualification open')

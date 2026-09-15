@@ -1,0 +1,16 @@
+schema: ip-ral-generation/1.0
+ip_name: apb_secure_demux
+inputs:
+- path: regs/README.md
+  sha256: 342b6466cc209ed0943b80d285cba4502de8ae9c823f0de602ad27bce95e3c53
+- path: regs/apb_secure_demux.config.json
+  sha256: 6d3c76c04e71c87e908b2e535aa5e08fd2352cd4ba8fe5cc5b8317b3fed927b8
+- path: regs/apb_secure_demux.rdl
+  sha256: 4573e2d0dce7ac1eb295ad4901ad4b4b86e33e871e43f431456b5035c5b38950
+- path: regs/templates/apb_secure_demux.rdl.j2
+  sha256: b9921d5f37e25640ea0c4c905ee3a9c0713521a0cea9fd86d5d52367c0706b9b
+generator: peakrdl-uvm
+generator_version: 2.4.0
+output:
+  path: verification/ral/apb_secure_demux_ral_pkg.sv
+  sha256: 824c5c572f2f0de6926872759a9c9c9f4728dcbd6c39fbcc2ad2d174501af115

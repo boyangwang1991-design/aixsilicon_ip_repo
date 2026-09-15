@@ -145,7 +145,7 @@ def main():
     parser.add_argument('--workspace', type=Path, default=Path('.'))
     args = parser.parse_args()
     result = check(args.workspace.resolve())
-    report = args.workspace / 'reports/quality'
+    report = args.workspace / 'build/reports/quality'
     report.mkdir(parents=True, exist_ok=True)
     (report/'lld_check.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     lines = ['# Watchdog LLD 作者检查','',f'结果：{"PASS" if result["passed"] else "FAIL"}；不是 G2 架构/RTL/DV 评审批复。','',

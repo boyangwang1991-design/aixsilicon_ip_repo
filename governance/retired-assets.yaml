@@ -43,10 +43,16 @@ records:
     status: planned
     version: 1.0.0
     path: ips/infrastructure/apb/apb_secure_demux
-  disposition: withdrawn
+  disposition: restored
   reason: 指导清单未保留；退出当前规划，未断言与其他资产功能等价。
   source_files: retained
   restore: 复核需求、责任边界及依赖；恢复原 ID，校验后刷新 README。
+  restoration:
+    date: '2026-09-14'
+    authorization: 使用Ip-development-suite，继续完成apb secure demux
+    rationale: 承担完整 APB4 安全路由、CSR 与审计责任；复用 parity_gen_check CBB，保留专用策略和事件逻辑。
+    status: planned
+    note: 恢复原 INF-046 与原工程；现有实现和历史批准保留，资格以当前套件重审为准。
 - original:
     id: MEM-001
     name: lowrisc_prim

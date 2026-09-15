@@ -1,0 +1,2 @@
++incdir+./tc
+./tc/tc_package.sv

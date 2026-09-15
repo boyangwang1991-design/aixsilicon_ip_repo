@@ -1,8 +1,0 @@
-# Generated from model/pdk.yaml; do not edit or commit.
-set AIX_PDK_NODE {CMOS28NM}
-set AIX_PDK_LIBRARY {sc9_cmos28lp_base_hvt}
-set AIX_PDK_CORNER {tt_nominal_max_1p00v_25c}
-set AIX_PDK_OPERATING_CONDITION {tt_nominal_max_1p00v_25c}
-set_app_var search_path [concat $search_path [list {/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db} {/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/lib}]]
-set_app_var target_library [list {/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db}]
-set_app_var link_library [list {*} {/home/eda/pdk/CMOS28NM/extracted/GF21LB004-FB-00000-r5p0-03rel0/arm/cp/cmos28lp/sc9_base_hvt/r5p0/db/sc9_cmos28lp_base_hvt_tt_nominal_max_1p00v_25c.db}]

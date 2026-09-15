@@ -20,13 +20,15 @@ endfunction
 task tc_base::run_phase(uvm_phase phase);
   watchdog_virtual_sequence s;phase.raise_objection(this);
   s=watchdog_virtual_sequence::type_id::create("sequence");s.group_name=group_name;s.vif=vif;
-  env.rm.feature=feature_number;s.start(env.v_sqr);repeat(10) @(negedge vif.wdt_clk);#2;
+  env.rm.feature=feature_number;s.start(env.v_sqr);repeat(10) @(negedge vif.wdt_clk);#2ns;
   phase.drop_objection(this);
 endtask
 function void tc_base::report_phase(uvm_phase phase);
   uvm_report_server server;server=uvm_report_server::get_server();
-  if(server.get_severity_count(UVM_ERROR)==0 && server.get_severity_count(UVM_FATAL)==0 && env.scoreboard.checks>=100)
+  if(server.get_severity_count(UVM_ERROR)==0 && server.get_severity_count(UVM_FATAL)==0 && env.scoreboard.checks>=100) begin
     `uvm_info("WATCHDOG_TEST_PASS",$sformatf("%s checked=%0d",get_type_name(),env.scoreboard.checks),UVM_NONE)
+    `uvm_info("TEST_DONE",get_type_name(),UVM_NONE)
+  end
 endfunction
 
 `endif

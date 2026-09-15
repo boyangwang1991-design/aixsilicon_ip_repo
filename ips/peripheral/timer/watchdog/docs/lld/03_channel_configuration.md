@@ -64,7 +64,6 @@ applicability:
   expr: 'true'
 encoding: binary
 reset_state: CLOSED
-illegal_state_policy: fatal
 illegal_state_handling: detect illegal encoding/protection mismatch, block normal mutation and latch fatal request
 states:
 - CLOSED

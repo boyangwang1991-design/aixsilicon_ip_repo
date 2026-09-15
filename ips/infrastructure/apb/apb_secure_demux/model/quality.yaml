@@ -7,6 +7,7 @@ gates:
   required_checks:
   - g0.required_lrs_docs
   - g0.requirements_model
+  - g0.design_freshness
   checks:
   - id: g0.required_lrs_docs
     status: pass
@@ -120,7 +121,7 @@ gates:
       sha256: 140de566bfc3726101e20f1169efaafdfa4dcb128b0df11780fc860c2dd81ace
     - path: docs/lrs/99_quality_gate.md
       status: present
-      sha256: 40137f132f54b4e1a7c5cce65e4ec5dc2dfe9feaaaa3957386531860de8b655c
+      sha256: e963361e5db6b1c960c2dab8c404dd555f74290dcc653267b7fc88ce29c13583
     - path: docs/lrs/index.md
       status: present
       sha256: 4503d36dac3cecaaebc5d78cf091186d484f0bf1918146dd02f9bc0e5a766ed2
@@ -131,12 +132,20 @@ gates:
     evidence:
     - path: model/requirements.yaml
       status: present
-      sha256: 694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16
+      sha256: 2c973aad1626cf48b1299c978728b6b998a5ecb62c8e064031da39b4098f5591
+  - id: g0.design_freshness
+    status: pass
+    detail: 'lrs: current projection and input-bound technical review verified'
+    evidence:
+    - path: model/requirements.yaml
+      status: present
+      sha256: 2c973aad1626cf48b1299c978728b6b998a5ecb62c8e064031da39b4098f5591
   findings: []
 - id: G1
   status: pass
   required_checks:
   - g1.architecture_trace
+  - g1.design_freshness
   checks:
   - id: g1.architecture_trace
     status: pass
@@ -145,19 +154,38 @@ gates:
     evidence:
     - path: model/architecture.yaml
       status: present
-      sha256: 671811a814850099a674911d3401689e7728d16ba2372e156973998f5e35ad73
+      sha256: 58f7e48f659c66fb78b3f07ecf93b9112503448a18e506a6d53cdadb70fb0d48
     - path: model/external_interface.yaml
       status: present
-      sha256: 0445cab6b9866f52b7cccdaa92f49e849b497f8959b2ee9d25a0789b23ffa628
+      sha256: f3020823822a16eeeb1dc17aa4a8352228289191b4ce5f106937bf7b93d4ebfd
     - path: model/internal_interface.yaml
       status: present
-      sha256: c769a7457b24f62cca05fe798b1d1fc05c0ace395d2a9be4df05a66a9f2bdb70
+      sha256: 55921375b7f2e6335faa2902dcdad9f807d50988702fe64ff6d98da8446340de
     - path: model/clock_domains.yaml
       status: present
-      sha256: aea5456531bc51287dd98cabf6eb23881d6180eb257e9594367bf219700cce51
+      sha256: f7fac91ed226b2cd8c3db471d824e26c012c1474ee454a18a36a0505b6b7b64d
     - path: model/cdc_paths.yaml
       status: present
-      sha256: 2f929d4fae15b15ddd91b50a6b4c4155674931bbb3d152c930b983e2acabfd6e
+      sha256: ea10ba9086145d9fec82ccfd263a948da9b4cea79903d5a165c1b552f208f95c
+  - id: g1.design_freshness
+    status: pass
+    detail: 'hld: current projection and input-bound technical review verified'
+    evidence:
+    - path: model/architecture.yaml
+      status: present
+      sha256: 58f7e48f659c66fb78b3f07ecf93b9112503448a18e506a6d53cdadb70fb0d48
+    - path: model/external_interface.yaml
+      status: present
+      sha256: f3020823822a16eeeb1dc17aa4a8352228289191b4ce5f106937bf7b93d4ebfd
+    - path: model/internal_interface.yaml
+      status: present
+      sha256: 55921375b7f2e6335faa2902dcdad9f807d50988702fe64ff6d98da8446340de
+    - path: model/clock_domains.yaml
+      status: present
+      sha256: f7fac91ed226b2cd8c3db471d824e26c012c1474ee454a18a36a0505b6b7b64d
+    - path: model/cdc_paths.yaml
+      status: present
+      sha256: ea10ba9086145d9fec82ccfd263a948da9b4cea79903d5a165c1b552f208f95c
   findings: []
 - id: G2
   status: pass
@@ -174,25 +202,25 @@ gates:
     evidence:
     - path: model/micro_design.yaml
       status: present
-      sha256: 04b645d34eb30fce34ff5e86150d9877eeceade4cd155cf244c30aea71b2e693
+      sha256: 42809fc70f09e0140542a90cf2f07d046618cdd9b82fa85c7909dd86ca1ab9cc
     - path: model/requirements.yaml
       status: present
-      sha256: 694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16
+      sha256: 2c973aad1626cf48b1299c978728b6b998a5ecb62c8e064031da39b4098f5591
     - path: reports/quality/register_check.md
       status: present
-      sha256: 1f3dbcdc9439f0450261835fc5bb600e91a5acdc4f2e0b69a011dac0a8f2d527
+      sha256: ca21ec546075b2d6837bab0aa1ffc7147149990c8077ab88cd4d31fe1a082fdd
     - path: regs/apb_secure_demux.rdl
       status: present
-      sha256: 321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4
-    - path: rtl/generated/apb_secure_demux_csr.sv
-      status: present
-      sha256: 89ba9f7929e1210375f057e74c7934911ee1f470e8436bf5c9911cebb95b0d7b
+      sha256: 4573e2d0dce7ac1eb295ad4901ad4b4b86e33e871e43f431456b5035c5b38950
     - path: rtl/generated/apb_secure_demux_csr_pkg.sv
       status: present
-      sha256: 33b9fe0fb282bf7770a9a6caddb9c5a80cf057bb378585662cc8cd74e00823fb
+      sha256: 3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893
+    - path: rtl/generated/apb_secure_demux_csr_regblock.sv
+      status: present
+      sha256: 171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8
     - path: rtl/generated/apb_secure_demux_csr.manifest.yaml
       status: present
-      sha256: a92dcfa1627def29906f52d7a7c32d00e8e44df8365cbd33224e3981d1a83d21
+      sha256: bf374ef15b7ffc3719e9bb5c4a47c33560686e8e246114c0a9e76fc6aa591e4b
   findings: []
 - id: G3
   status: fail
@@ -201,17 +229,51 @@ gates:
   - g3.rtl_check_report
   - g3.module_ut
   - g3.csr_consistency
+  - g3.special_signoff
   checks:
   - id: g3.rtl_and_core
-    status: fail
-    detail: rtl=2; root cores=0
+    status: pass
+    detail: rtl=12; root cores=1; expected=aixsilicon_ip_apb_secure_demux.core; actual=aixsilicon_ip_apb_secure_demux.core
     evidence:
-    - path: rtl/generated/apb_secure_demux_csr.sv
+    - path: rtl/apb_secure_demux.sv
       status: present
-      sha256: 89ba9f7929e1210375f057e74c7934911ee1f470e8436bf5c9911cebb95b0d7b
+      sha256: 18302cb1746b675327502bd3cca523c649cd17f66829886406ce42420fc7329b
+    - path: rtl/apb_secure_demux_access.sv
+      status: present
+      sha256: 649338ece7ed180a7b9ddc8f3b8f00b61714cfe65e4474a7ea0191fe37ca7980
+    - path: rtl/apb_secure_demux_csr.sv
+      status: present
+      sha256: 83586012803af2dfe0103839a40cdb4af4fbd47b007209e0f0e724316cbb6894
+    - path: rtl/apb_secure_demux_decode.sv
+      status: present
+      sha256: fcbc71bdc33803cb08619d295093f7d406bf4a9081d83cb7bdfd79a1fcc3e0c8
+    - path: rtl/apb_secure_demux_dfx.sv
+      status: present
+      sha256: d020477c6cca4c817adf43b18c73a54bd86d6eeb51257361edfc925452b803eb
+    - path: rtl/apb_secure_demux_events.sv
+      status: present
+      sha256: 238e949a5fd4f18126af4a8afa470a1d272403e5c32502b02b22a0bc51fb4136
+    - path: rtl/apb_secure_demux_irq.sv
+      status: present
+      sha256: 4016b70f4fad6e18d950768f450408bce4ce314e7658ea7195828bef77792ecf
+    - path: rtl/apb_secure_demux_policy.sv
+      status: present
+      sha256: ce77751b58d430e48b6d7be7321ed14055467e2cc2428c982141761c7e3821b1
     - path: rtl/generated/apb_secure_demux_csr_pkg.sv
       status: present
-      sha256: 33b9fe0fb282bf7770a9a6caddb9c5a80cf057bb378585662cc8cd74e00823fb
+      sha256: 3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893
+    - path: rtl/generated/apb_secure_demux_csr_regblock.sv
+      status: present
+      sha256: 171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8
+    - path: rtl/instance/apb_secure_demux_instance_pkg.sv
+      status: present
+      sha256: b85ac05b8455ac02332d6413521cdc541e4388ec48df5f41526f2f4ba41dea0e
+    - path: rtl/instance/apb_secure_demux_register_bridge.sv
+      status: present
+      sha256: 713acd0529be3daa1ccb6811c0b713fd1a60ef3db63da8a6a53f30a953a4e54d
+    - path: aixsilicon_ip_apb_secure_demux.core
+      status: present
+      sha256: 8836788f0b5c877db129d2fc619be1373a93035ddc10cdab1eb3ea575800d25e
     - path: ip-package.yaml
       status: present
       sha256: f32f955020a8f1eed5464f46f14095ef6006876422bcbfb078bb960b3607f3e4
@@ -223,26 +285,63 @@ gates:
       status: missing
   - id: g3.module_ut
     status: fail
-    detail: 'module UT sources=0; missing report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/quality/module_ut_summary.md'
+    detail: 'module UT sources=10; invalid module UT contract: module UT coverage
+      must exactly cover current RTL module declarations'
     evidence:
+    - path: verification/unit_test/ut_apb_secure_demux.sv
+      status: present
+      sha256: a43868ac9adf5afb9742650ab54101d595ac2cf06e8e76e38e3afe187ed03eee
+    - path: verification/unit_test/ut_apb_secure_demux_access.sv
+      status: present
+      sha256: 5e9e03a44decfd88508b1e4bf0b2ec81b3cda29c5208800d9324a30e0b7233bd
+    - path: verification/unit_test/ut_apb_secure_demux_csr.sv
+      status: present
+      sha256: 3ac6e83b6702ce04cc9201aacce3ed8b44b17398a41f67a2af7013a1f70beabb
+    - path: verification/unit_test/ut_apb_secure_demux_csr_regblock.sv
+      status: present
+      sha256: 754506c974b715039e562418d6022be8e029702304e8605dc568960805553b3b
+    - path: verification/unit_test/ut_apb_secure_demux_decode.sv
+      status: present
+      sha256: 794d824ec6f885c81efbecbbf71c3c24befadb09c856765b726dbe495f5caa83
+    - path: verification/unit_test/ut_apb_secure_demux_dfx.sv
+      status: present
+      sha256: 12e23095ebf47792881d97c4e532fbede2f964e69168171796c524514d5f14fc
+    - path: verification/unit_test/ut_apb_secure_demux_events.sv
+      status: present
+      sha256: 6b2bbb2c123f7a83d6800f03b7103e263e575145d2c85406891afd1a50ed0bc6
+    - path: verification/unit_test/ut_apb_secure_demux_irq.sv
+      status: present
+      sha256: d7913f593a1a41253981f32856adf3c284db44e63057c9ad86b8417ba9efc742
+    - path: verification/unit_test/ut_apb_secure_demux_policy.sv
+      status: present
+      sha256: 62ed0849f5327b0521e23b4117be90a71b80c647070213d295275e78a6f86f6e
+    - path: verification/unit_test/ut_apb_secure_demux_register_bridge.sv
+      status: present
+      sha256: 6297446296ae17e7dd631e7ee36a77ec3aed184f2fbfb7d460994414e61f5cf8
     - path: reports/quality/module_ut_summary.md
-      status: missing
+      status: present
+      sha256: a8e1da4cfb02692219ae65305c509bcbf25cc66fcaa24379c3d931cdb3c0b7e5
   - id: g3.csr_consistency
     status: pass
     detail: CSR source and native SystemVerilog hashes match the manifest
     evidence:
     - path: regs/apb_secure_demux.rdl
       status: present
-      sha256: 321c4a16f3615b56df293e1a25a71f5519e7eac17506a431c6faa30bab7965c4
-    - path: rtl/generated/apb_secure_demux_csr.sv
-      status: present
-      sha256: 89ba9f7929e1210375f057e74c7934911ee1f470e8436bf5c9911cebb95b0d7b
+      sha256: 4573e2d0dce7ac1eb295ad4901ad4b4b86e33e871e43f431456b5035c5b38950
     - path: rtl/generated/apb_secure_demux_csr_pkg.sv
       status: present
-      sha256: 33b9fe0fb282bf7770a9a6caddb9c5a80cf057bb378585662cc8cd74e00823fb
+      sha256: 3e4dd3e2dc94788186a496b632899e19f1cc51b7176b6b3936c3e3056dc09893
+    - path: rtl/generated/apb_secure_demux_csr_regblock.sv
+      status: present
+      sha256: 171773ee34a77694d1ae561c809846f52a1f4637d0eeba93ed5bcfee874a65f8
     - path: rtl/generated/apb_secure_demux_csr.manifest.yaml
       status: present
-      sha256: a92dcfa1627def29906f52d7a7c32d00e8e44df8365cbd33224e3981d1a83d21
+      sha256: bf374ef15b7ffc3719e9bb5c4a47c33560686e8e246114c0a9e76fc6aa591e4b
+  - id: g3.special_signoff
+    status: pass
+    detail: no applicable specialized signoff
+    evidence: []
+    outcomes: []
   findings: []
 - id: G4
   status: blocked
@@ -254,16 +353,18 @@ gates:
   - g4.rtm_closure
   - g.param_space
   - g4.parameter_execution
+  - g4.special_signoff
+  - g4.ral_handoff
   checks:
   - id: g4.verification_assets
     status: fail
     detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/sim/regression_list.yaml'';
-      distinct testcase implementations=0; valid lifecycle traces=3/4; testplans=46;
+      distinct testcase implementations=0; valid lifecycle traces=4/4; testplans=46;
       UVM testcases=0'
     evidence:
     - path: model/verification.yaml
       status: present
-      sha256: 7c605890ef5c6586d854a721ceeabbff26cd39b630688ab7ceffc4391e3a34e1
+      sha256: bb2b9cd7c11559c6a8c0af603731e5631ff8eae1bfc52a526ef87d881df4ce0f
     - path: trace/req_to_hld.yaml
       status: present
       sha256: 45f9cdaf87fa8e9f66153ea51cc5669f1db79053f26c9621ca79911afae5bc9e
@@ -272,7 +373,7 @@ gates:
       sha256: 6cb5d0945b3b0541a4be6d730fb33ec229bd0fca8fd42ed4b0828bf48d9a169f
     - path: trace/lld_to_rtl.yaml
       status: present
-      sha256: 2b602a029c4cf829eb0da1650634403841bc316e87dd96ec7628211084b80a3c
+      sha256: 3813eceabb8ed3ffd9ec1469a43069a28de56f6144b4a3975c67c830fbf6640b
     - path: trace/req_to_test.yaml
       status: present
       sha256: 26551a81163a4e2624606deb623b66c27b0bfe2a8e3d5d425742283fae5c6d3c
@@ -280,7 +381,7 @@ gates:
       status: missing
     - path: docs/verification/99_quality_gate.md
       status: present
-      sha256: acf09684751d21e63ed7f74c848d6c4e79f16106de2c32b969b8eaf4b13440a3
+      sha256: 4cf28607b97f7fbff015aaad05433ece09be8e84c58769a7912615ebc54b406e
     - path: docs/verification/agent_plan.md
       status: present
       sha256: f4b0ad07451137f7391d6aaefe904d812f6f8ccad6ad8009ca19f580a40bc52a
@@ -415,7 +516,7 @@ gates:
       sha256: 5d9cd5efdc123ebf98ed3826f5be0af1c88be14fcea7b3fd4c8a6e132c2f033b
     - path: docs/verification/verification_plan.md
       status: present
-      sha256: 69844e5962932b3cf96636dae247a35d33e422e120c37f7420a0f6c41b782775
+      sha256: ada79774840bba5f9d4908624ad42d239552e04e5851ca5dd57c08b047d446dd
   - id: g4.smoke_evidence
     status: fail
     detail: 'smoke: missing JUnit report: /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/smoke/smoke_junit.xml;
@@ -443,11 +544,11 @@ gates:
       status: missing
   - id: g4.rtm_closure
     status: fail
-    detail: report status is fail; valid lifecycle traces=3/4
+    detail: REPORT_META dependencies must be a list; valid lifecycle traces=4/4
     evidence:
     - path: reports/quality/trace_matrix.md
       status: present
-      sha256: 011c21478767a514fa4ff8af408bc24779d9014b697f75c8d1a2936fd92437a8
+      sha256: bd1797903a10e4fc87674af2a810f13d48cd0418f98191d929c83c28427e86c1
     - path: trace/req_to_hld.yaml
       status: present
       sha256: 45f9cdaf87fa8e9f66153ea51cc5669f1db79053f26c9621ca79911afae5bc9e
@@ -456,7 +557,7 @@ gates:
       sha256: 6cb5d0945b3b0541a4be6d730fb33ec229bd0fca8fd42ed4b0828bf48d9a169f
     - path: trace/lld_to_rtl.yaml
       status: present
-      sha256: 2b602a029c4cf829eb0da1650634403841bc316e87dd96ec7628211084b80a3c
+      sha256: 3813eceabb8ed3ffd9ec1469a43069a28de56f6144b4a3975c67c830fbf6640b
     - path: trace/req_to_test.yaml
       status: present
       sha256: 26551a81163a4e2624606deb623b66c27b0bfe2a8e3d5d425742283fae5c6d3c
@@ -476,8 +577,22 @@ gates:
     evidence:
     - path: model/requirements.yaml
       status: present
-      sha256: 694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16
+      sha256: 2c973aad1626cf48b1299c978728b6b998a5ecb62c8e064031da39b4098f5591
     - path: reports/quality/param_execution.md
+      status: missing
+  - id: g4.special_signoff
+    status: fail
+    detail: 'formal: fail ([Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/signoff/formal.yaml'')'
+    evidence: []
+    outcomes:
+    - kind: formal
+      status: fail
+      detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/reports/signoff/formal.yaml'''
+  - id: g4.ral_handoff
+    status: fail
+    detail: '[Errno 2] No such file or directory: ''/home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/verification/ral/apb_secure_demux_ral.manifest.yaml'''
+    evidence:
+    - path: reports/quality/ral_handoff.yaml
       status: missing
   findings: []
 - id: G5
@@ -488,7 +603,8 @@ gates:
   checks:
   - id: g5.release_inputs
     status: fail
-    detail: release inputs present=0/3
+    detail: release inputs valid=0/3; missing integration Markdown; missing user_manual
+      Markdown
     evidence:
     - path: docs/integration
       status: present
@@ -502,9 +618,10 @@ gates:
     evidence:
     - path: model/requirements.yaml
       status: present
-      sha256: 694f86536fc45126bcc0ea82bf642fbaac6def375fa41009c14d9918f5f75c16
+      sha256: 2c973aad1626cf48b1299c978728b6b998a5ecb62c8e064031da39b4098f5591
     - path: model/pdk.yaml
-      status: missing
+      status: present
+      sha256: ec7a53b29ab3368ce47ab4d9b27c8671c2e4f30a86a52852c3ec4efb1be68bfe
     - path: reports/ppa-report.md
       status: missing
     - path: reports/ppa/sweep_analysis.yaml

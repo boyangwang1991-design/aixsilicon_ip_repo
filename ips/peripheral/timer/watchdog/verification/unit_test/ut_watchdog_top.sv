@@ -103,7 +103,8 @@ module ut_watchdog_top;
     @(negedge wdt_clk);warm=1;@(negedge wdt_clk);warm=0;
     ck(!final_req,"warm clears final request");
     command('h44,SNAPSHOT);bus(0,'h10a0,0);ck(value[0],"first fault survives warm");
-    $display("UT_WATCHDOG_TOP: PASS (errors=0 checks=%0d PS=%0d WS=%0d)",checks,PS,WS);$finish;
+    $display("WATCHDOG_TOP_METRICS checks=%0d PS=%0d WS=%0d",checks,PS,WS);
+    $display("UT_WATCHDOG_TOP: PASS (errors=0)");$finish;
   end
   initial begin #10000000;$fatal(1,"APB test timeout");end
 endmodule

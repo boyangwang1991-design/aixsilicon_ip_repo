@@ -9,4 +9,7 @@
 - [验证计划](docs/verification/index.md)
 - [执行状态](reports/quality/full_process.md)
 
-PeakRDL HTML和抽取过程日志仅供本地使用，统一放在被忽略的build/，禁止上传GitHub。
+原始执行证据、PeakRDL/覆盖率 HTML、工具日志和编译产物仅供本地使用，禁止上传
+GitHub。新输出写入被忽略的 `build/`；旧 `reports/evidence/` 缓存也不随 Git 交付。
+以上执行状态为历史摘要，新 clone 须按验证计划和 `scripts/`、FuseSoC target 重跑相关
+阶段并刷新报告后重新验收。旧 GPIO 0.1.0 candidate 包及发布记录仅本地保留。

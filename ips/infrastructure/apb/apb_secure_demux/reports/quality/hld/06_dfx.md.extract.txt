@@ -1,1 +1,0 @@
-Wrote HLD models to /home/eda/workspace/aixsilicon_workflow/repos/aixsilicon_ip_repo/ips/infrastructure/apb/apb_secure_demux/model

@@ -93,7 +93,6 @@ states:
 - REG_SETUP
 - ACCESS
 reset_state: IDLE
-illegal_state_policy: safe_state
 illegal_state_handling: 隔离输出与状态修改，等待可信复位恢复
 transitions:
 - IDLE+setup -> LOCAL|REG_SETUP|ACCESS

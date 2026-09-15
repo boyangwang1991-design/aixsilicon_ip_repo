@@ -40,7 +40,13 @@ if {[sizeof_collection $generic]} {set_dont_touch $generic false}
 set_ungroup [get_cells -hierarchical -quiet *u_channel*] false
 set_fix_hold [all_clocks]
 redirect $OUT/precheck_design.rpt {check_design}
-if {$reuse} {compile_ultra -incremental -no_autoungroup} else {compile_ultra -no_autoungroup}
+set synth_mode ultra
+if {[info exists ::env(WATCHDOG_SYNTH_MODE)]} {set synth_mode $::env(WATCHDOG_SYNTH_MODE)}
+if {$synth_mode eq "classic"} {
+ if {$reuse} {compile -incremental_mapping} else {compile}
+} elseif {$synth_mode eq "ultra"} {
+ if {$reuse} {compile_ultra -incremental -no_autoungroup} else {compile_ultra -no_autoungroup}
+} else {puts "ERROR: unsupported WATCHDOG_SYNTH_MODE"; exit 1}
 compile -incremental_mapping -only_hold_time
 set protected_cells [get_cells -hierarchical -quiet -filter {name =~ *bar* || name =~ *final_hold* || name =~ *qualification*}]
 if {[sizeof_collection $protected_cells]} {set_dont_touch $protected_cells true}

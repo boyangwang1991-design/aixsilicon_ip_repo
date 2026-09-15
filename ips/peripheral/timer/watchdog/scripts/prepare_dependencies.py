@@ -16,5 +16,5 @@ headers=[{str(f):dict(is_include_file=True,include_path=str(vip/'src'))} for f i
 core(b/'apb.core',dict(name='aixsilicon:vip:apb:1.0.0',filesets={'rtl':dict(files=files+headers,file_type='systemVerilogSource')},targets={'default':dict(filesets=['rtl'])}))
 inputs=[cbb/'rtl/round_robin_arbiter.sv',*sorted((vip/'src').rglob('*.sv'))]
 record=dict(schema='watchdog-dependency-binding/1.0',reason=dict(cbb='Legacy core parameter metadata lacks CAPI2 paramtype',vip='Package include files must not be separately compiled; include root must be exported'),sources=[dict(path=str(f.relative_to(r)),sha256=hashlib.sha256(f.read_bytes()).hexdigest()) for f in inputs])
-(p/'reports/full_flow/dependency_binding.json').write_text(json.dumps(record,indent=2)+'\n')
+(p/'build/reports/full_flow/dependency_binding.json').write_text(json.dumps(record,indent=2)+'\n')
 print('DEPENDENCY_ADAPTERS PASS: read-only owner sources, build-only metadata')

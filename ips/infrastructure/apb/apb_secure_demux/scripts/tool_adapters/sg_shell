@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Preserve SpyGlass logs; accept its documented warnings-only return code 11."""
+import os
+import re
+import subprocess
+import sys
+
+
+def accepted(code, text):
+    summaries = re.findall(
+        r'Reported Messages:\s*(\d+) Fatals,\s*(\d+) Errors,\s*(\d+) Warnings', text)
+    actual_error = re.search(r'(?mi)^\s*(?:ERROR|FATAL)(?:\s*[:\[]|\s+-)', text)
+    return (code == 11 and bool(summaries)
+            and all(int(f) == 0 and int(e) == 0 for f, e, _ in summaries)
+            and 'Rule-checking completed with warnings (11)' in text
+            and actual_error is None)
+
+
+if __name__ == '__main__':
+    binary = os.environ['ASD_REAL_SG_SHELL']
+    result = subprocess.run([binary, *sys.argv[1:]], stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, check=False)
+    sys.stdout.buffer.write(result.stdout)
+    sys.stdout.flush()
+    text = result.stdout.decode(errors='replace')
+    print(f'ASD_SPYGLASS_NATIVE_EXIT={result.returncode}', flush=True)
+    if accepted(result.returncode, text):
+        print('ASD_SPYGLASS_WARNINGS_ONLY: native code 11; warnings retained for review', flush=True)
+        sys.exit(0)
+    sys.exit(result.returncode)

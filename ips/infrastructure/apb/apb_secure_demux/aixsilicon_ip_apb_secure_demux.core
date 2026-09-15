@@ -91,7 +91,134 @@ filesets:
     files:
     - verification/unit_test/ut_apb_secure_demux_csr_regblock.sv
     file_type: systemVerilogSource
+  uvm:
+    files:
+    - verification/th/apb_secure_demux_control_if.sv
+    - verification/env/apb_secure_demux_env_package.sv
+    - verification/tc/tc_package.sv
+    - verification/th/apb_secure_demux_target_model.sv
+    - verification/th/harness.sv
+    - verification/env/apb_secure_demux_checker.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_checker_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_dut_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_env.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_env_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_env_dec.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_fcov.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_rm.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_rm_cfg.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_virtual_sequence.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/env/apb_secure_demux_virtual_sequencer.sv:
+        is_include_file: true
+        include_path: verification/env
+    - verification/tc/tc_apb_secure_demux_acl.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_acl_smoke.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_apb.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_apb_smoke.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_csr.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_csr_smoke.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_decode.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_dfx.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_error.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_integrity.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_interface.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_irq.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_log.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_param.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_random_stress.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_reset.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_apb_secure_demux_update.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_base.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_define.sv:
+        is_include_file: true
+        include_path: verification/tc
+    - verification/tc/tc_undef.sv:
+        is_include_file: true
+        include_path: verification/tc
+    file_type: systemVerilogSource
+    depend:
+    - aixsilicon:vip:apb:1.0.0
 targets:
+  lint:
+    default_tool: spyglass
+    filesets:
+    - rtl
+    toplevel: apb_secure_demux
+    tools:
+      spyglass:
+        goals:
+        - lint/lint_rtl
+        spyglass_options:
+        - enableSV09 yes
+        - mthresh 262144
+  elab:
+    default_tool: vcs
+    filesets:
+    - rtl
+    toplevel: apb_secure_demux
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
   ut_decode:
     default_tool: vcs
     filesets:
@@ -227,3 +354,20 @@ targets:
         - -full64
         - -sverilog
         - -timescale=1ns/1ps
+  uvm:
+    default_tool: vcs
+    filesets:
+    - rtl
+    - uvm
+    toplevel: harness
+    tools:
+      vcs:
+        vcs_options:
+        - -full64
+        - -sverilog
+        - -ntb_opts
+        - uvm-1.2
+        - -timescale=1ns/1ps
+        - -cm
+        - line+cond+fsm+tgl+branch
+        - -debug_access+all

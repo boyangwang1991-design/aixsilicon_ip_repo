@@ -33,16 +33,28 @@ def main():
     adapter = root / 'build/package/compat/parity_gen_check.core'
     adapter_data = yaml.safe_load(adapter.read_text().split('\n', 1)[1])
     dependencies = [Path(p) for p in adapter_data['filesets']['rtl_src']['files']]
-    source_paths = sorted((root / 'rtl').rglob('*.sv')) + test_sources
-    source_paths += sorted((root / 'regs').rglob('*.rdl'))
-    source_paths += [root / 'regs/apb_secure_demux.config.json', root / 'rtl/instance/register_bridge.json',
-                     root / 'model/parameter_space.yaml', root / 'rtl/filelist.f', core_path,
-                     config, adapter, Path(__file__).resolve()] + dependencies
+    def local_sources():
+        paths = {p for directory in ('rtl', 'regs', 'constraints', 'configs', 'generator',
+                                     'scripts', 'verification/unit_test', 'docs', 'model')
+                 for p in (root / directory).rglob('*')
+                 if p.is_file() and '__pycache__' not in p.parts and p.name != 'quality.yaml'}
+        return paths | set(root.glob('*.core')) | {config, adapter}
+
+    local_paths = local_sources()
+    source_paths = sorted(local_paths | set(dependencies))
     frozen = [{'path': str(p), 'sha256': sha(p)} for p in source_paths]
     batch = root / 'build/sim/run/ut' / f'batch_{time.time_ns()}'
     batch.mkdir(parents=True)
     identity = batch / 'inputs.json'
     identity.write_text(json.dumps(frozen, indent=2) + '\n')
+    before = batch / 'inputs.before.sha256'
+    after = batch / 'inputs.after.sha256'
+
+    def snapshot():
+        return ''.join(f'{sha(p)}  {p.relative_to(root).as_posix()}\n'
+                       for p in sorted(local_sources()))
+
+    before.write_text(snapshot())
     checks = {}
     artifacts = []
 
@@ -50,6 +62,8 @@ def main():
         artifacts.append({'path': str(path.relative_to(root)), 'sha256': sha(path)})
 
     def unchanged():
+        if local_sources() != local_paths:
+            raise RuntimeError('Input source file set changed; invalidate this batch')
         if set(p.stem for p in (root / 'verification/unit_test').glob('ut_*.sv')) != expected:
             raise RuntimeError('Module UT source set changed')
         if any(sha(Path(item['path'])) != item['sha256'] for item in frozen):
@@ -67,11 +81,12 @@ def main():
         return code
 
     record(identity)
+    record(before)
     try:
         for test in tests:
             unchanged()
             build = batch / test
-            base = ['fusesoc', '--config', str(config), '--cores-root', str(root), 'run',
+            base = ['fusesoc', '--verbose', '--config', str(config), '--cores-root', str(root), 'run',
                     '--target=' + targets[test], '--build-root', str(build)]
             compile_log = batch / (test + '.compile.log')
             run_log = batch / (test + '.run.log')
@@ -107,17 +122,27 @@ def main():
         print(str(error), flush=True)
         for test in tests:
             checks.setdefault(test, {})['status'] = 'fail'
-    passed = len(checks) == len(tests) and all(c['status'] == 'pass' for c in checks.values())
+    after.write_text(snapshot())
+    record(after)
+    passed = (before.read_bytes() == after.read_bytes() and len(checks) == len(tests)
+              and all(c['status'] == 'pass' for c in checks.values()))
+    # Each listed bench directly instantiates its corresponding module.
+    module_coverage = {test.removeprefix('ut_'): [test] for test in tests}
     report = {'schema_version': '2.0', 'ip_name': 'apb_secure_demux', 'report_type': 'module_ut',
               'status': 'pass' if passed else 'fail', 'eda_profile': 'commercial-systemverilog',
               'tool': 'vcs', 'tool_version': 'W-2024.09-SP1 (also present in raw logs)',
               'command': 'uv run python scripts/run_module_ut.py' + (' --test ' + args.test if args.test else ''),
-              'test_count': len(tests), 'artifacts': artifacts, 'checks': checks}
-    text = '# Module UT execution\n\nResults are from this immutable batch only. This is not UVM regression or formal signoff.\n\n<!-- REPORT_META\n'
+              'test_count': len(tests), 'artifacts': artifacts, 'checks': checks,
+              'module_coverage': module_coverage,
+              'inputs_manifest': {'path': str(before.relative_to(root)), 'sha256': sha(before)},
+              'inputs_after_manifest': {'path': str(after.relative_to(root)), 'sha256': sha(after)}}
+    text = '# 模块 UT 执行结果\n\n结果来自本批实际编译与仿真；输入集合及内容在执行前后核对。该结果仅用于模块 UT，UVM 与形式签核分别执行。\n\n<!-- REPORT_META\n'
     text += yaml.safe_dump(report, sort_keys=False) + 'END_REPORT_META -->\n'
     (batch / 'module_ut_summary.md').write_text(text)
     if not args.test:
-        (root / 'reports/quality/module_ut_summary.md').write_text(text)
+        summary = root / 'build/reports/quality/module_ut_summary.md'
+        summary.parent.mkdir(parents=True, exist_ok=True)
+        summary.write_text(text)
     print(batch / 'module_ut_summary.md', flush=True)
     return 0 if passed else 1
 

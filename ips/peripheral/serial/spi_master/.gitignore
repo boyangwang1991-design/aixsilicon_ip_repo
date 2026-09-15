@@ -7,5 +7,4 @@ simv*
 *.log
 __pycache__/
 *.py[cod]
-# Audit logs under reports are deliverables, unlike disposable build logs.
-!reports/**/*.log
+# Raw audit logs remain local, including logs referenced by quality summaries.
