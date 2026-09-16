@@ -2213,109 +2213,6 @@ ips:
   version: 0.1.0
   description: 内存冗余分析器
   path: ips/dft/mbist/memory_redundancy_analyzer
-- id: INF-037
-  name: apb_noc_bridge
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  interfaces:
-  - apb4
-  description: APB↔NoC 桥
-  path: ips/infrastructure/noc/apb_noc_bridge
-- id: INF-038
-  name: axi_noc_bridge
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  interfaces:
-  - axi4
-  description: AXI↔NoC 桥
-  path: ips/infrastructure/noc/axi_noc_bridge
-- id: INF-039
-  name: noc_crossbar
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC Crossbar
-  path: ips/infrastructure/noc/noc_crossbar
-- id: INF-040
-  name: noc_firewall
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC 防火墙
-  path: ips/infrastructure/noc/noc_firewall
-- id: INF-041
-  name: noc_network_interface
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC 网络接口（NI）
-  path: ips/infrastructure/noc/noc_network_interface
-- id: INF-042
-  name: noc_performance_monitor
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC 性能监控器
-  path: ips/infrastructure/noc/noc_performance_monitor
-- id: INF-043
-  name: noc_qos_manager
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC QoS 管理器
-  path: ips/infrastructure/noc/noc_qos_manager
-- id: INF-044
-  name: noc_router
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC 路由器（包交换）
-  path: ips/infrastructure/noc/noc_router
-- id: INF-045
-  name: noc_traffic_shaper
-  domain: infrastructure
-  subdomain: noc
-  type: ip
-  priority: P2
-  status: planned
-  maturity: alpha
-  version: 0.1.0
-  description: NoC 流量整形器
-  path: ips/infrastructure/noc/noc_traffic_shaper
 - id: MEM-023
   name: ddr_controller
   domain: memory
@@ -2581,6 +2478,20 @@ ips:
   version: 0.1.0
   description: 篡改检测器
   path: ips/security/tamper/tamper_detector
+- id: SEC-027
+  name: pqc
+  domain: security
+  subdomain: crypto
+  type: ip
+  priority: P0
+  status: planned
+  maturity: alpha
+  version: 0.1.0
+  interfaces:
+  - apb4
+  - axi4
+  description: 可配置 ML-KEM + ML-DSA 后量子密码加速器
+  path: ips/security/crypto/pqc
 - id: AI-001
   name: accelerator_descriptor_engine
   domain: accelerator

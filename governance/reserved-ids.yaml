@@ -223,15 +223,6 @@ ids:
   ufs_controller: HSI-009
   usb2_controller: HSI-010
   usb3_controller: HSI-011
-  apb_noc_bridge: INF-037
-  axi_noc_bridge: INF-038
-  noc_crossbar: INF-039
-  noc_firewall: INF-040
-  noc_network_interface: INF-041
-  noc_performance_monitor: INF-042
-  noc_qos_manager: INF-043
-  noc_router: INF-044
-  noc_traffic_shaper: INF-045
   address_hash_interleave: MEM-020
   ddr4_controller: MEM-021
   ddr5_controller: MEM-022
@@ -272,6 +263,7 @@ ids:
   puf_controller: SEC-024
   secure_counter: SEC-025
   tamper_detector: SEC-026
+  pqc: SEC-027
   guest_timer: VIR-001
   virtual_interrupt_router: VIR-002
   vm_interrupt_controller: VIR-003

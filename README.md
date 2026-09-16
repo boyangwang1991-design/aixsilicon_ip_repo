@@ -45,10 +45,10 @@ python3 scripts/update_registry_readme.py --check
 
 | 指标                         | 数量 |
 |------------------------------|------|
-| 总条目（ips）                | 294  |
+| 总条目（ips）                | 286  |
 | released（已发布）           | 0    |
 | implemented（已实现/已交付） | 3    |
-| planned（规划候选）          | 291  |
+| planned（规划候选）          | 283  |
 | deprecated（已废弃）         | 0    |
 | 实现率                       | 1.0% |
 
@@ -64,9 +64,9 @@ python3 scripts/update_registry_readme.py --check
 
 | 优先级 | 已交付 | planned | 合计 |
 |--------|--------|---------|------|
-| P0     | 2      | 72      | 74   |
+| P0     | 2      | 73      | 75   |
 | P1     | 1      | 109     | 110  |
-| P2     | 0      | 71      | 71   |
+| P2     | 0      | 62      | 62   |
 | P3     | 0      | 39      | 39   |
 
 ### 按类型分布
@@ -74,7 +74,7 @@ python3 scripts/update_registry_readme.py --check
 | 类型      | 数量 |
 |-----------|------|
 | generator | 16   |
-| ip        | 270  |
+| ip        | 262  |
 | wrapper   | 8    |
 
 ### 按领域分布（顶层 domain）
@@ -90,7 +90,7 @@ python3 scripts/update_registry_readme.py --check
 | crypto         | 3    |
 | debug_trace    | 13   |
 | dft            | 8    |
-| infrastructure | 74   |
+| infrastructure | 65   |
 | memory         | 17   |
 | mmu            | 4    |
 | multimedia     | 4    |
@@ -98,11 +98,11 @@ python3 scripts/update_registry_readme.py --check
 | peripheral     | 25   |
 | reliability    | 4    |
 | safety         | 20   |
-| security       | 26   |
+| security       | 27   |
 | system         | 39   |
 | test           | 2    |
 
-### 全部 IP 明细（294，按领域分组）
+### 全部 IP 明细（286，按领域分组）
 
 #### accelerator（19，已交付=0）
 
@@ -222,7 +222,7 @@ python3 scripts/update_registry_readme.py --check
 | DFT-007 | [fuse_repair_controller](ips/dft/mbist/fuse_repair_controller/README.md)         | ip   | planned | P2     | 0.1.0 | Fuse 修复控制器 |
 | DFT-008 | [memory_redundancy_analyzer](ips/dft/mbist/memory_redundancy_analyzer/README.md) | ip   | planned | P2     | 0.1.0 | 内存冗余分析器  |
 
-#### infrastructure（74，已交付=2）
+#### infrastructure（65，已交付=2）
 
 | ID              | IP                                                                                        | 类型      | 状态        | 优先级 | 版本  | 功能/描述                                                                                                                                                                                             |
 |-----------------|-------------------------------------------------------------------------------------------|-----------|-------------|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -257,15 +257,6 @@ python3 scripts/update_registry_readme.py --check
 | INF-032         | [axis_mux](ips/infrastructure/axi/axis_mux/README.md)                                     | ip        | planned     | P1     | 0.1.0 | AXI-Stream Mux                                                                                                                                                                                        |
 | INF-034         | [reset_domain_bridge](ips/infrastructure/cdc/reset_domain_bridge/README.md)               | ip        | planned     | P1     | 0.1.0 | 复位域桥（RDC）                                                                                                                                                                                       |
 | INF-036         | [stream_interconnect](ips/infrastructure/axi/stream_interconnect/README.md)               | generator | planned     | P1     | 0.1.0 | AXI-Stream 互联                                                                                                                                                                                       |
-| INF-037         | [apb_noc_bridge](ips/infrastructure/noc/apb_noc_bridge/README.md)                         | ip        | planned     | P2     | 0.1.0 | APB↔NoC 桥                                                                                                                                                                                            |
-| INF-038         | [axi_noc_bridge](ips/infrastructure/noc/axi_noc_bridge/README.md)                         | ip        | planned     | P2     | 0.1.0 | AXI↔NoC 桥                                                                                                                                                                                            |
-| INF-039         | [noc_crossbar](ips/infrastructure/noc/noc_crossbar/README.md)                             | ip        | planned     | P2     | 0.1.0 | NoC Crossbar                                                                                                                                                                                          |
-| INF-040         | [noc_firewall](ips/infrastructure/noc/noc_firewall/README.md)                             | ip        | planned     | P2     | 0.1.0 | NoC 防火墙                                                                                                                                                                                            |
-| INF-041         | [noc_network_interface](ips/infrastructure/noc/noc_network_interface/README.md)           | ip        | planned     | P2     | 0.1.0 | NoC 网络接口（NI）                                                                                                                                                                                    |
-| INF-042         | [noc_performance_monitor](ips/infrastructure/noc/noc_performance_monitor/README.md)       | ip        | planned     | P2     | 0.1.0 | NoC 性能监控器                                                                                                                                                                                        |
-| INF-043         | [noc_qos_manager](ips/infrastructure/noc/noc_qos_manager/README.md)                       | ip        | planned     | P2     | 0.1.0 | NoC QoS 管理器                                                                                                                                                                                        |
-| INF-044         | [noc_router](ips/infrastructure/noc/noc_router/README.md)                                 | ip        | planned     | P2     | 0.1.0 | NoC 路由器（包交换）                                                                                                                                                                                  |
-| INF-045         | [noc_traffic_shaper](ips/infrastructure/noc/noc_traffic_shaper/README.md)                 | ip        | planned     | P2     | 0.1.0 | NoC 流量整形器                                                                                                                                                                                        |
 | INF-046         | [apb_secure_demux](ips/infrastructure/apb/apb_secure_demux/README.md)                     | ip        | planned     | P0     | 1.0.0 | 安全 APB Demux；1→N 路由、可信主体权限、原子配置提交及审计                                                                                                                                            |
 | MIG-IP-AXI-001  | [axi_channel_register_slice](ips/infrastructure/axi/axi_channel_register_slice/README.md) | ip        | planned     | P0     | 0.1.0 | AXI 单通道缓冲与时序切片；按用户 2026-09-13 仓库归属要求迁入 IP，区别于完整五通道 axi_register_slice。                                                                                                |
 | MIG-IP-AXI-002  | [axi_lite_register_slice](ips/infrastructure/axi/axi_lite_register_slice/README.md)       | ip        | planned     | P0     | 0.1.0 | AXI-Lite Register Slice；combined/per-channel；小面积低延迟                                                                                                                                           |
@@ -416,36 +407,37 @@ python3 scripts/update_registry_readme.py --check
 | SAF-020 | [ram_repair_safety_controller](ips/safety/repair/ram_repair_safety_controller/README.md) | ip   | planned | P2     | 0.1.0 | RAM 修复安全控制器                      |
 | SAF-021 | [safety_event_router](ips/safety/fault/safety_event_router/README.md)                    | ip   | planned | P2     | 0.1.0 | 安全事件路由器                          |
 
-#### security（26，已交付=0）
+#### security（27，已交付=0）
 
-| ID      | IP                                                                                           | 类型      | 状态    | 优先级 | 版本  | 功能/描述               |
-|---------|----------------------------------------------------------------------------------------------|-----------|---------|--------|-------|-------------------------|
-| SEC-001 | [aes](ips/security/crypto/aes/README.md)                                                     | ip        | planned | P0     | 0.1.0 | AES 加解密引擎          |
-| SEC-002 | [hmac](ips/security/crypto/hmac/README.md)                                                   | ip        | planned | P0     | 0.1.0 | HMAC 引擎               |
-| SEC-003 | [key_manager](ips/security/key/key_manager/README.md)                                        | ip        | planned | P0     | 0.1.0 | 密钥管理器              |
-| SEC-004 | [otp_efuse_controller](ips/security/efuse/otp_efuse_controller/README.md)                    | generator | planned | P0     | 0.1.0 | OTP/eFuse 控制器        |
-| SEC-005 | [secure_boot_controller](ips/security/secure_boot/secure_boot_controller/README.md)          | ip        | planned | P0     | 0.1.0 | 安全启动控制器          |
-| SEC-006 | [sha2](ips/security/crypto/sha2/README.md)                                                   | ip        | planned | P0     | 0.1.0 | SHA-2 哈希引擎          |
-| SEC-007 | [trng](ips/security/crypto/trng/README.md)                                                   | ip        | planned | P0     | 0.1.0 | 真随机数发生器（TRNG）  |
-| SEC-008 | [anti_rollback_controller](ips/security/secure_boot/anti_rollback_controller/README.md)      | ip        | planned | P1     | 0.1.0 | 防回滚控制器            |
-| SEC-009 | [bus_firewall](ips/security/firewall/bus_firewall/README.md)                                 | ip        | planned | P1     | 0.1.0 | 总线防火墙              |
-| SEC-010 | [crypto_dma](ips/security/crypto/crypto_dma/README.md)                                       | ip        | planned | P1     | 0.1.0 | 密码 DMA                |
-| SEC-011 | [csrng_drbg](ips/security/crypto/csrng_drbg/README.md)                                       | ip        | planned | P1     | 0.1.0 | CSRNG/DRBG 确定性随机源 |
-| SEC-012 | [dma_firewall](ips/security/firewall/dma_firewall/README.md)                                 | ip        | planned | P1     | 0.1.0 | DMA 防火墙              |
-| SEC-013 | [ecc_crypto](ips/security/crypto/ecc_crypto/README.md)                                       | ip        | planned | P1     | 0.1.0 | 椭圆曲线密码（ECC）引擎 |
-| SEC-014 | [key_vault](ips/security/key/key_vault/README.md)                                            | ip        | planned | P1     | 0.1.0 | 密钥保险库              |
-| SEC-015 | [memory_protection_controller](ips/security/firewall/memory_protection_controller/README.md) | ip        | planned | P1     | 0.1.0 | 内存保护控制器          |
-| SEC-016 | [register_firewall](ips/security/firewall/register_firewall/README.md)                       | ip        | planned | P1     | 0.1.0 | 寄存器防火墙            |
-| SEC-017 | [rsa](ips/security/crypto/rsa/README.md)                                                     | ip        | planned | P1     | 0.1.0 | RSA 公钥引擎            |
-| SEC-018 | [secure_debug_controller](ips/security/secure_debug/secure_debug_controller/README.md)       | ip        | planned | P1     | 0.1.0 | 安全调试控制器          |
-| SEC-019 | [secure_mailbox](ips/security/secure_io/secure_mailbox/README.md)                            | ip        | planned | P1     | 0.1.0 | 安全邮箱                |
-| SEC-020 | [sha3](ips/security/crypto/sha3/README.md)                                                   | ip        | planned | P1     | 0.1.0 | SHA-3 哈希引擎          |
-| SEC-021 | [key_ladder](ips/security/key/key_ladder/README.md)                                          | ip        | planned | P2     | 0.1.0 | 密钥阶梯派生            |
-| SEC-022 | [life_cycle_controller](ips/security/secure_boot/life_cycle_controller/README.md)            | ip        | planned | P2     | 0.1.0 | 生命周期控制器          |
-| SEC-023 | [monotonic_counter](ips/security/counter/monotonic_counter/README.md)                        | ip        | planned | P2     | 0.1.0 | 单调计数器              |
-| SEC-024 | [puf_controller](ips/security/puf/puf_controller/README.md)                                  | ip        | planned | P2     | 0.1.0 | PUF 控制器              |
-| SEC-025 | [secure_counter](ips/security/counter/secure_counter/README.md)                              | ip        | planned | P2     | 0.1.0 | 安全计数器              |
-| SEC-026 | [tamper_detector](ips/security/tamper/tamper_detector/README.md)                             | ip        | planned | P2     | 0.1.0 | 篡改检测器              |
+| ID      | IP                                                                                           | 类型      | 状态    | 优先级 | 版本  | 功能/描述                               |
+|---------|----------------------------------------------------------------------------------------------|-----------|---------|--------|-------|-----------------------------------------|
+| SEC-001 | [aes](ips/security/crypto/aes/README.md)                                                     | ip        | planned | P0     | 0.1.0 | AES 加解密引擎                          |
+| SEC-002 | [hmac](ips/security/crypto/hmac/README.md)                                                   | ip        | planned | P0     | 0.1.0 | HMAC 引擎                               |
+| SEC-003 | [key_manager](ips/security/key/key_manager/README.md)                                        | ip        | planned | P0     | 0.1.0 | 密钥管理器                              |
+| SEC-004 | [otp_efuse_controller](ips/security/efuse/otp_efuse_controller/README.md)                    | generator | planned | P0     | 0.1.0 | OTP/eFuse 控制器                        |
+| SEC-005 | [secure_boot_controller](ips/security/secure_boot/secure_boot_controller/README.md)          | ip        | planned | P0     | 0.1.0 | 安全启动控制器                          |
+| SEC-006 | [sha2](ips/security/crypto/sha2/README.md)                                                   | ip        | planned | P0     | 0.1.0 | SHA-2 哈希引擎                          |
+| SEC-007 | [trng](ips/security/crypto/trng/README.md)                                                   | ip        | planned | P0     | 0.1.0 | 真随机数发生器（TRNG）                  |
+| SEC-008 | [anti_rollback_controller](ips/security/secure_boot/anti_rollback_controller/README.md)      | ip        | planned | P1     | 0.1.0 | 防回滚控制器                            |
+| SEC-009 | [bus_firewall](ips/security/firewall/bus_firewall/README.md)                                 | ip        | planned | P1     | 0.1.0 | 总线防火墙                              |
+| SEC-010 | [crypto_dma](ips/security/crypto/crypto_dma/README.md)                                       | ip        | planned | P1     | 0.1.0 | 密码 DMA                                |
+| SEC-011 | [csrng_drbg](ips/security/crypto/csrng_drbg/README.md)                                       | ip        | planned | P1     | 0.1.0 | CSRNG/DRBG 确定性随机源                 |
+| SEC-012 | [dma_firewall](ips/security/firewall/dma_firewall/README.md)                                 | ip        | planned | P1     | 0.1.0 | DMA 防火墙                              |
+| SEC-013 | [ecc_crypto](ips/security/crypto/ecc_crypto/README.md)                                       | ip        | planned | P1     | 0.1.0 | 椭圆曲线密码（ECC）引擎                 |
+| SEC-014 | [key_vault](ips/security/key/key_vault/README.md)                                            | ip        | planned | P1     | 0.1.0 | 密钥保险库                              |
+| SEC-015 | [memory_protection_controller](ips/security/firewall/memory_protection_controller/README.md) | ip        | planned | P1     | 0.1.0 | 内存保护控制器                          |
+| SEC-016 | [register_firewall](ips/security/firewall/register_firewall/README.md)                       | ip        | planned | P1     | 0.1.0 | 寄存器防火墙                            |
+| SEC-017 | [rsa](ips/security/crypto/rsa/README.md)                                                     | ip        | planned | P1     | 0.1.0 | RSA 公钥引擎                            |
+| SEC-018 | [secure_debug_controller](ips/security/secure_debug/secure_debug_controller/README.md)       | ip        | planned | P1     | 0.1.0 | 安全调试控制器                          |
+| SEC-019 | [secure_mailbox](ips/security/secure_io/secure_mailbox/README.md)                            | ip        | planned | P1     | 0.1.0 | 安全邮箱                                |
+| SEC-020 | [sha3](ips/security/crypto/sha3/README.md)                                                   | ip        | planned | P1     | 0.1.0 | SHA-3 哈希引擎                          |
+| SEC-021 | [key_ladder](ips/security/key/key_ladder/README.md)                                          | ip        | planned | P2     | 0.1.0 | 密钥阶梯派生                            |
+| SEC-022 | [life_cycle_controller](ips/security/secure_boot/life_cycle_controller/README.md)            | ip        | planned | P2     | 0.1.0 | 生命周期控制器                          |
+| SEC-023 | [monotonic_counter](ips/security/counter/monotonic_counter/README.md)                        | ip        | planned | P2     | 0.1.0 | 单调计数器                              |
+| SEC-024 | [puf_controller](ips/security/puf/puf_controller/README.md)                                  | ip        | planned | P2     | 0.1.0 | PUF 控制器                              |
+| SEC-025 | [secure_counter](ips/security/counter/secure_counter/README.md)                              | ip        | planned | P2     | 0.1.0 | 安全计数器                              |
+| SEC-026 | [tamper_detector](ips/security/tamper/tamper_detector/README.md)                             | ip        | planned | P2     | 0.1.0 | 篡改检测器                              |
+| SEC-027 | [pqc](ips/security/crypto/pqc/README.md)                                                     | ip        | planned | P0     | 0.1.0 | 可配置 ML-KEM + ML-DSA 后量子密码加速器 |
 
 #### system（39，已交付=0）
 
