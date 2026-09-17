@@ -191,7 +191,9 @@ class pqc_rm extends uvm_component;
     exp.slverr   = unmapped;      // unmapped accesses must return pslverr
     // Hardware-driven (volatile) registers are not compared against a static
     // shadow; their transitions are asserted by the directed testcases.
-    exp.check_data = !pqc_reg_is_dynamic(tr.addr);
+    // The key-slot window (0x200+) is a recorded expected-error region
+    // (RTL-KEY-001): it returns pslverr and no data, so it is excluded too.
+    exp.check_data = !pqc_reg_is_dynamic(tr.addr) && !pqc_reg_key_slot_window(tr.addr);
     exp_count++;
     exp_ap.write(exp);
   endfunction

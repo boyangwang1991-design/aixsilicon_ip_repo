@@ -86,6 +86,10 @@ verification/tc/tc_base.sv
 verification/tc/tc_cmd_smoke.sv
 verification/tc/tc_apb_protection.sv
 verification/tc/tc_reg_reset_attr.sv
+verification/tc/tc_reset_selftest_lock.sv
+verification/tc/tc_intr_independence.sv
+verification/tc/tc_key_slot_permission.sv
+verification/tc/tc_illegal_state_shutdown.sv
 
 // ------------------------------------------------------------------ harness
 verification/th/harness.sv

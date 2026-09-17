@@ -20,6 +20,8 @@ class pqc_apb_reg_seq extends apb_base_sequence;
   logic [31:0]              addr     = 32'h0;
   logic [31:0]              data     = 32'h0;
   logic [3:0]               strb     = 4'hf;
+  // PPROT for the transfer; the key-slot window (>=0x200) needs PPROT=3'b100.
+  apb_protection            prot     = '{default: 1'b0};
 
   // Results for a read
   logic [31:0]              rdata    = 32'h0;
@@ -30,11 +32,16 @@ class pqc_apb_reg_seq extends apb_base_sequence;
   endfunction
 
   task body();
-    if (is_write) begin
-      do_write(addr, data, strb);
-    end else begin
-      do_read(addr, rdata, slverr);
-    end
+    apb_item it = apb_item::type_id::create("it");
+    start_item(it);
+    it.direction = is_write ? APB_WRITE : APB_READ;
+    it.addr      = addr;
+    it.wdata     = data;
+    it.strb      = is_write ? strb : 4'h0;   // reads must carry PSTRB = 0
+    it.prot      = prot;
+    finish_item(it);
+    rdata = it.rdata;
+    slverr = it.slverr;
   endtask
 
 endclass

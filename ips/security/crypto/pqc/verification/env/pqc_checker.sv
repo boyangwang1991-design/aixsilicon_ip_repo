@@ -67,8 +67,11 @@ class pqc_checker extends uvm_scoreboard;
   function void compare(pqc_apb_access act, pqc_apb_access exp);
     string tag = $sformatf("%s addr=0x%03h", act.is_write ? "WR" : "RD", act.addr);
 
-    // 1) Error response must match the address-map prediction
-    if (cfg.check_unmapped_err && (act.slverr !== exp.slverr)) begin
+    // 1) Error response must match the address-map prediction. The key-slot
+    //    window (0x200+) is a recorded expected-error region (RTL-KEY-001): it
+    //    returns pslverr for every access, so do not flag a mismatch there.
+    if (cfg.check_unmapped_err && (act.slverr !== exp.slverr) &&
+        !pqc_reg_key_slot_window(act.addr)) begin
       `uvm_error(get_type_name(),
         $sformatf("%s: slverr mismatch: actual=%b expected=%b (read got=0x%08h exp=0x%08h)",
                   tag, act.slverr, exp.slverr, act.rdata, exp.rdata))

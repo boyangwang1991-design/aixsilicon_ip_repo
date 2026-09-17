@@ -60,13 +60,23 @@ class tc_base extends uvm_test;
   // Stimulus goes through the VIP sequence API (ADR-13): one single-access
   // sequence is started per register access. Fields are set explicitly (never
   // randomized) so directed tests stay deterministic.
+  // Stimulus goes through the VIP sequence API (ADR-13): one single-access
+  // sequence is started per register access. Fields are set explicitly (never
+  // randomized) so directed tests stay deterministic.
+  //
+  // PPROT note: the key-slot window (>= 0x200) is permission-gated by
+  // rtl/pqc_apb_if.sv - only PPROT=3'b100 (privileged+secure) passes
+  // secure_privileged; any other PPROT on that window is blocked with NO
+  // PREADY (access_blocked), which would hang the bus. The generic accessors
+  // below therefore use PPROT=0 and the key-slot test uses the dedicated
+  // secure accessors.
   task automatic apb_write(logic [9:0] addr, logic [31:0] data, logic [3:0] strb = 4'hf);
     pqc_apb_reg_seq seq = pqc_apb_reg_seq::type_id::create("wr_seq");
     seq.is_write = 1'b1;
     seq.addr     = addr;
     seq.data     = data;
     seq.strb     = strb;       // APB4 byte enables
-    // uvm_sequence::start() is a task: call it as a task (no void' cast).
+    seq.prot     = 3'b000;     // non-secure / not privileged (not 0x200+)
     seq.start(apb_sqr);
   endtask
 
@@ -75,6 +85,29 @@ class tc_base extends uvm_test;
     seq.is_write = 1'b0;
     seq.addr     = addr;
     seq.strb     = 4'h0;       // reads must carry PSTRB = 0 (APB rule)
+    seq.prot     = 3'b000;
+    seq.start(apb_sqr);
+    data = seq.rdata;
+    err  = seq.slverr;
+  endtask
+
+  // Secure+privileged single access for the key-slot window (PPROT=3'b100).
+  task automatic apb_write_sec(logic [9:0] addr, logic [31:0] data, logic [3:0] strb = 4'hf);
+    pqc_apb_reg_seq seq = pqc_apb_reg_seq::type_id::create("wr_sec_seq");
+    seq.is_write = 1'b1;
+    seq.addr     = addr;
+    seq.data     = data;
+    seq.strb     = strb;
+    seq.prot     = 3'b100;
+    seq.start(apb_sqr);
+  endtask
+
+  task automatic apb_read_sec(logic [9:0] addr, output logic [31:0] data, output bit err);
+    pqc_apb_reg_seq seq = pqc_apb_reg_seq::type_id::create("rd_sec_seq");
+    seq.is_write = 1'b0;
+    seq.addr     = addr;
+    seq.strb     = 4'h0;
+    seq.prot     = 3'b100;
     seq.start(apb_sqr);
     data = seq.rdata;
     err  = seq.slverr;
