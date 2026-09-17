@@ -1,0 +1,547 @@
+// ============================================================================
+// PQC - Register Definition Language (SystemRDL)
+// IP: pqc (可配置 ML-KEM + ML-DSA 后量子密码加速器)
+// Version: 0.1.0
+// Bus: APB4, 32-bit data, 32-bit address
+//
+// 结构唯一事实源（02-reg-model）。字段行为意图见 docs/lld/03_register_behavior_*.md。
+// 地址段以本文件为唯一结构定义；HLD 仅定义分组与行为：
+//   0x000 ID_VERSION          0x090 INTR_*       0x200 KEY_SLOT_CTRL
+//   0x004 CAPABILITY0         0x0A0 ALERT_*      0x20C KEY_SLOT_DOMAIN
+//   0x008 CAPABILITY1         0x100 PERF_*
+//   0x010 CTRL                0x1C0 COMPLETION
+//   0x014 STATUS              0x1D0 DOORBELL
+//   0x018 COMMAND             0x1D4 DESC_ADDR_LO
+//   0x020~0x078 DESC          0x1D8 DESC_ADDR_HI
+//   0x07C KEY_HANDLE
+//   0x080 CONTEXT_LEN
+//   0x084 RESULT
+//   0x088 ERROR_CODE
+// ============================================================================
+
+// The addrmap name determines the generated package/module names
+// (pqc_csr_pkg / pqc_csr), which must not collide with the hand-written
+// pqc_pkg package.
+addrmap pqc_csr {
+    desc = "Configurable ML-KEM and ML-DSA post-quantum crypto accelerator register map";
+
+    // ========================================================================
+    // Identification & Capability (0x000 ~ 0x00F)
+    // ========================================================================
+
+    // ID_VERSION (0x000)
+    reg {
+        desc = "IP, ABI and microcode version";
+        default sw = r;
+        default hw = r;
+
+        field { reset = 8'h01; } ip_minor[7:0];
+        field { reset = 8'h00; } ip_major[15:8];
+        field { reset = 8'h10; } abi_version[23:16];
+        field { reset = 8'h01; } ucode_version[31:24];
+    } ID_VERSION @ 0x000;
+
+    // CAPABILITY0 (0x004)
+    // hw = rw so the RTL can report the ELABORATED configuration (parameters)
+    // rather than a fixed reset constant; software reads only.
+    reg {
+        desc = "Algorithm, parameter set, lane, SCA capabilities";
+        default sw = r;
+        default hw = rw;
+
+        field { reset = 6'h3F; } algo_mask[5:0];
+        field { reset = 1'b1; } kem_supported[6:6];
+        field { reset = 1'b1; } dsa_supported[7:7];
+        // Compatible compact encoding: 1->1 lane, 2->2 lanes, 0->4 lanes.
+        // Zero is the extension code, never a zero-lane implementation.
+        field { reset = 2'd2; } ntt_lanes[9:8];
+        field { reset = 2'd2; } keccak_rounds[11:10];
+        field { reset = 2'd1; } sca_level[13:12];
+        field { reset = 1'b0; } hash_ml_dsa[14:14];
+        field { reset = 1'b0; } sg_supported[15:15];
+        field { reset = 1'b1; } pure_ml_dsa[16:16];
+        field { reset = 1'b1; } deterministic_mode[17:17];
+        field { reset = 1'b1; } hedged_mode[18:18];
+        field { reset = 1'b0; } multi_queue[19:19];
+    } CAPABILITY0 @ 0x004;
+
+    // CAPABILITY1 (0x008)
+    reg {
+        desc = "SRAM, DMA and key-slot capabilities";
+        default sw = r;
+        default hw = rw;
+
+        field { reset = 8'd64; } local_sram_kib[7:0];
+        // Width encoding: 64->64 bits, 128->128 bits, 0->256 bits.
+        field { reset = 8'd128; } dma_data_width[15:8];
+        field { reset = 8'd8; } key_slot_num[23:16];
+        field { reset = 1'b1; } pio_enabled[24:24];
+        field { reset = 1'b1; } ecc_enabled[25:25];
+        field { reset = 6'h01; } abi_minor[31:26];
+    } CAPABILITY1 @ 0x008;
+
+    // ========================================================================
+    // Control & Status (0x010 ~ 0x01F)
+    // ========================================================================
+
+    // CTRL (0x010)
+    reg {
+        desc = "Enable, abort, zeroize and self-test control";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; swwe; } enable[0:0];
+        field { reset = 1'b0; singlepulse; } abort[1:1];
+        field { reset = 1'b0; singlepulse; } zeroize[2:2];
+        field { reset = 1'b0; singlepulse; } self_test[3:3];
+    } CTRL @ 0x010;
+
+    // STATUS (0x014)
+    reg {
+        desc = "Idle, busy, done, error and locked status";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 1'b1; } idle[0:0];
+        field { reset = 1'b0; } busy[1:1];
+        field { reset = 1'b0; } done[2:2];
+        field { reset = 1'b0; } error[3:3];
+        field { reset = 1'b0; } locked[4:4];
+    } STATUS @ 0x014;
+
+    // COMMAND (0x018) - busy write protected via swwe
+    reg {
+        desc = "Current command opcode, parameter set, flags and tag";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 8'h00; swwe; } opcode[7:0];
+        field { reset = 4'h0; swwe; } parameter_set[11:8];
+        field { reset = 12'h000; swwe; } flags[23:12];
+        field { reset = 8'h01; swwe; } abi[31:24];
+    } COMMAND @ 0x018;
+
+    // ========================================================================
+    // Descriptor Registers (0x020 ~ 0x05F) - busy write protected via swwe
+    // ========================================================================
+
+    reg {
+        desc = "Source 0 address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } src0_addr_lo[31:0];
+    } SRC0_ADDR_LO @ 0x020;
+
+    reg {
+        desc = "Source 0 address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } src0_addr_hi[7:0];
+    } SRC0_ADDR_HI @ 0x024;
+
+    reg {
+        desc = "Source 0 length in bytes";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } src0_len_lo[31:0];
+    } SRC0_LEN_LO @ 0x028;
+
+    reg {
+        desc = "Source 0 length high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } src0_len_hi[31:0];
+    } SRC0_LEN_HI @ 0x02C;
+
+    reg {
+        desc = "Source 1 address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } src1_addr_lo[31:0];
+    } SRC1_ADDR_LO @ 0x030;
+
+    reg {
+        desc = "Source 1 address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } src1_addr_hi[7:0];
+    } SRC1_ADDR_HI @ 0x034;
+
+    reg {
+        desc = "Source 1 length in bytes";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } src1_len_lo[31:0];
+    } SRC1_LEN_LO @ 0x038;
+
+    reg {
+        desc = "Source 1 length high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } src1_len_hi[31:0];
+    } SRC1_LEN_HI @ 0x03C;
+
+    reg {
+        desc = "ML-DSA context address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } context_addr_lo[31:0];
+    } CONTEXT_ADDR_LO @ 0x040;
+
+    reg {
+        desc = "ML-DSA context address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } context_addr_hi[7:0];
+    } CONTEXT_ADDR_HI @ 0x044;
+
+    reg {
+        desc = "Entropy policy selection (deterministic, hedged, production)";
+        default sw = rw;
+        default hw = r;
+        field { reset = 2'b10; swwe; } entropy_policy[1:0];
+    } ENTROPY_POLICY @ 0x048;
+
+    reg {
+        desc = "Destination 0 address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } dst0_addr_lo[31:0];
+    } DST0_ADDR_LO @ 0x04C;
+
+    reg {
+        desc = "Destination 0 address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } dst0_addr_hi[7:0];
+    } DST0_ADDR_HI @ 0x050;
+
+    reg {
+        desc = "Destination 0 capacity in bytes";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } dst0_capacity_lo[31:0];
+    } DST0_CAPACITY_LO @ 0x054;
+
+    reg {
+        desc = "Destination 0 capacity high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } dst0_capacity_hi[31:0];
+    } DST0_CAPACITY_HI @ 0x058;
+
+    reg {
+        desc = "Destination 1 address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } dst1_addr_lo[31:0];
+    } DST1_ADDR_LO @ 0x05C;
+
+    reg {
+        desc = "Destination 1 address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } dst1_addr_hi[7:0];
+    } DST1_ADDR_HI @ 0x060;
+
+    reg {
+        desc = "Destination 1 capacity in bytes";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } dst1_capacity_lo[31:0];
+    } DST1_CAPACITY_LO @ 0x064;
+
+    reg {
+        desc = "Destination 1 capacity high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } dst1_capacity_hi[31:0];
+    } DST1_CAPACITY_HI @ 0x068;
+
+    reg {
+        desc = "Completion record address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } completion_addr_lo[31:0];
+    } COMPLETION_ADDR_LO @ 0x06C;
+
+    reg {
+        desc = "Completion record address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } completion_addr_hi[7:0];
+    } COMPLETION_ADDR_HI @ 0x070;
+
+    reg {
+        desc = "Scheduling timeout hint, must not truncate standard algorithm";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } timeout_hint[31:0];
+    } TIMEOUT_HINT @ 0x074;
+
+    reg {
+        desc = "Non-cryptographic descriptor transport integrity check";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } descriptor_crc[31:0];
+    } DESCRIPTOR_CRC @ 0x078;
+
+    // ========================================================================
+    // Key Handle / Context / Result / Error (0x07C ~ 0x09F)
+    // ========================================================================
+
+    reg {
+        desc = "Opaque handle with full generation, owner and slot; type comes from trusted metadata";
+        default sw = rw;
+        default hw = r;
+        field { reset = 8'h0; swwe; } slot_id[7:0];
+        field { reset = 8'h0; swwe; } owner[15:8];
+        field { reset = 16'h0; swwe; } generation[31:16];
+    } KEY_HANDLE @ 0x07C;
+
+    reg {
+        desc = "ML-DSA context length, valid range 0 to 255";
+        default sw = rw;
+        default hw = r;
+        field { reset = 8'h00; swwe; } context_len[7:0];
+    } CONTEXT_LEN @ 0x080;
+
+    reg {
+        desc = "Verify result and completion tag";
+        default sw = r;
+        default hw = w;
+        field { reset = 1'b0; } verify_valid[0:0];
+        field { reset = 1'b0; } verify_done[1:1];
+        field { reset = 30'h0; } completion_tag[31:2];
+    } RESULT @ 0x084;
+
+    reg {
+        desc = "Non-sensitive error category, never encodes secret-derived information";
+        default sw = r;
+        default hw = w;
+        field { reset = 6'h00; } error_code[5:0];
+        field { reset = 1'b0; } last_cmd_failed[6:6];
+    } ERROR_CODE @ 0x088;
+
+    // ========================================================================
+    // Interrupt Registers (0x090 ~ 0x0AF)
+    // ========================================================================
+
+    reg {
+        desc = "Interrupt state, hardware set and write-one-to-clear";
+        default sw = rw;
+        default hw = r;
+
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } done[0:0];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } error[1:1];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } rng_fault[2:2];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } tamper[3:3];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } self_test_fail[4:4];
+    } INTR_STATE @ 0x090;
+
+    reg {
+        desc = "Interrupt enable mask, gates output only";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; } done_en[0:0];
+        field { reset = 1'b0; } error_en[1:1];
+        field { reset = 1'b0; } rng_fault_en[2:2];
+        field { reset = 1'b0; } tamper_en[3:3];
+        field { reset = 1'b0; } self_test_fail_en[4:4];
+    } INTR_ENABLE @ 0x094;
+
+    reg {
+        desc = "Interrupt test force, no real cryptographic side effect";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 1'b0; singlepulse; } done_test[0:0];
+        field { reset = 1'b0; singlepulse; } error_test[1:1];
+        field { reset = 1'b0; singlepulse; } rng_fault_test[2:2];
+        field { reset = 1'b0; singlepulse; } tamper_test[3:3];
+        field { reset = 1'b0; singlepulse; } self_test_fail_test[4:4];
+    } INTR_TEST @ 0x098;
+
+    // ========================================================================
+    // Alert Registers (0x0A0 ~ 0x0AF)
+    // ========================================================================
+
+    reg {
+        desc = "Recoverable alert status, write-one-to-clear";
+        default sw = rw;
+        default hw = r;
+
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } ecc_ded[0:0];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } dma_retry[1:1];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } perf_saturated[2:2];
+    } ALERT_RECOVERABLE @ 0x0A0;
+
+    reg {
+        desc = "Fatal alert status, locks the IP until explicit recovery";
+        default sw = rw;
+        default hw = r;
+
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } ecc_ued[0:0];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } tamper_fatal[1:1];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } selftest_fatal[2:2];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } integrity_fatal[3:3];
+        field { onwrite = woclr; hwset; precedence = hw; reset = 1'b0; } retry_exhausted[4:4];
+    } ALERT_FATAL @ 0x0A4;
+
+    // ========================================================================
+    // Performance Counters (0x100 ~ 0x13F)
+    // ========================================================================
+
+    reg {
+        desc = "Total command execution cycles";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; hw = rw; we; swwe; precedence = sw; } total_cycles[31:0];
+    } PERF_TOTAL_CYCLES @ 0x100;
+
+    reg {
+        desc = "Keccak engine busy cycles";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; hw = rw; we; swwe; precedence = sw; } keccak_cycles[31:0];
+    } PERF_KECCAK_CYCLES @ 0x104;
+
+    reg {
+        desc = "Polynomial engine NTT cycles";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; hw = rw; we; swwe; precedence = sw; } ntt_cycles[31:0];
+    } PERF_NTT_CYCLES @ 0x108;
+
+    reg {
+        desc = "DMA stall cycles";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; hw = rw; we; swwe; precedence = sw; } dma_stall_cycles[31:0];
+    } PERF_DMA_STALL @ 0x10C;
+
+    reg {
+        desc = "Public command type counters, no secret-correlated events";
+        default sw = rw;
+        default hw = r;
+        field { reset = 16'h0; hw = rw; we; swwe; precedence = sw; } kem_ops[15:0];
+        field { reset = 16'h0; hw = rw; we; swwe; precedence = sw; } dsa_ops[31:16];
+    } PERF_CMD_COUNT @ 0x110;
+
+    // ========================================================================
+    // Command Submission (0x1C0 ~ 0x1DF)
+    // ========================================================================
+
+    reg {
+        desc = "Doorbell, write one to submit the captured descriptor";
+        default sw = rw;
+        default hw = r;
+        field { reset = 1'b0; singlepulse; } doorbell[0:0];
+    } DOORBELL @ 0x1D0;
+
+    reg {
+        desc = "Command descriptor address low 32 bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0000_0000; swwe; } desc_addr_lo[31:0];
+    } DESC_ADDR_LO @ 0x1D4;
+
+    reg {
+        desc = "Command descriptor address high bits";
+        default sw = rw;
+        default hw = r;
+        field { reset = 32'h0; swwe; } desc_addr_hi[7:0];
+    } DESC_ADDR_HI @ 0x1D8;
+
+    reg {
+        desc = "Completion record, written by hardware before DONE is set";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 32'h0; } command_id[31:0];
+    } COMPLETION_COMMAND_ID @ 0x1C0;
+
+    reg {
+        desc = "Completion status and output length";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 3'h0; } status[2:0];
+        field { reset = 1'b0; } verify_valid[3:3];
+        field { reset = 28'h0; } output0_len[31:4];
+    } COMPLETION_STATUS @ 0x1C4;
+
+    reg {
+        desc = "Completion output1 length and error info";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 32'h0; } output1_len[31:0];
+    } COMPLETION_OUT_LEN @ 0x1C8;
+
+    reg {
+        desc = "Completion non-secret diagnostic info and cycle count";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 6'h0; } error_info[5:0];
+        field { reset = 26'h0; } cycles_quantized[31:6];
+    } COMPLETION_INFO @ 0x1CC;
+
+    // ========================================================================
+    // Key Slot Management Window (0x200 ~ 0x2FC) - secure only
+    // ========================================================================
+
+    reg {
+        desc = "Secure-only key slot control";
+        default sw = rw;
+        default hw = r;
+
+        field { reset = 8'h0; } slot_index[7:0];
+        field { reset = 3'h0; } key_type[10:8];
+        field { reset = 1'b0; singlepulse; } import_req[11:11];
+        field { reset = 1'b0; singlepulse; } destroy_req[12:12];
+        field { reset = 1'b0; singlepulse; } export_req[13:13];
+        field { reset = 1'b0; singlepulse; } lock_req[14:14];
+    } KEY_SLOT_CTRL @ 0x200;
+
+    reg {
+        desc = "Key slot metadata readback window, never exposes secret key bytes";
+        default sw = r;
+        default hw = w;
+
+        field { reset = 8'h0; } owner[7:0];
+        field { reset = 3'h0; } algorithm[10:8];
+        field { reset = 4'h0; } parameter_set[14:11];
+        field { reset = 8'h0; } usage_mask[22:15];
+        field { reset = 1'b0; } exportable[23:23];
+        field { reset = 1'b0; } valid[24:24];
+        field { reset = 1'b0; } locked[25:25];
+        field { reset = 6'h0; } version[31:26];
+    } KEY_SLOT_META @ 0x204;
+
+    reg {
+        desc = "Key slot generation readback for stale handle detection";
+        default sw = r;
+        default hw = w;
+        field { reset = 16'h0; } generation[15:0];
+    } KEY_SLOT_GEN @ 0x208;
+
+    reg {
+        desc = "Trusted authorization domain of the selected key slot, secure metadata only";
+        default sw = r;
+        default hw = w;
+        field { reset = 8'h0; } domain[7:0];
+    } KEY_SLOT_DOMAIN @ 0x20C;
+
+    // Slot metadata array, KEY_SLOT_NUM logical slots, stride 4 bytes.
+    // Base 0x210, up to 32 slots reaching 0x28C, within the 0x200~0x2FC window.
+    reg {
+        desc = "Per-slot metadata mirror";
+        default sw = r;
+        default hw = w;
+        field { reset = 8'h0; } slot_owner[7:0];
+        field { reset = 1'b0; } slot_valid[8:8];
+    } KEY_SLOT_MIRROR[32] @ 0x210 += 0x4;
+};

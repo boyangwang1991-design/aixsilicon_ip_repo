@@ -1,0 +1,1770 @@
+schema_version: '2.0'
+ip_name: pqc
+delivery_model: parameterized
+register_model: required
+ppa_signoff: none
+document_version: 1.1.0
+status: reviewed
+requirement_baseline: PQC-20260916-WORKKEY
+requirements:
+- id: LRS.CFG.PQC.NTT_LANES.001
+  category: CFG
+  feature: ntt_lanes
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§9.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`NTT_LANES` 应支持 `{1, 2, 4}` 三个综合期档位，分别对应面积型、推荐基线与吞吐型配置。 所有档位应保持完全相同的软件 ABI 与算法结果。'
+  acceptance_criteria:
+  - 三个合法值均可完成 elaboration 且结果一致；
+  - 非法值（如 0、3、8）在 elaboration 阶段被拒绝；
+  - 默认值为 2。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.KECCAK_ROUNDS.001
+  category: CFG
+  feature: keccak_rounds
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§5.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`KECCAK_ROUNDS_PER_CYCLE` 应支持 `{1, 2}`；V1.0 不应支持完全展开的 24 轮/周期。'
+  acceptance_criteria:
+  - 两个合法值均可 elaboration 并产生相同哈希结果；
+  - 大于 2 的值被拒绝；
+  - 默认值为 2。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.LOCAL_SRAM.001
+  category: CFG
+  feature: local_sram
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§5.4
+  - pqc_contract.md#§19.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - static
+  description: '`LOCAL_SRAM_KIB` 应支持 `{32, 64, 96}` KiB。每个合法容量下，最大 ML-DSA 工作集应通过 页生命周期复用完成，不应以常驻完整矩阵 `A(k×l)` 为前提。'
+  acceptance_criteria:
+  - 三个容量均可容纳各参数集最大工作集；
+  - 容量不足导致的页分配冲突被检测为内部错误而非静默错误结果；
+  - 默认值为 64。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.DMA_WIDTH.001
+  category: CFG
+  feature: dma_width
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`DMA_DATA_WIDTH` 应支持 `{64, 128, 256}`，并影响持续消息哈希带宽；算法结果不应随宽度改变。'
+  acceptance_criteria:
+  - 三个宽度均可完成 DMA 与算法闭环；
+  - 非 2 的幂宽度被拒绝；
+  - 默认值为 128。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.KEY_SLOT.001
+  category: CFG
+  feature: key_slot_num
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`KEY_SLOT_NUM` 应至少为 8，支持 ML-KEM secret key、ML-DSA secret key 与 public key 三类 slot 类型。'
+  acceptance_criteria:
+  - 小于 8 的配置被拒绝；
+  - 合法配置下每个 slot 可独立承载类型与用途元数据；
+  - 默认值为 8。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.SCA_LEVEL.001
+  category: CFG
+  feature: sca_level
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - review
+  description: '`SCA_LEVEL` 应支持 `{0, 1, 2}`。V1.0 产品化配置应至少为 Level 1。若声明 Level 2， 应同时明确 masking scheme、share 数、fresh randomness
+    上界与 glitch 假设。'
+  acceptance_criteria:
+  - Level 0/1 下常数时间与固定访问性质成立；
+  - 声明 Level 2 时掩码方案可被独立验证；
+  - 默认值为 1。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.ALGO_MASK.001
+  category: CFG
+  feature: algo_mask
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§2.1
+  - pqc_contract.md#§9.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`ENABLE_ALGO_MASK` 应以位图裁剪综合的参数集，且裁剪后 CAPABILITY 寄存器应准确反映 已实现的算法与参数集。V1.0 交付基线为全开（63）。'
+  acceptance_criteria:
+  - 每个位组合的 CAPABILITY 与实际可执行命令一致；
+  - 对未综合的参数集命令返回配置错误而非未定义行为；
+  - 默认值为 63。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.FEATURE_FLAGS.001
+  category: CFG
+  feature: feature_flags
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§9.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: '`ENABLE_HASH_ML_DSA` 应控制 HashML-DSA 预哈希接口的综合；`ENABLE_PIO` 应控制 PIO FIFO 通道的综合。裁剪后 opcode 与 capability bit 应保留并报告为不可用。'
+  acceptance_criteria:
+  - 关闭时对应 opcode 返回配置错误且 CAPABILITY 位为 0；
+  - 开启时功能与 pure ML-DSA 域分离一致；
+  - 默认值分别为 false 与 true。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CFG.PQC.EXEC_MODE.001
+  category: CFG
+  feature: exec_mode
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: V1.0 运行时执行模型应为单上下文：同一时刻最多一个执行中命令，允许一个 pending descriptor。 多队列并发不作为 V1.0 要求。
+  acceptance_criteria:
+  - BUSY 期间提交新命令按定义行为处理（拒绝或排队到单 pending）；
+  - 不存在两个命令同时占用密码数据路径；
+  - 多队列并发能力在 CAPABILITY 中报告为不支持。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.APB.001
+  category: INTF
+  feature: apb
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 控制接口应为 APB4 slave，32 bit 数据宽度，寄存器自然对齐。应支持读取 ID/能力/状态/ 结果/错误，写入控制/命令/描述符地址/key handle/中断控制。 应处理 APB4 的 PPROT/PSTRB；不支持
+    APB5 专属扩展或 burst 传输；非法地址访问应由默认从端返回 错误响应而不挂死总线。
+  acceptance_criteria:
+  - 所有合法寄存器读写符合 APB4 时序；
+  - 未定义地址返回 PSLVERR 且不产生副作用；
+  - DUT 不产生违反 APB4 的协议输出。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.DMA.001
+  category: INTF
+  feature: dma_axi
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 数据接口应为 AXI4 master，数据宽度由 `DMA_DATA_WIDTH` 定义，使用 INCR burst， 遵守 4 KiB 边界，支持 outstanding 但同一 buffer 内保序。 明确不支持：FIXED/WRAP
+    burst、exclusive access、cache 属性修改。
+  acceptance_criteria:
+  - 所有生成的 burst 满足 4 KiB 边界与 INCR 语义；
+  - 同一 buffer 的传输按提交顺序完成；
+  - 不支持属性不被发出。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.DMA.002
+  category: INTF
+  feature: dma_axi
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - elaboration
+  - simulation
+  description: DMA 数据宽度应由 `DMA_DATA_WIDTH` 定义，支持 `{64, 128, 256}` bit。地址宽度应支持 至少 40 bit，以覆盖安全 SoC 地址空间。
+  acceptance_criteria:
+  - 所有合法宽度可正确拆分/合并传输；
+  - 非支持宽度无法 elaboration；
+  - 地址高位可被软件配置且不被截断。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.DMA.003
+  category: INTF
+  feature: dma_axi
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DMA 分段输入不得改变算法结果。任意合法分段边界（含非 4 KiB 对齐、非 DMA 宽度整数倍 的尾部）应产生与单次连续传输字节级相同的结果。
+  acceptance_criteria:
+  - 同一消息以多种分段方式输入得到相同签名/摘要；
+  - 尾部不满一个 beat 的 keep 处理正确；
+  - 分段不改变 constant-time 性质。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.ENTROPY.001
+  category: INTF
+  feature: entropy
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: 熵接口应为 valid/ready 握手并提供 health status 与 domain tag。硬件只能在授权的 生命周期/策略组合下消费该接口；KAT 测试 seed 只能在允许的测试模式使用。
+  acceptance_criteria:
+  - 熵请求仅在合法策略下发出；
+  - health 异常时请求停止；
+  - domain tag 与命令的算法/参数集匹配。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.SIDEBAND.001
+  category: INTF
+  feature: sideband
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.1
+  - pqc_contract.md#§4.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供 lifecycle、tamper、`zeroize_req` 输入与 IRQ 输出。中断应包含 DONE、ERROR、 RNG_FAULT、TAMPER、SELF_TEST_FAIL 五类，并支持 enable/status/test
+    与 W1C 清除。
+  acceptance_criteria:
+  - 五类中断均可独立置位、屏蔽、清除；
+  - '`zeroize_req` 有效时进入安全收尾路径；'
+  - tamper 有效时中断与 status 按定义上报。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.CLKRESET.001
+  category: INTF
+  feature: clk_reset
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: IP 应使用单一主功能时钟 `clk` 与异步低有效复位 `rst_n`。所有密码数据路径为同步逻辑； lifecycle/tamper/zeroize 输入为异步电平并做同步化处理。
+  acceptance_criteria:
+  - 单时钟域，不含未声明的跨时钟路径；
+  - 复位极性为低有效异步；
+  - 异步输入同步化不引入亚稳态传播。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.INTF.PQC.KEY_MANAGER.001
+  category: INTF
+  feature: key_manager
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.2
+  - docs/lrs/00_document_control.md#用户决定
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: IP 应提供独立于普通 DMA 的工作态私钥导入、KeyGen 结果托管及撤销接口， 支持背压、明确的事务边界与完整接收确认。信任边界为授权外部 Key Manager； 普通软件不得通过 CSR 构造授权来源。跨时钟接入应由集成边界的明确
+    CDC 协议完成。
+  acceptance_criteria:
+  - 导入/托管均按握手计数，在背压时保持事务元数据与有效材料稳定；
+  - 撤销优先于新的导入或托管确认；
+  - 接口接入可信来源，普通 APB/AXI 主机无法绕过授权发起私钥传输；
+  - 未完成托管确认不能产生成功 completion。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.001
+  category: FUNC
+  feature: command_set
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应实现全部八个 opcode：KEM_KEYGEN、KEM_ENCAPS、KEM_DECAPS、DSA_KEYGEN、DSA_SIGN、 DSA_VERIFY、ZEROIZE、SELF_TEST，且每个 opcode
+    在 CAPABILITY 中可被软件查询。
+  acceptance_criteria:
+  - 每个 opcode 均可被 doorbell 提交并产生 completion；
+  - 未实现 opcode 返回配置错误；
+  - CAPABILITY 与实现的 opcode 集合一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.002
+  category: FUNC
+  feature: command_descriptor
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  - pqc_contract.md#§20.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 每个命令应包含 opcode、parameter set、flags、输入/输出地址与长度、key handle、 context 地址/长度与 completion tag。描述符应自然对齐并在启动前被原子抓取；
+    抓取后软件修改内存不得影响当前命令。
+  acceptance_criteria:
+  - 描述符全字段被抓取且校验（对齐、ABI、reserved、CRC、长度、capability）；
+  - 抓取后修改内存不改变执行结果；
+  - 非法字段在访问秘密前被终止。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.003
+  category: FUNC
+  feature: command_validate
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 非法参数、地址未对齐、输出 buffer 过小、权限失败应在访问任何秘密数据之前终止命令， 并返回对应错误类别。
+  acceptance_criteria:
+  - 每类非法输入均在任何秘密读取前终止；
+  - 错误类别可区分配置/权限/长度/对齐；
+  - 终止后不留下部分结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.004
+  category: FUNC
+  feature: command_lock
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: BUSY 期间应锁定命令相关配置，软件修改不得影响正在执行的命令参数。
+  acceptance_criteria:
+  - BUSY 中写入被忽略或返回错误，当前命令结果不变；
+  - 锁定在 COMPLETE 后释放；
+  - 锁定覆盖 opcode/parameter set/地址/长度/key handle。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.005
+  category: FUNC
+  feature: command_status
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  - pqc_contract.md#§20.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 完成状态应区分配置错误、DMA 错误、熵错误、自检错误与内部故障；不得区分 ML-KEM 密文有效/无效，也不得暴露 ML-DSA 每次拒绝原因。`KEM_DECAPS` 对所有长度正确的密文 应返回 SUCCESS。
+  acceptance_criteria:
+  - 五类错误可独立观察；
+  - 不存在 `KEM_INVALID` 状态或等效 oracle；
+  - '`DSA_VERIFY` 的 invalid 作为公开 API 输出返回。'
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.006
+  category: FUNC
+  feature: doorbell
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§20.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 门铃提交应按固定顺序完成：结果 staging → DMA 输出 → 写 completion record → 置 DONE 并中断。descriptor 可复用，completion 写入前 DONE 不得置位。
+  acceptance_criteria:
+  - 任意时刻观察到的顺序符合定义；
+  - DONE 置位时 completion record 已可见；
+  - 中断清除后可提交下一命令。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.007
+  category: FUNC
+  feature: abort
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件 abort 应仅在安全边界点生效，随后清零临时状态，不得留下可恢复的部分结果。
+  acceptance_criteria:
+  - abort 后无部分输出被提交；
+  - 所有临时秘密被清零；
+  - abort 后 IP 可接受新命令。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.CMD.008
+  category: FUNC
+  feature: command_irq
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§4.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应同时支持中断与轮询两种完成通知；两种方式观察到同一 completion record。
+  acceptance_criteria:
+  - 中断与轮询得到一致的 status/tag/长度；
+  - 中断在轮询模式可被屏蔽；
+  - 不产生丢失或重复的完成通知。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  category: FUNC
+  feature: dsa_keygen
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DSA_KEYGEN 应对 ML-DSA-44/65/87 全部参数集，从 32 B seed `xi` 产生符合 FIPS 204 的 公钥 `pk = rho || t1` 与私钥 `rho,K,tr,s1,s2,t0`。公钥可作为普通输出；
+    私钥仅按 LRS.SEC.PQC.SLOT.008 托管给外部 Key Manager，完成结果返回不透明 handle。
+  acceptance_criteria:
+  - 三个参数集 KAT 通过；
+  - 公钥输出与私钥专用托管长度与参数集定义一致；
+  - 同一 seed 产生确定性相同结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_SIGN.001
+  category: FUNC
+  feature: dsa_sign
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DSA_SIGN 应对三个参数集，从 sk slot、消息 `M`、context `ctx` 与可选新鲜随机量产生 签名 `c_tilde || z || h`，字节级符合 FIPS 204。签名应实现完整拒绝采样循环：
+    `z = y + c·s1` 范数检查、`r0 = LowBits(w - c·s2)` 范数检查、hint 权重检查， 全部通过后一次性 commit。每次尝试固定调度、总次数及总延迟可变； 具体可观察边界以 LRS.SEC.PQC.CT.001
+    为准，禁止在首个失败检查处提前结束尝试。
+  acceptance_criteria:
+  - 三个参数集 KAT 通过；
+  - 强制 0/1/多次拒绝路径均可覆盖；
+  - 仅全部条件通过后输出签名。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_SIGN.002
+  category: FUNC
+  feature: dsa_sign_atomic
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 候选签名应写入不可见 staging buffer，全部检查通过后一次性 DMA commit。每次失败不得 输出部分 `z/h`。attempt counter 溢出或达到安全上限时应返回通用 `INTERNAL_RETRY_EXHAUSTED`
+    并清除所有候选值。
+  acceptance_criteria:
+  - 拒绝轮次无任何部分签名可见；
+  - 达到上限返回通用内部错误且无输出；
+  - 上限检测不因 RNG 退化而活锁。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_SIGN.003
+  category: FUNC
+  feature: dsa_sign_policy
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.3
+  - pqc_contract.md#§17.6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DSA_SIGN 应支持 deterministic 与 hedged 两种策略。hedged 模式应将 32 B 新鲜随机量 混入标准规定位置；deterministic 模式使用标准规定的确定性取值。
+  acceptance_criteria:
+  - 两种策略均产生可验签的合法签名；
+  - deterministic 模式同一输入结果确定；
+  - 非法 policy/opcode 组合被拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_VERIFY.001
+  category: FUNC
+  feature: dsa_verify
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.7
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: DSA_VERIFY 应对三个参数集，从 `pk`、消息、context 与签名产生公开 valid bit。 应严格解析并检查规范编码、`z` 范数、hint 数量/顺序与全部边界，最终 valid 判定应结合
+    constant-time 比较产生。
+  acceptance_criteria:
+  - 三个参数集 KAT 与验签通过/失败向量通过；
+  - 非规范编码/越界 signature 被拒绝且不越界；
+  - valid 判定不受单点故障把 invalid 变为 valid。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_MU.001
+  category: FUNC
+  feature: dsa_domain
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.6
+  - pqc_contract.md#§17.8
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 消息代表值 `mu` 应严格按 FIPS 204 域分离构造，包含 `tr`、pure/prehash 域字节、 `len(ctx)` 与 `ctx`。软件不得直接注入内部 `mu` 绕过域分离，除非处于单独受控测试模式。
+  acceptance_criteria:
+  - pure 与 prehash 变体使用正确域字节；
+  - context 长度 0/1/255 B 均正确编码；
+  - 普通路径无法注入 mu。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  category: FUNC
+  feature: dsa_message
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应支持任意长度消息流，长度以 64 bit 表示；ML-DSA context 长度应支持 0–255 B。 超过 255 B 的 context 应被拒绝。
+  acceptance_criteria:
+  - 空/短/长消息签名与验签通过；
+  - context 0/1/255 B 通过，256 B 被拒绝；
+  - 64 bit 长度不被截断。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  category: FUNC
+  feature: kem_keygen
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: KEM_KEYGEN 应对 ML-KEM-512/768/1024 全部参数集，从 64 B seed `d || z`（生产模式由 DRBG 生成，KAT 模式可注入）产生符合 FIPS 203 字节级定义的封装公钥
+    `ek` 与解封装私钥 `dk`；公钥可作为普通输出，私钥仅按 LRS.SEC.PQC.SLOT.008 托管给外部 Key Manager， 完成结果只返回不透明 handle，不输出明文私钥到主机。
+  acceptance_criteria:
+  - 三个参数集的 KAT 向量全部通过；
+  - 公钥输出与私钥专用托管长度均与参数集定义一致；
+  - 同一 seed 产生确定性相同结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  category: FUNC
+  feature: kem_encaps
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.3
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: KEM_ENCAPS 应对三个参数集，从 `ek` 与 32 B randomness `m` 产生密文 `c` 与 32 B 共享秘密 `K`，字节级符合 FIPS 203。Encaps 不应允许主机提供内部 `r`、噪声向量或矩阵。
+  acceptance_criteria:
+  - 三个参数集 KAT 通过；
+  - 使用 KAT 注入 randomness 时结果确定；
+  - 输出长度与参数集一致且 `K` 为 32 B。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_DECAPS.001
+  category: FUNC
+  feature: kem_decaps
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: KEM_DECAPS 应对三个参数集，从 `dk` slot 与密文 `c` 产生 32 B 共享秘密。硬件应在内部 完成解密、`K' || r'` 重派生、完整重加密、全长度常数时间比较与常数时间 select。
+    对长度正确的任意密文（含非法密文）应返回 SUCCESS；无效密文应产生伪随机 rejection secret `K_bar = J(z || c)`。
+  acceptance_criteria:
+  - 三个参数集 KAT 通过；
+  - 长度正确的单比特翻转/随机密文不产生有效性 oracle；
+  - 长度正确且无系统故障时输出为 32 B，completion 为 SUCCESS；
+  - 错误长度属于公开 API 格式错误，按 KEM_LEN.001 拒绝且不输出共享秘密。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_DECAPS.002
+  category: FUNC
+  feature: kem_decaps_ct
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.1
+  - pqc_contract.md#§17.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - formal
+  - simulation
+  description: '`KEM_DECAPS` 的密文是否合法不得影响外部可观察的分支、DMA 地址、错误码或总完成时间。 禁止首个不等字节即退出、失配时跳过 Keccak、由失配控制 clock gating。'
+  acceptance_criteria:
+  - 合法/非法密文的公开 trace 形状与完成周期分布一致；
+  - 比较与 select 遍历全长度；
+  - 不存在 secret-dependent 的地址或门控。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_LEN.001
+  category: FUNC
+  feature: kem_length
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.4
+  - pqc_contract.md#§11.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: Decaps 应固定长度读取完整密文；长度错误应在 API 层统一映射为失败结果，不进入越界解析。 truncated/oversized 密文不应导致越界访存或未定义行为。
+  acceptance_criteria:
+  - 过长/过短密文返回定义错误且不越界；
+  - 不产生有效性区分；
+  - 错误长度清理不留部分结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  category: FUNC
+  feature: kem_dataflow
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§17.2
+  - pqc_contract.md#§19.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - static
+  description: 矩阵 `A_hat`/`A^T_hat` 应逐 polynomial 生成、使用、释放，不应为最大参数集常驻 16 个 polynomial。Encaps 中 `u` 与 `v` 的计算应产生与 FIPS 203
+    一致的压缩编码密文。
+  acceptance_criteria:
+  - 峰值 SRAM 占用不随 k 线性增长到常驻整矩阵；
+  - Compress/Decompress 使用参数集对应 du/dv；
+  - 结果与参考模型字节一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.ID.001
+  category: REG
+  feature: reg_id
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取 IP 版本、ABI 版本与微码版本标识，并独立读取算法、参数集、lane、 SCA 等级、SRAM 容量、DMA 能力与 key-slot 数量的能力位。
+  acceptance_criteria:
+  - 标识寄存器为只读且在复位后返回确定值；
+  - CAPABILITY 反映实际综合配置（含裁剪位图）；
+  - 能力查询与实际命令可用性一致。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.CTRL.001
+  category: REG
+  feature: reg_ctrl
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能启用/禁用 IP、发起 abort、发起 zeroize 与发起 self-test。
+  acceptance_criteria:
+  - 每项控制均产生可观察效果；
+  - 禁用状态拒绝密码命令；
+  - abort/zeroize/self-test 优先级按定义处理。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.STATUS.001
+  category: REG
+  feature: reg_status
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取 idle/busy/done/error/locked 状态。状态转换应对软件可观察且无歧义。
+  acceptance_criteria:
+  - 五种状态可独立观察；
+  - locked 状态在 self-test 失败或致命故障后置位；
+  - 状态不因轮询产生副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.RESULT.001
+  category: REG
+  feature: reg_result
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取 verify result 与 completion tag；tag 应与提交的 command_id 一致。
+  acceptance_criteria:
+  - DSA_VERIFY 可通过结果寄存器获得 valid；
+  - tag 原样回写；
+  - 其他 opcode 的结果字段无未定义行为。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.ERRCODE.001
+  category: REG
+  feature: reg_error
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  - pqc_contract.md#§20.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取非敏感错误类别。错误类别不得编码秘密相关信息，也不得形成 KEM 有效性 oracle 或 ML-DSA 拒绝原因泄露。
+  acceptance_criteria:
+  - 所有错误类别为公开诊断分类；
+  - 不存在 KEM 有效性区分字段；
+  - 不存在每次拒绝原因字段。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.INTR.001
+  category: REG
+  feature: reg_intr
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能对 DONE、ERROR、RNG_FAULT、TAMPER、SELF_TEST_FAIL 五类中断分别进行 state 读取、enable 配置、test 触发与 W1C 清除。
+  acceptance_criteria:
+  - 五类中断独立可控；
+  - W1C 只清除对应位；
+  - test 触发不产生真实密码副作用。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.ALERT.001
+  category: REG
+  feature: reg_alert
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取 recoverable 与 fatal 告警状态。fatal 告警应导致锁定并需要显式恢复流程。
+  acceptance_criteria:
+  - recoverable/fatal 可独立观察；
+  - fatal 后密码命令被拒绝；
+  - 告警状态在 zeroize/recover 后按定义更新。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.PERF.001
+  category: REG
+  feature: reg_perf
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取总 cycles、Keccak cycles、NTT cycles、DMA stall 与公开命令类型计数。 生产模式应禁止暴露签名尝试次数及秘密相关的细粒度事件。
+  acceptance_criteria:
+  - 计数器可读且可清零；
+  - 生产策略下秘密相关事件不可读；
+  - 计数器不影响算法结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.SLOT.001
+  category: REG
+  feature: reg_slot
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  - pqc_contract.md#§20.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能通过 secure-only 管理窗口分配/销毁 key slot、查询 slot 元数据（owner/domain、 algorithm、parameter set、usage mask、exportable、valid、version）。
+  acceptance_criteria:
+  - slot 元数据可查询且与实际状态一致；
+  - 私钥 slot 默认不可读；
+  - 普通主体访问管理窗口被拒绝并记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.REG.PQC.COMPLETION.001
+  category: REG
+  feature: reg_completion
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§20.2
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 软件应能读取 completion record，包含 command_id、status、output 长度、verify_valid、 非秘密 error_info 与 cycles 字段。cycles 可被安全策略屏蔽或量化。
+  acceptance_criteria:
+  - 字段齐全且与命令结果一致；
+  - KEM_DECAPS 全部长度正确密文返回 SUCCESS；
+  - 策略屏蔽时字段返回定义值而非随机值。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.PQC.OVERLAP.001
+  category: PERF
+  feature: perf_overlap
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - performance_analysis
+  description: 计算与 DMA 应可在安全的资源条件下重叠，保留 1/2 轮结构配置，并按安全等级 分别制定可达周期预算。令 R 为 rate 字节数、r 为轮结构配置： - Level 0/1：完整消息块预算 C_block =
+    ceil(R/8) + 24/r + 2 个核心周期。 - Level 2：完整消息块预算由吸收、受保护置换、随机服务和控制的完整调度推导， 不要求沿用 24/r。HLD 应给出有数值的保守目标和随机服务条件，LLD 固化逐阶段 周期上界，RTL
+    按同一边界验收。无数值预算、遗漏转换/刷新或仅计算原语理想周期 均不视为通过。分级预算不允许降低 Level 2 掩码实现与验证范围。 连续完整块有效吞吐应不低于 R/C_block B/cycle；不再以 AXI 峰值固定比例验收。
+    安全随机输入的外部缺供单列，DUT 内部收集、分配、刷新和仲裁计入预算。 掩码初始化计入首块，不藏入测量窗口外的重复初始化；每次重新初始化均须报告。 验收测量窗口不含首块启动和末块 padding，但须计入内部存储、仲裁和控制等待。 外部源/AXI
+    背压单独报告原始总周期与外部等待周期，不得以 DUT 自己产生的背压 作为扣除项。总线与消息源能够持续供数时不得扣除任何内部等待。
+  acceptance_criteria:
+  - 消息吸收期间出现 Keccak 与 DMA 并行活动；
+  - 各安全等级稳态完整块周期不超过对应 C_block，实测周期与分项计数一致；
+  - 四种哈希函数、r=1/2 与三个安全等级分别验收，所有 DMA 宽度保持结果一致；
+  - 明确报告总吞吐与外部等待调整后的吞吐，不修改原始计数；
+  - 重叠不改变算法结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.PQC.NOSW.001
+  category: PERF
+  feature: perf_nosw
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 任一标准参数集不得依赖软件执行 NTT、采样、pack/unpack 或重加密比较；这些应完全由 硬件完成。
+  acceptance_criteria:
+  - 驱动无需实现任何算法级原语；
+  - 命令完成不产生需要软件续算的中间状态；
+  - 无算法级中断回调。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.PQC.LATENCY.001
+  category: PERF
+  feature: perf_latency
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  - pqc_contract.md#§22
+  applicability:
+    expr: NTT_LANES>=2
+  verify_method:
+  - simulation
+  - performance_analysis
+  description: 在 Balanced 配置（2 lane、400 MHz）下应满足：ML-KEM-768 Encaps/Decaps 各小于 100 us；ML-DSA-65 Verify 小于 250 us；ML-DSA Sign
+    以统计分位数验收，P50 小于 300 us、P99 小于 1 ms。
+  acceptance_criteria:
+  - cycle model 预测值与 RTL 仿真测量一致；
+  - Sign 报告 P50/P95/P99 分位数而非单一 worst-case；
+  - 以规划频率换算的延迟明确标注为估算，不声称已实现该物理频率。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.PQC.SIGNBUBBLE.001
+  category: PERF
+  feature: perf_sign_bubble
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: ML-DSA Sign 一次尝试内不应产生非必要 pipeline bubble；拒绝后应复用已合法保留的 消息摘要状态，不重新哈希消息。
+  acceptance_criteria:
+  - 拒绝轮次之间不重复消息吸收；
+  - 非拒绝相关 stall 被计量并记录；
+  - 复用不改变签名结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.PERF.PQC.MODEL.001
+  category: PERF
+  feature: perf_model
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§22
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: 应建立解析 cycle model： `T = N_perm*T_keccak + N_ntt*T_ntt + N_mac*T_mac + N_codec*T_codec + T_dma - T_overlap +
+    T_control`。 每个 SKU 应输出每类 operation 的 cycle breakdown、本地 SRAM 峰值、DMA 字节数、 Keccak/NTT utilization；本轮另分析运算资源、存储端口、组合深度及无效切换来源，
+    不要求输出实测动态功耗或物理面积。
+  acceptance_criteria:
+  - 模型可复现且与 RTL 周期测量误差在声明范围内；
+  - 每 SKU 输出完整 breakdown；
+  - 模型不依赖非生产 debug shortcut。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.PQC.CLK.001
+  category: RESET
+  feature: clock
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - simulation
+  description: IP 应使用单一主功能时钟 `clk`，规划目标频率 400 MHz（Balanced 配置，28 nm 级工艺）。 APB、AXI 与密码数据路径应处于同一时钟域。
+  acceptance_criteria:
+  - 400 MHz 仅作为规划与周期换算基准，本轮不声称已完成物理时序闭合；
+  - 不存在未声明的内部时钟域；
+  - 时钟门控只依据公开调度状态。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.PQC.COLD.001
+  category: RESET
+  feature: cold_reset
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 冷复位后 IP 应先执行 KAT self-test；成功前应拒绝所有密码命令。self-test 失败应进入 Locked 状态并置位 SELF_TEST_FAIL 中断。
+  acceptance_criteria:
+  - 复位后初始状态为 Disabled/SelfTest；
+  - self-test 成功前密码命令被拒绝；
+  - 失败后锁定且无法执行密码命令。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.PQC.WARM.001
+  category: RESET
+  feature: warm_reset
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: warm reset 应默认清除 ephemeral slot；persistent slot 的保持策略应由 key manager / 生命周期决定，不应由 IP 自行假定保留。
+  acceptance_criteria:
+  - ephemeral slot 在 warm reset 后被清除；
+  - persistent slot 保持策略可由外部策略控制；
+  - 保持与否可在 slot 元数据中观察。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.PQC.SAFE.001
+  category: RESET
+  feature: safe_shutdown
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - assertion
+  description: DMA bus error、timeout、ECC UE 与 RNG health fail 应进入统一安全收尾流程：停止当前 计算、清零工作 SRAM/Keccak/寄存器、置位对应告警。
+  acceptance_criteria:
+  - 五类故障均触发同一收尾序列；
+  - 收尾后无秘密残留；
+  - 告警类别可区分且有界完成。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.RESET.PQC.POWERDOWN.001
+  category: RESET
+  feature: powerdown
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§10
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: power-down 前应完成或安全中止当前操作并清零工作状态；密钥保持域应独立说明 retention、tamper 与 ECC 策略。
+  acceptance_criteria:
+  - 掉电请求不产生部分输出；
+  - 工作状态被清零；
+  - 保持域的 retention 策略有文档记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.CT.001
+  category: SEC
+  feature: constant_time
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - formal
+  - simulation
+  description: 私钥与解封装比较结果不得影响未经授权的外部状态、错误分类或 DMA 地址。 KEM Decaps 对相同公开输入长度和相同外部服务条件，合法/非法密文保持相同完成调度。 ML-DSA Sign 采用每次尝试固定调度、总尝试次数与总延迟可变的明确例外。每次尝试
+    应完成预定计算和全部检查后统一决定重试；失败原因、检查失败位置及部分签名不可见。 不得把不同失败位置的提前退出或 sampler 的可变耗时当作固定调度。 固定尝试预算必须包含原语和采样完成/填充；预算耗尽进入统一错误和清除路径， 不得通过秘密相关错误码暴露细节。总时延分布仍须分析/验证与私钥的独立性；
+    允许可变总延迟不等于已证明无侧信道。
+  acceptance_criteria:
+  - 对同一公开配置和同样外部等待，各拒绝原因/位置的单次 Sign 尝试具有相同调度长度与外部访问形状；
+  - 单次尝试的采样/原语等待、填充和终止边界全部计量，不能只检查 FSM 状态序列；
+  - 成功前不输出候选签名；超限仅返回统一错误并清除所有临时秘密；
+  - KEM Decaps 的密文有效性不影响完成周期、DMA 形状或错误码；
+  - 形式检查覆盖禁止的控制依赖，统计检查比较 Sign 总时延/尝试次数分布；
+  - P50/P95/P99 描述性能，不作为侧信道安全证明。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.CT.002
+  category: SEC
+  feature: no_secret_gating
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 禁止在 secret-dependent 条件下 clock gate 单个运算单元；时钟门控只能依据公开调度状态。
+  acceptance_criteria:
+  - 时钟门控使能仅来自公开状态；
+  - 静态检查覆盖所有门控点；
+  - 无数据相关 gating。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.CT.003
+  category: SEC
+  feature: no_cache
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.1
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: cache 不参与秘密工作集；所有秘密计算应使用确定性本地 SRAM，访存模式可静态分析。
+  acceptance_criteria:
+  - IP 不发起带 cache 属性的秘密访问；
+  - 秘密工作集完全位于本地 SRAM；
+  - 访存地址生成不依赖秘密值。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.ZEROIZE.001
+  category: SEC
+  feature: zeroize
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: IP 应提供同步 `zeroize_req`，在规定的最大周期数内完成工作 SRAM、Keccak 状态与秘密 寄存器的清零。zeroize 不应依赖主时序状态机正常运行。
+  acceptance_criteria:
+  - 从任意状态均可在最大周期内完成零化；
+  - 零化不依赖主 FSM 正确运行；
+  - 零化后可验证无秘密残留。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.LOCK.001
+  category: SEC
+  feature: fault_lock
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: tamper、fatal ECC、self-test fail 与生命周期变化应触发立即停止、清零工作状态并锁定。
+  acceptance_criteria:
+  - 四类事件均可触发同一锁定序列；
+  - 锁定后拒绝密码命令；
+  - 事件类别可观察且不泄露秘密。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.INTEGRITY.001
+  category: SEC
+  feature: control_integrity
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: 控制 FSM 应使用稀疏编码或冗余校验；opcode、参数集、key type 与权限字段应带完整性保护。 关键循环计数器、NTT stage、DMA 长度与 micro-PC 应提供冗余或奇偶校验。
+  acceptance_criteria:
+  - 单点翻转可被检测；
+  - 检测后进入锁定或安全收尾；
+  - 完整性保护不引入秘密相关分支。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.VERIFY.001
+  category: SEC
+  feature: verify_hardening
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - formal
+  description: ML-DSA Verify 的最终 valid 判定应采用双轨或重复比较，避免单点故障把 invalid 变为 valid。 KEM 重加密比较与 shared-secret select 应提供结果完整性保护。
+  acceptance_criteria:
+  - 单点故障不能翻转 valid 结果；
+  - select 逻辑有结果完整性检查；
+  - 保护不改变正确结果。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.001
+  category: SEC
+  feature: key_slot_meta
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: key slot 元数据应包含 owner/domain、algorithm、parameter set、usage mask、exportable、 valid、version，并在每次操作前被校验。
+  acceptance_criteria:
+  - 元数据不全或类型不匹配时操作被拒绝；
+  - usage mask 生效；
+  - version 变化使旧 handle 失效。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.002
+  category: SEC
+  feature: key_no_export
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.5
+  - pqc_contract.md#§20.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: 长期密钥所有权应由外部 Key Manager 管理。PQC 内应保留工作态安全 Key RAM， 只允许当前授权操作消费私钥。私钥导入应走专用 sideload/安全导入接口， 不得通过普通 AXI DMA 或
+    descriptor 提供材料；默认不得经 APB、DMA、PIO 或 debug 读回。 KeyGen 新生成私钥的受控托管与普通读回不同，必须满足 SLOT.008 的专用交接要求。
+  acceptance_criteria:
+  - 私钥 slot 不可被普通读命令读出；
+  - descriptor 无法指定私钥导出；
+  - 导出尝试被拒绝并记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.003
+  category: SEC
+  feature: key_handle
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§20.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: key handle 应编码 generation 与 slot；slot 被 destroy/reallocate 时 generation 应递增， 旧 handle 必须失败。操作开始后硬件应锁住 slot，防止并发销毁。
+  acceptance_criteria:
+  - stale handle 被拒绝；
+  - 并发 destroy 不能破坏执行中的操作；
+  - fatal/zeroize 可强制抢占锁定。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.004
+  category: SEC
+  feature: debug_lifecycle
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: debug 解锁不应自动开放 key RAM；RMA/测试生命周期应先销毁密钥。秘密数据写入后禁止 debug 读取。
+  acceptance_criteria:
+  - debug 解锁不改变 key slot 可读性；
+  - 生命周期变化触发密钥销毁；
+  - debug 读秘密返回定义值且被记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.005
+  category: SEC
+  feature: dma_security
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§7.5
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: DMA 请求应携带安全/特权属性；地址窗口应由 IOMMU/安全防火墙与 IP 内部范围检查双重约束。 buffer 过小或越界访问应在写入前被拒绝。
+  acceptance_criteria:
+  - 每次 DMA 携带属性字段；
+  - IP 内部范围检查独立生效；
+  - 越界在写入前被拒绝。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.006
+  category: SEC
+  feature: work_key_import
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.2
+  - docs/lrs/00_document_control.md#用户决定
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 专用导入应绑定完整 handle、算法、参数集、用途及授权域。仅当完整长度、结束标记与存储完整性检查通过后，工作态私钥才可用于命令；失败或中断的导入不得留下可使用的部分密钥。
+  acceptance_criteria:
+  - 六参数集分别检查正确长度、短包、长包、提前/缺失结束标记；
+  - handle、算法、参数集、用途或授权域不匹配时禁止执行；
+  - 背压期间导入材料稳定；导入未完成时不得报告密钥就绪。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.007
+  category: SEC
+  feature: work_key_retire
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.2
+  - docs/lrs/00_document_control.md#用户决定
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: 命令退休、撤销、异常、生命周期转换及全局 zeroize 应使工作态密钥立即失去使用资格，并清除残留材料；清除完成前不得重新发布或覆盖为有效密钥。外部长期密钥不得因工作态副本退休而隐式销毁。
+  acceptance_criteria:
+  - 运行中撤销应抢占密码操作，禁止继续输出敏感结果；
+  - 覆盖全部密钥存储及读出暂存后才确认清除完成；
+  - 导入与撤销同拍时撤销优先；外部 Key Manager 的所有权不变。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.SEC.PQC.SLOT.008
+  category: SEC
+  feature: keygen_custody
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§3.2
+  - docs/lrs/00_document_control.md#用户决定
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: KeyGen 生成的私钥应通过专用、受授权的安全交接交给外部 Key Manager，普通输出仅允许公钥与不透明 handle。默认通用私钥读回仍应关闭；专用交接不得成为任意已有私钥导出命令。仅外部 Key Manager
+    确认完整接收并建立所有权后，KeyGen 才可提交成功 completion。
+  acceptance_criteria:
+  - 专用接收端背压时不得提前报告 KeyGen 成功；
+  - 拒收、截断、撤销或错误确认应使 KeyGen 失败并清除工作态副本；
+  - APB、普通 AXI DMA、PIO 和 debug 不出现私钥材料；
+  - 六参数集均验证托管字节与标准编码一致，并在确认前隐藏待提交 handle。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.PQC.SCAN.001
+  category: DFX
+  feature: scan_exclusion
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§12
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 密钥与秘密中间态应使用 secure scan exclusion 或加密 scan；生产生命周期不可旁路。
+  acceptance_criteria:
+  - 秘密寄存器与 key RAM 不进入普通 scan chain；
+  - scan 模式在生产生命周期被禁止；
+  - 排除清单可审计。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.PQC.MBIST.001
+  category: DFX
+  feature: mbist
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§12
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  - review
+  description: SRAM MBIST 不得泄露 retained key；测试前后应执行受控清零。
+  acceptance_criteria:
+  - MBIST 前后工作 SRAM 被清零；
+  - MBIST 不读取 key RAM 内容到可观察端口；
+  - 清零在 MBIST 使能序列中强制。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.PQC.DEBUG.001
+  category: DFX
+  feature: debug_visibility
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§12
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  - static
+  description: debug 仅可观察公开 command state、粗粒度进度与错误类别。trace 不记录 seed、randomness、 secret coefficient、shared secret、签名 nonce
+    或 KEM validity。
+  acceptance_criteria:
+  - 可观察信号清单仅含公开对象；
+  - 不存在秘密对象进入 trace/debug 端口；
+  - 清单可审计。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.PQC.FI.001
+  category: DFX
+  feature: fault_injection
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§12
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应可注入公开数据路径 ECC、DMA 与控制完整性错误。秘密相关 fault injection 端口 仅应在测试生命周期存在。
+  acceptance_criteria:
+  - 公开路径注错可稳定触发对应检测；
+  - 秘密注错端口在生产生命周期不可用；
+  - 正常功能模式无法意外触发注错。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.DFX.PQC.PERFCNT.001
+  category: DFX
+  feature: perf_counter
+  priority: P1
+  status: active
+  source_ref:
+  - pqc_contract.md#§6
+  applicability:
+    expr: 'true'
+  verify_method:
+  - simulation
+  description: IP 应提供总 cycles、Keccak cycles、NTT cycles、DMA stall 与公开命令类型计数供性能分析 使用。
+  acceptance_criteria:
+  - 计数器与仿真测量一致；
+  - 计数器不因读取产生副作用；
+  - 生产策略下秘密相关细粒度事件不可读。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.LANG.001
+  category: CONS
+  feature: synthesis_language
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§13
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 交付 RTL 应为可综合 SystemVerilog（`.sv`/`.svh`），不得包含仅仿真构造，并应通过 lint、elaboration 与综合检查。
+  acceptance_criteria:
+  - RTL 目录不含 `.v`/`.vh` 与仅仿真构造；
+  - SpyGlass lint 无 error/fatal；
+  - Design Compiler 可综合出网表。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.CORE.001
+  category: CONS
+  feature: fusesoc_core
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§13
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: IP 应以单一 FuseSoC core 表达 fileset、参数、依赖与 lint/elab/sim/synth target， VLNV 为 `aixsilicon:ip:pqc:<version>`。
+  acceptance_criteria:
+  - core 解析成功且 fileset 完整；
+  - 所有 target 可被执行；
+  - VLNV vendor 为 `aixsilicon`。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.REG.001
+  category: CONS
+  feature: register_ssot
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§8.2
+  - pqc_contract.md#§13
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 寄存器结构应使用 SystemRDL 作为唯一事实源，并由 PeakRDL 确定性生成 CSR RTL、 C header 与 UVM RAL；不得手工维护多份寄存器定义。
+  acceptance_criteria:
+  - RDL 可编译且生成全部派生视图；
+  - CSR RTL/header/RAL 与 RDL 一致；
+  - 无手工编辑的派生寄存器文件。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.CONST.001
+  category: CONS
+  feature: constants
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§13
+  - pqc_contract.md#§24
+  applicability:
+    expr: 'true'
+  verify_method:
+  - static
+  - review
+  description: 软件参考模型、RTL 与验证环境应共同使用同一参数/常量生成源；标准版本与 NIST errata 应进入配置管理，变更触发影响分析。
+  acceptance_criteria:
+  - NTT roots、约减常量由同一生成器产生；
+  - RTL 常量 ROM 与参考模型一致；
+  - 标准版本与 errata 有版本记录。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.DELIVER.001
+  category: CONS
+  feature: deliverables
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§13
+  applicability:
+    expr: 'true'
+  verify_method:
+  - review
+  description: 应交付：可综合 RTL、约束、lint 报告、SystemRDL 与派生 C header/UVM RAL、 参数/常量生成器与生成清单、bare-metal 同步 API、KAT/ACVP harness、Python/C
+    参考模型、 UVM 环境、formal properties、FuseSoC core、集成指南、安全手册、生命周期/密钥/zeroize 说明与代码结构 PPA 评估（至少 Tiny/Balanced）。本轮不要求实测 PPA 报告；
+    不得把未测量的频率、面积或功耗标为签核通过。
+  acceptance_criteria:
+  - 每项交付件存在且可执行/可复现；
+  - 交付件版本与 manifest 一致；
+  - 缺失项在报告中显式披露。
+  trace:
+    hld_ref: []
+    test_ref: []
+- id: LRS.CONS.PQC.API.001
+  category: CONS
+  feature: driver_api
+  priority: P0
+  status: active
+  source_ref:
+  - pqc_contract.md#§13
+  - pqc_contract.md#§20.4
+  applicability:
+    expr: 'true'
+  verify_method:
+  - software
+  - review
+  description: 驱动应提供 `pqc_open`、`pqc_keygen`、`pqc_kem_encaps`、`pqc_kem_decaps`、 `pqc_dsa_sign_init/update/final`、`pqc_dsa_verify_init/update/final`、
+    `pqc_key_destroy`、`pqc_get_capabilities`。API 返回值不得形成 decapsulation oracle。 枚举应使用 `ML_KEM_512` 等算法名而非“security level 数字”。
+  acceptance_criteria:
+  - API 集合可用且返回值语义符合定义；
+  - decaps 返回码不区分密文有效性；
+  - 驱动在调用前校验输出容量并在错误时清除敏感 buffer。
+  trace:
+    hld_ref: []
+    test_ref: []
+gates:
+- gate: G0
+  status: pass
+  requirement_freeze: true
+  note: 当前状态由用户分级预算授权绑定；下方旧开放状态正文仅作历史追溯。
+  approval:
+    kind: user_delegated
+    approved_by: user approved security-tier cycle budgets; recorded by Codex
+    reviewed_at: '2026-09-16'
+    authorization_ref: docs/reviews/g0_security_tier_budget_authorization.md
+    authorization_sha256: 27f05956223f0a43f3f18d2cad507d630f93dffb60ecd6455d254cfe92a429ea
+    input_sha256: ea56b134b7985c81083c8658b79e9072ee35202027917d333bdc81f8d5e6dd49
+ppa_signoff_reason: 用户明确要求从 RTL 结构评估 PPA，本轮不进行实测 PPA 签核。
+provenance:
+  schema: ip-design-projection/1.0
+  stage: lrs
+  sources:
+  - path: docs/lrs/00_document_control.md
+    sha256: 6e565382467ff10319b81c4f9bd454107712801ed5116cddc81ef4902f67a64a
+  - path: docs/lrs/01_configuration.md
+    sha256: 7627eb99a93f3b06cb867ba8a014b2f734ff23585254ed2186ce78cebb68cd2c
+  - path: docs/lrs/01_configuration_security.md
+    sha256: 435ed9e532d90ded7af6c1b46ed34628d3b5e0eeee4d27287c0968556f03807f
+  - path: docs/lrs/02_interface.md
+    sha256: b1d66c94f6597955dda1a5f7d0569654bc505cb3046a04c7e87625c690dd580d
+  - path: docs/lrs/03_functional_command.md
+    sha256: beaee00da140657fd4bacc8058286d9fb5271d6fa0d53a96677931136776c5ef
+  - path: docs/lrs/03_functional_dsa.md
+    sha256: d8244ec09cbf0e65b37f1dab21cfb4eda75d5333c8ddb11d1c17caa822cf685f
+  - path: docs/lrs/03_functional_kem.md
+    sha256: 4baa9c92514983232f00f2bd5ef7bb3f8c6cb2e5a4e32865a65532d533b874c6
+  - path: docs/lrs/04_register.md
+    sha256: e8646ed0aed8ae9539b94b884f4d30214eccd55721fdb1c00f09a0910e19a2a5
+  - path: docs/lrs/05_performance.md
+    sha256: 02748c7230f8effb0021aa891b8d3ec5409d96ac07bc3855674d640a4f140785
+  - path: docs/lrs/06_clock_reset.md
+    sha256: bf62af7df1e6ffd1319bb0b2258faa311277e8d3c907869bdc137f823c85d912
+  - path: docs/lrs/07_security_ct.md
+    sha256: a2178a2766706c1a7705a0495cd07bfc8bb89fa245f3378de0e952c4ca56f629
+  - path: docs/lrs/07_security_key.md
+    sha256: 2e0fab24842bcf3e5e7e32427a0c8a38b7a6ceb708eabfa8b86ee82564710bbe
+  - path: docs/lrs/08_safety_lowpower.md
+    sha256: 88a72917013c97cfd5bf56e95c7cc856d8b1b0a254fc589d44075ac8a0847944
+  - path: docs/lrs/09_dfx.md
+    sha256: 9d6acbc617a1fb9d726c8eb7588002f1e35bacc94e4914a938c1b4c8dad03043
+  - path: docs/lrs/11_generator.md
+    sha256: 0ce701cfe2723221bcf19245ff9ece0ee5b14197710e86bb43a39c63de1e26df
+  - path: docs/lrs/12_constraints.md
+    sha256: 156d052f692beeead7a63b32dbab1019c71d9ab94781e30af69523ee2950326d
+  - path: docs/lrs/99_quality_gate.md
+    sha256: cc7f11c81fb6a2d5b191da112d2803a68209706c97de793230727e557bd933db
+  - path: docs/lrs/index.md
+    sha256: c7402967b0c4c6c504de9cd6dcc40f37acc954b0cfa24250f58c2eaea691afdb
+  extractor:
+    skills/01-lrs-author/scripts/extract_requirements.py: a75a77c5ab6a371d1ea10c9eee52629e1e1fe05bdb96124e5573bf40454b1512
+    scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
+    scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
+  payload_sha256: a8cd84ed57116addd66337fd50190ca18ab70c8464952a1ac6376beaff67ceb8

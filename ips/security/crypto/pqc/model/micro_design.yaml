@@ -1,0 +1,2640 @@
+schema_version: '2.0'
+ip_name: pqc
+delivery_model: parameterized
+lrs_baseline: PQC-20260916-WORKKEY
+hld_baseline: PQC-HLD-1.1.0
+document_version: 1.1.0
+status: draft
+microarchitecture_baseline: PQC-LLD-1.1.0
+modules:
+- id: LLD.MOD.PQC.APB
+  name: pqc_apb_if
+  parent_ref:
+  - HLD.MOD.PQC.TOP
+  hld_ref:
+  - HLD.MOD.PQC.TOP
+  req_ref:
+  - LRS.INTF.PQC.APB.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_apb_if
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.CODEC
+  name: pqc_codec
+  parent_ref:
+  - HLD.MOD.PQC.CODEC
+  hld_ref:
+  - HLD.MOD.PQC.CODEC
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_codec
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.DMA
+  name: pqc_dma
+  parent_ref:
+  - HLD.MOD.PQC.DMA
+  hld_ref:
+  - HLD.MOD.PQC.DMA
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.003
+  - LRS.SEC.PQC.SLOT.005
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_dma
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.DSASEQ
+  name: pqc_dsa_seq
+  parent_ref:
+  - HLD.MOD.PQC.DSASEQ
+  hld_ref:
+  - HLD.MOD.PQC.DSASEQ
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x38
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_dsa_seq
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.FAULT
+  name: pqc_fault_ctrl
+  parent_ref:
+  - HLD.MOD.PQC.FAULT
+  hld_ref:
+  - HLD.MOD.PQC.FAULT
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  - LRS.RESET.PQC.SAFE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_fault_ctrl
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.FE
+  name: pqc_cmd_frontend
+  parent_ref:
+  - HLD.MOD.PQC.FE
+  hld_ref:
+  - HLD.MOD.PQC.FE
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.004
+  - LRS.REG.PQC.STATUS.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_cmd_frontend
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.FE.DESC_FETCH
+  name: pqc_desc_fetch
+  parent_ref:
+  - LLD.MOD.PQC.FE
+  hld_ref:
+  - HLD.MOD.PQC.FE
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.004
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_desc_fetch
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.FE.VALIDATE
+  name: pqc_desc_validate
+  parent_ref:
+  - LLD.MOD.PQC.FE
+  hld_ref:
+  - HLD.MOD.PQC.FE
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_desc_validate
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KECCAK
+  name: pqc_keccak
+  parent_ref:
+  - HLD.MOD.PQC.KECCAK
+  hld_ref:
+  - HLD.MOD.PQC.KECCAK
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_keccak
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KECCAK.MASKED_ROUND
+  name: pqc_keccak_masked_round
+  parent_ref:
+  - LLD.MOD.PQC.KECCAK
+  hld_ref:
+  - HLD.MOD.PQC.KECCAK
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: SCA_LEVEL == 2
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_keccak_masked_round
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KEMSEQ
+  name: pqc_kem_seq
+  parent_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  hld_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x7
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_kem_seq
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KEYSLOT
+  name: pqc_key_slots
+  parent_ref:
+  - HLD.MOD.PQC.KEYSLOT
+  hld_ref:
+  - HLD.MOD.PQC.KEYSLOT
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.002
+  - LRS.SEC.PQC.SLOT.003
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_key_slots
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KECCAK.MASK_AND
+  name: pqc_masked_and
+  parent_ref:
+  - LLD.MOD.PQC.KECCAK
+  hld_ref:
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.CODEC
+  - HLD.MOD.PQC.SAMPLER
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: SCA_LEVEL == 2
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_masked_and
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.POLY
+  name: pqc_poly_engine
+  parent_ref:
+  - HLD.MOD.PQC.POLY
+  hld_ref:
+  - HLD.MOD.PQC.POLY
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.PERF.PQC.LATENCY.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_poly_engine
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.SAMPLER
+  name: pqc_sampler
+  parent_ref:
+  - HLD.MOD.PQC.SAMPLER
+  hld_ref:
+  - HLD.MOD.PQC.SAMPLER
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_sampler
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.SRAM
+  name: pqc_secure_sram_ctrl
+  parent_ref:
+  - HLD.MOD.PQC.SRAM
+  hld_ref:
+  - HLD.MOD.PQC.SRAM
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.CT.003
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_secure_sram_ctrl
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.TOP
+  name: pqc_top
+  parent_ref:
+  - HLD.MOD.PQC.TOP
+  hld_ref:
+  - HLD.MOD.PQC.TOP
+  req_ref:
+  - LRS.CONS.PQC.CORE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_top
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.TOP.RANDOM
+  name: pqc_random_service
+  parent_ref:
+  - LLD.MOD.PQC.TOP
+  hld_ref:
+  - HLD.MOD.PQC.TOP
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_random_service
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.TOP.READ_ARB
+  name: pqc_axi_read_arb
+  parent_ref:
+  - LLD.MOD.PQC.TOP
+  hld_ref:
+  - HLD.MOD.PQC.TOP
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_axi_read_arb
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.WORKKEY
+  name: pqc_work_key_ram
+  parent_ref:
+  - HLD.MOD.PQC.WORKKEY
+  hld_ref:
+  - HLD.MOD.PQC.WORKKEY
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  applicability:
+    expr: 'true'
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_work_key_ram
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+interfaces:
+- id: LLD.IF.PQC.WORKKEY.KM
+  owner_module: LLD.MOD.PQC.WORKKEY
+  hld_ref:
+  - HLD.IF.EXT.PQC.KEY_MANAGER
+  protocol: atomic_dual_share_stream
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  applicability:
+    expr: 'true'
+- id: LLD.IF.PQC.FE.APB
+  owner_module: LLD.MOD.PQC.APB
+  interface_ref: HLD.IF.EXT.PQC.APB
+  protocol: apb4
+  signal_groups:
+  - psel_penable_pwrite_paddr_pwdata_pstrb
+  - prdata_pready_pslverr
+  handshake: APB4 SETUP/ACCESS 两相
+  notes: 特权/安全属性作为旁带输入参与 KEY_SLOT_CTRL 与 CTRL 敏感字段门控。
+  req_ref:
+  - LRS.INTF.PQC.APB.001
+  applicability:
+    expr: 'true'
+- id: LLD.IF.PQC.DMA.AXI
+  owner_module: LLD.MOD.PQC.DMA
+  interface_ref: HLD.IF.EXT.PQC.DMA
+  protocol: axi4
+  signal_groups:
+  - ar_aw_channel
+  - r_w_channel
+  - b_channel
+  handshake: AXI4 valid/ready
+  notes: 数据宽度 DMA_DATA_WIDTH；地址宽度 >= 40 bit；每请求携带安全/特权属性。
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.002
+  applicability:
+    expr: 'true'
+- id: LLD.IF.PQC.POLY.PAGE
+  owner_module: LLD.MOD.PQC.POLY
+  interface_ref: HLD.IF.INT.PQC.PAGE
+  protocol: memory
+  signal_groups:
+  - page_sel_a_coeff_a_req_a_rdata
+  - page_sel_b_coeff_b_req_b_rdata
+  - page_sel_w_coeff_w_we_wdata
+  handshake: 请求 valid/ready；同步 RAM 与 ECC 共两拍返回；预留 read/write slot
+  notes: butterfly 两输入分配到保留 bank；详见 POLY 六 batch slot 调度，不能假设单拍组合读。
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  applicability:
+    expr: 'true'
+- id: LLD.IF.PQC.KECCAK.SQZ
+  owner_module: LLD.MOD.PQC.KECCAK
+  interface_ref: HLD.IF.INT.PQC.SQZ
+  protocol: stream
+  signal_groups:
+  - sqz_valid_sqz_data64_sqz_ready
+  - sqz_last_sqz_out_len
+  handshake: valid/ready，自动续块
+  notes: 采样器消费不足时反压；context 在 block 边界切换。
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  applicability:
+    expr: 'true'
+timing:
+- id: LLD.TIMING.PQC.APB.RW
+  interface_ref: HLD.IF.EXT.PQC.APB
+  scenario: APB4 单次读/写，含 PREADY 反压
+  cycles: setup 1 + access 1..N
+  notes: 写 BUSY 锁定的配置字段时返回 pslverr 且字段值不变；读 reserved 返回 0。
+  req_ref:
+  - LRS.INTF.PQC.APB.001
+  - LRS.FUNC.PQC.CMD.004
+  applicability:
+    expr: 'true'
+- id: LLD.TIMING.PQC.DMA.SPLIT
+  interface_ref: HLD.IF.EXT.PQC.DMA
+  scenario: 跨 4 KiB 边界自动拆分为多个 INCR burst
+  cycles: 取决于长度与从端反压
+  notes: 拆分不改变字节顺序；尾部不满 beat 使用 WSTRB/keep 掩码。
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.003
+  applicability:
+    expr: 'true'
+datapaths:
+- id: LLD.DP.PQC.CODEC.BITPACK
+  module_ref: LLD.MOD.PQC.CODEC
+  width: 32
+  operators:
+  - pack
+  - unpack
+  - compress
+  - decompress
+  - power2round
+  - decompose
+  - make_hint
+  - use_hint
+  - norm_check
+  representation: PACKED_to_COEFF_STD
+  notes: 任意 bit offset 的 little-endian bit packing；解码输出 canonical_ok 但始终 消费配置长度；norm check 遍历全部系数并 OR-reduce violation，不在首个违例处停止。
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.APB.ACCESS_FILTER
+  module_ref: LLD.MOD.PQC.APB
+  input_width: 32
+  output_width: 32
+  operators:
+  - secure_privilege_check
+  - aligned_address_check
+  - busy_write_filter
+  - local_error_response
+  representation: public_control_and_metadata_only
+  req_ref:
+  - LRS.INTF.PQC.APB.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.DMA.BYTE_STREAM
+  module_ref: LLD.MOD.PQC.DMA
+  input_width: 256
+  output_width: 32
+  operators:
+  - extended_range_check
+  - boundary_limited_burst
+  - little_endian_split_assemble
+  - tail_byte_enable
+  representation: authorized_packed_bytes
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.003
+  - LRS.SEC.PQC.SLOT.005
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.FE.VALIDATE
+  module_ref: LLD.MOD.PQC.FE.VALIDATE
+  input_width: 1024
+  output_width: 1
+  operators:
+  - little_endian_decode
+  - exact_public_length_lookup
+  - capacity_compare
+  - extended_range_add
+  - write_read_overlap_check
+  representation: public_descriptor_fields
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.KECCAK.PERM
+  module_ref: LLD.MOD.PQC.KECCAK
+  width: 1600
+  operators:
+  - theta
+  - rho
+  - pi
+  - chi
+  - iota
+  representation: keccak_state
+  notes: 双 share 的线性步骤独立执行；Level 0/1 每拍 1/2 轮，Level 2 按 RAND/LINEAR/CHI_A/CHI_B/COMMIT 执行一轮。
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.PERF.PQC.OVERLAP.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.KECCAK.MASKED_ROUND
+  module_ref: LLD.MOD.PQC.KECCAK.MASKED_ROUND
+  input_width: 1600
+  output_width: 1600
+  operators:
+  - independent_share_theta_rho_pi
+  - registered_hpc3_chi
+  - single_share_iota
+  representation: two_boolean_shares_without_reconstruction
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  applicability:
+    expr: SCA_LEVEL == 2
+- id: LLD.DP.PQC.KEMSEQ.COMPARE_SELECT
+  module_ref: LLD.MOD.PQC.KEMSEQ
+  input_width: 8
+  output_width: 8
+  operators:
+  - full_length_xor_or_reduce
+  - masked_equality_reduce
+  - full_length_secret_select
+  representation: public_ciphertext_and_secret_two_share_candidates_at_level2
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x7
+- id: LLD.DP.PQC.KEYSLOT.AUTH
+  module_ref: LLD.MOD.PQC.KEYSLOT
+  input_width: 32
+  output_width: 1
+  operators:
+  - unsigned_slot_range_check
+  - full_handle_compare
+  - owner_domain_algorithm_pset_usage_compare
+  - generation_saturating_advance
+  representation: authorization_metadata_only
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.003
+  - LRS.SEC.PQC.SLOT.006
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.MASK_AND.TWO_SHARE
+  module_ref: LLD.MOD.PQC.KECCAK.MASK_AND
+  width: WIDTH
+  operators:
+  - registered_cross_term_isolation
+  - independent_output_refresh
+  representation: boolean_two_share
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: SCA_LEVEL == 2
+- id: LLD.DP.PQC.POLY.BFLY
+  module_ref: LLD.MOD.PQC.POLY
+  width: 32
+  operators:
+  - canonical_modular_add
+  - canonical_modular_sub
+  - unsigned_23x23_multiply
+  - constant_shift_add_reduction
+  representation: COEFF_STD_and_NTT_STD
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.SAMPLER.STREAM
+  module_ref: LLD.MOD.PQC.SAMPLER
+  input_width: 64
+  output_width: 32
+  operators:
+  - lsb_byte_unpack
+  - bounded_bit_reservoir
+  - ordered_candidate_pair
+  - canonical_residue_mapping
+  representation: public_or_two_share_stream_to_coefficient
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.SAMPLER.SECRET_SCAN
+  module_ref: LLD.MOD.PQC.SAMPLER
+  input_width: 8
+  output_width: 32
+  operators:
+  - protected_accept_count
+  - public_address_full_scan
+  - protected_stable_compaction
+  - protected_conditional_swap
+  representation: two_share_secret_count_index_and_coefficients
+  req_ref:
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.SRAM.TAG_ECC
+  module_ref: LLD.MOD.PQC.SRAM
+  input_width: 32
+  output_width: 32
+  operators:
+  - full_tag_authorization
+  - bijective_bank_address
+  - secded_39_32_per_share
+  - response_identity_hold
+  representation: public_or_two_separated_shares
+  req_ref:
+  - LRS.SEC.PQC.CT.003
+  - LRS.SEC.PQC.INTEGRITY.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.TOP.COMMAND_CONTEXT
+  module_ref: LLD.MOD.PQC.TOP
+  input_width: 8
+  output_width: 40
+  operators:
+  - trusted_context_capture
+  - saturating_epoch_increment
+  - qualified_context_fanout
+  representation: public_algorithm_pset_and_command_epoch
+  req_ref:
+  - LRS.CONS.PQC.CORE.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.TOP.RANDOM
+  module_ref: LLD.MOD.PQC.TOP.RANDOM
+  input_width: 64
+  output_width: 4800
+  operators:
+  - domain_health_check
+  - monotonic_lease_identity
+  - quota_checked_chunk_collection
+  - atomic_consume_and_clear
+  representation: fresh_randomness_never_reconstructed_secret
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+pipelines:
+- id: LLD.PIPE.PQC.KECCAK.BLOCK
+  module_ref: LLD.MOD.PQC.KECCAK
+  stages:
+  - S_ABSORB
+  - S_PAD
+  - S_PERM
+  - S_SQUEEZE
+  latency: Level 0/1 置换 24/r 拍；Level 2 置换 1896 拍，初始 sharing 另计
+  throughput: rate 接口每 share 64 bit/握手；稳态块周期按安全等级分列
+  stall_conditions: context 冲突时在 block 边界切换，不抢占
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  applicability:
+    expr: 'true'
+- id: LLD.PIPE.PQC.MASK_AND.HPC3PLUS
+  module_ref: LLD.MOD.PQC.KECCAK.MASK_AND
+  stages:
+  - CROSS_TERM_ISOLATION
+  - OUTPUT_REFRESH
+  stallable: true
+  flushable: true
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: SCA_LEVEL == 2
+- id: LLD.PIPE.PQC.POLY.STAGE
+  module_ref: LLD.MOD.PQC.POLY
+  stages:
+  - OPERAND_GATHER
+  - MULTIPLY
+  - REDUCE_1
+  - REDUCE_2
+  - REDUCE_3
+  - NORMALIZE
+  - ADD_SUB
+  - WRITEBACK
+  stallable: true
+  flushable: true
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  applicability:
+    expr: 'true'
+- id: LLD.PIPE.PQC.WORKKEY.READ
+  module_ref: LLD.MOD.PQC.WORKKEY
+  stages:
+  - AUTHORIZE_AND_RAM_READ
+  - ECC_AND_RESPONSE
+  stallable: true
+  flushable: true
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  applicability:
+    expr: 'true'
+buffers:
+- id: LLD.BUF.PQC.SAMPLER.SQZ
+  module_ref: LLD.MOD.PQC.SAMPLER
+  type: fifo
+  depth: 64
+  width: 64
+  purpose: 吸收 Keccak squeeze 抖动，支持自动续块
+  overflow_policy: 反压 Keccak，不丢弃字节
+  underflow_policy: 等待 squeeze，不返回占位数据
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  applicability:
+    expr: 'true'
+- id: LLD.BUF.PQC.DSASEQ.STAGE
+  module_ref: LLD.MOD.PQC.DSASEQ
+  type: staging_buffer
+  depth: 4627
+  width: 8
+  purpose: 候选签名的不可见 staging，全部检查通过后一次性 commit
+  overflow_policy: 超过最大签名长度视为内部错误并在 commit 前终止
+  underflow_policy: n/a
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x38
+- id: LLD.BUF.PQC.FE.DESC
+  module_ref: LLD.MOD.PQC.FE
+  type: register_shadow
+  depth: 128
+  width: 8
+  purpose: descriptor 原子抓取 shadow，保证抓取后软件内存修改不影响当前命令
+  overflow_policy: n/a（定长）
+  underflow_policy: n/a
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  applicability:
+    expr: 'true'
+- id: LLD.BUF.PQC.WORKKEY.MATERIAL
+  module_ref: LLD.MOD.PQC.WORKKEY
+  type: sram
+  depth: 2048
+  width: 39
+  implementation_intent: sram
+  full_behavior: error
+  empty_behavior: stall
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  applicability:
+    expr: 'true'
+fsms:
+- id: LLD.FSM.PQC.DMA.TRANSFER
+  module_ref: LLD.MOD.PQC.DMA
+  encoding: onehot
+  reset_state: IDLE
+  states:
+  - IDLE
+  - CHECK
+  - READ_ADDR
+  - READ_BEAT
+  - READ_STORE
+  - WRITE_LOAD
+  - WRITE_ADDR
+  - WRITE_BEAT
+  - WRITE_RESP
+  - FINISH
+  - DRAIN
+  - CLEAR
+  - LOCKED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: IDLE
+    destination: CHECK
+    condition: request_fire
+  - source: CHECK
+    destination: FINISH
+    condition: invalid_or_zero_length_with_error_if_invalid
+  - source: CHECK
+    destination: READ_ADDR
+    condition: legal_read
+  - source: CHECK
+    destination: WRITE_LOAD
+    condition: legal_write
+  - source: READ_ADDR
+    destination: READ_BEAT
+    condition: ar_fire
+  - source: READ_BEAT
+    destination: READ_STORE
+    condition: valid_r_fire_with_expected_last_and_resp
+  - source: READ_STORE
+    destination: READ_BEAT
+    condition: last_internal_write_response_and_more_beats
+  - source: READ_STORE
+    destination: READ_ADDR
+    condition: burst_committed_and_more_bursts
+  - source: READ_STORE
+    destination: FINISH
+    condition: all_bytes_committed
+  - source: WRITE_LOAD
+    destination: WRITE_ADDR
+    condition: first_beat_assembled
+  - source: WRITE_ADDR
+    destination: WRITE_BEAT
+    condition: aw_fire
+  - source: WRITE_BEAT
+    destination: WRITE_LOAD
+    condition: w_fire_and_more_beats
+  - source: WRITE_LOAD
+    destination: WRITE_BEAT
+    condition: later_beat_assembled
+  - source: WRITE_BEAT
+    destination: WRITE_RESP
+    condition: last_w_fire
+  - source: WRITE_RESP
+    destination: WRITE_LOAD
+    condition: b_ok_fire_and_more_bursts
+  - source: WRITE_RESP
+    destination: FINISH
+    condition: b_ok_fire_and_all_bytes_done
+  - source: FINISH
+    destination: IDLE
+    condition: response_fire
+  - source: DRAIN
+    destination: CLEAR
+    condition: no_offered_or_outstanding_axi_and_internal_requests
+  - source: CLEAR
+    destination: IDLE
+    condition: local_data_and_tokens_cleared_and_no_clear_request
+  - source: DRAIN
+    destination: LOCKED
+    condition: drain_timeout_or_protocol_integrity_failure
+  - source: IDLE
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: CHECK
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: READ_ADDR
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: READ_BEAT
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: READ_STORE
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: WRITE_LOAD
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: WRITE_ADDR
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: WRITE_BEAT
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: WRITE_RESP
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+  - source: FINISH
+    destination: DRAIN
+    condition: clear_revoke_or_error_priority
+- id: LLD.FSM.PQC.DSASEQ.ATTEMPT
+  module_ref: LLD.MOD.PQC.DSASEQ
+  states:
+  - A_INIT
+  - A_EXPAND_Y
+  - A_NTT_W
+  - A_CHALLENGE
+  - A_CS1_CS2
+  - A_NORM_Z
+  - A_NORM_R0
+  - A_CT0
+  - A_NORM_CT0
+  - A_HINT
+  - A_PAD
+  - A_BOUNDARY
+  - A_ACCEPT
+  - A_REJECT
+  - A_EXHAUST
+  encoding: onehot
+  reset_state: A_INIT
+  illegal_state_handling: fatal
+  transition_notes: 所有正常检查均继续至 A_PAD/A_BOUNDARY；只在统一边界判定接受/重试，不能按首个 norm 失败提前退出
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.SEC.PQC.CT.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x38
+  transitions:
+  - source: A_INIT
+    destination: A_EXPAND_Y
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_EXPAND_Y
+    destination: A_NTT_W
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_NTT_W
+    destination: A_CHALLENGE
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_CHALLENGE
+    destination: A_CS1_CS2
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_CS1_CS2
+    destination: A_NORM_Z
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_NORM_Z
+    destination: A_NORM_R0
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_NORM_R0
+    destination: A_CT0
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_CT0
+    destination: A_NORM_CT0
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_NORM_CT0
+    destination: A_HINT
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_HINT
+    destination: A_PAD
+    condition: all_state_operations_complete_with_matching_tokens; no early exit on reject bits
+  - source: A_PAD
+    destination: A_BOUNDARY
+    condition: fixed_attempt_budget_reached && all_mandatory_done
+  - source: A_BOUNDARY
+    destination: A_ACCEPT
+    condition: combined_masked_checks_accept; only aggregate decision declassified
+  - source: A_BOUNDARY
+    destination: A_REJECT
+    condition: combined_checks_reject && retry_and_nonce_available
+  - source: A_BOUNDARY
+    destination: A_EXHAUST
+    condition: combined_checks_reject && !retry_and_nonce_available
+  - source: A_REJECT
+    destination: A_INIT
+    condition: candidate_clear_done && pending_tokens_retired; advance nonce/attempt
+  - source: A_ACCEPT
+    destination: A_INIT
+    condition: FE command retired and new authorized sign command accepted
+  - source: A_EXHAUST
+    destination: A_INIT
+    condition: error retired and new authorized sign command accepted
+- id: LLD.FSM.PQC.TOP.MAIN
+  module_ref: LLD.MOD.PQC.FE
+  states:
+  - DISABLED
+  - SELFTEST
+  - IDLE
+  - FETCH
+  - VALIDATE
+  - ACQUIRE
+  - EXECUTE
+  - COMMIT_PAYLOAD
+  - COMMIT_RECORD
+  - COMPLETE
+  - ERROR
+  - ZEROIZE
+  - LOCKED
+  encoding: onehot
+  reset_state: DISABLED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.FUNC.PQC.CMD.006
+  - LRS.RESET.PQC.COLD.001
+  - LRS.SEC.PQC.INTEGRITY.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: DISABLED
+    destination: SELFTEST
+    condition: reset_clear_done && enable
+  - source: SELFTEST
+    destination: IDLE
+    condition: selftest_done && selftest_ok
+  - source: SELFTEST
+    destination: ZEROIZE
+    condition: selftest_done && !selftest_ok; latch lock_after_clear
+  - source: IDLE
+    destination: FETCH
+    condition: doorbell_accept
+  - source: FETCH
+    destination: VALIDATE
+    condition: descriptor_complete && dma_ok
+  - source: FETCH
+    destination: ERROR
+    condition: dma_error || timeout
+  - source: VALIDATE
+    destination: ACQUIRE
+    condition: checks_done && checks_ok && private_key_required
+  - source: VALIDATE
+    destination: EXECUTE
+    condition: checks_done && checks_ok && !private_key_required
+  - source: VALIDATE
+    destination: ERROR
+    condition: checks_done && !checks_ok
+  - source: ACQUIRE
+    destination: EXECUTE
+    condition: matching_grant
+  - source: ACQUIRE
+    destination: ERROR
+    condition: denied || timeout
+  - source: EXECUTE
+    destination: COMMIT_PAYLOAD
+    condition: matching_algorithm_success && custody_if_required_done
+  - source: EXECUTE
+    destination: ERROR
+    condition: matching_algorithm_failure
+  - source: COMMIT_PAYLOAD
+    destination: COMMIT_RECORD
+    condition: all_payload_B_success || output_length_zero
+  - source: COMMIT_RECORD
+    destination: COMPLETE
+    condition: completion_B_success
+  - source: COMPLETE
+    destination: ZEROIZE
+    condition: completion_status_latched; retire command
+  - source: ERROR
+    destination: ZEROIZE
+    condition: safe_error_record_complete_or_suppressed; never DONE success
+  - source: ZEROIZE
+    destination: IDLE
+    condition: all_clear_and_drain_done && !lock_after_clear && enable
+  - source: ZEROIZE
+    destination: DISABLED
+    condition: all_clear_and_drain_done && !lock_after_clear && !enable
+  - source: ZEROIZE
+    destination: LOCKED
+    condition: lock_after_clear || clear_timeout
+  - source: DISABLED
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: SELFTEST
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: IDLE
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: FETCH
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: VALIDATE
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: ACQUIRE
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: EXECUTE
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: COMMIT_PAYLOAD
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: COMMIT_RECORD
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: COMPLETE
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: ERROR
+    destination: ZEROIZE
+    condition: 'priority: fatal || revoke || zeroize; suppress current handshake and success'
+  - source: COMMIT_PAYLOAD
+    destination: ERROR
+    condition: AXI B error || timeout; no rollback of accepted writes
+  - source: COMMIT_RECORD
+    destination: ERROR
+    condition: AXI B error || timeout; no rollback of accepted writes
+- id: LLD.FSM.PQC.FE.DESC_FETCH
+  module_ref: LLD.MOD.PQC.FE.DESC_FETCH
+  encoding: onehot
+  reset_state: IDLE
+  states:
+  - IDLE
+  - AR
+  - RX
+  - EMIT
+  - DONE
+  - ERROR
+  - DRAIN
+  - CLEAR
+  - LOCKED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.004
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: IDLE
+    destination: AR
+    condition: start_and_entry_range_valid_and_no_clear
+  - source: IDLE
+    destination: ERROR
+    condition: start_and_entry_range_invalid_and_no_clear
+  - source: AR
+    destination: RX
+    condition: ar_fire_and_no_cancel
+  - source: RX
+    destination: EMIT
+    condition: r_fire_and_resp_ok_and_last_position_correct
+  - source: RX
+    destination: ERROR
+    condition: r_fire_and_malformed_and_rlast
+  - source: RX
+    destination: DRAIN
+    condition: r_fire_and_malformed_and_not_rlast
+  - source: EMIT
+    destination: RX
+    condition: last_byte_of_nonfinal_beat
+  - source: EMIT
+    destination: DONE
+    condition: byte_127_published
+  - source: DONE
+    destination: IDLE
+    condition: start_deasserted_and_no_clear
+  - source: ERROR
+    destination: IDLE
+    condition: start_deasserted_and_no_clear
+  - source: IDLE
+    destination: CLEAR
+    condition: clear_priority
+  - source: AR
+    destination: DRAIN
+    condition: ar_fire_and_cancel_latched_priority
+  - source: RX
+    destination: DRAIN
+    condition: cancel_priority_and_no_final_r_fire
+  - source: RX
+    destination: CLEAR
+    condition: cancel_priority_and_final_r_fire
+  - source: EMIT
+    destination: DRAIN
+    condition: cancel_priority_and_more_beats_outstanding
+  - source: EMIT
+    destination: CLEAR
+    condition: cancel_priority_and_final_beat_already_received
+  - source: DONE
+    destination: CLEAR
+    condition: clear_priority
+  - source: ERROR
+    destination: CLEAR
+    condition: clear_priority
+  - source: DRAIN
+    destination: CLEAR
+    condition: final_r_fire_and_cancel_latched
+  - source: DRAIN
+    destination: ERROR
+    condition: final_r_fire_and_not_cancel_latched
+  - source: CLEAR
+    destination: IDLE
+    condition: local_wipe_complete_and_clear_deasserted_and_start_deasserted
+  - source: AR
+    destination: LOCKED
+    condition: bus_wait_timeout
+  - source: RX
+    destination: LOCKED
+    condition: bus_wait_timeout
+  - source: DRAIN
+    destination: LOCKED
+    condition: drain_timeout
+- id: LLD.FSM.PQC.KECCAK.MASKED_ROUND
+  module_ref: LLD.MOD.PQC.KECCAK.MASKED_ROUND
+  encoding: onehot
+  reset_state: IDLE
+  states:
+  - IDLE
+  - CHI_REQ
+  - CHI_WAIT
+  - RESULT
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: SCA_LEVEL == 2
+  transitions:
+  - source: IDLE
+    destination: CHI_REQ
+    condition: input_fire
+  - source: CHI_REQ
+    destination: CHI_WAIT
+    condition: matched_random_fire
+  - source: CHI_WAIT
+    destination: RESULT
+    condition: matched_gadget_commit
+  - source: RESULT
+    destination: IDLE
+    condition: result_fire
+  - source: IDLE
+    destination: IDLE
+    condition: clear_or_fault_priority
+  - source: CHI_REQ
+    destination: IDLE
+    condition: clear_or_fault_priority
+  - source: CHI_WAIT
+    destination: IDLE
+    condition: clear_or_fault_priority
+  - source: RESULT
+    destination: IDLE
+    condition: clear_or_fault_priority
+- id: LLD.FSM.PQC.KEMSEQ.DISPATCH
+  module_ref: LLD.MOD.PQC.KEMSEQ
+  encoding: onehot
+  reset_state: CLEAR
+  states:
+  - CLEAR
+  - IDLE
+  - CHECK
+  - ISSUE
+  - WAIT
+  - ADVANCE
+  - CUSTODY
+  - RESULT
+  - FAIL
+  - LOCKED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x7
+  transitions:
+  - source: CLEAR
+    destination: IDLE
+    condition: local_wipe_and_all_participants_drained_and_no_clear_and_no_lock
+  - source: CLEAR
+    destination: LOCKED
+    condition: clear_timeout_or_lock_after_clear
+  - source: IDLE
+    destination: CHECK
+    condition: command_fire_and_no_cancel
+  - source: CHECK
+    destination: ISSUE
+    condition: public_checks_ok_and_grant_if_required_valid
+  - source: CHECK
+    destination: FAIL
+    condition: public_format_or_authorization_error
+  - source: ISSUE
+    destination: WAIT
+    condition: primitive_request_fire
+  - source: ISSUE
+    destination: FAIL
+    condition: unexpected_current_epoch_response_or_request_timeout
+  - source: WAIT
+    destination: ADVANCE
+    condition: matched_success_and_destination_writeback_complete
+  - source: WAIT
+    destination: FAIL
+    condition: matched_error_or_current_epoch_identity_error_or_timeout
+  - source: ADVANCE
+    destination: ISSUE
+    condition: next_instruction_exists
+  - source: ADVANCE
+    destination: CUSTODY
+    condition: keygen_program_finished
+  - source: ADVANCE
+    destination: RESULT
+    condition: encaps_or_decaps_program_finished
+  - source: ADVANCE
+    destination: FAIL
+    condition: duplicate_current_epoch_response
+  - source: CUSTODY
+    destination: RESULT
+    condition: matching_custody_ack_and_no_revoke
+  - source: CUSTODY
+    destination: FAIL
+    condition: custody_failure_or_timeout
+  - source: RESULT
+    destination: CLEAR
+    condition: fe_result_fire_then_retirement_clear
+  - source: FAIL
+    destination: CLEAR
+    condition: error_latched_by_fe_and_clear_started
+  - source: IDLE
+    destination: CLEAR
+    condition: clear_revoke_or_fatal_priority
+  - source: CHECK
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: ISSUE
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: WAIT
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: ADVANCE
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: CUSTODY
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: RESULT
+    destination: CLEAR
+    condition: cancel_revoke_or_fatal_priority
+  - source: FAIL
+    destination: CLEAR
+    condition: clear_revoke_or_fatal_priority
+- id: LLD.FSM.PQC.KEYSLOT.LIFETIME
+  module_ref: LLD.MOD.PQC.KEYSLOT
+  encoding: binary
+  reset_state: INVALID
+  states:
+  - INVALID
+  - READY
+  - HELD
+  - DESTROY_PENDING
+  - REVOKING
+  - EXHAUSTED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.SEC.PQC.SLOT.002
+  - LRS.SEC.PQC.SLOT.003
+  - LRS.SEC.PQC.SLOT.007
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: INVALID
+    destination: READY
+    condition: trusted_new_generation_and_authorized_metadata_commit
+  - source: READY
+    destination: HELD
+    condition: acquire_fire_and_full_identity_and_material_match
+  - source: HELD
+    destination: READY
+    condition: matching_release_and_not_destroy_pending_and_not_same_cycle_destroy
+  - source: HELD
+    destination: REVOKING
+    condition: matching_release_and_authorized_destroy_same_cycle
+  - source: HELD
+    destination: DESTROY_PENDING
+    condition: authorized_software_destroy
+  - source: DESTROY_PENDING
+    destination: REVOKING
+    condition: matching_release
+  - source: READY
+    destination: REVOKING
+    condition: authorized_software_destroy
+  - source: READY
+    destination: REVOKING
+    condition: revoke_or_global_clear_priority
+  - source: HELD
+    destination: REVOKING
+    condition: revoke_or_global_clear_priority
+  - source: DESTROY_PENDING
+    destination: REVOKING
+    condition: revoke_or_global_clear_priority
+  - source: INVALID
+    destination: REVOKING
+    condition: global_clear_priority
+  - source: REVOKING
+    destination: INVALID
+    condition: matching_material_wipe_ack_and_generation_not_exhausted
+  - source: REVOKING
+    destination: EXHAUSTED
+    condition: matching_material_wipe_ack_and_generation_exhausted
+- id: LLD.FSM.PQC.SAMPLER.EXECUTE
+  module_ref: LLD.MOD.PQC.SAMPLER
+  encoding: onehot
+  reset_state: CLEAR
+  states:
+  - CLEAR
+  - IDLE
+  - INIT
+  - FETCH
+  - MAP
+  - SCAN_READ
+  - SCAN_WRITE
+  - STORE
+  - RESULT
+  - FAIL
+  - LOCKED
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: CLEAR
+    destination: IDLE
+    condition: local_wipe_and_cancel_ack_and_clear_deasserted
+  - source: CLEAR
+    destination: LOCKED
+    condition: clear_timeout_or_fatal_latched
+  - source: IDLE
+    destination: INIT
+    condition: valid_command_fire
+  - source: IDLE
+    destination: FAIL
+    condition: invalid_command_fire
+  - source: INIT
+    destination: FETCH
+    condition: scratch_initialized_and_context_ready
+  - source: FETCH
+    destination: MAP
+    condition: full_candidate_available
+  - source: MAP
+    destination: FETCH
+    condition: public_rejection
+  - source: MAP
+    destination: STORE
+    condition: public_accepted_or_fixed_length_result_ready
+  - source: MAP
+    destination: SCAN_READ
+    condition: secret_rejection_mode_candidate_mapped
+  - source: SCAN_READ
+    destination: SCAN_WRITE
+    condition: all_256_public_addresses_read_and_gadget_results_ready
+  - source: SCAN_WRITE
+    destination: FETCH
+    condition: scan_writeback_complete_and_more_budget_candidates
+  - source: SCAN_WRITE
+    destination: STORE
+    condition: final_budget_candidate_completed
+  - source: STORE
+    destination: FETCH
+    condition: direct_mode_nonfinal_store_ack
+  - source: STORE
+    destination: RESULT
+    condition: all_256_stores_ack_and_no_budget_failure
+  - source: STORE
+    destination: FAIL
+    condition: all_256_stores_ack_and_budget_failure
+  - source: RESULT
+    destination: CLEAR
+    condition: matching_result_ready
+  - source: FAIL
+    destination: CLEAR
+    condition: error_ack_or_clear
+  - source: INIT
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: FETCH
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: MAP
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: SCAN_READ
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: SCAN_WRITE
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: STORE
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+  - source: RESULT
+    destination: CLEAR
+    condition: cancel_or_fault_priority
+- id: LLD.FSM.PQC.SRAM.PAGE
+  module_ref: LLD.MOD.PQC.SRAM
+  encoding: binary
+  reset_state: FREE
+  states:
+  - FREE
+  - FILLING
+  - VALID
+  - RETIRING
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.SEC.PQC.CT.003
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: FREE
+    destination: FILLING
+    condition: authorized_allocate_and_clean_page
+  - source: FILLING
+    destination: VALID
+    condition: publish_and_all_required_words_initialized_and_no_pending_write
+  - source: FILLING
+    destination: RETIRING
+    condition: cancel_or_revoke_or_clear_priority
+  - source: VALID
+    destination: RETIRING
+    condition: last_consumer_retired_or_revoke_or_clear_priority
+  - source: RETIRING
+    destination: FREE
+    condition: all_page_words_and_response_slots_cleared
+- id: LLD.FSM.PQC.TOP.RANDOM
+  module_ref: LLD.MOD.PQC.TOP.RANDOM
+  encoding: onehot
+  reset_state: CLEAR
+  states:
+  - CLEAR
+  - FREE
+  - COLLECT
+  - HOLD
+  - IN_USE
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: CLEAR
+    destination: FREE
+    condition: cache_and_consumer_clear_ack_and_no_clear_request
+  - source: FREE
+    destination: COLLECT
+    condition: authorized_lease_request_fire
+  - source: COLLECT
+    destination: HOLD
+    condition: expected_last_entropy_fire
+  - source: HOLD
+    destination: IN_USE
+    condition: matched_consumer_chunk_fire
+  - source: IN_USE
+    destination: COLLECT
+    condition: matched_release_and_next_chunk_reserved
+  - source: IN_USE
+    destination: FREE
+    condition: matched_release_and_no_next_chunk
+  - source: FREE
+    destination: CLEAR
+    condition: clear_revoke_or_health_failure_priority
+  - source: COLLECT
+    destination: CLEAR
+    condition: clear_revoke_tag_health_or_timeout_failure_priority
+  - source: HOLD
+    destination: CLEAR
+    condition: clear_revoke_health_or_timeout_failure_priority
+  - source: IN_USE
+    destination: CLEAR
+    condition: clear_revoke_health_or_timeout_failure_priority
+- id: LLD.FSM.PQC.TOP.READ_ARB
+  module_ref: LLD.MOD.PQC.TOP.READ_ARB
+  encoding: onehot
+  reset_state: IDLE
+  states:
+  - IDLE
+  - ADDRESS
+  - READ
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: IDLE
+    destination: ADDRESS
+    condition: client_request_captured
+  - source: ADDRESS
+    destination: READ
+    condition: external_ar_fire
+  - source: READ
+    destination: IDLE
+    condition: external_last_r_fire
+- id: LLD.FSM.PQC.WORKKEY.MAIN
+  module_ref: LLD.MOD.PQC.WORKKEY
+  encoding: onehot
+  reset_state: WIPE
+  states:
+  - WIPE
+  - EMPTY
+  - IMPORT
+  - GENERATE
+  - SCAN
+  - READY
+  - CUSTODY_HEADER
+  - CUSTODY_WORD
+  - CUSTODY_ACK
+  illegal_state_handling: fatal
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  applicability:
+    expr: 'true'
+  transitions:
+  - source: WIPE
+    destination: EMPTY
+    condition: last_zero_write_and_pipeline_clear_done && !clear_request
+  - source: EMPTY
+    destination: IMPORT
+    condition: authorized_import_header_handshake
+  - source: EMPTY
+    destination: GENERATE
+    condition: authorized_internal_generated_header_handshake
+  - source: IMPORT
+    destination: SCAN
+    condition: expected_final_word_handshake
+  - source: GENERATE
+    destination: SCAN
+    condition: expected_final_word_handshake
+  - source: SCAN
+    destination: READY
+    condition: all_ECC_responses_ok && !origin_generated
+  - source: SCAN
+    destination: CUSTODY_HEADER
+    condition: all_ECC_responses_ok && origin_generated
+  - source: CUSTODY_HEADER
+    destination: CUSTODY_WORD
+    condition: out_header_handshake
+  - source: CUSTODY_WORD
+    destination: CUSTODY_ACK
+    condition: expected_final_out_word_handshake
+  - source: CUSTODY_ACK
+    destination: READY
+    condition: identity_matched_ack_success; pulse custody_success
+  - source: CUSTODY_ACK
+    destination: WIPE
+    condition: identity_matched_ack_failure || timeout
+  - source: EMPTY
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: IMPORT
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: GENERATE
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: SCAN
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: READY
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: CUSTODY_HEADER
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: CUSTODY_WORD
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+  - source: CUSTODY_ACK
+    destination: WIPE
+    condition: 'priority: clear/revoke/fatal/retire; or state-specific protocol/ECC/timeout error'
+arbiters:
+- id: LLD.ARB.PQC.SRAM.BANK
+  module_ref: LLD.MOD.PQC.SRAM
+  policy: static_reservation_then_round_robin
+  ports: 3
+  fairness_required: false
+  notes: POLY 的六 slot 调度先预留读写 bank；剩余端口由公开请求 round-robin 仲裁， grant_ack 仅对应真实接受。DMA 和 ECC scrub 不抢占预留端口；同地址读写禁止同拍接受。 向量访问组、返回
+    credit 与双域原子授权见 03_sram.md；仲裁不检查系数值。
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.SEC.PQC.CT.001
+  applicability:
+    expr: 'true'
+- id: LLD.ARB.PQC.PRIM.SCOREBOARD
+  module_ref: LLD.MOD.PQC.KEMSEQ
+  policy: static_dependency_token
+  ports: 4
+  fairness_required: false
+  notes: 管理 KECCAK/NTT/SAMPLER_CODEC/DMA 四类资源；仅允许静态白名单内的重叠。
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  applicability:
+    expr: 'true'
+ordering:
+- id: LLD.ORDER.PQC.GLOBAL
+  model: in_order
+  notes: 单上下文执行；同一命令内部 primitive 按依赖 token 定序；同一 buffer 的 DMA 传输保序；不同 buffer 允许 outstanding 但不得重排同一 buffer 的写。
+  ordering_boundary: per_command_and_per_buffer
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.FUNC.PQC.CMD.006
+  applicability:
+    expr: 'true'
+registers:
+- id: LLD.REG.PQC.ID_VERSION
+  register_ref: ID_VERSION
+  behavior: lock
+  sw_behavior: ro
+  hw_behavior: 复位值由综合期参数与 IP 版本决定；运行期不变
+  collision: hw_wins
+  update_timing: reset_only
+  reset_semantics: hard=综合期常量, soft=保持
+  req_ref:
+  - LRS.REG.PQC.ID.001
+- id: LLD.REG.PQC.CAP0
+  register_ref: CAPABILITY0
+  behavior: lock
+  sw_behavior: ro
+  hw_behavior: 由 ENABLE_ALGO_MASK、NTT_LANES、SCA_LEVEL、ENABLE_HASH_ML_DSA 综合常量驱动
+  collision: hw_wins
+  update_timing: reset_only
+  reset_semantics: hard=综合期常量, soft=保持
+  req_ref:
+  - LRS.REG.PQC.ID.001
+  - LRS.CFG.PQC.ALGO_MASK.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+- id: LLD.REG.PQC.CAP1
+  register_ref: CAPABILITY1
+  behavior: lock
+  sw_behavior: ro
+  hw_behavior: 由 LOCAL_SRAM_KIB、DMA_DATA_WIDTH、KEY_SLOT_NUM、ENABLE_PIO 综合常量驱动
+  collision: hw_wins
+  update_timing: reset_only
+  reset_semantics: hard=综合期常量, soft=保持
+  req_ref:
+  - LRS.REG.PQC.ID.001
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  - LRS.CFG.PQC.DMA_WIDTH.001
+  - LRS.CFG.PQC.KEY_SLOT.001
+- id: LLD.REG.PQC.CTRL_ENABLE
+  register_ref: CTRL.ENABLE
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 使能后从 DISABLED 进入 SELFTEST；自检通过后进入 IDLE
+  collision: sw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.CTRL.001
+  - LRS.RESET.PQC.COLD.001
+- id: LLD.REG.PQC.CTRL_ABORT
+  register_ref: CTRL.ABORT
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: singlepulse 请求由 FE 锁存；在安全边界点停止当前命令，随后清零临时状态并回到 IDLE；脉冲后一拍自清
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.FUNC.PQC.CMD.007
+- id: LLD.REG.PQC.CTRL_ZEROIZE
+  register_ref: CTRL.ZEROIZE
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: singlepulse 请求由 fault_ctrl 独立锁存，不依赖请求位保持；内部擦除有界，外部排空超时不报成功
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+- id: LLD.REG.PQC.CTRL_SELFTEST
+  register_ref: CTRL.SELF_TEST
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: singlepulse 请求由 FE 锁存后触发 KAT；失败置 SELF_TEST_FAIL 并进入 LOCKED
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.RESET.PQC.COLD.001
+- id: LLD.REG.PQC.STATUS
+  register_ref: STATUS
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: IDLE/BUSY/DONE/ERROR/LOCKED 由顶层 FSM 直接驱动；LOCKED 由 fault_ctrl 置位
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=IDLE 编码, soft=IDLE 编码
+  req_ref:
+  - LRS.REG.PQC.STATUS.001
+- id: LLD.REG.PQC.COMMAND
+  register_ref: COMMAND
+  behavior: shadow
+  sw_behavior: rw
+  hw_behavior: 门铃时原子抓取；BUSY 期间 swwe 被 ~busy 关闭，值不变且返回 pslverr
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=ABI版本1且其他字段0, soft=同hard
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.004
+- id: LLD.REG.PQC.DESC_ADDR
+  register_ref: DESC_ADDR_LO_HI
+  behavior: shadow
+  sw_behavior: rw
+  hw_behavior: 写入后作为下一次门铃的描述符地址；抓到 shadow 后不再受软件影响
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+- id: LLD.REG.PQC.DOORBELL
+  register_ref: DOORBELL
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 写 1 产生 singlepulse；FE 锁存提交身份后启动抓取，CSR 请求位下一拍自清；BUSY 时写返回 pslverr
+  collision: sw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.FUNC.PQC.CMD.006
+- id: LLD.REG.PQC.KEY_HANDLE
+  register_ref: KEY_HANDLE
+  behavior: shadow
+  sw_behavior: rw
+  hw_behavior: 门铃时抓取完整 generation/owner/slot；类型由可信元数据匹配算法和用途，不再占 handle 编码；不匹配返回配置错误
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.SEC.PQC.SLOT.003
+- id: LLD.REG.PQC.CONTEXT_LEN
+  register_ref: CONTEXT_LEN
+  behavior: shadow
+  sw_behavior: rw
+  hw_behavior: 关键校验 0–255；越界返回配置错误且不访问秘密
+  collision: sw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+- id: LLD.REG.PQC.RESULT
+  register_ref: RESULT
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: completion 发布时写入 verify_valid 与 completion tag；COMMIT 前保持旧值
+  collision: hw_wins
+  update_timing: commit
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.RESULT.001
+- id: LLD.REG.PQC.ERROR_CODE
+  register_ref: ERROR_CODE
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: 仅在公开诊断分类间取值；不得由秘密值派生；KEM_DECAPS 不写有效性
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.ERRCODE.001
+  - LRS.FUNC.PQC.CMD.005
+- id: LLD.REG.PQC.INTR_STATE
+  register_ref: INTR_STATE
+  behavior: w1c
+  sw_behavior: rw1c
+  hw_behavior: hwset on DONE/ERROR/RNG_FAULT/TAMPER/SELF_TEST_FAIL 事件
+  collision: set_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+- id: LLD.REG.PQC.INTR_ENABLE
+  register_ref: INTR_ENABLE
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 只屏蔽中断输出，不影响 INTR_STATE 置位
+  collision: sw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+  - LRS.FUNC.PQC.CMD.008
+- id: LLD.REG.PQC.INTR_TEST
+  register_ref: INTR_TEST
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 每个 test 字段为 singlepulse，写 1 仅一拍置位对应 INTR_STATE，随后自清；不产生真实密码副作用
+  collision: sw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+- id: LLD.REG.PQC.ALERT_RECOVERABLE
+  register_ref: ALERT_RECOVERABLE
+  behavior: w1c
+  sw_behavior: rw1c
+  hw_behavior: hwset on recoverable 故障（如可纠正 ECC、单次 DMA retry）
+  collision: set_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.ALERT.001
+- id: LLD.REG.PQC.ALERT_FATAL
+  register_ref: ALERT_FATAL
+  behavior: lock
+  sw_behavior: rw1c
+  hw_behavior: hwset on fatal 故障（tamper、ECC UE、self-test fail）；置位后进入 LOCKED， 密码命令被拒绝；需显式恢复流程才能退出
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.ALERT.001
+  - LRS.SEC.PQC.LOCK.001
+- id: LLD.REG.PQC.PERF_TOTAL
+  register_ref: PERF_TOTAL_CYCLES
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 使用显式 next/we 接收硬件累加值；idle 时通过 swwe 允许软件写 0 清零，busy 或非零写被抑制
+  collision: sw_wins
+  update_timing: idle_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.PERF.001
+  - LRS.DFX.PQC.PERFCNT.001
+- id: LLD.REG.PQC.PERF_SUB
+  register_ref: PERF_KECCAK_NTT_DMASTALL
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 分别通过 next/we 累加 Keccak cycles、NTT cycles 与 DMA stall；公开命令类型计数独立，idle 零写由 swwe 放行
+  collision: sw_wins
+  update_timing: idle_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.PERF.001
+- id: LLD.REG.PQC.SLOT_CTRL
+  register_ref: KEY_SLOT_CTRL
+  behavior: lock
+  sw_behavior: rw
+  hw_behavior: 仅受特权/安全主体属性允许访问；普通主体访问返回 pslverr 并记录；debug 解锁不改变可访问性
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.004
+- id: LLD.REG.PQC.SLOT_META
+  register_ref: KEY_SLOT_META_WINDOW
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: 回读指定 slot 的 owner/domain/algorithm/parameter_set/usage/exportable/ valid/version；不含私钥内容
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=invalid, soft=按策略
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.REG.PQC.SLOT.001
+- id: LLD.REG.PQC.SLOT_DESTROY
+  register_ref: KEY_SLOT_CTRL.DESTROY
+  behavior: atomic
+  sw_behavior: rw
+  hw_behavior: 清零 slot 内容并递增 generation，使旧 handle 失效；操作中被引用时延迟到 当前命令结束再加锁执行
+  collision: hw_wins
+  update_timing: transaction_boundary
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.SEC.PQC.SLOT.003
+  - LRS.SEC.PQC.SLOT.002
+- id: LLD.REG.PQC.COMPLETION
+  register_ref: COMPLETION_RECORD
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: 在 DMA 输出完成后写入 command_id/status/output 长度/verify_valid/ error_info/cycles；随后才置 DONE
+  collision: hw_wins
+  update_timing: commit
+  reset_semantics: hard=0, soft=clear
+  req_ref:
+  - LRS.REG.PQC.COMPLETION.001
+  - LRS.FUNC.PQC.CMD.006
+- id: LLD.REG.PQC.SLOT_DOMAIN
+  register_ref: KEY_SLOT_DOMAIN.domain
+  behavior: hw_set
+  sw_behavior: ro
+  hw_behavior: 受安全管理窗口保护，返回选中 slot 的可信 domain；非法索引或无效快照返回零
+  collision: hw_wins
+  update_timing: immediate
+  reset_semantics: hard=0, soft=按授权元数据策略但材料保持无效
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.REG.PQC.SLOT.001
+reset:
+- id: LLD.RST.PQC.MAIN
+  module_ref: LLD.MOD.PQC.TOP
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  type: async_low
+  synchronizer: 2FF 同步释放
+  scope: TOP 负责 reset 同步释放与分发；模块数据清除按各自 FSM 执行
+  notes: 控制 valid 异步清除、同步释放；SRAM 不推导异步全阵列复位。FE 保持 DISABLED，所有擦除完成后由 enable 触发 SELFTEST。
+  req_ref:
+  - LRS.INTF.PQC.CLKRESET.001
+  - LRS.RESET.PQC.COLD.001
+  applicability:
+    expr: 'true'
+- id: LLD.RST.PQC.WARM
+  module_ref: LLD.MOD.PQC.FAULT
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  type: warm
+  synchronizer: 复用主复位同步器
+  scope: 所有工作材料、流水/随机数、ephemeral slot；persistent 仅指授权元数据
+  notes: warm reset 无条件清除内部 Key RAM 材料和所有临时值；外部策略只决定 persistent slot 元数据保持。重新使用仍须 Key Manager 重新授权/导入。
+  req_ref:
+  - LRS.RESET.PQC.WARM.001
+  applicability:
+    expr: 'true'
+- id: LLD.RST.PQC.ZEROPATH
+  module_ref: LLD.MOD.PQC.FAULT
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  type: functional_clear
+  synchronizer: n/a（独立同步路径，不依赖主 FSM）
+  scope: 双域 SRAM/Key RAM、Keccak 两 context、全部 gadget/转换/采样寄存器、随机 cache、staging 和待响应流水
+  notes: 由 zeroize_req 或 fatal 事件触发；使用独立计数器，有界完成，从任意状态均可 进入。
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.RESET.PQC.SAFE.001
+  applicability:
+    expr: 'true'
+cdc:
+- id: LLD.CDC.PQC.SIDEBAND
+  module_ref: LLD.MOD.PQC.TOP
+  source_domain: async_external
+  destination_domain: HLD.DOM.CLK.PQC.CORE
+  information_type: level
+  implementation: 2FF synchronizer per bit; zeroize_req 另走独立同步路径
+  notes: lifecycle/tamper 为电平信号，同步化后参与布尔汇聚；zeroize_req 不得经过主 FSM。
+  req_ref:
+  - LRS.INTF.PQC.SIDEBAND.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+- id: LLD.CDC.PQC.ENTROPY
+  module_ref: LLD.MOD.PQC.TOP
+  source_domain: HLD.DOM.CLK.PQC.CORE
+  destination_domain: HLD.DOM.CLK.PQC.CORE
+  information_type: stream
+  implementation: 核心时钟域内 valid/ready + domain tag 检查，跨域完整 stream CDC 由 SoC 负责
+  notes: entropy_data/valid/tag 必须在核心时钟域同时稳定；异步源必须在 SoC 边界使用 完整异步 FIFO/握手桥，不能只同步 valid 或按 bit 同步随机数据。
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  applicability:
+    expr: 'true'
+interrupts:
+- id: LLD.IRQ.PQC.DONE
+  module_ref: LLD.MOD.PQC.APB
+  source: completion 发布完成
+  trigger: completion record 写入且 DMA 输出完成
+  level_or_pulse: level
+  clear: W1C on INTR_STATE
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+- id: LLD.IRQ.PQC.ERROR
+  module_ref: LLD.MOD.PQC.APB
+  source: LLD.ERR.PQC.CONFIG / DMA / INTERNAL
+  trigger: 错误完成
+  level_or_pulse: level
+  clear: W1C on INTR_STATE
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+- id: LLD.IRQ.PQC.RNG
+  module_ref: LLD.MOD.PQC.APB
+  source: LLD.ERR.PQC.RNG
+  trigger: 熵 health 异常
+  level_or_pulse: level
+  clear: W1C on INTR_STATE
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+- id: LLD.IRQ.PQC.TAMPER
+  module_ref: LLD.MOD.PQC.APB
+  source: tamper 输入同步化后置位
+  trigger: tamper 电平有效
+  level_or_pulse: level
+  clear: W1C on INTR_STATE
+  req_ref:
+  - LRS.INTF.PQC.SIDEBAND.001
+- id: LLD.IRQ.PQC.SELFTEST
+  module_ref: LLD.MOD.PQC.APB
+  source: LLD.ERR.PQC.SELFTEST
+  trigger: KAT 失败
+  level_or_pulse: level
+  clear: W1C on INTR_STATE
+  req_ref:
+  - LRS.REG.PQC.INTR.001
+errors:
+- id: LLD.ERR.PQC.CONFIG
+  detection: descriptor 校验失败（opcode/参数集/ABI/reserved/CRC/对齐/长度/capability/权限）
+  response: 在任何秘密访问前终止，返回 CONFIG_ERROR
+  propagation: completion status + ERROR_CODE
+  recovery: 命令级恢复，回到 IDLE，可重新提交
+  req_ref:
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.CMD.005
+- id: LLD.ERR.PQC.DMA
+  detection: AXI 响应错误、超时、4 KiB 违规尝试、容量越界
+  response: 终止命令，进入统一安全收尾；已写数据不得作为有效输出使用
+  propagation: completion status + DMA_ERROR + ALERT
+  recovery: 清零后回到 IDLE
+  req_ref:
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.SEC.PQC.SLOT.005
+- id: LLD.ERR.PQC.RNG
+  detection: entropy valid 长时间无效、health 异常、domain tag 不匹配
+  response: 停止命令并清零，不降级为常数或重复随机数
+  propagation: RNG_FAULT 中断 + completion status
+  recovery: 熵恢复后重新提交
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+- id: LLD.ERR.PQC.SELFTEST
+  detection: 上电/按需 KAT 结果不匹配
+  response: 进入 LOCKED，拒绝密码命令
+  propagation: SELF_TEST_FAIL 中断 + ALERT_FATAL
+  recovery: 需显式恢复流程
+  req_ref:
+  - LRS.RESET.PQC.COLD.001
+- id: LLD.ERR.PQC.INTERNAL
+  detection: page tag mismatch、representation 混用、ECC UE、retry exhausted
+  response: fatal 内部错误，清除候选值，进入安全收尾
+  propagation: completion status=FATAL 或 INTERNAL_RETRY_EXHAUSTED
+  recovery: 清零后回到 IDLE（retry exhausted）或 LOCKED（完整性错误）
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.SEC.PQC.INTEGRITY.001
+safety:
+- id: LLD.SAFE.PQC.CT_SELECT
+  mechanism: constant_time_compare_select
+  protects:
+  - shared_secret_output
+  detection: n/a（防护性机制）
+  response: 全长度 OR 累积比较 + 全位宽 mask select；mask 仅来自比较结果，不控制调度
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  - LRS.SEC.PQC.CT.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x7
+- id: LLD.SAFE.PQC.VERIFY_DUAL
+  mechanism: redundant_comparison
+  protects:
+  - dsa_verify_result
+  detection: 两路比较结果不一致时判定为故障
+  response: 不一致时置 fatal 并拒绝输出 valid（fail-closed）
+  req_ref:
+  - LRS.SEC.PQC.VERIFY.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x38
+- id: LLD.SAFE.PQC.CTRL_SPARSE
+  mechanism: sparse_redundant_encoding
+  protects:
+  - control_fsm
+  - opcode_param_keytype_perm
+  detection: 非法/多热编码检测
+  response: 强制进入 ZEROIZE 并置 fatal；绝不进入 EXECUTE
+  req_ref:
+  - LRS.SEC.PQC.INTEGRITY.001
+  applicability:
+    expr: 'true'
+- id: LLD.SAFE.PQC.COUNTER_PARITY
+  mechanism: parity_check
+  protects:
+  - loop_counter
+  - ntt_stage
+  - dma_length
+  - micro_pc
+  detection: 奇偶不匹配
+  response: 终止命令并进入安全收尾
+  req_ref:
+  - LRS.SEC.PQC.INTEGRITY.001
+  applicability:
+    expr: 'true'
+- id: LLD.SAFE.PQC.ECC
+  mechanism: secded_ecc
+  protects:
+  - working_sram
+  detection: 单比特（可纠正）与双比特（不可纠正）错误
+  response: SEC 可纠正并记录；DED 不可纠正，进入 fatal 安全收尾，禁止消费损坏数据
+  req_ref:
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.DFX.PQC.MBIST.001
+  applicability:
+    expr: 'true'
+- id: LLD.SAFE.PQC.NO_SECRET_GATING
+  mechanism: static_gating_policy
+  protects:
+  - whole_datapath
+  detection: 静态检查确认门控使能仅来自公开状态
+  response: 违规视为设计缺陷，阻塞 G3
+  req_ref:
+  - LRS.SEC.PQC.CT.002
+  applicability:
+    expr: 'true'
+ppa:
+- id: LLD.PPA.PQC.POLY
+  module_ref: LLD.MOD.PQC.POLY
+  area_strategy: 每 lane 配置 23x23 乘法器，KEM 使用低 12 bit；Level 2 两算术 share 独立资源
+  timing_strategy: 乘法、三段约减、规范化和加减分级；按六 batch slot 调度，不以未测频率宣称路径达标
+  power_strategy: 按公开调度使能；两 share 对称活动，不使用秘密或 share 值门控
+  ppdg_target: 面积主导（Tiny）到吞吐主导（Throughput）
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.PQC.KECCAK
+  module_ref: LLD.MOD.PQC.KECCAK
+  area_strategy: 单 permutation 数据通路 + 双 context state（避免第二套 permutation）
+  timing_strategy: Level 0/1 的 r=2 串接两轮路径；Level 2 单轮寄存隔离，不串接 masked chi
+  power_strategy: 按公开轮 FSM 使能 permutation；计算不依赖 absorb/squeeze 同拍 valid
+  ppdg_target: Level 0/1 轮展开与组合深度权衡；Level 2 包含 gadget 寄存和随机带宽代价
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  - LRS.CFG.PQC.KECCAK_ROUNDS.001
+  applicability:
+    expr: 'true'
+- id: LLD.PPA.PQC.SRAM
+  module_ref: LLD.MOD.PQC.SRAM
+  area_strategy: 每 share 8 bank，数据 32 bit 加 ECC；Level 2 镜像，32 KiB 逻辑档位按页复用
+  timing_strategy: bank 仲裁为单周期确定性决策，避免长组合路径
+  power_strategy: 未访问 bank 门控；zeroize 期间全 bank 使能
+  ppdg_target: 面积与最大工作集约束的平衡点
+  req_ref:
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  applicability:
+    expr: 'true'
+gen: []
+derived:
+- id: LLD.DERIVED.PQC.LAZY
+  statement: 保留旧 ID 追踪；取消跨乘积 lazy 累加，每次乘加规范化到 [0,q)。中间约减范围按 POLY 分级证书验证。
+  derived_from:
+  - HDR.PQC.LAZY_RANGE.001
+  status: proposed
+- id: LLD.DERIVED.PQC.BANKHASH
+  statement: bank 三位分别为 i0^i3^i6、i1^i4^i7、i2^i5；row=i[7:3]。各 power-of-two 蝶形和 1/2/4 lane 调度按模型枚举。
+  derived_from:
+  - HDR.PQC.BANK_CONFLICT.001
+  status: proposed
+- id: LLD.DERIVED.PQC.KCTX
+  statement: 实现两个 Keccak context（CTX_MSG、CTX_XOF），仅一套 permutation 数据通路， block 边界切换；同一 context 不被抢占
+  derived_from:
+  - HDR.PQC.KECCAK_CTX.001
+  status: proposed
+decisions:
+- id: LLD.DECISION.PQC.DEFERRED_COMMIT
+  decision: 候选签名先在 staging buffer 中完成全部格式检查与长度确定，再一次性 DMA commit
+  rationale: 拒绝原因及候选签名不外露，总尝试次数影响总时延；最大签名 4627 B 占五个逻辑页
+  alternatives:
+  - 边算边写输出（存在部分结果可见窗口）
+  consequences:
+  - staging 容量固定
+  - DMA commit 需要单调完成信号
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+- id: LLD.DECISION.PQC.REDUCE_SCHEDULE
+  decision: 约减采用固定位置插入而非数据相关分支
+  rationale: 数据相关分支会引入秘密相关时序
+  alternatives:
+  - 数据相关条件约减（简单但非常数时间）
+  consequences:
+  - 需要逐级约减的同余及位宽证明；不允许跨乘积隐式 lazy 范围
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+verify_hooks:
+- id: LLD.VHOOK.PQC.BANK
+  design_ref: LLD.DERIVED.PQC.BANKHASH
+  concern: bank 冲突是否被静态消除
+  suggested_check: 断言同一 cycle 的 a/b bank 不同；冲突时 stall 为确定性
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+- id: LLD.VHOOK.PQC.CT
+  design_ref: LLD.SAFE.PQC.CT_SELECT
+  concern: 秘密是否影响可观察行为
+  suggested_check: 形式 taint 分析；KEM valid/invalid 的公开 trace 与周期分布一致
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+- id: LLD.VHOOK.PQC.ATTEMPT
+  design_ref: LLD.FSM.PQC.DSASEQ.ATTEMPT
+  concern: 拒绝轮次输出不可见性与上限行为
+  suggested_check: 强制 0/1/多次拒绝；验证 A_EXHAUST 无输出
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+rtl_map:
+- id: RTL.PQC.DESC_FETCH
+  rtl_file: rtl/pqc_desc_fetch.sv
+  rtl_module: pqc_desc_fetch
+  implements:
+  - LLD.MOD.PQC.FE.DESC_FETCH
+  - LLD.FSM.PQC.FE.DESC_FETCH
+  generated: false
+- id: RTL.PQC.FE.VALIDATE
+  rtl_file: rtl/pqc_desc_validate.sv
+  rtl_module: pqc_desc_validate
+  implements:
+  - LLD.MOD.PQC.FE.VALIDATE
+  - LLD.DP.PQC.FE.VALIDATE
+- id: RTL.PQC.KECCAK.MASKED_ROUND
+  rtl_file: rtl/pqc_keccak_masked_round.sv
+  rtl_module: pqc_keccak_masked_round
+  implements:
+  - LLD.MOD.PQC.KECCAK.MASKED_ROUND
+  - LLD.DP.PQC.KECCAK.MASKED_ROUND
+  - LLD.FSM.PQC.KECCAK.MASKED_ROUND
+- id: RTL.PQC.MASK_AND
+  rtl_file: rtl/pqc_masked_and.sv
+  rtl_module: pqc_masked_and
+  implements:
+  - LLD.MOD.PQC.KECCAK.MASK_AND
+  - LLD.DP.PQC.MASK_AND.TWO_SHARE
+  - LLD.PIPE.PQC.MASK_AND.HPC3PLUS
+  generated: false
+- id: RTL.PQC.RANDOM
+  rtl_file: rtl/pqc_random_service.sv
+  rtl_module: pqc_random_service
+  implements:
+  - LLD.MOD.PQC.TOP.RANDOM
+  - LLD.DP.PQC.TOP.RANDOM
+  - LLD.FSM.PQC.TOP.RANDOM
+- id: RTL.PQC.READ_ARB
+  rtl_file: rtl/pqc_axi_read_arb.sv
+  rtl_module: pqc_axi_read_arb
+  implements:
+  - LLD.MOD.PQC.TOP.READ_ARB
+  - LLD.FSM.PQC.TOP.READ_ARB
+  generated: false
+- id: RTL.PQC.WORKKEY
+  rtl_file: rtl/pqc_work_key_ram.sv
+  rtl_module: pqc_work_key_ram
+  implements:
+  - LLD.MOD.PQC.WORKKEY
+  - LLD.BUF.PQC.WORKKEY.MATERIAL
+  - LLD.FSM.PQC.WORKKEY.MAIN
+  - LLD.PIPE.PQC.WORKKEY.READ
+  generated: false
+- id: RTL.PQC.TOP
+  rtl_file: rtl/pqc_top.sv
+  rtl_module: pqc_top
+  implements:
+  - LLD.MOD.PQC.TOP
+  - LLD.DP.PQC.TOP.COMMAND_CONTEXT
+  generated: false
+- id: RTL.PQC.APB
+  rtl_file: rtl/pqc_apb_if.sv
+  rtl_module: pqc_apb_if
+  implements:
+  - LLD.MOD.PQC.APB
+  - LLD.IF.PQC.FE.APB
+  generated: false
+- id: RTL.PQC.FE
+  rtl_file: rtl/pqc_cmd_frontend.sv
+  rtl_module: pqc_cmd_frontend
+  implements:
+  - LLD.MOD.PQC.FE
+  - LLD.FSM.PQC.TOP.MAIN
+  - LLD.BUF.PQC.FE.DESC
+  generated: false
+- id: RTL.PQC.KEYSLOT
+  rtl_file: rtl/pqc_key_slots.sv
+  rtl_module: pqc_key_slots
+  implements:
+  - LLD.MOD.PQC.KEYSLOT
+  - LLD.DP.PQC.KEYSLOT.AUTH
+  - LLD.FSM.PQC.KEYSLOT.LIFETIME
+  generated: false
+- id: RTL.PQC.KEMSEQ
+  rtl_file: rtl/pqc_kem_seq.sv
+  rtl_module: pqc_kem_seq
+  implements:
+  - LLD.MOD.PQC.KEMSEQ
+  - LLD.FSM.PQC.KEMSEQ.DISPATCH
+  - LLD.DP.PQC.KEMSEQ.COMPARE_SELECT
+  - LLD.SAFE.PQC.CT_SELECT
+  generated: false
+- id: RTL.PQC.DSASEQ
+  rtl_file: rtl/pqc_dsa_seq.sv
+  rtl_module: pqc_dsa_seq
+  implements:
+  - LLD.MOD.PQC.DSASEQ
+  - LLD.FSM.PQC.DSASEQ.ATTEMPT
+  - LLD.BUF.PQC.DSASEQ.STAGE
+  - LLD.SAFE.PQC.VERIFY_DUAL
+  generated: false
+- id: RTL.PQC.POLY
+  rtl_file: rtl/pqc_poly_engine.sv
+  rtl_module: pqc_poly_engine
+  implements:
+  - LLD.MOD.PQC.POLY
+  - LLD.DP.PQC.POLY.BFLY
+  - LLD.PIPE.PQC.POLY.STAGE
+  - LLD.DERIVED.PQC.BANKHASH
+  - LLD.DERIVED.PQC.LAZY
+  generated: false
+- id: RTL.PQC.KECCAK
+  rtl_file: rtl/pqc_keccak.sv
+  rtl_module: pqc_keccak
+  implements:
+  - LLD.MOD.PQC.KECCAK
+  - LLD.DP.PQC.KECCAK.PERM
+  - LLD.PIPE.PQC.KECCAK.BLOCK
+  - LLD.DERIVED.PQC.KCTX
+  generated: false
+- id: RTL.PQC.SAMPLER
+  rtl_file: rtl/pqc_sampler.sv
+  rtl_module: pqc_sampler
+  implements:
+  - LLD.MOD.PQC.SAMPLER
+  - LLD.FSM.PQC.SAMPLER.EXECUTE
+  - LLD.DP.PQC.SAMPLER.STREAM
+  - LLD.DP.PQC.SAMPLER.SECRET_SCAN
+  - LLD.BUF.PQC.SAMPLER.SQZ
+  generated: false
+- id: RTL.PQC.CODEC
+  rtl_file: rtl/pqc_codec.sv
+  rtl_module: pqc_codec
+  implements:
+  - LLD.MOD.PQC.CODEC
+  - LLD.DP.PQC.CODEC.BITPACK
+  generated: false
+- id: RTL.PQC.SRAM
+  rtl_file: rtl/pqc_secure_sram_ctrl.sv
+  rtl_module: pqc_secure_sram_ctrl
+  implements:
+  - LLD.MOD.PQC.SRAM
+  - LLD.DP.PQC.SRAM.TAG_ECC
+  - LLD.FSM.PQC.SRAM.PAGE
+  - LLD.ARB.PQC.SRAM.BANK
+  - LLD.SAFE.PQC.ECC
+  generated: false
+- id: RTL.PQC.DMA
+  rtl_file: rtl/pqc_dma.sv
+  rtl_module: pqc_dma
+  implements:
+  - LLD.MOD.PQC.DMA
+  - LLD.DP.PQC.DMA.BYTE_STREAM
+  - LLD.FSM.PQC.DMA.TRANSFER
+  - LLD.IF.PQC.DMA.AXI
+  generated: false
+- id: RTL.PQC.FAULT
+  rtl_file: rtl/pqc_fault_ctrl.sv
+  rtl_module: pqc_fault_ctrl
+  implements:
+  - LLD.MOD.PQC.FAULT
+  - LLD.RST.PQC.ZEROPATH
+  - LLD.SAFE.PQC.CTRL_SPARSE
+  - LLD.SAFE.PQC.COUNTER_PARITY
+  - LLD.SAFE.PQC.NO_SECRET_GATING
+  generated: false
+- id: RTL.PQC.CSR
+  rtl_file: rtl/generated/pqc_csr.sv
+  rtl_module: pqc_csr
+  implements:
+  - LLD.REG.PQC.ID_VERSION
+  - LLD.REG.PQC.CTRL_ENABLE
+  - LLD.REG.PQC.STATUS
+  - LLD.REG.PQC.INTR_STATE
+  - LLD.REG.PQC.SLOT_CTRL
+  generated: true
+  generator_ref: GEN.PQC.RDL
+gates:
+- gate: G2
+  status: open
+  microarchitecture_freeze: false
+provenance:
+  schema: ip-design-projection/1.0
+  stage: lld
+  sources:
+  - path: docs/lrs/00_document_control.md
+    sha256: 6e565382467ff10319b81c4f9bd454107712801ed5116cddc81ef4902f67a64a
+  - path: docs/lrs/01_configuration.md
+    sha256: 7627eb99a93f3b06cb867ba8a014b2f734ff23585254ed2186ce78cebb68cd2c
+  - path: docs/lrs/01_configuration_security.md
+    sha256: 435ed9e532d90ded7af6c1b46ed34628d3b5e0eeee4d27287c0968556f03807f
+  - path: docs/lrs/02_interface.md
+    sha256: b1d66c94f6597955dda1a5f7d0569654bc505cb3046a04c7e87625c690dd580d
+  - path: docs/lrs/03_functional_command.md
+    sha256: beaee00da140657fd4bacc8058286d9fb5271d6fa0d53a96677931136776c5ef
+  - path: docs/lrs/03_functional_dsa.md
+    sha256: d8244ec09cbf0e65b37f1dab21cfb4eda75d5333c8ddb11d1c17caa822cf685f
+  - path: docs/lrs/03_functional_kem.md
+    sha256: 4baa9c92514983232f00f2bd5ef7bb3f8c6cb2e5a4e32865a65532d533b874c6
+  - path: docs/lrs/04_register.md
+    sha256: e8646ed0aed8ae9539b94b884f4d30214eccd55721fdb1c00f09a0910e19a2a5
+  - path: docs/lrs/05_performance.md
+    sha256: 02748c7230f8effb0021aa891b8d3ec5409d96ac07bc3855674d640a4f140785
+  - path: docs/lrs/06_clock_reset.md
+    sha256: bf62af7df1e6ffd1319bb0b2258faa311277e8d3c907869bdc137f823c85d912
+  - path: docs/lrs/07_security_ct.md
+    sha256: a2178a2766706c1a7705a0495cd07bfc8bb89fa245f3378de0e952c4ca56f629
+  - path: docs/lrs/07_security_key.md
+    sha256: 2e0fab24842bcf3e5e7e32427a0c8a38b7a6ceb708eabfa8b86ee82564710bbe
+  - path: docs/lrs/08_safety_lowpower.md
+    sha256: 88a72917013c97cfd5bf56e95c7cc856d8b1b0a254fc589d44075ac8a0847944
+  - path: docs/lrs/09_dfx.md
+    sha256: 9d6acbc617a1fb9d726c8eb7588002f1e35bacc94e4914a938c1b4c8dad03043
+  - path: docs/lrs/11_generator.md
+    sha256: 0ce701cfe2723221bcf19245ff9ece0ee5b14197710e86bb43a39c63de1e26df
+  - path: docs/lrs/12_constraints.md
+    sha256: 156d052f692beeead7a63b32dbab1019c71d9ab94781e30af69523ee2950326d
+  - path: docs/lrs/99_quality_gate.md
+    sha256: cc7f11c81fb6a2d5b191da112d2803a68209706c97de793230727e557bd933db
+  - path: docs/lrs/index.md
+    sha256: c7402967b0c4c6c504de9cd6dcc40f37acc954b0cfa24250f58c2eaea691afdb
+  - path: docs/hld/00_document_control.md
+    sha256: 2f8030ba6b170be1a3dff26f02c2c6b7b2e0cb12e6d402ec7d771f50dca43a89
+  - path: docs/hld/01_architecture.md
+    sha256: 77441002017c58af5da953f413a8f1bb34176583a1222984ec3c6076ae0327d8
+  - path: docs/hld/01_architecture_compute.md
+    sha256: 21308cde19f59c8d536a2d6977cabc0bfa8b7a429518f5e1d5172e6da9427f41
+  - path: docs/hld/01_architecture_control.md
+    sha256: 4aa5cfadb5cbe9178f956eb8f5d9a2dc381b49d70c4c4720355b5b9b424ac51a
+  - path: docs/hld/01_architecture_storage.md
+    sha256: 2d075e037dad37d52113f1bb9291798bef2878033588e970fb8ef1d5b4bd1359
+  - path: docs/hld/03_interface.md
+    sha256: 58cca3068ecfca5d3a27e8cad5a6d63b59e843f7e2e4e69478ecd98b3f8ed97b
+  - path: docs/hld/03_interface_internal.md
+    sha256: 707009b0678ad96a9f2025298d28ddb3f02449b727dff67358540d2a17a7b647
+  - path: docs/hld/03_interface_key_manager.md
+    sha256: 8dde706b8ec9556e56e0042fe42289a1b6cdd128acf049d382d07a7b3bd37972
+  - path: docs/hld/03_interface_random.md
+    sha256: e7162a7c2bc0062b1c805c32d905924d34652ba22b424ce8d7cf629d092f7452
+  - path: docs/hld/04_clock_cdc.md
+    sha256: b6bda585dc5638f9278dfcdc5448ce3f003f56055350fa785f9a4ac2fa96020c
+  - path: docs/hld/05_flows.md
+    sha256: 82b698425248335b585ff9728e31c03df7ae74eb55a137ecc09c7adca63fc373
+  - path: docs/hld/05_flows_algorithms.md
+    sha256: c1e058dd96294c94cfad0a21b8320e02ea4ded877857587aaf6589c4f1efc46d
+  - path: docs/hld/06_policies.md
+    sha256: 65133fe326c11d59bec94a35223d6720ad21ff98102bdffd550e5e255edfa8b4
+  - path: docs/hld/07_lld_handoff.md
+    sha256: 2baa6e4c9ed2d6b4a50f7a1bf9a5377f2d424f47aba03e92032a8f2e8ac73bac
+  - path: docs/hld/07_register_arch.md
+    sha256: a58f6cbcc35ff9380828e873c90bef4227a3532cff9fe1da08f06b654b757dcc
+  - path: docs/hld/08_performance.md
+    sha256: 3393dd86694ba479b48ad4f9d0521c16ffd97cd0b69e9755c036d14295b9e7a9
+  - path: docs/hld/09_masking_execution.md
+    sha256: ea8de01df8339bdab0cc90939a14eb4fe6cfbabaea66f706866b5e524fcd5b5f
+  - path: docs/hld/09_masking_level2.md
+    sha256: 70b07f740e73e388fa7293e8599e43cfec6f5b0c578e165315b61688a5e788be
+  - path: docs/hld/09_safety_security.md
+    sha256: 88494b76affa11a2c257ace5d503e6851fc66e5bee6e408279d6bd547dbee9a7
+  - path: docs/hld/10_configuration_effects.md
+    sha256: 34dd2f69711494930978b9510dfd98c34ea905a991ceb849f5149ea272f0df5c
+  - path: docs/hld/10_decisions.md
+    sha256: 03a3c577ca0196c36a7d1012ff271fc3f1d414412cc1f414c3d252cd9f670072
+  - path: docs/hld/10_derived_decisions.md
+    sha256: 6baa32e3690195fb2ac4daf22d2e96b7f0844434601dd5a9f0a29e9f53ad90e7
+  - path: docs/hld/99_quality_gate.md
+    sha256: 001459d838bf61c1b7100f4bacf9f3a641c2d14d756dc959c587555d1e263c7e
+  - path: docs/hld/index.md
+    sha256: 0dee35480b4cb4fc87394dc4f712771b46c865ebd8050ca01ed46643e0ce6ef7
+  - path: docs/lld/00_document_control.md
+    sha256: 547b9302458697948d2b7e418c67444a470594373e56e808bcd6aee4821b560f
+  - path: docs/lld/01_decomposition.md
+    sha256: 115a347e7987880b13798ad051688d05df22fa3ace96a813bea757aa59655a91
+  - path: docs/lld/02_fsm_datapath.md
+    sha256: 3890b99192c86887130d5dfb057a2a265ce1c702a31d14468c1f179ce9968f64
+  - path: docs/lld/03_apb.md
+    sha256: d44cd31178e38c5b098957a605ff46bfd6ec329543620749f1442cefd9e1a0c6
+  - path: docs/lld/03_codec.md
+    sha256: 3f6e86462de31faaba68f21222cb95f94b650105e5e2783de8ed1ee51c071c8d
+  - path: docs/lld/03_dma.md
+    sha256: 3a867e15e47e12169ab778581fc33620bf2bf83621fdf8e8133172c19c37c8ee
+  - path: docs/lld/03_dsaseq.md
+    sha256: ac46cdd03e2e0fa1df469edd71a48548a036d475ab53cd1897c67e3e003f55fa
+  - path: docs/lld/03_fault.md
+    sha256: 2a872e84c854cae2d3e029cb62f2f8c213566e01325b08929281f3b649930d44
+  - path: docs/lld/03_fe.md
+    sha256: 0440e8d2b34aa2935a21f6e8ee0e8c9fc9654c3675a95b24622481873d817350
+  - path: docs/lld/03_fe_desc.md
+    sha256: 5cc4269489e97f2f8ad5e15dbf2bd89fe4a8f0a5c1b03ffa210934049676200d
+  - path: docs/lld/03_fe_validate.md
+    sha256: df55dc9e1e41e292894dccc4c1ee00d8f669eea2f181dc062f41ebcdb228c748
+  - path: docs/lld/03_keccak.md
+    sha256: e07fa12f2437d28cb5dddb5d2e945051f3bf40c0d465a88955fdb7b18294e4f5
+  - path: docs/lld/03_keccak_masked_round.md
+    sha256: c88196e62d3e7d64c84c43f4a6c6ac5210f246df39af73bae382fb3061b002af
+  - path: docs/lld/03_kemseq.md
+    sha256: 299804da28db7ceba56765c3fca4daf81a1e1e25747419cf8fdbac8a01dafc2d
+  - path: docs/lld/03_keyslot.md
+    sha256: 9cfcadb449157e63897485eed8e2af43eb39e81d18029be682335491209c554f
+  - path: docs/lld/03_masked_and.md
+    sha256: e06d5296e96619484bab48d9cf0dce3ef713207d4d7f81140a828b7a24e36131
+  - path: docs/lld/03_poly.md
+    sha256: 360d6091e229e80942523273c1837638a2b8611a1254de89767e39d62770600b
+  - path: docs/lld/03_register_behavior_1.md
+    sha256: ac91016503456459a98e973c6cb30e180cefb5d96e7e65ed7b126f2476b95af3
+  - path: docs/lld/03_register_behavior_2.md
+    sha256: 0f262dcebcfb0bc32912f220d39c98c2e7601ef5191269be282d200753c7497d
+  - path: docs/lld/03_sampler.md
+    sha256: 1a588754b8c720eb2f9f972e596ba2ddd54b1434a6a4cecd9142a104f8b024f5
+  - path: docs/lld/03_sampler_secret.md
+    sha256: 83a94be5a87b9c8d02acc4861e04a87238f757264f81527b19e3843b69671bd2
+  - path: docs/lld/03_sram.md
+    sha256: eb64c653c74fac42119b4f8af588784851dafddcb08d907b295772ee01f3196a
+  - path: docs/lld/03_top.md
+    sha256: 1f6fb3d25bc6f88ba6f2afc2d406f12200c1b756c7ec063ca633884774e30d0e
+  - path: docs/lld/03_top_read_arb.md
+    sha256: ec4ba44c67eed5645f5aff72b97d8b0f3fdb86dc43c51e06b2abdc34037d07f7
+  - path: docs/lld/03_workkey.md
+    sha256: 4b870de8ac0e72bc83259d42a6cdf160df30f169241e7222b231139d35a86fa8
+  - path: docs/lld/04_ppa_constraints.md
+    sha256: 994ea8efa38dc1e550c322749a338f3c87c0d7315246d8a0fbd24d99a1fefff4
+  - path: docs/lld/04_reset_cdc_error.md
+    sha256: 29834df77749859ccea74feaa2a5d508441af6a13252443407ad5de30e77682f
+  - path: docs/lld/04_safety_mechanisms.md
+    sha256: d1d1f02a9345ab05abcae0b4ee3a2daf2953c136cb1e871f233f698a035679c6
+  - path: docs/lld/05_rtl_map.md
+    sha256: 720968f7641d8f9e046ac4b68c9d4f29ef235cfff0c5b24a924a5bed1bdf1b3e
+  - path: docs/lld/99_quality_gate.md
+    sha256: 0547bdec548783218bedfbc2a8edb1a10153fa964607bb8571f1fa53fe921b12
+  - path: docs/lld/index.md
+    sha256: 872792b16cbe3a354c63b1d2252081a88ec7bd667a013d1fe2e0a5bb5482851a
+  extractor:
+    skills/05-lld-microdesign/scripts/extract_lld.py: 238bb958c64afe79861bb48d3718a6fc81d89b2928c79abab58bb176c177a432
+    scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
+    scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
+  payload_sha256: 2621297309af327e06a055b103acaa76cb295a74042f5baa71fe603bc36b6863

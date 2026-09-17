@@ -1,0 +1,952 @@
+schema_version: '2.0'
+ip_name: pqc
+verification_level: smoke
+status: reviewed
+delivery_model: parameterized
+lrs_baseline: PQC-CONTRACT-36c592c3ffa1
+hld_baseline: PQC-HLD-1.0.0
+lld_baseline: PQC-LLD-1.0.0
+features:
+- id: FL.PQC.CFG
+  name: configuration_space
+  description: 综合期参数合法空间、命名配置与跨参数约束
+  priority: must
+  req_ref:
+  - LRS.CFG.PQC.NTT_LANES.001
+  - LRS.CFG.PQC.KECCAK_ROUNDS.001
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  - LRS.CFG.PQC.DMA_WIDTH.001
+  - LRS.CFG.PQC.KEY_SLOT.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.CFG.PQC.ALGO_MASK.001
+  - LRS.CFG.PQC.FEATURE_FLAGS.001
+  - LRS.CFG.PQC.EXEC_MODE.001
+  design_ref:
+  - HLD.CFG.PQC.NTT_LANES
+  - HLD.CFG.PQC.KECCAK_ROUNDS
+  - HLD.CFG.PQC.LOCAL_SRAM
+  - HLD.CFG.PQC.DMA_WIDTH
+  - HLD.CFG.PQC.SCA
+  - HLD.CFG.PQC.ALGO_MASK
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - static
+  testcases:
+  - id: TC.PQC.CFG.001
+    name: tc_param_elab
+    type: directed
+    description: Tiny/Balanced/Throughput 三档配置可 elaboration 且 CAPABILITY 一致
+    priority: must
+    tier: extended
+    implementation: scripts/run_pqc_param_elab.py
+    proof_kind: static
+    feature_ref:
+    - FL.PQC.CFG
+    design_ref:
+    - HLD.CFG.PQC.NTT_LANES
+    - HLD.CFG.PQC.KECCAK_ROUNDS
+    preconditions:
+    - vlogan 可用
+    stimulus:
+    - 分别以三档参数 elaboration 顶层
+    expected_result:
+    - 三档均编译通过
+    - 非法参数值被拒绝
+    timeout_policy: 1800 s
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.CFG.001
+    name: cov_config_space
+    type: functional
+    description: 覆盖三档命名配置与参数边界
+    feature_ref:
+    - FL.PQC.CFG
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage:
+  - id: CCOV.PQC.CFG_MATRIX
+    name: config_matrix_coverage
+    dimensions: &id001
+    - NTT_LANES
+    - KECCAK_ROUNDS_PER_CYCLE
+    - LOCAL_SRAM_KIB
+    - SCA_LEVEL
+    feature_ref: &id002
+    - FL.PQC.CFG
+    applicability: &id003
+      expr: 'true'
+- id: FL.PQC.APB
+  name: apb_control_interface
+  description: APB4 寄存器读写、未映射地址 pslverr、reserved 语义
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.APB.001
+  - LRS.FUNC.PQC.CMD.004
+  design_ref:
+  - LLD.IF.PQC.FE.APB
+  - LLD.TIMING.PQC.APB.RW
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.APB.001
+    name: tc_apb_protection
+    type: negative
+    description: 未映射地址返回 pslverr；BUSY 期间写命令组被拒绝且值不变
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_apb_protection.sv
+    feature_ref:
+    - FL.PQC.APB
+    design_ref:
+    - LLD.IF.PQC.FE.APB
+    - LLD.TIMING.PQC.APB.RW
+    preconditions:
+    - IP 处于 IDLE
+    stimulus:
+    - 访问未映射地址
+    - 提交命令使其 BUSY，期间写 COMMAND.opcode
+    expected_result:
+    - 未映射访问 psready 有效且 pslverr 为 1
+    - BUSY 期间写入被拒绝，opcode 保持提交值
+    - 命令结果不受影响
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.APB.001
+    name: cov_apb_access
+    type: functional
+    description: 覆盖读写、字节使能、非法地址与 BUSY 写保护
+    feature_ref:
+    - FL.PQC.APB
+    design_ref:
+    - LLD.IF.PQC.FE.APB
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.APB.001
+    name: a_busy_write_block
+    feature_ref:
+    - FL.PQC.APB
+    design_ref:
+    - LLD.REG.PQC.COMMAND
+    property: BUSY 期间对受保护字段的写必须被拒绝（swwe=0）且字段值不变
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.DMA
+  name: axi4_data_interface
+  description: INCR burst、4 KiB 边界、范围检查、分段等价
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.002
+  - LRS.INTF.PQC.DMA.003
+  - LRS.SEC.PQC.SLOT.005
+  design_ref:
+  - LLD.IF.PQC.DMA.AXI
+  - LLD.TIMING.PQC.DMA.SPLIT
+  - LLD.ERR.PQC.DMA
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.DMA.001
+    name: tc_dma_boundary
+    type: boundary
+    description: 跨 4 KiB 的传输被拆分为多个 INCR burst 且字节顺序不变
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_dma_boundary.sv
+    feature_ref:
+    - FL.PQC.DMA
+    design_ref:
+    - LLD.TIMING.PQC.DMA.SPLIT
+    preconditions:
+    - DMA 从端就绪
+    stimulus:
+    - 发起起点在 4 KiB 边界前 8 字节、长度跨越边界的读与写
+    expected_result:
+    - 每次 burst 不跨 4 KiB
+    - 拼接后的数据与连续传输一致
+    - 协议无违规
+    timeout_policy: 400000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.DMA.001
+    name: cov_dma_boundary
+    type: functional
+    description: 覆盖 4 KiB 拆分、尾部不满 beat、错误响应
+    feature_ref:
+    - FL.PQC.DMA
+    design_ref:
+    - LLD.TIMING.PQC.DMA.SPLIT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.DMA.001
+    name: a_no_4k_cross
+    feature_ref:
+    - FL.PQC.DMA
+    design_ref:
+    - LLD.TIMING.PQC.DMA.SPLIT
+    property: 任一 AXI burst 不得跨越 4 KiB 边界
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.ENTROPY
+  name: entropy_interface
+  description: valid/ready 握手、health、domain tag、授权策略
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.RESET.PQC.CLK.001
+  design_ref:
+  - LLD.CDC.PQC.ENTROPY
+  - LLD.ERR.PQC.RNG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.ENTROPY.001
+    name: a_entropy_gated
+    feature_ref:
+    - FL.PQC.ENTROPY
+    design_ref:
+    - LLD.CDC.PQC.ENTROPY
+    property: entropy_ready 只可在算法执行且熵 health 正常时置位，且 domain tag 与命令匹配
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.SIDEBAND
+  name: sideband_security_interface
+  description: lifecycle/tamper/zeroize 输入与五类中断输出
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.SIDEBAND.001
+  - LRS.REG.PQC.INTR.001
+  - LRS.REG.PQC.ALERT.001
+  - LRS.INTF.PQC.CLKRESET.001
+  design_ref:
+  - LLD.CDC.PQC.SIDEBAND
+  - LLD.IRQ.PQC.DONE
+  - LLD.IRQ.PQC.TAMPER
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.SIDEBAND.001
+    name: tc_intr_independence
+    type: directed
+    description: 五类中断可独立置位、屏蔽、清除
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_intr_independence.sv
+    feature_ref:
+    - FL.PQC.SIDEBAND
+    design_ref:
+    - LLD.IRQ.PQC.DONE
+    - LLD.IRQ.PQC.TAMPER
+    preconditions:
+    - IP 已使能并进入 IDLE
+    stimulus:
+    - 分别置位 INTR_TEST 各位
+    - 在各 enable 组合下观察 irq 输出
+    - W1C 清除单一位
+    expected_result:
+    - 每个中断独立可控
+    - enable=0 时对应位不产生外部 irq 但仍置位
+    - W1C 不影响其他位
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.SIDEBAND.001
+    name: a_w1c_set_wins
+    feature_ref:
+    - FL.PQC.SIDEBAND
+    design_ref:
+    - LLD.REG.PQC.INTR_STATE
+    property: INTR_STATE 同周期 HW set 与 SW W1C 冲突时结果必须为置位
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.CLKRESET
+  name: clock_reset_interface
+  description: 单时钟域、低有效异步复位、复位释放行为
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.CLKRESET.001
+  - LRS.RESET.PQC.CLK.001
+  design_ref:
+  - LLD.RST.PQC.MAIN
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - simulation
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.CLKRESET.001
+    name: a_single_clock_domain
+    feature_ref:
+    - FL.PQC.CLKRESET
+    design_ref:
+    - LLD.RST.PQC.MAIN
+    property: 所有时序元件由同一 clk 驱动，rst_n 为低有效异步复位且同步释放
+    severity: error
+    verification_method: static
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.CMD
+  name: command_semantics
+  description: 八类 opcode、descriptor 校验、BUSY 锁定、completion 写序、abort
+  priority: must
+  req_ref:
+  - LRS.FUNC.PQC.CMD.001
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.CMD.004
+  - LRS.FUNC.PQC.CMD.005
+  - LRS.FUNC.PQC.CMD.006
+  - LRS.FUNC.PQC.CMD.007
+  - LRS.FUNC.PQC.CMD.008
+  design_ref:
+  - LLD.FSM.PQC.TOP.MAIN
+  - LLD.BUF.PQC.FE.DESC
+  - LLD.REG.PQC.DOORBELL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.CMD.001
+    name: tc_cmd_smoke
+    type: directed
+    description: 上电使能、自检通过、门铃提交合法命令并收到 completion 与 DONE
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_cmd_smoke.sv
+    feature_ref:
+    - FL.PQC.CMD
+    design_ref:
+    - LLD.FSM.PQC.TOP.MAIN
+    preconditions:
+    - rst_n 释放，CTRL.enable 置位
+    stimulus:
+    - 写入合法 COMMAND 与 DESC_ADDR，写 DOORBELL=1
+    expected_result:
+    - STATUS 由 IDLE 进入 BUSY 后回到 IDLE
+    - completion record 写入后 DONE 置位
+    - INTR_STATE.done 置位并可 W1C 清除
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.CMD.001
+    name: cov_command_states
+    type: functional
+    description: 覆盖八个 opcode、顶层 FSM 全部状态与合法/非法组合
+    feature_ref:
+    - FL.PQC.CMD
+    design_ref:
+    - LLD.FSM.PQC.TOP.MAIN
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.CMD.001
+    name: a_completion_order
+    feature_ref:
+    - FL.PQC.CMD
+    design_ref:
+    - LLD.FSM.PQC.TOP.MAIN
+    property: DONE 置位时 completion record 必须已经写入，且 COMMIT 前无输出可见
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.REG
+  name: register_capabilities
+  description: 软件可见能力、字段访问属性、SW/HW 冲突优先序、复位值
+  priority: must
+  req_ref:
+  - LRS.REG.PQC.ID.001
+  - LRS.REG.PQC.CTRL.001
+  - LRS.REG.PQC.STATUS.001
+  - LRS.REG.PQC.RESULT.001
+  - LRS.REG.PQC.ERRCODE.001
+  - LRS.REG.PQC.PERF.001
+  - LRS.REG.PQC.SLOT.001
+  - LRS.REG.PQC.COMPLETION.001
+  - LRS.CONS.PQC.REG.001
+  design_ref:
+  - LLD.REG.PQC.ID_VERSION
+  - LLD.REG.PQC.STATUS
+  - LLD.REG.PQC.RESULT
+  - LLD.REG.PQC.ERROR_CODE
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - static
+  testcases:
+  - id: TC.PQC.REG.001
+    name: tc_reg_reset_attr
+    type: register
+    description: 复位后 RO/RW 字段读回符合 RDL reset；W1C 只清除对应位
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_reg_reset_attr.sv
+    feature_ref:
+    - FL.PQC.REG
+    design_ref:
+    - LLD.REG.PQC.ID_VERSION
+    - LLD.REG.PQC.STATUS
+    - LLD.REG.PQC.INTR_STATE
+    preconditions:
+    - 复位释放后立即读取
+    stimulus:
+    - 读取 ID_VERSION/CAPABILITY0/STATUS
+    - 对 INTR_STATE 逐位置位（INTR_TEST）后逐位 W1C
+    expected_result:
+    - 复位值与 RDL reset 一致，无 X
+    - 每次 W1C 只清除被写位
+    - RO 寄存器写入无副作用
+    timeout_policy: 200000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.REG.001
+    name: cov_register_attrs
+    type: functional
+    description: 覆盖 RO/W1C/BUSY 锁定字段的访问组合
+    feature_ref:
+    - FL.PQC.REG
+    design_ref:
+    - LLD.REG.PQC.INTR_STATE
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.PQC.PERF
+  name: performance_requirements
+  description: 重叠、无软件回退、延迟目标、Sign bubble、cycle model
+  priority: must
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  - LRS.PERF.PQC.NOSW.001
+  - LRS.PERF.PQC.LATENCY.001
+  - LRS.PERF.PQC.SIGNBUBBLE.001
+  - LRS.PERF.PQC.MODEL.001
+  design_ref:
+  - HLD.PERF.PQC.KEM768
+  - LLD.PPA.PQC.POLY
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - performance
+  - review
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.PERF.001
+    name: a_no_software_fallback
+    feature_ref:
+    - FL.PQC.PERF
+    design_ref:
+    - LLD.PPA.PQC.POLY
+    property: 命令完成不产生需要软件续算的中间状态；性能计数器不暴露签名尝试次数
+    severity: error
+    verification_method: static
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.RESET
+  name: reset_and_safe_shutdown
+  description: 冷复位自检门控、warm reset key 保持、故障统一收尾、掉电收尾
+  priority: must
+  req_ref:
+  - LRS.RESET.PQC.COLD.001
+  - LRS.RESET.PQC.WARM.001
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.RESET.PQC.POWERDOWN.001
+  design_ref:
+  - LLD.RST.PQC.MAIN
+  - LLD.RST.PQC.WARM
+  - LLD.RST.PQC.ZEROPATH
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.RESET.001
+    name: tc_reset_selftest_lock
+    type: reset
+    description: 自检成功前拒绝密码命令；tamper 触发零化与锁定
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_reset_selftest_lock.sv
+    feature_ref:
+    - FL.PQC.RESET
+    design_ref:
+    - LLD.FSM.PQC.TOP.MAIN
+    - LLD.RST.PQC.ZEROPATH
+    preconditions:
+    - 复位释放
+    stimulus:
+    - 未 enable 时提交命令
+    - enable 后拉高 tamper
+    expected_result:
+    - 未使能时命令不进入 EXECUTE
+    - tamper 后 ALERT_FATAL 置位、LOCKED 置位、密码命令被拒绝
+    - zeroize 在 ZEROIZE_MAX_CYCLES 内完成
+    timeout_policy: 200000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.RESET.001
+    name: cov_fault_zeroize
+    type: functional
+    description: 覆盖五类故障源与零化完成
+    feature_ref:
+    - FL.PQC.RESET
+    design_ref:
+    - LLD.RST.PQC.ZEROPATH
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.RESET.001
+    name: a_reset_initial_state
+    feature_ref:
+    - FL.PQC.RESET
+    design_ref:
+    - LLD.FSM.PQC.TOP.MAIN
+    property: rst_n 释放后顶层 FSM 必须处于 DISABLED，且不得处于 EXECUTE
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.PQC.RESET.002
+    name: a_zeroize_bounded
+    feature_ref:
+    - FL.PQC.RESET
+    design_ref:
+    - LLD.RST.PQC.ZEROPATH
+    property: zeroize_req 有效后，zeroize_done 必须在 ZEROIZE_MAX_CYCLES 内出现，且不依赖主 FSM 状态
+    severity: error
+    verification_method: formal
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.CT
+  name: constant_time_security
+  description: 秘密不控制可观察行为、禁止秘密门控、确定性本地存储
+  priority: must
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+  - LRS.SEC.PQC.CT.002
+  - LRS.SEC.PQC.CT.003
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  design_ref:
+  - LLD.SAFE.PQC.CT_SELECT
+  - LLD.SAFE.PQC.NO_SECRET_GATING
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - formal
+  - static
+  testcases:
+  - id: TC.PQC.CT.001
+    name: tc_kem_decaps_constant_time
+    type: directed
+    description: 合法与非法密文的公开 trace 形状与周期分布一致，无有效性 oracle
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_kem_decaps_constant_time.sv
+    feature_ref:
+    - FL.PQC.CT
+    design_ref:
+    - LLD.SAFE.PQC.CT_SELECT
+    preconditions:
+    - IP 完成 KeyGen 得到 dk slot
+    stimulus:
+    - 提交长度正确的合法密文
+    - 提交同长度但单比特翻转的密文
+    expected_result:
+    - 两次 completion 均为 SUCCESS
+    - 无 KEM_INVALID 类错误码
+    - 比较与 select 遍历全长度（公开观察一致）
+    timeout_policy: 400000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.CT.001
+    name: cov_constant_time
+    type: functional
+    description: 覆盖 KEM 合法/非法密文、Sign 拒绝 0/1/多次
+    feature_ref:
+    - FL.PQC.CT
+    design_ref:
+    - LLD.SAFE.PQC.CT_SELECT
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.CT.001
+    name: a_no_secret_select
+    feature_ref:
+    - FL.PQC.CT
+    design_ref:
+    - LLD.SAFE.PQC.CT_SELECT
+    property: 任何对外可观察的错误码、DMA 地址或授权可见状态不得由 secret-tainted 信号控制
+    severity: error
+    verification_method: formal
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.INTEGRITY
+  name: control_integrity
+  description: 稀疏编码、字段完整性、冗余计数器、verify 双轨
+  priority: must
+  req_ref:
+  - LRS.SEC.PQC.INTEGRITY.001
+  - LRS.SEC.PQC.VERIFY.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  design_ref:
+  - LLD.SAFE.PQC.CTRL_SPARSE
+  - LLD.SAFE.PQC.COUNTER_PARITY
+  - LLD.SAFE.PQC.VERIFY_DUAL
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - formal
+  testcases:
+  - id: TC.PQC.INTEGRITY.001
+    name: tc_illegal_state_shutdown
+    type: error_injection
+    description: 注入控制完整性错误后不得进入 EXECUTE，必须走零化路径
+    priority: must
+    tier: extended
+    implementation: verification/tc/tc_illegal_state_shutdown.sv
+    feature_ref:
+    - FL.PQC.INTEGRITY
+    design_ref:
+    - LLD.SAFE.PQC.CTRL_SPARSE
+    preconditions:
+    - IP 处于 IDLE
+    stimulus:
+    - 通过 fault_inject_ctrl 触发非法状态检测
+    expected_result:
+    - 状态机进入 ZEROIZE 而非 EXECUTE
+    - ALERT_FATAL 置位
+    - 密码命令被拒绝
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.INTEGRITY.001
+    name: cov_integrity
+    type: functional
+    description: 覆盖非法状态编码与计数器奇偶错误
+    feature_ref:
+    - FL.PQC.INTEGRITY
+    design_ref:
+    - LLD.SAFE.PQC.CTRL_SPARSE
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.INTEGRITY.001
+    name: a_illegal_state_shutdown
+    feature_ref:
+    - FL.PQC.INTEGRITY
+    design_ref:
+    - LLD.SAFE.PQC.CTRL_SPARSE
+    property: 状态编码非法或多热时，下一状态必须是 ZEROIZE，且不得进入 EXECUTE
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.KEY
+  name: key_slot_and_permissions
+  description: slot 元数据、私钥不可导出、generation 失效、debug/lifecycle 约束
+  priority: must
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.002
+  - LRS.SEC.PQC.SLOT.003
+  - LRS.SEC.PQC.SLOT.004
+  design_ref:
+  - LLD.REG.PQC.SLOT_CTRL
+  - LLD.REG.PQC.SLOT_META
+  - LLD.REG.PQC.SLOT_DESTROY
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.KEY.001
+    name: tc_key_slot_permission
+    type: negative
+    description: 非特权访问 key slot 窗口被拒；destroy 后旧 handle 失效
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_key_slot_permission.sv
+    feature_ref:
+    - FL.PQC.KEY
+    design_ref:
+    - LLD.REG.PQC.SLOT_CTRL
+    - LLD.REG.PQC.SLOT_DESTROY
+    preconditions:
+    - privileged=1 完成一次 import
+    stimulus:
+    - privileged=0 访问 KEY_SLOT_CTRL
+    - destroy 后再用旧 generation 提交命令
+    expected_result:
+    - 非特权访问返回 pslverr
+    - destroy 递增 generation，旧 handle 的 key_handle_ok 为 0
+    - 命令返回 BAD_KEY 且不访问秘密
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.KEY.001
+    name: cov_key_permission
+    type: functional
+    description: 覆盖特权/非特权、有效/失效 handle、destroy/lifecycle
+    feature_ref:
+    - FL.PQC.KEY
+    design_ref:
+    - LLD.REG.PQC.SLOT_CTRL
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.KEY.001
+    name: a_no_key_export
+    feature_ref:
+    - FL.PQC.KEY
+    design_ref:
+    - LLD.REG.PQC.SLOT_META
+    property: key slot 的私钥字节不得出现在任何 APB 读数据路径上
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.DFX
+  name: dfx_observability
+  description: scan 排除、MBIST 安全、受限 debug、故障注入、性能计数
+  priority: must
+  req_ref:
+  - LRS.DFX.PQC.SCAN.001
+  - LRS.DFX.PQC.MBIST.001
+  - LRS.DFX.PQC.DEBUG.001
+  - LRS.DFX.PQC.FI.001
+  - LRS.DFX.PQC.PERFCNT.001
+  design_ref:
+  - HLD.SAFETY.PQC.DFXTEST
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - review
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.DFX.001
+    name: a_no_secret_observability
+    feature_ref:
+    - FL.PQC.DFX
+    design_ref:
+    - HLD.SAFETY.PQC.DFXTEST
+    property: scan chain、MBIST 端口与 debug/trace 出口不得承载密钥或秘密中间态
+    severity: error
+    verification_method: static
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.CONS
+  name: integration_constraints
+  description: 综合语言、FuseSoC、寄存器 SSOT、常量一致、交付件、驱动 API
+  priority: must
+  req_ref:
+  - LRS.CONS.PQC.LANG.001
+  - LRS.CONS.PQC.CORE.001
+  - LRS.CONS.PQC.CONST.001
+  - LRS.CONS.PQC.DELIVER.001
+  - LRS.CONS.PQC.API.001
+  design_ref:
+  - RTL.PQC.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - review
+  testcases:
+  - id: TC.PQC.CONS.001
+    name: tc_delivery_static
+    type: directed
+    description: RTL 目录无仅仿真构造、core 可解析、寄存器派生文件未被手改
+    priority: must
+    tier: extended
+    implementation: scripts/run_pqc_delivery_check.py
+    proof_kind: static
+    feature_ref:
+    - FL.PQC.CONS
+    design_ref:
+    - RTL.PQC.TOP
+    preconditions:
+    - 工作区完整
+    stimulus:
+    - 扫描 rtl/ 与 generated/，校验 manifest 哈希
+    expected_result:
+    - 无 .v/.vh 与仅仿真构造
+    - core 解析成功
+    - 生成文件哈希与 manifest 一致
+    timeout_policy: 600 s
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.CODE.001
+    name: cov_rtl_structural
+    type: code
+    description: line/toggle/branch/FSM 覆盖率收集与门限
+    feature_ref:
+    - FL.PQC.CONS
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.PQC.ALGO
+  name: algorithm_correctness
+  description: 六参数集 KEM/DSA 完整算法的字节级正确性与负向行为
+  priority: must
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_LEN.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.FUNC.PQC.DSA_SIGN.003
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  - LRS.FUNC.PQC.DSA_MU.001
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  design_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.DSASEQ
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.PQC.ALGO.001
+    name: algo_reference_kat
+    type: algorithm
+    description: 六个参数集完整算法 KAT 与跨实现差分，含隐式拒绝与拒绝采样
+    priority: must
+    tier: regression
+    implementation: scripts/run_pqc_algo_proof.py
+    proof_kind: software
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - HLD.MOD.PQC.KEMSEQ
+    - HLD.MOD.PQC.DSASEQ
+    preconditions:
+    - Python 参考模型与独立实现可导入
+    stimulus:
+    - 对六个参数集执行 KeyGen/Encaps/Decaps 与 KeyGen/Sign/Verify
+    - 密文翻转、消息篡改、错误长度
+    expected_result:
+    - 全部 KAT 与差分比对通过
+    - 非法密文产生伪随机 shared secret 且无有效性区分
+    - 拒绝轮次不输出部分签名
+    timeout_policy: 1800 s
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions: []
+  config_coverage: []
+config_sets:
+- id: CFGSET.PQC.DEFAULT
+  name: default_configset
+  strategy: default_plus_boundary
+  configs:
+  - CFG_DEFAULT
+  - CFG_NTT_LANES_MIN
+  - CFG_NTT_LANES_MAX
+  - CFG_LOCAL_SRAM_KIB_MIN
+  - CFG_LOCAL_SRAM_KIB_MAX
+  purpose: 默认档位加参数边界，覆盖强制配置类
+config_coverage:
+- id: CCOV.PQC.CFG_MATRIX
+  name: config_matrix_coverage
+  dimensions: *id001
+  feature_ref: *id002
+  applicability: *id003
+gates:
+- gate: VP0
+  status: open
+  approvals:
+    architecture: pending
+    rtl: pending
+    verification: pending

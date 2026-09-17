@@ -1,0 +1,24 @@
+// Environment declarations (must be included first, outside package)
+pqc_env_dec.sv
+
+// DUT and RM configurations
+pqc_dut_cfg.sv
+pqc_rm_cfg.sv
+pqc_rm.sv
+
+// Checker components
+pqc_checker_cfg.sv
+pqc_checker.sv
+
+// Functional coverage
+pqc_fcov.sv
+
+// Virtual sequencer
+pqc_virtual_sequencer.sv
+
+// Virtual sequence (uses virtual sequencer, UVM 1.2 compatible)
+pqc_virtual_sequence.sv
+
+// Environment configuration and top-level env
+pqc_env_cfg.sv
+pqc_env.sv

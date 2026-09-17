@@ -1,0 +1,952 @@
+schema_version: '2.0'
+ip_name: pqc
+delivery_model: parameterized
+lrs_baseline: PQC-20260916-WORKKEY
+document_version: 1.1.0
+status: reviewed
+architecture_baseline: PQC-HLD-1.1.0
+modules:
+- id: HLD.MOD.PQC.POLY
+  name: pqc_poly_engine
+  responsibility: 双模 NTT/INTT/pointwise MAC/系数加减/条件约减，rounding/hint 由 codec 承担
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.PERF.PQC.LATENCY.001
+  - LRS.CFG.PQC.NTT_LANES.001
+  - LRS.CONS.PQC.CONST.001
+  - LRS.PERF.PQC.MODEL.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.RANDOM
+  - HLD.IF.INT.PQC.PRIM
+  - HLD.IF.INT.PQC.PAGE
+- id: HLD.MOD.PQC.KECCAK
+  name: pqc_keccak
+  responsibility: Keccak-f[1600] 24 轮，SHA3-256/512、SHAKE128/256 增量流
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_MU.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.CFG.PQC.KECCAK_ROUNDS.001
+  - LRS.PERF.PQC.OVERLAP.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.RANDOM
+  - HLD.IF.INT.PQC.PRIM
+  - HLD.IF.INT.PQC.SQZ
+- id: HLD.MOD.PQC.SAMPLER
+  name: pqc_sampler
+  responsibility: rejection/CBD/ExpandA/ExpandS/ExpandMask/SampleInBall 采样
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.SQZ
+  - HLD.IF.INT.PQC.PAGE
+- id: HLD.MOD.PQC.CODEC
+  name: pqc_codec
+  responsibility: bit pack/unpack、Compress/Decompress、Power2Round/HighBits/LowBits/MakeHint/UseHint、norm check
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.RANDOM
+  - HLD.IF.INT.PQC.PRIM
+  - HLD.IF.INT.PQC.PAGE
+- id: HLD.MOD.PQC.TOP
+  name: pqc_top
+  responsibility: 集成总线接口、安全边界与各 L1 模块，不承担计算
+  req_ref:
+  - LRS.CONS.PQC.LANG.001
+  - LRS.CONS.PQC.CORE.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.CFG.PQC.ALGO_MASK.001
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.INTF.PQC.CLKRESET.001
+  - LRS.RESET.PQC.CLK.001
+  - LRS.CONS.PQC.DELIVER.001
+  - LRS.CONS.PQC.API.001
+  - LRS.SEC.PQC.CT.002
+  - LRS.DFX.PQC.SCAN.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.EXT.PQC.APB
+  - HLD.IF.EXT.PQC.DMA
+  - HLD.IF.INT.PQC.RANDOM
+  - HLD.IF.EXT.PQC.ENTROPY
+  - HLD.IF.EXT.PQC.SIDEBAND
+  - HLD.IF.EXT.PQC.KEY_MANAGER
+- id: HLD.MOD.PQC.FE
+  name: pqc_cmd_frontend
+  responsibility: APB 寄存器、descriptor 抓取与校验、权限与策略、门铃与 completion
+  req_ref:
+  - LRS.FUNC.PQC.CMD.001
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.CMD.004
+  - LRS.FUNC.PQC.CMD.005
+  - LRS.FUNC.PQC.CMD.006
+  - LRS.REG.PQC.ID.001
+  - LRS.REG.PQC.CTRL.001
+  - LRS.REG.PQC.STATUS.001
+  - LRS.REG.PQC.INTR.001
+  - LRS.REG.PQC.ALERT.001
+  - LRS.CFG.PQC.FEATURE_FLAGS.001
+  - LRS.CFG.PQC.EXEC_MODE.001
+  - LRS.INTF.PQC.APB.001
+  - LRS.REG.PQC.RESULT.001
+  - LRS.REG.PQC.ERRCODE.001
+  - LRS.REG.PQC.PERF.001
+  - LRS.REG.PQC.COMPLETION.001
+  - LRS.DFX.PQC.DEBUG.001
+  - LRS.DFX.PQC.PERFCNT.001
+  - LRS.CONS.PQC.REG.001
+  - LRS.FUNC.PQC.CMD.007
+  - LRS.FUNC.PQC.CMD.008
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.EXT.PQC.APB
+  - HLD.IF.INT.PQC.DESC
+  - HLD.IF.INT.PQC.DISPATCH
+  - HLD.IF.INT.PQC.COMPL
+- id: HLD.MOD.PQC.KEMSEQ
+  name: pqc_kem_seq
+  responsibility: ML-KEM KeyGen/Encaps/Decaps 全流程控制含隐式拒绝与重加密
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.KEM_LEN.001
+  - LRS.PERF.PQC.NOSW.001
+  - LRS.SEC.PQC.CT.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x7
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.DISPATCH
+  - HLD.IF.INT.PQC.PRIM
+  - HLD.IF.INT.PQC.PAGE
+  - HLD.IF.INT.PQC.COMPL
+  - HLD.IF.INT.PQC.KEY_MATERIAL
+- id: HLD.MOD.PQC.DSASEQ
+  name: pqc_dsa_seq
+  responsibility: ML-DSA KeyGen/Sign/Verify 流程含拒绝采样循环与原子 commit
+  req_ref:
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.FUNC.PQC.DSA_SIGN.003
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  - LRS.FUNC.PQC.DSA_MU.001
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  - LRS.PERF.PQC.SIGNBUBBLE.001
+  - LRS.CFG.PQC.FEATURE_FLAGS.001
+  - LRS.PERF.PQC.NOSW.001
+  - LRS.SEC.PQC.CT.001
+  applicability:
+    expr: ENABLE_ALGO_MASK & 0x38
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.DISPATCH
+  - HLD.IF.INT.PQC.PRIM
+  - HLD.IF.INT.PQC.PAGE
+  - HLD.IF.INT.PQC.STAGE
+  - HLD.IF.INT.PQC.COMPL
+  - HLD.IF.INT.PQC.KEY_MATERIAL
+- id: HLD.MOD.PQC.SRAM
+  name: pqc_secure_sram_ctrl
+  responsibility: bank 仲裁、SECDED ECC、page tag 校验、zeroize
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.DFX.PQC.MBIST.001
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  - LRS.SEC.PQC.CT.003
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.PAGE
+  - HLD.IF.INT.PQC.DMABUF
+- id: HLD.MOD.PQC.KEYSLOT
+  name: pqc_key_slots
+  responsibility: key 元数据、权限、generation、slot 锁定与清零
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.002
+  - LRS.SEC.PQC.SLOT.003
+  - LRS.SEC.PQC.SLOT.004
+  - LRS.REG.PQC.SLOT.001
+  - LRS.CFG.PQC.KEY_SLOT.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.INT.PQC.KEY
+  - HLD.IF.EXT.PQC.SIDEBAND
+- id: HLD.MOD.PQC.DMA
+  name: pqc_dma
+  responsibility: AXI4 master 搬运、4 KiB 合规、范围检查、分段拼装
+  req_ref:
+  - LRS.INTF.PQC.DMA.001
+  - LRS.INTF.PQC.DMA.002
+  - LRS.INTF.PQC.DMA.003
+  - LRS.SEC.PQC.SLOT.005
+  - LRS.CFG.PQC.DMA_WIDTH.001
+  - LRS.PERF.PQC.OVERLAP.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.EXT.PQC.DMA
+  - HLD.IF.INT.PQC.DESC
+  - HLD.IF.INT.PQC.DMABUF
+  - HLD.IF.INT.PQC.STAGE
+- id: HLD.MOD.PQC.FAULT
+  name: pqc_fault_ctrl
+  responsibility: alert 汇聚、冗余/奇偶校验、zeroize 序列、锁定
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  - LRS.SEC.PQC.INTEGRITY.001
+  - LRS.SEC.PQC.VERIFY.001
+  - LRS.RESET.PQC.SAFE.001
+  - LRS.DFX.PQC.FI.001
+  - LRS.INTF.PQC.SIDEBAND.001
+  - LRS.RESET.PQC.COLD.001
+  - LRS.RESET.PQC.WARM.001
+  - LRS.RESET.PQC.POWERDOWN.001
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.EXT.PQC.SIDEBAND
+  - HLD.IF.INT.PQC.FAULT
+- id: HLD.MOD.PQC.WORKKEY
+  name: pqc_work_key_ram
+  responsibility: 工作态私钥专用导入、完整性、授权读取、KeyGen 暂存/安全托管与物理擦除
+  req_ref:
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  - LRS.SEC.PQC.SLOT.002
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  applicability:
+    expr: 'true'
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  power_domain: HLD.DOM.PWR.PQC.CORE
+  interfaces:
+  - HLD.IF.EXT.PQC.KEY_MANAGER
+  - HLD.IF.INT.PQC.KEY_MATERIAL
+  - HLD.IF.INT.PQC.FAULT
+derived:
+- id: HDR.PQC.BANK_CONFLICT.001
+  type: derived_architecture_requirement
+  derived_from:
+  - LRS.PERF.PQC.LATENCY.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  statement: NTT 地址生成器必须保证同一 cycle 的 a/b 访问落在不同 bank，或在无法避免时 产生确定性 stall；bank 冲突不得由 coefficient 值决定
+  status: proposed
+- id: HDR.PQC.LAZY_RANGE.001
+  type: derived_architecture_requirement
+  derived_from:
+  - LRS.SEC.PQC.INTEGRITY.001
+  statement: 双模引擎的 lazy reduction 范围上限必须按最大 k=8 证明，并在超界前插入固定 位置 reduction；范围证明由形式验证冻结
+  status: proposed
+- id: HDR.PQC.KECCAK_CTX.001
+  type: derived_architecture_requirement
+  derived_from:
+  - LRS.PERF.PQC.OVERLAP.001
+  - LRS.FUNC.PQC.DSA_MU.001
+  statement: 需要至少两个 Keccak context（消息增量哈希 + 矩阵/采样 XOF），在 block 边界 切换且同一 context 不被抢占
+  status: proposed
+config:
+- id: HLD.CFG.PQC.NTT_LANES
+  config_ref: PARAM.PQC.NTT_LANES
+  affects:
+    modules:
+    - HLD.MOD.PQC.POLY
+    performance:
+    - HLD.PERF.PQC.KEM768
+    - HLD.PERF.PQC.DSA65SIGN
+  architecture_effect: 蝶形实例数 1/2/4；NTT 周期数由实际 lane 计算及存储收集/写回共同决定；SRAM bank 访问并发度变化
+  applicability:
+    expr: 'true'
+- id: HLD.CFG.PQC.KECCAK_ROUNDS
+  config_ref: PARAM.PQC.KECCAK_ROUNDS_PER_CYCLE
+  affects:
+    modules:
+    - HLD.MOD.PQC.KECCAK
+    performance:
+    - HLD.PERF.PQC.HASHBW
+  architecture_effect: permutation 周期数 24 或 12；Keccak 与 NTT 重叠窗口变化
+  applicability:
+    expr: 'true'
+- id: HLD.CFG.PQC.LOCAL_SRAM
+  config_ref: PARAM.PQC.LOCAL_SRAM_KIB
+  affects:
+    modules:
+    - HLD.MOD.PQC.SRAM
+    performance:
+    - HLD.PERF.PQC.SRAM
+  architecture_effect: 可用页数与 pack/unpack staging 深度；影响 32 KiB 档位是否需 缩减并发工作集
+  applicability:
+    expr: 'true'
+- id: HLD.CFG.PQC.DMA_WIDTH
+  config_ref: PARAM.PQC.DMA_DATA_WIDTH
+  affects:
+    modules:
+    - HLD.MOD.PQC.DMA
+    performance:
+    - HLD.PERF.PQC.HASHBW
+  architecture_effect: AXI 数据通道宽度与内部拼装逻辑规模
+  applicability:
+    expr: 'true'
+- id: HLD.CFG.PQC.SCA
+  config_ref: PARAM.PQC.SCA_LEVEL
+  affects:
+    modules:
+    - HLD.MOD.PQC.KECCAK
+    - HLD.MOD.PQC.POLY
+    - HLD.MOD.PQC.SRAM
+  architecture_effect: Level 2 采用两 share 候选架构，镜像逻辑 SRAM 与 Key RAM 数据域； Keccak/NTT/采样/转换/比较全链路保持 masking，增加随机带宽及周期，见 09_masking_level2.md
+  applicability:
+    expr: 'true'
+- id: HLD.CFG.PQC.ALGO_MASK
+  config_ref: PARAM.PQC.ENABLE_ALGO_MASK
+  affects:
+    modules:
+    - HLD.MOD.PQC.KEMSEQ
+    - HLD.MOD.PQC.DSASEQ
+  architecture_effect: 裁剪参数集后对应 sequencer 可移除，CAPABILITY 随之变化
+  applicability:
+    expr: 'true'
+flows:
+- id: HLD.FLOW.PQC.COMMAND
+  name: command_submit
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  - LRS.FUNC.PQC.CMD.006
+  participants:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.DMA
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.DSASEQ
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.KEM_DECAPS
+  name: kem_decaps_implicit_reject
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  participants:
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.CODEC
+  - HLD.MOD.PQC.KEYSLOT
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.DSA_SIGN
+  name: dsa_sign_attempt_loop
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.FUNC.PQC.DSA_SIGN.003
+  participants:
+  - HLD.MOD.PQC.DSASEQ
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.CODEC
+  - HLD.MOD.PQC.KEYSLOT
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.KEM_KEYGEN
+  name: kem_keygen_custody
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.SEC.PQC.SLOT.008
+  participants:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.CODEC
+  - HLD.MOD.PQC.WORKKEY
+  - HLD.MOD.PQC.DMA
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.KEM_ENCAPS
+  name: kem_encaps
+  req_ref:
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_LEN.001
+  participants:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.DMA
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.CODEC
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.DSA_KEYGEN
+  name: dsa_keygen_custody
+  req_ref:
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.SEC.PQC.SLOT.008
+  participants:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.DSASEQ
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.CODEC
+  - HLD.MOD.PQC.WORKKEY
+  - HLD.MOD.PQC.DMA
+  applicability:
+    expr: 'true'
+- id: HLD.FLOW.PQC.DSA_VERIFY
+  name: dsa_verify
+  req_ref:
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  participants:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.DSASEQ
+  - HLD.MOD.PQC.DMA
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.CODEC
+  applicability:
+    expr: 'true'
+policies:
+- id: HLD.POLICY.PQC.RES
+  type: resource_scheduling
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  policy: static_audited_overlap
+  fairness_required: true
+  applicability:
+    expr: 'true'
+- id: HLD.POLICY.PQC.KECCAK_PRIO
+  type: priority
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.PERF.PQC.OVERLAP.001
+  policy: fixed
+  fairness_required: false
+  applicability:
+    expr: 'true'
+- id: HLD.POLICY.PQC.ATTEMPT
+  type: retry_control
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  policy: fixed
+  fairness_required: false
+  applicability:
+    expr: 'true'
+- id: HLD.POLICY.PQC.ZEROIZE
+  type: fault_response
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  - LRS.RESET.PQC.SAFE.001
+  policy: fixed
+  fairness_required: false
+  applicability:
+    expr: 'true'
+- id: HLD.POLICY.PQC.BANK
+  type: memory_banking
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.PERF.PQC.LATENCY.001
+  policy: fixed
+  fairness_required: false
+  applicability:
+    expr: 'true'
+- id: HLD.POLICY.PQC.OVERLAP_AUDIT
+  type: overlap_whitelist
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+  policy: static_audited_overlap
+  fairness_required: false
+  applicability:
+    expr: 'true'
+perf:
+- id: HLD.PERF.PQC.KEM768
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  metric: latency
+  target: ML-KEM-768 Encaps < 100us, Decaps < 100us @400MHz 2-lane
+  allocated_to:
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SAMPLER
+  applicability:
+    expr: NTT_LANES>=2
+- id: HLD.PERF.PQC.DSA65VERIFY
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  metric: latency
+  target: ML-DSA-65 Verify < 250us @400MHz 2-lane
+  allocated_to:
+  - HLD.MOD.PQC.DSASEQ
+  - HLD.MOD.PQC.POLY
+  applicability:
+    expr: NTT_LANES>=2
+- id: HLD.PERF.PQC.DSA65SIGN
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  - LRS.PERF.PQC.SIGNBUBBLE.001
+  metric: latency
+  target: ML-DSA-65 Sign P50 < 300us, P99 < 1ms（统计分位数）
+  allocated_to:
+  - HLD.MOD.PQC.DSASEQ
+  - HLD.MOD.PQC.SAMPLER
+  - HLD.MOD.PQC.CODEC
+  applicability:
+    expr: NTT_LANES>=2
+- id: HLD.PERF.PQC.HASHBW
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  metric: throughput
+  target: Level 0/1 C_block <= ceil(rate_bytes/8)+24/KECCAK_ROUNDS_PER_CYCLE+2；Level 2 C_block <= ceil(rate_bytes/8)+1896+2，随机输入持续
+    64 bit/cycle
+  allocated_to:
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.DMA
+  applicability:
+    expr: 'true'
+- id: HLD.PERF.PQC.SRAM
+  req_ref:
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  metric: capacity
+  target: 峰值工作集 <= LOCAL_SRAM_KIB，矩阵不常驻
+  allocated_to:
+  - HLD.MOD.PQC.SRAM
+  applicability:
+    expr: 'true'
+safety:
+- id: HLD.SAFETY.PQC.ZEROIZE
+  name: unified_zeroize_and_lock
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  - LRS.RESET.PQC.SAFE.001
+  mechanism: independent_zeroize_path
+  detects:
+  - tamper
+  - fatal_ecc
+  - self_test_fail
+  - lifecycle_change
+  - dma_bus_error
+  - timeout
+  - rng_health_fail
+  applicability:
+    expr: 'true'
+- id: HLD.SAFETY.PQC.INTEGRITY
+  name: control_and_counter_integrity
+  req_ref:
+  - LRS.SEC.PQC.INTEGRITY.001
+  - LRS.SEC.PQC.VERIFY.001
+  mechanism: redundant_encoding
+  detects:
+  - control_fsm_bit_flip
+  - opcode_param_keytype_perm_corruption
+  - loop_counter_nttstage_dmalen_pc_corruption
+  - verify_result_single_point_fault
+  applicability:
+    expr: 'true'
+- id: HLD.SAFETY.PQC.SCA
+  name: side_channel_countermeasures
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+  - LRS.SEC.PQC.CT.002
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  mechanism: constant_time_level1_and_two_share_level2
+  detects:
+  - secret_dependent_branch
+  - secret_dependent_gating
+  - secret_dependent_memory_pattern
+  applicability:
+    expr: 'true'
+- id: HLD.SAFETY.PQC.KEMCT
+  name: kem_implicit_reject
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  mechanism: constant_time_compare_select
+  detects:
+  - ciphertext_mismatch
+  applicability:
+    expr: 'true'
+- id: HLD.SAFETY.PQC.DFXTEST
+  name: observability_and_injection
+  req_ref:
+  - LRS.DFX.PQC.SCAN.001
+  - LRS.DFX.PQC.MBIST.001
+  - LRS.DFX.PQC.DEBUG.001
+  - LRS.DFX.PQC.FI.001
+  mechanism: secure_scan_and_gated_injection
+  detects:
+  - secret_in_scan_chain
+  - retained_key_in_mbist
+  - secret_in_debug_port
+  applicability:
+    expr: 'true'
+gen: []
+decisions:
+- id: HLD.DECISION.PQC.DUALMODE
+  title: 单一双模多项式引擎而非双引擎
+  status: decided
+  req_ref:
+  - LRS.CFG.PQC.NTT_LANES.001
+  - LRS.PERF.PQC.LATENCY.001
+  decision: 用统一 32 bit 物理蝶形承载 q=3329 与 q=8380417 两个域，lane 数可综合配置
+  rationale: KEM 与 DSA 不会同时执行（单上下文模型），共享引擎面积显著低于双引擎； 统一 ABI 与结果不受 lane 数影响
+  alternatives:
+  - 双独立引擎（面积大、验证成本高）
+  - 仅 DSA 引擎 + 软件 KEM（违反 LRS.PERF.PQC.NOSW.001）
+  consequences:
+  - 常量 ROM 必须按算法切换且经生成与审计
+  - lane=1 时需保证时序仍可闭合
+- id: HLD.DECISION.PQC.STREAMMAT
+  title: 矩阵流式生成不常驻
+  status: decided
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.CFG.PQC.LOCAL_SRAM.001
+  decision: A_hat / A^T_hat 逐 polynomial 生成、使用、释放
+  rationale: 最大 k×l 矩阵常驻需要远超 LOCAL_SRAM_KIB 的空间；流式生成配合页生命周期 复用使 32 KiB 档位可行
+  alternatives:
+  - 常驻整矩阵（排除 32 KiB SKU）
+  consequences:
+  - ExpandA 需要按 (i,j) 域分离并可重放
+  - 需要严格的页 tag 与 representation 检查
+- id: HLD.DECISION.PQC.SCA1
+  title: V1.0 产品化默认 SCA Level 1
+  status: decided
+  req_ref:
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  decision: V1.0 产品化至少 Level 1；Level 2 作为可选综合参数保留
+  rationale: Level 1 可在不引入 masking 复杂度的前提下满足产品基线；Level 2 需要 masking scheme 与 fresh randomness 预算，显著改变 Keccak/NTT/SRAM/随机数带宽，
+    必须单独安全评审后才能宣称
+  alternatives:
+  - 强制 Level 2（超出 V1.0 验证能力）
+  - 仅 Level 0（不满足产品基线）
+  consequences:
+  - Level 2 声明必须在 VPLAN 中有 TVLA/CPA/EMA 计划
+  - 随机数预算按 Level 1 冻结
+- id: HLD.DECISION.PQC.ATOMIC
+  title: Sign 候选签名采用不可见 staging + 原子 commit
+  status: decided
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  decision: 候选签名写入不可见 staging buffer，全部检查通过后一次性 commit
+  rationale: 拒绝轮次必须不产生任何部分 z/h；与 DMA 的 STAGE 接口把原子性变成接口契约
+  alternatives:
+  - 直接写输出 buffer 后回滚（存在部分结果可见窗口）
+  consequences:
+  - 需要 staging 容量等于最大签名长度 4627 B
+  - DMA 需要支持 commit 语义
+- id: HLD.DECISION.PQC.SHADOW
+  title: 命令配置采用 shadow + transactional commit
+  status: decided
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.004
+  decision: descriptor 相关配置在门铃后原子抓取到 shadow registers
+  rationale: 满足"抓取后软件修改内存不得影响当前命令"与 BUSY 锁定语义
+  alternatives:
+  - write-through（无法保证抓取原子性）
+  consequences:
+  - 需要 descriptor shadow 存储与 CRC/ABI 校验
+- id: HLD.DECISION.PQC.ZEROPATH
+  title: zeroize 路径独立于主 FSM
+  status: decided
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  decision: zeroize/lock 由 pqc_fault_ctrl 独立驱动，不依赖主时序状态机正常运行
+  rationale: 主 FSM 可能已被故障破坏；若 zeroize 依赖它则无法保证有界完成
+  alternatives:
+  - 主 FSM 内实现 zeroize 状态（安全性依赖 FSM 正确性）
+  consequences:
+  - 需要独立的清零计数器与完成信号
+  - 需要形式验证"从任意状态有界完成"
+- id: HLD.DECISION.PQC.NOSG
+  title: V1.0 仅线性 buffer，不实现 scatter-gather
+  status: decided
+  req_ref:
+  - LRS.INTF.PQC.DMA.003
+  decision: V1.0 支持线性 buffer 与分段连续区间；SG 列表作为增强项保留在 capability
+  rationale: SG 显著增加地址校验与侧信道分析面；线性 buffer 已满足安全启动与 TLS 场景
+  alternatives:
+  - V1.0 实现完整 SG（扩大验证面）
+  consequences:
+  - capability 必须准确报告 SG 不支持
+  - 分段等价性仍必须成立
+- id: HLD.DECISION.PQC.WORKKEY
+  title: 外部长期所有权与内部单份工作态 Key RAM
+  status: decided
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  decision: 单个逻辑 8 KiB ECC 工作态材料区，Level 2 物理双 share 共 16 KiB，专用导入与仅新生成密钥的托管接口，普通总线无材料地址窗口
+  rationale: 满足用户指定边界；单上下文无需每 slot 复制最大私钥 RAM
+  alternatives:
+  - 每 slot 常驻完整私钥（不符合长期所有权边界且扩大存储）
+  - 普通 DMA 导入（用户明确禁止）
+  consequences:
+  - sequencer 必须接通授权材料读取，元数据不能替代材料
+  - KeyGen 成功提交须等待外部 Key Manager 明确确认
+  - 工作态副本退休不改变外部长期密钥所有权
+- id: HLD.DECISION.PQC.HASH_BUDGET
+  title: 保留 1/2 轮结构并采用可达周期预算
+  status: decided
+  req_ref:
+  - LRS.PERF.PQC.OVERLAP.001
+  - LRS.CFG.PQC.KECCAK_ROUNDS.001
+  decision: 64-bit rate 接口；Level 0/1 完整块预算 ceil(R/8)+24/r+2，Level 2 预算 ceil(R/8)+1896+2，按分级合同验收
+  rationale: 用户明确选择周期预算；单 sponge 受置换依赖限制，DMA 加宽不能使算法吞吐无限增加
+  alternatives:
+  - 保留总线峰值 50% 并增加轮数（用户未选择）
+  - 用 DUT 内部背压降低测试分母（无效验收）
+  consequences:
+  - byte RTL 接口需扩展；增加两 word 供数与尾字节 mask
+  - 当前算法周期目标仍须完整仿真核验，不能仅凭局部上界宣称达标
+verify_hooks:
+- id: HLD.VERIFY_HOOK.PQC.TAINT
+  req_ref:
+  - LRS.SEC.PQC.CT.001
+  hook_type: formal_taint
+  description: 证明 secret-tainted 信号不控制外部错误码、DMA 地址与未授权可见状态
+  applicability:
+    expr: 'true'
+- id: HLD.VERIFY_HOOK.PQC.FSM
+  req_ref:
+  - LRS.SEC.PQC.INTEGRITY.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  hook_type: sva
+  description: 关键 FSM、zeroize、有界完成、无死锁、FIFO overflow/underflow 断言
+  applicability:
+    expr: 'true'
+constraints:
+- id: HLD.CONSTRAINT.PQC.PPA_BUDGET
+  type: ppa
+  req_ref:
+  - LRS.PERF.PQC.LATENCY.001
+  statement: Balanced SKU（2 lane、64 KiB、2 rounds/cycle、Level 1）为目标 PPA 档位； Tiny SKU（1 lane、32 KiB、1 round/cycle）必须可综合并进行代码结构与周期预算分析
+  applies_to:
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.KECCAK
+  - HLD.MOD.PQC.SRAM
+- id: HLD.CONSTRAINT.PQC.NORUNTIME_MODULUS
+  type: security
+  req_ref:
+  - LRS.CFG.PQC.ALGO_MASK.001
+  - LRS.CONS.PQC.CONST.001
+  statement: 不得提供运行时任意模数、根或安全敏感微码配置；常量来自综合期 ROM
+  applies_to:
+  - HLD.MOD.PQC.POLY
+  - HLD.MOD.PQC.DSASEQ
+- id: HLD.CONSTRAINT.PQC.NOSECRET_OBS
+  type: security
+  req_ref:
+  - LRS.DFX.PQC.DEBUG.001
+  - LRS.SEC.PQC.CT.001
+  statement: 任何 debug/trace/perf 出口不得承载秘密或秘密相关细粒度事件
+  applies_to:
+  - HLD.MOD.PQC.FE
+  - HLD.MOD.PQC.FAULT
+- id: HLD.CONSTRAINT.PQC.NOSW_PRIM
+  type: architecture
+  req_ref:
+  - LRS.PERF.PQC.NOSW.001
+  statement: IP 不向普通软件暴露 primitive opcode；顶层仅暴露完整算法命令
+  applies_to:
+  - HLD.MOD.PQC.FE
+gates:
+- gate: G1
+  status: pass
+  architecture_freeze: true
+  approval:
+    kind: user_delegated
+    approved_by: Codex architectural review under user-delegated design decisions
+    reviewed_at: '2026-09-16'
+    authorization_ref: docs/reviews/g1_delegated_review.md
+    authorization_sha256: df3b49aed0aaa5a0247792cb463b04c493098d4858794187e6714b786cf25c76
+    input_sha256: 207d9def7d937e0bbbfaa8802b61d3dbbee9dca03c77628f91cc56065f1ffbc0
+provenance:
+  schema: ip-design-projection/1.0
+  stage: hld
+  sources:
+  - path: docs/lrs/00_document_control.md
+    sha256: 6e565382467ff10319b81c4f9bd454107712801ed5116cddc81ef4902f67a64a
+  - path: docs/lrs/01_configuration.md
+    sha256: 7627eb99a93f3b06cb867ba8a014b2f734ff23585254ed2186ce78cebb68cd2c
+  - path: docs/lrs/01_configuration_security.md
+    sha256: 435ed9e532d90ded7af6c1b46ed34628d3b5e0eeee4d27287c0968556f03807f
+  - path: docs/lrs/02_interface.md
+    sha256: b1d66c94f6597955dda1a5f7d0569654bc505cb3046a04c7e87625c690dd580d
+  - path: docs/lrs/03_functional_command.md
+    sha256: beaee00da140657fd4bacc8058286d9fb5271d6fa0d53a96677931136776c5ef
+  - path: docs/lrs/03_functional_dsa.md
+    sha256: d8244ec09cbf0e65b37f1dab21cfb4eda75d5333c8ddb11d1c17caa822cf685f
+  - path: docs/lrs/03_functional_kem.md
+    sha256: 4baa9c92514983232f00f2bd5ef7bb3f8c6cb2e5a4e32865a65532d533b874c6
+  - path: docs/lrs/04_register.md
+    sha256: e8646ed0aed8ae9539b94b884f4d30214eccd55721fdb1c00f09a0910e19a2a5
+  - path: docs/lrs/05_performance.md
+    sha256: 02748c7230f8effb0021aa891b8d3ec5409d96ac07bc3855674d640a4f140785
+  - path: docs/lrs/06_clock_reset.md
+    sha256: bf62af7df1e6ffd1319bb0b2258faa311277e8d3c907869bdc137f823c85d912
+  - path: docs/lrs/07_security_ct.md
+    sha256: a2178a2766706c1a7705a0495cd07bfc8bb89fa245f3378de0e952c4ca56f629
+  - path: docs/lrs/07_security_key.md
+    sha256: 2e0fab24842bcf3e5e7e32427a0c8a38b7a6ceb708eabfa8b86ee82564710bbe
+  - path: docs/lrs/08_safety_lowpower.md
+    sha256: 88a72917013c97cfd5bf56e95c7cc856d8b1b0a254fc589d44075ac8a0847944
+  - path: docs/lrs/09_dfx.md
+    sha256: 9d6acbc617a1fb9d726c8eb7588002f1e35bacc94e4914a938c1b4c8dad03043
+  - path: docs/lrs/11_generator.md
+    sha256: 0ce701cfe2723221bcf19245ff9ece0ee5b14197710e86bb43a39c63de1e26df
+  - path: docs/lrs/12_constraints.md
+    sha256: 156d052f692beeead7a63b32dbab1019c71d9ab94781e30af69523ee2950326d
+  - path: docs/lrs/99_quality_gate.md
+    sha256: cc7f11c81fb6a2d5b191da112d2803a68209706c97de793230727e557bd933db
+  - path: docs/lrs/index.md
+    sha256: c7402967b0c4c6c504de9cd6dcc40f37acc954b0cfa24250f58c2eaea691afdb
+  - path: docs/hld/00_document_control.md
+    sha256: 2f8030ba6b170be1a3dff26f02c2c6b7b2e0cb12e6d402ec7d771f50dca43a89
+  - path: docs/hld/01_architecture.md
+    sha256: 77441002017c58af5da953f413a8f1bb34176583a1222984ec3c6076ae0327d8
+  - path: docs/hld/01_architecture_compute.md
+    sha256: 21308cde19f59c8d536a2d6977cabc0bfa8b7a429518f5e1d5172e6da9427f41
+  - path: docs/hld/01_architecture_control.md
+    sha256: 4aa5cfadb5cbe9178f956eb8f5d9a2dc381b49d70c4c4720355b5b9b424ac51a
+  - path: docs/hld/01_architecture_storage.md
+    sha256: 2d075e037dad37d52113f1bb9291798bef2878033588e970fb8ef1d5b4bd1359
+  - path: docs/hld/03_interface.md
+    sha256: 58cca3068ecfca5d3a27e8cad5a6d63b59e843f7e2e4e69478ecd98b3f8ed97b
+  - path: docs/hld/03_interface_internal.md
+    sha256: 707009b0678ad96a9f2025298d28ddb3f02449b727dff67358540d2a17a7b647
+  - path: docs/hld/03_interface_key_manager.md
+    sha256: 8dde706b8ec9556e56e0042fe42289a1b6cdd128acf049d382d07a7b3bd37972
+  - path: docs/hld/03_interface_random.md
+    sha256: e7162a7c2bc0062b1c805c32d905924d34652ba22b424ce8d7cf629d092f7452
+  - path: docs/hld/04_clock_cdc.md
+    sha256: b6bda585dc5638f9278dfcdc5448ce3f003f56055350fa785f9a4ac2fa96020c
+  - path: docs/hld/05_flows.md
+    sha256: 82b698425248335b585ff9728e31c03df7ae74eb55a137ecc09c7adca63fc373
+  - path: docs/hld/05_flows_algorithms.md
+    sha256: c1e058dd96294c94cfad0a21b8320e02ea4ded877857587aaf6589c4f1efc46d
+  - path: docs/hld/06_policies.md
+    sha256: 65133fe326c11d59bec94a35223d6720ad21ff98102bdffd550e5e255edfa8b4
+  - path: docs/hld/07_lld_handoff.md
+    sha256: 2baa6e4c9ed2d6b4a50f7a1bf9a5377f2d424f47aba03e92032a8f2e8ac73bac
+  - path: docs/hld/07_register_arch.md
+    sha256: a58f6cbcc35ff9380828e873c90bef4227a3532cff9fe1da08f06b654b757dcc
+  - path: docs/hld/08_performance.md
+    sha256: 3393dd86694ba479b48ad4f9d0521c16ffd97cd0b69e9755c036d14295b9e7a9
+  - path: docs/hld/09_masking_execution.md
+    sha256: ea8de01df8339bdab0cc90939a14eb4fe6cfbabaea66f706866b5e524fcd5b5f
+  - path: docs/hld/09_masking_level2.md
+    sha256: 70b07f740e73e388fa7293e8599e43cfec6f5b0c578e165315b61688a5e788be
+  - path: docs/hld/09_safety_security.md
+    sha256: 88494b76affa11a2c257ace5d503e6851fc66e5bee6e408279d6bd547dbee9a7
+  - path: docs/hld/10_configuration_effects.md
+    sha256: 34dd2f69711494930978b9510dfd98c34ea905a991ceb849f5149ea272f0df5c
+  - path: docs/hld/10_decisions.md
+    sha256: 03a3c577ca0196c36a7d1012ff271fc3f1d414412cc1f414c3d252cd9f670072
+  - path: docs/hld/10_derived_decisions.md
+    sha256: 6baa32e3690195fb2ac4daf22d2e96b7f0844434601dd5a9f0a29e9f53ad90e7
+  - path: docs/hld/99_quality_gate.md
+    sha256: 001459d838bf61c1b7100f4bacf9f3a641c2d14d756dc959c587555d1e263c7e
+  - path: docs/hld/index.md
+    sha256: 0dee35480b4cb4fc87394dc4f712771b46c865ebd8050ca01ed46643e0ce6ef7
+  extractor:
+    skills/03-hld-architect/scripts/extract_hld.py: 1d6d104830f6686e1b3d8d4a751f0668538ecc47272833d56d0b9112a4e41493
+    scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
+    scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
+  payload_sha256: bc6dee1e0657252204fdf462a5a9a14dad0568daaec51510c30bcbd9946ff8eb

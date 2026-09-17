@@ -1,0 +1,10 @@
+schema: ip-ral-generation/1.0
+ip_name: pqc
+inputs:
+- path: regs/pqc.rdl
+  sha256: 4002b5e8b44bd3deaa98a40a3bad747603a4c67fa68ccee9c466c532db0871e7
+generator: peakrdl-uvm
+generator_version: 2.4.0
+output:
+  path: verification/ral/pqc_ral_pkg.sv
+  sha256: dd331d43d58ffedbbcfea20a60303ac2e6525a19a5c4bfc4204a0cf7b5f4d1f4

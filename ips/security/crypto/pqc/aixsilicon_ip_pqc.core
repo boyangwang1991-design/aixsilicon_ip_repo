@@ -1,0 +1,1047 @@
+CAPI=2:
+name: aixsilicon:ip:pqc:0.1.0
+description: PQC candidate RTL and self-checking module unit tests
+filesets:
+  common:
+    files:
+    - rtl/pqc_pkg.sv
+    file_type: systemVerilogSource
+  generated:
+    files:
+    - rtl/generated/pqc_csr_pkg.sv
+    - rtl/generated/pqc_csr.sv
+    file_type: systemVerilogSource
+  rtl:
+    files:
+    - rtl/include/pqc_ntt_rom.svh:
+        is_include_file: true
+    - rtl/include/pqc_secded_functions.svh:
+        is_include_file: true
+    - rtl/pqc_masked_and.sv
+    - rtl/pqc_keccak_masked_round.sv
+    - rtl/pqc_axi_read_arb.sv
+    - rtl/pqc_keccak.sv
+    - rtl/pqc_poly_engine.sv
+    - rtl/pqc_codec.sv
+    - rtl/pqc_sampler.sv
+    - rtl/pqc_ecc_sram.sv
+    - rtl/pqc_secure_sram_ctrl.sv
+    - rtl/pqc_key_slots.sv
+    - rtl/pqc_work_key_ram.sv
+    - rtl/pqc_dma.sv
+    - rtl/pqc_desc_fetch.sv
+    - rtl/pqc_desc_validate.sv
+    - rtl/pqc_fault_ctrl.sv
+    - rtl/pqc_kem_seq.sv
+    - rtl/pqc_dsa_seq.sv
+    - rtl/pqc_cmd_frontend.sv
+    - rtl/pqc_apb_if.sv
+    - rtl/pqc_top.sv
+    - rtl/pqc_random_service.sv
+    file_type: systemVerilogSource
+  ut:
+    files:
+    - verification/unit_test/golden/pqc_golden_vectors.svh:
+        is_include_file: true
+    - verification/unit_test/ut_pqc_apb_if.sv
+    - verification/unit_test/ut_pqc_axi_read_arb.sv
+    - verification/unit_test/ut_pqc_clear_boundaries.sv
+    - verification/unit_test/ut_pqc_cmd_frontend.sv
+    - verification/unit_test/ut_pqc_ecc_sram.sv
+    - verification/unit_test/ut_pqc_codec.sv
+    - verification/unit_test/ut_pqc_codec_math.sv
+    - verification/unit_test/ut_pqc_codec_sram.sv
+    - verification/unit_test/ut_pqc_csr.sv
+    - verification/unit_test/ut_pqc_desc_fetch.sv
+    - verification/unit_test/ut_pqc_desc_validate.sv
+    - verification/unit_test/ut_pqc_dma.sv
+    - verification/unit_test/ut_pqc_dma_cancel.sv
+    - verification/unit_test/ut_pqc_dma_overflow.sv
+    - verification/unit_test/ut_pqc_dma_sram.sv
+    - verification/unit_test/ut_pqc_dsa_replay.sv
+    - verification/unit_test/ut_pqc_dsa_seq.sv
+    - verification/unit_test/ut_pqc_engine_cancel.sv
+    - verification/unit_test/ut_pqc_fault_ctrl.sv
+    - verification/unit_test/ut_pqc_frontend_crc.sv
+    - verification/unit_test/ut_pqc_keccak.sv
+    - verification/unit_test/ut_pqc_keccak_boundaries.sv
+    - verification/unit_test/ut_pqc_keccak_masked_round.sv
+    - verification/unit_test/ut_pqc_kem_select.sv
+    - verification/unit_test/ut_pqc_kem_seq.sv
+    - verification/unit_test/ut_pqc_key_slots.sv
+    - verification/unit_test/ut_pqc_masked_and.sv
+    - verification/unit_test/ut_pqc_masked_random_path.sv
+    - verification/unit_test/ut_pqc_pkg.sv
+    - verification/unit_test/ut_pqc_poly_engine.sv
+    - verification/unit_test/ut_pqc_random_service.sv
+    - verification/unit_test/ut_pqc_sampler.sv
+    - verification/unit_test/ut_pqc_sampler_config.sv
+    - verification/unit_test/ut_pqc_sampler_dsa.sv
+    - verification/unit_test/ut_pqc_secure_sram_ctrl.sv
+    - verification/unit_test/ut_pqc_seq_dispatch.sv
+    - verification/unit_test/ut_pqc_sram_byte_access.sv
+    - verification/unit_test/ut_pqc_top.sv
+    - verification/unit_test/ut_pqc_top_review.sv
+    - verification/unit_test/ut_pqc_work_key_ram.sv
+    file_type: systemVerilogSource
+  # UVM verification environment. Protocol agents are NOT defined here: the APB
+  # and AXI4 VIPs are pulled in through the FuseSoC `depend` below so the same
+  # source exists only in aixsilicon_vip_repo (docs/reuse_plan.md).
+  uvm_env:
+    files:
+    - verification/ral/pqc_ral_pkg.sv
+    - verification/env/pqc_env_dec.sv
+    - verification/env/pqc_dut_cfg.sv
+    - verification/env/pqc_rm_cfg.sv
+    - verification/env/pqc_rm.sv
+    - verification/env/pqc_checker_cfg.sv
+    - verification/env/pqc_checker.sv
+    - verification/env/pqc_fcov.sv
+    - verification/env/pqc_virtual_sequencer.sv
+    - verification/env/pqc_virtual_sequence.sv
+    - verification/env/pqc_env_cfg.sv
+    - verification/env/pqc_env.sv
+    - verification/tc/tc_define.sv
+    - verification/tc/tc_base.sv
+    - verification/tc/tc_cmd_smoke.sv
+    - verification/tc/tc_apb_protection.sv
+    - verification/tc/tc_reg_reset_attr.sv
+    - verification/tc/tc_reset_selftest_lock.sv
+    - verification/tc/tc_intr_independence.sv
+    - verification/tc/tc_key_slot_permission.sv
+    - verification/tc/tc_dma_boundary.sv
+    - verification/tc/tc_kem_decaps_constant_time.sv
+    - verification/tc/tc_illegal_state_shutdown.sv
+    - verification/th/harness.sv
+    file_type: systemVerilogSource
+    depend:
+    - aixsilicon:vip:apb:1.0.0
+    - aixsilicon:vip:axi4:1.0.0
+  vectors:
+    files:
+    - verification/unit_test/golden/review_fix/descriptor_zlib.hex
+    - verification/unit_test/golden/review_fix/hash_0_0.hex
+    - verification/unit_test/golden/review_fix/hash_0_135.hex
+    - verification/unit_test/golden/review_fix/hash_0_136.hex
+    - verification/unit_test/golden/review_fix/hash_0_137.hex
+    - verification/unit_test/golden/review_fix/hash_0_272.hex
+    - verification/unit_test/golden/review_fix/hash_0_289.hex
+    - verification/unit_test/golden/review_fix/hash_1_0.hex
+    - verification/unit_test/golden/review_fix/hash_1_144.hex
+    - verification/unit_test/golden/review_fix/hash_1_161.hex
+    - verification/unit_test/golden/review_fix/hash_1_71.hex
+    - verification/unit_test/golden/review_fix/hash_1_72.hex
+    - verification/unit_test/golden/review_fix/hash_1_73.hex
+    - verification/unit_test/golden/review_fix/hash_2_0.hex
+    - verification/unit_test/golden/review_fix/hash_2_167.hex
+    - verification/unit_test/golden/review_fix/hash_2_168.hex
+    - verification/unit_test/golden/review_fix/hash_2_169.hex
+    - verification/unit_test/golden/review_fix/hash_2_336.hex
+    - verification/unit_test/golden/review_fix/hash_2_353.hex
+    - verification/unit_test/golden/review_fix/hash_3_0.hex
+    - verification/unit_test/golden/review_fix/hash_3_135.hex
+    - verification/unit_test/golden/review_fix/hash_3_136.hex
+    - verification/unit_test/golden/review_fix/hash_3_137.hex
+    - verification/unit_test/golden/review_fix/hash_3_272.hex
+    - verification/unit_test/golden/review_fix/hash_3_289.hex
+    - verification/unit_test/golden/review_fix/sampler_0.hex
+    - verification/unit_test/golden/review_fix/sampler_1.hex
+    - verification/unit_test/golden/review_fix/sampler_2.hex
+    - verification/unit_test/golden/review_fix/sampler_3.hex
+    - verification/unit_test/golden/review_fix/sampler_4.hex
+    - verification/unit_test/golden/review_fix/sampler_5.hex
+    - verification/unit_test/golden/review_fix/sampler_6.hex
+    - verification/unit_test/golden/review_fix/sampler_7.hex
+    - verification/unit_test/golden/review_fix/sampler_stream.hex
+    file_type: user
+  lint_waivers:
+    files:
+    - constraints/lint_waivers.tcl
+    file_type: waiver
+  synth_constraints:
+    files:
+    - constraints/pqc_characterization.sdc
+    file_type: SDC
+targets:
+  default:
+    filesets:
+    - common
+    - generated
+    - rtl
+    toplevel: pqc_top
+  elab:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    toplevel: pqc_top
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        - -l
+        - compile.log
+  lint:
+    default_tool: spyglass
+    filesets:
+    - common
+    - generated
+    - rtl
+    - lint_waivers
+    toplevel: pqc_top
+    tools:
+      spyglass:
+        goals:
+        - lint/lint_rtl
+        spyglass_options:
+        - enableSV yes
+        # The parameterized working memory is a register array at RTL and keeps
+        # that structure until the hardening macro swap (pqc_ecc_sram is the
+        # intended macro boundary). handlememory makes SpyGlass analyse it as an
+        # addressed memory (module annotation SYNTH_5014 "Memory analysis
+        # enabled") instead of exploding 16K words into flops, which exhausts
+        # machine memory.
+        #
+        - handlememory yes
+        rule_parameters:
+        # W123 reports that the wide memory signals of pqc_ecc_sram (39-bit code
+        # word x 16K entries) and pqc_work_key_ram are "size too big thus not
+        # processed"; this is the remedy that message names, and it is required
+        # for the memory bodies to be rule-checked at all. It needs the large
+        # elaboration memory budget available on the signoff host.
+        - handle_large_bus yes
+  synth:
+    default_tool: design_compiler
+    filesets:
+    - common
+    - generated
+    - rtl
+    toplevel: pqc_top
+    tools:
+      design_compiler:
+        script_dir: $::env(IP_ROOT)/scripts/ppa
+        dc_script: synth.tcl
+        report_dir: reports
+  ut_pqc_apb_if:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_apb_if
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_axi_read_arb:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_axi_read_arb
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_clear_boundaries:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_clear_boundaries
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  uvm:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - uvm_env
+    toplevel: harness
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        - -l
+        - compile.log
+  ut_pqc_ecc_sram:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_ecc_sram
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+  ut_pqc_cmd_frontend:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_cmd_frontend
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_codec:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_codec
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_codec_math:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_codec_math
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_codec_sram:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_codec_sram
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_csr:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_csr
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_desc_fetch:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_desc_fetch
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_desc_validate:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_desc_validate
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dma:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dma
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dma_cancel:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dma_cancel
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dma_overflow:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dma_overflow
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dma_sram:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dma_sram
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dsa_replay:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dsa_replay
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_dsa_seq:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_dsa_seq
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_engine_cancel:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_engine_cancel
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_fault_ctrl:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_fault_ctrl
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_frontend_crc:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_frontend_crc
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_keccak:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_keccak
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_keccak_boundaries:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_keccak_boundaries
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_keccak_masked_round:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_keccak_masked_round
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_kem_select:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_kem_select
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_kem_seq:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_kem_seq
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_key_slots:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_key_slots
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_masked_and:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_masked_and
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_masked_random_path:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_masked_random_path
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_pkg:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_pkg
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_poly_engine:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_poly_engine
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_random_service:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_random_service
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_sampler:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_sampler
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_sampler_config:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_sampler_config
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_sampler_dsa:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_sampler_dsa
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_secure_sram_ctrl:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_secure_sram_ctrl
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_seq_dispatch:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_seq_dispatch
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_sram_byte_access:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_sram_byte_access
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_top:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_top
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_top_review:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_top_review
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  ut_pqc_work_key_ram:
+    default_tool: vcs
+    filesets:
+    - common
+    - generated
+    - rtl
+    - ut
+    - vectors
+    toplevel: ut_pqc_work_key_ram
+    tools:
+      vcs:
+        vcs_options:
+        - -sverilog
+        - -timescale=1ns/1ps
+        - -ntb_opts
+        - uvm-1.2
+        - -notice
+        - +vcs+flush+all
+        run_options:
+        - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix

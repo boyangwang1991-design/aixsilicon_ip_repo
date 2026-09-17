@@ -1,0 +1,422 @@
+schema_version: '2.0'
+ip_name: pqc
+generation_profile: sv
+parameters:
+- name: NTT_LANES
+  type: int
+  category: compile_time
+  default: 2
+  domain:
+  - 1
+  - 2
+  - 4
+  depends_on: []
+  description: 双模多项式引擎的并行蝶形 lane 数，决定面积/吞吐档位
+  id: PARAM.PQC.NTT_LANES
+- name: KECCAK_ROUNDS_PER_CYCLE
+  type: int
+  category: compile_time
+  default: 2
+  domain:
+  - 1
+  - 2
+  depends_on: []
+  description: Keccak-f[1600] permutation 每周期计算轮数
+  id: PARAM.PQC.KECCAK_ROUNDS_PER_CYCLE
+- name: LOCAL_SRAM_KIB
+  type: int
+  category: compile_time
+  default: 64
+  domain:
+  - 32
+  - 64
+  - 96
+  depends_on: []
+  description: 本地工作 SRAM 逻辑容量（KiB），4 或 8 bank
+  id: PARAM.PQC.LOCAL_SRAM_KIB
+- name: DMA_DATA_WIDTH
+  type: int
+  category: compile_time
+  default: 128
+  domain:
+  - 64
+  - 128
+  - 256
+  depends_on: []
+  description: AXI4 master 数据通道宽度（bit）
+  id: PARAM.PQC.DMA_DATA_WIDTH
+- name: KEY_SLOT_NUM
+  type: int
+  category: compile_time
+  default: 8
+  domain: 8..32
+  depends_on: []
+  description: 逻辑 key slot 数量，最少 8
+  id: PARAM.PQC.KEY_SLOT_NUM
+- name: SCA_LEVEL
+  type: int
+  category: compile_time
+  default: 1
+  domain:
+  - 0
+  - 1
+  - 2
+  depends_on: []
+  description: 侧信道防护等级；0=常数时间基线，1=产品推荐基线，2=掩码高安全
+  id: PARAM.PQC.SCA_LEVEL
+- name: ENABLE_ALGO_MASK
+  type: int
+  category: compile_time
+  default: 63
+  domain: 1..63
+  depends_on: []
+  description: 六个参数集的裁剪位图；bit0..2=ML-KEM-512/768/1024，bit3..5=ML-DSA-44/65/87
+  id: PARAM.PQC.ENABLE_ALGO_MASK
+- name: ENABLE_HASH_ML_DSA
+  type: bool
+  category: compile_time
+  default: false
+  domain:
+  - false
+  - true
+  depends_on: []
+  description: 是否综合 HashML-DSA 预哈希签名接口
+  id: PARAM.PQC.ENABLE_HASH_ML_DSA
+- name: ENABLE_PIO
+  type: bool
+  category: compile_time
+  default: true
+  domain:
+  - false
+  - true
+  depends_on: []
+  description: 是否综合小数据 PIO FIFO 通道
+  id: PARAM.PQC.ENABLE_PIO
+configurations:
+- id: CFG_TINY
+  purpose: Tiny SKU：MCU/安全启动，面积优先
+  values:
+    NTT_LANES: 1
+    KECCAK_ROUNDS_PER_CYCLE: 1
+    LOCAL_SRAM_KIB: 32
+    DMA_DATA_WIDTH: 64
+    KEY_SLOT_NUM: 8
+    SCA_LEVEL: 1
+- id: CFG_BALANCED
+  purpose: Balanced SKU：通用 SoC，V1.0 推荐
+  values:
+    NTT_LANES: 2
+    KECCAK_ROUNDS_PER_CYCLE: 2
+    LOCAL_SRAM_KIB: 64
+    DMA_DATA_WIDTH: 128
+    KEY_SLOT_NUM: 8
+    SCA_LEVEL: 1
+- id: CFG_THROUGHPUT
+  purpose: Throughput SKU：网关/服务器卸载
+  values:
+    NTT_LANES: 4
+    KECCAK_ROUNDS_PER_CYCLE: 2
+    LOCAL_SRAM_KIB: 96
+    DMA_DATA_WIDTH: 256
+    KEY_SLOT_NUM: 16
+    SCA_LEVEL: 1
+constraints:
+- LOCAL_SRAM_KIB >= 32
+- KECCAK_ROUNDS_PER_CYCLE <= 2
+- DMA_DATA_WIDTH in [64, 128, 256]
+- SCA_LEVEL <= 2
+verification_cases: []
+support_matrix:
+  configs:
+  - id: CFG_DEFAULT
+    params:
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: true
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: true
+  - id: CFG_NTT_LANES_MIN
+    params:
+      NTT_LANES: 1
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_NTT_LANES_MAX
+    params:
+      NTT_LANES: 4
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_KECCAK_ROUNDS_PER_CYCLE_MIN
+    params:
+      KECCAK_ROUNDS_PER_CYCLE: 1
+      NTT_LANES: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_KECCAK_ROUNDS_PER_CYCLE_MAX
+    params:
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      NTT_LANES: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_LOCAL_SRAM_KIB_MIN
+    params:
+      LOCAL_SRAM_KIB: 32
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_LOCAL_SRAM_KIB_MAX
+    params:
+      LOCAL_SRAM_KIB: 96
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DMA_DATA_WIDTH_MIN
+    params:
+      DMA_DATA_WIDTH: 64
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_DMA_DATA_WIDTH_MAX
+    params:
+      DMA_DATA_WIDTH: 256
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_SCA_LEVEL_MIN
+    params:
+      SCA_LEVEL: 0
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_SCA_LEVEL_MAX
+    params:
+      SCA_LEVEL: 2
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ENABLE_HASH_ML_DSA_MIN
+    params:
+      ENABLE_HASH_ML_DSA: false
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ENABLE_HASH_ML_DSA_MAX
+    params:
+      ENABLE_HASH_ML_DSA: true
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_PIO: true
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ENABLE_PIO_MIN
+    params:
+      ENABLE_PIO: false
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  - id: CFG_ENABLE_PIO_MAX
+    params:
+      ENABLE_PIO: true
+      NTT_LANES: 2
+      KECCAK_ROUNDS_PER_CYCLE: 2
+      LOCAL_SRAM_KIB: 64
+      DMA_DATA_WIDTH: 128
+      KEY_SLOT_NUM: 8
+      SCA_LEVEL: 1
+      ENABLE_ALGO_MASK: 63
+      ENABLE_HASH_ML_DSA: false
+    mandatory: false
+    verify:
+      elab: true
+      lint: true
+      formal: true
+      sim: true
+      synth: false
+  mandatory:
+  - CFG_DEFAULT
+  boundary:
+  - CFG_NTT_LANES_MIN
+  - CFG_NTT_LANES_MAX
+  - CFG_KECCAK_ROUNDS_PER_CYCLE_MIN
+  - CFG_KECCAK_ROUNDS_PER_CYCLE_MAX
+  - CFG_LOCAL_SRAM_KIB_MIN
+  - CFG_LOCAL_SRAM_KIB_MAX
+  - CFG_DMA_DATA_WIDTH_MIN
+  - CFG_DMA_DATA_WIDTH_MAX
+  - CFG_SCA_LEVEL_MIN
+  - CFG_SCA_LEVEL_MAX
+  - CFG_ENABLE_HASH_ML_DSA_MIN
+  - CFG_ENABLE_HASH_ML_DSA_MAX
+  - CFG_ENABLE_PIO_MIN
+  - CFG_ENABLE_PIO_MAX
+  pairwise: []
+  risk: []
+  random: []
+  negative: []
+  consumer: []

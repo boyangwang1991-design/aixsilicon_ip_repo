@@ -1,0 +1,248 @@
+schema_version: '2.0'
+ip_name: pqc
+interfaces:
+- id: HLD.IF.INT.PQC.DISPATCH
+  name: command_dispatch
+  scope: internal
+  protocol: command
+  role: consumer
+  owner_module: HLD.MOD.PQC.FE
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  - LRS.FUNC.PQC.CMD.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.PRIM
+  name: primitive_dispatch
+  scope: internal
+  protocol: command
+  role: producer
+  owner_module: HLD.MOD.PQC.KEMSEQ
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.PERF.PQC.NOSW.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.PAGE
+  name: page_access
+  scope: internal
+  protocol: memory
+  role: master
+  owner_module: HLD.MOD.PQC.SRAM
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.SEC.PQC.CT.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.STAGE
+  name: signature_staging
+  scope: internal
+  protocol: stream
+  role: producer
+  owner_module: HLD.MOD.PQC.DSASEQ
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.FAULT
+  name: fault_control
+  scope: internal
+  protocol: control
+  role: producer
+  owner_module: HLD.MOD.PQC.FAULT
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  req_ref:
+  - LRS.SEC.PQC.ZEROIZE.001
+  - LRS.SEC.PQC.LOCK.001
+  - LRS.RESET.PQC.SAFE.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.DESC
+  name: descriptor_shadow
+  scope: internal
+  protocol: stream
+  role: producer
+  owner_module: HLD.MOD.PQC.DMA
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.FUNC.PQC.CMD.002
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.COMPL
+  name: operation_completion
+  scope: internal
+  protocol: transaction
+  role: consumer
+  owner_module: HLD.MOD.PQC.FE
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.REG.PQC.COMPLETION.001
+  - LRS.FUNC.PQC.CMD.006
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.DMABUF
+  name: public_dma_buffer
+  scope: internal
+  protocol: memory
+  role: slave
+  owner_module: HLD.MOD.PQC.SRAM
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.SEC.PQC.SLOT.005
+  - LRS.INTF.PQC.DMA.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.SQZ
+  name: squeeze_stream
+  scope: internal
+  protocol: stream
+  role: producer
+  owner_module: HLD.MOD.PQC.KECCAK
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.KEY
+  name: key_authorization
+  scope: internal
+  protocol: authorization
+  role: producer
+  owner_module: HLD.MOD.PQC.KEYSLOT
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.SEC.PQC.SLOT.001
+  - LRS.SEC.PQC.SLOT.003
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.KEY_MATERIAL
+  name: private_work_key_access
+  scope: internal
+  protocol: secure_memory
+  role: slave
+  owner_module: HLD.MOD.PQC.WORKKEY
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  applicability:
+    expr: 'true'
+- id: HLD.IF.INT.PQC.RANDOM
+  name: random_token_service
+  scope: internal
+  protocol: atomic_random_stream
+  role: producer
+  owner_module: HLD.MOD.PQC.TOP
+  clock_domain: HLD.DOM.CLK.PQC.CORE
+  reset_domain: HLD.DOM.RST.PQC.MAIN
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.CFG.PQC.SCA_LEVEL.001
+  - LRS.SEC.PQC.ZEROIZE.001
+  applicability:
+    expr: 'true'
+provenance:
+  schema: ip-design-projection/1.0
+  stage: hld
+  sources:
+  - path: docs/lrs/00_document_control.md
+    sha256: 6e565382467ff10319b81c4f9bd454107712801ed5116cddc81ef4902f67a64a
+  - path: docs/lrs/01_configuration.md
+    sha256: 7627eb99a93f3b06cb867ba8a014b2f734ff23585254ed2186ce78cebb68cd2c
+  - path: docs/lrs/01_configuration_security.md
+    sha256: 435ed9e532d90ded7af6c1b46ed34628d3b5e0eeee4d27287c0968556f03807f
+  - path: docs/lrs/02_interface.md
+    sha256: b1d66c94f6597955dda1a5f7d0569654bc505cb3046a04c7e87625c690dd580d
+  - path: docs/lrs/03_functional_command.md
+    sha256: beaee00da140657fd4bacc8058286d9fb5271d6fa0d53a96677931136776c5ef
+  - path: docs/lrs/03_functional_dsa.md
+    sha256: d8244ec09cbf0e65b37f1dab21cfb4eda75d5333c8ddb11d1c17caa822cf685f
+  - path: docs/lrs/03_functional_kem.md
+    sha256: 4baa9c92514983232f00f2bd5ef7bb3f8c6cb2e5a4e32865a65532d533b874c6
+  - path: docs/lrs/04_register.md
+    sha256: e8646ed0aed8ae9539b94b884f4d30214eccd55721fdb1c00f09a0910e19a2a5
+  - path: docs/lrs/05_performance.md
+    sha256: 02748c7230f8effb0021aa891b8d3ec5409d96ac07bc3855674d640a4f140785
+  - path: docs/lrs/06_clock_reset.md
+    sha256: bf62af7df1e6ffd1319bb0b2258faa311277e8d3c907869bdc137f823c85d912
+  - path: docs/lrs/07_security_ct.md
+    sha256: a2178a2766706c1a7705a0495cd07bfc8bb89fa245f3378de0e952c4ca56f629
+  - path: docs/lrs/07_security_key.md
+    sha256: 2e0fab24842bcf3e5e7e32427a0c8a38b7a6ceb708eabfa8b86ee82564710bbe
+  - path: docs/lrs/08_safety_lowpower.md
+    sha256: 88a72917013c97cfd5bf56e95c7cc856d8b1b0a254fc589d44075ac8a0847944
+  - path: docs/lrs/09_dfx.md
+    sha256: 9d6acbc617a1fb9d726c8eb7588002f1e35bacc94e4914a938c1b4c8dad03043
+  - path: docs/lrs/11_generator.md
+    sha256: 0ce701cfe2723221bcf19245ff9ece0ee5b14197710e86bb43a39c63de1e26df
+  - path: docs/lrs/12_constraints.md
+    sha256: 156d052f692beeead7a63b32dbab1019c71d9ab94781e30af69523ee2950326d
+  - path: docs/lrs/99_quality_gate.md
+    sha256: cc7f11c81fb6a2d5b191da112d2803a68209706c97de793230727e557bd933db
+  - path: docs/lrs/index.md
+    sha256: c7402967b0c4c6c504de9cd6dcc40f37acc954b0cfa24250f58c2eaea691afdb
+  - path: docs/hld/00_document_control.md
+    sha256: 2f8030ba6b170be1a3dff26f02c2c6b7b2e0cb12e6d402ec7d771f50dca43a89
+  - path: docs/hld/01_architecture.md
+    sha256: 77441002017c58af5da953f413a8f1bb34176583a1222984ec3c6076ae0327d8
+  - path: docs/hld/01_architecture_compute.md
+    sha256: 21308cde19f59c8d536a2d6977cabc0bfa8b7a429518f5e1d5172e6da9427f41
+  - path: docs/hld/01_architecture_control.md
+    sha256: 4aa5cfadb5cbe9178f956eb8f5d9a2dc381b49d70c4c4720355b5b9b424ac51a
+  - path: docs/hld/01_architecture_storage.md
+    sha256: 2d075e037dad37d52113f1bb9291798bef2878033588e970fb8ef1d5b4bd1359
+  - path: docs/hld/03_interface.md
+    sha256: 58cca3068ecfca5d3a27e8cad5a6d63b59e843f7e2e4e69478ecd98b3f8ed97b
+  - path: docs/hld/03_interface_internal.md
+    sha256: 707009b0678ad96a9f2025298d28ddb3f02449b727dff67358540d2a17a7b647
+  - path: docs/hld/03_interface_key_manager.md
+    sha256: 8dde706b8ec9556e56e0042fe42289a1b6cdd128acf049d382d07a7b3bd37972
+  - path: docs/hld/03_interface_random.md
+    sha256: e7162a7c2bc0062b1c805c32d905924d34652ba22b424ce8d7cf629d092f7452
+  - path: docs/hld/04_clock_cdc.md
+    sha256: b6bda585dc5638f9278dfcdc5448ce3f003f56055350fa785f9a4ac2fa96020c
+  - path: docs/hld/05_flows.md
+    sha256: 82b698425248335b585ff9728e31c03df7ae74eb55a137ecc09c7adca63fc373
+  - path: docs/hld/05_flows_algorithms.md
+    sha256: c1e058dd96294c94cfad0a21b8320e02ea4ded877857587aaf6589c4f1efc46d
+  - path: docs/hld/06_policies.md
+    sha256: 65133fe326c11d59bec94a35223d6720ad21ff98102bdffd550e5e255edfa8b4
+  - path: docs/hld/07_lld_handoff.md
+    sha256: 2baa6e4c9ed2d6b4a50f7a1bf9a5377f2d424f47aba03e92032a8f2e8ac73bac
+  - path: docs/hld/07_register_arch.md
+    sha256: a58f6cbcc35ff9380828e873c90bef4227a3532cff9fe1da08f06b654b757dcc
+  - path: docs/hld/08_performance.md
+    sha256: 3393dd86694ba479b48ad4f9d0521c16ffd97cd0b69e9755c036d14295b9e7a9
+  - path: docs/hld/09_masking_execution.md
+    sha256: ea8de01df8339bdab0cc90939a14eb4fe6cfbabaea66f706866b5e524fcd5b5f
+  - path: docs/hld/09_masking_level2.md
+    sha256: 70b07f740e73e388fa7293e8599e43cfec6f5b0c578e165315b61688a5e788be
+  - path: docs/hld/09_safety_security.md
+    sha256: 88494b76affa11a2c257ace5d503e6851fc66e5bee6e408279d6bd547dbee9a7
+  - path: docs/hld/10_configuration_effects.md
+    sha256: 34dd2f69711494930978b9510dfd98c34ea905a991ceb849f5149ea272f0df5c
+  - path: docs/hld/10_decisions.md
+    sha256: 03a3c577ca0196c36a7d1012ff271fc3f1d414412cc1f414c3d252cd9f670072
+  - path: docs/hld/10_derived_decisions.md
+    sha256: 6baa32e3690195fb2ac4daf22d2e96b7f0844434601dd5a9f0a29e9f53ad90e7
+  - path: docs/hld/99_quality_gate.md
+    sha256: 001459d838bf61c1b7100f4bacf9f3a641c2d14d756dc959c587555d1e263c7e
+  - path: docs/hld/index.md
+    sha256: 0dee35480b4cb4fc87394dc4f712771b46c865ebd8050ca01ed46643e0ce6ef7
+  extractor:
+    skills/03-hld-architect/scripts/extract_hld.py: 1d6d104830f6686e1b3d8d4a751f0668538ecc47272833d56d0b9112a4e41493
+    scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
+    scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
+  payload_sha256: 5134e8c3d356a6ccc24ca0db458cca49918b66bf05ab0c209b2448657028e19b

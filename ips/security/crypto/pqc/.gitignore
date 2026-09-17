@@ -1,0 +1,44 @@
+# 运行中间件统一落点（git 忽略，不交付）
+build/
+# 人读报告仅统一报告与 PPA 专报；机器阶段输出统一进入 build/
+/reports/*
+!/reports/report.md
+!/reports/ppa/
+/reports/ppa/*
+!/reports/ppa/ppa_report.md
+!/reports/ppa/*.png
+# 原始执行证据仅本地；包括旧路径的无扩展名哈希对象与索引
+/evidence/
+/reports/evidence/
+/build/reports/preflight/
+/reports/uvm/
+/reports/**/raw/
+/reports/**/*.txt
+/reports/**/*.rpt
+/reports/**/*.html
+/reports/**/*.exit
+# PeakRDL HTML旧路径及全部站点资源：禁止上传GitHub
+/docs/generated/*_regs.html
+# 设计抽取过程输出旧路径兜底；新输出应进入build/design/
+/reports/**/extract_*.txt
+/reports/**/*_extract_*.txt
+/reports/**/*.extract.txt
+/reports/**/extract_*.exit
+/reports/**/*_extract_*.exit
+/reports/**/*.extract.exit
+# 防漏网：典型 EDA/仿真中间产物（若工具写入源码目录则视为违规）
+*.daidir/
+csrc/
+simv*
+# VCS/UCLI 运行时凭据与临时文件（与其它 IP 一致：不入库）
+ucli.key
+*.vcd
+*.fsdb
+*.shm
+*.log
+.Xil/
+edalize_work_root/
+# Python
+.venv/
+__pycache__/
+*.py[cod]
