@@ -208,6 +208,38 @@ END_TESTCASE_META -->
 
 ---
 
+### TC.PQC.KEY.002 Key Manager 生命周期（blocked）
+
+<!-- TESTCASE_META
+id: TC.PQC.KEY.002
+name: tc_key_manager_lifecycle
+type: security
+description: >
+  Key Manager 侧载（km_begin/import/destroy）与密钥槽 domain 授权生命周期。
+  当前 RTL 中 0x200+ 密钥槽窗口对任何访问返回 pslverr（RTL-KEY-001），
+  完整生命周期无法在 RTL 上验证；本用例归入 blocked，待 RTL 闭环后验收。
+priority: must
+tier: regression
+implementation: verification/tc/tc_key_slot_permission.sv
+feature_ref:
+- FL.PQC.KEYMANAGER.PENDING
+design_ref:
+- LLD.REG.PQC.SLOT_DESTROY
+preconditions:
+- Key Manager 数据通路已闭环（当前未闭环）
+stimulus:
+- km_begin/import/destroy；跨域访问密钥槽
+expected_result:
+- 密钥槽软件可访问（当前不可访问，见 RTL-KEY-001）
+timeout_policy: 100000 cycles
+config_ref:
+- CFGSET.PQC.DEFAULT
+applicability:
+  expr: 'true'
+END_TESTCASE_META -->
+
+---
+
 ### TC.PQC.DMA.001 4 KiB 边界拆分
 
 <!-- TESTCASE_META
@@ -397,3 +429,32 @@ config_ref:
 applicability:
   expr: 'true'
 END_TESTCASE_META -->
+---
+
+## 实现状态（2026-09-17 UVM 实测）
+
+以下状态基于 `verification/sim/run_uvm.py` 的真实 UVM 运行（VCS W-2024.09-SP1，
+UVM 1.2，`--compile-timeout 300 --run-timeout 90`），不是文档声明。
+
+| TC | Tier | 实现文件 | 状态 | 说明 |
+|---|---|---|---|---|
+| TC.PQC.CMD.001 | smoke | `tc_cmd_smoke.sv` | **PASS** | 上电/使能/自检门控/命令寄存器/门铃提交/STATUS 观测 |
+| TC.PQC.APB.001 | smoke | `tc_apb_protection.sv` | **PASS** | 低位未映射地址 pslverr；swwe 命令组写保护 |
+| TC.PQC.REG.001 | smoke | `tc_reg_reset_attr.sv` | **PASS** | ID/CAPABILITY 复位与属性；W1C；RO 写忽略 |
+| TC.PQC.RESET.001 | regression | `tc_reset_selftest_lock.sv` | **PASS** | 复位状态/自检门控/无错误；自检后 busy 不归位记为 RTL-STATUS-001 |
+| TC.PQC.SIDEBAND.001 | regression | `tc_intr_independence.sv` | **PASS** | INTR_ENABLE 独立门控 + W1C 独立性 |
+| TC.PQC.KEY.001 | regression | `tc_key_slot_permission.sv` | **PASS(observed)** | 0x200+ 窗口全 pslverr 记为 RTL-KEY-001（预期错误区） |
+| TC.PQC.INTEGRITY.001 | extended | `tc_illegal_state_shutdown.sv` | **PASS** | 告警寄存器契约（RO/复位清零） |
+| TC.PQC.DMA.001 | regression | — | **blocked** | 依赖未实现 DMA 数据通路（ISSUE A03/A11）；不伪造通过 |
+| TC.PQC.CT.001 | regression | — | **blocked** | 依赖完整 KEM 数据通路与 Level 2 掩码链 |
+| TC.PQC.ALGO.001 | regression | `scripts/run_pqc_algo_proof.py` | pending | 软件证明入口（algorithm proof） |
+
+### 已知 RTL 缺陷（UVM 实测，见 reports/report.md）
+
+| ID | 现象 | 影响 |
+|---|---|---|
+| RTL-REG-002 | `CAPABILITY1.abi_minor` 从未被驱动，读 0（RDL reset=1） | 能力上报不完整 |
+| RTL-APB-002 | 高位未映射地址（0x2F0）不返回 pslverr 也不返回 PREADY | 总线挂死 |
+| RTL-CMD-001 | 门铃命令链依赖未实现 DMA，前端可无限等待 | 命令无法闭环 |
+| RTL-STATUS-001 | 自检后 `STATUS.idle` 不再置位（前端保持 busy） | 自检后无法进入 idle |
+| RTL-KEY-001 | 0x200+ key-slot 窗口任何访问都返回 pslverr（PPROT=3'b100 亦然） | 密钥槽软件不可访问 |

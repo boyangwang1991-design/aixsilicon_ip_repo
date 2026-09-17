@@ -1,5 +1,26 @@
 # PQC 验证功能列表
 
+<!-- FEATURE_META
+id: FL.PQC.KEYMANAGER.PENDING
+name: Key Manager 侧载与密钥槽域授权（待实现数据通路）
+type: security
+priority: must
+description: >
+  完整 Key Manager 侧载（km_begin/import/destroy）、密钥槽 domain 授权与
+  可信域生命周期（LRS.SEC.PQC.SLOT.006/007/008 与 LRS.INTF.PQC.KEY_MANAGER.001）
+  依赖尚未闭合的 Key Manager/密钥数据通路。当前 RTL 中 0x200+ 密钥槽窗口对任何
+  访问返回 pslverr（RTL-KEY-001），完整生命周期无法在 RTL 上验证。tc_key_slot_permission
+  作为本 feature 的观测用例：它实际驱动该窗口并记录 RTL-KEY-001（而不是断言通过），
+  因此被归入 blocked；待 RTL 闭环后以其验收。
+req_ref:
+- LRS.INTF.PQC.KEY_MANAGER.001
+- LRS.SEC.PQC.SLOT.006
+- LRS.SEC.PQC.SLOT.007
+- LRS.SEC.PQC.SLOT.008
+status: blocked
+rationale: 依赖未实现 Key Manager/密钥数据通路；RTL-KEY-001 使密钥槽窗口软件不可访问
+END_FEATURE_META -->
+
 ### FL.PQC.CFG — 配置空间与档位
 
 <!-- FEATURE_META

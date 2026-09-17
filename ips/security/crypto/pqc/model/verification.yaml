@@ -7,6 +7,54 @@ lrs_baseline: PQC-CONTRACT-36c592c3ffa1
 hld_baseline: PQC-HLD-1.0.0
 lld_baseline: PQC-LLD-1.0.0
 features:
+- id: FL.PQC.KEYMANAGER.PENDING
+  name: Key Manager 侧载与密钥槽域授权（待实现数据通路）
+  type: security
+  priority: must
+  description: '完整 Key Manager 侧载（km_begin/import/destroy）、密钥槽 domain 授权与 可信域生命周期（LRS.SEC.PQC.SLOT.006/007/008
+    与 LRS.INTF.PQC.KEY_MANAGER.001） 依赖尚未闭合的 Key Manager/密钥数据通路。当前 RTL 中 0x200+ 密钥槽窗口对任何
+    访问返回 pslverr（RTL-KEY-001），完整生命周期无法在 RTL 上验证。tc_key_slot_permission 作为本 feature
+    的观测用例：它实际驱动该窗口并记录 RTL-KEY-001（而不是断言通过）， 因此被归入 blocked；待 RTL 闭环后以其验收。
+
+    '
+  req_ref:
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  status: blocked
+  rationale: 依赖未实现 Key Manager/密钥数据通路；RTL-KEY-001 使密钥槽窗口软件不可访问
+  design_ref: []
+  testcases:
+  - id: TC.PQC.KEY.002
+    name: tc_key_manager_lifecycle
+    type: security
+    description: 'Key Manager 侧载（km_begin/import/destroy）与密钥槽 domain 授权生命周期。 当前 RTL
+      中 0x200+ 密钥槽窗口对任何访问返回 pslverr（RTL-KEY-001）， 完整生命周期无法在 RTL 上验证；本用例归入 blocked，待
+      RTL 闭环后验收。
+
+      '
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_key_slot_permission.sv
+    feature_ref:
+    - FL.PQC.KEYMANAGER.PENDING
+    design_ref:
+    - LLD.REG.PQC.SLOT_DESTROY
+    preconditions:
+    - Key Manager 数据通路已闭环（当前未闭环）
+    stimulus:
+    - km_begin/import/destroy；跨域访问密钥槽
+    expected_result:
+    - 密钥槽软件可访问（当前不可访问，见 RTL-KEY-001）
+    timeout_policy: 100000 cycles
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage: []
+  assertions: []
+  config_coverage: []
 - id: FL.PQC.CFG
   name: configuration_space
   description: 综合期参数合法空间、命名配置与跨参数约束
