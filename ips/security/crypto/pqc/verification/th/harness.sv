@@ -26,8 +26,6 @@ module harness;
 
   import apb_types_pkg::*;
   import apb_pkg::*;
-  import axi4_types_pkg::*;
-  import axi4_pkg::*;
   import pqc_pkg::*;
 
   // ---------------------------------------------------------------------------
@@ -42,8 +40,13 @@ module harness;
   localparam int unsigned KEY_SLOT_NUM            = 8;
   localparam int unsigned SCA_LEVEL               = 1;
 
-  // APB CSR window of pqc_top is 10 bits wide (1 KiB).
-  localparam int unsigned APB_ADDR_WIDTH = 10;
+  // The APB VIP declares `virtual apb_if vif` WITHOUT parameters, so the
+  // interface instance must use the VIP's default parameterisation
+  // (ADDR_WIDTH=32) or the config_db virtual-interface type will not match.
+  // pqc_top only decodes the low 10 bits, so the low bits are connected to the
+  // DUT and the upper bits are left unused; "unmapped" checks still work
+  // because they target holes inside the DUT's own 10-bit window.
+  localparam int unsigned APB_ADDR_WIDTH = 32;
 
   // ---------------------------------------------------------------------------
   // Clock and reset
@@ -76,15 +79,40 @@ module harness;
     .check_enable (1'b0)
   );
 
-  axi4_if #(
-    .ID_WIDTH      (8),
-    .ADDRESS_WIDTH (40),
-    .DATA_WIDTH    (DMA_DATA_WIDTH),
-    .USER_WIDTH    (1)
-  ) u_axi_if (
-    .aclk     (clk),
-    .areset_n (rst_n)
-  );
+  // AXI4 master observation nets (idle handshake, see note)
+  logic                     axi_ar_valid;
+  logic [39:0]              axi_ar_addr;
+  logic [7:0]               axi_ar_len;
+  logic [2:0]               axi_ar_prot;
+  logic                     axi_r_ready;
+  logic                     axi_aw_valid;
+  logic [39:0]              axi_aw_addr;
+  logic [7:0]               axi_aw_len;
+  logic [2:0]               axi_aw_prot;
+  logic                     axi_w_valid;
+  logic [DMA_DATA_WIDTH-1:0] axi_w_data;
+  logic [DMA_DATA_WIDTH/8-1:0] axi_w_strb;
+  logic                     axi_w_last;
+  logic                     axi_b_ready;
+
+  // ---------------------------------------------------------------------------
+  // AXI4 paths are deliberately NOT wired to a VIP in this increment.
+  //
+  // The published AXI4 VIP declares `virtual axi4_if vif` without parameters
+  // (default 32-bit data / 32-bit address), while pqc_top's DMA master is
+  // 128-bit data / 40-bit address; the two specialisations are not
+  // interchangeable, so the VIP cannot be attached to this DUT without an
+  // (unsupported) type override.
+  //
+  // This is not worked around by a hand-written responder: the DMA data path is
+  // itself still incomplete in RTL (input -> algorithm -> output -> completion
+  // is not closed, reports/report.md ISSUE A03 / A11). DMA verification is
+  // therefore deferred together with that RTL work and recorded as an open G4
+  // item rather than simulated against a stub.
+  //
+  // The DUT master handshake is held idle (no requests, no responses) so the
+  // unimplemented path can never silently "succeed".
+  // ---------------------------------------------------------------------------
 
   // ---------------------------------------------------------------------------
   // DUT
@@ -124,30 +152,32 @@ module harness;
     .s_apb_prdata  (u_apb_if.prdata),
     .s_apb_pslverr (u_apb_if.pslverr),
 
-    // AXI4 master data interface (DUT is master; VIP is slave responder)
-    .m_ar_valid (u_axi_if.arvalid),
-    .m_ar_ready (u_axi_if.arready),
-    .m_ar_addr  (u_axi_if.araddr),
-    .m_ar_len   (u_axi_if.arlen),
-    .m_ar_prot  (u_axi_if.arprot),
-    .m_r_valid  (u_axi_if.rvalid),
-    .m_r_ready  (u_axi_if.rready),
-    .m_r_data   (u_axi_if.rdata),
-    .m_r_resp   (u_axi_if.rresp),
-    .m_r_last   (u_axi_if.rlast),
-    .m_aw_valid (u_axi_if.awvalid),
-    .m_aw_ready (u_axi_if.awready),
-    .m_aw_addr  (u_axi_if.awaddr),
-    .m_aw_len   (u_axi_if.awlen),
-    .m_aw_prot  (u_axi_if.awprot),
-    .m_w_valid  (u_axi_if.wvalid),
-    .m_w_ready  (u_axi_if.wready),
-    .m_w_data   (u_axi_if.wdata),
-    .m_w_strb   (u_axi_if.wstrb),
-    .m_w_last   (u_axi_if.wlast),
-    .m_b_valid  (u_axi_if.bvalid),
-    .m_b_ready  (u_axi_if.bready),
-    .m_b_resp   (u_axi_if.bresp),
+    // AXI4 master data interface: held idle (see the AXI4 note above).
+    // Outputs are observed but never driven back; inputs are tied to "no
+    // response" so the DUT master cannot complete a phantom transaction.
+    .m_ar_valid (axi_ar_valid),
+    .m_ar_ready (1'b0),
+    .m_ar_addr  (axi_ar_addr),
+    .m_ar_len   (axi_ar_len),
+    .m_ar_prot  (axi_ar_prot),
+    .m_r_valid  (1'b0),
+    .m_r_ready  (axi_r_ready),
+    .m_r_data   ({DMA_DATA_WIDTH{1'b0}}),
+    .m_r_resp   (2'b00),
+    .m_r_last   (1'b0),
+    .m_aw_valid (axi_aw_valid),
+    .m_aw_ready (1'b0),
+    .m_aw_addr  (axi_aw_addr),
+    .m_aw_len   (axi_aw_len),
+    .m_aw_prot  (axi_aw_prot),
+    .m_w_valid  (axi_w_valid),
+    .m_w_ready  (1'b0),
+    .m_w_data   (axi_w_data),
+    .m_w_strb   (axi_w_strb),
+    .m_w_last   (axi_w_last),
+    .m_b_valid  (1'b0),
+    .m_b_ready  (axi_b_ready),
+    .m_b_resp   (2'b00),
 
     // Entropy source (external RNG service feed)
     .entropy_valid      (entropy_valid),
@@ -219,7 +249,7 @@ module harness;
     // Scope note: use wildcard scopes because UVM config_db exact scope does not
     // cascade into deeper components (APB VIP user-guide §9).
     uvm_config_db #(virtual apb_if)::set(null, "*", "vif", u_apb_if);
-    uvm_config_db #(virtual axi4_if)::set(null, "*", "vif", u_axi_if);
+    // No AXI4 VIP vif is published: the DMA path is out of scope this increment.
     run_test();
   end
 

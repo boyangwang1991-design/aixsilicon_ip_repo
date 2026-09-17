@@ -1,12 +1,91 @@
-+incdir+./env
-+incdir+./env/utils/apb_utils/src
-+incdir+./tc
-+incdir+./th
-+incdir+./env/utils/axi_utils/src
+// =============================================================================
+// PQC UVM verification source manifest (single source list for the UVM build)
+//
+// Consumed by verification/sim/run_uvm.py, which substitutes $(VIP_ROOT) and
+// passes the list to VCS. Do not maintain a second source list elsewhere.
+//
+// $(VIP_ROOT) points at the aixsilicon_vip_repo checkout. The protocol agents
+// are referenced READ-ONLY from there; no VIP source is copied into this IP
+// (docs/reuse_plan.md §4.2.3). The PQC-side environment and testcases in this
+// repository import the VIP packages.
+//
+// Compile order is significant: UVM, RTL, VIP packages, then PQC environment
+// (which imports the VIP packages), then testcases, then the harness top.
+// =============================================================================
 
--f ./env/utils/apb_utils/apb_interface_agent.list
--f ./env/pqc_env.list
--f ./env/utils/axi_utils/axi_interface_agent.list
--f ./tc/tc.list
+// ---------------------------------------------------------------- include dirs
++incdir+rtl/include
++incdir+$(VIP_ROOT)/vip/amba/apb/src
++incdir+verification
++incdir+verification/env
++incdir+verification/tc
++incdir+verification/th
 
-./th/harness.sv
+// ------------------------------------------------------------------- RTL (DUT)
+rtl/pqc_pkg.sv
+rtl/generated/pqc_csr_pkg.sv
+rtl/generated/pqc_csr.sv
+rtl/pqc_masked_and.sv
+rtl/pqc_keccak_masked_round.sv
+rtl/pqc_axi_read_arb.sv
+rtl/pqc_keccak.sv
+rtl/pqc_poly_engine.sv
+rtl/pqc_codec.sv
+rtl/pqc_sampler.sv
+rtl/pqc_ecc_sram.sv
+rtl/pqc_secure_sram_ctrl.sv
+rtl/pqc_key_slots.sv
+rtl/pqc_work_key_ram.sv
+rtl/pqc_dma.sv
+rtl/pqc_desc_fetch.sv
+rtl/pqc_desc_validate.sv
+rtl/pqc_fault_ctrl.sv
+rtl/pqc_kem_seq.sv
+rtl/pqc_dsa_seq.sv
+rtl/pqc_cmd_frontend.sv
+rtl/pqc_apb_if.sv
+rtl/pqc_random_service.sv
+rtl/pqc_top.sv
+
+// ------------------------------------------------- APB VIP (read-only reference)
+// apb_pkg includes apb_config.sv and the agent/checker/sequences/coverage/env/
+// ral sources relative to the VIP src root, which is on the include path above.
+// apb_config.sv is present in the VIP repo but missing from the VIP FuseSoC
+// core fileset; listing the package (which pulls it in via `include`) is
+// sufficient and keeps this a single compilation unit.
+$(VIP_ROOT)/vip/amba/apb/src/apb_types_pkg.sv
+$(VIP_ROOT)/vip/amba/apb/src/apb_if.sv
+$(VIP_ROOT)/vip/amba/apb/src/apb_pkg.sv
+$(VIP_ROOT)/vip/amba/apb/src/apb_sva_bind.sv
+// NOTE: the AXI4 VIP is intentionally not compiled in this increment. Its
+// interface specialisation (32-bit) does not match pqc_top's 128-bit DMA
+// master, and the DMA data path is still open in RTL. DMA verification is
+// deferred with that RTL work and recorded as an open G4 item; simulating it
+// against a stub responder would produce a false pass.
+
+
+// ----------------------------------------------------- PQC environment + RAL
+verification/ral/pqc_ral_pkg.sv
+verification/env/pqc_env_dec.sv
+verification/env/pqc_dut_cfg.sv
+verification/env/pqc_rm_cfg.sv
+verification/env/pqc_checker_cfg.sv
+verification/env/pqc_fcov.sv
+verification/env/pqc_rm.sv
+verification/env/pqc_checker.sv
+verification/env/pqc_virtual_sequencer.sv
+verification/env/pqc_virtual_sequence.sv
+verification/env/pqc_env_cfg.sv
+verification/env/pqc_apb_adapter.sv
+verification/env/pqc_env.sv
+
+// ------------------------------------------------------------- testcases
+verification/tc/tc_define.sv
+verification/tc/pqc_apb_reg_seq.sv
+verification/tc/tc_base.sv
+verification/tc/tc_cmd_smoke.sv
+verification/tc/tc_apb_protection.sv
+verification/tc/tc_reg_reset_attr.sv
+
+// ------------------------------------------------------------------ harness
+verification/th/harness.sv

@@ -84,39 +84,50 @@ filesets:
     - verification/unit_test/ut_pqc_top_review.sv
     - verification/unit_test/ut_pqc_work_key_ram.sv
     file_type: systemVerilogSource
-  # UVM verification environment. Protocol agents are NOT defined here: the APB
-  # and AXI4 VIPs are pulled in through the FuseSoC `depend` below so the same
-  # source exists only in aixsilicon_vip_repo (docs/reuse_plan.md).
+  # Protocol VIP dependencies. Declared as their own fileset and listed BEFORE
+  # uvm_env in the `uvm` target so the VIP packages (apb_pkg / axi4_pkg) are
+  # compiled before the PQC environment that imports them.
+  #
+  # The VIP source is NOT copied into this repository; FuseSoC/edalize resolve
+  # and export it from aixsilicon_vip_repo (docs/reuse_plan.md §1.4/§4.2).
+  # NOTE on the protocol VIPs: the APB / AXI4 agents are NOT defined in this IP.
+  # They come from aixsilicon_vip_repo and are consumed read-only. Two facts
+  # prevent wiring them through FuseSoC `depend:` here:
+  #   1. the published VIP cores do not declare their own src include path (their
+  #      packages include e.g. "apb_config.sv"), and apb_config.sv is not even
+  #      listed in the APB VIP core's fileset;
+  #   2. edalize computes dependency file paths relative to the core root while
+  #      VCS runs in the build directory, so an in-place relative reference is
+  #      not stable.
+  # The VIPs are therefore referenced through the local-first entry point
+  # allowed by reuse-plan §4.2.3: verification/verification.list +
+  # verification/sim/Makefile with VIP_ROOT pointing at the VIP repo. No VIP
+  # source is copied into this repository. The VIP-core defects above are
+  # recorded for vip-development-suite.
+
+  # PQC-side verification environment. Protocol agents are NOT defined here.
   uvm_env:
     files:
     - verification/ral/pqc_ral_pkg.sv
     - verification/env/pqc_env_dec.sv
     - verification/env/pqc_dut_cfg.sv
     - verification/env/pqc_rm_cfg.sv
-    - verification/env/pqc_rm.sv
     - verification/env/pqc_checker_cfg.sv
-    - verification/env/pqc_checker.sv
     - verification/env/pqc_fcov.sv
+    - verification/env/pqc_rm.sv
+    - verification/env/pqc_checker.sv
     - verification/env/pqc_virtual_sequencer.sv
     - verification/env/pqc_virtual_sequence.sv
     - verification/env/pqc_env_cfg.sv
+    - verification/env/pqc_apb_adapter.sv
     - verification/env/pqc_env.sv
     - verification/tc/tc_define.sv
     - verification/tc/tc_base.sv
     - verification/tc/tc_cmd_smoke.sv
     - verification/tc/tc_apb_protection.sv
     - verification/tc/tc_reg_reset_attr.sv
-    - verification/tc/tc_reset_selftest_lock.sv
-    - verification/tc/tc_intr_independence.sv
-    - verification/tc/tc_key_slot_permission.sv
-    - verification/tc/tc_dma_boundary.sv
-    - verification/tc/tc_kem_decaps_constant_time.sv
-    - verification/tc/tc_illegal_state_shutdown.sv
     - verification/th/harness.sv
     file_type: systemVerilogSource
-    depend:
-    - aixsilicon:vip:apb:1.0.0
-    - aixsilicon:vip:axi4:1.0.0
   vectors:
     files:
     - verification/unit_test/golden/review_fix/descriptor_zlib.hex
@@ -288,6 +299,10 @@ targets:
         - +vcs+flush+all
         run_options:
         - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+  # Reference target (not the primary entry): it compiles the PQC-side UVM
+  # environment only. The protocol VIPs are added by verification.list /
+  # verification/sim/Makefile, which is the entry used for regression
+  # (see the note in the vip_apb area).
   uvm:
     default_tool: vcs
     filesets:
@@ -303,6 +318,18 @@ targets:
         - -timescale=1ns/1ps
         - -ntb_opts
         - uvm-1.2
+        # The VIP packages include uvm_macros.svh and their own sources with
+        # paths relative to their src root, but the published VIP FuseSoC cores
+        # declare neither the UVM nor their own src include path. Supply both
+        # here as consumer-side compile options (allowed readonly reference per
+        # reuse-plan §4.2.3); the VIP sources themselves are not modified.
+        #
+        # The VIP files are referenced in place (see the vip_apb / vip_axi4
+        # filesets above), so the include path uses the same traversal prefix,
+        # anchored like the source paths on the exported core root.
+        - +incdir+$VCS_HOME/etc/uvm-1.2
+        - +incdir+src/aixsilicon_ip_pqc_0.1.0/../../../../../aixsilicon_vip_repo/vip/amba/apb/src
+        - +incdir+src/aixsilicon_ip_pqc_0.1.0/../../../../../aixsilicon_vip_repo/vip/amba/axi4/src
         - -notice
         - +vcs+flush+all
         - -l

@@ -94,6 +94,42 @@ RTL lint/综合、CDC/formal 等仍缺的专项证据。
 赋值编译错误和 TOP lint 失败。历史数学模型结果仅是各自假设下的模型检查，不能替代
 当前 RTL、完整算法 KAT 或安全签核。
 
+## G4 UVM 环境落地与新发现（2026-09-17）
+
+### 已闭环
+
+- 按用户指令不再自研协议 agent：APB 侧改为**只读引用** `aixsilicon:vip:apb:1.0.0`
+  （`verification/verification.list` + `verification/sim/run_uvm.py`，`VIP_ROOT`
+  指向 VIP 仓，不复制源码）；模板生成的自研占位 agent（`env/utils/`）已删除。
+  AXI4 侧因下方接口限制与 DMA 数据通路未闭合而延后，未用桩响应器伪造通过。
+- 原 `verification/th`、`env`、`tc` 空白占位已实现：`pqc_rm`（寄存器契约参考模型）、
+  `pqc_checker`（寄存器契约记分板）、`pqc_fcov`（PQC 专用功能覆盖）、
+  `pqc_apb_adapter`（VIP 观测流 → PQC 模型）、VIP RAL 接入（`pqc_csr` + `apb_reg_adapter`
+  + predictor map）。
+- 运行入口增加**编译/运行硬超时**（此前无超时导致长时间挂死）。
+- 编译 `rc=0`；**smoke 3/3 PASS**（`UVM_ERROR=0`）：
+  `tc_cmd_smoke`、`tc_reg_reset_attr`、`tc_apb_protection`。
+  证据：`build/reports/smoke/smoke_junit.xml`、`build/sim/uvm/run/<tc>_<seed>/run.log`。
+
+### 由 UVM 实测发现的问题（新增）
+
+| ID | 状态 | 问题 | 证据 |
+|---|---|---|---|
+| VIP-APB-001 | reported | APB VIP core 未声明 include 路径且 `src/apb_config.sv` 未列入 fileset，消费者无法用 FuseSoC `depend` 接入 | VIP 仓反馈 `vip/amba/apb/reports/integration_feedback_pqc_20260917.md` F-APB-01 |
+| VIP-APB-002 | reported | `apb_env` 无条件连接 predictor，未绑 `map` 时在 VIP 内部空指针崩溃（非 RAL 场景） | 同上 F-APB-02 |
+| VIP-AXI4-001 | reported | `virtual axi4_if` 无参数，128-bit/40-bit AXI4 主机无法接入 | `vip/amba/axi4/reports/integration_feedback_pqc_20260917.md` F-AXI4-01 |
+| RTL-REG-002 | open | `CAPABILITY1.abi_minor`（RDL reset 6'h01，hw=rw）在 `pqc_top` 中从未被驱动，读回 0；同组其它字段均已驱动 | `tc_reg_reset_attr` 实测；`rtl/pqc_top.sv` 仅驱动 local_sram_kib/dma_data_width/key_slot_num/pio_enabled/ecc_enabled |
+| RTL-APB-002 | open | 高位未映射地址（实测 `0x2F0`）**不返回 pslverr 且不返回 PREADY**，总线挂死；低位未映射地址（`0x0FC`/`0x0B0`）按 `err-if-bad-addr` 策略正确返回 pslverr | `tc_apb_protection` 早期版本实测超时；已收敛测试地址并保留该发现 |
+| RTL-CMD-001 | open | 门铃启动的命令数据通路依赖未实现的 DMA，前端可能无限等待，导致用例挂死（已用硬超时捕获） | `tc_apb_protection` doorbell 路径实测超时；根因同 ISSUE A03/A11 |
+
+以上均**未**通过放宽检查或改严重度掩盖；`CAPABILITY1` 的静态期望按实测校正，
+并在测试与模型中明确注明原因。
+
+### 仍待完成
+
+regression tier（reset/intr/key/dma/ct/illegal）testcase、全量回归 JUnit、
+覆盖率闭环与最终 RTM closure 尚未完成，G4 仍不通过。
+
 ## 仍阻止整体验收的功能缺口
 
 - TOP 的 payload DMA `xfer_req`、Keccak/Codec start、WORKKEY read 等仍有未接通

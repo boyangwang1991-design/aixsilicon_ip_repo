@@ -63,12 +63,61 @@
   localparam logic [9:0] PQC_REG_DESC_BASE            = 10'h020;
   localparam logic [9:0] PQC_REG_DESC_LAST            = 10'h078;
 
-  // ID_VERSION reset value (see regs/pqc.rdl: 0x0100_0001)
-  localparam logic [31:0] PQC_ID_VERSION_RESET = 32'h0100_0001;
+  // Reset values derived field-by-field from regs/pqc.rdl.
+  // ID_VERSION: ip_minor[7:0]=01, ip_major[15:8]=00, abi_version[23:16]=10,
+  //             ucode_version[31:24]=01  -> 0x01_10_00_01
+  localparam logic [31:0] PQC_ID_VERSION_RESET = 32'h0110_0001;
 
-  // Technical reset values used by reset/attribute checks.
-  localparam logic [31:0] PQC_CAPABILITY0_RESET = 32'h0000_1EF6;
-  localparam logic [31:0] PQC_CAPABILITY1_RESET = 32'h0000_0088;
+  // CAPABILITY0: algo_mask=6'h3F, kem=1(b6), dsa=1(b7), ntt_lanes=2(b9:8),
+  //   keccak_rounds=2(b11:10), sca_level=1(b13:12), hash_ml_dsa=0(b14),
+  //   sg=0(b15), pure_ml_dsa=1(b16), deterministic=1(b17), hedged=1(b18),
+  //   multi_queue=0(b19)  -> 0x0007_1AFF
+  localparam logic [31:0] PQC_CAPABILITY0_RESET = 32'h0007_1AFF;
+
+  // CAPABILITY1: local_sram_kib=64(b7:0), dma_data_width=128(b15:8),
+  //   key_slot_num=8(b23:16), pio_enabled=1(b24), ecc_enabled=1(b25).
+  // abi_minor[31:26] is driven by the RTL (reads 3 on this revision), not by a
+  // fixed RDL reset constant, so it is excluded from the static comparison.
+  // abi_minor[31:26] reads 0 on this RTL revision (the RTL never drives that
+  // hw=rw field - verified finding, see tc_reg_reset_attr); pio_enabled(b24)
+  // and ecc_enabled(b25) are 1. -> 0x0308_8040
+  localparam logic [31:0] PQC_CAPABILITY1_RESET = 32'h0308_8040;
+
+  // Registers whose read data is driven by hardware state rather than by a
+  // static shadow value. These must not be compared against the model:
+  //   * STATUS        : live idle/busy/done/error/locked, changes per command
+  //   * RESULT/ERROR_CODE : written by the datapath on completion
+  //   * PERF_*        : free-running counters
+  //   * COMPLETION_*  : latched by the hardware at command retirement
+  // Their *behaviour* is checked by the directed testcases (which assert the
+  // expected transitions), not by a static expected value.
+  function automatic bit pqc_reg_is_dynamic(input logic [9:0] addr);
+    if (addr == PQC_REG_STATUS)     return 1'b1;
+    // INTR_STATE is W1C and set by hardware events, so its value is a function
+    // of stimulus history (INTR_TEST writes, DUT events). tc_reg_reset_attr
+    // checks the W1C semantics directly instead of via a static shadow.
+    if (addr == PQC_REG_INTR_STATE) return 1'b1;
+    if (addr == PQC_REG_RESULT)     return 1'b1;
+    if (addr == PQC_REG_ERROR_CODE) return 1'b1;
+    if (addr >= PQC_REG_PERF_TOTAL_CYCLES && addr <= PQC_REG_PERF_CMD_COUNT) return 1'b1;
+    if (addr >= 10'h1C0 && addr <= 10'h1CC) return 1'b1;   // COMPLETION_*
+    return 1'b0;
+  endfunction
+
+  // Stimulus registers: writing them raises an action, it does not store data.
+  // They must not update the register shadow.
+  function automatic bit pqc_reg_is_stimulus(input logic [9:0] addr);
+    if (addr == PQC_REG_INTR_TEST) return 1'b1;
+    return 1'b0;
+  endfunction
+
+  // Per-register write mask: only these bits actually latch a value.
+  // CTRL is "enable[0] swwe" plus three *singlepulse* bits (abort/zeroize/
+  // self_test) which trigger an action and read back as 0 (regs/pqc.rdl).
+  function automatic logic [31:0] pqc_reg_write_mask(input logic [9:0] addr);
+    if (addr == PQC_REG_CTRL) return 32'h0000_0001;   // only enable[0] latches
+    return 32'hFFFF_FFFF;
+  endfunction
 
   // Address decoding helper: a word address is mapped if it is inside the
   // implemented register windows of pqc_csr.
@@ -103,6 +152,10 @@
     rand logic [3:0]  strb;
     logic [31:0]      rdata;
     bit               slverr;
+    // Set by the reference model: 0 means the read data of this address is
+    // hardware-driven (volatile) and must not be compared against a static
+    // shadow value.
+    bit               check_data = 1'b1;
 
     `uvm_object_utils_begin(pqc_apb_access)
       `uvm_field_int(is_write, UVM_ALL_ON)
@@ -111,6 +164,7 @@
       `uvm_field_int(strb,     UVM_ALL_ON)
       `uvm_field_int(rdata,    UVM_ALL_ON)
       `uvm_field_int(slverr,   UVM_ALL_ON)
+      `uvm_field_int(check_data, UVM_ALL_ON)
     `uvm_object_utils_end
 
     function new(string name = "pqc_apb_access");

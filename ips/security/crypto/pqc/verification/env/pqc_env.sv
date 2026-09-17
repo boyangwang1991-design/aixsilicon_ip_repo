@@ -1,171 +1,128 @@
 // =============================================================================
 // File Name   : pqc_env.sv
-// Description : YY environment top-level component
-//               Replace 'yy' with actual DUT/subsystem name (e.g., dma, sram_ctrl)
+// Description : PQC verification environment (top-level uvm_env)
+//
+// Composition:
+//   apb_env   (VIP)  : APB4 protocol agents + unique monitor + protocol checker
+//                      + protocol coverage + RAL predictor
+//   axi4_env  (VIP)  : AXI4 slave responder for the DUT DMA master
+//   pqc_apb_adapter  : translates VIP apb_item -> pqc_apb_access
+//   pqc_rm           : register-contract reference model
+//   pqc_checker      : register-contract scoreboard
+//   pqc_fcov         : PQC-specific functional coverage
+//
+// The protocol VIPs own everything protocol-related (drivers, monitors,
+// protocol SVA, protocol coverage, RAL adapter/predictor). PQC-side logic is
+// limited to the register contract and IP-specific checking, matching the reuse
+// boundary in docs/reuse_plan.md.
 // =============================================================================
 
 `ifndef PQC_ENV__SV
 `define PQC_ENV__SV
 
-/// @class pqc_env
-/// @brief YY environment - top-level container for all verification components
-///        Extends uvm_env to create a complete YY verification environment
+  import pqc_ral_pkg::*;
+
 class pqc_env extends uvm_env;
 
-  pqc_env_cfg cfg;  ///< Environment configuration handle
+  `uvm_component_utils(pqc_env)
 
-  // Sub-components
-  apb_interface_agent   apb_agent;   ///< XX protocol agent
-  pqc_rm                rm;         ///< Reference model
-  pqc_checker           scb;        ///< Scoreboard/checker (avoid 'checker' keyword)
-  pqc_virtual_sequencer v_sqr;      ///< Virtual sequencer
+  pqc_env_cfg cfg;
 
-  `uvm_component_utils_begin(pqc_env)
-    `uvm_field_object(cfg, UVM_ALL_ON)
-  `uvm_component_utils_end
+  // Protocol VIP. Only the APB VIP is instantiated here: the AXI4 VIP uses a
+  // different interface specialisation (32-bit) than pqc_top's 128-bit DMA
+  // master, and the DMA data path is still open in RTL, so DMA verification is
+  // deferred with that work (see the AXI4 note in verification/th/harness.sv).
+  apb_env                apb_vip;
 
-  /// @brief Constructor
-  /// @param name   Environment name string
-  /// @param parent Parent component handle
-  extern function new(string name = "pqc_env", uvm_component parent = null);
+  // RAL model (generated from regs/pqc.rdl) + the VIP register adapter
+  pqc_csr                regmodel;
+  apb_reg_adapter        reg_adapter;
 
-  /// @brief Build phase - create and configure all sub-components
-  /// @param phase Current phase handle
-  extern virtual function void build_phase(uvm_phase phase);
+  // PQC-side verification components
+  pqc_apb_adapter        adapter;
+  pqc_rm                 rm;
+  pqc_checker            scb;
+  pqc_fcov               fcov;
 
-  /// @brief Connect phase - establish TLM connections between components
-  /// @param phase Current phase handle
-  extern virtual function void connect_phase(uvm_phase phase);
+  function new(string name = "pqc_env", uvm_component parent = null);
+    super.new(name, parent);
+  endfunction
 
-  // ---------------------------------------------------------------------------
-  // Runtime Phases
-  // ---------------------------------------------------------------------------
+  function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
 
-  /// @brief Reset phase - reset DUT and components to initial state
-  /// @param phase Current phase handle
-  extern virtual task reset_phase(uvm_phase phase);
+    if (!uvm_config_db #(pqc_env_cfg)::get(this, "", "cfg", cfg)) begin
+      `uvm_fatal(get_type_name(), "pqc_env_cfg 'cfg' not set")
+    end
 
-  /// @brief Configure phase - apply runtime configuration to components
-  /// @param phase Current phase handle
-  extern virtual task configure_phase(uvm_phase phase);
+    // --- APB VIP (protocol agents / monitor / checker / coverage) ----------
+    // Use the wildcard scope: UVM config_db exact scope does not cascade into
+    // deeper components, and the VIP's internal checker/predictor look the
+    // config up on themselves (APB VIP user-guide §9).
+    uvm_config_db #(apb_config)::set(null, "*", "config", cfg.apb_cfg);
+    apb_vip = apb_env::type_id::create("apb_vip", this);
 
-  /// @brief Shutdown phase - wait for DUT idle state and drain residual traffic
-  /// @param phase Current phase handle
-  extern virtual task shutdown_phase(uvm_phase phase);
+    // --- RAL model (bound to the VIP predictor in connect_phase) -----------
+    regmodel = new("regmodel");
+    regmodel.build();
+    regmodel.lock_model();
+    reg_adapter = apb_reg_adapter::type_id::create("reg_adapter");
+    reg_adapter.configure(cfg.apb_cfg);
 
-  /// @brief Check phase - verify end-of-test conditions and data integrity
-  /// @param phase Current phase handle
-  extern virtual function void check_phase(uvm_phase phase);
+    // --- PQC-side components ----------------------------------------------
+    adapter = pqc_apb_adapter::type_id::create("adapter", this);
 
-  /// @brief Report phase - output summary report of verification results
-  /// @param phase Current phase handle
-  extern virtual function void report_phase(uvm_phase phase);
+    if (cfg.enable_rm) begin
+      uvm_config_db #(pqc_rm_cfg)::set(this, "rm", "cfg", cfg.rm_cfg);
+      rm = pqc_rm::type_id::create("rm", this);
+    end
+
+    if (cfg.enable_checker) begin
+      uvm_config_db #(pqc_checker_cfg)::set(this, "scb", "cfg", cfg.checker_cfg);
+      scb = pqc_checker::type_id::create("scb", this);
+    end
+
+    if (cfg.enable_cov) begin
+      fcov = pqc_fcov::type_id::create("fcov", this);
+    end
+  endfunction
+
+  function void connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+
+    // --- RAL: bind the VIP predictor and the adapter -----------------------
+    // The VIP env always connects its monitor to apb_reg_predictor, whose
+    // wrapped uvm_reg_predictor dereferences .map on every observed
+    // transaction; the map must be bound (VIP user-guide §5). Done here because
+    // the VIP's sub-components only exist after its own build_phase.
+    apb_vip.predictor.reg_predictor.map = regmodel.default_map;
+    regmodel.default_map.set_sequencer(apb_vip.master_agent.sequencer, reg_adapter);
+    regmodel.default_map.set_auto_predict(1);
+
+    // VIP authoritative APB observation stream -> PQC adapter
+    apb_vip.monitor.transaction_ap.connect(adapter.analysis_export);
+
+    // Adapter -> model / checker / coverage
+    if (cfg.enable_rm)      adapter.ap.connect(rm.act_export);
+    if (cfg.enable_checker) adapter.ap.connect(scb.act_export);
+    if (cfg.enable_cov)     adapter.ap.connect(fcov.act_export);
+
+    // Model expectations -> checker
+    if (cfg.enable_rm && cfg.enable_checker)
+      rm.exp_ap.connect(scb.exp_export);
+  endfunction
+
+  function void report_phase(uvm_phase phase);
+    super.report_phase(phase);
+    `uvm_info(get_type_name(),
+      $sformatf("PQC env: observed=%0d expected=%0d checked=%0d mismatches=%0d",
+                adapter.num_seen,
+                (cfg.enable_rm      ? rm.exp_count : 0),
+                (cfg.enable_checker ? scb.num_checked : 0),
+                (cfg.enable_checker ? scb.num_mismatch : 0)),
+      UVM_LOW)
+  endfunction
 
 endclass
 
-// =============================================================================
-// Extern function definitions
-// =============================================================================
-
-/// @brief Constructor definition
-/// @param name   Environment name string
-/// @param parent Parent component handle
-function pqc_env::new(string name = "pqc_env", uvm_component parent = null);
-  super.new(name, parent);
-endfunction
-
-/// @brief Build phase definition
-/// @param phase Current phase handle
-function void pqc_env::build_phase(uvm_phase phase);
-  super.build_phase(phase);
-
-  // Get environment configuration from config_db, or create default
-  if (!uvm_config_db #(pqc_env_cfg)::get(this, "", "cfg", cfg)) begin
-    cfg = pqc_env_cfg::type_id::create("cfg");
-  end
-
-  // Create XX agent and pass configuration
-  uvm_config_db #(apb_interface_agent_cfg)::set(this, "apb_agent", "cfg", cfg.apb_agent_cfg);
-  apb_agent = apb_interface_agent::type_id::create("apb_agent", this);
-
-  // Create virtual sequencer for coordinating agent sequences
-  v_sqr = pqc_virtual_sequencer::type_id::create("v_sqr", this);
-
-  // Create reference model if enabled
-  if (cfg.enable_rm) begin
-    uvm_config_db #(pqc_rm_cfg)::set(this, "rm", "cfg", cfg.rm_cfg);
-    rm = pqc_rm::type_id::create("rm", this);
-  end
-
-  // Create checker if enabled
-  if (cfg.enable_checker) begin
-    uvm_config_db #(pqc_checker_cfg)::set(this, "scb", "cfg", cfg.checker_cfg);
-    scb = pqc_checker::type_id::create("scb", this);
-  end
-endfunction
-
-/// @brief Connect phase definition
-/// @param phase Current phase handle
-function void pqc_env::connect_phase(uvm_phase phase);
-  super.connect_phase(phase);
-
-  // Connect virtual sequencer to agent sequencer (only for active agent)
-  if (apb_agent.cfg.active) begin
-    v_sqr.apb_sqr = apb_agent.sqr;
-  end
-
-  // Connect agent output to reference model input
-  if (cfg.enable_rm) begin
-    apb_agent.ap.connect(rm.in_export);
-  end
-
-  // Connect agent output and reference model output to checker
-  if (cfg.enable_checker) begin
-    apb_agent.ap.connect(scb.act_export);
-
-    if (cfg.enable_rm) begin
-      rm.exp_ap.connect(scb.exp_export);
-    end
-  end
-endfunction
-
-// ---------------------------------------------------------------------------
-// Runtime Phase definitions
-// ---------------------------------------------------------------------------
-
-/// @brief Reset phase definition
-/// @param phase Current phase handle
-task pqc_env::reset_phase(uvm_phase phase);
-  super.reset_phase(phase);
-  // TODO: Add reset logic here (e.g., assert reset signal, clear internal state)
-endtask
-
-/// @brief Configure phase definition
-/// @param phase Current phase handle
-task pqc_env::configure_phase(uvm_phase phase);
-  super.configure_phase(phase);
-  // TODO: Add runtime configuration logic here
-endtask
-
-/// @brief Shutdown phase definition
-/// @param phase Current phase handle
-task pqc_env::shutdown_phase(uvm_phase phase);
-  super.shutdown_phase(phase);
-  // TODO: Add shutdown logic here (e.g., wait for DUT idle, drain residual traffic)
-endtask
-
-/// @brief Check phase definition
-/// @param phase Current phase handle
-function void pqc_env::check_phase(uvm_phase phase);
-  super.check_phase(phase);
-  // TODO: Add end-of-test checking logic here
-endfunction
-
-/// @brief Report phase definition
-/// @param phase Current phase handle
-function void pqc_env::report_phase(uvm_phase phase);
-  super.report_phase(phase);
-  // TODO: Add summary report logic here
-endfunction
-
-`endif
+`endif // PQC_ENV__SV
