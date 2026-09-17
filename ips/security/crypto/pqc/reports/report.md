@@ -158,6 +158,46 @@ regression tier（reset/intr/key/dma/ct/illegal）testcase、全量回归 JUnit�
 但端到端算法 KAT 必须等 DMA/Key-RAM 数据通路闭合后才能执行；在此之前把
 `TC.PQC.ALGO.001` 标 PASS 是伪造证据。
 
+## 算法数据通路闭合计划（下一迭代，核心特性验收前提）
+
+用户明确指出：当前用例对 PQC 这种体量明显不足，算法正确性才是核心。为此把
+"关闭 DMA/算法数据通路"拆成可执行的接线清单（已核对 RTL 端口，均为实际缺失的
+硬连线）：
+
+### 现状（rtl/pqc_top.sv 实测）
+
+| 缺失接线 | 位置 | 现状 |
+|---|---|---|
+| DMA `xfer_req/we/addr/len` | 第 931-934 行 | 硬编码 `1'b0`，DMA 不移动任何数据 |
+| KEM seq `ct_read_data/ct_calc_data/kprime_data/kbar_data` | u_kem_seq | 恒 `8'h0`，密文/Kbar 输入未接入 |
+| KEM seq `ss_wdata/ss_we/ct_len/verify_mask` 输出 | u_kem_seq | 悬空，共享秘密/结果未写回 |
+| DSA seq `stage_rdata/ct_calc_byte/ct_ref_byte` | u_dsa_seq | 未接 SRAM/CODEC 数据 |
+| poly/sampler/codec 与 SRAM 的读写端口 | poly_engine/sampler/codec 例化 | 部分接通（samp/poly 已接），codec 数据未闭环 |
+
+### 闭合步骤（按依赖序，每步独立可回归）
+
+1. **SRAM 多端口仲裁接通**：把 DMA buf 口、KEM/DSA stage 口接到
+   `pqc_secure_sram_ctrl` 的 d/c0/c1 口（现有 3 端口仲裁已实现，缺的是顶层接线）。
+2. **DMA 描述符驱动**：`xfer_req = fe_doorbell_pulse && !dma_busy`；
+   `xfer_addr/len` 取 `DESC_ADDR_*`/`SRC*_LEN` CSR（已冻结），`xfer_we` 按 op 方向。
+3. **KEM 密文/Kbar 输入**：`ct_read_data`/`kprime_data`/`kbar_data` 从 SRAM 读取口
+   接出，`ct_len`/`ss_we`/`ss_wdata` 写回 SRAM；`verify_mask` 接 codec。
+4. **DSA stage 数据**：`stage_rdata` 接 SRAM，`stage_wdata/we/addr` 写回；
+   `ct_calc/ct_ref` 接 codec。
+5. **CODEC 输入输出**：codec 的 in/out 与 SRAM 页打通（`ct_calc_*` 数据）。
+6. **每步后**：先跑对应模块 UT + `make -C verification/sim ut`，再跑
+   `run_uvm.py` 7 用例回归，最后补**六参数集 KAT**（KeyGen/Encaps/Decaps/
+   Sign/Verify 对照 NIST 向量，走软件证明 + UVM 端到端）。
+
+### 完成判据
+
+- DMA 能从描述符地址搬入 SRAM，算法引擎读取/写回，输出 DMA 到 completion 地址；
+- `STATUS.done`、completion record、`INTR_STATE.done` 在真实数据通路下置位；
+- 六参数集 RTL KAT 通过（`TC.PQC.ALGO.001` 从 blocked 转 pass）。
+
+此计划在报告层面记录为 `RTL-DATAPATH-CLOSURE-001`；未完成前 `TC.PQC.ALGO.001`
+与 `TC.PQC.DMA.001`/`TC.PQC.CT.001` 保持 blocked，不伪造通过。
+
 ## 仍阻止整体验收的功能缺口
 
 - TOP 的 payload DMA `xfer_req`、Keccak/Codec start、WORKKEY read 等仍有未接通
