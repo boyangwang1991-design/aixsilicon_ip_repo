@@ -130,6 +130,34 @@ RTL lint/综合、CDC/formal 等仍缺的专项证据。
 regression tier（reset/intr/key/dma/ct/illegal）testcase、全量回归 JUnit、
 覆盖率闭环与最终 RTM closure 尚未完成，G4 仍不通过。
 
+## 算法正确性能否用 UVM 环境验证（评估）
+
+**结论：当前不能通过 UVM 端到端验证完整算法；只能验证寄存器契约。** 依据：
+
+- `rtl/pqc_top.sv` 第 931 行 DMA `xfer_req` **硬编码为 `1'b0`**：DMA 数据通路
+  （输入描述符 → 算法 → 输出 → completion）在 RTL 中未接通（ISSUE A03/A11）。
+  因此 KEM/DSA 数据无法进入算法引擎，也没有合法输出/completion 可供比对。
+- KEM/DSA sequencer 已编译、无 TODO/stub，但它们的 `start`/数据依赖在 TOP 层
+  依赖同一未接通 DMA/Key-RAM 链，门铃提交后前端会保持 BUSY（实测 RTL-STATUS-001），
+  不会产生结果。
+- 六个参数集完整 KeyGen/Encaps/Decaps/Sign/Verify 的 RTL KAT 因此无法执行。
+
+**可行的验证路径（按当前 RTL 能力拆分）**：
+
+1. **现已完成**：寄存器契约 + APB 控制面 + 中断 + 密钥槽窗口观测（7 个用例 UVM
+   全通过）。这部分 UVM 是有效的、有证据的。
+2. **算法正确性**：当前由 `scripts/run_pqc_algo_proof.py`（软件证明）+ 模块 UT
+   （`ut_pqc_keccak`/`ut_pqc_poly_engine`/`ut_pqc_sampler`/`ut_pqc_codec` 等）承担，
+   这些是**已实现的算法原语**的确定性验证；UVM 的 RM 明确**不**做 KEM/DSA 数学
+   （VPLAN 约定），避免与软件证明重复。
+3. **数据通路闭环后**：DMA `xfer_req` 接通后，UVM 才能做端到端 KAT
+   （描述符 → RTL 计算 → completion → 输出与 golden 比对）。这是 G4 的真正门槛，
+   不能靠桩响应器伪造。
+
+因此：UVM 环境是**为算法验证准备好的一部分**（激励/观测/比对框架已就绪），
+但端到端算法 KAT 必须等 DMA/Key-RAM 数据通路闭合后才能执行；在此之前把
+`TC.PQC.ALGO.001` 标 PASS 是伪造证据。
+
 ## 仍阻止整体验收的功能缺口
 
 - TOP 的 payload DMA `xfer_req`、Keccak/Codec start、WORKKEY read 等仍有未接通
