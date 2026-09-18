@@ -60,7 +60,7 @@ module ut_pqc_cmd_frontend;
     .desc_fetch_done(desc_fetch_done), .desc_fetch_error(desc_fetch_error),
     .command(command), .command_valid(command_valid),
     .alg_start(alg_start), .alg_op(alg_op), .alg_pset(alg_pset),
-    .alg_busy(alg_busy), .alg_done(alg_done), .alg_op_error(alg_op_error),
+    .alg_busy(alg_busy), .alg_done(alg_done), .alg_verify_valid(1'b0), .alg_op_error(alg_op_error),
     .busy(busy), .idle(idle), .done_pulse(done_pulse),
     .comp_status(comp_status), .comp_error(comp_error),
     .completion_tag(completion_tag), .fsm_state_o(fsm_state_o),

@@ -17,7 +17,14 @@ rtl/pqc_desc_fetch.sv
 rtl/pqc_desc_validate.sv
 rtl/pqc_fault_ctrl.sv
 rtl/pqc_kem_seq.sv
+rtl/pqc_kem_encaps.sv
+rtl/pqc_kem_decaps.sv
+rtl/pqc_kem_keygen.sv
+rtl/pqc_dsa_keygen.sv
+rtl/pqc_key_custody.sv
 rtl/pqc_dsa_seq.sv
+rtl/pqc_dsa_verify.sv
+rtl/pqc_dsa_sign.sv
 rtl/pqc_cmd_frontend.sv
 rtl/pqc_apb_if.sv
 rtl/pqc_top.sv

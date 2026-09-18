@@ -80,6 +80,36 @@ modules:
   - HLD.DOM.CLK.PQC.CORE
   reset_domains:
   - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.DSASEQ.KEYGEN
+  name: pqc_dsa_keygen
+  parent_ref:
+  - LLD.MOD.PQC.DSASEQ
+  hld_ref:
+  - HLD.MOD.PQC.DSASEQ
+  req_ref:
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_dsa_keygen
+- id: LLD.MOD.PQC.DSASEQ.VERIFY
+  name: pqc_dsa_verify
+  parent_ref:
+  - LLD.MOD.PQC.DSASEQ
+  hld_ref:
+  - HLD.MOD.PQC.DSASEQ
+  req_ref:
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_dsa_verify
 - id: LLD.MOD.PQC.FAULT
   name: pqc_fault_ctrl
   parent_ref:
@@ -211,6 +241,68 @@ modules:
   - HLD.DOM.CLK.PQC.CORE
   reset_domains:
   - HLD.DOM.RST.PQC.MAIN
+- id: LLD.MOD.PQC.KEMSEQ.DECAPS
+  name: pqc_kem_decaps
+  parent_ref:
+  - LLD.MOD.PQC.KEMSEQ
+  hld_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_kem_decaps
+- id: LLD.MOD.PQC.KEMSEQ.ENCAPS
+  name: pqc_kem_encaps
+  parent_ref:
+  - LLD.MOD.PQC.KEMSEQ
+  hld_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  req_ref:
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_kem_encaps
+- id: LLD.MOD.PQC.KEMSEQ.KEYGEN
+  name: pqc_kem_keygen
+  parent_ref:
+  - LLD.MOD.PQC.KEMSEQ
+  hld_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_kem_keygen
+- id: LLD.MOD.PQC.WORKKEY.CUSTODY
+  name: pqc_key_custody
+  parent_ref:
+  - LLD.MOD.PQC.WORKKEY
+  hld_ref:
+  - HLD.MOD.PQC.WORKKEY
+  req_ref:
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_key_custody
 - id: LLD.MOD.PQC.KEYSLOT
   name: pqc_key_slots
   parent_ref:
@@ -576,6 +668,38 @@ datapaths:
   - LRS.FUNC.PQC.KEM_DECAPS.002
   applicability:
     expr: ENABLE_ALGO_MASK & 0x7
+- id: LLD.DP.PQC.KEMSEQ.DECAPS
+  module_ref: LLD.MOD.PQC.KEMSEQ.DECAPS
+  input_width: 32
+  output_width: 32
+  operators:
+  - private_key_decode
+  - ciphertext_decompress
+  - decrypt_mac
+  - recover_message
+  - derive_candidates
+  - reencrypt
+  - full_length_compare
+  - secret_select
+  representation: normalized_kem_coefficients_and_serialized_bytes
+  req_ref:
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.002
+- id: LLD.DP.PQC.KEMSEQ.ENCAPS
+  module_ref: LLD.MOD.PQC.KEMSEQ.ENCAPS
+  input_width: 32
+  output_width: 32
+  operators:
+  - hash_pk
+  - derive_key_randomness
+  - cbd_ntt
+  - matrix_mac
+  - inverse_ntt
+  - add_noise_message
+  - compress_pack
+  representation: normalized_kem_coefficients_and_serialized_bytes
+  req_ref:
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
 - id: LLD.DP.PQC.KEYSLOT.AUTH
   module_ref: LLD.MOD.PQC.KEYSLOT
   input_width: 32
@@ -2304,6 +2428,16 @@ verify_hooks:
   req_ref:
   - LRS.FUNC.PQC.DSA_SIGN.002
 rtl_map:
+- id: RTL.PQC.DSA_KEYGEN
+  rtl_file: rtl/pqc_dsa_keygen.sv
+  rtl_module: pqc_dsa_keygen
+  implements:
+  - LLD.MOD.PQC.DSASEQ.KEYGEN
+- id: RTL.PQC.DSA_VERIFY
+  rtl_file: rtl/pqc_dsa_verify.sv
+  rtl_module: pqc_dsa_verify
+  implements:
+  - LLD.MOD.PQC.DSASEQ.VERIFY
 - id: RTL.PQC.DESC_FETCH
   rtl_file: rtl/pqc_desc_fetch.sv
   rtl_module: pqc_desc_fetch
@@ -2324,6 +2458,28 @@ rtl_map:
   - LLD.MOD.PQC.KECCAK.MASKED_ROUND
   - LLD.DP.PQC.KECCAK.MASKED_ROUND
   - LLD.FSM.PQC.KECCAK.MASKED_ROUND
+- id: RTL.PQC.KEM_DECAPS
+  rtl_file: rtl/pqc_kem_decaps.sv
+  rtl_module: pqc_kem_decaps
+  implements:
+  - LLD.MOD.PQC.KEMSEQ.DECAPS
+  - LLD.DP.PQC.KEMSEQ.DECAPS
+- id: RTL.PQC.KEM_ENCAPS
+  rtl_file: rtl/pqc_kem_encaps.sv
+  rtl_module: pqc_kem_encaps
+  implements:
+  - LLD.MOD.PQC.KEMSEQ.ENCAPS
+  - LLD.DP.PQC.KEMSEQ.ENCAPS
+- id: RTL.PQC.KEM_KEYGEN
+  rtl_file: rtl/pqc_kem_keygen.sv
+  rtl_module: pqc_kem_keygen
+  implements:
+  - LLD.MOD.PQC.KEMSEQ.KEYGEN
+- id: RTL.PQC.KEY_CUSTODY
+  rtl_file: rtl/pqc_key_custody.sv
+  rtl_module: pqc_key_custody
+  implements:
+  - LLD.MOD.PQC.WORKKEY.CUSTODY
 - id: RTL.PQC.MASK_AND
   rtl_file: rtl/pqc_masked_and.sv
   rtl_module: pqc_masked_and
@@ -2585,6 +2741,10 @@ provenance:
     sha256: 3a867e15e47e12169ab778581fc33620bf2bf83621fdf8e8133172c19c37c8ee
   - path: docs/lld/03_dsaseq.md
     sha256: ac46cdd03e2e0fa1df469edd71a48548a036d475ab53cd1897c67e3e003f55fa
+  - path: docs/lld/03_dsaseq_keygen.md
+    sha256: 8822b0821bf346b0f3c65b3314f586268d89494000fa6afa066a7c487e3de8f3
+  - path: docs/lld/03_dsaseq_verify.md
+    sha256: 8fd83e51a27c0fd30bb218b9fd5adec5135bd91ee3d1be5d6e665870af42ed19
   - path: docs/lld/03_fault.md
     sha256: 2a872e84c854cae2d3e029cb62f2f8c213566e01325b08929281f3b649930d44
   - path: docs/lld/03_fe.md
@@ -2599,6 +2759,12 @@ provenance:
     sha256: c88196e62d3e7d64c84c43f4a6c6ac5210f246df39af73bae382fb3061b002af
   - path: docs/lld/03_kemseq.md
     sha256: 299804da28db7ceba56765c3fca4daf81a1e1e25747419cf8fdbac8a01dafc2d
+  - path: docs/lld/03_kemseq_decaps.md
+    sha256: cc9615835fb4ac0ec6ea8ec5fd849c3a513ef87e327f5633eb84baa276559356
+  - path: docs/lld/03_kemseq_encaps.md
+    sha256: 37df7d18ded428e4ab7fb70b145971522a81df5068d3bab7532eaba12a1aa3bb
+  - path: docs/lld/03_kemseq_keygen.md
+    sha256: 7327c0979e42eff71003ef578a7eb8ec4764562b3bc06e6a2c4b58fdc6f5f95a
   - path: docs/lld/03_keyslot.md
     sha256: 9cfcadb449157e63897485eed8e2af43eb39e81d18029be682335491209c554f
   - path: docs/lld/03_masked_and.md
@@ -2630,11 +2796,11 @@ provenance:
   - path: docs/lld/05_rtl_map.md
     sha256: 720968f7641d8f9e046ac4b68c9d4f29ef235cfff0c5b24a924a5bed1bdf1b3e
   - path: docs/lld/99_quality_gate.md
-    sha256: 0547bdec548783218bedfbc2a8edb1a10153fa964607bb8571f1fa53fe921b12
+    sha256: a90c568198ebe9f442ce2b03136e387fefa38453e395c363f03c1790043536ff
   - path: docs/lld/index.md
-    sha256: 872792b16cbe3a354c63b1d2252081a88ec7bd667a013d1fe2e0a5bb5482851a
+    sha256: c5e2e44a72cc2a8ae5951ce24448fd4b92e18d086b9aca99fc4c4ffa96a315b0
   extractor:
     skills/05-lld-microdesign/scripts/extract_lld.py: 238bb958c64afe79861bb48d3718a6fc81d89b2928c79abab58bb176c177a432
     scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
     scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
-  payload_sha256: 2621297309af327e06a055b103acaa76cb295a74042f5baa71fe603bc36b6863
+  payload_sha256: c18b316e036bce4e3772486ad13aff3db035253dbd8ae9c311809f60480f38fa

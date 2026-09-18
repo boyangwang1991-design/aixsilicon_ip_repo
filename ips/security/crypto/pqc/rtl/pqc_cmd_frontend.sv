@@ -69,6 +69,7 @@ module pqc_cmd_frontend #(
   output logic         command_valid,
   input  logic         alg_busy,
   input  logic         alg_done,
+  input  logic         alg_verify_valid,
   input  logic         alg_op_error,
 
   // completion / status
@@ -326,7 +327,7 @@ module pqc_cmd_frontend #(
         S_COMMIT: begin
           // results are already staged by the sequencer; publish the completion
           // record and assert DONE as a single-cycle pulse
-          comp_status    <= ST_SUCCESS;
+          comp_status    <= (validated_command.opcode==OP_DSA_VERIFY && !alg_verify_valid) ? ST_VERIFY_INVALID : ST_SUCCESS;
           comp_error     <= ERR_NONE;
           completion_tag <= {desc_shadow[8'h07], desc_shadow[8'h06],
                              desc_shadow[8'h05], desc_shadow[8'h04]};

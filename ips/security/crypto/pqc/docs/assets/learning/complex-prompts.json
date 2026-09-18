@@ -1,0 +1,32 @@
+{
+  "generator": "ChatGPT native image_gen",
+  "date": "2026-09-18",
+  "prompts": [
+    {
+      "id": 5,
+      "file": "05-kem-decaps-flow.png",
+      "reference": "06-dsa-sign-flow.png (layout reference)",
+      "edits": [
+        "Adapt this eight-box textbook layout into ML-KEM DECAPS. Replace all labels with ONLY these exact texts: 1 'Input c and authorized dk'; 2 'Decode and decompress u,v'; 3 'Decrypt to recover m_prime'; 4 'G derives K_prime and r_prime'; 5 'Re-encrypt to obtain c_prime'; 6 'Compare ALL bytes of c and c_prime'; 7 'Kbar = J(z || original c)'; 8 'Select K_prime on match, Kbar otherwise'. Final gold box '32-byte shared secret'. Keep blue arrows 1 through 8. DELETE ALL orange retry lines and bottom retry box. Bottom note 'Always compute both candidates. Keep original c. No public mismatch flag.' No other formulas or text. Title 'ML-KEM DECAPS'.",
+        "Keep this image unchanged except TWO small corrections: add a single BLUE flow arrow from the right edge of step 4, down into the blank horizontal space between rows, then left across that blank space, finally down into the TOP of step 5. This connects steps 4 and 5 without touching other boxes. In bottom note replace the accented character after 'original' with plain lowercase 'c'. All other labels, arrows, colors, and eight steps stay exactly the same."
+      ]
+    },
+    {
+      "id": 6,
+      "file": "06-dsa-sign-flow.png",
+      "prompt": "Precise engineering infographic on white, titled ML-DSA SIGN. Eight numbered boxes arranged in two rows with connecting arrows: 1 Compute mu; 2 Sample y; 3 w = A y; 4 Hash mu and HighBits(w); 5 Sample challenge c; 6 z = y + c s1; 7 Compute r0, c t0, hint h; 8 Check ALL norms and hint weight. After box 8, YES arrow to Encode signature, NO arrow loops back to Sample y via Advance nonce and clear candidate. Label loop Candidate stays internal. Blue teal and amber, large English labels, clean textbook flowchart, all eight boxes, no people.",
+      "edits": [
+        "Correct this diagram. Keep layout and EIGHT numbered headers, but DELETE ALL small body text and equations inside every card: they are incorrect. Replace each card body ONLY with these exact labels: 1 \"Bind public-key hash, message, context\"; 2 \"ExpandMask(signing seed, nonce)\"; 3 \"NTT / matrix multiply / INTT\"; 4 \"Challenge hash c_tilde\"; 5 \"SampleInBall(c_tilde)\"; 6 \"Response vector\"; 7 \"Separate low-bit and hint calculations\"; 8 \"Parameter-specific bounds\". Output card ONLY \"Encode(c_tilde, z, h)\". Delete subtitle DETERMINISTIC and all extra subtitle text. Keep arrows 1→2→3→4→5→6→7→8→YES output. NO goes through Clear candidate and advance nonce and loops ONLY to box 2; remove arrow going to box 6. Do not invent or add any formulas or text.",
+        "Fix ONLY orange retry arrows. Remove the orange arrow that enters the bottom of box 6 and remove the orange arrow above box 6. Draw ONE new continuous orange line from the LEFT edge of 'Clear candidate and advance nonce' going left across the bottom blank margin, then UP the far left outer margin, then RIGHT across the blank strip ABOVE ALL numbered boxes, then DOWN with arrowhead into TOP edge of box 2 'Sample y'. The retry line must never touch or enter box 6 or any other box. Keep all blue arrows, boxes and text unchanged."
+      ]
+    },
+    {
+      "id": 7,
+      "file": "07-hardware-blocks.png",
+      "reference": "03-shared-architecture.png",
+      "edits": [
+        "Keep the whole existing diagram. Change Controller label to three lines: 'Frontend: APB / CSR / Fetch / Validate', 'KEM Sequencer | DSA Sequencer', 'Completion / IRQ'. Change Shared SRAM label to 'Secure SRAM: Banks / ECC / Tags'. Add three clearly separated service boxes in the bottom margin labeled 'Key Slots: metadata', 'Random Service', 'Fault / Zeroize'. Subtitle 'Target architecture — service boxes are not wired in this overview'. Keep all existing arrows and other labels."
+      ]
+    }
+  ]
+}

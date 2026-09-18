@@ -3,39 +3,147 @@ ip_name: pqc
 trace_type: req_to_test
 links:
 - source_id: LRS.CFG.PQC.ALGO_MASK.001
+  target_id: ASSERT.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.ALGO_MASK.001
   target_id: TC.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.ALGO_MASK.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.ALGO_MASK.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.DMA_WIDTH.001
+  target_id: ASSERT.PQC.CFG.001
   status: linked
   confidence: high
 - source_id: LRS.CFG.PQC.DMA_WIDTH.001
   target_id: TC.PQC.CFG.001
   status: linked
   confidence: high
+- source_id: LRS.CFG.PQC.DMA_WIDTH.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.DMA_WIDTH.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.EXEC_MODE.001
+  target_id: ASSERT.PQC.CFG.001
+  status: linked
+  confidence: high
 - source_id: LRS.CFG.PQC.EXEC_MODE.001
   target_id: TC.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.EXEC_MODE.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.EXEC_MODE.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.FEATURE_FLAGS.001
+  target_id: ASSERT.PQC.CFG.001
   status: linked
   confidence: high
 - source_id: LRS.CFG.PQC.FEATURE_FLAGS.001
   target_id: TC.PQC.CFG.001
   status: linked
   confidence: high
+- source_id: LRS.CFG.PQC.FEATURE_FLAGS.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.FEATURE_FLAGS.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.KECCAK_ROUNDS.001
+  target_id: ASSERT.PQC.CFG.001
+  status: linked
+  confidence: high
 - source_id: LRS.CFG.PQC.KECCAK_ROUNDS.001
   target_id: TC.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.KECCAK_ROUNDS.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.KECCAK_ROUNDS.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.KEY_SLOT.001
+  target_id: ASSERT.PQC.CFG.001
   status: linked
   confidence: high
 - source_id: LRS.CFG.PQC.KEY_SLOT.001
   target_id: TC.PQC.CFG.001
   status: linked
   confidence: high
+- source_id: LRS.CFG.PQC.KEY_SLOT.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.KEY_SLOT.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.LOCAL_SRAM.001
+  target_id: ASSERT.PQC.CFG.001
+  status: linked
+  confidence: high
 - source_id: LRS.CFG.PQC.LOCAL_SRAM.001
   target_id: TC.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.LOCAL_SRAM.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.LOCAL_SRAM.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.NTT_LANES.001
+  target_id: ASSERT.PQC.CFG.001
   status: linked
   confidence: high
 - source_id: LRS.CFG.PQC.NTT_LANES.001
   target_id: TC.PQC.CFG.001
   status: linked
   confidence: high
+- source_id: LRS.CFG.PQC.NTT_LANES.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.NTT_LANES.001
+  target_id: TC.PQC.SCA.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.SCA_LEVEL.001
+  target_id: ASSERT.PQC.CFG.001
+  status: linked
+  confidence: high
 - source_id: LRS.CFG.PQC.SCA_LEVEL.001
   target_id: TC.PQC.CFG.001
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.SCA_LEVEL.001
+  target_id: TC.PQC.CFG.002
+  status: linked
+  confidence: high
+- source_id: LRS.CFG.PQC.SCA_LEVEL.001
+  target_id: TC.PQC.SCA.001
   status: linked
   confidence: high
 - source_id: LRS.CONS.PQC.API.001
@@ -66,24 +174,48 @@ links:
   target_id: ASSERT.PQC.DFX.001
   status: linked
   confidence: high
+- source_id: LRS.DFX.PQC.DEBUG.001
+  target_id: TC.PQC.DFX.001
+  status: linked
+  confidence: high
 - source_id: LRS.DFX.PQC.FI.001
   target_id: ASSERT.PQC.DFX.001
+  status: linked
+  confidence: high
+- source_id: LRS.DFX.PQC.FI.001
+  target_id: TC.PQC.DFX.001
   status: linked
   confidence: high
 - source_id: LRS.DFX.PQC.MBIST.001
   target_id: ASSERT.PQC.DFX.001
   status: linked
   confidence: high
+- source_id: LRS.DFX.PQC.MBIST.001
+  target_id: TC.PQC.DFX.001
+  status: linked
+  confidence: high
 - source_id: LRS.DFX.PQC.PERFCNT.001
   target_id: ASSERT.PQC.DFX.001
+  status: linked
+  confidence: high
+- source_id: LRS.DFX.PQC.PERFCNT.001
+  target_id: TC.PQC.DFX.001
   status: linked
   confidence: high
 - source_id: LRS.DFX.PQC.SCAN.001
   target_id: ASSERT.PQC.DFX.001
   status: linked
   confidence: high
+- source_id: LRS.DFX.PQC.SCAN.001
+  target_id: TC.PQC.DFX.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.CMD.001
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.001
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.001
@@ -92,6 +224,10 @@ links:
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.002
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.002
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.002
@@ -100,6 +236,10 @@ links:
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.003
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.003
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.003
@@ -115,6 +255,10 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.004
+  target_id: ASSERT.PQC.CMD.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.004
   target_id: TC.PQC.APB.001
   status: linked
   confidence: high
@@ -127,11 +271,19 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.005
+  target_id: ASSERT.PQC.CMD.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.005
   target_id: TC.PQC.CMD.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.006
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.006
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.006
@@ -140,6 +292,10 @@ links:
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.007
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.007
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.007
@@ -148,6 +304,10 @@ links:
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.008
   target_id: ASSERT.PQC.CMD.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.CMD.008
+  target_id: ASSERT.PQC.CMD.002
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.CMD.008
@@ -158,36 +318,180 @@ links:
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
   target_id: TC.PQC.ALGO.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MU.001
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.001
   target_id: TC.PQC.ALGO.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.002
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.003
   target_id: TC.PQC.ALGO.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.ENCAPS.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_VERIFY.001
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DECAPS.001
   target_id: TC.PQC.ALGO.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DECAPS.002
@@ -202,12 +506,60 @@ links:
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
   target_id: TC.PQC.ALGO.001
   status: linked
   confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
 - source_id: LRS.FUNC.PQC.KEM_LEN.001
   target_id: TC.PQC.ALGO.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.ALGO.002
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.ALGO.003
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.DECAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.ENCAPS.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.APB.001
@@ -235,11 +587,19 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.DMA.001
+  target_id: ASSERT.PQC.DMA.002
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.DMA.001
   target_id: TC.PQC.DMA.001
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.DMA.002
   target_id: ASSERT.PQC.DMA.001
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.DMA.002
+  target_id: ASSERT.PQC.DMA.002
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.DMA.002
@@ -248,6 +608,10 @@ links:
   confidence: high
 - source_id: LRS.INTF.PQC.DMA.003
   target_id: ASSERT.PQC.DMA.001
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.DMA.003
+  target_id: ASSERT.PQC.DMA.002
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.DMA.003
@@ -256,6 +620,18 @@ links:
   confidence: high
 - source_id: LRS.INTF.PQC.ENTROPY.001
   target_id: ASSERT.PQC.ENTROPY.001
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.ENTROPY.001
+  target_id: TC.PQC.ENTROPY.001
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.KEY_MANAGER.001
+  target_id: ASSERT.PQC.KEYMANAGER.001
+  status: linked
+  confidence: high
+- source_id: LRS.INTF.PQC.KEY_MANAGER.001
+  target_id: TC.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.SIDEBAND.001
@@ -270,20 +646,40 @@ links:
   target_id: ASSERT.PQC.PERF.001
   status: linked
   confidence: high
+- source_id: LRS.PERF.PQC.LATENCY.001
+  target_id: TC.PQC.PERF.001
+  status: linked
+  confidence: high
 - source_id: LRS.PERF.PQC.MODEL.001
   target_id: ASSERT.PQC.PERF.001
+  status: linked
+  confidence: high
+- source_id: LRS.PERF.PQC.MODEL.001
+  target_id: TC.PQC.PERF.001
   status: linked
   confidence: high
 - source_id: LRS.PERF.PQC.NOSW.001
   target_id: ASSERT.PQC.PERF.001
   status: linked
   confidence: high
+- source_id: LRS.PERF.PQC.NOSW.001
+  target_id: TC.PQC.PERF.001
+  status: linked
+  confidence: high
 - source_id: LRS.PERF.PQC.OVERLAP.001
   target_id: ASSERT.PQC.PERF.001
   status: linked
   confidence: high
+- source_id: LRS.PERF.PQC.OVERLAP.001
+  target_id: TC.PQC.PERF.001
+  status: linked
+  confidence: high
 - source_id: LRS.PERF.PQC.SIGNBUBBLE.001
   target_id: ASSERT.PQC.PERF.001
+  status: linked
+  confidence: high
+- source_id: LRS.PERF.PQC.SIGNBUBBLE.001
+  target_id: TC.PQC.PERF.001
   status: linked
   confidence: high
 - source_id: LRS.REG.PQC.ALERT.001
@@ -342,6 +738,10 @@ links:
   target_id: ASSERT.PQC.ENTROPY.001
   status: linked
   confidence: high
+- source_id: LRS.RESET.PQC.CLK.001
+  target_id: TC.PQC.ENTROPY.001
+  status: linked
+  confidence: high
 - source_id: LRS.RESET.PQC.COLD.001
   target_id: ASSERT.PQC.RESET.001
   status: linked
@@ -416,6 +816,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.INTEGRITY.001
   target_id: ASSERT.PQC.INTEGRITY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.INTEGRITY.001
+  target_id: ASSERT.PQC.INTEGRITY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.INTEGRITY.001
@@ -424,6 +828,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.LOCK.001
   target_id: ASSERT.PQC.INTEGRITY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.LOCK.001
+  target_id: ASSERT.PQC.INTEGRITY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.LOCK.001
@@ -432,6 +840,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.001
   target_id: ASSERT.PQC.KEY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.001
+  target_id: ASSERT.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.001
@@ -440,6 +852,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.002
   target_id: ASSERT.PQC.KEY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.002
+  target_id: ASSERT.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.002
@@ -448,6 +864,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.003
   target_id: ASSERT.PQC.KEY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.003
+  target_id: ASSERT.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.003
@@ -456,6 +876,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.004
   target_id: ASSERT.PQC.KEY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.004
+  target_id: ASSERT.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.004
@@ -467,11 +891,43 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.SLOT.005
+  target_id: ASSERT.PQC.DMA.002
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.005
   target_id: TC.PQC.DMA.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.006
+  target_id: ASSERT.PQC.KEYMANAGER.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.006
+  target_id: TC.PQC.KEY.002
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.007
+  target_id: ASSERT.PQC.KEYMANAGER.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.007
+  target_id: TC.PQC.KEY.002
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.008
+  target_id: ASSERT.PQC.KEYMANAGER.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.SLOT.008
+  target_id: TC.PQC.KEY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.VERIFY.001
   target_id: ASSERT.PQC.INTEGRITY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.VERIFY.001
+  target_id: ASSERT.PQC.INTEGRITY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.VERIFY.001
@@ -480,6 +936,10 @@ links:
   confidence: high
 - source_id: LRS.SEC.PQC.ZEROIZE.001
   target_id: ASSERT.PQC.INTEGRITY.001
+  status: linked
+  confidence: high
+- source_id: LRS.SEC.PQC.ZEROIZE.001
+  target_id: ASSERT.PQC.INTEGRITY.002
   status: linked
   confidence: high
 - source_id: LRS.SEC.PQC.ZEROIZE.001
@@ -487,13 +947,5 @@ links:
   status: linked
   confidence: high
 gap_analysis:
-  unlinked_sources:
-  - id: LRS.INTF.PQC.KEY_MANAGER.001
-    reason: no current downstream mapping
-  - id: LRS.SEC.PQC.SLOT.006
-    reason: no current downstream mapping
-  - id: LRS.SEC.PQC.SLOT.007
-    reason: no current downstream mapping
-  - id: LRS.SEC.PQC.SLOT.008
-    reason: no current downstream mapping
+  unlinked_sources: []
   unlinked_targets: []

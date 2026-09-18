@@ -50,6 +50,14 @@ links:
   target_id: RTL.FILE.rtl/pqc_kem_seq.sv
   status: linked
   confidence: high
+- source_id: LLD.MOD.PQC.KEMSEQ.DECAPS
+  target_id: RTL.FILE.rtl/pqc_kem_decaps.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.PQC.KEMSEQ.ENCAPS
+  target_id: RTL.FILE.rtl/pqc_kem_encaps.sv
+  status: linked
+  confidence: high
 - source_id: LLD.MOD.PQC.KEYSLOT
   target_id: RTL.FILE.rtl/pqc_key_slots.sv
   status: linked

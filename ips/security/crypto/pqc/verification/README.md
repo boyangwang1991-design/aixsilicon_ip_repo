@@ -1,4 +1,34 @@
-# verification_template
+# PQC 验证入口
+
+当前工程结论只见 [统一报告](../reports/report.md)。下方保留的通用模板说明不代表
+对应功能已实现；实际 APB VIP 从外部 VIP 仓只读引用，不在本 IP 复制 agent。
+
+`sim/run_uvm.py` 是当前 VCS UVM 1.2 编译/运行脚本。它仍消费
+`verification.list`；与根 FuseSoC Core 完全统一、全量计划用例和覆盖采集尚未闭合，
+不能把这个入口的一组测试当成 G4 全量回归。正式运行须先满足设计冻结及 RTL 门禁。
+
+从 workflow 根使用唯一 uv 环境，例如：
+
+```bash
+uv run --locked --no-sync python repos/aixsilicon_ip_repo/ips/security/crypto/pqc/verification/sim/run_uvm.py \
+  --tests 'tc_cmd_smoke tc_reg_reset_attr tc_apb_protection' --seeds '1 2'
+```
+
+每次生成独立 `build/sim/uvm/run-*/`，保存编译命令、工具版本、前后输入指纹、
+二进制hash、逐测试日志、`summary.json` 与 `junit.xml`。显式输出也必须位于build，
+已有证据禁止覆盖。seed必须为明确整数；空测试/空seed/重复条目在编译前拒绝。
+运行时核对RNTST实际用例、UVM错误与完成摘要，Encaps需6个、Decaps需45个不同case
+按顺序完成及最终标记。Decaps覆盖9组独立正常向量、27组首/中/末字节篡改、
+9组背压重复；前三者在相同外部响应条件下检查每组正常/拒绝的completion周期一致。编译失败、超时、源码/VIP/二进制变化均失败关闭。
+这些检查约束证据有效性，不证明测试自身已覆盖全部验收义务。
+
+runner自身的故障注入测试不需要EDA，不计入DUT或UVM通过数：
+
+```bash
+uv run --locked --no-sync pytest repos/aixsilicon_ip_repo/ips/security/crypto/pqc/verification/sim/test_run_uvm.py
+```
+
+## 历史模板说明
 
 ## 1. 目录说明
 

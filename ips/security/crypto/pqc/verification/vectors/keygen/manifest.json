@@ -1,0 +1,205 @@
+{
+  "schema": "pqc-keygen-kat/1",
+  "oracle": "kyber-py",
+  "version": "1.2.0",
+  "cases": [
+    {
+      "id": 0,
+      "pset": 1,
+      "files": {
+        "0_entropy.hex": {
+          "bytes": 64,
+          "sha256": "db92ed69f508e3e09c4248f9120c32d5e4ab9ab934ac39963655e5a28bb9dd78"
+        },
+        "0_ek.hex": {
+          "bytes": 800,
+          "sha256": "149642262e659b91d7b46f388a2efaddd737538bc55792de08fa92dd1ed38241"
+        },
+        "0_dk.hex": {
+          "bytes": 1632,
+          "sha256": "2c046c9e2aade37fbcfa731fe95fbbefbc3fecd40f7c3afa973a923f4579dab6"
+        },
+        "0_desc.hex": {
+          "bytes": 128,
+          "sha256": "e08505ded76d968731e9d21cfebdd13022aef91eccf095091f0ccaf4c87d6c55"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "pset": 1,
+      "files": {
+        "1_entropy.hex": {
+          "bytes": 64,
+          "sha256": "20b37788ed3d528224bf2fbe235d9ca490f6cce68565479e23be35c2d14f3355"
+        },
+        "1_ek.hex": {
+          "bytes": 800,
+          "sha256": "6cc4a810c85d373385654b2f15b6d0e4ea09913bbd588a584f17c7db08263e52"
+        },
+        "1_dk.hex": {
+          "bytes": 1632,
+          "sha256": "a7e3c5cfdeaccd9765f3c63fa14f2a32a714c924e6e791a0efe01c41b606feb6"
+        },
+        "1_desc.hex": {
+          "bytes": 128,
+          "sha256": "eddc2db5ebc9b8457ca837a9c6c48fa859ea8ddd29a102117fdc6715ac46d65d"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "pset": 1,
+      "files": {
+        "2_entropy.hex": {
+          "bytes": 64,
+          "sha256": "8939c49d1fee000f30c930891680abdb687bee9098ce3ab74e0a7974c6fd8561"
+        },
+        "2_ek.hex": {
+          "bytes": 800,
+          "sha256": "a07b3de0612c08005b0d87c33d225f82d4108b90577b4c2562294b80428fc6b1"
+        },
+        "2_dk.hex": {
+          "bytes": 1632,
+          "sha256": "f0b3ccbf2ed0e3415b25e09abe3547d88ee288a3522aa8829a6417422b420767"
+        },
+        "2_desc.hex": {
+          "bytes": 128,
+          "sha256": "225c158901129ce049a076898dec377d51372e9a2844a94513dc5b35b1406cba"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "pset": 2,
+      "files": {
+        "3_entropy.hex": {
+          "bytes": 64,
+          "sha256": "bf1c41fee13c36a3bf441a57700130eb90eca7619b96ecc30db7defd92c4e147"
+        },
+        "3_ek.hex": {
+          "bytes": 1184,
+          "sha256": "69a97d7db5f835897ba79717a5b9e33f010be8f7e08461f406812ea98bf121d4"
+        },
+        "3_dk.hex": {
+          "bytes": 2400,
+          "sha256": "73ceecb17bc2a869d3c355a2b297dd7455c47791ed9c507488497d881e24f3a5"
+        },
+        "3_desc.hex": {
+          "bytes": 128,
+          "sha256": "1553b04141a2404189b20fc0b105ab2e452b94103f8e86aa8efc12aa7d41b6da"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "pset": 2,
+      "files": {
+        "4_entropy.hex": {
+          "bytes": 64,
+          "sha256": "a0799f747ea2069fda3065aeb56b00a7b66369d0d805384350937de5fa8b5230"
+        },
+        "4_ek.hex": {
+          "bytes": 1184,
+          "sha256": "e2df1763dccce1150fb0912286e11cf97c5b36e451dcf1b33f79bf1874054989"
+        },
+        "4_dk.hex": {
+          "bytes": 2400,
+          "sha256": "52162654b64de8d41a5f911b9f4cf6b0881ddb8025bbb3f98887d17d54c4da09"
+        },
+        "4_desc.hex": {
+          "bytes": 128,
+          "sha256": "4a6c3bb2662fcf2353997151fe7e72850695fabca97b82a2a6c1e2fca0568119"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "pset": 2,
+      "files": {
+        "5_entropy.hex": {
+          "bytes": 64,
+          "sha256": "b342b760a1cb6a818ee0e2fb318277fc1d70e4102a5046a64c22709d66a56a1a"
+        },
+        "5_ek.hex": {
+          "bytes": 1184,
+          "sha256": "d1364c5d6f0af960b1316f71dba3b8a4334859d024f06b40f2cc8fad8ff0c0b4"
+        },
+        "5_dk.hex": {
+          "bytes": 2400,
+          "sha256": "95a5adf205c18922bd7aaa210e928065f0e18ee91fd2bae3831d046b9a2934e4"
+        },
+        "5_desc.hex": {
+          "bytes": 128,
+          "sha256": "1642169a0ca9621051d7029d1f6fa9b0ba8a210544cdad77dbc756d56f9284f1"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "pset": 3,
+      "files": {
+        "6_entropy.hex": {
+          "bytes": 64,
+          "sha256": "90f72e83e325f4adc38f5078df100eb7508b8b2ae5712b6c095a0dbd4f96f3ae"
+        },
+        "6_ek.hex": {
+          "bytes": 1568,
+          "sha256": "5a59f70d4b068d443f231e035155fd59e853e0fa301127c083cd6796e2d03e99"
+        },
+        "6_dk.hex": {
+          "bytes": 3168,
+          "sha256": "509317d4390ea288b2a6c59003c1318b2aa24b7b1715e56bcb86e59c10b81c70"
+        },
+        "6_desc.hex": {
+          "bytes": 128,
+          "sha256": "e598ffabc303a93ac782f36e80eb1fcd5a4da308be5f94142b316b5d61d0ad08"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "pset": 3,
+      "files": {
+        "7_entropy.hex": {
+          "bytes": 64,
+          "sha256": "dd9e923cf096f50c4e307c58f7b828f1aad2b0569b637066ff1390b32bc7e1df"
+        },
+        "7_ek.hex": {
+          "bytes": 1568,
+          "sha256": "6c8763979a6cbe22de632361be269df30eb706074369ea4419e3a8285fd44c8f"
+        },
+        "7_dk.hex": {
+          "bytes": 3168,
+          "sha256": "0ed224647f24c5707d428fa47f9c725519ed70b9e94257479c879de9971ecdb6"
+        },
+        "7_desc.hex": {
+          "bytes": 128,
+          "sha256": "bc0c7fe0aa546798cd4fa826c0abbca713a3288e0b2f28dfd45b9e8d66ac5e51"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "pset": 3,
+      "files": {
+        "8_entropy.hex": {
+          "bytes": 64,
+          "sha256": "6a6c97306ffd653ebbeb8deef51fc5e244767a411aa3d55d8d93cf66811aa0cd"
+        },
+        "8_ek.hex": {
+          "bytes": 1568,
+          "sha256": "fa9a8feb805fd01099fd267a31f131cc0198e4a6b339aba3843f3348f4159ccd"
+        },
+        "8_dk.hex": {
+          "bytes": 3168,
+          "sha256": "3cfe1cfeb4e03aec9901d83f8d2fafb4b08d4b3650e09c174795c01538c41e8c"
+        },
+        "8_desc.hex": {
+          "bytes": 128,
+          "sha256": "bfe5d46077558b6f98c1febb3a633d03d836ed046bdf1a26704c2a798bb415ce"
+        }
+      }
+    }
+  ]
+}

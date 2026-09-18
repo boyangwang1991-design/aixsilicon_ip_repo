@@ -1,6 +1,4 @@
-# PQC 验证断言与形式化检查计划
-
-## 断言
+# PQC 协议、复位与完成断言计划
 
 ### ASSERT.PQC.CLKRESET.001 单时钟域与复位极性
 
@@ -31,38 +29,6 @@ LRS.INTF.PQC.CLKRESET.001）。
 
 存在未声明的时钟域或错误复位极性，集成时会出现亚稳态或复位失效。
 
----
-
-### ASSERT.PQC.ENTROPY.001 熵请求授权门控
-
-<!-- ASSERTION_META
-id: ASSERT.PQC.ENTROPY.001
-name: a_entropy_gated
-feature_ref:
-- FL.PQC.ENTROPY
-design_ref:
-- LLD.CDC.PQC.ENTROPY
-property: entropy_ready 只可在算法执行且熵 health 正常时置位，且 domain tag 与命令匹配
-severity: error
-verification_method: assertion
-applicability:
-  expr: 'true'
-END_ASSERTION_META -->
-
-#### Trigger
-
-任意时钟沿观察 `entropy_ready`。
-
-#### Property Intent
-
-随机数只能来自批准路径，health 异常时立即停止（LRS.INTF.PQC.ENTROPY.001）。
-
-#### Failure Meaning
-
-可能在熵失效后继续消费随机数，破坏密钥质量。
-
----
-
 ### ASSERT.PQC.PERF.001 无算法级软件回退
 
 <!-- ASSERTION_META
@@ -92,39 +58,6 @@ END_ASSERTION_META -->
 
 实时性与安全前提被破坏，且可能引入侧信道。
 
----
-
-### ASSERT.PQC.DFX.001 秘密不进入可观测路径
-
-<!-- ASSERTION_META
-id: ASSERT.PQC.DFX.001
-name: a_no_secret_observability
-feature_ref:
-- FL.PQC.DFX
-design_ref:
-- HLD.SAFETY.PQC.DFXTEST
-property: scan chain、MBIST 端口与 debug/trace 出口不得承载密钥或秘密中间态
-severity: error
-verification_method: static
-applicability:
-  expr: 'true'
-END_ASSERTION_META -->
-
-#### Trigger
-
-静态审查 scan 排除清单、MBIST 使能序列与 debug 可观察信号清单。
-
-#### Property Intent
-
-秘密寄存器与 key RAM 不进入普通扫描链，MBIST 前后受控清零且不泄露 retained key
-（LRS.DFX.PQC.SCAN.001、LRS.DFX.PQC.MBIST.001、LRS.DFX.PQC.DEBUG.001）。
-
-#### Failure Meaning
-
-测试机制成为秘密泄露通道。
-
----
-
 ### ASSERT.PQC.RESET.001 复位后合法初始状态
 
 <!-- ASSERTION_META
@@ -152,8 +85,6 @@ END_ASSERTION_META -->
 #### Failure Meaning
 
 复位电路或状态编码错误，可能让器件上电即处于执行态。
-
----
 
 ### ASSERT.PQC.CMD.001 完成写序
 
@@ -183,8 +114,6 @@ END_ASSERTION_META -->
 
 软件可能读到陈旧或不完整结果。
 
----
-
 ### ASSERT.PQC.SIDEBAND.001 W1C 不丢事件
 
 <!-- ASSERTION_META
@@ -212,8 +141,6 @@ END_ASSERTION_META -->
 #### Failure Meaning
 
 中断事件丢失，导致软件漏处理。
-
----
 
 ### ASSERT.PQC.APB.001 BUSY 写保护
 
@@ -243,68 +170,6 @@ END_ASSERTION_META -->
 
 命令结果可能被软件写入破坏。
 
----
-
-### ASSERT.PQC.CT.001 无秘密相关选择
-
-<!-- ASSERTION_META
-id: ASSERT.PQC.CT.001
-name: a_no_secret_select
-feature_ref:
-- FL.PQC.CT
-design_ref:
-- LLD.SAFE.PQC.CT_SELECT
-property: 任何对外可观察的错误码、DMA 地址或授权可见状态不得由 secret-tainted 信号控制
-severity: error
-verification_method: formal
-applicability:
-  expr: 'true'
-END_ASSERTION_META -->
-
-#### Trigger
-
-形式化 taint 分析，起点为秘密数据源。
-
-#### Property Intent
-
-常数时间与访问模式要求（LRS.SEC.PQC.CT.001）。
-
-#### Failure Meaning
-
-存在侧信道泄露路径，产品安全等级不成立。
-
----
-
-### ASSERT.PQC.INTEGRITY.001 非法状态安全收尾
-
-<!-- ASSERTION_META
-id: ASSERT.PQC.INTEGRITY.001
-name: a_illegal_state_shutdown
-feature_ref:
-- FL.PQC.INTEGRITY
-design_ref:
-- LLD.SAFE.PQC.CTRL_SPARSE
-property: 状态编码非法或多热时，下一状态必须是 ZEROIZE，且不得进入 EXECUTE
-severity: error
-verification_method: assertion
-applicability:
-  expr: 'true'
-END_ASSERTION_META -->
-
-#### Trigger
-
-`state_illegal` 有效。
-
-#### Property Intent
-
-单比特故障不能把 LOCKED/ZEROIZE 跳到 EXECUTE。
-
-#### Failure Meaning
-
-故障注入可绕过安全状态。
-
----
-
 ### ASSERT.PQC.RESET.002 零化有界完成
 
 <!-- ASSERTION_META
@@ -314,7 +179,7 @@ feature_ref:
 - FL.PQC.RESET
 design_ref:
 - LLD.RST.PQC.ZEROPATH
-property: zeroize_req 有效后，zeroize_done 必须在 ZEROIZE_MAX_CYCLES 内出现，且不依赖主 FSM 状态
+property: zeroize_req 后本地物理清除在冻结预算内完成；全局 done 还要求已接受 AXI 事务真实排空；外部永久阻塞时超时锁定且不得伪造 ack
 severity: error
 verification_method: formal
 applicability:
@@ -332,38 +197,6 @@ END_ASSERTION_META -->
 #### Failure Meaning
 
 零化可能不完成，秘密长期驻留。
-
----
-
-### ASSERT.PQC.KEY.001 无私有导出路径
-
-<!-- ASSERTION_META
-id: ASSERT.PQC.KEY.001
-name: a_no_key_export
-feature_ref:
-- FL.PQC.KEY
-design_ref:
-- LLD.REG.PQC.SLOT_META
-property: key slot 的私钥字节不得出现在任何 APB 读数据路径上
-severity: error
-verification_method: assertion
-applicability:
-  expr: 'true'
-END_ASSERTION_META -->
-
-#### Trigger
-
-任何 APB 读事务。
-
-#### Property Intent
-
-私钥不可导出（LRS.SEC.PQC.SLOT.002）。
-
-#### Failure Meaning
-
-私钥可能经寄存器路径泄露。
-
----
 
 ### ASSERT.PQC.DMA.001 不跨 4 KiB
 
@@ -393,20 +226,13 @@ AXI4 合规与互操作（LRS.INTF.PQC.DMA.001）。
 
 互联或从端可能拒绝或误处理传输。
 
----
+## SVA 实现与形式假设
 
-## 形式化检查项
+属性统一由 `verification/assertions/` bind checker 实现，加入唯一 FuseSoC fileset；
+目前 META 是计划，不表示已有 bind 或证明。每属性提供触发cover、失败定位与fixture。
+正常协议稳定性检查在 cold reset 时 disable；安全清除同拍屏蔽属性不能被 zeroize
+本身 disable。异步输入先按 LLD 同步边界观察，不对原始输入虚构核心拍对齐。
 
-| 项 | 目标 | 方法 |
-|---|---|---|
-| NTT/INTT round-trip | 系数范围与可逆性 | 等价/形式 |
-| 模约减范围 | lazy range 不溢出 | 形式 |
-| codec round-trip | bit pack/unpack 与 Compress/Decompress 一致 | 形式 |
-| hint 性质 | MakeHint/UseHint 一致性与权重界 | 形式 |
-| secret taint | 秘密不控制外部可观察量 | taint 形式 |
-| zeroize 有界 | 无死锁、有界完成 | 活性形式 |
-| FIFO 边界 | overflow/underflow 不越界 | 形式 |
-
-## 覆盖点（断言相关）
-
-见 [`coverage_plan.md`](coverage_plan.md) 的安全关键 FSM 与 error path 100% 要求。
+zeroize 本地有界证明不依赖主FSM；AXI全局排空必须假设已展示请求最终被接受且
+从端有界响应。另做无公平性反例测试，要求锁定且不假成功。形式约束/深度/工具
+版本/未证明点随日志保存，bounded PASS不宣称无界活性。

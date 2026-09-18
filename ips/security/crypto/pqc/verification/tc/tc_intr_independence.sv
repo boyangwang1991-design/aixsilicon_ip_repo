@@ -52,16 +52,16 @@ class tc_intr_independence extends tc_base;
       apb_write(PQC_REG_INTR_STATE, 32'h0000_0001);
       repeat (4) @(posedge env.apb_vip.vif.pclk);
       apb_read (PQC_REG_INTR_STATE, state1, err);
-      if (!err) begin
+      if (err) `uvm_error(get_type_name(), "INTR_STATE read after W1C failed")
+      else begin
         if (state1[0] !== 1'b0)
           `uvm_error(get_type_name(), "W1C did not clear INTR_STATE bit 0")
         if (state1[1] !== 1'b1)
           `uvm_error(get_type_name(), "W1C cleared INTR_STATE bit 1 (independence violated)")
       end
     end else begin
-      `uvm_info(get_type_name(),
-        $sformatf("INTR_TEST did not raise both bits (state=0x%08h); W1C not exercised",
-                  state0), UVM_MEDIUM)
+      `uvm_error(get_type_name(),
+        $sformatf("INTR_TEST did not raise both bits: state=0x%08h", state0))
     end
 
     phase.drop_objection(this, "tc_intr_independence");

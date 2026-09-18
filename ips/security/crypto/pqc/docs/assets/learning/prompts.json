@@ -1,0 +1,22 @@
+{
+  "generator": "ChatGPT native image_gen",
+  "date": "2026-09-18",
+  "prompts": [
+    {
+      "id": 1,
+      "prompt": "Create a clear landscape educational illustration for a beginner post-quantum cryptography textbook. White background. Two people Alice and Bob exchange a blue public key and a sealed ciphertext envelope, with two arrows in opposite directions. Both retain identical golden shared-secret keys locally; Alice keeps a separate private key in a safe. Only large labels: Alice, Bob, Public key, Ciphertext, Shared secret. Friendly professional textbook artwork, simple flat blue and gold shapes, no extra decorative elements."
+    },
+    {
+      "id": 2,
+      "prompt": "Create a crisp educational infographic on white background titled NTT BUTTERFLY. Three separate horizontal numbered cards, no circuit wiring. Card 1 INPUT: a=3, b=5, zeta=2, q=17. Card 2 MULTIPLY: t = zeta * b mod q = 10. Card 3 ADD AND SUBTRACT: u = (a + t) mod q = 13 and v = (a - t) mod q = 10. Use blue teal and gold, large sharp formulas, ample whitespace. Only arrows between successive cards indicating step order, never draw internal signal wires. Small subtitle One butterfly, modular arithmetic. Clean beginner textbook style."
+    },
+    {
+      "id": 3,
+      "prompt": "Educational illustration of a shared PQC accelerator, wide white canvas, blue teal and gold. A chip with four clearly labeled compute blocks: Poly, Keccak, Sampler, Codec. Shared SRAM below. Controller above. A separate locked Key RAM to the right connected to external Key Manager vault. CPU outside left sends commands. System Memory connects via DMA to SRAM. No direct connection from Key RAM to System Memory. Simple clean textbook concept diagram with a few large English labels and clear grouping, no decorative details."
+    },
+    {
+      "id": 4,
+      "prompt": "Beginner textbook illustration, wide white canvas, blue and gold. Four sequential panels of a secret key lifecycle inside a secure chip: 1 IMPORT, sealed private-key package enters trusted vault; 2 AUTHORIZE, permission badge unlocks internal use; 3 COMPUTE, secret stays inside shielded processor; 4 ZEROIZE, memory becomes rows of zeros and access badge is revoked. A separate blue arrow below compute shows permitted output only, labeled Authorized result. Private key never exits to public memory. Minimal flat educational style with large clear labels."
+    }
+  ]
+}

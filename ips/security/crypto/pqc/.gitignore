@@ -32,6 +32,7 @@ csrc/
 simv*
 # VCS/UCLI 运行时凭据与临时文件（与其它 IP 一致：不入库）
 ucli.key
+vc_hdrs.h
 *.vcd
 *.fsdb
 *.shm

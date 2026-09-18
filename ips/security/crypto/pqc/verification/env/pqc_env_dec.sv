@@ -76,12 +76,9 @@
 
   // CAPABILITY1: local_sram_kib=64(b7:0), dma_data_width=128(b15:8),
   //   key_slot_num=8(b23:16), pio_enabled=1(b24), ecc_enabled=1(b25).
-  // abi_minor[31:26] is driven by the RTL (reads 3 on this revision), not by a
-  // fixed RDL reset constant, so it is excluded from the static comparison.
-  // abi_minor[31:26] reads 0 on this RTL revision (the RTL never drives that
-  // hw=rw field - verified finding, see tc_reg_reset_attr); pio_enabled(b24)
-  // and ecc_enabled(b25) are 1. -> 0x0308_8040
-  localparam logic [31:0] PQC_CAPABILITY1_RESET = 32'h0308_8040;
+  // regs/pqc.rdl specifies abi_minor[31:26] = 1. The independent model
+  // retains that contract; it must not adopt an incorrect DUT readback.
+  localparam logic [31:0] PQC_CAPABILITY1_RESET = 32'h0708_8040;
 
   // Registers whose read data is driven by hardware state rather than by a
   // static shadow value. These must not be compared against the model:

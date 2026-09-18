@@ -1,16 +1,10 @@
-# PQC 验证测试矩阵
+# PQC 测试矩阵：控制与配置
 
-## 测试分层
+本计划共 21 个参数化 testcase，参数/向量/seed 作为运行维度，不复制测试 ID。
+所有用例先按输入契约生成预期，实际观察必须来自握手 monitor。
+现有同名源码不代表实现了本版全部义务；执行状态只在 reports/report.md 维护。
 
-| Tier | 用途 |
-|---|---|
-| smoke | fail-fast 最小闭环 |
-| regression | 全部可达 testcase |
-| extended | 扩展与性能观察 |
-
----
-
-### TC.PQC.CMD.001 命令闭环冒烟
+## TC.PQC.CMD.001 tc_cmd_smoke
 
 <!-- TESTCASE_META
 id: TC.PQC.CMD.001
@@ -27,21 +21,24 @@ design_ref:
 preconditions:
 - rst_n 释放，CTRL.enable 置位
 stimulus:
-- 写入合法 COMMAND 与 DESC_ADDR，写 DOORBELL=1
+- 通过 AXI memory 放置 CRC 正确描述符和有效 ML-KEM-512 输入，经 APB 提交真实 Encaps
+- 对输出 B 与 completion B 分别施加延迟，轮询 STATUS 并观察 IRQ
 expected_result:
-- STATUS 由 IDLE 进入 BUSY 后回到 IDLE
-- completion record 写入后 DONE 置位
-- INTR_STATE.done 置位并可 W1C 清除
-timeout_policy: 100000 cycles
+- 真实密文及共享秘密通过 oracle 比较；输入读取、输出写与 completion 均非零
+- 所有 payload B 成功后才写 completion，completion B 成功后 DONE/IRQ
+- 第二命令使用新 tag 与不同输入，不能复用上一命令结果；队列清空
+timeout_policy: 100000000 cycles per command; 3600 s process watchdog
 config_ref:
 - CFGSET.PQC.DEFAULT
 applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.APB.001 APB 非法地址与 BUSY 写保护
+## TC.PQC.APB.001 tc_apb_protection
 
 <!-- TESTCASE_META
 id: TC.PQC.APB.001
@@ -59,12 +56,11 @@ design_ref:
 preconditions:
 - IP 处于 IDLE
 stimulus:
-- 访问未映射地址
-- 提交命令使其 BUSY，期间写 COMMAND.opcode
+- 遍历全部 PPROT/PSTRB、未对齐与高低未映射地址
+- BUSY 与 command_pending 时改写所有受保护组和重复门铃；读回并完成原命令
 expected_result:
-- 未映射访问 psready 有效且 pslverr 为 1
-- BUSY 期间写入被拒绝，opcode 保持提交值
-- 命令结果不受影响
+- 有界响应、拒绝无副作用，命令快照与原结果保持
+- 全地址空间无永久等待；非特权/非安全访问不绕过保护
 timeout_policy: 100000 cycles
 config_ref:
 - CFGSET.PQC.DEFAULT
@@ -72,9 +68,11 @@ applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.REG.001 寄存器复位值与访问属性
+## TC.PQC.REG.001 tc_reg_reset_attr
 
 <!-- TESTCASE_META
 id: TC.PQC.REG.001
@@ -93,12 +91,13 @@ design_ref:
 preconditions:
 - 复位释放后立即读取
 stimulus:
-- 读取 ID_VERSION/CAPABILITY0/STATUS
-- 对 INTR_STATE 逐位置位（INTR_TEST）后逐位 W1C
+- 通过生成 RAL frontdoor 访问所有寄存器定义与槽数组；检查 reset/RO/RW/保留位/PSTRB
+- 全部 W1C 字段逐 bit 清除并与 HW set 同拍；单拍请求不粘连；SW clear 与计数器 HW 更新冲突
+- 对每个综合配置检查动态 capability 和 ABI；运行期读取 PERF/completion/slot metadata
 expected_result:
-- 复位值与 RDL reset 一致，无 X
-- 每次 W1C 只清除被写位
-- RO 寄存器写入无副作用
+- RDL 结构及 LLD 字段行为均满足；RAL adapter/predictor 只由 monitor 驱动
+- 拒绝事务不改模型；HW set 优先的 W1C 不丢事件；保留/未映射/未对齐行为符合合同
+- 不能把整个 key-slot 窗口或动态状态当作无条件跳过区域
 timeout_policy: 200000 cycles
 config_ref:
 - CFGSET.PQC.DEFAULT
@@ -106,42 +105,11 @@ applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.RESET.001 自检门控与故障锁定
-
-<!-- TESTCASE_META
-id: TC.PQC.RESET.001
-name: tc_reset_selftest_lock
-type: reset
-description: 自检成功前拒绝密码命令；tamper 触发零化与锁定
-priority: must
-tier: regression
-implementation: verification/tc/tc_reset_selftest_lock.sv
-feature_ref:
-- FL.PQC.RESET
-design_ref:
-- LLD.FSM.PQC.TOP.MAIN
-- LLD.RST.PQC.ZEROPATH
-preconditions:
-- 复位释放
-stimulus:
-- 未 enable 时提交命令
-- enable 后拉高 tamper
-expected_result:
-- 未使能时命令不进入 EXECUTE
-- tamper 后 ALERT_FATAL 置位、LOCKED 置位、密码命令被拒绝
-- zeroize 在 ZEROIZE_MAX_CYCLES 内完成
-timeout_policy: 200000 cycles
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.SIDEBAND.001 中断独立性
+## TC.PQC.SIDEBAND.001 tc_intr_independence
 
 <!-- TESTCASE_META
 id: TC.PQC.SIDEBAND.001
@@ -173,74 +141,11 @@ applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.KEY.001 Key slot 权限与 stale handle
-
-<!-- TESTCASE_META
-id: TC.PQC.KEY.001
-name: tc_key_slot_permission
-type: negative
-description: 非特权访问 key slot 窗口被拒；destroy 后旧 handle 失效
-priority: must
-tier: regression
-implementation: verification/tc/tc_key_slot_permission.sv
-feature_ref:
-- FL.PQC.KEY
-design_ref:
-- LLD.REG.PQC.SLOT_CTRL
-- LLD.REG.PQC.SLOT_DESTROY
-preconditions:
-- privileged=1 完成一次 import
-stimulus:
-- privileged=0 访问 KEY_SLOT_CTRL
-- destroy 后再用旧 generation 提交命令
-expected_result:
-- 非特权访问返回 pslverr
-- destroy 递增 generation，旧 handle 的 key_handle_ok 为 0
-- 命令返回 BAD_KEY 且不访问秘密
-timeout_policy: 100000 cycles
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.KEY.002 Key Manager 生命周期（blocked）
-
-<!-- TESTCASE_META
-id: TC.PQC.KEY.002
-name: tc_key_manager_lifecycle
-type: security
-description: >
-  Key Manager 侧载（km_begin/import/destroy）与密钥槽 domain 授权生命周期。
-  当前 RTL 中 0x200+ 密钥槽窗口对任何访问返回 pslverr（RTL-KEY-001），
-  完整生命周期无法在 RTL 上验证；本用例归入 blocked，待 RTL 闭环后验收。
-priority: must
-tier: regression
-implementation: verification/tc/tc_key_slot_permission.sv
-feature_ref:
-- FL.PQC.KEYMANAGER.PENDING
-design_ref:
-- LLD.REG.PQC.SLOT_DESTROY
-preconditions:
-- Key Manager 数据通路已闭环（当前未闭环）
-stimulus:
-- km_begin/import/destroy；跨域访问密钥槽
-expected_result:
-- 密钥槽软件可访问（当前不可访问，见 RTL-KEY-001）
-timeout_policy: 100000 cycles
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.DMA.001 4 KiB 边界拆分
+## TC.PQC.DMA.001 tc_dma_boundary
 
 <!-- TESTCASE_META
 id: TC.PQC.DMA.001
@@ -257,118 +162,25 @@ design_ref:
 preconditions:
 - DMA 从端就绪
 stimulus:
-- 发起起点在 4 KiB 边界前 8 字节、长度跨越边界的读与写
+- 对真实算法 payload/context/output/completion 使用 64/128/256-bit 总线，地址在 4KiB 边界前一个合法 beat
+- 长度含 0/1/beat-1/beat/beat+1、多 burst 与尾字节；改变合法分段及 AR/R/AW/W/B 独立反压
+- RRESP/BRESP 错误、早/迟 RLAST、地址高位/溢出/重叠、输出 capacity 差一字节，超时与取消
 expected_result:
-- 每次 burst 不跨 4 KiB
-- 拼接后的数据与连续传输一致
-- 协议无违规
-timeout_policy: 400000 cycles
+- 逐 WSTRB 更新的观察内存与 oracle 一致；guard bytes 保持；无越界或多余读写
+- burst 不跨 4KiB，安全/特权属性符合授权；AXI 接受后取消仍排空
+- 输出或 completion B 错误不得成功 IRQ；错误分类符合非敏感合同
+timeout_policy: 100000000 cycles per algorithm command; 3600 s process watchdog
 config_ref:
 - CFGSET.PQC.DEFAULT
 applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.CT.001 KEM Decaps 常数时间
-
-<!-- TESTCASE_META
-id: TC.PQC.CT.001
-name: tc_kem_decaps_constant_time
-type: directed
-description: 合法与非法密文的公开 trace 形状与周期分布一致，无有效性 oracle
-priority: must
-tier: regression
-implementation: verification/tc/tc_kem_decaps_constant_time.sv
-feature_ref:
-- FL.PQC.CT
-design_ref:
-- LLD.SAFE.PQC.CT_SELECT
-preconditions:
-- IP 完成 KeyGen 得到 dk slot
-stimulus:
-- 提交长度正确的合法密文
-- 提交同长度但单比特翻转的密文
-expected_result:
-- 两次 completion 均为 SUCCESS
-- 无 KEM_INVALID 类错误码
-- 比较与 select 遍历全长度（公开观察一致）
-timeout_policy: 400000 cycles
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.INTEGRITY.001 非法状态强制安全收尾
-
-<!-- TESTCASE_META
-id: TC.PQC.INTEGRITY.001
-name: tc_illegal_state_shutdown
-type: error_injection
-description: 注入控制完整性错误后不得进入 EXECUTE，必须走零化路径
-priority: must
-tier: extended
-implementation: verification/tc/tc_illegal_state_shutdown.sv
-feature_ref:
-- FL.PQC.INTEGRITY
-design_ref:
-- LLD.SAFE.PQC.CTRL_SPARSE
-preconditions:
-- IP 处于 IDLE
-stimulus:
-- 通过 fault_inject_ctrl 触发非法状态检测
-expected_result:
-- 状态机进入 ZEROIZE 而非 EXECUTE
-- ALERT_FATAL 置位
-- 密码命令被拒绝
-timeout_policy: 100000 cycles
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.ALGO.001 算法级 KAT 与差分（软件证明）
-
-<!-- TESTCASE_META
-id: TC.PQC.ALGO.001
-name: algo_reference_kat
-type: algorithm
-description: 六个参数集完整算法 KAT 与跨实现差分，含隐式拒绝与拒绝采样
-priority: must
-tier: regression
-implementation: scripts/run_pqc_algo_proof.py
-proof_kind: software
-feature_ref:
-- FL.PQC.ALGO
-design_ref:
-- HLD.MOD.PQC.KEMSEQ
-- HLD.MOD.PQC.DSASEQ
-preconditions:
-- Python 参考模型与独立实现可导入
-stimulus:
-- 对六个参数集执行 KeyGen/Encaps/Decaps 与 KeyGen/Sign/Verify
-- 密文翻转、消息篡改、错误长度
-expected_result:
-- 全部 KAT 与差分比对通过
-- 非法密文产生伪随机 shared secret 且无有效性区分
-- 拒绝轮次不输出部分签名
-timeout_policy: 1800 s
-config_ref:
-- CFGSET.PQC.DEFAULT
-applicability:
-  expr: 'true'
-END_TESTCASE_META -->
-
----
-
-### TC.PQC.CFG.001 参数化配置 elaboration
+## TC.PQC.CFG.001 tc_param_elab
 
 <!-- TESTCASE_META
 id: TC.PQC.CFG.001
@@ -398,9 +210,11 @@ applicability:
   expr: 'true'
 END_TESTCASE_META -->
 
----
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-### TC.PQC.CONS.001 交付与可综合静态检查
+## TC.PQC.CONS.001 tc_delivery_static
 
 <!-- TESTCASE_META
 id: TC.PQC.CONS.001
@@ -429,32 +243,43 @@ config_ref:
 applicability:
   expr: 'true'
 END_TESTCASE_META -->
----
 
-## 实现状态（2026-09-17 UVM 实测）
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。
 
-以下状态基于 `verification/sim/run_uvm.py` 的真实 UVM 运行（VCS W-2024.09-SP1，
-UVM 1.2，`--compile-timeout 300 --run-timeout 90`），不是文档声明。
+## TC.PQC.CFG.002 tc_pqc_config_equivalence
 
-| TC | Tier | 实现文件 | 状态 | 说明 |
-|---|---|---|---|---|
-| TC.PQC.CMD.001 | smoke | `tc_cmd_smoke.sv` | **PASS** | 上电/使能/自检门控/命令寄存器/门铃提交/STATUS 观测 |
-| TC.PQC.APB.001 | smoke | `tc_apb_protection.sv` | **PASS** | 低位未映射地址 pslverr；swwe 命令组写保护 |
-| TC.PQC.REG.001 | smoke | `tc_reg_reset_attr.sv` | **PASS** | ID/CAPABILITY 复位与属性；W1C；RO 写忽略 |
-| TC.PQC.RESET.001 | regression | `tc_reset_selftest_lock.sv` | **PASS** | 复位状态/自检门控/无错误；自检后 busy 不归位记为 RTL-STATUS-001 |
-| TC.PQC.SIDEBAND.001 | regression | `tc_intr_independence.sv` | **PASS** | INTR_ENABLE 独立门控 + W1C 独立性 |
-| TC.PQC.KEY.001 | regression | `tc_key_slot_permission.sv` | **PASS(observed)** | 0x200+ 窗口全 pslverr 记为 RTL-KEY-001（预期错误区） |
-| TC.PQC.INTEGRITY.001 | extended | `tc_illegal_state_shutdown.sv` | **PASS** | 告警寄存器契约（RO/复位清零） |
-| TC.PQC.DMA.001 | regression | — | **blocked** | 依赖未实现 DMA 数据通路（ISSUE A03/A11）；不伪造通过 |
-| TC.PQC.CT.001 | regression | — | **blocked** | 依赖完整 KEM 数据通路与 Level 2 掩码链 |
-| TC.PQC.ALGO.001 | regression | `scripts/run_pqc_algo_proof.py` | pending | 软件证明入口（algorithm proof） |
+<!-- TESTCASE_META
+id: TC.PQC.CFG.002
+name: tc_pqc_config_equivalence
+type: directed
+description: 跨参数配置结果等价、能力裁剪与最大工作集
+priority: must
+tier: extended
+implementation: verification/tc/tc_pqc_config_equivalence.sv
+proof_kind: uvm
+feature_ref:
+- FL.PQC.CFG
+design_ref:
+- HLD.CFG.PQC.NTT_LANES
+- HLD.CFG.PQC.SCA
+preconditions:
+- UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+stimulus:
+- 三命名配置对同一向量重放全部18操作；执行配置计划的合法边界/feature on-off/Level0-2风险组合
+- 最大算法与32KiB SRAM；三个DMA宽度、两个Keccak轮数、所有NTT lane及key-slot端点
+- 裁剪算法后检查capability与禁止操作，无效参数走elaboration拒绝
+expected_result:
+- 所有保留操作逐字节一致；裁剪操作在秘密访问前拒绝且capability匹配
+- 最大工作集不越界，无页别名/旧数据；运行证据逐配置绑定，elaboration不能替代等价执行
+timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+config_ref:
+- CFGSET.PQC.DEFAULT
+applicability:
+  expr: 'true'
+END_TESTCASE_META -->
 
-### 已知 RTL 缺陷（UVM 实测，见 reports/report.md）
-
-| ID | 现象 | 影响 |
-|---|---|---|
-| RTL-REG-002 | `CAPABILITY1.abi_minor` 从未被驱动，读 0（RDL reset=1） | 能力上报不完整 |
-| RTL-APB-002 | 高位未映射地址（0x2F0）不返回 pslverr 也不返回 PREADY | 总线挂死 |
-| RTL-CMD-001 | 门铃命令链依赖未实现 DMA，前端可无限等待 | 命令无法闭环 |
-| RTL-STATUS-001 | 自检后 `STATUS.idle` 不再置位（前端保持 busy） | 自检后无法进入 idle |
-| RTL-KEY-001 | 0x200+ key-slot 窗口任何访问都返回 pslverr（PPROT=3'b100 亦然） | 密钥槽软件不可访问 |
+刺激由 virtual sequence 协调相关 agent；观察 APB、AXI、KM、entropy 和 IRQ 的真实握手。
+算法期望来自冻结独立 oracle，控制期望来自 RDL/接口契约；checker 逐事务比较并检查队列清空。
+失败定位记录 test/config/seed/vector/command/首个不同字节或握手周期；超时或零比较数均失败。

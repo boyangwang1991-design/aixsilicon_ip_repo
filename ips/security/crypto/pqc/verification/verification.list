@@ -41,7 +41,14 @@ rtl/pqc_desc_fetch.sv
 rtl/pqc_desc_validate.sv
 rtl/pqc_fault_ctrl.sv
 rtl/pqc_kem_seq.sv
+rtl/pqc_kem_encaps.sv
+rtl/pqc_kem_decaps.sv
+rtl/pqc_kem_keygen.sv
+rtl/pqc_dsa_keygen.sv
+rtl/pqc_key_custody.sv
 rtl/pqc_dsa_seq.sv
+rtl/pqc_dsa_verify.sv
+rtl/pqc_dsa_sign.sv
 rtl/pqc_cmd_frontend.sv
 rtl/pqc_apb_if.sv
 rtl/pqc_random_service.sv
@@ -57,12 +64,10 @@ $(VIP_ROOT)/vip/amba/apb/src/apb_types_pkg.sv
 $(VIP_ROOT)/vip/amba/apb/src/apb_if.sv
 $(VIP_ROOT)/vip/amba/apb/src/apb_pkg.sv
 $(VIP_ROOT)/vip/amba/apb/src/apb_sva_bind.sv
-// NOTE: the AXI4 VIP is intentionally not compiled in this increment. Its
-// interface specialisation (32-bit) does not match pqc_top's 128-bit DMA
-// master, and the DMA data path is still open in RTL. DMA verification is
-// deferred with that RTL work and recorded as an open G4 item; simulating it
-// against a stub responder would produce a false pass.
-
+// AXI4 VIP integration remains open: its interface specialisation does not
+// match the 128-bit DUT. pqc_main_if currently supplies a byte-addressed memory
+// responder with channel stalls and records observed DMA writes for KAT checks.
+// These functional checks do not replace AXI4 VIP protocol coverage.
 
 // ----------------------------------------------------- PQC environment + RAL
 verification/ral/pqc_ral_pkg.sv
@@ -80,10 +85,17 @@ verification/env/pqc_apb_adapter.sv
 verification/env/pqc_env.sv
 
 // ------------------------------------------------------------- testcases
+verification/th/pqc_main_if.sv
 verification/tc/tc_define.sv
 verification/tc/pqc_apb_reg_seq.sv
 verification/tc/tc_base.sv
 verification/tc/tc_cmd_smoke.sv
+verification/tc/tc_kem_encaps_main.sv
+verification/tc/tc_kem_decaps_main.sv
+verification/tc/tc_kem_keygen_main.sv
+verification/tc/tc_dsa_keygen_main.sv
+verification/tc/tc_dsa_verify_main.sv
+verification/tc/tc_dsa_sign_main.sv
 verification/tc/tc_apb_protection.sv
 verification/tc/tc_reg_reset_attr.sv
 verification/tc/tc_reset_selftest_lock.sv

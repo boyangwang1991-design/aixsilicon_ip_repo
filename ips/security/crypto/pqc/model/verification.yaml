@@ -1,60 +1,12 @@
 schema_version: '2.0'
 ip_name: pqc
-verification_level: smoke
-status: reviewed
+verification_level: full
+status: draft
 delivery_model: parameterized
-lrs_baseline: PQC-CONTRACT-36c592c3ffa1
-hld_baseline: PQC-HLD-1.0.0
-lld_baseline: PQC-LLD-1.0.0
+lrs_baseline: PQC-20260916-WORKKEY
+hld_baseline: PQC-HLD-1.1.0
+lld_baseline: PQC-LLD-1.1.0
 features:
-- id: FL.PQC.KEYMANAGER.PENDING
-  name: Key Manager 侧载与密钥槽域授权（待实现数据通路）
-  type: security
-  priority: must
-  description: '完整 Key Manager 侧载（km_begin/import/destroy）、密钥槽 domain 授权与 可信域生命周期（LRS.SEC.PQC.SLOT.006/007/008
-    与 LRS.INTF.PQC.KEY_MANAGER.001） 依赖尚未闭合的 Key Manager/密钥数据通路。当前 RTL 中 0x200+ 密钥槽窗口对任何
-    访问返回 pslverr（RTL-KEY-001），完整生命周期无法在 RTL 上验证。tc_key_slot_permission 作为本 feature
-    的观测用例：它实际驱动该窗口并记录 RTL-KEY-001（而不是断言通过）， 因此被归入 blocked；待 RTL 闭环后以其验收。
-
-    '
-  req_ref:
-  - LRS.INTF.PQC.KEY_MANAGER.001
-  - LRS.SEC.PQC.SLOT.006
-  - LRS.SEC.PQC.SLOT.007
-  - LRS.SEC.PQC.SLOT.008
-  status: blocked
-  rationale: 依赖未实现 Key Manager/密钥数据通路；RTL-KEY-001 使密钥槽窗口软件不可访问
-  design_ref: []
-  testcases:
-  - id: TC.PQC.KEY.002
-    name: tc_key_manager_lifecycle
-    type: security
-    description: 'Key Manager 侧载（km_begin/import/destroy）与密钥槽 domain 授权生命周期。 当前 RTL
-      中 0x200+ 密钥槽窗口对任何访问返回 pslverr（RTL-KEY-001）， 完整生命周期无法在 RTL 上验证；本用例归入 blocked，待
-      RTL 闭环后验收。
-
-      '
-    priority: must
-    tier: regression
-    implementation: verification/tc/tc_key_slot_permission.sv
-    feature_ref:
-    - FL.PQC.KEYMANAGER.PENDING
-    design_ref:
-    - LLD.REG.PQC.SLOT_DESTROY
-    preconditions:
-    - Key Manager 数据通路已闭环（当前未闭环）
-    stimulus:
-    - km_begin/import/destroy；跨域访问密钥槽
-    expected_result:
-    - 密钥槽软件可访问（当前不可访问，见 RTL-KEY-001）
-    timeout_policy: 100000 cycles
-    config_ref:
-    - CFGSET.PQC.DEFAULT
-    applicability:
-      expr: 'true'
-  coverage: []
-  assertions: []
-  config_coverage: []
 - id: FL.PQC.CFG
   name: configuration_space
   description: 综合期参数合法空间、命名配置与跨参数约束
@@ -107,6 +59,59 @@ features:
     - CFGSET.PQC.DEFAULT
     applicability:
       expr: 'true'
+  - id: TC.PQC.CFG.002
+    name: tc_pqc_config_equivalence
+    type: directed
+    description: 跨参数配置结果等价、能力裁剪与最大工作集
+    priority: must
+    tier: extended
+    implementation: verification/tc/tc_pqc_config_equivalence.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.CFG
+    design_ref:
+    - HLD.CFG.PQC.NTT_LANES
+    - HLD.CFG.PQC.SCA
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 三命名配置对同一向量重放全部18操作；执行配置计划的合法边界/feature on-off/Level0-2风险组合
+    - 最大算法与32KiB SRAM；三个DMA宽度、两个Keccak轮数、所有NTT lane及key-slot端点
+    - 裁剪算法后检查capability与禁止操作，无效参数走elaboration拒绝
+    expected_result:
+    - 所有保留操作逐字节一致；裁剪操作在秘密访问前拒绝且capability匹配
+    - 最大工作集不越界，无页别名/旧数据；运行证据逐配置绑定，elaboration不能替代等价执行
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.PQC.SCA.001
+    name: tc_masked_full_compute
+    type: stress
+    description: Level 2 完整秘密链的功能、随机预算和组合边界
+    priority: must
+    tier: extended
+    implementation: verification/tc/tc_masked_full_compute.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.CFG
+    design_ref:
+    - LLD.MOD.PQC.TOP.RANDOM
+    - LLD.MOD.PQC.KECCAK.MASKED_ROUND
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 六参数全部操作在 Level 2 以至少两组 fresh masks 重放相同算法输入
+    - 对各秘密消费者的租约/转换/采样停顿、撤销与 clear 同拍，执行安全静态/形式证明配套检查
+    expected_result:
+    - 不同 mask 得到同一标准结果；两个 share 始终在敏感链路保持，普通出口无秘密或单 share
+    - 每个 gadget 实例、转换及采样均有配额与组合证明绑定；仅 XOR 重组 KAT 不能宣称 SCA 通过
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
   coverage:
   - id: COV.PQC.CFG.001
     name: cov_config_space
@@ -116,7 +121,24 @@ features:
     - FL.PQC.CFG
     applicability:
       expr: 'true'
-  assertions: []
+  - id: COV.PQC.SCA.001
+    name: cov_sca_001
+    type: functional
+    description: 完整两share链
+    feature_ref:
+    - FL.PQC.CFG
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.CFG.001
+    name: a_masked_secret_boundary
+    feature_ref:
+    - FL.PQC.CFG
+    property: Level2敏感路径及转换保持share与域身份；公共出口不能承载私钥/单share或未经批准中间秘密
+    severity: error
+    verification_method: formal
+    applicability:
+      expr: 'true'
   config_coverage:
   - id: CCOV.PQC.CFG_MATRIX
     name: config_matrix_coverage
@@ -124,7 +146,12 @@ features:
     - NTT_LANES
     - KECCAK_ROUNDS_PER_CYCLE
     - LOCAL_SRAM_KIB
+    - DMA_DATA_WIDTH
+    - KEY_SLOT_NUM
     - SCA_LEVEL
+    - ENABLE_ALGO_MASK
+    - ENABLE_HASH_ML_DSA
+    - ENABLE_PIO
     feature_ref: &id002
     - FL.PQC.CFG
     applicability: &id003
@@ -160,12 +187,11 @@ features:
     preconditions:
     - IP 处于 IDLE
     stimulus:
-    - 访问未映射地址
-    - 提交命令使其 BUSY，期间写 COMMAND.opcode
+    - 遍历全部 PPROT/PSTRB、未对齐与高低未映射地址
+    - BUSY 与 command_pending 时改写所有受保护组和重复门铃；读回并完成原命令
     expected_result:
-    - 未映射访问 psready 有效且 pslverr 为 1
-    - BUSY 期间写入被拒绝，opcode 保持提交值
-    - 命令结果不受影响
+    - 有界响应、拒绝无副作用，命令快照与原结果保持
+    - 全地址空间无永久等待；非特权/非安全访问不绕过保护
     timeout_policy: 100000 cycles
     config_ref:
     - CFGSET.PQC.DEFAULT
@@ -228,12 +254,15 @@ features:
     preconditions:
     - DMA 从端就绪
     stimulus:
-    - 发起起点在 4 KiB 边界前 8 字节、长度跨越边界的读与写
+    - 对真实算法 payload/context/output/completion 使用 64/128/256-bit 总线，地址在 4KiB 边界前一个合法
+      beat
+    - 长度含 0/1/beat-1/beat/beat+1、多 burst 与尾字节；改变合法分段及 AR/R/AW/W/B 独立反压
+    - RRESP/BRESP 错误、早/迟 RLAST、地址高位/溢出/重叠、输出 capacity 差一字节，超时与取消
     expected_result:
-    - 每次 burst 不跨 4 KiB
-    - 拼接后的数据与连续传输一致
-    - 协议无违规
-    timeout_policy: 400000 cycles
+    - 逐 WSTRB 更新的观察内存与 oracle 一致；guard bytes 保持；无越界或多余读写
+    - burst 不跨 4KiB，安全/特权属性符合授权；AXI 接受后取消仍排空
+    - 输出或 completion B 错误不得成功 IRQ；错误分类符合非敏感合同
+    timeout_policy: 100000000 cycles per algorithm command; 3600 s process watchdog
     config_ref:
     - CFGSET.PQC.DEFAULT
     applicability:
@@ -261,32 +290,11 @@ features:
     verification_method: assertion
     applicability:
       expr: 'true'
-  config_coverage: []
-- id: FL.PQC.ENTROPY
-  name: entropy_interface
-  description: valid/ready 握手、health、domain tag、授权策略
-  priority: must
-  req_ref:
-  - LRS.INTF.PQC.ENTROPY.001
-  - LRS.RESET.PQC.CLK.001
-  design_ref:
-  - LLD.CDC.PQC.ENTROPY
-  - LLD.ERR.PQC.RNG
-  applicability:
-    expr: 'true'
-  proof_methods:
-  - simulation
-  - assertion
-  testcases: []
-  coverage: []
-  assertions:
-  - id: ASSERT.PQC.ENTROPY.001
-    name: a_entropy_gated
+  - id: ASSERT.PQC.DMA.002
+    name: a_axi_hold
     feature_ref:
-    - FL.PQC.ENTROPY
-    design_ref:
-    - LLD.CDC.PQC.ENTROPY
-    property: entropy_ready 只可在算法执行且熵 health 正常时置位，且 domain tag 与命令匹配
+    - FL.PQC.DMA
+    property: AR/AW/W valid且未ready时地址/数据/属性/last保持；取消不撤销已展示请求
     severity: error
     verification_method: assertion
     applicability:
@@ -352,35 +360,6 @@ features:
     applicability:
       expr: 'true'
   config_coverage: []
-- id: FL.PQC.CLKRESET
-  name: clock_reset_interface
-  description: 单时钟域、低有效异步复位、复位释放行为
-  priority: must
-  req_ref:
-  - LRS.INTF.PQC.CLKRESET.001
-  - LRS.RESET.PQC.CLK.001
-  design_ref:
-  - LLD.RST.PQC.MAIN
-  applicability:
-    expr: 'true'
-  proof_methods:
-  - static
-  - simulation
-  testcases: []
-  coverage: []
-  assertions:
-  - id: ASSERT.PQC.CLKRESET.001
-    name: a_single_clock_domain
-    feature_ref:
-    - FL.PQC.CLKRESET
-    design_ref:
-    - LLD.RST.PQC.MAIN
-    property: 所有时序元件由同一 clk 驱动，rst_n 为低有效异步复位且同步释放
-    severity: error
-    verification_method: static
-    applicability:
-      expr: 'true'
-  config_coverage: []
 - id: FL.PQC.CMD
   name: command_semantics
   description: 八类 opcode、descriptor 校验、BUSY 锁定、completion 写序、abort
@@ -418,12 +397,13 @@ features:
     preconditions:
     - rst_n 释放，CTRL.enable 置位
     stimulus:
-    - 写入合法 COMMAND 与 DESC_ADDR，写 DOORBELL=1
+    - 通过 AXI memory 放置 CRC 正确描述符和有效 ML-KEM-512 输入，经 APB 提交真实 Encaps
+    - 对输出 B 与 completion B 分别施加延迟，轮询 STATUS 并观察 IRQ
     expected_result:
-    - STATUS 由 IDLE 进入 BUSY 后回到 IDLE
-    - completion record 写入后 DONE 置位
-    - INTR_STATE.done 置位并可 W1C 清除
-    timeout_policy: 100000 cycles
+    - 真实密文及共享秘密通过 oracle 比较；输入读取、输出写与 completion 均非零
+    - 所有 payload B 成功后才写 completion，completion B 成功后 DONE/IRQ
+    - 第二命令使用新 tag 与不同输入，不能复用上一命令结果；队列清空
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
     config_ref:
     - CFGSET.PQC.DEFAULT
     applicability:
@@ -439,6 +419,14 @@ features:
     - LLD.FSM.PQC.TOP.MAIN
     applicability:
       expr: 'true'
+  - id: COV.PQC.COMMIT.001
+    name: cov_commit_001
+    type: functional
+    description: 完成与错误并发
+    feature_ref:
+    - FL.PQC.CMD
+    applicability:
+      expr: 'true'
   assertions:
   - id: ASSERT.PQC.CMD.001
     name: a_completion_order
@@ -447,6 +435,15 @@ features:
     design_ref:
     - LLD.FSM.PQC.TOP.MAIN
     property: DONE 置位时 completion record 必须已经写入，且 COMMIT 前无输出可见
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  - id: ASSERT.PQC.CMD.002
+    name: a_result_retirement
+    feature_ref:
+    - FL.PQC.CMD
+    property: 所有payload写B成功、completion各字节已写且B成功之前不得发布成功DONE或IRQ；错误B永不退休为成功
     severity: error
     verification_method: assertion
     applicability:
@@ -493,12 +490,13 @@ features:
     preconditions:
     - 复位释放后立即读取
     stimulus:
-    - 读取 ID_VERSION/CAPABILITY0/STATUS
-    - 对 INTR_STATE 逐位置位（INTR_TEST）后逐位 W1C
+    - 通过生成 RAL frontdoor 访问所有寄存器定义与槽数组；检查 reset/RO/RW/保留位/PSTRB
+    - 全部 W1C 字段逐 bit 清除并与 HW set 同拍；单拍请求不粘连；SW clear 与计数器 HW 更新冲突
+    - 对每个综合配置检查动态 capability 和 ABI；运行期读取 PERF/completion/slot metadata
     expected_result:
-    - 复位值与 RDL reset 一致，无 X
-    - 每次 W1C 只清除被写位
-    - RO 寄存器写入无副作用
+    - RDL 结构及 LLD 字段行为均满足；RAL adapter/predictor 只由 monitor 驱动
+    - 拒绝事务不改模型；HW set 优先的 W1C 不丢事件；保留/未映射/未对齐行为符合合同
+    - 不能把整个 key-slot 窗口或动态状态当作无条件跳过区域
     timeout_policy: 200000 cycles
     config_ref:
     - CFGSET.PQC.DEFAULT
@@ -513,6 +511,60 @@ features:
     - FL.PQC.REG
     design_ref:
     - LLD.REG.PQC.INTR_STATE
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.PQC.CONS
+  name: integration_constraints
+  description: 综合语言、FuseSoC、寄存器 SSOT、常量一致、交付件、驱动 API
+  priority: must
+  req_ref:
+  - LRS.CONS.PQC.LANG.001
+  - LRS.CONS.PQC.CORE.001
+  - LRS.CONS.PQC.CONST.001
+  - LRS.CONS.PQC.DELIVER.001
+  - LRS.CONS.PQC.API.001
+  design_ref:
+  - RTL.PQC.TOP
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - review
+  testcases:
+  - id: TC.PQC.CONS.001
+    name: tc_delivery_static
+    type: directed
+    description: RTL 目录无仅仿真构造、core 可解析、寄存器派生文件未被手改
+    priority: must
+    tier: extended
+    implementation: scripts/run_pqc_delivery_check.py
+    proof_kind: static
+    feature_ref:
+    - FL.PQC.CONS
+    design_ref:
+    - RTL.PQC.TOP
+    preconditions:
+    - 工作区完整
+    stimulus:
+    - 扫描 rtl/ 与 generated/，校验 manifest 哈希
+    expected_result:
+    - 无 .v/.vh 与仅仿真构造
+    - core 解析成功
+    - 生成文件哈希与 manifest 一致
+    timeout_policy: 600 s
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.CODE.001
+    name: cov_rtl_structural
+    type: code
+    description: line/toggle/branch/FSM 覆盖率收集与门限
+    feature_ref:
+    - FL.PQC.CONS
     applicability:
       expr: 'true'
   assertions: []
@@ -535,8 +587,44 @@ features:
   proof_methods:
   - performance
   - review
-  testcases: []
-  coverage: []
+  testcases:
+  - id: TC.PQC.PERF.001
+    name: tc_pqc_performance
+    type: performance
+    description: 周期、计算DMA重叠、Sign统计时延和无软件回退
+    priority: must
+    tier: extended
+    implementation: verification/tc/tc_pqc_performance.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.PERF
+    design_ref:
+    - HLD.PERF.PQC.KEM768
+    - LLD.PPA.PQC.POLY
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 冻结输入/服务节奏，三命名配置执行六参数操作；Balanced 无反压统计1000次Sign
+    - 记录命令接受/primitive/input/output/completion/IRQ时间戳和公开PERF；固定输入重放验证测量
+    - 分别测内部等待、外部反压及安全等级开销，与当前HLD周期模型对照
+    expected_result:
+    - 逐阶段计数与实测一致，禁止 host 完成任何算法步骤
+    - P50/P95/P99、样本数及模型误差可重现，逐项对照当前LRS目标；未达阈值保留失败
+    - 生产计数器不暴露拒绝原因/细粒度秘密事件
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.PERF.001
+    name: cov_perf_001
+    type: functional
+    description: 周期与重叠
+    feature_ref:
+    - FL.PQC.PERF
+    applicability:
+      expr: 'true'
   assertions:
   - id: ASSERT.PQC.PERF.001
     name: a_no_software_fallback
@@ -545,6 +633,459 @@ features:
     design_ref:
     - LLD.PPA.PQC.POLY
     property: 命令完成不产生需要软件续算的中间状态；性能计数器不暴露签名尝试次数
+    severity: error
+    verification_method: static
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.ALGO
+  name: algorithm_correctness
+  description: 六参数集真实 RTL 完整计算输出与独立 DV oracle 逐字节比较；含编码、负向与流式消息
+  priority: must
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  - LRS.FUNC.PQC.KEM_ENCAPS.001
+  - LRS.FUNC.PQC.KEM_DECAPS.001
+  - LRS.FUNC.PQC.KEM_LEN.001
+  - LRS.FUNC.PQC.KEM_DATAFLOW.001
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  - LRS.FUNC.PQC.DSA_SIGN.003
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  - LRS.FUNC.PQC.DSA_MU.001
+  - LRS.FUNC.PQC.DSA_MESSAGE.001
+  design_ref:
+  - HLD.MOD.PQC.KEMSEQ
+  - HLD.MOD.PQC.DSASEQ
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  testcases:
+  - id: TC.PQC.ALGO.001
+    name: tc_kem_full_compute
+    type: algorithm
+    description: ML-KEM 三参数集 KeyGen/Encaps/Decaps 的 RTL 端到端 KAT、独立互操作与隐式拒绝
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_kem_full_compute.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - HLD.MOD.PQC.KEMSEQ
+    - LLD.MOD.PQC.KEMSEQ
+    preconditions:
+    - 真实 DMA/完整原语链/专用托管就绪；冻结的独立向量及 oracle 可用；测试种子授权有效
+    stimulus:
+    - 每参数集执行至少 3 组不同 d/z/m 的 KeyGen、Encaps、Decaps；通过 APB 描述符、AXI memory、entropy/KM
+      接口驱动
+    - 重放离线交叉核验的互操作向量：独立公钥/密文输入 RTL，RTL 公钥/密文与其配对冻结结果比对
+    - 逐位置改变密文字节，包括首、中、末位置和多个位置；保持长度不变
+    expected_result:
+    - 公钥、密文、32 B shared secret 与独立期望逐字节一致；独立密文与本地密文均通过
+    - KeyGen 私钥只在专用托管 monitor 比对，托管 ACK 前不得成功；普通 DMA 无私钥
+    - 无效密文 shared secret 精确等于独立 oracle 的拒绝输出；状态仍为 SUCCESS
+    - 六参数之外的能力不得自动默认为可执行；每操作至少一次输出和 completion 比对
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.PQC.ALGO.002
+    name: tc_dsa_full_compute
+    type: algorithm
+    description: 三参数集真实 DSA KeyGen/Sign/Verify、deterministic/hedged、消息域分离及独立互操作
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_dsa_full_compute.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.DSASEQ
+    - LLD.MOD.PQC.KECCAK
+    - LLD.MOD.PQC.CODEC
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 每参数集至少 3 个 xi 与 message/context 组合，经专用接口导入并执行完整 KeyGen/Sign/Verify
+    - deterministic 重复签名；hedged 重放不同的固定32 B randomness向量；独立签名交RTL Verify，RTL签名与离线交叉核验向量比对
+    - 消息长度 0/1/135/136/137/167/168/169/4095/4096/4097 和超过 LOCAL_SRAM_KIB*1024，ctx
+      0/1/255，合法任意分段
+    - HashML-DSA 开启时遍历 HLD 声明的 prehash ID，关闭时拒绝；测试 pure/prehash/context 域隔离
+    expected_result:
+    - 公钥、专用托管私钥、签名逐字节符合独立期望；Verify valid 正确
+    - deterministic 完全一致；hedged 与实际 randomness 对应的 oracle 签名一致且独立 Verify 通过
+    - 消息及 context 均真正经过 DUT；禁止从 host 注入内部 mu；大消息无截断
+    - 每次拒绝均不发布候选签名；所有 z/r0/ct0/hint 检查独立覆盖
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.PQC.ALGO.003
+    name: tc_pqc_invalid_inputs
+    type: negative
+    description: 规范编码、篡改、长度、容量及授权负向算法检查
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_pqc_invalid_inputs.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.FE.VALIDATE
+    - LLD.MOD.PQC.KEMSEQ
+    - LLD.MOD.PQC.DSASEQ
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - KEM 非规范公钥、错误 dk 哈希、短/长密文与全位置失配；DSA 错 pk/sig 长度、z 边界、hint 越界/重复/逆序/尾部非零
+    - 篡改 message/context/pk/challenge/signature；ctx=256、长度高32bit非零/溢出、非法 opcode/pset/flag
+    - 输出容量为规范长度-1/相等/+1，合法描述符 CRC 改错及全部保留位
+    expected_result:
+    - 公开格式/授权错误在秘密访问和输出前失败，guard bytes 保持；expected status 来自输入契约
+    - 合法长度 KEM 失配仍 SUCCESS 且 oracle 拒绝秘密匹配；DSA 数学无效返回公开 invalid
+    - 异常不会挂死、留下旧结果或发生越界；每种负向至少一个断言/scoreboard 命中
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  - id: TC.PQC.DECAPS.MAIN.001
+    name: tc_kem_decaps_main
+    type: directed
+    description: 真实Decaps正常/隐式拒绝KAT、固定公开时序比较及背压退休
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_kem_decaps_main.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.KEMSEQ.DECAPS
+    - LLD.MOD.PQC.WORKKEY
+    - LLD.MOD.PQC.DMA
+    preconditions:
+    - 固定源码和向量哈希，VCS UVM 1.2，SCA_LEVEL小于2
+    - 私钥经KM sideload导入，DUT执行全部运算，无运行时Python/C/DPI算法
+    stimulus:
+    - 三参数集各三组独立确定输入，共九组正常向量
+    - 各向量分别篡改密文首、中、末字节，使用离线SHAKE256(z||received_ct)冻结拒绝秘密
+    - 无随机外部stall时比较相同输入身份正常/失配的completion周期字段
+    - 九组正常向量另以周期反压和延迟B响应连续执行
+    expected_result:
+    - 45条命令的32B共享秘密逐字节相等；全部输出/完成字节恰好写一次
+    - 正常与合法长度失配均返回SUCCESS，不通过completion/IRQ暴露隐式拒绝标志
+    - 同一向量正常/失配周期相同；这不等于完整侧信道安全证明
+    - SS的B响应在completion地址发出前完成，completion的B响应在IRQ前完成
+    - 禁止DMA读取私钥，外部读范围只有描述符及密文；guard bytes保持
+    - 所有45个case及最终完成标记齐全，缺向量/超时/零比较不能通过
+    timeout_policy: 2000000 cycles per command; 600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: SCA_LEVEL < 2
+  - id: TC.PQC.DSA.KEYGEN.MAIN.001
+    name: tc_dsa_keygen_main
+    type: directed
+    description: 三参数集真实KeyGen、公钥DMA、私钥专用托管和确认退休
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_dsa_keygen_main.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.DSASEQ.KEYGEN
+    - LLD.MOD.PQC.WORKKEY.CUSTODY
+    preconditions:
+    - 固定源码及离线dilithium-py 1.4.0向量，SCA_LEVEL小于2，真实RTL原语
+    stimulus:
+    - 每参数集三组独立xi，32B健康且tag匹配的熵经专用接口输入
+    - 托管头/word背压，先错误transaction ACK，再延迟匹配成功ACK
+    - 公钥/句柄/完成DMA背压、延迟B响应
+    expected_result:
+    - 九组公钥和私钥所有字节等于独立冻结向量；私钥仅专用托管口可观察
+    - 头与数据背压保持，错误ACK不能提交，成功ACK前没有公开输出
+    - 公钥B响应先于句柄，句柄B响应先于completion，completion B响应先于IRQ
+    - 所有输出恰好一次，guard不变，completion全字段正确
+    - 九个case和最终完成标记均存在；超时/零比较失败
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: SCA_LEVEL < 2
+    timeout_policy: 2000000 cycles per command; 600 s process watchdog
+  - id: TC.PQC.DSA.VERIFY.MAIN.001
+    name: tc_dsa_verify_main
+    type: directed
+    description: pure ML-DSA 三参数集独立向量、长消息DMA和验签负向结果
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_dsa_verify_main.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.DSASEQ.VERIFY
+    preconditions:
+    - 离线冻结dilithium-py 1.4.0向量与固定RTL源码，SCA_LEVEL小于2
+    stimulus:
+    - 每参数集三组密钥及签名，message长度0/137/65537，context长度0/1/255
+    - 每组正常签名及挑战、z范数、hint边界、公钥、message、context六类篡改
+    - AXI读写背压和延迟B响应，实际输入DMA和片内消息哈希
+    expected_result:
+    - 九组正常验签成功，五十四组篡改返回VERIFY_INVALID而非operation error
+    - 所有读取限于公开描述符、pk及signature、message、context对应范围
+    - 唯一输出为完整32B completion，每字节一次且字段匹配，guard不变
+    - completion B响应先于IRQ，RESULT保持verify_done及对应verify_valid
+    - 六十三个case完成标记及最终标记齐全，超时或缺失比较失败
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: SCA_LEVEL < 2
+    timeout_policy: 10000000 cycles per command; 1200 s process watchdog
+  - id: TC.PQC.ENCAPS.MAIN.001
+    name: tc_kem_encaps_main
+    type: algorithm
+    description: 首条真实Encaps集成路径，三参数集各两组冻结KAT及连续命令
+    priority: must
+    tier: smoke
+    implementation: verification/tc/tc_kem_encaps_main.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.KEMSEQ.ENCAPS
+    - HLD.MOD.PQC.FE
+    - HLD.MOD.PQC.DMA
+    preconditions:
+    - CFG_BALANCED；kyber-py 1.2.0离线冻结hex及manifest哈希通过；实际RTL计算，无运行时算法DPI
+    stimulus:
+    - 通过APB VIP提交128B CRC描述符；外部AXI内存提供真实公钥；entropy接口重放32B m
+    - 三参数集各两组，六条连续命令；AR/R/AW/W周期性停顿，B延迟17/20/23/26/29/32周期
+    expected_result:
+    - AXI monitor逐有效WSTRB检查密文全部字节与32B秘密，拒绝重复字节、越界、漏字节和提前completion
+    - 输出B全部成功后才允许completion写；completion B成功后才允许IRQ；核验全部32B记录与输出guard字节
+    - 每命令entropy恰4次握手，输入读取128+pk_bytes，六条CASE_PASS与MAIN_PASS，UVM_ERROR/FATAL为0
+    timeout_policy: 2000000 cycles per command; 180 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: SCA_LEVEL == 1
+  - id: TC.PQC.KEYGEN.MAIN.001
+    name: tc_kem_keygen_main
+    type: directed
+    description: 三参数集真实KeyGen、公钥DMA、私钥专用托管和确认退休
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_kem_keygen_main.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ALGO
+    design_ref:
+    - LLD.MOD.PQC.KEMSEQ.KEYGEN
+    - LLD.MOD.PQC.WORKKEY.CUSTODY
+    preconditions:
+    - 固定源码及离线kyber-py向量，SCA_LEVEL小于2，真实RTL原语
+    stimulus:
+    - 每参数集三组独立d/z，64B健康且tag匹配的熵经专用接口输入
+    - 托管头/word背压，先错误transaction ACK，再延迟匹配成功ACK
+    - 公钥/句柄/完成DMA背压、延迟B响应
+    expected_result:
+    - 九组公钥和私钥所有字节等于独立冻结向量；私钥仅专用托管口可观察
+    - 头与数据背压保持，错误ACK不能提交，成功ACK前没有公开输出
+    - 公钥B响应先于句柄，句柄B响应先于completion，completion B响应先于IRQ
+    - 所有输出恰好一次，guard不变，completion全字段正确
+    - 九个case和最终完成标记均存在；超时/零比较失败
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: SCA_LEVEL < 2
+    timeout_policy: 2000000 cycles per command; 600 s process watchdog
+  coverage:
+  - id: COV.PQC.ALGO.001
+    name: cov_algo_001
+    type: functional
+    description: 完整计算组合与比较
+    feature_ref:
+    - FL.PQC.ALGO
+    applicability:
+      expr: 'true'
+  - id: COV.PQC.ALGO.002
+    name: cov_algo_002
+    type: functional
+    description: 数学与编码负向
+    feature_ref:
+    - FL.PQC.ALGO
+    applicability:
+      expr: 'true'
+  - id: COV.PQC.ALGO.003
+    name: cov_algo_003
+    type: functional
+    description: 消息与随机模式
+    feature_ref:
+    - FL.PQC.ALGO
+    applicability:
+      expr: 'true'
+  assertions: []
+  config_coverage: []
+- id: FL.PQC.KEYMANAGER.PENDING
+  name: key_manager_lifecycle
+  type: security
+  priority: must
+  description: 专用私钥导入、KeyGen 托管、完整接收确认、可信域授权、撤销与退休清除
+  req_ref:
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  - LRS.SEC.PQC.SLOT.006
+  - LRS.SEC.PQC.SLOT.007
+  - LRS.SEC.PQC.SLOT.008
+  design_ref:
+  - HLD.IF.EXT.PQC.KEY_MANAGER
+  - LLD.MOD.PQC.WORKKEY
+  proof_methods:
+  - simulation
+  - assertion
+  applicability:
+    expr: 'true'
+  testcases:
+  - id: TC.PQC.KEY.002
+    name: tc_key_manager_lifecycle
+    type: security
+    description: 专用密钥导入、KeyGen 托管、确认身份、授权域与撤销/退休完整生命周期
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_key_manager_lifecycle.sv
+    feature_ref:
+    - FL.PQC.KEYMANAGER.PENDING
+    design_ref:
+    - LLD.REG.PQC.SLOT_DESTROY
+    preconditions:
+    - 专用 KM 接口及可信上下文就绪；不通过普通 DMA 导入私钥
+    stimulus:
+    - 完整/短/长/错误 last 导入，头与材料背压，错 handle/owner/domain/algorithm/pset/usage
+    - 托管完整确认/错误确认/旧 epoch ACK/重复 ACK；撤销与确认/读响应同拍
+    - 命令退休后重用旧工作态 key，重新授权导入后再执行
+    expected_result:
+    - 只有完整且授权匹配的材料可用；部分导入永不发布 READY
+    - 只有本命令生成的私钥可托管；完整 ACK 后才提交 KeyGen
+    - 撤销优先且旧结果不可重新发布；外部长期密钥不被工作态退休销毁
+    timeout_policy: 100000000 cycles per keygen; 1000000 cycles for lifecycle subcase
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.KEYMANAGER.001
+    name: cov_keymanager_001
+    type: functional
+    description: 密钥导入托管生命周期
+    feature_ref:
+    - FL.PQC.KEYMANAGER.PENDING
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.KEYMANAGER.001
+    name: a_custody_before_keygen_done
+    feature_ref:
+    - FL.PQC.KEYMANAGER.PENDING
+    property: KeyGen成功必须已有本命令完整专用托管ACK；不得通过普通DMA导出已有私钥
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.ENTROPY
+  name: entropy_interface
+  description: valid/ready 握手、health、domain tag、授权策略
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.ENTROPY.001
+  - LRS.RESET.PQC.CLK.001
+  design_ref:
+  - LLD.CDC.PQC.ENTROPY
+  - LLD.ERR.PQC.RNG
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - simulation
+  - assertion
+  testcases:
+  - id: TC.PQC.ENTROPY.001
+    name: tc_entropy_protocol
+    type: error_injection
+    description: 随机输入授权、反压、身份、配额、故障与清除
+    priority: must
+    tier: regression
+    implementation: verification/tc/tc_entropy_protocol.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.ENTROPY
+    design_ref:
+    - LLD.MOD.PQC.TOP.RANDOM
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 合法域 entropy 随机停顿，valid/ready 长反压；错误 tag/health、中途故障、超时
+    - 在 seed/mask/refresh 及 chunk 消费/释放/清除边界注入；旧 token、重复 release
+    - 生产生命周期请求测试 seed，deterministic Sign 与 hedged 分别观察消费
+    expected_result:
+    - 只消费握手数据，owner/epoch/primitive/lease 匹配；配额与丢弃尾位符合冻结合同
+    - 故障同拍停止发布并清除；随机位不跨租约重用，不回退测试 seed
+    - 算法输出仍与实际 seed/randomness 的 oracle 一致
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.ENTROPY.001
+    name: cov_entropy_001
+    type: functional
+    description: 熵与租约
+    feature_ref:
+    - FL.PQC.ENTROPY
+    applicability:
+      expr: 'true'
+  assertions:
+  - id: ASSERT.PQC.ENTROPY.001
+    name: a_entropy_gated
+    feature_ref:
+    - FL.PQC.ENTROPY
+    design_ref:
+    - LLD.CDC.PQC.ENTROPY
+    property: entropy_ready 只可在算法执行且熵 health 正常时置位，且 domain tag 与命令匹配
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
+  config_coverage: []
+- id: FL.PQC.CLKRESET
+  name: clock_reset_interface
+  description: 单时钟域、低有效异步复位、复位释放行为
+  priority: must
+  req_ref:
+  - LRS.INTF.PQC.CLKRESET.001
+  - LRS.RESET.PQC.CLK.001
+  design_ref:
+  - LLD.RST.PQC.MAIN
+  applicability:
+    expr: 'true'
+  proof_methods:
+  - static
+  - simulation
+  testcases: []
+  coverage: []
+  assertions:
+  - id: ASSERT.PQC.CLKRESET.001
+    name: a_single_clock_domain
+    feature_ref:
+    - FL.PQC.CLKRESET
+    design_ref:
+    - LLD.RST.PQC.MAIN
+    property: 所有时序元件由同一 clk 驱动，rst_n 为低有效异步复位且同步释放
     severity: error
     verification_method: static
     applicability:
@@ -584,13 +1125,15 @@ features:
     preconditions:
     - 复位释放
     stimulus:
-    - 未 enable 时提交命令
-    - enable 后拉高 tamper
+    - 冷复位、自检失败/成功、warm reset、掉电请求、tamper/lifecycle/abort/zeroize/KM revoke
+    - 在 fetch/input/primitive/staging/output/completion 各阶段及 stall 中触发，覆盖结果发布同拍
+    - 对清除期间的新门铃/导入、连续清除、迟到总线响应及超时执行负向刺激
     expected_result:
-    - 未使能时命令不进入 EXECUTE
-    - tamper 后 ALERT_FATAL 置位、LOCKED 置位、密码命令被拒绝
-    - zeroize 在 ZEROIZE_MAX_CYCLES 内完成
-    timeout_policy: 200000 cycles
+    - 自检通过前无密码执行，失败锁定；身份立即失效，所有秘密物理清除后才 ack
+    - 已展示的 AXI 请求保持并排空；公平响应条件下满足清除预算，永久阻塞只可锁定不能假 ack
+    - warm reset 不自行假定 persistent key 保留；正常恢复后新命令正确且不残留旧结果
+    timeout_policy: 100000000 cycles to reach injection point; ZEROIZE_MAX_CYCLES
+      for local wipe plus declared AXI drain bound
     config_ref:
     - CFGSET.PQC.DEFAULT
     applicability:
@@ -624,7 +1167,8 @@ features:
     - FL.PQC.RESET
     design_ref:
     - LLD.RST.PQC.ZEROPATH
-    property: zeroize_req 有效后，zeroize_done 必须在 ZEROIZE_MAX_CYCLES 内出现，且不依赖主 FSM 状态
+    property: zeroize_req 后本地物理清除在冻结预算内完成；全局 done 还要求已接受 AXI 事务真实排空；外部永久阻塞时超时锁定且不得伪造
+      ack
     severity: error
     verification_method: formal
     applicability:
@@ -662,13 +1206,14 @@ features:
     preconditions:
     - IP 完成 KeyGen 得到 dk slot
     stimulus:
-    - 提交长度正确的合法密文
-    - 提交同长度但单比特翻转的密文
+    - 每 KEM 参数集对同一 key/相同公开长度执行合法和不同失配位置的密文
+    - 固定并重放相同 AXI/entropy 服务时序，记录地址、请求数、cycle、状态与中断
+    - Sign 定向触发 0/1/多次拒绝及上限，记录单尝试调度；不假设总时延固定
     expected_result:
-    - 两次 completion 均为 SUCCESS
-    - 无 KEM_INVALID 类错误码
-    - 比较与 select 遍历全长度（公开观察一致）
-    timeout_policy: 400000 cycles
+    - KEM 合法/非法公开 trace 与完成周期一致，输出为 oracle 指定的不同秘密值
+    - Sign 每次尝试走固定检查/擦除序列；拒绝候选无普通 DMA 输出，超限为通用错误
+    - 仿真 trace 一致仅证明采样执行；秘密依赖还须 formal/static taint 证据
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
     config_ref:
     - CFGSET.PQC.DEFAULT
     applicability:
@@ -730,11 +1275,12 @@ features:
     preconditions:
     - IP 处于 IDLE
     stimulus:
-    - 通过 fault_inject_ctrl 触发非法状态检测
+    - 通过 LLD 测试 hook 注入状态、计数器、command 属性、ECC 单错/双错
+    - 在 Verify 最终判决及 KEM compare/select 期间逐点注入；生产生命周期重复注入请求
     expected_result:
-    - 状态机进入 ZEROIZE 而非 EXECUTE
-    - ALERT_FATAL 置位
-    - 密码命令被拒绝
+    - 可校正错误不改结果；不可校正/完整性错误安全清除并锁定
+    - invalid 不因单点故障变为 valid；秘密结果不发布，旧 epoch 不退休
+    - 生产模式测试口不生效；仅观察告警复位值不能使本例通过
     timeout_policy: 100000 cycles
     config_ref:
     - CFGSET.PQC.DEFAULT
@@ -752,6 +1298,15 @@ features:
     applicability:
       expr: 'true'
   assertions:
+  - id: ASSERT.PQC.INTEGRITY.002
+    name: a_primitive_identity
+    feature_ref:
+    - FL.PQC.INTEGRITY
+    property: 只有与当前epoch/primitive/engine/allocation匹配的未决响应可推进；重复/旧epoch响应不写回或完成
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
   - id: ASSERT.PQC.INTEGRITY.001
     name: a_illegal_state_shutdown
     feature_ref:
@@ -821,6 +1376,15 @@ features:
     applicability:
       expr: 'true'
   assertions:
+  - id: ASSERT.PQC.KEY.002
+    name: a_cancel_priority
+    feature_ref:
+    - FL.PQC.KEY
+    property: revoke/zeroize/fatal同拍关闭秘密读取/随机消费/结果发布；迟到KM ACK及SRAM响应不恢复有效性
+    severity: error
+    verification_method: assertion
+    applicability:
+      expr: 'true'
   - id: ASSERT.PQC.KEY.001
     name: a_no_key_export
     feature_ref:
@@ -850,8 +1414,41 @@ features:
   proof_methods:
   - static
   - review
-  testcases: []
-  coverage: []
+  testcases:
+  - id: TC.PQC.DFX.001
+    name: tc_dfx_security
+    type: error_injection
+    description: 测试生命周期门控、debug、MBIST与可观察信号隔离
+    priority: must
+    tier: extended
+    implementation: verification/tc/tc_dfx_security.sv
+    proof_kind: uvm
+    feature_ref:
+    - FL.PQC.DFX
+    design_ref:
+    - HLD.SAFETY.PQC.DFXTEST
+    preconditions:
+    - UVM 1.2、对应真实接口与独立 oracle 已就绪；构建与输入身份固定
+    stimulus:
+    - 跨生产/测试/RMA生命周期请求debug与故障注入；密钥存在时尝试普通读回
+    - MBIST前后清除及retention场景；配套检查scan与trace清单
+    expected_result:
+    - 生产状态不接受受限测试操作，debug不开放key RAM
+    - 测试前后秘密失效/清除；scan排除与静态taint证据齐备才接受该需求
+    timeout_policy: 100000000 cycles per command; 3600 s process watchdog
+    config_ref:
+    - CFGSET.PQC.DEFAULT
+    applicability:
+      expr: 'true'
+  coverage:
+  - id: COV.PQC.DFX.001
+    name: cov_dfx_001
+    type: functional
+    description: 生命周期测试门控
+    feature_ref:
+    - FL.PQC.DFX
+    applicability:
+      expr: 'true'
   assertions:
   - id: ASSERT.PQC.DFX.001
     name: a_no_secret_observability
@@ -865,126 +1462,15 @@ features:
     applicability:
       expr: 'true'
   config_coverage: []
-- id: FL.PQC.CONS
-  name: integration_constraints
-  description: 综合语言、FuseSoC、寄存器 SSOT、常量一致、交付件、驱动 API
-  priority: must
-  req_ref:
-  - LRS.CONS.PQC.LANG.001
-  - LRS.CONS.PQC.CORE.001
-  - LRS.CONS.PQC.CONST.001
-  - LRS.CONS.PQC.DELIVER.001
-  - LRS.CONS.PQC.API.001
-  design_ref:
-  - RTL.PQC.TOP
-  applicability:
-    expr: 'true'
-  proof_methods:
-  - static
-  - review
-  testcases:
-  - id: TC.PQC.CONS.001
-    name: tc_delivery_static
-    type: directed
-    description: RTL 目录无仅仿真构造、core 可解析、寄存器派生文件未被手改
-    priority: must
-    tier: extended
-    implementation: scripts/run_pqc_delivery_check.py
-    proof_kind: static
-    feature_ref:
-    - FL.PQC.CONS
-    design_ref:
-    - RTL.PQC.TOP
-    preconditions:
-    - 工作区完整
-    stimulus:
-    - 扫描 rtl/ 与 generated/，校验 manifest 哈希
-    expected_result:
-    - 无 .v/.vh 与仅仿真构造
-    - core 解析成功
-    - 生成文件哈希与 manifest 一致
-    timeout_policy: 600 s
-    config_ref:
-    - CFGSET.PQC.DEFAULT
-    applicability:
-      expr: 'true'
-  coverage:
-  - id: COV.PQC.CODE.001
-    name: cov_rtl_structural
-    type: code
-    description: line/toggle/branch/FSM 覆盖率收集与门限
-    feature_ref:
-    - FL.PQC.CONS
-    applicability:
-      expr: 'true'
-  assertions: []
-  config_coverage: []
-- id: FL.PQC.ALGO
-  name: algorithm_correctness
-  description: 六参数集 KEM/DSA 完整算法的字节级正确性与负向行为
-  priority: must
-  req_ref:
-  - LRS.FUNC.PQC.KEM_KEYGEN.001
-  - LRS.FUNC.PQC.KEM_ENCAPS.001
-  - LRS.FUNC.PQC.KEM_DECAPS.001
-  - LRS.FUNC.PQC.KEM_LEN.001
-  - LRS.FUNC.PQC.KEM_DATAFLOW.001
-  - LRS.FUNC.PQC.DSA_KEYGEN.001
-  - LRS.FUNC.PQC.DSA_SIGN.001
-  - LRS.FUNC.PQC.DSA_SIGN.002
-  - LRS.FUNC.PQC.DSA_SIGN.003
-  - LRS.FUNC.PQC.DSA_VERIFY.001
-  - LRS.FUNC.PQC.DSA_MU.001
-  - LRS.FUNC.PQC.DSA_MESSAGE.001
-  design_ref:
-  - HLD.MOD.PQC.KEMSEQ
-  - HLD.MOD.PQC.DSASEQ
-  applicability:
-    expr: 'true'
-  proof_methods:
-  - simulation
-  testcases:
-  - id: TC.PQC.ALGO.001
-    name: algo_reference_kat
-    type: algorithm
-    description: 六个参数集完整算法 KAT 与跨实现差分，含隐式拒绝与拒绝采样
-    priority: must
-    tier: regression
-    implementation: scripts/run_pqc_algo_proof.py
-    proof_kind: software
-    feature_ref:
-    - FL.PQC.ALGO
-    design_ref:
-    - HLD.MOD.PQC.KEMSEQ
-    - HLD.MOD.PQC.DSASEQ
-    preconditions:
-    - Python 参考模型与独立实现可导入
-    stimulus:
-    - 对六个参数集执行 KeyGen/Encaps/Decaps 与 KeyGen/Sign/Verify
-    - 密文翻转、消息篡改、错误长度
-    expected_result:
-    - 全部 KAT 与差分比对通过
-    - 非法密文产生伪随机 shared secret 且无有效性区分
-    - 拒绝轮次不输出部分签名
-    timeout_policy: 1800 s
-    config_ref:
-    - CFGSET.PQC.DEFAULT
-    applicability:
-      expr: 'true'
-  coverage: []
-  assertions: []
-  config_coverage: []
 config_sets:
 - id: CFGSET.PQC.DEFAULT
-  name: default_configset
-  strategy: default_plus_boundary
+  name: named_configurations
+  strategy: risk_based
   configs:
-  - CFG_DEFAULT
-  - CFG_NTT_LANES_MIN
-  - CFG_NTT_LANES_MAX
-  - CFG_LOCAL_SRAM_KIB_MIN
-  - CFG_LOCAL_SRAM_KIB_MAX
-  purpose: 默认档位加参数边界，覆盖强制配置类
+  - CFG_TINY
+  - CFG_BALANCED
+  - CFG_THROUGHPUT
+  purpose: 默认使用 Balanced；Tiny 与 Throughput 作为边界运行维度，每个执行记录明确唯一配置
 config_coverage:
 - id: CCOV.PQC.CFG_MATRIX
   name: config_matrix_coverage

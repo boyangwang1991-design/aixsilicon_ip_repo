@@ -4,17 +4,10 @@
 //               Clock/reset generation, protocol interface instantiation,
 //               DUT instantiation and UVM config_db setup.
 //
-// Protocol agents are NOT implemented here: the APB (CSR/control) and AXI4
-// (DMA to SoC memory) agents come from aixsilicon_vip_repo and are pulled in
-// through the FuseSoC `depend` of the `uvm` target (see docs/reuse_plan.md).
-//   APB  : aixsilicon:vip:apb:1.0.0   -> apb_if / apb_pkg / apb_env
-//   AXI4 : aixsilicon:vip:axi4:1.0.0  -> axi4_if / axi4_pkg / axi4_env
-//
-// DUT orientation:
-//   * DUT is an APB **Completer**  -> VIP APB agent runs APB_ACTIVE_MASTER
-//     (Requester) and drives the CSR/control interface.
-//   * DUT is an AXI4 **Master**    -> VIP AXI4 agent runs AXI4_ACTIVE_SLAVE
-//     and provides the memory-backed responder for descriptor/output DMA.
+// APB control uses apb_if / apb_pkg from the external APB VIP, read-only.
+// DMA currently uses pqc_main_if's memory responder. AXI4 VIP integration and
+// protocol coverage remain open; this harness does not instantiate axi4_env.
+// DUT orientation: APB completer, AXI4 DMA master.
 // =============================================================================
 
 `timescale 1ns/1ps
@@ -79,41 +72,7 @@ module harness;
     .check_enable (1'b0)
   );
 
-  // AXI4 master observation nets (idle handshake, see note)
-  logic                     axi_ar_valid;
-  logic [39:0]              axi_ar_addr;
-  logic [7:0]               axi_ar_len;
-  logic [2:0]               axi_ar_prot;
-  logic                     axi_r_ready;
-  logic                     axi_aw_valid;
-  logic [39:0]              axi_aw_addr;
-  logic [7:0]               axi_aw_len;
-  logic [2:0]               axi_aw_prot;
-  logic                     axi_w_valid;
-  logic [DMA_DATA_WIDTH-1:0] axi_w_data;
-  logic [DMA_DATA_WIDTH/8-1:0] axi_w_strb;
-  logic                     axi_w_last;
-  logic                     axi_b_ready;
-
-  // ---------------------------------------------------------------------------
-  // AXI4 paths are deliberately NOT wired to a VIP in this increment.
-  //
-  // The published AXI4 VIP declares `virtual axi4_if vif` without parameters
-  // (default 32-bit data / 32-bit address), while pqc_top's DMA master is
-  // 128-bit data / 40-bit address; the two specialisations are not
-  // interchangeable, so the VIP cannot be attached to this DUT without an
-  // (unsupported) type override.
-  //
-  // This is not worked around by a hand-written responder: the DMA data path is
-  // itself still incomplete in RTL (input -> algorithm -> output -> completion
-  // is not closed, reports/report.md ISSUE A03 / A11). DMA verification is
-  // therefore deferred together with that RTL work and recorded as an open G4
-  // item rather than simulated against a stub.
-  //
-  // The DUT master handshake is held idle (no requests, no responses) so the
-  // unimplemented path can never silently "succeed".
-  // ---------------------------------------------------------------------------
-
+  pqc_main_if main_bus(clk,rst_n);
   // ---------------------------------------------------------------------------
   // DUT
   // ---------------------------------------------------------------------------
@@ -152,32 +111,11 @@ module harness;
     .s_apb_prdata  (u_apb_if.prdata),
     .s_apb_pslverr (u_apb_if.pslverr),
 
-    // AXI4 master data interface: held idle (see the AXI4 note above).
-    // Outputs are observed but never driven back; inputs are tied to "no
-    // response" so the DUT master cannot complete a phantom transaction.
-    .m_ar_valid (axi_ar_valid),
-    .m_ar_ready (1'b0),
-    .m_ar_addr  (axi_ar_addr),
-    .m_ar_len   (axi_ar_len),
-    .m_ar_prot  (axi_ar_prot),
-    .m_r_valid  (1'b0),
-    .m_r_ready  (axi_r_ready),
-    .m_r_data   ({DMA_DATA_WIDTH{1'b0}}),
-    .m_r_resp   (2'b00),
-    .m_r_last   (1'b0),
-    .m_aw_valid (axi_aw_valid),
-    .m_aw_ready (1'b0),
-    .m_aw_addr  (axi_aw_addr),
-    .m_aw_len   (axi_aw_len),
-    .m_aw_prot  (axi_aw_prot),
-    .m_w_valid  (axi_w_valid),
-    .m_w_ready  (1'b0),
-    .m_w_data   (axi_w_data),
-    .m_w_strb   (axi_w_strb),
-    .m_w_last   (axi_w_last),
-    .m_b_valid  (1'b0),
-    .m_b_ready  (axi_b_ready),
-    .m_b_resp   (2'b00),
+    .m_ar_valid(main_bus.arvalid),.m_ar_ready(main_bus.arready),.m_ar_addr(main_bus.araddr),.m_ar_len(main_bus.arlen),.m_ar_prot(),
+    .m_r_valid(main_bus.rvalid),.m_r_ready(main_bus.rready),.m_r_data(main_bus.rdata),.m_r_resp(main_bus.rresp),.m_r_last(main_bus.rlast),
+    .m_aw_valid(main_bus.awvalid),.m_aw_ready(main_bus.awready),.m_aw_addr(main_bus.awaddr),.m_aw_len(main_bus.awlen),.m_aw_prot(),
+    .m_w_valid(main_bus.wvalid),.m_w_ready(main_bus.wready),.m_w_data(main_bus.wdata),.m_w_strb(main_bus.wstrb),.m_w_last(main_bus.wlast),
+    .m_b_valid(main_bus.bvalid),.m_b_ready(main_bus.bready),.m_b_resp(main_bus.bresp),
 
     // Entropy source (external RNG service feed)
     .entropy_valid      (entropy_valid),
@@ -194,20 +132,47 @@ module harness;
     .debug_unlocked   (1'b0),
     .irq              (irq),
 
-    // Trusted Key Manager sideload (idle in the current verification scope)
-    .km_begin       (1'b0),
+    // Trusted Key Manager sideload (driven by the test through main_bus)
+    .km_begin       (main_bus.km_begin),
     .km_begin_ready (km_begin_ready),
-    .km_handle      (32'h0),
-    .km_algo        (4'h0),
-    .km_pset        (4'h0),
-    .km_usage       (8'h0),
-    .km_bytes       (16'h0),
-    .km_valid       (1'b0),
+    .km_handle      (main_bus.km_handle),
+    .km_algo        (main_bus.km_algo),
+    .km_pset        (main_bus.km_pset),
+    .km_usage       (main_bus.km_usage),
+    .km_bytes       (main_bus.km_bytes),
+    .km_valid       (main_bus.km_valid),
     .km_ready       (km_ready),
-    .km_data        (32'h0),
-    .km_last        (1'b0),
+    .km_data        (main_bus.km_data),
+    .km_last        (main_bus.km_last),
     .km_done        (km_done),
     .km_error       (km_error),
+    .km_generated_handle(main_bus.km_generated_handle),
+    .km_generated_epoch(main_bus.km_generated_epoch),
+    .km_generated_owner(main_bus.km_generated_owner),
+    .km_generated_domain(main_bus.km_generated_domain),
+    .km_custody_header_valid(main_bus.km_custody_header_valid),
+    .km_custody_header_ready(main_bus.km_custody_header_ready),
+    .km_custody_transaction(main_bus.km_custody_transaction),
+    .km_custody_epoch(main_bus.km_custody_epoch),
+    .km_custody_handle(main_bus.km_custody_handle),
+    .km_custody_owner(main_bus.km_custody_owner),
+    .km_custody_domain(main_bus.km_custody_domain),
+    .km_custody_algo(main_bus.km_custody_algo),
+    .km_custody_pset(main_bus.km_custody_pset),
+    .km_custody_bytes(main_bus.km_custody_bytes),
+    .km_custody_valid(main_bus.km_custody_valid),
+    .km_custody_ready(main_bus.km_custody_ready),
+    .km_custody_last(main_bus.km_custody_last),
+    .km_custody_data(main_bus.km_custody_data),
+    .km_custody_ack_valid(main_bus.km_custody_ack_valid),
+    .km_custody_ack_ready(main_bus.km_custody_ack_ready),
+    .km_custody_ack_transaction(main_bus.km_custody_ack_transaction),
+    .km_custody_ack_epoch(main_bus.km_custody_ack_epoch),
+    .km_custody_ack_handle(main_bus.km_custody_ack_handle),
+    .km_custody_ack_owner(main_bus.km_custody_ack_owner),
+    .km_custody_ack_domain(main_bus.km_custody_ack_domain),
+    .km_custody_ack_bytes(main_bus.km_custody_ack_bytes),
+    .km_custody_ack_success(main_bus.km_custody_ack_success),
     .km_revoke      (1'b0),
 
     // DFT injection (test lifecycle only)
@@ -215,32 +180,17 @@ module harness;
     .fault_inject_ctrl   (1'b0)
   );
 
-  // ---------------------------------------------------------------------------
-  // Entropy driver: always valid, health OK, deterministic public stream.
-  // The entropy path is a public interface; the value is not secret in
-  // simulation but the same 64-bit word is xored with a counter so that
-  // repeated consumption is observable in waveforms.
-  // ---------------------------------------------------------------------------
-  logic [63:0] entropy_counter;
-
-  initial begin
-    entropy_valid      = 1'b0;
-    entropy_data       = 64'h0;
-    entropy_health_ok  = 1'b1;
-    entropy_domain_tag = 8'h0;
-    entropy_counter    = 64'h0;
-    repeat (12) @(posedge clk);
-    forever begin
-      @(posedge clk);
-      entropy_valid      = 1'b1;
-      entropy_health_ok  = 1'b1;
-      entropy_domain_tag = 8'h0;
-      if (entropy_ready) begin
-        entropy_data    = entropy_data + 64'h9E37_79B9_7F4A_7C15;
-        entropy_counter = entropy_counter + 64'h1;
-      end
-    end
-  end
+  assign entropy_valid=main_bus.entropy_enable;
+  assign entropy_data=main_bus.entropy_data;
+  assign entropy_health_ok=1'b1;
+  assign entropy_domain_tag=main_bus.entropy_tag;
+  assign main_bus.entropy_ready=entropy_ready;
+  assign main_bus.irq=irq;
+  // KM sideload handshake back into the testbench interface
+  assign main_bus.km_begin_ready=km_begin_ready;
+  assign main_bus.km_ready=km_ready;
+  assign main_bus.km_done=km_done;
+  assign main_bus.km_error=km_error;
 
   // ---------------------------------------------------------------------------
   // UVM configuration and test execution
@@ -249,8 +199,70 @@ module harness;
     // Scope note: use wildcard scopes because UVM config_db exact scope does not
     // cascade into deeper components (APB VIP user-guide §9).
     uvm_config_db #(virtual apb_if)::set(null, "*", "vif", u_apb_if);
-    // No AXI4 VIP vif is published: the DMA path is out of scope this increment.
+    uvm_config_db #(virtual pqc_main_if)::set(null,"*","main_bus",main_bus);
     run_test();
   end
 
+  // Read-only diagnostics; algorithm verdicts never use internal DUT state.
+  initial begin
+    #1ms;
+    if($test$plusargs("PQC_DIAG")) $display("PQC_DIAG tx=%0d e=%0d ret=%0d hash_kind=%0d hi=%0d ho=%0d hs=%b ss=%b dma=%0d poly=%0d codec=%0d samp=%0d kec=%0d c0req=%b c0rdy=%b c1req=%b c1rdy=%b",
+      u_dut.tx_state,u_dut.u_encaps.state,u_dut.u_encaps.ret,u_dut.u_encaps.hash_kind,u_dut.u_encaps.hidx,u_dut.u_encaps.houtput_idx,
+      u_dut.u_encaps.hash_seen,u_dut.u_encaps.sample_seen,u_dut.u_dma.dstate,u_dut.u_poly.pstate,u_dut.u_codec.cstate,u_dut.u_sampler.spstate,u_dut.u_keccak.kstate,
+      u_dut.sram_c0_req,u_dut.sram_c0_ready,u_dut.sram_c1_req,u_dut.sram_c1_ready);
+    if($test$plusargs("PQC_DIAG")) $display("PQC_KM_DIAG wk_state=%0d km_begin_ready=%b wk_begin_ready=%b fe_idle=%b locked=%b load_ready=%b load_done=%b load_error=%b",
+      u_dut.u_work_key_ram.state,u_dut.km_begin_ready,u_dut.work_key_begin_ready,u_dut.fe_idle,u_dut.fault_locked,
+      km_ready,km_done,km_error);
+  end
+  // Per-100us TX trace for Decaps bring-up debugging.
+  initial begin
+    #2us;
+    forever begin
+      #2us;
+      if($test$plusargs("PQC_DIAG")) $display("PQC_TX_DIAG t=%0t tx=%0d d.state=%0d c0rdy=%b c1rdy=%b | accept=%b acc_valid=%b zreq=%b resp_rev=%b acc_port=%0d grant=%b%b%b",
+        $time,u_dut.tx_state,u_dut.u_decaps.state,
+        u_dut.sram_c0_ready,u_dut.sram_c1_ready,
+        u_dut.u_sram.accept,u_dut.u_sram.acc_valid,u_dut.zeroize_req_any,
+        u_dut.u_sram.response_revoked,u_dut.u_sram.acc_port,
+        u_dut.u_sram.grant0,u_dut.u_sram.grant1,u_dut.u_sram.grantd);
+    end
+  end
+  // TX-phase trace: every TX-state transition of the Decaps transaction.
+  logic [5:0] tx_prev = '1;
+  always @(posedge clk) begin
+    if (u_dut.tx_state != tx_prev) begin
+      if($test$plusargs("PQC_DIAG")) $display("PQC_TX t=%0t tx=%0d -> %0d d.state=%0d d_done=%b d_err=%b dec_start=%b dma_req=%b dma_done=%b",
+        $time,tx_prev,u_dut.tx_state,u_dut.u_decaps.state,
+        u_dut.d_done,u_dut.d_error,u_dut.dec_start,u_dut.tx_dma_req,u_dut.dma_done);
+      tx_prev <= u_dut.tx_state;
+    end
+  end
+  // Stuck-state triage: when the Decaps program dwells in one state for 5k
+  // cycles, dump the full handshake snapshot once (and re-arm every 5k).
+  logic [31:0] dwell = 0;
+  logic [8:0]  d_prev = '1;
+  logic [8:0]  d_last_dump = '1;
+  always @(posedge clk) begin
+    if (u_dut.u_decaps.state == d_prev) dwell <= dwell + 1;
+    else begin dwell <= 0; d_prev <= u_dut.u_decaps.state; end
+    if (dwell == 32'd5000 && d_prev != d_last_dump) begin
+      d_last_dump <= d_prev;
+      if($test$plusargs("PQC_DIAG")) $display("PQC_STUCK t=%0t d.state=%0d idx=%0d memreq=%b memrdy=%b c0req=%b c0rdy=%b daddr=%h pvalid=%b wvalid=%b grant0=%b accept=%b denied=%b poly_start=%b poly_busy=%b codec_start=%b codec_busy=%b",
+        $time,u_dut.u_decaps.state,u_dut.u_decaps.idx,
+        u_dut.d_mem_req,u_dut.sram_c0_ready && u_dut.d_mem_req,
+        u_dut.sram_c0_req,u_dut.sram_c0_ready,
+        u_dut.u_sram.sel_addr,
+        u_dut.u_sram.page_valid[u_dut.u_sram.addr_page],
+        u_dut.u_sram.word_valid[u_dut.u_sram.addr_idx],
+        u_dut.u_sram.grant0,u_dut.u_sram.accept,u_dut.u_sram.access_denied,
+        u_dut.poly_start,u_dut.poly_busy,
+        u_dut.e_codec_start,u_dut.d_codec_start,u_dut.codec_busy);
+    end
+  end
+  always @(posedge clk) begin
+    if ($test$plusargs("DSA_KEYGEN_DIAG") && u_dut.j_gen_valid && u_dut.gen_ready && u_dut.u_dsa_keygen.idx<2)
+      $display("DSAKG_DIAG state=%d idx=%d part=%d word=%h seed0=%h xi0=%h",u_dut.u_dsa_keygen.state,u_dut.u_dsa_keygen.idx,u_dut.u_dsa_keygen.sk_part,u_dut.gen_data,u_dut.u_dsa_keygen.seed[0],u_dut.u_dsa_keygen.xi[0]);
+  end
+  always @(posedge clk) if(u_dut.u_frontend.fsm_state==pqc_pkg::S_VALIDATE)
+    $display("VALIDATE_DIAG valid=%b error=%h keyok=%b handle=%h/%h algo=%h/%h pset=%h/%h usage=%h/%h",u_dut.u_frontend.descriptor_valid,u_dut.u_frontend.descriptor_error,u_dut.work_key_ok,u_dut.command_key_handle,u_dut.u_work_key_ram.handle_q,u_dut.u_work_key_ram.check_algo,u_dut.u_work_key_ram.algo_q,u_dut.u_work_key_ram.check_pset,u_dut.u_work_key_ram.pset_q,u_dut.u_work_key_ram.check_usage,u_dut.u_work_key_ram.usage_q);
 endmodule

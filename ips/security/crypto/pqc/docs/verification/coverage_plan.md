@@ -4,7 +4,7 @@
 
 | 类别 | 目标 | 依据 |
 |---|---|---|
-| 需求覆盖率 | 100% | 全部 80 条 LRS 需求均有 feature 承接 |
+| 需求覆盖率 | 100% | 全部 84 条 LRS 需求均有 feature 承接 |
 | 功能覆盖率 | 100%（批准的不可达项除外） | 本计划 coverpoints |
 | RTL line coverage | >= 95% | LRS §11.4 |
 | RTL toggle coverage | >= 95% | LRS §11.4 |
@@ -12,7 +12,7 @@
 | RTL FSM coverage | >= 95% | LRS §11.4 |
 | 安全关键 FSM 与 error path | 100% | LRS §11.4 |
 
-覆盖率只证明"场景是否触达"；行为正确性由 checker/assertion/formal/software proof 承担。
+覆盖率只证明"场景是否触达"；行为正确性由 UVM checker/assertion/formal 承担。
 
 ---
 
@@ -243,35 +243,15 @@ END_COVERAGE_META -->
 - CFG_TINY / CFG_BALANCED / CFG_THROUGHPUT；
 - 每个参数的 MIN/MAX 边界。
 
-## 配置集合
+## 采样与分母
 
-### CFGSET.PQC.DEFAULT
+功能 bins 从实际接受/完成的 monitor 事务采样，不能在 sequence 随机生成时计为覆盖。
+每 bin 记录 testcase/config/seed/vector 和检查结果；失败回归的数据可供调试，不算
+通过需求的证据。跨配置覆盖分别报告合法分母及命中，不把 elaboration 算功能命中。
+当前没有批准的排除或 waiver。line/branch/toggle/FSM 分母分开，全 DUT（含 CSR）
+纳入；安全关键状态/转换及错误恢复必须100%。断言报告激活及 vacuous，目标为所有
+必需属性至少一次有效激活、零失败；不能把静默或未编译 SVA 算 assertion100%。
 
-<!-- CONFIG_SET_META
-id: CFGSET.PQC.DEFAULT
-name: default_configset
-strategy: default_plus_boundary
-configs:
-- CFG_DEFAULT
-- CFG_NTT_LANES_MIN
-- CFG_NTT_LANES_MAX
-- CFG_LOCAL_SRAM_KIB_MIN
-- CFG_LOCAL_SRAM_KIB_MAX
-purpose: 默认档位加参数边界，覆盖强制配置类
-END_CONFIG_SET_META -->
-
-### CCOV.PQC.CFG_MATRIX
-
-<!-- CONFIG_COVERAGE_META
-id: CCOV.PQC.CFG_MATRIX
-name: config_matrix_coverage
-dimensions:
-- NTT_LANES
-- KECCAK_ROUNDS_PER_CYCLE
-- LOCAL_SRAM_KIB
-- SCA_LEVEL
-feature_ref:
-- FL.PQC.CFG
-applicability:
-  expr: 'true'
-END_CONFIG_COVERAGE_META -->
+代码覆盖开关、功能 covergroup、SVA 编译和 URG 导出/merge 命令进入 manifest。
+不同参数 elaboration 不直接合并 VDB；缺工具报告为 unavailable，不能填0或100。
+完整结果由15 owner生成，绑定full regression JUnit与原始数据库，最后16生成closure RTM。

@@ -20,7 +20,7 @@ class pqc_apb_reg_seq extends apb_base_sequence;
   logic [31:0]              addr     = 32'h0;
   logic [31:0]              data     = 32'h0;
   logic [3:0]               strb     = 4'hf;
-  // PPROT for the transfer; the key-slot window (>=0x200) needs PPROT=3'b100.
+  // PPROT for the transfer; the key-slot window (>=0x200) needs PPROT=3'b001.
   apb_protection            prot     = '{default: 1'b0};
 
   // Results for a read
@@ -34,6 +34,7 @@ class pqc_apb_reg_seq extends apb_base_sequence;
   task body();
     apb_item it = apb_item::type_id::create("it");
     start_item(it);
+    it.start_delay = 1; // Align the VIP clocking-block SETUP after idle submissions.
     it.direction = is_write ? APB_WRITE : APB_READ;
     it.addr      = addr;
     it.wdata     = data;

@@ -52,17 +52,9 @@ class tc_reg_reset_attr extends tc_base;
           $sformatf("CAPABILITY1.key_slot_num=%0d exp=8", rd[23:16]))
       if (rd[25] !== 1'b1)
         `uvm_error(get_type_name(), "CAPABILITY1.ecc_enabled not set")
-      // NOTE (real finding, not a test relaxation):
-      // regs/pqc.rdl declares CAPABILITY1.abi_minor with reset 6'h01, and
-      // pqc_top drives every other CAPABILITY1 field as hw=rw from the
-      // elaborated parameters (rtl/pqc_top.sv ~line 433) but never drives
-      // abi_minor, so the CSR field falls back to hw default = 0. The DUT
-      // therefore reads 0 where the RDL says 1. This is an RTL/CSR gap tracked
-      // as an open issue in the report; the test records the actual value
-      // instead of asserting a pass.
-      `uvm_info(get_type_name(),
-        $sformatf("CAPABILITY1.abi_minor=0x%02h (RDL reset=6'h01, RTL never drives this hw=rw field)",
-                  rd[31:26]), UVM_LOW)
+      if (rd[31:26] !== 6'h01)
+        `uvm_error(get_type_name(),
+          $sformatf("CAPABILITY1.abi_minor=0x%02h exp=01", rd[31:26]))
     end
 
     // 3) CAPABILITY0: algo mask / lanes / keccak rounds honour the parameters.

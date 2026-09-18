@@ -64,19 +64,16 @@ class tc_base extends uvm_test;
   // sequence is started per register access. Fields are set explicitly (never
   // randomized) so directed tests stay deterministic.
   //
-  // PPROT note: the key-slot window (>= 0x200) is permission-gated by
-  // rtl/pqc_apb_if.sv - only PPROT=3'b100 (privileged+secure) passes
-  // secure_privileged; any other PPROT on that window is blocked with NO
-  // PREADY (access_blocked), which would hang the bus. The generic accessors
-  // below therefore use PPROT=0 and the key-slot test uses the dedicated
-  // secure accessors.
+  // APB PPROT[0] = privileged, [1] = non-secure, [2] = instruction.
+  // Secure privileged data access uses 3'b001. Rejected accesses complete
+  // with PSLVERR and no data/side effects.
   task automatic apb_write(logic [9:0] addr, logic [31:0] data, logic [3:0] strb = 4'hf);
     pqc_apb_reg_seq seq = pqc_apb_reg_seq::type_id::create("wr_seq");
     seq.is_write = 1'b1;
     seq.addr     = addr;
     seq.data     = data;
     seq.strb     = strb;       // APB4 byte enables
-    seq.prot     = 3'b000;     // non-secure / not privileged (not 0x200+)
+    seq.prot     = 3'b000;     // secure / unprivileged
     seq.start(apb_sqr);
   endtask
 
@@ -91,14 +88,14 @@ class tc_base extends uvm_test;
     err  = seq.slverr;
   endtask
 
-  // Secure+privileged single access for the key-slot window (PPROT=3'b100).
+  // Secure+privileged single access for the key-slot window (PPROT=3'b001).
   task automatic apb_write_sec(logic [9:0] addr, logic [31:0] data, logic [3:0] strb = 4'hf);
     pqc_apb_reg_seq seq = pqc_apb_reg_seq::type_id::create("wr_sec_seq");
     seq.is_write = 1'b1;
     seq.addr     = addr;
     seq.data     = data;
     seq.strb     = strb;
-    seq.prot     = 3'b100;
+    seq.prot     = 3'b001;
     seq.start(apb_sqr);
   endtask
 
@@ -107,7 +104,7 @@ class tc_base extends uvm_test;
     seq.is_write = 1'b0;
     seq.addr     = addr;
     seq.strb     = 4'h0;
-    seq.prot     = 3'b100;
+    seq.prot     = 3'b001;
     seq.start(apb_sqr);
     data = seq.rdata;
     err  = seq.slverr;
@@ -120,7 +117,7 @@ class tc_base extends uvm_test;
     apb_write(PQC_REG_CTRL, 32'h0000_0001);   // enable
     apb_read (PQC_REG_STATUS, rd, err);
     if (err) `uvm_error(get_type_name(), "STATUS read returned pslverr during bringup")
-    apb_write(PQC_REG_CTRL, 32'h0000_0008);   // self_test (singlepulse)
+    apb_write(PQC_REG_CTRL, 32'h0000_0009);   // self_test pulse, retain enable
   endtask
 
   virtual task run_phase(uvm_phase phase);

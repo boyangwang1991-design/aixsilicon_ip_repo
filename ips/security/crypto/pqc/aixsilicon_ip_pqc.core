@@ -33,7 +33,14 @@ filesets:
     - rtl/pqc_desc_validate.sv
     - rtl/pqc_fault_ctrl.sv
     - rtl/pqc_kem_seq.sv
+    - rtl/pqc_kem_encaps.sv
+    - rtl/pqc_kem_decaps.sv
+    - rtl/pqc_kem_keygen.sv
+    - rtl/pqc_dsa_keygen.sv
+    - rtl/pqc_key_custody.sv
     - rtl/pqc_dsa_seq.sv
+    - rtl/pqc_dsa_verify.sv
+    - rtl/pqc_dsa_sign.sv
     - rtl/pqc_cmd_frontend.sv
     - rtl/pqc_apb_if.sv
     - rtl/pqc_top.sv
@@ -68,6 +75,7 @@ filesets:
     - verification/unit_test/ut_pqc_keccak_masked_round.sv
     - verification/unit_test/ut_pqc_kem_select.sv
     - verification/unit_test/ut_pqc_kem_seq.sv
+    - verification/unit_test/ut_pqc_key_custody.sv
     - verification/unit_test/ut_pqc_key_slots.sv
     - verification/unit_test/ut_pqc_masked_and.sv
     - verification/unit_test/ut_pqc_masked_random_path.sv
@@ -121,11 +129,23 @@ filesets:
     - verification/env/pqc_env_cfg.sv
     - verification/env/pqc_apb_adapter.sv
     - verification/env/pqc_env.sv
+    - verification/th/pqc_main_if.sv
     - verification/tc/tc_define.sv
+    - verification/tc/pqc_apb_reg_seq.sv
     - verification/tc/tc_base.sv
     - verification/tc/tc_cmd_smoke.sv
+    - verification/tc/tc_kem_encaps_main.sv
+    - verification/tc/tc_kem_decaps_main.sv
+    - verification/tc/tc_kem_keygen_main.sv
+    - verification/tc/tc_dsa_keygen_main.sv
+    - verification/tc/tc_dsa_verify_main.sv
+    - verification/tc/tc_dsa_sign_main.sv
     - verification/tc/tc_apb_protection.sv
     - verification/tc/tc_reg_reset_attr.sv
+    - verification/tc/tc_reset_selftest_lock.sv
+    - verification/tc/tc_intr_independence.sv
+    - verification/tc/tc_key_slot_permission.sv
+    - verification/tc/tc_illegal_state_shutdown.sv
     - verification/th/harness.sv
     file_type: systemVerilogSource
   vectors:
@@ -1072,3 +1092,11 @@ targets:
         - +vcs+flush+all
         run_options:
         - +VECTORS=src/aixsilicon_ip_pqc_0.1.0/verification/unit_test/golden/review_fix
+
+  ut_pqc_key_custody:
+    default_tool: vcs
+    filesets: [common, generated, rtl, ut, vectors]
+    toplevel: ut_pqc_key_custody
+    tools:
+      vcs:
+        vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]

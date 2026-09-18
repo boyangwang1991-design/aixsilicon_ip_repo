@@ -1,0 +1,105 @@
+{
+  "schema": "pqc-encaps-kat/1",
+  "crosscheck": "direct inverse Vandermonde and negacyclic convolution; scripts/encaps_algebra_oracle.py",
+  "source": "https://github.com/GiacomoPope/kyber-py",
+  "oracle": "kyber-py",
+  "version": "1.2.0",
+  "cases": [
+    {
+      "case": 0,
+      "parameter_set": 512,
+      "d": "928262edfcda64cb8b65fa6c4a8276e8aab177325c5afe5bf2ca7ecf9a007bc5",
+      "z": "27a4354e4fe8ff9458a9442273f8aae0538d4f983740439718281512cfcebe7c",
+      "m": "3ff8a239451f233522ecfd3cc2b345b10686877510e61f92118ce39787d91815",
+      "pk_bytes": 800,
+      "ct_bytes": 768,
+      "files": {
+        "0_pk.hex": "338bc88b10fc321a2cc6b03984b9031487cba3c5a49c162b16df39f2274bf192",
+        "0_m.hex": "fbb173d226bf90539300108e228ae082f15a74d4dea00ad65424a580d731c1b2",
+        "0_ct.hex": "85d7b100a4ec0ed76eadf0ac0b8f5691444bb9d7e3b5084ba461031184e9e562",
+        "0_ss.hex": "0d052bf2cf9a5388886ab0fbed82925877825fe6fd5bc67bbb7939ce60e64b11",
+        "0_desc.hex": "54070a59a9edfbb24a21413573f462f0ba62929eff2c816bf74dab9318d9f1ef"
+      }
+    },
+    {
+      "case": 1,
+      "parameter_set": 512,
+      "d": "007201e9d71ad3d937b73e8d068b802286ffcfa89092159d9dcfeb33d6d3f3c8",
+      "z": "48ee1a7bdc622f189efdb8da698e3191acb5ed6417d977c875ce7693644b854d",
+      "m": "5798875b84753008c5f41316edbfa5227041cabd60ccb7ac68edfb330588f0fd",
+      "pk_bytes": 800,
+      "ct_bytes": 768,
+      "files": {
+        "1_pk.hex": "5f1fe89871e28580f0aee807a5ed92656bf29a75d8a419b23fff72900099bcf7",
+        "1_m.hex": "1007ff9cf78086dd0750d6493f21e94119a4825c8cbc2d96d2d45ee965a9a134",
+        "1_ct.hex": "79cdbbd446a24c9e7682862f642d2f16d28eb24b65b77d10d44042d389fe12dd",
+        "1_ss.hex": "9e46e8d20b009180761616758d30c44b31f600721f4571456edb8d5eec51c97f",
+        "1_desc.hex": "5bc10a900127f3fea87e45dd6ac84182dca5655b6f4a05d8f6bf5fc3930d06c8"
+      }
+    },
+    {
+      "case": 2,
+      "parameter_set": 768,
+      "d": "aee6383d4dffc9067c263047dd1597d9477107f61f305cc277a6519815b85fdf",
+      "z": "ff33d5ee3cdb47d2422965c45aa143eee51129f0b7d382c907390b7c15a8cf3d",
+      "m": "81e9fe50b21030a8b458a126c87bc91033e30845b8a41d56dad51eec98322151",
+      "pk_bytes": 1184,
+      "ct_bytes": 1088,
+      "files": {
+        "2_pk.hex": "8e6022d1d9f386e4d6dbe9e96c017bf262db99bf33f39d8f2752e18c9937608c",
+        "2_m.hex": "7a6fbf9ce5871065e215a92c660b306ec7e5127c013ac40696951e63d58c1a52",
+        "2_ct.hex": "7e24eefee78c3bd7a78d33aa5376d421bb3fdc8e5c2e67719fda60cfe1d4e550",
+        "2_ss.hex": "c0a179f7be9b48afced5f3e5378151275caf6d4577253782ed88e01a4b874751",
+        "2_desc.hex": "e51107ab2692938c6ae822fb41d15aa1bf4440f01756277669fb0799ad4b8e0e"
+      }
+    },
+    {
+      "case": 3,
+      "parameter_set": 768,
+      "d": "900dfa29ecb75d94dd58e0f3f01d760649c73cc3b03864a3f623592c6ec9cb29",
+      "z": "4adef470d89fea9d9f58592bcd5192843629e8b97ecf8ea3d0a2a75f0fd39261",
+      "m": "11001c5a616c57fddd13aefad5025444324dd2b767c424a4a486e292262a7a00",
+      "pk_bytes": 1184,
+      "ct_bytes": 1088,
+      "files": {
+        "3_pk.hex": "6718abdb408b9d60ecf6a3f0924160ff3295ae5c052b2768f02900a5b2068784",
+        "3_m.hex": "dac4d2bea326f803bf2384ce3a4e8a4f035e278eee3ea0414e47a248e500bf41",
+        "3_ct.hex": "b27eb11e7d9851f9c30d932f9afc0340750cf104924328a34a1e4641da031e21",
+        "3_ss.hex": "e0f870760ca8d7398958db0ebec136b5a3a37c3496e433dbcff4eaf94e66917b",
+        "3_desc.hex": "dfab11ec808fe3fd427862689c144199950267133a537589d9af3868b1b5cd9a"
+      }
+    },
+    {
+      "case": 4,
+      "parameter_set": 1024,
+      "d": "b5ff4f50778189cd8bb5a10047a3664eef80c90e90b1da489c345ada94fba0e6",
+      "z": "7dfe6a11dd1e4046a29260dd4c9f543e5ab30e665a06c47f7b6b5c41f61a529e",
+      "m": "74809864a71937216d52677ed4b4755f05b8810fbd89d6ed243d6f1ee1f6220b",
+      "pk_bytes": 1568,
+      "ct_bytes": 1568,
+      "files": {
+        "4_pk.hex": "8ab6ad0654f3dc5ed8911a373ad5bcd7c5ced3653e05563e7e1281118188cd2d",
+        "4_m.hex": "91051d4101e144b98d748e702f8c9bfd8de82e71916373888e2a2170484c1424",
+        "4_ct.hex": "33c79f1a10217f4ea9481db6057315cc5cc3cc42f321d54d7c8aeabcca76282a",
+        "4_ss.hex": "97967182a3a22b2ce8c56f8c26975b5af0ea6d99e3f5a2946fa6f5c23c37017b",
+        "4_desc.hex": "79b45f4efc32d5a3c15a102bdcc574c8ba711586430b5af3fc3158c751e1d584"
+      }
+    },
+    {
+      "case": 5,
+      "parameter_set": 1024,
+      "d": "a8f2f6168f82f91a53605c96b4eff67ccd7a4dfc4069862d909dcfa55c847330",
+      "z": "3ae2fe484a3cbb5c62171a3cdf5bed28b62c5709f04c83afb1ed08fd25268aa3",
+      "m": "4c4349746821ab72356f0daa3b77a047b992df6d9525c09dbf933b5ab8253e4e",
+      "pk_bytes": 1568,
+      "ct_bytes": 1568,
+      "files": {
+        "5_pk.hex": "e311df1f3a5755b7335456fa93404a76e63ba430e7d0af900b6a94cc3db7fdd3",
+        "5_m.hex": "69637612a6df7f65cb88237f9e27616dc1647b0680a985981f8f2609bcb76210",
+        "5_ct.hex": "5cf13c595fff8a99ea224adb1d078755b85cacc9f77a40efc220ef7bd4271357",
+        "5_ss.hex": "57d219818e5b2b718ed9a47165ef8dd853e7796d7cd037355d2f2b25ff9649fa",
+        "5_desc.hex": "6b0573590d29cb3152d3b099f60963978e06b5b3b014b1caf4e5793d5d56ef78"
+      }
+    }
+  ]
+}

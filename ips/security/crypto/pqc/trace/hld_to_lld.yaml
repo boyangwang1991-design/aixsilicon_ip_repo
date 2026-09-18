@@ -50,6 +50,14 @@ links:
   target_id: LLD.MOD.PQC.KEMSEQ
   status: linked
   confidence: high
+- source_id: HLD.MOD.PQC.KEMSEQ
+  target_id: LLD.MOD.PQC.KEMSEQ.DECAPS
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.PQC.KEMSEQ
+  target_id: LLD.MOD.PQC.KEMSEQ.ENCAPS
+  status: linked
+  confidence: high
 - source_id: HLD.MOD.PQC.KEYSLOT
   target_id: LLD.MOD.PQC.KEYSLOT
   status: linked

@@ -35,3 +35,12 @@
 - [掩码 AND 寄存级与证明边界](03_masked_and.md)
 
 - [全局安全机制](04_safety_mechanisms.md)
+
+- KEM Encaps主通路细化：[`03_kemseq_encaps.md`](03_kemseq_encaps.md)
+- KEM Decaps调度与存储细化：[`03_kemseq_decaps.md`](03_kemseq_decaps.md)
+
+- [KEM KeyGen及托管候选设计](03_kemseq_keygen.md)
+
+- [DSA KeyGen 数据通路](03_dsaseq_keygen.md)
+
+- [DSA Sign 数据通路](03_dsaseq_sign.md)

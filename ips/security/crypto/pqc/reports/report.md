@@ -1,251 +1,79 @@
 # PQC 加速器统一结论报告
 
-整个 PQC IP 尚未完成验收：模块 RTL/UT 和寄存器一致性已推进，完整 KEM/DSA、顶层数据通路及 Level 2 全秘密链仍未闭环，当前不可发布。
+Decaps 串行算法链与隐式拒绝已修复，当前自检查 UVM 子集 14/14 通过；整个 PQC 的完整 KEM/DSA、Level 2、G2 技术冻结及 G3–G5 仍未闭环，当前不可发布。
 
-## 验收范围与执行原则
+## 本轮实现与真实验证（2026-09-18）
 
-用户已明确范围为**整个 PQC IP**，包含 RTL、UT 和模块结构优化。继续使用
-ip-development-suite；优先保证功能正确，可接受且不影响功能/安全的性能问题暂缓。
-Level 2 全秘密链仍是必交项，用户没有授权以局部 gadget 替代完整实现。
-设计决策采用[用户委托](../docs/reviews/delegated_design_decisions.md)，不冒称独立人工审批。
-PPA 仅作代码结构分析，`ppa_signoff=none`；没有宣称实测面积、频率或功耗达标。
+继续使用 ip-development-suite，并保留接手时已有改动；没有提交或推送。
+按现有委托完成候选实现与验证，不把机器结构 PASS 视作技术冻结。
 
-## 已落地的 RTL 与结构调整
+- 重写 `pqc_kem_decaps.sv` 的串行调度：私钥分段读取、逐多项式解码/解压、NTT 与累积、
+  消息恢复、H(ek) 校验、G、完整重加密、J(z||received_ct)、全长比较和掩码选择。
+  TOP 接通 hash ready 和 Decaps completion DMA；正常及拒绝均返回32B共享秘密。
+- 每 seed 45 条 Decaps 命令：ML-KEM-512/768/1024各三组独立正常向量、每组首/中/末
+  字节篡改共27组、九组正常向量背压重复。oracle 是离线 kyber-py 1.2.0；拒绝秘密另以
+  SHAKE256(z||corrupted_ct)交叉检查后冻结。仿真无 Python/C/DPI 密码算法。
+- 检查每个输出/完成字节恰好写一次、完整 completion、外部访问范围、guard、
+  输出 B 响应→completion→B 响应→IRQ 顺序。同一向量正常/三种拒绝的 completion
+  周期在相同外部服务条件下相等；仅是有限场景检查，不宣称完整恒时/侧信道证明。
+- 修复 TOP 的 ABI minor 硬件赋值及参考模型错误期望；恢复高地址负向检查。
+  安全特权访问编码由错误的100改为001，检查全部8种PPROT组合、拒绝读零、写无副作用、
+  只读元数据。中断测试在 INTR_TEST 没置位时现在会报错。
+- 根 Core 与 RTL filelist 补入 Decaps，Makefile 调用唯一 runner，默认明确 seed；
+  不再调用不存在的模板用例或声称提供未实现的 coverage。
+- LLD/验证 Markdown 通过 owning extractor 投影；22个模块的 LLD→RTL seed 已补齐。
+  trace builder 只接受模块粒度，首次提交 FSM 粒度被拒的日志也保留，最终按模块重建。
 
-保持 13 个 HLD 责任边界，细化为 20 个 LLD 模块，见
-[模块分解](../docs/lld/01_decomposition.md)。20 条 LLD→RTL 链接均指向真实文件；
-这只证明文件归属，不代表所有微架构行为均已实现。主要落地内容如下。
+最终从 `verification/sim` 执行 `make regress`：7个测试×seeds 1、17，**14/14通过**，
+VCS/UVM 1.2，退出0，UVM_ERROR/UVM_FATAL均0，输入集合前后一致。
+其中 Decaps 共90命令、Encaps共12组KAT；另外五个测试为 command smoke、严格寄存器、
+地址错误/idle编程、密钥窗口权限和中断W1C。这是已实现自检查子集，不是 G4 全量通过。
+全部模块UT由根 FuseSoC Core 重跑：**40项，整体 pass**。
+runner故障注入pytest **28/28通过**，不计入DUT通过数。
 
-| 范围 | 已实现与验证 | 尚未覆盖 |
+最终 Decaps SpyGlass lint：0 Error/Fatal、41 Warning、5 Info，退出0，无waiver。
+警告包括33条task更新外层状态、4条未使用entropy输入、2条未使用寄存器、
+异步reset用于同步门控和单进程FSM各1条；局部lint不等于全IP综合/CDC签核。
+前一轮严格APB回归4/5通过，失败是参考模型仍期望旧ABI值；修复后再编译并通过上述最终回归。
+首次六KAT和中间10/10结果只对应各自输入；本报告当前结果绑定最终build，不给旧日志补签。
+
+## 门禁与明确限制
+
+| Gate | 当前机器输出 | 技术解释 |
 |---|---|---|
-| AXI/描述符/FE | 独立读仲裁锁住地址与响应归属；取消后保留已展示请求并排空；FE 等待真正 fetch done，拒绝错误/提前结束；地址快照、门铃防重复、shadow 全清除 | 完整 payload/completion DMA 事务链 |
-| 描述符语义边界 | 独立 VALIDATE 模块、完整 64-bit 地址/长度/容量、65-bit 范围与重叠检查、18 种参数/操作组合；FE 快照能力配置并门控 typed command；DSA 空消息正确接受 | typed command 尚未驱动完整 payload 调度 |
-| DMA 与入口检查 | DESC_FETCH 在 AR 前检查对齐和可信窗口，64/128/256-bit 测试；DMA 空请求无总线访问成功、清除状态完全擦除后再 ack | 事务身份与完整 TOP 提交仍需接通 |
-| SRAM/DMA 字节访问 | DMA 到 TOP/SRAM 的尾字节写使能；部分写原子 ECC 合并、双错拒绝、零掩码无发布；DMA secret 页隔离和同拍 tag 撤销响应擦除 | 完整页 owner/domain/epoch/allocation 授权及双 share 存储仍缺 |
-| 随机服务 | 独立 600 B cache；owner/domain/epoch/primitive/lease/index、配额、消费与释放、超时、五方 clear 身份确认 | TOP 和全部秘密消费者尚未接入 |
-| masked AND/Keccak round | 两级两 share AND；独立线性路径及注册 χ、token、随机释放、反压和清除；round 与 RANDOM 的实际组合测试 | 旧 Keccak context 仍是 byte 接口，完整初始化 sharing/宽接口/24 轮租约控制尚未集成 |
-| KEM 控制 | 共享秘密输出的地址/数据/写使能同拍；每命令清计数器；精确密文长度；单未决原语；取消屏蔽副作用 | KeyGen/Encaps/Decaps 完整数学依赖链及 Kbar 输入仍缺 |
-| DSA 控制 | 接受时锁存 op/pset；空闲时只发一次原语；取消屏蔽 staging/commit | 独立 z/r0/ct0/hint 结果、完整 Sign/Verify 与参考摘要输入仍缺 |
-| SAMPLER/引擎边界 | 合法 mode/domain/eta/gamma/tau 检查；冷复位清 ball；Keccak、Sampler、Poly、Codec、DSA 同拍清除屏蔽握手/写入/完成 | 秘密拒绝采样的掩码实现与固定扫描尚缺 |
-| APB/CSR | secure+privileged 校验、BUSY 组、未对齐访问、拒绝事务完全隔离；CSR 从新 RDL 再生；完整 16-bit generation，无 8-bit 截断 | 外层性能计数、可信元数据与系统退休策略仍缺 |
+| G0 | pass | 需求来源检查 |
+| G1 | pass | 架构来源检查 |
+| G2 | pass | LLD仍open/false；结构PASS不等于完整技术冻结 |
+| G3 | fail | 以当前质量检查及缺口为准，不以局部lint或UT代替全量签核 |
+| G4 | blocked | 全计划、参数执行、覆盖、closure RTM及formal/RAL仍未闭合 |
+| G5 | blocked | 前置及集成/用户交付文档仍缺，当前不可发布 |
 
-KEM 选择 UT 实际遍历三个参数集全部 **3424 个密文失配位置**及三个完全匹配情形，
-逐字节检查 32 B 输出、完整比较次数与相同周期。修复前真实检出 byte 0 写到地址 1、
-连续第二命令少 31 拍。该测试使用注入的候选密钥，不是完整 ML-KEM KAT。
-masked round UT 检查 32 组随机状态、24 轮空消息 SHA3-256 KAT、随机等待、输出
-反压、取消与旧 token；组合 UT 验证两次 4800-bit 消费与实际 150 个 entropy beat。
-功能重组一致不等于物理泄漏或组合安全证明。
-
-新增 SRAM 字节访问 UT 穷举 16 个写掩码、39 个 SECDED 单错位，检查旧字节保留、
-校正后重新编码、双错时不写入、全零掩码不发布 word_valid，以及 secret 页读写拒绝、
-同拍页分类与旧响应撤销。64/128/256-bit DMA/SRAM 组合 UT 先填充尾字，再读入
-70 B，检查第 70/71 字节保持原值；这属于实际 RTL 联合执行，不是仅比较数学模型。
-回归入口支持可选并发，默认串行。独立、明确预期失败的 VCS fixture 验证了并发
-子用例的 FAIL 文本、fatal 日志被汇总为失败，即使同一日志还含 PASS 也不能通过；
-该 fixture 不计入 PQC 模块通过数。
-
-## 寄存器闭环
-
-[生成输入评审](../docs/reviews/register_generation_review.md)绑定 HLD/LLD、接口模型和
-RDL 指纹，采用用户委托方式，范围仅为寄存器生成输入，不冻结整个 LLD。
-SystemRDL 当前含 55 个寄存器定义、124 个字段（数组按定义计），结构审计未发现
-其已实现断言范围内的差异；13 个 W1C 字段明确 HW set 优先。
-
-通过套件 regenerate_csr.sh 实际重新生成原生 CSR SV、C Header、UVM RAL、IP-XACT
-及本地 HTML，CSR vlogan 编译成功且 manifest 与源文件一致。UVM 1.2 库与新 RAL
-package 另在独立目录完成真实编译；尚未建立系统 RAL adapter/predictor/frontdoor
-交接证据。没有手工修改生成 RTL。
-新增 CSR 直接 UT 实际检查所有命令 shadow 的 swwe 与逐字节写、完整 handle、
-非零 ABI/entropy 复位值、13 个请求脉冲、13 个 W1C 字段与同拍 HW set、PERF next/we
-及 SW clear 优先、32 项镜像、generation/domain 读回、非法地址。
-KEYSLOT UT 实际运行 65540 次导入，检查 65535 饱和、禁止回绕与高位不匹配拒绝。
-这些测试不证明尚未接通的专用 Key Manager 授权生命周期或生产策略。
-
-新增清除边界 UT 在旧实现中实际报告 260 项失败；候选修复后通过。SRAM 的 ready、
-响应数据与 tag 授权在 zeroize 同拍关闭，物理 sweep 期间禁止发布 tag；DSA 的两组
-64 B 摘要在 reset/clear/zeroize/done 退休沿实际擦除，锁存检查与输出也同步撤销。
-该用例还遍历 23 个非法 DSA op/pset 组合，确认错误结束前没有原语/写入/提交。
-DSA op_error 已接入 TOP 错误汇聚。
-
-## 实际工具结果与边界
-
-唯一根 core 为 `aixsilicon_ip_pqc.core`，UT 通过 FuseSoC 解析 fileset 后使用
-VCS W-2024.09 编译运行。报告要求精确 PASS 标记，任何 FAIL/TIMEOUT/编译错误均
-失败；源树在每个用例前后与全量结束时核对 SHA256，不接受执行中更改来源。
-
-最新全量机器记录：**39/39 PASS**，目录 `build/sim/run/ut/run.O3lltRFw`。
-该批前后指纹相同，且与当前受测输入一致；包含新的描述符语义校验及前端/DMA边界测试。
-CSR 升级后单独执行 `ut_pqc_csr`、`ut_pqc_key_slots`、`ut_pqc_top_review`，均退出 0。
-module_coverage 已覆盖全部实际 RTL module；这是测试入口映射，不是代码/功能覆盖率。
-
-leaf SpyGlass 检查已覆盖 masked AND、masked round、RANDOM、描述符、读仲裁及本轮
-APB/FE/SAMPLER 候选修改，各自日志可见本地 build；不据此宣称全 TOP lint 通过。
-TOP 第一次 lint 检出 codec d_comp 的 4→5 bit 端口问题，已改为 5-bit 常量。
-提高大存储容量阈值后再次运行 TOP lint，进程在 secure SRAM 综合时被终止，返回
-**137**；未取得完整结果。仅凭退出码不能确定终止原因，也没有将该次运行改成 PASS。
-描述符/命令结构升级后的默认参数 TOP 已通过 VCS 编译展开，实际工具完成、退出码
-和前后输入绑定已由套件检查；SRAM 字节写使能升级后也在新的构建目录完成默认
-TOP 编译展开，最新记录为 `build/rtl/top_elab_bytes/execution.json`。
-首次 FuseSoC 构建未捕获 VCS 完成日志，证据状态如实为 fail；随后核对导出源与
-当前源逐文件相同，再直接构建捕获原始日志，通过证据检查。该结果不替代完整
-RTL lint/综合、CDC/formal 等仍缺的专项证据。
-
-所有失败尝试保留，包括输出地址/计数失败、部分候选编译错误、CSR 测试初次 struct
-赋值编译错误和 TOP lint 失败。历史数学模型结果仅是各自假设下的模型检查，不能替代
-当前 RTL、完整算法 KAT 或安全签核。
-
-## G4 UVM 环境落地与新发现（2026-09-17）
-
-### 已闭环
-
-- 按用户指令不再自研协议 agent：APB 侧改为**只读引用** `aixsilicon:vip:apb:1.0.0`
-  （`verification/verification.list` + `verification/sim/run_uvm.py`，`VIP_ROOT`
-  指向 VIP 仓，不复制源码）；模板生成的自研占位 agent（`env/utils/`）已删除。
-  AXI4 侧因下方接口限制与 DMA 数据通路未闭合而延后，未用桩响应器伪造通过。
-- 原 `verification/th`、`env`、`tc` 空白占位已实现：`pqc_rm`（寄存器契约参考模型）、
-  `pqc_checker`（寄存器契约记分板）、`pqc_fcov`（PQC 专用功能覆盖）、
-  `pqc_apb_adapter`（VIP 观测流 → PQC 模型）、VIP RAL 接入（`pqc_csr` + `apb_reg_adapter`
-  + predictor map）。
-- 运行入口增加**编译/运行硬超时**（此前无超时导致长时间挂死）。
-- 编译 `rc=0`；**smoke 3/3 PASS**（`UVM_ERROR=0`）：
-  `tc_cmd_smoke`、`tc_reg_reset_attr`、`tc_apb_protection`。
-  证据：`build/reports/smoke/smoke_junit.xml`、`build/sim/uvm/run/<tc>_<seed>/run.log`。
-
-### 由 UVM 实测发现的问题（新增）
-
-| ID | 状态 | 问题 | 证据 |
-|---|---|---|---|
-| VIP-APB-001 | reported | APB VIP core 未声明 include 路径且 `src/apb_config.sv` 未列入 fileset，消费者无法用 FuseSoC `depend` 接入 | VIP 仓反馈 `vip/amba/apb/reports/integration_feedback_pqc_20260917.md` F-APB-01 |
-| VIP-APB-002 | reported | `apb_env` 无条件连接 predictor，未绑 `map` 时在 VIP 内部空指针崩溃（非 RAL 场景） | 同上 F-APB-02 |
-| VIP-AXI4-001 | reported | `virtual axi4_if` 无参数，128-bit/40-bit AXI4 主机无法接入 | `vip/amba/axi4/reports/integration_feedback_pqc_20260917.md` F-AXI4-01 |
-| RTL-REG-002 | open | `CAPABILITY1.abi_minor`（RDL reset 6'h01，hw=rw）在 `pqc_top` 中从未被驱动，读回 0；同组其它字段均已驱动 | `tc_reg_reset_attr` 实测；`rtl/pqc_top.sv` 仅驱动 local_sram_kib/dma_data_width/key_slot_num/pio_enabled/ecc_enabled |
-| RTL-APB-002 | open | 高位未映射地址（实测 `0x2F0`）**不返回 pslverr 且不返回 PREADY**，总线挂死；低位未映射地址（`0x0FC`/`0x0B0`）按 `err-if-bad-addr` 策略正确返回 pslverr | `tc_apb_protection` 早期版本实测超时；已收敛测试地址并保留该发现 |
-| RTL-CMD-001 | open | 门铃启动的命令数据通路依赖未实现的 DMA，前端可能无限等待，导致用例挂死（已用硬超时捕获） | `tc_apb_protection` doorbell 路径实测超时；根因同 ISSUE A03/A11 |
-
-以上均**未**通过放宽检查或改严重度掩盖；`CAPABILITY1` 的静态期望按实测校正，
-并在测试与模型中明确注明原因。
-
-### 仍待完成
-
-regression tier（reset/intr/key/dma/ct/illegal）testcase、全量回归 JUnit、
-覆盖率闭环与最终 RTM closure 尚未完成，G4 仍不通过。
-
-## 算法正确性能否用 UVM 环境验证（评估）
-
-**结论：当前不能通过 UVM 端到端验证完整算法；只能验证寄存器契约。** 依据：
-
-- `rtl/pqc_top.sv` 第 931 行 DMA `xfer_req` **硬编码为 `1'b0`**：DMA 数据通路
-  （输入描述符 → 算法 → 输出 → completion）在 RTL 中未接通（ISSUE A03/A11）。
-  因此 KEM/DSA 数据无法进入算法引擎，也没有合法输出/completion 可供比对。
-- KEM/DSA sequencer 已编译、无 TODO/stub，但它们的 `start`/数据依赖在 TOP 层
-  依赖同一未接通 DMA/Key-RAM 链，门铃提交后前端会保持 BUSY（实测 RTL-STATUS-001），
-  不会产生结果。
-- 六个参数集完整 KeyGen/Encaps/Decaps/Sign/Verify 的 RTL KAT 因此无法执行。
-
-**可行的验证路径（按当前 RTL 能力拆分）**：
-
-1. **现已完成**：寄存器契约 + APB 控制面 + 中断 + 密钥槽窗口观测（7 个用例 UVM
-   全通过）。这部分 UVM 是有效的、有证据的。
-2. **算法正确性**：当前由 `scripts/run_pqc_algo_proof.py`（软件证明）+ 模块 UT
-   （`ut_pqc_keccak`/`ut_pqc_poly_engine`/`ut_pqc_sampler`/`ut_pqc_codec` 等）承担，
-   这些是**已实现的算法原语**的确定性验证；UVM 的 RM 明确**不**做 KEM/DSA 数学
-   （VPLAN 约定），避免与软件证明重复。
-3. **数据通路闭环后**：DMA `xfer_req` 接通后，UVM 才能做端到端 KAT
-   （描述符 → RTL 计算 → completion → 输出与 golden 比对）。这是 G4 的真正门槛，
-   不能靠桩响应器伪造。
-
-因此：UVM 环境是**为算法验证准备好的一部分**（激励/观测/比对框架已就绪），
-但端到端算法 KAT 必须等 DMA/Key-RAM 数据通路闭合后才能执行；在此之前把
-`TC.PQC.ALGO.001` 标 PASS 是伪造证据。
-
-## 算法数据通路闭合计划（下一迭代，核心特性验收前提）
-
-用户明确指出：当前用例对 PQC 这种体量明显不足，算法正确性才是核心。为此把
-"关闭 DMA/算法数据通路"拆成可执行的接线清单（已核对 RTL 端口，均为实际缺失的
-硬连线）：
-
-### 现状（rtl/pqc_top.sv 实测）
-
-| 缺失接线 | 位置 | 现状 |
-|---|---|---|
-| DMA `xfer_req/we/addr/len` | 第 931-934 行 | 硬编码 `1'b0`，DMA 不移动任何数据 |
-| KEM seq `ct_read_data/ct_calc_data/kprime_data/kbar_data` | u_kem_seq | 恒 `8'h0`，密文/Kbar 输入未接入 |
-| KEM seq `ss_wdata/ss_we/ct_len/verify_mask` 输出 | u_kem_seq | 悬空，共享秘密/结果未写回 |
-| DSA seq `stage_rdata/ct_calc_byte/ct_ref_byte` | u_dsa_seq | 未接 SRAM/CODEC 数据 |
-| poly/sampler/codec 与 SRAM 的读写端口 | poly_engine/sampler/codec 例化 | 部分接通（samp/poly 已接），codec 数据未闭环 |
-
-### 闭合步骤（按依赖序，每步独立可回归）
-
-1. **SRAM 多端口仲裁接通**：把 DMA buf 口、KEM/DSA stage 口接到
-   `pqc_secure_sram_ctrl` 的 d/c0/c1 口（现有 3 端口仲裁已实现，缺的是顶层接线）。
-2. **DMA 描述符驱动**：`xfer_req = fe_doorbell_pulse && !dma_busy`；
-   `xfer_addr/len` 取 `DESC_ADDR_*`/`SRC*_LEN` CSR（已冻结），`xfer_we` 按 op 方向。
-3. **KEM 密文/Kbar 输入**：`ct_read_data`/`kprime_data`/`kbar_data` 从 SRAM 读取口
-   接出，`ct_len`/`ss_we`/`ss_wdata` 写回 SRAM；`verify_mask` 接 codec。
-4. **DSA stage 数据**：`stage_rdata` 接 SRAM，`stage_wdata/we/addr` 写回；
-   `ct_calc/ct_ref` 接 codec。
-5. **CODEC 输入输出**：codec 的 in/out 与 SRAM 页打通（`ct_calc_*` 数据）。
-6. **每步后**：先跑对应模块 UT + `make -C verification/sim ut`，再跑
-   `run_uvm.py` 7 用例回归，最后补**六参数集 KAT**（KeyGen/Encaps/Decaps/
-   Sign/Verify 对照 NIST 向量，走软件证明 + UVM 端到端）。
-
-### 完成判据
-
-- DMA 能从描述符地址搬入 SRAM，算法引擎读取/写回，输出 DMA 到 completion 地址；
-- `STATUS.done`、completion record、`INTR_STATE.done` 在真实数据通路下置位；
-- 六参数集 RTL KAT 通过（`TC.PQC.ALGO.001` 从 blocked 转 pass）。
-
-此计划在报告层面记录为 `RTL-DATAPATH-CLOSURE-001`；未完成前 `TC.PQC.ALGO.001`
-与 `TC.PQC.DMA.001`/`TC.PQC.CT.001` 保持 blocked，不伪造通过。
-
-## 仍阻止整体验收的功能缺口
-
-- TOP 的 payload DMA `xfer_req`、Keccak/Codec start、WORKKEY read 等仍有未接通
-  路径；真实输入→算法→输出→completion→IRQ 的依赖链尚未闭合。
-- KEM/DSA sequencer 仍有占位步骤；KEM 候选/拒绝密钥和 DSA 参考摘要等输入未接通。
-  目前没有六参数集完整 KeyGen/Encaps/Decaps/Sign/Verify RTL KAT。
-- RANDOM 和 masked round 已有实际 RTL，但 TOP entropy 通路、完整 masked Keccak、
-  A/B 转换、秘密采样、双 share SRAM/Key RAM 与组合安全验证尚未完成。
-- KEYSLOT 的完整身份/epoch acquire-release、延迟 destroy 与可信 domain，以及
-  PERF/SELF_TEST/结果原子提交等外层 CSR 行为仍需实现。
-- 当前无系统 UVM 全量回归、功能/代码覆盖闭环、完整参数空间执行及专项签核。
-
-## 机器门禁与技术解释
-
-| Gate | 当前机器状态 | 解释 |
-|---|---|---|
-| G0 | pass | 84 条需求、来源与授权绑定通过 |
-| G1 | pass | 13 个架构模块及实际委托评审绑定通过 |
-| G2 | pass | 20 模块设计对象及寄存器结构/生成一致性检查通过；检查器未证明完整算法、调度与 Level 2 技术内容完成 |
-| G3 | fail | 完整 RTL 检查和专项证据仍缺；UT 只按当前已实现模块范围评估 |
-| G4 | blocked | 系统回归、KAT、覆盖、参数执行与安全证据未齐 |
-| G5 | blocked | 上游未通过，不能发布 |
-
-G2 的机器结构 PASS 不能解释为整个 LLD 技术冻结。文档中算法、转换与 Sign 尝试周期
-等明确待办继续保持未验收；没有伪造技术评审或更改机器结果消除这些缺口。
+完整 KEM KeyGen 与 DSA、Level 2 秘密数据链、页标签/权限、epoch/撤销、完整清除和失败退休
+仍须实现与验证。SCA_LEVEL=1 的算术KAT通过不构成任何安全等级认证。
+APB VIP从资产仓只读引用；AXI DMA当前是有背压的内存响应器，尚未接入完整AXI4 VIP。
+FuseSoC模块UT可运行不等于UVM依赖闭包已完成。现存reset/self-test、fault测试仍有弱检查，
+未纳入本轮自检查通过计数；后续必须恢复严格检查，不得用记录现象的用例签核功能。
 
 ## 统一问题表
 
-closed 仅表示该项的局部问题已解决，不代表整个 IP 可交付。
-
-| ID | 状态 | 问题与处置 | 后续动作 |
+| ID | 状态 | 问题/处置 | 下一步 |
 |---|---|---|---|
 | ISSUE-001 | open | RTL 检查与专项证据未闭环 | 09：上游通过后补 FuseSoC lint/elab/综合适用检查及 CDC/formal 证据 |
-| ISSUE-002 | closed | 根 FuseSoC core 已建立，模块 UT 由同一 fileset 实际编译执行 | 保持新增 RTL/UT 与 core 同步；不表示 lint/formal/synthesis 已通过 |
+| ISSUE-002 | open | 根 Core 和 RTL filelist 已补入 Decaps 及现存用例，Makefile 已统一调用 runner；UVM VIP 的 FuseSoC depend 接入仍缺 | 08：使用只读资产元数据适配器闭合依赖；不能把本地 VCS 编译等同于完整 FuseSoC UVM target |
 | ISSUE-003 | open | 四类追踪矩阵未闭环 | 16：随上游重建四类 trace，逐需求绑定真实验证 |
 | ISSUE-004 | open | UVM、覆盖率与端到端 KAT 缺失 | 10–15：构建独立 RM、六参数集 KAT、接口负向回归与覆盖闭环 |
 | ISSUE-005 | closed | 本轮不以物理 PPA 表征作为验收条件 | 遵照用户指令完成代码结构分析；不宣称物理指标达标 |
 | ISSUE-006 | open | 机器 G2 的结构与 CSR 一致性检查通过；完整 LLD 技术项及 VP0 仍未闭环 | 补完整算法/掩码/逐拍调度与验证计划；结构检查不替代技术评审 |
 | ISSUE-007 | open | 完整 KEM/DSA 算法、Key RAM 消费及托管未实现 | 03/05/07：冻结架构与时序后补全安全数据通路，六参数集 RTL KAT 验收 |
 | SUITE-001 | closed | HLD 必需需求覆盖已补齐，当前投影与来源一致 | 84/84 全需求归属与引用检查通过；不等于 G1 或 RTL 通过 |
-| SUITE-002 | open | 20 个 LLD 模块均有有效设计对象及实际 RTL 文件；完整算法、转换与掩码集成仍缺 | 优先正确性，继续实现数据依赖和安全边界；可接受性能优化暂缓 |
+| SUITE-002 | open | 22 个 LLD 模块已建立静态 RTL 链接；完整算法、转换、页授权与掩码集成仍缺 | 继续完成 KeyGen/DSA/Level2；静态链接不等于实现完整性 |
 | SUITE-003 | closed | 当前 RDL 已重新生成 CSR/Header/RAL/IP-XACT，来源哈希一致，直接 CSR UT 通过 | 继续按 REG-RTL-001 跟踪外层策略与系统行为；不能手修生成 RTL |
-| SUITE-004 | closed | 全量报告为 39 项；当前输入绑定通过，覆盖全部 RTL module 名称 | 保留精确 PASS、失败日志及运行前后输入哈希；模块映射不等于功能覆盖率 |
+| SUITE-004 | open | 当前根 Core 全量模块 UT 已重跑，结果 pass，共 40 项；完整模块映射与新增算法专项仍需补齐 | 以本轮 module_ut_summary 为准，不能替代完整 G3 或当前端到端算法测试 |
 | SUITE-005 | open | 参数 initial/$fatal 被工作区审计识别为 RTL 中仅仿真构造 | 07/09/19：把参数校验放入合法 elaboration/验证入口并保持非法配置拒绝 |
 | SUITE-006 | open | 集成指南与用户手册缺失 | 17：补 docs/integration 和 docs/user_manual，说明密钥、复位、错误与能力限制 |
 | A01 | closed | AXI 读事务仲裁锁定、描述符完成/错误判定、地址快照与门铃防重复已修 | 保留背压、取消排空、异常 RLAST/RRESP、128 B 顺序及 held-doorbell 回归 |
 | A02 | closed | CRC final XOR 与 ABI 已修复 | 保留独立 CRC/ABI oracle |
-| A03 | open | 输入 DMA 到算法再到输出/completion 的命令链未闭合 | 接通真实数据依赖；输出与 completion 写回后才 IRQ |
+| A03 | open | 真实 Encaps/Decaps 的输入、算法、输出、completion 与 IRQ 链已由 KAT 验证；其他命令及失败退休仍缺 | 补 KeyGen/DSA 和故障、取消、超时的端到端检查 |
 | A04 | closed | Keccak 多块、padding、空输入、squeeze 已修复 | 保留四种 function、两种轮数及边界背压测试 |
 | A05 | closed | SRAM 请求重复受理及共享响应归属已修复 | 保留实际 SRAM 组合测试 |
 | A06 | open | codec 数学及固定 256 系数 packing 已修，完整格式/offset 尚缺 | 补任意 bit offset、长度上限、完整密钥/签名编码 |
@@ -265,26 +93,35 @@ closed 仅表示该项的局部问题已解决，不代表整个 IP 可交付。
 | RTL-CTRL-001 | closed | KEM 输出字节地址错位、第二次 Decaps 计数未清、重复原语发射和清除同拍副作用已修 | 保持全密文位置比较/选择、连续命令与五引擎取消 UT；不等于完整 KEM |
 | REG-RTL-001 | open | 生成字段正确不代表外层集成完成；PERF、可信 slot/domain、SELF_TEST 和原子 completion 仍缺 | 实现并验证实际硬件事件、生命周期权限、可信元数据和输出退休顺序 |
 | RTL-CLEAR-001 | closed | SRAM 清除同拍响应/tag 泄漏、sweep 期间 tag 发布和 DSA 摘要仅清指针已修 | 保留物理缓存擦除、同拍撤销和非法 DSA 配置的回归；完整双 share/epoch 存储仍未完成 |
+| VPLAN-001 | open | 真实RTL与冻结KAT的完整UVM计划已抽取；12个测试入口尚未实现 | 闭合LLD及VP0、冻结向量、实现平台与计算链，执行六参数18操作及全量负向/安全回归 |
+| EVIDENCE-001 | open | 当前 Decaps/Encaps/APB UVM 与模块 UT 已重新绑定最终源码；历史证据不补签，其他阶段仍不完整 | 补全当前配置、覆盖、形式与全命令证据 |
+| RTL-DECAPS-001 | closed | 已实现 SRAM 写数据、配置锁存、WORKKEY 请求/响应与持续哈希握手；三参数 KAT 和背压通过 | 保留 45 场景回归；超时/撤销/epoch 安全义务另行闭合 |
+| RTL-DECAPS-002 | closed | 重建正确私钥偏移、逐 poly 解码/解压/NTT/累积链，原密文页16–17与重加密页20–21隔离 | 保持九组正常及27组隐式拒绝的独立冻结向量；页标签/清除见 A11 |
+| RTL-DECAPS-003 | closed | 按 ct_words 全长比较，累积 diff 并用掩码选择 Kprime/Kbar；首/中/末失配与正常均通过 | 保留每向量正常/拒绝同周期检查；不把有限采样结果表述为完整侧信道安全证明 |
+| UVM-RUNNER-001 | closed | 已加入实际用例、双算法完成标记、输入集合/VIP/二进制变化拒绝、独立目录和编译失败证据 | 保留28项runner故障注入测试；它们不是DUT/UVM算法通过数 |
+| UVM-BUILD-001 | open | 旧模板 Makefile 已替换为真实 runner，Core 源清单已同步；全计划回归、覆盖采集与 VIP 依赖仍缺 | 闭合 FuseSoC UVM 依赖、AXI4 VIP、coverage、六参数18操作和配置执行 |
+| G2-TECH-001 | open | 机器G2 PASS与LLD_GATE_META open/false并存，不能替代完整技术冻结 | 完成剩余FSM/Level2/授权/清除技术评审后按既有用户委托冻结，不重复索取授权 |
+| VIP-APB-001 | open | 历史反馈：APB VIP Core缺include路径和config文件，尚未在本轮重验 | 复核VIP仓F-APB-01，验证FuseSoC depend真实接入 |
+| VIP-APB-002 | open | 历史反馈：APB env在未配置map时连接predictor导致空指针 | 复核VIP仓F-APB-02，并验证RAL与非RAL场景 |
+| VIP-AXI4-001 | open | 历史反馈：AXI4 VIP接口参数不匹配PQC的128-bit/40-bit主机 | 复核VIP仓F-AXI4-01，闭合参数化接口及协议级验证 |
+| RTL-REG-002 | closed | TOP 显式驱动 ABI minor=1，独立参考模型恢复 RDL 期望；严格读回检查双 seed 通过 | 保持参考模型和生成 RDL 契约一致，不采纳错误 DUT 实测值作为期望 |
+| RTL-APB-002 | closed | 恢复0x2F0/0x3FC的普通及特权访问，当前 DUT 返回错误并继续服务后续访问 | 继续完整地址空间和并发/忙态保护验证；本结果不是 AXI/APB 全协议覆盖 |
+| RTL-CMD-001 | open | Encaps/Decaps 正常和合法长度拒绝路径均已完成并退休；全命令及异常路径仍缺 | 验证其他支持操作、非法操作、取消、故障、超时有界完成 |
+| UVM-KEY-001 | closed | 纠正安全特权 PPROT=001，覆盖全部8组合、拒绝读零与无写副作用及只读元数据 | 本结果只覆盖 CSR 窗口，不替代可信密钥域/epoch/生命周期验证 |
 
-## 复现与继续执行
+## 复现与证据
 
-从 IP 根执行 `make -C verification/sim ut`，单用例可加 `TEST=ut_pqc_csr`。
-执行环境使用 workflow 根唯一 uv 环境、FuseSoC 和商用 VCS；原始日志及机器报告
-只在忽略的 `build/`，新 checkout 需重新运行。寄存器再生入口为套件
-`skills/02-reg-model/scripts/regenerate_csr.sh --ip pqc --cpuif apb4-flat`，
-从 IP 根运行时把 UV_PROJECT 和 SUITE_DIR 指向 workflow 根及套件绝对路径。
-
-继续按完整 IP 范围实现命令数据通路、完整算法和全秘密链；每次改动先做针对性
-回归，稳定后重跑输入绑定的全量 UT，再刷新 trace/quality。可接受性能优化暂缓，
-不跳过数据正确性、取消/撤销边界或安全必交项。报告抽取 verified 只表示证据与
-结论哈希绑定一致，不等于技术门禁通过。
+运行方式见 [验证入口](../verification/sim/README.md)，设计见 [Decaps LLD](../docs/lld/03_kemseq_decaps.md)，
+用例义务见 [Decaps测试矩阵](../docs/verification/test_matrix_decaps.md)。所有日志、构建指纹、JUnit、
+摘要均在被忽略的build目录；重新检出须重跑。报告提取校验仅证明报告与证据一致，不代表发布门禁通过。
 
 <!-- IP_REPORT_METADATA
 schema_version: '1.0'
 report_type: ip_summary
 ip_name: pqc
 status: blocked
-conclusion: 整个 PQC IP 尚未完成验收：模块 RTL/UT 和寄存器一致性已推进，完整 KEM/DSA、顶层数据通路及 Level 2 全秘密链仍未闭环，当前不可发布。
+conclusion: Decaps 串行算法链与隐式拒绝已修复，当前自检查 UVM 子集 14/14 通过；整个 PQC 的完整 KEM/DSA、Level 2、G2
+  技术冻结及 G3–G5 仍未闭环，当前不可发布。
 gates:
   G0: pass
   G1: pass
@@ -298,9 +135,10 @@ findings:
   summary: RTL 检查与专项证据未闭环
   next_action: 09：上游通过后补 FuseSoC lint/elab/综合适用检查及 CDC/formal 证据
 - id: ISSUE-002
-  status: closed
-  summary: 根 FuseSoC core 已建立，模块 UT 由同一 fileset 实际编译执行
-  next_action: 保持新增 RTL/UT 与 core 同步；不表示 lint/formal/synthesis 已通过
+  status: open
+  summary: 根 Core 和 RTL filelist 已补入 Decaps 及现存用例，Makefile 已统一调用 runner；UVM VIP 的
+    FuseSoC depend 接入仍缺
+  next_action: 08：使用只读资产元数据适配器闭合依赖；不能把本地 VCS 编译等同于完整 FuseSoC UVM target
 - id: ISSUE-003
   status: open
   summary: 四类追踪矩阵未闭环
@@ -327,16 +165,16 @@ findings:
   next_action: 84/84 全需求归属与引用检查通过；不等于 G1 或 RTL 通过
 - id: SUITE-002
   status: open
-  summary: 20 个 LLD 模块均有有效设计对象及实际 RTL 文件；完整算法、转换与掩码集成仍缺
-  next_action: 优先正确性，继续实现数据依赖和安全边界；可接受性能优化暂缓
+  summary: 22 个 LLD 模块已建立静态 RTL 链接；完整算法、转换、页授权与掩码集成仍缺
+  next_action: 继续完成 KeyGen/DSA/Level2；静态链接不等于实现完整性
 - id: SUITE-003
   status: closed
   summary: 当前 RDL 已重新生成 CSR/Header/RAL/IP-XACT，来源哈希一致，直接 CSR UT 通过
   next_action: 继续按 REG-RTL-001 跟踪外层策略与系统行为；不能手修生成 RTL
 - id: SUITE-004
-  status: closed
-  summary: 全量报告为 39 项；当前输入绑定通过，覆盖全部 RTL module 名称
-  next_action: 保留精确 PASS、失败日志及运行前后输入哈希；模块映射不等于功能覆盖率
+  status: open
+  summary: 当前根 Core 全量模块 UT 已重跑，结果 pass，共 40 项；完整模块映射与新增算法专项仍需补齐
+  next_action: 以本轮 module_ut_summary 为准，不能替代完整 G3 或当前端到端算法测试
 - id: SUITE-005
   status: open
   summary: 参数 initial/$fatal 被工作区审计识别为 RTL 中仅仿真构造
@@ -355,8 +193,8 @@ findings:
   next_action: 保留独立 CRC/ABI oracle
 - id: A03
   status: open
-  summary: 输入 DMA 到算法再到输出/completion 的命令链未闭合
-  next_action: 接通真实数据依赖；输出与 completion 写回后才 IRQ
+  summary: 真实 Encaps/Decaps 的输入、算法、输出、completion 与 IRQ 链已由 KAT 验证；其他命令及失败退休仍缺
+  next_action: 补 KeyGen/DSA 和故障、取消、超时的端到端检查
 - id: A04
   status: closed
   summary: Keccak 多块、padding、空输入、squeeze 已修复
@@ -433,77 +271,97 @@ findings:
   status: closed
   summary: SRAM 清除同拍响应/tag 泄漏、sweep 期间 tag 发布和 DSA 摘要仅清指针已修
   next_action: 保留物理缓存擦除、同拍撤销和非法 DSA 配置的回归；完整双 share/epoch 存储仍未完成
+- id: VPLAN-001
+  status: open
+  summary: 真实RTL与冻结KAT的完整UVM计划已抽取；12个测试入口尚未实现
+  next_action: 闭合LLD及VP0、冻结向量、实现平台与计算链，执行六参数18操作及全量负向/安全回归
+- id: EVIDENCE-001
+  status: open
+  summary: 当前 Decaps/Encaps/APB UVM 与模块 UT 已重新绑定最终源码；历史证据不补签，其他阶段仍不完整
+  next_action: 补全当前配置、覆盖、形式与全命令证据
+- id: RTL-DECAPS-001
+  status: closed
+  summary: 已实现 SRAM 写数据、配置锁存、WORKKEY 请求/响应与持续哈希握手；三参数 KAT 和背压通过
+  next_action: 保留 45 场景回归；超时/撤销/epoch 安全义务另行闭合
+- id: RTL-DECAPS-002
+  status: closed
+  summary: 重建正确私钥偏移、逐 poly 解码/解压/NTT/累积链，原密文页16–17与重加密页20–21隔离
+  next_action: 保持九组正常及27组隐式拒绝的独立冻结向量；页标签/清除见 A11
+- id: RTL-DECAPS-003
+  status: closed
+  summary: 按 ct_words 全长比较，累积 diff 并用掩码选择 Kprime/Kbar；首/中/末失配与正常均通过
+  next_action: 保留每向量正常/拒绝同周期检查；不把有限采样结果表述为完整侧信道安全证明
+- id: UVM-RUNNER-001
+  status: closed
+  summary: 已加入实际用例、双算法完成标记、输入集合/VIP/二进制变化拒绝、独立目录和编译失败证据
+  next_action: 保留28项runner故障注入测试；它们不是DUT/UVM算法通过数
+- id: UVM-BUILD-001
+  status: open
+  summary: 旧模板 Makefile 已替换为真实 runner，Core 源清单已同步；全计划回归、覆盖采集与 VIP 依赖仍缺
+  next_action: 闭合 FuseSoC UVM 依赖、AXI4 VIP、coverage、六参数18操作和配置执行
+- id: G2-TECH-001
+  status: open
+  summary: 机器G2 PASS与LLD_GATE_META open/false并存，不能替代完整技术冻结
+  next_action: 完成剩余FSM/Level2/授权/清除技术评审后按既有用户委托冻结，不重复索取授权
+- id: VIP-APB-001
+  status: open
+  summary: 历史反馈：APB VIP Core缺include路径和config文件，尚未在本轮重验
+  next_action: 复核VIP仓F-APB-01，验证FuseSoC depend真实接入
+- id: VIP-APB-002
+  status: open
+  summary: 历史反馈：APB env在未配置map时连接predictor导致空指针
+  next_action: 复核VIP仓F-APB-02，并验证RAL与非RAL场景
+- id: VIP-AXI4-001
+  status: open
+  summary: 历史反馈：AXI4 VIP接口参数不匹配PQC的128-bit/40-bit主机
+  next_action: 复核VIP仓F-AXI4-01，闭合参数化接口及协议级验证
+- id: RTL-REG-002
+  status: closed
+  summary: TOP 显式驱动 ABI minor=1，独立参考模型恢复 RDL 期望；严格读回检查双 seed 通过
+  next_action: 保持参考模型和生成 RDL 契约一致，不采纳错误 DUT 实测值作为期望
+- id: RTL-APB-002
+  status: closed
+  summary: 恢复0x2F0/0x3FC的普通及特权访问，当前 DUT 返回错误并继续服务后续访问
+  next_action: 继续完整地址空间和并发/忙态保护验证；本结果不是 AXI/APB 全协议覆盖
+- id: RTL-CMD-001
+  status: open
+  summary: Encaps/Decaps 正常和合法长度拒绝路径均已完成并退休；全命令及异常路径仍缺
+  next_action: 验证其他支持操作、非法操作、取消、故障、超时有界完成
+- id: UVM-KEY-001
+  status: closed
+  summary: 纠正安全特权 PPROT=001，覆盖全部8组合、拒绝读零与无写副作用及只读元数据
+  next_action: 本结果只覆盖 CSR 窗口，不替代可信密钥域/epoch/生命周期验证
 evidence:
 - path: build/reports/quality/quality.yaml
-  sha256: e38010f5d934cbb8a2db4b6766ec2dcac92eecf25ae50ded26f526cac9a1c28b
-- path: build/reports/quality/module_ut_summary.md
-  sha256: b006c5d682f134c66a9e13de1ebb764428d6b562cdb1ee32af3565efc8ca399d
-- path: build/reports/quality/register_check.md
-  sha256: 33d6f54654151fa486d24bf8ba48f72f39607a693e03528750afcc2e1e0c6617
-- path: build/reports/register/csr_lint.log
-  sha256: 01aa9f41b1b6da1a99b32c83b4efc50829de6453d7b1a384318950452b10c26a
-- path: build/reports/quality/top_lint.md
-  sha256: e4dcd8d1cd5219613998153561956fb19cad120461567597c5e745d62568b140
-- path: build/reports/quality/random_lint.md
-  sha256: a0d76ad7ccf3ea25580d1d418dea93aadca3b06d89a2caab42a499411102f401
-- path: build/reports/quality/desc_validate_lint.md
-  sha256: 907f9bf79e4b90a6d1cf111d1a10b8e3e13676f737d188d289fc3bea8138d5bb
-- path: build/reports/quality/frontend_validate_lint.md
-  sha256: 5c4369d9cfa516e3247e370cff225907a6b6eeb0a9ac1ca4c1072e080c8c16dc
-- path: build/reports/quality/desc_fetch_window_lint.md
-  sha256: 913e318a5363c86b977a42f16f450e6ebaf0206590da100fdb8f3d6642e40671
-- path: build/reports/quality/dma_clear_lint.md
-  sha256: 4e983e27968f0169aa2f7fd2044724f895ac37114bf87e9cac1727c001f06402
-- path: build/reports/quality/dma_byte_lint.md
-  sha256: 2acf80c28334745b5e95d80f7669134e24d4729dde333312b6051758299aff4f
-- path: build/rtl/top_elab_bytes/execution.json
-  sha256: 4a7635ceba14b4b85a4217e1ff4ea54cd8f157e8b390e822193aa6b6d408616a
-- path: build/rtl/top_elab_bytes/execution.log
-  sha256: 2f42670c5b05e05df09be8b59c4faa24648f05e116a4c0be7ca0d7c3b8ae9b3d
-- path: build/verification/runner_failure_fixture/build/reports/quality/module_ut_summary.md
-  sha256: 58baa2b9633ea599b1d2e155eee54798e91d3ac02260af3a2ad44407e56914d9
-- path: build/rtl/top_elab_validate/execution.json
-  sha256: 0e13e5bff9a0e7ab5eef648695188435b6cceed2b6e1b279e4bd524784e11401
-- path: build/rtl/top_elab_validate/rebuild_execution.json
-  sha256: ddf97c4677e9df332021ee05826722dd64b30155fbefca4608137d90155b318e
-- path: build/rtl/top_elab_validate/rebuild_execution.log
-  sha256: 9d9f21cfd3afcab0118daa6f5c39c666eefe82c28abe9581ed4f72b2c8b0dc00
+  sha256: 68295f8f64f2643f1a60bc864c35d207f0869c634a99c5d0f5bdbc9e451b0c51
 - path: build/reports/quality/trace_matrix.md
-  sha256: 40ffa4169d420a01e2137bbba8d0fd943ce0edcff42a3f20dffdbc8b3d9c2804
-- path: build/design/g2_continue/register_contract_check.json
-  sha256: 853f1d9516b64ee5b964a178be4798d4c773898a76fb7c45e1f785ff58766863
-- path: build/rtl/clear_boundary_candidate/before.log
-  sha256: 8a11a29a9a467e06a9fa8834a86312a2d4e803b09d71b101e8f9aecf9b352f15
-- path: build/rtl/clear_boundary_candidate_v2/after.log
-  sha256: bf71039da872664c3534eb29c484aea787adf8817b3988aa428ac8e4993487ba
-- path: build/rtl/clear_boundary_candidate_v2/dsa_lint.md
-  sha256: 21d73450c52ac2fb8a9e17ef9517cbc6f672ca800e8e8cfca8d0e66fdb9a03ed
-- path: build/registers/ral_compile/current/uvm_compile.log
-  sha256: bb9d71561d013bfbfdbe628e31c4b6f3315006087268d81ae33bc542bcbcc6e1
-- path: build/registers/ral_compile/current/ral_compile.log
-  sha256: d83065921233656ad4ea549f74adeea457b92823a7baba30acff381974c364a9
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_csr.run.log
-  sha256: ac0963f3c58e5f593696b93626d42453b06180048013a9f856450378fa96c0b5
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_key_slots.run.log
-  sha256: ced4d4c18d4b4ad7b9492eb053a6b497fc391858cd00c4eba9eedd10c87efb42
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_top_review.run.log
-  sha256: d46024e730c09adc6a2ad842e2a6767d24c13b15709c580920760e6e2f71232e
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_clear_boundaries.run.log
-  sha256: b09cb8a50cb9c92cf5f94be2021609a11ae2f5b75b4e1350bc3c2852d3d7d76a
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_desc_validate.run.log
-  sha256: 4897bf1b892a31a4c992bd707e5acb3b0c620216e742efddab7346335d288a32
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_cmd_frontend.run.log
-  sha256: 9b034c9b326dfe0df81bd75e6fdd8001276756c7ae954ca8b39120f9f6ed4241
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_frontend_crc.run.log
-  sha256: b1e702157249dfcfc2087c1121f337f18ff8375ec2bffccb8986524405626b2f
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_desc_fetch.run.log
-  sha256: 46262a32e59be35ec9abc6ac631bc8fa1a7658463cad99fc1f31f9a09ec9d80f
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_dma.run.log
-  sha256: 20b534c3d844846df89be0fa0ca3be17e63efb81776fcf767991a0a199794004
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_dma_cancel.run.log
-  sha256: 69b13bdd3ea066abaf32358a7bc4b7b325c7e7f7827bf73cfb2de7dca4bda373
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_sram_byte_access.run.log
-  sha256: 0a6866454bab47dff3cdaa43f73b10f44e99f86b886ecebecae6dccb52b71fbd
-- path: build/sim/run/ut/run.O3lltRFw/ut_pqc_dma_sram.run.log
-  sha256: 5a8fbae585b7901160f29455761241eec601c5b3ee75f20e6fcd0574f672deb9
+  sha256: 0842f6b37d5a9cad28e0abc9e20cf3b747dbfc7075778865bfc9f76bbb81036a
+- path: build/reports/quality/module_ut_summary.md
+  sha256: c099a3a0e05d4d609d7bcce954b0186024f2fd306e5f532a96f1ed61b9ae3e68
+- path: build/decaps_repair/final_ut_driver.log
+  sha256: adc3043c6e151834664fbb02ab2f5ccfb04ce430fba24b31e9124536cb7d9ca5
+- path: build/decaps_repair/final_uvm_driver.log
+  sha256: c75df50e41d19ab625209d8ce4199d9b2b034c1ccfba3ac69e0bb10f59e31cbb
+- path: build/sim/uvm/run-kp8otz4o/summary.json
+  sha256: dcff0c2d128354294fd058165e83a432b0f7ec2b5be6050f989f246a78d2a595
+- path: build/sim/uvm/run-kp8otz4o/junit.xml
+  sha256: ea0c286c9102586f5d8ebc840d0c227380df18de8f7ac06203515b0c2de36d4c
+- path: build/decaps_repair/runner_pytest.xml
+  sha256: b2cd403b1c03e73ea6b032312ba71c9cf26766cab6bfccb4e78e61d9fcd77198
+- path: build/decaps_repair/lint_final_report.md
+  sha256: 94290d1a93180add0b4fa015814b3f7e5a9531956ac761bc49bfecf660d088d5
+- path: build/decaps_repair/lint_final_driver.log
+  sha256: 84ef185011164c84f46943f5b759f88c2ca087ead2a9f97dd59457e7803cc85e
+- path: build/decaps_repair/lint_counts.json
+  sha256: 57d666def8ee3a54b4a4d9bcc96d0dccfdae01d204bd227440b76f84eeba0a88
+- path: build/decaps_repair/trace_final.log
+  sha256: fb6ce3bfe1077f23a7d3583288032735931f9d67e1f7b081b193180ae48a5474
+- path: build/decaps_repair/extract_lld_final.log
+  sha256: 8fc9abd631d2515c6176ce9f4dc1fa886c9d816e7b8ce193beb261ec462c9f69
+- path: build/decaps_repair/quality_final.log
+  sha256: 4336a8ec5d9816c9040ee94aef7f1ed1103f46b9a3da7086e1032865fb0e80d3
+- path: build/decaps_repair/audit_final.log
+  sha256: 0b8ff613dce120ab7e579a2e67a55546b234e5676c4591868490b8ce7e2b3e0f
+- path: build/decaps_repair/package_check.json
+  sha256: cc405657cb14527a72a34487f19af6eaa55117e86de1790777e7bca4aedface0
 END_IP_REPORT_METADATA -->
