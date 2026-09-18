@@ -13,18 +13,13 @@ create_clock -name CLK_CORE -period 10 [get_ports clk]
 set_clock_uncertainty 0.10 [get_clocks CLK_CORE]
 set_clock_transition 0.10 [get_clocks CLK_CORE]
 
-# Asynchronous reset / sideband inputs are released synchronously by the SoC and
-# are not timed against the core clock.
-set_false_path -from [get_ports {rst_n lifecycle_strap tamper_in zeroize_req_in privileged debug_unlocked}]
-set_false_path -from [get_ports {fault_inject_ecc_ue fault_inject_ctrl}]
-
-# Entropy source handshake: behaves as an asynchronous producer.
-set_false_path -from [get_ports {entropy_valid entropy_data entropy_health_ok entropy_domain_tag}]
-set_false_path -to [get_ports entropy_ready]
-
-# Key Manager sideload channel: trusted, already synchronized at the SoC level.
-set_false_path -from [get_ports {km_begin km_handle km_algo km_pset km_usage km_bytes km_valid km_data km_last km_revoke}]
-set_false_path -to [get_ports {km_begin_ready km_ready km_done km_error}]
+# Only reset assertion is excluded from data-path timing. All other external
+# inputs get a conservative same-clock budget, including entropy, Key Manager,
+# generated-key custody/ACK and epoch. CDC/RDC requires separate signoff; a
+# false-path exception must not be used to conceal missing synchronization.
+set_false_path -from [get_ports rst_n]
+set_input_delay -clock CLK_CORE 1.0 [remove_from_collection [all_inputs] [get_ports {clk rst_n}]]
+set_output_delay -clock CLK_CORE 1.0 [all_outputs]
 
 # APB4 control interface.
 set pqc_apb_inputs [remove_from_collection [all_inputs] [get_ports {clk rst_n}]]

@@ -93,7 +93,8 @@ class tc_dsa_verify_main extends tc_base;
     `uvm_info("DSA_VERIFY_CASE_PASS",$sformatf("case=%0d variant=%0d pset=%0d message=%0d context=%0d",n*7+variant,variant,pset,mlen,clen),UVM_NONE)
   endtask
   task run_phase(uvm_phase phase);
-    phase.raise_objection(this);fork monitor();join_none
+    phase.raise_objection(this);
+    env.apb_vip.monitor.set_report_verbosity_level(UVM_NONE);fork monitor();join_none
     repeat(20) @(negedge bus.clk);bringup();
     for(int n=0;n<9;n++) for(int v=0;v<7;v++) run_case(n,v);
     `uvm_info("DSA_VERIFY_MAIN_PASS","63 independent normal and rejection vectors",UVM_NONE)

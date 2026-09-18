@@ -51,3 +51,28 @@ rtl_file: rtl/pqc_dsa_verify.sv
 rtl_module: pqc_dsa_verify
 implements: [LLD.MOD.PQC.DSASEQ.VERIFY]
 END_RTL_MAP_META -->
+
+## 程序数据通路对象
+
+以下对象的32-bit宽度指受保护的本地word数据通路；SHAKE字节接口、64-bit熵输入
+及可信身份头仍按各自端口宽度传输。算术由共享引擎执行，程序自身保持单未决操作。
+正常握手停顿保留地址、数据、返回状态和计数；clear优先屏蔽所有请求及结果。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.PQC.DSA_VERIFY.PROGRAM
+module_ref: LLD.MOD.PQC.DSASEQ.VERIFY
+width: 32
+operators:
+- canonical_hint_decode
+- z_norm_accumulate
+- public_key_signature_unpack
+- message_context_shake_mu
+- shared_ntt_matrix_mac_dispatch
+- use_hint_w1_reconstruction
+- full_challenge_compare
+req_ref:
+- LRS.FUNC.PQC.DSA_VERIFY.001
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+

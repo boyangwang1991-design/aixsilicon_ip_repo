@@ -25,11 +25,13 @@
 
 ## 继续学习硬件实现
 
-读完基础章节后，进入独立的[《PQC 硬件教学手册》](hardware_tutorial/index.md)。五章依次讲架构与 RTL、软件命令与接口、计算流程与存储、安全控制案例、RTL 和验证结果的阅读方法。它以教学为主，不占用后续 skill 生成的标准 `user_manual` 或集成文档。
+读完基础章节后，进入独立的[《PQC 硬件教学手册》](hardware_tutorial/index.md)。前五章讲架构与 RTL、软件命令与接口、计算流程与存储、安全控制案例、RTL 和验证结果的阅读方法；后五章以 [ML-KEM-768 Encaps 完整跟踪](hardware_tutorial/06-encaps-walkthrough.md)串联跨层对照、时序波形、数据表示、存储与性能。它以教学为主，不占用后续 skill 生成的标准 `user_manual` 或集成文档。
+
+新增的[跨层实验](examples/bridge_demo.py)可核对完整冻结 Encaps 向量，练习压缩误差、packing、握手计数与性能估算。先读对应章节，再运行实验，最后回到源码解释每个输出数字。
 
 ## 如何使用图和代码
 
-七张 ChatGPT 原生文生图已插入对应章节，重点包含 **KEM 解封装计算流程、DSA 签名拒绝循环和硬件模块框图**，另有用途、蝶形和秘密生命周期辅助图。图内保留常见英文术语，图下注有中文说明；精确协议由正文表格与 Mermaid 图给出。图片的提示词和用途保存在[配图记录](assets/learning/README.md)。示例代码在 [learning_demo.py](examples/learning_demo.py)，实际行为仍以链接到的源码为准。
+八张 ChatGPT 原生文生图已插入对应章节，重点包含 **KEM 封装与解封装计算流程、DSA 签名拒绝循环和硬件模块框图**，另有用途、蝶形和秘密生命周期辅助图。图内保留常见英文术语，图下注有中文说明；精确协议由正文表格与 Mermaid 图给出。图片的提示词和用途保存在[配图记录](assets/learning/README.md)。基础示例代码在 [learning_demo.py](examples/learning_demo.py)，跨层示例在 [bridge_demo.py](examples/bridge_demo.py)，实际行为仍以链接到的源码为准。
 
 全书统一约定：`q` 为模数，`n=256` 为多项式系数数目，`hat` 或 `â` 表示 NTT 域，`||` 表示字节拼接；`B` 为字节，`bit` 为位。公式中的乘法若操作数是多项式，就表示环上的乘法。图中的“目标架构”不等于当前 RTL 已经完整连通。
 

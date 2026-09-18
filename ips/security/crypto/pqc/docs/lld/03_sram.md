@@ -162,3 +162,12 @@ RTL TODO：`rtl/pqc_secure_sram_ctrl.sv` 实现完整请求标签、双域、向
 读数据只有所属端口 ready 有效时才展示；其他端口及空闲周期输出零。tag_check_ok
 在同一边界立即失效，sweep 期间不接受 tag 发布，防止擦除过程中重新授权。
 这只修正现有 scalar 端口，完整双 share/tag/epoch 协议仍按本册目标继续实现。
+
+## 当前候选综合入口约束
+
+FuseSoC synth/lint选择rtl/synthesis/pqc_ecc_sram.sv纯存储空壳，仿真/UT选择
+rtl/pqc_ecc_sram.sv行为视图。综合脚本检查源清单并要求保留working SRAM与
+WORKKEY两个存储实例。行为级数组不得进入逻辑映射；ECC/授权/清零控制仍综合。
+当前word_valid是每word一bit的必要有效性元数据，32/64/96KiB对应8192/16384/24576bit；
+页失效采用按物理DEPTH生成的固定页寄存器组（小型SIM_WORDS末页允许不足256bit），避免256个动态写位置的组合展开。它仍计入控制逻辑面积。
+无真实宏库时只允许标为排除SRAM宏面积与宏延迟的逻辑表征，不得宣称完整PPA达标。

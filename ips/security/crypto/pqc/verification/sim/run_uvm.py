@@ -100,7 +100,7 @@ def verdict(test: str, text: str, rc: int) -> tuple[str, str]:
         counts = re.findall(rf"^\s*UVM_{severity}\s*:\s*(\d+)\s*$", text, re.M)
         if counts != ["0"] or re.search(rf"^UVM_{severity}[ \t]+(?!:)\S", text, re.M):
             return "fail", f"UVM_{severity} present or invalid summary"
-    if re.search(r"^(?:Error-|Fatal:|PQC_RUN_TIMEOUT|PQC_EXEC_ERROR)", text, re.M):
+    if re.search(r"^(?:Error-|Fatal:|Warning-\[STASKW_|PQC_RUN_TIMEOUT|PQC_EXEC_ERROR)", text, re.M):
         return "fail", "tool error or timeout"
     algorithm = {"tc_kem_encaps_main": "ENCAPS", "tc_kem_decaps_main": "DECAPS", "tc_kem_keygen_main": "KEYGEN", "tc_dsa_verify_main": "DSA_VERIFY", "tc_dsa_sign_main": "DSA_SIGN", "tc_dsa_keygen_main": "DSA_KEYGEN"}.get(test)
     if algorithm:

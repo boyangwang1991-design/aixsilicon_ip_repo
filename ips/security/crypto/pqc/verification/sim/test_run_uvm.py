@@ -19,14 +19,14 @@ def log_for(test="tc_cmd_smoke", algorithm=None):
     text = f"UVM_INFO @ 0: reporter [RNTST] Running test {test}...\n"
     if algorithm:
         text += "".join(f"UVM_INFO test.sv(1) @ 10: test [{algorithm}_CASE_PASS] case={i} pset={i//2+1}\n"
-                        for i in range({"DECAPS": 45, "ENCAPS": 6, "KEYGEN": 9}[algorithm]))
+                        for i in range({"DECAPS": 45, "ENCAPS": 6, "KEYGEN": 9, "DSA_KEYGEN": 9, "DSA_VERIFY": 63, "DSA_SIGN": 27}[algorithm]))
         text += f"UVM_INFO test.sv(2) @ 20: test [{algorithm}_MAIN_PASS] checked\n"
     return text + "--- UVM Report Summary ---\nUVM_ERROR : 0\nUVM_FATAL : 0\n"
 
 
-@pytest.mark.parametrize("algorithm", ["ENCAPS", "DECAPS", "KEYGEN"])
+@pytest.mark.parametrize("algorithm", ["ENCAPS", "DECAPS", "KEYGEN", "DSA_KEYGEN", "DSA_VERIFY", "DSA_SIGN"])
 def test_kat_completion_required(runner, algorithm):
-    name = f"tc_kem_{algorithm.lower()}_main"
+    name = f"tc_{algorithm.lower()}_main" if algorithm.startswith("DSA_") else f"tc_kem_{algorithm.lower()}_main"
     good = log_for(name, algorithm)
     assert runner.verdict(name, good, 0)[0] == "pass"
     assert runner.verdict(name, log_for(name), 0)[0] == "fail"
@@ -43,6 +43,7 @@ def test_kat_completion_required(runner, algorithm):
     lambda s: "UVM_ERROR test.sv(1) @ 0: test [BUG] failed\n" + s,
     lambda s: "Error-[TEST] tool failure\n" + s,
     lambda s: s + "\nPQC_RUN_TIMEOUT after 1s\n",
+    lambda s: s + "\nWarning-[STASKW_RMCOF] Cannot open file\n",
 ])
 def test_false_pass_rejected(runner, change):
     assert runner.verdict("tc_cmd_smoke", change(log_for()), 0)[0] == "fail"

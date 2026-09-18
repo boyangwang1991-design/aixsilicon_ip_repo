@@ -11,6 +11,9 @@
 | [05-kem-decaps-flow.png](05-kem-decaps-flow.png) | [第 5 章](../../learning/05-ml-kem.md)、[硬件流程](../../hardware_tutorial/03-flows-memory.md) | 解密、G、重加密、全长比较、J、选择的串行推进 | 保留原始 c，两份候选都计算，不公开失配位 |
 | [06-dsa-sign-flow.png](06-dsa-sign-flow.png) | [第 6 章](../../learning/06-ml-dsa.md)、[硬件流程](../../hardware_tutorial/03-flows-memory.md) | 签名尝试的计算链和拒绝回路 | 重试仅返回采样；签名包含 c_tilde、z、h |
 | [07-hardware-blocks.png](07-hardware-blocks.png) | [硬件教学架构](../../hardware_tutorial/01-architecture-implementation.md) | 前端、序列器、共享计算、存储及安全服务分层 | 安全服务扇出省略，具体连接由正文表格解释 |
+| [08-encaps-computation.png](08-encaps-computation.png) | [Encaps 完整跟踪](../../hardware_tutorial/06-encaps-walkthrough.md) | 封装计算主线、共享秘密派生分支 | y 做 NTT、消息只加入 v；循环由正文展开 |
+
+第 8 张图的提示词、两次连接失败及最终重试记录见 [supplement-prompts.json](supplement-prompts.json)。最终图已目视核对并插入章节；全套现有八张图。
 
 部分初始生成请求超时，重试后成功。蝶形图初稿连线错误，未纳入交付；最终使用分步公式图。签名初稿自行添加了错误公式，已移除并修正重试路线，精确公式在正文维护；解封装图补齐了跨行推进箭头。七张交付图均经过目视检查。最终图内主要采用英文标签，各章图注给出中文翻译与适用边界。
 

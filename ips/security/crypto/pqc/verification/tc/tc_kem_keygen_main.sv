@@ -148,6 +148,7 @@ class tc_kem_keygen_main extends tc_base;
   endtask
   task run_phase(uvm_phase phase);
     phase.raise_objection(this);
+    env.apb_vip.monitor.set_report_verbosity_level(UVM_NONE);
     fork monitor();serve_custody();join_none
     repeat(20) @(negedge bus.clk);bringup();
     for(int n=0;n<9;n++) run_case(n);

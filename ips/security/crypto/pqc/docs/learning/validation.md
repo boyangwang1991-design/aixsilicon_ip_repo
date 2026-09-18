@@ -37,6 +37,10 @@ SRAM owner/debug denial and secret-page zeroize: OK
 
 ## 通用工作区检查的限制
 
+### 五个进阶专题的追加检查（2026-09-18）
+
+新增硬件教学第 6～10 章及 `bridge_demo.py`，检查记录见[补充检查](../hardware_tutorial/supplement-validation.md)。上面的 21 份文档、7 张图统计对应此前交付，不是追加后的总数。
+
 初次在沙箱内尝试 `make check` 与 `pre-commit run --all-files`，各设 45 秒上限，以防环境退出挂起无限阻塞。`make check` 停在 bootstrap 已输出 materialize SKIP 后；pre-commit 的前七项基础检查通过，但停在本地 `aix-guard-runtime-paths`。这两次沙箱运行超时终止，退出码 137，本身不算通过。
 
 随后在沙箱外重跑：`make check` 的 Ruff、6 项 schema 同步检查和 125 个工作区 pytest 用例通过，退出码 0；`pre-commit run --all-files` 全部通过，退出码 0。

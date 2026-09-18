@@ -81,3 +81,44 @@ rtl_file: rtl/pqc_key_custody.sv
 rtl_module: pqc_key_custody
 implements: [LLD.MOD.PQC.WORKKEY.CUSTODY]
 END_RTL_MAP_META -->
+
+## 程序数据通路对象
+
+以下对象的32-bit宽度指受保护的本地word数据通路；SHAKE字节接口、64-bit熵输入
+及可信身份头仍按各自端口宽度传输。算术由共享引擎执行，程序自身保持单未决操作。
+正常握手停顿保留地址、数据、返回状态和计数；clear优先屏蔽所有请求及结果。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.PQC.KEM_KEYGEN.PROGRAM
+module_ref: LLD.MOD.PQC.KEMSEQ.KEYGEN
+width: 32
+operators:
+- entropy_seed_capture
+- shared_shake_sha3_dispatch
+- shared_sampling_dispatch
+- shared_ntt_matrix_mac_dispatch
+- codec_public_key_serialization
+- private_workkey_stream
+- secret_word_scrub
+req_ref:
+- LRS.FUNC.PQC.KEM_KEYGEN.001
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.PQC.KEY_CUSTODY.STREAM
+module_ref: LLD.MOD.PQC.WORKKEY.CUSTODY
+width: 32
+operators:
+- trusted_header_snapshot
+- full_identity_ack_compare
+- single_outstanding_private_read
+- registered_stream_backpressure
+- revoke_priority_commit_gate
+req_ref:
+- LRS.INTF.PQC.KEY_MANAGER.001
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+

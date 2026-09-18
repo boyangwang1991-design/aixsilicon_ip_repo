@@ -23,3 +23,10 @@ KeyGen 增量用 `TEST=tc_kem_keygen_main` 运行：三参数集各三组d/z，�
 公钥/句柄DMA及completion均做逐字节检查。托管错误transaction ACK不能提前退休。
 `docs/learning/*.md` 是辅助教学文档，其前后哈希单独记录在summary，允许并发编辑；
 其余设计/验证文档、源码、向量、Core及VIP仍参与严格构建身份检查。
+
+DSA数据通路增量：`tc_dsa_keygen_main`九组公钥/私钥全字节及托管ACK；
+`tc_dsa_verify_main`六十三组正常/篡改；`tc_dsa_sign_main`二十七组确定性/重复/hedged签名。
+离线oracle固定dilithium-py 1.4.0，纯消息长度0/137/65537 B、context长度0/1/255 B。
+Sign逐尝试固定边界并限制次数，签名的独立oracle值不是RTL内部信号推导。
+所有case具有唯一连续编号；读向量文件失败、缺失标记或输入哈希变化一律失败。
+完整VPLAN含Level2、故障/撤销、HashML-DSA和覆盖率义务，算法KAT通过不替代这些检查。

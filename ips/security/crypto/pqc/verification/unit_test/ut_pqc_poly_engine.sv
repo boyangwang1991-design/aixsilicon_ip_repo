@@ -144,6 +144,17 @@ module ut_pqc_poly_engine;
   endfunction
 
   initial begin
+    // Exact RTL reduction versus independent mathematical remainder, including
+    // the entire 46-bit input range (not just products of canonical operands).
+    for(int n=0;n<200000;n++) begin
+      logic[45:0] v;
+      if(n<64) v=46'(n);
+      else if(n<128) v=46'h3fffffffffff-46'(n-64);
+      else if(n<256) v=46'd8380417*46'(n-128)+46'(n%3)-1'b1;
+      else v={$urandom,$urandom};
+      if(dut.dsa_reduce(v)!==32'(v%46'd8380417))
+        $fatal(1,"DSA fold mismatch x=%h actual=%h expected=%h",v,dut.dsa_reduce(v),v%46'd8380417);
+    end
     start = 1'b0; prim = 4'h0; domain = 1'b0;
     src_page = 8'h0; src2_page = 8'h0; dst_page = 8'h4;
     zeroize_req = 1'b0;

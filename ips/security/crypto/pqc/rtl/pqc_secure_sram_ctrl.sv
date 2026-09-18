@@ -435,16 +435,25 @@ module pqc_secure_sram_ctrl #(
   assign tag_check_ok = rst_n && !zeroize_req && !zwr_active && (32'(tag_check_page) < 32'(NUM_PAGES)) &&
                         page_valid[tag_check_page];
 
-  // Validity is per word: publishing one write must not expose stale neighbours.
-  always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) word_valid <= '0;
-    else if (zeroize_req) word_valid <= '0;
-    else if (tag_we && !tag_valid && (tag_page < NUM_PAGES)) begin
-      for (int i=0; i<WORDS_PER_PAGE; i++)
-        if ((int'(tag_page)*WORDS_PER_PAGE+i) < DEPTH)
-          word_valid[int'(tag_page)*WORDS_PER_PAGE+i] <= 1'b0;
-    end else if (accept && sel_we && (|sel_wstrb)) word_valid[addr_idx] <= 1'b1;
+  // Validity is per word. Each physical page owns a fixed-width register bank;
+  // the last bank may be short in a small SIM_WORDS fixture. NUM_PAGES includes
+  // metadata slots beyond physical capacity, so it cannot size these slices.
+  for(genvar p=0;p<(DEPTH+WORDS_PER_PAGE-1)/WORDS_PER_PAGE;p++) begin : g_word_valid
+    localparam int BASE=p*WORDS_PER_PAGE;
+    localparam int PW=(DEPTH-BASE<WORDS_PER_PAGE) ? DEPTH-BASE : WORDS_PER_PAGE;
+    logic [PW-1:0] bits_q;
+    assign word_valid[BASE +: PW]=bits_q;
+    always_ff @(posedge clk or negedge rst_n) begin
+      if(!rst_n) bits_q<='0;
+      else if(zeroize_req) bits_q<='0;
+      else if(tag_we && !tag_valid && (tag_page<NUM_PAGES)) begin
+        if(tag_page==p) bits_q<='0;
+      end else if(accept && sel_we && (|sel_wstrb) &&
+                  (32'(addr_idx)>=BASE) && (32'(addr_idx)<BASE+PW))
+        bits_q[32'(addr_idx)-BASE]<=1'b1;
+    end
   end
+
 
 
   always_ff @(posedge clk or negedge rst_n) begin

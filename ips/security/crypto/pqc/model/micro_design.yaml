@@ -95,6 +95,22 @@ modules:
   rtl_intent:
     separate_module: true
     suggested_name: pqc_dsa_keygen
+- id: LLD.MOD.PQC.DSASEQ.SIGN
+  name: pqc_dsa_sign
+  parent_ref:
+  - LLD.MOD.PQC.DSASEQ
+  hld_ref:
+  - HLD.MOD.PQC.DSASEQ
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  clock_domains:
+  - HLD.DOM.CLK.PQC.CORE
+  reset_domains:
+  - HLD.DOM.RST.PQC.MAIN
+  rtl_intent:
+    separate_module: true
+    suggested_name: pqc_dsa_sign
 - id: LLD.MOD.PQC.DSASEQ.VERIFY
   name: pqc_dsa_verify
   parent_ref:
@@ -608,6 +624,53 @@ datapaths:
   - LRS.SEC.PQC.SLOT.005
   applicability:
     expr: 'true'
+- id: LLD.DP.PQC.DSA_KEYGEN.PROGRAM
+  module_ref: LLD.MOD.PQC.DSASEQ.KEYGEN
+  width: 32
+  operators:
+  - entropy_xi_capture
+  - shared_shake_dispatch
+  - shared_expand_s_a_dispatch
+  - shared_ntt_matrix_mac_dispatch
+  - power2round_t1_t0_split
+  - private_workkey_serialization
+  - secret_word_scrub
+  req_ref:
+  - LRS.FUNC.PQC.DSA_KEYGEN.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.DSA_SIGN.PROGRAM
+  module_ref: LLD.MOD.PQC.DSASEQ.SIGN
+  width: 32
+  operators:
+  - private_workkey_decode
+  - message_context_shake_mu
+  - deterministic_or_hedged_seed
+  - shared_expand_mask_ntt_matrix_mac
+  - z_r0_ct0_norm_accumulate
+  - hint_encode
+  - public_parameter_attempt_boundary
+  - signature_commit_and_secret_scrub
+  req_ref:
+  - LRS.FUNC.PQC.DSA_SIGN.001
+  - LRS.FUNC.PQC.DSA_SIGN.002
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.DSA_VERIFY.PROGRAM
+  module_ref: LLD.MOD.PQC.DSASEQ.VERIFY
+  width: 32
+  operators:
+  - canonical_hint_decode
+  - z_norm_accumulate
+  - public_key_signature_unpack
+  - message_context_shake_mu
+  - shared_ntt_matrix_mac_dispatch
+  - use_hint_w1_reconstruction
+  - full_challenge_compare
+  req_ref:
+  - LRS.FUNC.PQC.DSA_VERIFY.001
+  applicability:
+    expr: 'true'
 - id: LLD.DP.PQC.FE.VALIDATE
   module_ref: LLD.MOD.PQC.FE.VALIDATE
   input_width: 1024
@@ -700,6 +763,34 @@ datapaths:
   representation: normalized_kem_coefficients_and_serialized_bytes
   req_ref:
   - LRS.FUNC.PQC.KEM_ENCAPS.001
+- id: LLD.DP.PQC.KEM_KEYGEN.PROGRAM
+  module_ref: LLD.MOD.PQC.KEMSEQ.KEYGEN
+  width: 32
+  operators:
+  - entropy_seed_capture
+  - shared_shake_sha3_dispatch
+  - shared_sampling_dispatch
+  - shared_ntt_matrix_mac_dispatch
+  - codec_public_key_serialization
+  - private_workkey_stream
+  - secret_word_scrub
+  req_ref:
+  - LRS.FUNC.PQC.KEM_KEYGEN.001
+  applicability:
+    expr: 'true'
+- id: LLD.DP.PQC.KEY_CUSTODY.STREAM
+  module_ref: LLD.MOD.PQC.WORKKEY.CUSTODY
+  width: 32
+  operators:
+  - trusted_header_snapshot
+  - full_identity_ack_compare
+  - single_outstanding_private_read
+  - registered_stream_backpressure
+  - revoke_priority_commit_gate
+  req_ref:
+  - LRS.INTF.PQC.KEY_MANAGER.001
+  applicability:
+    expr: 'true'
 - id: LLD.DP.PQC.KEYSLOT.AUTH
   module_ref: LLD.MOD.PQC.KEYSLOT
   input_width: 32
@@ -2433,6 +2524,11 @@ rtl_map:
   rtl_module: pqc_dsa_keygen
   implements:
   - LLD.MOD.PQC.DSASEQ.KEYGEN
+- id: RTL.PQC.DSA_SIGN
+  rtl_file: rtl/pqc_dsa_sign.sv
+  rtl_module: pqc_dsa_sign
+  implements:
+  - LLD.MOD.PQC.DSASEQ.SIGN
 - id: RTL.PQC.DSA_VERIFY
   rtl_file: rtl/pqc_dsa_verify.sv
   rtl_module: pqc_dsa_verify
@@ -2742,11 +2838,13 @@ provenance:
   - path: docs/lld/03_dsaseq.md
     sha256: ac46cdd03e2e0fa1df469edd71a48548a036d475ab53cd1897c67e3e003f55fa
   - path: docs/lld/03_dsaseq_keygen.md
-    sha256: 8822b0821bf346b0f3c65b3314f586268d89494000fa6afa066a7c487e3de8f3
+    sha256: a31408c33864246a2fa02e93d8797758955ea04eba5435cf7cc8d21a6705da9e
+  - path: docs/lld/03_dsaseq_sign.md
+    sha256: 5cc99d2a83b224730c7f8f378017dbcf0ec6efec0e3ac22684bdb644bcadeb77
   - path: docs/lld/03_dsaseq_verify.md
-    sha256: 8fd83e51a27c0fd30bb218b9fd5adec5135bd91ee3d1be5d6e665870af42ed19
+    sha256: 7fe44be5b7311e0beb3548b78d696cee37acf4d72dfea5fe775ee5d44ff102d8
   - path: docs/lld/03_fault.md
-    sha256: 2a872e84c854cae2d3e029cb62f2f8c213566e01325b08929281f3b649930d44
+    sha256: 6bddb66b82bbd8e2b90c3ffb77092dc85f4b53e72fcc07859d892ee6c8ba5217
   - path: docs/lld/03_fe.md
     sha256: 0440e8d2b34aa2935a21f6e8ee0e8c9fc9654c3675a95b24622481873d817350
   - path: docs/lld/03_fe_desc.md
@@ -2764,13 +2862,13 @@ provenance:
   - path: docs/lld/03_kemseq_encaps.md
     sha256: 37df7d18ded428e4ab7fb70b145971522a81df5068d3bab7532eaba12a1aa3bb
   - path: docs/lld/03_kemseq_keygen.md
-    sha256: 7327c0979e42eff71003ef578a7eb8ec4764562b3bc06e6a2c4b58fdc6f5f95a
+    sha256: eee30dd406ed60b81a5df5324dbc66ff3951756ff1951eb5d7646bba1a3697a8
   - path: docs/lld/03_keyslot.md
     sha256: 9cfcadb449157e63897485eed8e2af43eb39e81d18029be682335491209c554f
   - path: docs/lld/03_masked_and.md
     sha256: e06d5296e96619484bab48d9cf0dce3ef713207d4d7f81140a828b7a24e36131
   - path: docs/lld/03_poly.md
-    sha256: 360d6091e229e80942523273c1837638a2b8611a1254de89767e39d62770600b
+    sha256: af5f4521ddfc44d3a19a03973f1448ed1ff7da01606aa0f9c4ace7a3ab9b81d1
   - path: docs/lld/03_register_behavior_1.md
     sha256: ac91016503456459a98e973c6cb30e180cefb5d96e7e65ed7b126f2476b95af3
   - path: docs/lld/03_register_behavior_2.md
@@ -2780,13 +2878,13 @@ provenance:
   - path: docs/lld/03_sampler_secret.md
     sha256: 83a94be5a87b9c8d02acc4861e04a87238f757264f81527b19e3843b69671bd2
   - path: docs/lld/03_sram.md
-    sha256: eb64c653c74fac42119b4f8af588784851dafddcb08d907b295772ee01f3196a
+    sha256: 018be573b39e3550e7995490c4b054b8b9eda1e4aeebd77436c318b58dc67421
   - path: docs/lld/03_top.md
     sha256: 1f6fb3d25bc6f88ba6f2afc2d406f12200c1b756c7ec063ca633884774e30d0e
   - path: docs/lld/03_top_read_arb.md
     sha256: ec4ba44c67eed5645f5aff72b97d8b0f3fdb86dc43c51e06b2abdc34037d07f7
   - path: docs/lld/03_workkey.md
-    sha256: 4b870de8ac0e72bc83259d42a6cdf160df30f169241e7222b231139d35a86fa8
+    sha256: cbf73b3e5b0bb53d653c1b4de0f28d6380d9909fb6a0d52b1d2de4fdac9dd425
   - path: docs/lld/04_ppa_constraints.md
     sha256: 994ea8efa38dc1e550c322749a338f3c87c0d7315246d8a0fbd24d99a1fefff4
   - path: docs/lld/04_reset_cdc_error.md
@@ -2798,9 +2896,9 @@ provenance:
   - path: docs/lld/99_quality_gate.md
     sha256: a90c568198ebe9f442ce2b03136e387fefa38453e395c363f03c1790043536ff
   - path: docs/lld/index.md
-    sha256: c5e2e44a72cc2a8ae5951ce24448fd4b92e18d086b9aca99fc4c4ffa96a315b0
+    sha256: 71eb6018cb581ed5c4cc053dc29642a8606ec650797341d091692604db6dcd57
   extractor:
     skills/05-lld-microdesign/scripts/extract_lld.py: 238bb958c64afe79861bb48d3718a6fc81d89b2928c79abab58bb176c177a432
     scripts/meta_common.py: d1958cc0ef97de27d254558978b7750483cb10116ef6915403c52733a9dc728a
     scripts/design_provenance.py: c39d12ece320525dc6e9be8dafc67e6d6b4e8568fb48152a0afc0762c8466a87
-  payload_sha256: c18b316e036bce4e3772486ad13aff3db035253dbd8ae9c311809f60480f38fa
+  payload_sha256: 2ec37c018499b841832243869b4912491819483a6770019d84574645a456dc8e

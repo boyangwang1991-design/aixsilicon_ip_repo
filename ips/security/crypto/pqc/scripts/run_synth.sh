@@ -29,6 +29,7 @@ tag="${1:-pqc}"
 [[ "$tag" =~ ^[a-zA-Z0-9_]+$ ]] || { echo "run-tag must be alphanumeric"; exit 2; }
 
 mkdir -p build/rtl
+touch build/FUSESOC_IGNORE
 run_dir=$(mktemp -d "build/rtl/synth_${tag}.XXXXXXXX")
 printf 'PQC synthesis run: %s\n' "$run_dir"
 
@@ -37,11 +38,8 @@ uv run --locked --no-sync fusesoc --cores-root=. run \
   aixsilicon:ip:pqc:0.1.0 > "$run_dir/console.log" 2>&1 || {
     tail -40 "$run_dir/console.log"; exit 1; }
 
-if ! grep -q 'PQC_SYNTHESIS_COMPLETE' "$run_dir/console.log" || \
-   grep -Eq '^Error:|Error-\[|^FATAL:|^Fatal:' "$run_dir/console.log"; then
-  echo "synthesis did not reach completion marker"
-  tail -40 "$run_dir/console.log"
-  exit 1
-fi
+# Edalize suppresses successful tool stdout in console.log. Validate the actual
+# DC log and mapped artifacts, not the FuseSoC wrapper's informational output.
+bash scripts/check_synth_result.sh "$run_dir" || exit 1
 
 printf 'Completed synthesis: %s\n' "$run_dir"

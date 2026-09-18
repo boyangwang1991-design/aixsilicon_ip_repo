@@ -263,6 +263,16 @@ module harness;
     if ($test$plusargs("DSA_KEYGEN_DIAG") && u_dut.j_gen_valid && u_dut.gen_ready && u_dut.u_dsa_keygen.idx<2)
       $display("DSAKG_DIAG state=%d idx=%d part=%d word=%h seed0=%h xi0=%h",u_dut.u_dsa_keygen.state,u_dut.u_dsa_keygen.idx,u_dut.u_dsa_keygen.sk_part,u_dut.gen_data,u_dut.u_dsa_keygen.seed[0],u_dut.u_dsa_keygen.xi[0]);
   end
-  always @(posedge clk) if(u_dut.u_frontend.fsm_state==pqc_pkg::S_VALIDATE)
-    $display("VALIDATE_DIAG valid=%b error=%h keyok=%b handle=%h/%h algo=%h/%h pset=%h/%h usage=%h/%h",u_dut.u_frontend.descriptor_valid,u_dut.u_frontend.descriptor_error,u_dut.work_key_ok,u_dut.command_key_handle,u_dut.u_work_key_ram.handle_q,u_dut.u_work_key_ram.check_algo,u_dut.u_work_key_ram.algo_q,u_dut.u_work_key_ram.check_pset,u_dut.u_work_key_ram.pset_q,u_dut.u_work_key_ram.check_usage,u_dut.u_work_key_ram.usage_q);
+  // Passive timing check: normal rejection cannot retire an attempt early.
+  always @(posedge clk) begin
+    if(rst_n && !u_dut.zeroize_req_any && u_dut.u_sign.attempt_active &&
+       u_dut.u_sign.state==u_dut.u_sign.BOUNDARY &&
+       u_dut.u_sign.attempt_cycles>=u_dut.u_sign.attempt_limit)
+      if(u_dut.u_sign.attempt_cycles!=u_dut.u_sign.attempt_limit)
+        $fatal(1,"DSA Sign attempt missed its fixed public boundary");
+  end
+  assign main_bus.sign_attempt_boundary = u_dut.u_sign.attempt_active &&
+    u_dut.u_sign.state==u_dut.u_sign.BOUNDARY &&
+    u_dut.u_sign.attempt_cycles>=u_dut.u_sign.attempt_limit;
+  assign main_bus.sign_attempt_cycles = u_dut.u_sign.attempt_cycles;
 endmodule

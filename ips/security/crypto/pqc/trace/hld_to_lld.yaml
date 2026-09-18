@@ -18,6 +18,18 @@ links:
   target_id: LLD.MOD.PQC.DSASEQ
   status: linked
   confidence: high
+- source_id: HLD.MOD.PQC.DSASEQ
+  target_id: LLD.MOD.PQC.DSASEQ.KEYGEN
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.PQC.DSASEQ
+  target_id: LLD.MOD.PQC.DSASEQ.SIGN
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.PQC.DSASEQ
+  target_id: LLD.MOD.PQC.DSASEQ.VERIFY
+  status: linked
+  confidence: high
 - source_id: HLD.MOD.PQC.FAULT
   target_id: LLD.MOD.PQC.FAULT
   status: linked
@@ -58,6 +70,10 @@ links:
   target_id: LLD.MOD.PQC.KEMSEQ.ENCAPS
   status: linked
   confidence: high
+- source_id: HLD.MOD.PQC.KEMSEQ
+  target_id: LLD.MOD.PQC.KEMSEQ.KEYGEN
+  status: linked
+  confidence: high
 - source_id: HLD.MOD.PQC.KEYSLOT
   target_id: LLD.MOD.PQC.KEYSLOT
   status: linked
@@ -96,6 +112,10 @@ links:
   confidence: high
 - source_id: HLD.MOD.PQC.WORKKEY
   target_id: LLD.MOD.PQC.WORKKEY
+  status: linked
+  confidence: high
+- source_id: HLD.MOD.PQC.WORKKEY
+  target_id: LLD.MOD.PQC.WORKKEY.CUSTODY
   status: linked
   confidence: high
 gap_analysis:

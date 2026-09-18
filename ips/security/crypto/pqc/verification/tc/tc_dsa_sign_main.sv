@@ -2,6 +2,8 @@ class tc_dsa_sign_main extends tc_base;
   `uvm_component_utils(tc_dsa_sign_main)
   virtual pqc_main_if bus;
   byte unsigned dk[0:4895],sig[0:4626],msg[0:65536],ctx[0:254],desc[0:127];
+  byte unsigned attempts[0:1];
+  int attempt_count;
   int dk_len,pklen,siglen,mlen,clen,pset,wa,wb,writes,acks,count;
   int seen_sig[0:4626],sig_count,entropy_count;int seen[0:31];bit observing;string vectors;
   function new(string name="tc_dsa_sign_main",uvm_component parent=null);super.new(name,parent);endfunction
@@ -17,6 +19,10 @@ class tc_dsa_sign_main extends tc_base;
     forever begin
       @(posedge bus.clk);
       if(observing) begin
+        if(bus.sign_attempt_boundary) begin
+          attempt_count++;
+          if(bus.sign_attempt_cycles!==(pset==6 ? 32'd2250000 : 32'd1500000)) `uvm_fatal("ATTEMPT_TIMING","normal attempt retired outside fixed boundary")
+        end
         if(bus.entropy_enable && bus.entropy_ready) entropy_count++;
         if(bus.arvalid && bus.arready) begin
           int a,n;a=int'(bus.araddr);n=16*(int'(bus.arlen)+1);
@@ -88,6 +94,7 @@ class tc_dsa_sign_main extends tc_base;
     pset=n/3+4;pklen=pset==4?1312:pset==5?1952:2592;siglen=pset==4?2420:pset==5?3309:4627;
     mlen=n%3==0?0:n%3==1?137:65537;clen=n%3==0?0:n%3==1?1:255;
     cbytes=pset==4?32:pset==5?48:64;zbits=pset==4?18:20;
+    $readmemh($sformatf("%s/%0d_attempts.hex",vectors,n),attempts);
     dk_len=pset==4?2560:pset==5?4032:4896;
     if(variant==1) begin sig_name="hedged_sig";descname="hedged_desc";end else begin sig_name="sig";descname="sign_desc";end
     $readmemh($sformatf("%s/%0d_sk.hex",vectors,n),dk,0,dk_len-1);
@@ -103,7 +110,7 @@ class tc_dsa_sign_main extends tc_base;
     for(int i=0;i<clen;i++) bus.mem['ha000+i]=ctx[i];
     foreach(seen[i]) seen[i]=0;
     foreach(seen_sig[i]) seen_sig[i]=0;
-    sig_count=0;entropy_count=0;
+    sig_count=0;entropy_count=0;attempt_count=0;
     bus.entropy_tag={4'd2,4'(pset)};bus.entropy_words=4;bus.entropy_enable=1;
     import_key(32'hD5A00000+n,4'(pset));
     wa=0;wb=0;writes=0;acks=0;count=0;bus.response_delay=17+n;
@@ -115,10 +122,12 @@ class tc_dsa_sign_main extends tc_base;
       repeat(500) @(negedge bus.clk);apb_read(PQC_REG_STATUS,rd,err);polls++;
       if(err || rd[3]) `uvm_fatal("DSA_SIGN_STATUS",$sformatf("case=%0d variant=%0d status=%h",n,variant,rd))
       apb_read(PQC_REG_INTR_STATE,intr,err);
+      if(intr[4:1]!=0) `uvm_fatal("DSA_SIGN_ERROR",$sformatf("case=%0d variant=%0d intr=%h",n,variant,intr))
       if(err || polls>400000) `uvm_fatal("DSA_SIGN_TIMEOUT","command failed to retire")
     end while(!intr[0]);
     @(negedge bus.clk);observing=0;bus.entropy_enable=0;
     if(count!=32 || wb!=0 || acks!=writes) `uvm_fatal("COUNTS","incomplete completion")
+    if(attempt_count!=int'(attempts[variant==1?1:0])) `uvm_fatal("ATTEMPTS",$sformatf("got=%0d expected=%0d",attempt_count,attempts[variant==1?1:0]))
     if(sig_count!=siglen || entropy_count!=(variant==1?4:0)) `uvm_fatal("COUNTS","signature or entropy length mismatch")
     if(word_at('h8000)!==32'h44530000+n || word_at('h8004)!==0 ||
        word_at('h8008)!==32'(siglen) || word_at('h800c)!==0 || word_at('h8010)!==0 ||
@@ -128,7 +137,8 @@ class tc_dsa_sign_main extends tc_base;
     `uvm_info("DSA_SIGN_CASE_PASS",$sformatf("case=%0d variant=%0d pset=%0d message=%0d context=%0d",n*3+variant,variant,pset,mlen,clen),UVM_NONE)
   endtask
   task run_phase(uvm_phase phase);
-    phase.raise_objection(this);fork monitor();join_none
+    phase.raise_objection(this);
+    env.apb_vip.monitor.set_report_verbosity_level(UVM_NONE);fork monitor();join_none
     repeat(20) @(negedge bus.clk);bringup();
     for(int n=0;n<9;n++) for(int v=0;v<3;v++) run_case(n,v);
     `uvm_info("DSA_SIGN_MAIN_PASS","27 independent deterministic/repeated/hedged signatures",UVM_NONE)

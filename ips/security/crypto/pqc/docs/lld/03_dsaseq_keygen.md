@@ -31,3 +31,28 @@ rtl_file: rtl/pqc_dsa_keygen.sv
 rtl_module: pqc_dsa_keygen
 implements: [LLD.MOD.PQC.DSASEQ.KEYGEN]
 END_RTL_MAP_META -->
+
+## 程序数据通路对象
+
+以下对象的32-bit宽度指受保护的本地word数据通路；SHAKE字节接口、64-bit熵输入
+及可信身份头仍按各自端口宽度传输。算术由共享引擎执行，程序自身保持单未决操作。
+正常握手停顿保留地址、数据、返回状态和计数；clear优先屏蔽所有请求及结果。
+
+<!-- LLD_DATAPATH_META
+id: LLD.DP.PQC.DSA_KEYGEN.PROGRAM
+module_ref: LLD.MOD.PQC.DSASEQ.KEYGEN
+width: 32
+operators:
+- entropy_xi_capture
+- shared_shake_dispatch
+- shared_expand_s_a_dispatch
+- shared_ntt_matrix_mac_dispatch
+- power2round_t1_t0_split
+- private_workkey_serialization
+- secret_word_scrub
+req_ref:
+- LRS.FUNC.PQC.DSA_KEYGEN.001
+applicability:
+  expr: 'true'
+END_LLD_DATAPATH_META -->
+

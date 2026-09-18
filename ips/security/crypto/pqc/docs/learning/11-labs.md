@@ -83,6 +83,16 @@ PYTHONPATH="$PQC_MODEL/src${PYTHONPATH:+:$PYTHONPATH}" \
 
 现有入口见 [verification/README.md](../../verification/README.md)、[模块 UT runner](../../verification/unit_test/run_ut.sh) 和[验证计划](../verification/index.md)。RTL 仿真依赖 EDA 工具与工程配置，本教材不将运行 Python demo 描述成运行 RTL。
 
+## 从算法连接到硬件的补充实验
+
+读完[Encaps 完整跟踪](../hardware_tutorial/06-encaps-walkthrough.md)，运行：
+
+```bash
+uv run --no-sync python repos/aixsilicon_ip_repo/ips/security/crypto/pqc/docs/examples/bridge_demo.py
+```
+
+脚本检查 12-bit packing、4/10-bit 压缩的圆周误差、ready/valid 消费次数和简单 bank 冲突，再用独立环乘法 oracle 核对冻结的 ML-KEM-768 完整密文和 K。它只读取公开测试向量，不需要完整算法模式的第三方依赖。把输出分别对应到[数据表示](../hardware_tutorial/09-data-representations.md)、[时序](../hardware_tutorial/08-timing-waveforms.md)和[性能口径](../hardware_tutorial/10-storage-performance.md)，再尝试解释每个数字。
+
 ## 常见问题
 
 | 现象 | 首先检查 |

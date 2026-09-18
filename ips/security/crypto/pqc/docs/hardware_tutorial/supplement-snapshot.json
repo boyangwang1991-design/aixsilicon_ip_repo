@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-18",
+  "scope": "Supplement reading sources; not RTL validation",
+  "sha256": {
+    "rtl/pqc_kem_encaps.sv": "4f9191ad59c86b1cc058d5849653643297af99445f75371135002839ec9d25c2",
+    "rtl/pqc_secure_sram_ctrl.sv": "88c4d0c951014cf317662174d1b08a2d60870a1f5fb8eb92479a39e577e5cee7",
+    "scripts/encaps_algebra_oracle.py": "57186b9337fbab2b18526aa63df6c60294cda581d2a450a023becd7dc06346c2",
+    "verification/vectors/encaps/manifest.json": "0ec8b66df720ce88217260b169ef28df1b4570a8bb83c95fd770b1d353ebefe6"
+  }
+}

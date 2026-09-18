@@ -84,7 +84,7 @@ module pqc_poly_engine #(
   // ---------------------------------------------------------------------------
   // Modular arithmetic. The modulus is known per domain_q, so the reductions are
   // written against literal constants: KEM uses a 32x32 reciprocal (Barrett)
-  // chain and DSA uses the constant-modulus remainder. No runtime divider.
+  // chain and DSA uses three bounded pseudo-Mersenne folds. No divider.
   // ---------------------------------------------------------------------------
   localparam logic [63:0] KEM_RECIP = 64'd1290167;   // floor(2^32 / 3329)
 
@@ -96,11 +96,21 @@ module pqc_poly_engine #(
     else                 kem_reduce = 32'(r);
   endfunction
 
+  function automatic logic [31:0] dsa_reduce(input logic [45:0] v);
+    logic [35:0] f1;
+    logic [26:0] f2;
+    logic [23:0] f3;
+    f1=36'(v[22:0])+(36'(v[45:23])<<13)-36'(v[45:23]);
+    f2=27'(f1[22:0])+(27'(f1[35:23])<<13)-27'(f1[35:23]);
+    f3=24'(f2[22:0])+(24'(f2[26:23])<<13)-24'(f2[26:23]);
+    return f3>=24'd8380417 ? 32'(f3-24'd8380417) : 32'(f3);
+  endfunction
+
   function automatic logic [31:0] mod_mul(input logic [31:0] a, input logic [31:0] b);
     logic [45:0] prod;
     // All operands are normalized residues: DSA needs 23 bits, KEM 12.
     prod = 46'(a[22:0]) * 46'(b[22:0]);
-    mod_mul = domain_q ? 32'(prod % 46'd8380417) : kem_reduce(32'(prod));
+    mod_mul = domain_q ? dsa_reduce(prod) : kem_reduce(32'(prod));
   endfunction
 
   function automatic logic [31:0] mod_add(input logic [31:0] a, input logic [31:0] b);

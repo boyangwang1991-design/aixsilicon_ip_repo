@@ -126,6 +126,7 @@ module pqc_top #(
 );
 
   import pqc_pkg::*;
+  // synopsys translate_off
   initial begin
     if(!((NTT_LANES==1)||(NTT_LANES==2)||(NTT_LANES==4)) ||
        !((KECCAK_ROUNDS_PER_CYCLE==1)||(KECCAK_ROUNDS_PER_CYCLE==2)) ||
@@ -134,6 +135,7 @@ module pqc_top #(
        KEY_SLOT_NUM<8 || KEY_SLOT_NUM>32)
       $fatal(1,"PQC_INVALID_PARAMETERS");
   end
+  // synopsys translate_on
 
   // ===========================================================================
   // CSR block (PeakRDL generated)

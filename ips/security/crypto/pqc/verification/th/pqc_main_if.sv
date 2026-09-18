@@ -8,6 +8,8 @@ interface pqc_main_if(input logic clk,input logic rst_n);
   logic [15:0] wstrb;
   logic [1:0] rresp,bresp;
   logic irq,entropy_ready;
+  logic sign_attempt_boundary;
+  logic [31:0] sign_attempt_cycles;
   logic entropy_enable=0;
   logic [7:0] entropy_tag=8'h11;
   byte unsigned mem[0:262143];

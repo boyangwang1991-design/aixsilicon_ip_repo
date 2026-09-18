@@ -22,11 +22,12 @@ expected_result:
 - 确定性两次完全一致且消费0B随机，hedged恰好消费32B随机
 - 所有读取仅描述符、message/context；私钥不经过公共DMA
 - 签名输出恰好一次且不越界，签名B响应先于completion，completion B响应先于IRQ
+- 每次正常尝试在公开pset决定的固定周期边界（44/65为1500000，87为2250000）结束，尝试次数等于独立oracle（包括31次拒绝采样长场景）
 - 完成记录所有字段与长度匹配，超时/零比较/缺少标记失败
 config_ref: [CFGSET.PQC.DEFAULT]
 applicability:
   expr: 'SCA_LEVEL < 2'
-timeout_policy: 200000000 cycles per command; 1800 s process watchdog
+timeout_policy: 200000000 cycles per command; 3600 s process watchdog
 END_TESTCASE_META -->
 
 完整故障、撤销、重试耗尽、HashML-DSA与Level2义务由原VPLAN继续跟踪。

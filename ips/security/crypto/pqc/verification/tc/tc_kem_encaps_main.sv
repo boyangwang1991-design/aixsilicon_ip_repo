@@ -110,6 +110,7 @@ class tc_kem_encaps_main extends tc_base;
   endtask
   task run_phase(uvm_phase phase);
     phase.raise_objection(this);
+    env.apb_vip.monitor.set_report_verbosity_level(UVM_NONE);
     fork observe(); join_none
     repeat(20) @(negedge bus.clk);
     bringup();repeat(100) @(negedge bus.clk);

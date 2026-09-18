@@ -24,7 +24,8 @@ filesets:
     - rtl/pqc_poly_engine.sv
     - rtl/pqc_codec.sv
     - rtl/pqc_sampler.sv
-    - rtl/pqc_ecc_sram.sv
+    - '!pqc_sram_blackbox ? (rtl/pqc_ecc_sram.sv)'
+    - 'pqc_sram_blackbox ? (rtl/synthesis/pqc_ecc_sram.sv)'
     - rtl/pqc_secure_sram_ctrl.sv
     - rtl/pqc_key_slots.sv
     - rtl/pqc_work_key_ram.sv
@@ -76,6 +77,10 @@ filesets:
     - verification/unit_test/ut_pqc_kem_select.sv
     - verification/unit_test/ut_pqc_kem_seq.sv
     - verification/unit_test/ut_pqc_key_custody.sv
+    - verification/unit_test/ut_pqc_dsa_verify.sv
+    - verification/unit_test/ut_pqc_dsa_sign.sv
+    - verification/unit_test/ut_pqc_dsa_keygen.sv
+    - verification/unit_test/ut_pqc_kem_keygen.sv
     - verification/unit_test/ut_pqc_key_slots.sv
     - verification/unit_test/ut_pqc_masked_and.sv
     - verification/unit_test/ut_pqc_masked_random_path.sv
@@ -219,6 +224,8 @@ targets:
         - -l
         - compile.log
   lint:
+    flags:
+      pqc_sram_blackbox: true
     default_tool: spyglass
     filesets:
     - common
@@ -232,22 +239,13 @@ targets:
         - lint/lint_rtl
         spyglass_options:
         - enableSV yes
-        # The parameterized working memory is a register array at RTL and keeps
-        # that structure until the hardening macro swap (pqc_ecc_sram is the
-        # intended macro boundary). handlememory makes SpyGlass analyse it as an
-        # addressed memory (module annotation SYNTH_5014 "Memory analysis
-        # enabled") instead of exploding 16K words into flops, which exhausts
-        # machine memory.
-        #
-        - handlememory yes
+        # Storage-only SRAM blackboxes keep control/ECC visible without
+        # expanding behavioral arrays. Module UT uses the behavioral view.
         rule_parameters:
-        # W123 reports that the wide memory signals of pqc_ecc_sram (39-bit code
-        # word x 16K entries) and pqc_work_key_ram are "size too big thus not
-        # processed"; this is the remedy that message names, and it is required
-        # for the memory bodies to be rule-checked at all. It needs the large
-        # elaboration memory budget available on the signoff host.
         - handle_large_bus yes
   synth:
+    flags:
+      pqc_sram_blackbox: true
     default_tool: design_compiler
     filesets:
     - common
@@ -1100,3 +1098,35 @@ targets:
     tools:
       vcs:
         vcs_options: [-full64, -sverilog, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+
+  ut_pqc_kem_keygen:
+    default_tool: vcs
+    filesets: [common, generated, rtl, ut, vectors]
+    toplevel: ut_pqc_kem_keygen
+    tools:
+      vcs:
+        vcs_options: [-sverilog, -full64, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+
+  ut_pqc_dsa_keygen:
+    default_tool: vcs
+    filesets: [common, generated, rtl, ut, vectors]
+    toplevel: ut_pqc_dsa_keygen
+    tools:
+      vcs:
+        vcs_options: [-sverilog, -full64, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+
+  ut_pqc_dsa_sign:
+    default_tool: vcs
+    filesets: [common, generated, rtl, ut, vectors]
+    toplevel: ut_pqc_dsa_sign
+    tools:
+      vcs:
+        vcs_options: [-sverilog, -full64, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]
+
+  ut_pqc_dsa_verify:
+    default_tool: vcs
+    filesets: [common, generated, rtl, ut, vectors]
+    toplevel: ut_pqc_dsa_verify
+    tools:
+      vcs:
+        vcs_options: [-sverilog, -full64, -timescale=1ns/1ps, -ntb_opts, uvm-1.2]

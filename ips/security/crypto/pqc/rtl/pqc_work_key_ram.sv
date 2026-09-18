@@ -34,8 +34,15 @@ module pqc_work_key_ram #(
   localparam int WORDS=(KEY_BYTES+3)/4;
   typedef enum logic[2:0] {K_WIPE,K_EMPTY,K_LOAD,K_SCAN,K_READY} state_e;
   state_e state;
-  logic [38:0] mem[0:WORDS-1];
   logic [$clog2(WORDS+1)-1:0] index;
+  localparam int AW=$clog2(WORDS);
+  logic [38:0] mem_rdata, mem_wdata;
+  logic [AW-1:0] mem_raddr;
+  logic mem_we;
+  logic [31:0] masked_data;
+  pqc_ecc_sram #(.DEPTH(WORDS),.WIDTH(39)) u_mem (
+    .clk(clk),.rst_n(rst_n),.we(mem_we),.waddr(AW'(index)),
+    .wdata(mem_wdata),.raddr(mem_raddr),.rdata(mem_rdata));
   logic [31:0] handle_q;
   logic [3:0] algo_q,pset_q;
   logic [7:0] usage_q;
@@ -74,10 +81,10 @@ module pqc_work_key_ram #(
       load_done<=0;load_error<=0;
       raw_valid<=read_req && read_allowed;
       raw_private_read<=read_req && read_allowed;
-      if(read_req && read_allowed) raw_q<=mem[read_word];
+      if(read_req && read_allowed) raw_q<=mem_rdata;
       else raw_q<=0;
       if(state==K_SCAN && 32'(index)*4 < bytes_q) begin
-        raw_q<=mem[index];raw_valid<=1;raw_private_read<=0;
+        raw_q<=mem_rdata;raw_valid<=1;raw_private_read<=0;
       end
       read_valid_q<=raw_valid && raw_private_read && !uncorrectable && check_ok;
       read_error_q<=(read_req && !read_allowed) || (raw_valid && raw_private_read && uncorrectable);
@@ -125,15 +132,13 @@ module pqc_work_key_ram #(
       endcase
     end
   end
-  // No array reset. A complete sweep runs before the first import is accepted.
-  // Fixed byte lanes suppress unused bytes in the last imported word.
-  always_ff @(posedge clk) begin
-    if(state==K_WIPE) mem[index]<=secded_enc(0);
-    else if(load_valid && load_ready) begin : store_word
-      logic [31:0] masked_data;
-      for(int b=0;b<4;b++) masked_data[b*8+:8] =
-        (32'(index)*4+b < bytes_q) ? load_data[b*8+:8] : 8'd0;
-      mem[index] <= secded_enc(masked_data);
-    end
+  // Single physical write port; ECC, authorization and scrub remain logic.
+  // Asynchronous macro output is captured in raw_q, preserving read latency.
+  always_comb begin
+    mem_raddr=(state==K_SCAN) ? AW'(index) : AW'(read_word);
+    for(int b=0;b<4;b++) masked_data[b*8+:8] =
+      (32'(index)*4+b < bytes_q) ? load_data[b*8+:8] : 8'd0;
+    mem_we=(state==K_WIPE) || (load_valid && load_ready);
+    mem_wdata=(state==K_WIPE) ? secded_enc(0) : secded_enc(masked_data);
   end
 endmodule

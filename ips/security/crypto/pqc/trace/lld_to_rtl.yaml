@@ -18,6 +18,18 @@ links:
   target_id: RTL.FILE.rtl/pqc_dsa_seq.sv
   status: linked
   confidence: high
+- source_id: LLD.MOD.PQC.DSASEQ.KEYGEN
+  target_id: RTL.FILE.rtl/pqc_dsa_keygen.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.PQC.DSASEQ.SIGN
+  target_id: RTL.FILE.rtl/pqc_dsa_sign.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.PQC.DSASEQ.VERIFY
+  target_id: RTL.FILE.rtl/pqc_dsa_verify.sv
+  status: linked
+  confidence: high
 - source_id: LLD.MOD.PQC.FAULT
   target_id: RTL.FILE.rtl/pqc_fault_ctrl.sv
   status: linked
@@ -58,6 +70,10 @@ links:
   target_id: RTL.FILE.rtl/pqc_kem_encaps.sv
   status: linked
   confidence: high
+- source_id: LLD.MOD.PQC.KEMSEQ.KEYGEN
+  target_id: RTL.FILE.rtl/pqc_kem_keygen.sv
+  status: linked
+  confidence: high
 - source_id: LLD.MOD.PQC.KEYSLOT
   target_id: RTL.FILE.rtl/pqc_key_slots.sv
   status: linked
@@ -88,6 +104,10 @@ links:
   confidence: high
 - source_id: LLD.MOD.PQC.WORKKEY
   target_id: RTL.FILE.rtl/pqc_work_key_ram.sv
+  status: linked
+  confidence: high
+- source_id: LLD.MOD.PQC.WORKKEY.CUSTODY
+  target_id: RTL.FILE.rtl/pqc_key_custody.sv
   status: linked
   confidence: high
 gap_analysis:

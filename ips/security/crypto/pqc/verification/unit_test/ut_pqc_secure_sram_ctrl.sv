@@ -238,6 +238,25 @@ module ut_pqc_secure_sram_ctrl;
     chk(dut.secded_data(dut.u_store.mem[16'h0010]), 32'h0, "zeroize cleared word 0x0010");
     chk(dut.secded_data(dut.u_store.mem[16'h0100]), 32'h0, "zeroize cleared word 0x0100");
 
+    // Populate a marker in every physical page, then invalidate every tag.
+    // Invalid metadata-only pages must not alias valid physical pages.
+    begin
+      logic [16383:0] expected_valid;
+      expected_valid='0;
+      for(int p=0;p<64;p++) begin
+        port0_write(16'(p*256),32'h12340000+32'(p));
+        expected_valid[p*256]=1'b1;
+      end
+      if(dut.word_valid!==expected_valid) $fatal(1,"word validity publication mismatch");
+      for(int n=0;n<96;n++) begin
+        int pg;pg=n<32 ? 64+n : ((n-32)*17)%64;
+        @(negedge clk);tag_we=1;tag_valid=0;tag_page=8'(pg);
+        @(negedge clk);tag_we=0;
+        // Independent per-word reference, retaining explicit capacity guard.
+        for(int w=0;w<256;w++) if(pg*256+w<16384) expected_valid[pg*256+w]=0;
+        #1;if(dut.word_valid!==expected_valid) $fatal(1,"page invalidation mismatch pg=%0d",pg);
+      end
+    end
     #40;
     if (errors == 0) $display("UT_pqc_secure_sram_ctrl: PASS (errors=0)");
     else             $display("UT_pqc_secure_sram_ctrl: FAIL (errors=%0d)", errors);

@@ -1,0 +1,23 @@
+{
+  "generator": "ChatGPT native image_gen",
+  "date": "2026-09-18",
+  "prompts": [
+    {
+      "id": 8,
+      "file": "08-encaps-computation.png",
+      "prompt": "A precise textbook flowchart titled ML-KEM Encapsulation. White background, blue boxes with arrows in this order: Public key and randomness -> Hash and sample -> NTT -> Matrix multiplication -> Inverse NTT -> Add noise and message -> Compress and pack -> Ciphertext. Branch from Hash and sample to Shared secret. Footer: Conceptual flow; see accompanying text for exact loops. Large English labels, clean landscape layout, no extra text.",
+      "review": "Visually checked forward arrows and shared-secret branch. Abstract flow; captions distinguish y NTT, matrix sampling in NTT domain, and message addition only to v."
+    }
+  ],
+  "failed_attempts": [
+    {
+      "prompt": "Create a wide technical textbook infographic on a white background, crisp restrained blue and teal block diagram, English labels only. Title: ML-KEM-768 Encapsulation: shared hardware schedule. Three horizontal lanes. Top lane: Public key 1184 B -> Decode 3 polynomials + rho -> Keep t_hat pages 0-2. Middle lane: m 32 B and H(public key) -> SHA3-512 -> K 32 B and r 32 B -> SHAKE256 + CBD -> NTT -> Keep y_hat pages 4-6. Bottom main computation lane: Stream matrix element page 10 -> Multiply-accumulate page 8 -> Inverse NTT -> Add noise page 9 -> Compress -> Pack page 11 -> Ciphertext 1088 B. Show arrows from y_hat and t_hat into computation lane labelled reuse. Put a clear note below computation lane: u: three rows, then v: public-key dot product plus message. Bottom footer: Buffers are reused only after their final reader completes. Conceptual schedule; see text for exact state transitions. No extra formulas, no decorative locks, no invented modules.",
+      "result": "connection failed; no asset"
+    },
+    {
+      "prompt": "Redesign reference into a textbook dataflow diagram titled ML-KEM-768 Encapsulation. White background, navy arrows, blue and teal rectangular boxes. Left inputs: Public key 1184 B; Random m 32 B. Main flow: Hash and derive -> Sample y -> NTT -> Matrix/vector multiply-accumulate -> Inverse NTT -> Add noise and message -> Compress and pack -> Ciphertext 1088 B. Separate branch from Hash and derive to Shared secret K 32 B. Bottom show reusable SRAM boxes: t_hat pages 0-2; y_hat pages 4-6; accumulator page 8; noise page 9; matrix page 10; packing page 11. Footer: Conceptual computation flow; exact loops and lifetimes in accompanying text. English labels only. No formulas. No CPU, key manager or key RAM.",
+      "reference": "07-hardware-blocks.png",
+      "result": "connection failed; no asset"
+    }
+  ]
+}

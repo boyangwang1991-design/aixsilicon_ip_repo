@@ -42,7 +42,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path)
     args=parser.parse_args()
-    work=args.output or Path(tempfile.mkdtemp(prefix='pqc_param_'))
+    work=(args.output or Path(tempfile.mkdtemp(prefix='pqc_param_'))).resolve()
     work.mkdir(parents=True,exist_ok=True)
     sources=[str(ROOT/s.strip()) for s in (ROOT/'rtl/filelist.f').read_text().splitlines() if s.strip()]
     records=[]

@@ -13,6 +13,13 @@
 | 3 | [算法执行、数据流与存储](03-flows-memory.md) | KeyGen、Encaps、Decaps、Sign、Verify、页生命周期与性能 |
 | 4 | [从故障场景理解安全控制](04-security-errors.md) | 授权、托管、背压、撤销、清零、状态与排错 |
 | 5 | [怎样阅读 RTL 与验证结果](05-verification-status.md) | 模型/RTL 的证据层次、源码阅读练习、实现状态 |
+| 6 | [ML-KEM-768 Encaps 完整跟踪](06-encaps-walkthrough.md) | 公式、状态、字节长度、SRAM 地址及冻结向量实验 |
+| 7 | [算法—模型—RTL—测试对照](07-cross-layer-map.md) | 四层对应关系、失配定位和证据缺口 |
+| 8 | [时序与波形入门](08-timing-waveforms.md) | ready/valid、start/done、SRAM 响应、背压与取消 |
+| 9 | [数据表示与位宽转换](09-data-representations.md) | centered/canonical、NTT、压缩编码、字节与 word |
+| 10 | [存储调度与性能分析](10-storage-performance.md) | 页的最后读者、bank 冲突、计算与搬运开销 |
+
+第 6～10 章把同一个封装例子从公式追到硬件。遇到位宽或编码困难时，可先读第 9 章再返回第 6 章。配套 [bridge_demo.py](../examples/bridge_demo.py)只依赖标准库和仓内模型，包含完整冻结 Encaps 向量的独立代数比对。
 
 ## 快速定位
 

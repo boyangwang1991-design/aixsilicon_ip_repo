@@ -65,6 +65,8 @@ REL="$(realpath --relative-to="$OUT_ABS" "$IP_ROOT")"
 FILES=""
 while IFS= read -r line; do
     line="$(echo "$line" | sed 's|//.*$||' | xargs)"
+    # Diagnostic lint uses the same storage-only blackbox as the core lint target.
+    [ "$line" != rtl/pqc_ecc_sram.sv ] || line=rtl/synthesis/pqc_ecc_sram.sv
     [ -n "$line" ] && FILES="$FILES $REL/$line"
 done < "$FILELIST"
 [ -n "$FILES" ] || { echo "ERROR: no RTL files expanded from $FILELIST" >&2; exit 2; }

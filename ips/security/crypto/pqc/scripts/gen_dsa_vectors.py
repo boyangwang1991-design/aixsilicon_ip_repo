@@ -27,6 +27,23 @@ def descriptor(case, pset, message_len, context_len, combined_len):
     return desc
 
 
+def sign_counted(alg, sk, message, context, rnd):
+    """Count the independent oracle's candidates without changing arithmetic."""
+    original = alg._expand_mask_vector
+    count = 0
+    def counted(*args, **kwargs):
+        nonlocal count
+        count += 1
+        return original(*args, **kwargs)
+    try:
+        alg._expand_mask_vector = counted
+        sig = alg._sign_internal(sk,bytes([0,len(context)])+context+message,rnd)
+        assert 0 < count < 256
+        return sig,count
+    finally:
+        alg._expand_mask_vector = original
+
+
 def main():
     ROOT.mkdir(parents=True, exist_ok=True)
     manifest = {'schema': 'pqc-dsa-kat/1', 'oracle': 'dilithium-py',
@@ -40,7 +57,7 @@ def main():
             message = hashlib.shake_256(seed+b'message').digest(mlen)
             context = hashlib.shake_256(seed+b'context').digest(clen)
             pk, sk = alg.key_derive(xi)
-            sig = alg.sign(sk, message, ctx=context, deterministic=True)
+            sig,det_attempts = sign_counted(alg,sk,message,context,bytes(32))
             assert alg.verify(pk, message, sig, ctx=context)
             cbytes = (32, 48, 64)[family]
             zbits = 18 if family == 0 else 20
@@ -63,7 +80,7 @@ def main():
                 kgdesc[off:off+size]=value.to_bytes(size,'little')
             kgdesc[124:128]=zlib.crc32(kgdesc[:124]).to_bytes(4,'little')
             rnd = hashlib.shake_256(seed+b'hedged').digest(32)
-            hedged_sig = alg._sign_internal(sk,bytes([0,clen])+context+message,rnd)
+            hedged_sig,hedged_attempts = sign_counted(alg,sk,message,context,rnd)
             assert alg.verify(pk,message,hedged_sig,ctx=context)
             sigdescs = {}
             for policy in (0,1):
@@ -76,7 +93,7 @@ def main():
                 sd[124:128]=zlib.crc32(sd[:124]).to_bytes(4,'little')
                 sigdescs['sign_desc' if policy==0 else 'hedged_desc']=sd
             files = {}
-            payloads = dict(**sigdescs, rnd=rnd, hedged_sig=hedged_sig, keygen_desc=kgdesc, xi=xi, pk=pk, sk=sk, sig=sig, message=message, context=context,
+            payloads = dict(attempts=bytes([det_attempts,hedged_attempts]), **sigdescs, rnd=rnd, hedged_sig=hedged_sig, keygen_desc=kgdesc, xi=xi, pk=pk, sk=sk, sig=sig, message=message, context=context,
                             desc=descriptor(case,pset,mlen,clen,len(pk)+len(sig)),
                             badmsg_desc=descriptor(case,pset,len(bad_msg),clen,len(pk)+len(sig)),
                             badctx_desc=descriptor(case,pset,mlen,len(bad_ctx),len(pk)+len(sig)))

@@ -84,19 +84,13 @@ module pqc_fault_ctrl #(
   logic fatal_event;
   logic recoverable_event;
 
-  // X-immune OR: a fault source that is momentarily X (for example the SRAM
-  // ECC reporting chain while a response is being captured) must never inject
-  // X into the zeroize tree, which would poison the whole memory handshake.
-  function automatic logic x_or(logic a, logic b);
-    return a === 1'bx ? 1'b0 : b === 1'bx ? a : (a | b);
-  endfunction
-
+  // Hardware fault convergence is an ordinary OR tree. Testing === 1'bx
+  // inside synthesizable logic can turn real fault inputs into don't-cares.
+  // Unknown simulation sources must be fixed at their producer, never masked.
   always_comb begin
-    fatal_event = x_or(x_or(x_or(x_or(x_or(x_or(tamper, ecc_ued), ecc_ue_gated),
-                            selftest_fail), lifecycle_change), fsm_illegal),
-                       counter_parity_err);
-
-    recoverable_event = x_or(x_or(x_or(ecc_ded, dma_error), timeout), rng_health_fail);
+    fatal_event = tamper | ecc_ued | ecc_ue_gated | selftest_fail |
+                  lifecycle_change | fsm_illegal | counter_parity_err;
+    recoverable_event = ecc_ded | dma_error | timeout | rng_health_fail;
   end
 
   // ---------------------------------------------------------------------------

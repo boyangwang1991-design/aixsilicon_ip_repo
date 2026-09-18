@@ -150,6 +150,11 @@ module ut_pqc_fault_ctrl;
     wait_zeroize_done();
     keys_zeroize_done=0;
 
+    // A known asserted fault must dominate another unknown simulation source.
+    // This also guards against reintroducing X-filtering into hardware logic.
+    @(negedge clk);tamper=1'bx;ecc_ued=1'b1;
+    #1;chk(dut.fatal_event,1'b1,"known ECC fault dominates unknown tamper");
+    @(negedge clk);tamper=0;ecc_ued=0;
     #40;
     if (errors == 0) $display("UT_pqc_fault_ctrl: PASS (errors=0)");
     else             $display("UT_pqc_fault_ctrl: FAIL (errors=%0d)", errors);

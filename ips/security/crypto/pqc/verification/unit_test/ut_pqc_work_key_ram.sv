@@ -59,11 +59,11 @@ module ut_pqc_work_key_ram;
   read_key(0,1);
   retire=1;#1;if(ok || rd!=0) $fatal(1,"retirement did not revoke read access");
   @(negedge clk);retire=0;wait_empty();
-  for(int i=0;i<2048;i++) if(dut.mem[i]!==0) $fatal(1,"retired material not physically cleared");
+  for(int i=0;i<2048;i++) if(dut.u_mem.mem[i]!==0) $fatal(1,"retired material not physically cleared");
   load_key();z=1;#1;if(ok || rv || rd!=0) $fatal(1,"zeroize did not revoke access");
   repeat(2200) @(negedge clk);
   if(!zd || begin_ready || ready) $fatal(1,"held zeroize protocol");
-  for(int i=0;i<2048;i++) if(dut.mem[i]!==0) $fatal(1,"zeroized material remains");
+  for(int i=0;i<2048;i++) if(dut.u_mem.mem[i]!==0) $fatal(1,"zeroized material remains");
   z=0;@(negedge clk);wait_empty();
   $display("UT_pqc_work_key_ram: PASS (errors=0)");$finish;
  end

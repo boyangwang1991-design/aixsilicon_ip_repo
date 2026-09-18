@@ -1,5 +1,5 @@
 // ML-DSA pure Sign program; shared arithmetic and bounded complete attempts.
-module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=500000000, MAX_ATTEMPTS=256, ATTEMPT_CYCLES=1500000) (
+module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=750000000, MAX_ATTEMPTS=256, ATTEMPT_CYCLES=1500000, ATTEMPT_CYCLES_87=2250000) (
   input logic clk, rst_n, start, clear,
   input logic [3:0] pset,
   output logic busy, done, error,
@@ -76,10 +76,17 @@ module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=500000000, MAX_ATTEMPTS=
   logic[15:0] houtput_idx;
   logic[1:0] mem_byte_lane;
   logic[11:0] hint_count;
+  wire [31:0] attempt_limit=(pset_q==6) ? ATTEMPT_CYCLES_87 : ATTEMPT_CYCLES;
   logic second_pass,reject_acc,sample_hash,hash_seen,sample_seen,attempt_active;
   logic[7:0] rho[0:31],key_seed[0:31],rnd[0:31],tr[0:63],mu[0:63],rhoprime[0:63],ctilde[0:63],hint[0:87];
   function automatic logic[31:0] high_bits(input logic[31:0] a);
-    logic[31:0] t;t=(a+gamma2-1)/(2*gamma2);return t==((Q-1)/(2*gamma2))?0:t;
+    logic[31:0] t;
+    if(pset_q==4) begin
+      t=(a+32'd95231)/32'd190464;
+      return t==32'd44 ? 32'd0 : t;
+    end
+    t=(a+32'd261887)/32'd523776;
+    return t==32'd16 ? 32'd0 : t;
   endfunction
   function automatic logic signed[31:0] centered(input logic[31:0] a);return a>Q/2 ? $signed(a)-$signed(Q) : $signed(a);endfunction
   function automatic logic[31:0] abs_center(input logic[31:0] a);return a>Q/2?Q-a:a;endfunction
@@ -171,7 +178,7 @@ module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=500000000, MAX_ATTEMPTS=
     end else begin
       if(busy) cycles<=cycles+1'b1;
       if(attempt_active) attempt_cycles<=attempt_cycles+1'b1;
-      if(busy && (cycles>=MAX_CYCLES-1 || (attempt_active && attempt_cycles>=ATTEMPT_CYCLES && state!=BOUNDARY))) state<=FAILED;
+      if(busy && (cycles>=MAX_CYCLES-1 || (attempt_active && attempt_cycles>=attempt_limit && state!=BOUNDARY))) state<=FAILED;
       else case(state)
         IDLE:if(start) begin
           pset_q<=pset;k<=pset==4?4:pset==5?6:8;l<=pset==4?4:pset==5?5:7;
@@ -283,7 +290,7 @@ module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=500000000, MAX_ATTEMPTS=
           hint[omega+row]<=hint_count[7:0];
           if(row+1<k) begin row<=row+1'b1;col<=0;idx<=0;state<=ZERO_ACC;end else begin if(hint_count>12'(omega)) reject_acc<=1;state<=BOUNDARY;end
         end
-        BOUNDARY:if(attempt_cycles>=ATTEMPT_CYCLES) begin
+        BOUNDARY:if(attempt_cycles>=attempt_limit) begin
           attempt_active<=0;
           if(!reject_acc) begin idx<=0;state<=SAVE_C;end
           else if(attempt+1>=MAX_ATTEMPTS || {1'b0,kappa}+{13'd0,l}>17'd65528) state<=FAILED;
@@ -294,7 +301,7 @@ module pqc_dsa_sign #(parameter int unsigned MAX_CYCLES=500000000, MAX_ATTEMPTS=
         SAVE_H:write_word(16'd4864+16'(ct_bytes)/4+16'(l)*16'(z_bits)*8+idx,
           {hint[4*idx+3],hint[4*idx+2],hint[4*idx+1],hint[4*idx]},SAVE_H_NEXT);
         SAVE_H_NEXT:if(4*(idx+1)>=16'(omega)+16'(k)) begin idx<=0;state<=WIPE;end else begin idx<=idx+1'b1;state<=SAVE_H;end
-        WIPE:if(idx>=4864 && idx<6144) begin idx<=6144;end else write_word(idx,0,WIPE_NEXT);
+        WIPE:if(idx==4864) begin idx<=16'd4864+16'(ct_bytes)/4+16'(l)*16'(z_bits)*8+(16'(omega)+16'(k)+3)/4;end else write_word(idx,0,WIPE_NEXT);
         WIPE_NEXT:if(idx==8191) state<=FINISH;else begin idx<=idx+1'b1;state<=WIPE;end
         MREAD:if(mem_ready) begin rd<=mem_rdata;state<=ret;end
         MWRITE:if(mem_ready) state<=ret;

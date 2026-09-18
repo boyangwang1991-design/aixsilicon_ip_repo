@@ -7,7 +7,7 @@
 # verification plan. The waivers are scoped per file on purpose; a blanket
 # waiver would hide a real finding introduced elsewhere.
 #
-# The G3 lint run for this IP is error-clean (0 errors). The warnings below are
+# Actual G3 status is recorded by the current run. The waivers below are
 # coding-style findings that the LLD microarchitecture deliberately accepts.
 
 # ---------------------------------------------------------------------------
@@ -108,3 +108,46 @@ waive -rule SYNTH_5143 -file "*pqc_top.sv"
 # Warm-reset-qualified accept gates new traffic out of POR-retained transport.
 # This is a coding-style waiver only; it does NOT waive or close CDC/RDC checks.
 waive -rule STARC05-1.3.1.3 -file "*pqc_cmd_frontend.sv"
+# Intentional synthesis-only SRAM interface, selected by the lint target.
+# Only storage is blackboxed; control/ECC remain visible and array behavior is
+# checked by simulation. This waiver does not apply to any logic module.
+waive -rule WarnAnalyzeBBox -file "*/rtl/synthesis/pqc_ecc_sram.sv"
+
+# 2026-09-18 review: classify 240 warnings from source-px0msrzs.
+# No synthesis error, latch, loop, range, or undriven-output rule is waived.
+# 单时序进程FSM；状态寄存器和条件更新有同一procedural owner。
+waive -rule STARC05-2.11.3.1 -file "*pqc_dsa_keygen.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_dsa_sign.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_dsa_verify.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_kem_decaps.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_kem_encaps.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_kem_keygen.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_key_custody.sv"
+waive -rule STARC05-2.11.3.1 -file "*pqc_top.sv"
+# 同一时序进程内默认递增/清零与状态动作按非阻塞赋值优先级覆盖，非多驱动。
+waive -rule STARC05-2.2.3.3 -file "*pqc_dsa_keygen.sv"
+waive -rule STARC05-2.2.3.3 -file "*pqc_dsa_sign.sv"
+waive -rule STARC05-2.2.3.3 -file "*pqc_dsa_verify.sv"
+waive -rule STARC05-2.2.3.3 -file "*pqc_kem_keygen.sv"
+waive -rule STARC05-2.2.3.3 -file "*pqc_key_custody.sv"
+waive -rule STARC05-2.2.3.3 -file "*pqc_top.sv"
+# 非掩码确定性Decaps保留统一entropy端口但不消费随机数；Level2集成仍开放。
+waive -rule W240 -file "*pqc_kem_decaps.sv"
+# Verify的8-bit hint/omega与16-bit计数器作无符号比较，SV零扩展为16位；没有截断或符号扩展。
+waive -rule W362 -file "*pqc_dsa_verify.sv"
+# 同一时序进程的默认赋值与后续状态分支覆盖，优先级有意保留。
+waive -rule W415a -file "*pqc_dsa_keygen.sv"
+waive -rule W415a -file "*pqc_dsa_sign.sv"
+waive -rule W415a -file "*pqc_dsa_verify.sv"
+waive -rule W415a -file "*pqc_kem_keygen.sv"
+waive -rule W415a -file "*pqc_key_custody.sv"
+# 无延迟/无事件的automatic task仅由唯一always_ff调用；宏式复用寄存器赋值，不产生并发进程。
+waive -rule W426 -file "*pqc_dsa_keygen.sv"
+waive -rule W426 -file "*pqc_dsa_sign.sv"
+waive -rule W426 -file "*pqc_dsa_verify.sv"
+waive -rule W426 -file "*pqc_kem_decaps.sv"
+waive -rule W426 -file "*pqc_kem_encaps.sv"
+waive -rule W426 -file "*pqc_kem_keygen.sv"
+# 锁存的pset及Decaps entropy_word不参与当前串行路径，工具可移除；不是缺省连接的功能输出。
+waive -rule W528 -file "*pqc_dsa_verify.sv"
+waive -rule W528 -file "*pqc_kem_decaps.sv"

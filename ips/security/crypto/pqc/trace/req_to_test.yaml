@@ -331,7 +331,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_KEYGEN.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
@@ -351,7 +367,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MESSAGE.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MU.001
@@ -371,7 +403,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_MU.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.001
@@ -391,7 +439,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.002
@@ -411,7 +475,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.002
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.003
@@ -431,7 +511,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_SIGN.003
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_VERIFY.001
@@ -451,7 +547,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.DSA_VERIFY.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
@@ -471,7 +583,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DATAFLOW.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DECAPS.001
@@ -491,7 +619,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_DECAPS.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_DECAPS.002
@@ -519,7 +663,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_ENCAPS.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
@@ -539,7 +699,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_KEYGEN.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_LEN.001
@@ -559,7 +735,23 @@ links:
   status: linked
   confidence: high
 - source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.DSA.KEYGEN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.DSA.SIGN.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.DSA.VERIFY.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
   target_id: TC.PQC.ENCAPS.MAIN.001
+  status: linked
+  confidence: high
+- source_id: LRS.FUNC.PQC.KEM_LEN.001
+  target_id: TC.PQC.KEYGEN.MAIN.001
   status: linked
   confidence: high
 - source_id: LRS.INTF.PQC.APB.001
