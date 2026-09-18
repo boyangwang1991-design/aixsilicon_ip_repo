@@ -254,3 +254,13 @@ req_ref:
 - LRS.SEC.PQC.SLOT.001
 - LRS.REG.PQC.SLOT.001
 END_LLD_REG_META -->
+
+
+### 告警事件连接补充（2026-09-18）
+
+TOP 将工作 SRAM/WORKKEY 的不可纠正 ECC、生命周期门控后的 DFT ECC 注入、
+tamper、自检失败和可纠正 ECC 分别连接到生成 CSR 的同名 `hwset`。
+CSR 保持 RDL 定义的 W1C、硬件置位优先；软件清除事件历史不改变独立 fault lock。
+本次没有将聚合 fatal 信号错误映射成所有分项位；其余 integrity/retry/perf 事件的
+完整归因和控制集成仍是专项义务。真实 tamper 的 idle UVM 检查两次有界清除 ACK、
+W1C 与锁定保持，不代表执行中故障注入或秘密内容擦除验收。

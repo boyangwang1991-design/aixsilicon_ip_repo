@@ -35,6 +35,7 @@ class pqc_rm extends uvm_component;
 
   // Number of expected-model observations produced (for the report phase)
   int unsigned exp_count;
+  virtual pqc_main_if sideband;
 
   function new(string name = "pqc_rm", uvm_component parent = null);
     super.new(name, parent);
@@ -48,7 +49,21 @@ class pqc_rm extends uvm_component;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     reset_shadow();
+    if(!uvm_config_db#(virtual pqc_main_if)::get(this,"","main_bus",sideband))
+      `uvm_fatal("RM","missing externally observed security sideband")
   endfunction
+
+  // Predict from external stimulus only, never from DUT alert/lock values.
+  // DFT lifecycle is tied closed by this harness. Internal ECC/integrity
+  // campaigns need their own independent fault-source monitor.
+  task run_phase(uvm_phase phase);
+    forever begin
+      @(posedge sideband.clk);
+      if(!sideband.rst_n) reset_shadow();
+      else if(sideband.tamper)
+        shadow[PQC_REG_ALERT_FATAL] |= 32'h2;
+    end
+  endtask
 
   function void reset_shadow();
     shadow.delete();
@@ -114,7 +129,8 @@ class pqc_rm extends uvm_component;
 
   // Write-1-to-clear register.
   function automatic bit is_w1c(logic [9:0] addr);
-    return (addr == PQC_REG_INTR_STATE);
+    return (addr == PQC_REG_INTR_STATE || addr == PQC_REG_ALERT_FATAL ||
+            addr == PQC_REG_ALERT_RECOVERABLE);
   endfunction
 
   // Read-only register (software writes are ignored).
@@ -125,8 +141,6 @@ class pqc_rm extends uvm_component;
     if (addr == PQC_REG_STATUS)      return 1'b1;
     if (addr == PQC_REG_RESULT)      return 1'b1;
     if (addr == PQC_REG_ERROR_CODE)  return 1'b1;
-    if (addr == PQC_REG_ALERT_RECOVERABLE) return 1'b1;
-    if (addr == PQC_REG_ALERT_FATAL)       return 1'b1;
     if (addr >= PQC_REG_PERF_TOTAL_CYCLES && addr <= PQC_REG_PERF_CMD_COUNT) return 1'b1;
     if (addr >= 10'h1C0 && addr <= 10'h1CC) return 1'b1;   // COMPLETION_*
     return 1'b0;
@@ -148,6 +162,8 @@ class pqc_rm extends uvm_component;
         // Write-1-to-clear: only the written 1 bits clear the shadow.
         logic [31:0] old = shadow.exists(tr.addr) ? shadow[tr.addr] : 32'h0;
         shadow[tr.addr] = old & ~tr.merge(32'h0);
+        if(tr.addr == PQC_REG_ALERT_FATAL && sideband.tamper)
+          shadow[tr.addr] |= 32'h2; // hardware set wins same-cycle W1C
       end else if (is_ro(tr.addr)) begin
         // Read-only: value must not change.
       end else if (pqc_reg_is_stimulus(tr.addr)) begin

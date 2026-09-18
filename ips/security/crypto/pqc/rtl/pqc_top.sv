@@ -774,6 +774,14 @@ module pqc_top #(
     hwif_in.INTR_STATE.self_test_fail.hwset = irq_selftest ||
                                               hwif_out.INTR_TEST.self_test_fail_test.value;
 
+    // Source-specific sticky alert history lives in the generated W1C CSR.
+    // Clearing the software history must not release the independent fault lock.
+    hwif_in.ALERT_RECOVERABLE.ecc_ded.hwset = ecc_ded;
+    hwif_in.ALERT_FATAL.ecc_ued.hwset = ecc_ued || work_key_integrity_error ||
+                                      (fault_inject_ecc_ue && dft_enable);
+    hwif_in.ALERT_FATAL.tamper_fatal.hwset = tamper_in;
+    hwif_in.ALERT_FATAL.selftest_fatal.hwset = irq_selftest;
+
     // CAPABILITY0/1 report the ELABORATED configuration, not fixed constants
     hwif_in.CAPABILITY0.algo_mask.next       = ENABLE_ALGO_MASK;
     hwif_in.CAPABILITY0.kem_supported.next   = 1'b1;

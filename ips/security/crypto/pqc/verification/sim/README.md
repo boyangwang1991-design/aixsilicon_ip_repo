@@ -30,3 +30,9 @@ DSA数据通路增量：`tc_dsa_keygen_main`九组公钥/私钥全字节及托�
 Sign逐尝试固定边界并限制次数，签名的独立oracle值不是RTL内部信号推导。
 所有case具有唯一连续编号；读向量文件失败、缺失标记或输入哈希变化一律失败。
 完整VPLAN含Level2、故障/撤销、HashML-DSA和覆盖率义务，算法KAT通过不替代这些检查。
+
+
+`TEST=tc_illegal_state_shutdown` 检查 idle 场景下关闭生命周期门的 DFT 注入被拒、
+真实 tamper、两次完整清除 ACK、有界等待、ALERT_FATAL 的 W1C 和锁定保持。
+参考模型从外部 tamper 输入预测事件，不读取 DUT 内部告警作为期望；缺少唯一
+`FAULT_IDLE_PASS` 标记则失败。该子集不代表执行中故障、全部源归因或秘密内容擦除闭环。

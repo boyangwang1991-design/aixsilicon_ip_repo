@@ -187,3 +187,12 @@ def test_teaching_notes_are_auxiliary_but_design_docs_are_inputs(runner, tmp_pat
     assert runner.snapshot_inputs([]) == before
     (design / "contract.md").write_text("changed design contract")
     assert runner.snapshot_inputs([]) != before
+
+
+def test_fault_stimulus_completion_required(runner):
+    name = "tc_illegal_state_shutdown"
+    empty = log_for(name)
+    marker = "UVM_INFO fault.sv(1) @ 10: test [FAULT_IDLE_PASS] checked\n"
+    assert runner.verdict(name, empty, 0)[0] == "fail"
+    assert runner.verdict(name, marker + empty, 0)[0] == "pass"
+    assert runner.verdict(name, marker + marker + empty, 0)[0] == "fail"

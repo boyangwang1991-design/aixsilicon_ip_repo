@@ -109,6 +109,9 @@ def verdict(test: str, text: str, rc: int) -> tuple[str, str]:
         expected_count = {"DECAPS": 45, "ENCAPS": 6, "KEYGEN": 9, "DSA_VERIFY": 63, "DSA_SIGN": 27, "DSA_KEYGEN": 9}[algorithm]
         if cases != [str(i) for i in range(expected_count)] or len(main) != 1:
             return "fail", "missing, duplicate or out-of-order KAT completion markers"
+    if test == "tc_illegal_state_shutdown":
+        if len(re.findall(r"^UVM_INFO .*\[FAULT_IDLE_PASS\]", text, re.M)) != 1:
+            return "fail", "missing or duplicate real fault completion marker"
     return "pass", "test identity, completion and UVM summary checked"
 
 

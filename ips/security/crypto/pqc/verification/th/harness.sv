@@ -73,6 +73,8 @@ module harness;
   );
 
   pqc_main_if main_bus(clk,rst_n);
+  assign main_bus.wipe_request = u_dut.fault_zeroize_req;
+  assign main_bus.wipe_done = u_dut.fault_zeroize_done;
   // ---------------------------------------------------------------------------
   // DUT
   // ---------------------------------------------------------------------------
@@ -126,8 +128,8 @@ module harness;
 
     // Sideband / security
     .lifecycle_strap  (1'b0),
-    .tamper_in        (1'b0),
-    .zeroize_req_in   (1'b0),
+    .tamper_in        (main_bus.tamper),
+    .zeroize_req_in   (main_bus.zeroize_req),
     .privileged       (1'b1),
     .debug_unlocked   (1'b0),
     .irq              (irq),
@@ -176,7 +178,7 @@ module harness;
     .km_revoke      (1'b0),
 
     // DFT injection (test lifecycle only)
-    .fault_inject_ecc_ue (1'b0),
+    .fault_inject_ecc_ue (main_bus.fault_ecc_inject),
     .fault_inject_ctrl   (1'b0)
   );
 

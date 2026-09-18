@@ -2872,7 +2872,7 @@ provenance:
   - path: docs/lld/03_register_behavior_1.md
     sha256: ac91016503456459a98e973c6cb30e180cefb5d96e7e65ed7b126f2476b95af3
   - path: docs/lld/03_register_behavior_2.md
-    sha256: 0f262dcebcfb0bc32912f220d39c98c2e7601ef5191269be282d200753c7497d
+    sha256: 3928548d2314019daa48650d465b8742926e12323d47c3a25d50ec8b5b6964e3
   - path: docs/lld/03_sampler.md
     sha256: 1a588754b8c720eb2f9f972e596ba2ddd54b1434a6a4cecd9142a104f8b024f5
   - path: docs/lld/03_sampler_secret.md
